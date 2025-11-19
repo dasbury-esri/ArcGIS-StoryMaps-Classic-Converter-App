@@ -1,0 +1,492 @@
+{
+  "root": "n-tqu1kg",
+  "nodes": {
+    "n-cos739": {
+      "type": "storycover",
+      "data": {
+        "type": "minimal",
+        "title": "(COPY) S.R. 68; Redwood Road in Saratoga Springs",
+        "summary": "",
+        "byline": "",
+        "titlePanelVerticalPosition": "top",
+        "titlePanelHorizontalPosition": "start",
+        "titlePanelStyle": "gradient"
+      }
+    },
+    "n-sdirmx": {
+      "type": "navigation",
+      "data": {
+        "links": [
+          {
+            "nodeId": "n-hw9yd7"
+          },
+          {
+            "nodeId": "n-tefc8m"
+          },
+          {
+            "nodeId": "n-w24xmp"
+          },
+          {
+            "nodeId": "n-0aiuhj"
+          },
+          {
+            "nodeId": "n-om2ttz"
+          },
+          {
+            "nodeId": "n-6cwlgw"
+          },
+          {
+            "nodeId": "n-hw9yd7"
+          },
+          {
+            "nodeId": "n-tefc8m"
+          },
+          {
+            "nodeId": "n-w24xmp"
+          },
+          {
+            "nodeId": "n-0aiuhj"
+          },
+          {
+            "nodeId": "n-om2ttz"
+          },
+          {
+            "nodeId": "n-6cwlgw"
+          }
+        ]
+      },
+      "config": {
+        "isHidden": true
+      }
+    },
+    "n-hw9yd7": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "Multiuse Trail from 400 South to Pioneer Crossing",
+        "textAlignment": "start"
+      }
+    },
+    "n-m53hvz": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      },
+      "children": ["n-hw9yd7"]
+    },
+    "n-zfa5jc": {
+      "type": "webmap",
+      "data": {
+        "map": "r-k5jq7x"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-d0mwl5": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-m53hvz", "n-zfa5jc"]
+    },
+    "n-tefc8m": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "Bike Signal at Pony Express Parkway",
+        "textAlignment": "start"
+      }
+    },
+    "n-x5rn8t": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      },
+      "children": ["n-tefc8m"]
+    },
+    "n-y895kq": {
+      "type": "webmap",
+      "data": {
+        "map": "r-nmtu5v",
+        "extent": {
+          "xmin": -12458681.575039467,
+          "ymin": 4918540.713328439,
+          "xmax": -12458251.616755495,
+          "ymax": 4918789.730834573,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -12458681.575039467,
+            "ymin": 4918540.713328439,
+            "xmax": -12458251.616755495,
+            "ymax": 4918789.730834573,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 1128
+        },
+        "zoom": 19
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-d4oqft": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-x5rn8t", "n-y895kq"]
+    },
+    "n-w24xmp": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "Buffered Bike Lanes",
+        "textAlignment": "start"
+      }
+    },
+    "n-u9cax8": {
+      "type": "image",
+      "data": {
+        "image": "r-7pyz3v"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-cn4mwt": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      },
+      "children": ["n-w24xmp", "n-u9cax8"]
+    },
+    "n-565oau": {
+      "type": "webmap",
+      "data": {
+        "map": "r-8o9x65",
+        "extent": {
+          "xmin": -12457943.695135053,
+          "ymin": 4914223.170793454,
+          "xmax": -12457728.715993065,
+          "ymax": 4914347.679546521,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -12457943.695135053,
+            "ymin": 4914223.170793454,
+            "xmax": -12457728.715993065,
+            "ymax": 4914347.679546521,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 564
+        },
+        "zoom": 20
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-mpzrc1": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-cn4mwt", "n-565oau"]
+    },
+    "n-0aiuhj": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "Continuous Flow Intersection (CFI)",
+        "textAlignment": "start"
+      }
+    },
+    "n-u265rw": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      },
+      "children": ["n-0aiuhj"]
+    },
+    "n-o2ntzx": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6axlvq",
+        "extent": {
+          "xmin": -12458874.757685294,
+          "ymin": 4919991.523955071,
+          "xmax": -12458014.841116967,
+          "ymax": 4920489.5589675605,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -12458874.757685294,
+            "ymin": 4919991.523955071,
+            "xmax": -12458014.841116967,
+            "ymax": 4920489.5589675605,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 2256
+        },
+        "zoom": 18
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-hddm3i": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-u265rw", "n-o2ntzx"]
+    },
+    "n-om2ttz": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "3D Virtual Tour",
+        "textAlignment": "start"
+      }
+    },
+    "n-gqpdu6": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      },
+      "children": ["n-om2ttz"]
+    },
+    "n-cgdpsy": {
+      "type": "embed",
+      "data": {
+        "url": "https://sketchfab.com/models/01a0376b14b94a91bc25c0068962e7a8/embed?autostart=0&preload=1&annotations_visible=0&annotation_cycle=10&camera=0",
+        "display": "inline",
+        "embedType": "link",
+        "isEmbedSupported": true,
+        "embedSrc": "https://sketchfab.com/models/01a0376b14b94a91bc25c0068962e7a8/embed?autostart=0&preload=1&annotations_visible=0&annotation_cycle=10&camera=0",
+        "allowSmallEmbeds": true,
+        "providerUrl": "https://sketchfab.com"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-w5gob8": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-gqpdu6", "n-cgdpsy"]
+    },
+    "n-6cwlgw": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "Project Overview",
+        "textAlignment": "start"
+      }
+    },
+    "n-qlrsrz": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      },
+      "children": ["n-6cwlgw"]
+    },
+    "n-rnnr6t": {
+      "type": "webmap",
+      "data": {
+        "map": "r-pkve3e",
+        "extent": {
+          "xmin": -12464382.735077621,
+          "ymin": 4914061.966779803,
+          "xmax": -12450624.069986308,
+          "ymax": 4922030.526978522,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -12464382.735077621,
+            "ymin": 4914061.966779803,
+            "xmax": -12450624.069986308,
+            "ymax": 4922030.526978522,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 36111
+        },
+        "zoom": 14
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-b4zaus": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-qlrsrz", "n-rnnr6t"]
+    },
+    "n-7zsfmv": {
+      "type": "immersive",
+      "data": {
+        "type": "sidecar",
+        "subtype": "docked-panel",
+        "narrativePanelSize": "small",
+        "narrativePanelPosition": "start"
+      },
+      "children": [
+        "n-d0mwl5",
+        "n-d4oqft",
+        "n-mpzrc1",
+        "n-hddm3i",
+        "n-w5gob8",
+        "n-b4zaus"
+      ]
+    },
+    "n-8tnMhu": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "h4"
+      }
+    },
+    "n-7KGrk3": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph"
+      }
+    },
+    "n-AyiIMM": {
+      "type": "attribution",
+      "data": {
+        "content": "",
+        "attribution": ""
+      }
+    },
+    "n-y3ln3g": {
+      "type": "credits",
+      "children": ["n-8tnMhu", "n-7KGrk3", "n-AyiIMM"]
+    },
+    "n-tqu1kg": {
+      "type": "story",
+      "data": {
+        "storyTheme": "r-ni0wdp"
+      },
+      "config": {
+        "coverDate": "last-published"
+      },
+      "children": [
+        "n-cos739",
+        "n-sdirmx",
+        "n-7zsfmv",
+        "n-zfa5jc",
+        "n-hw9yd7",
+        "n-y895kq",
+        "n-tefc8m",
+        "n-565oau",
+        "n-w24xmp",
+        "n-u9cax8",
+        "n-o2ntzx",
+        "n-0aiuhj",
+        "n-cgdpsy",
+        "n-om2ttz",
+        "n-rnnr6t",
+        "n-6cwlgw",
+        "n-y3ln3g"
+      ]
+    }
+  },
+  "resources": {
+    "r-k5jq7x": {
+      "type": "webmap",
+      "data": {
+        "type": "minimal",
+        "itemId": "966819fbb91a45b9bc900e699101435a",
+        "itemType": "webmap"
+      }
+    },
+    "r-nmtu5v": {
+      "type": "webmap",
+      "data": {
+        "type": "minimal",
+        "itemId": "6cc4c07203f14b30a0cfef3ceac3ed9b",
+        "itemType": "webmap"
+      }
+    },
+    "r-7pyz3v": {
+      "type": "image",
+      "data": {
+        "src": "http://lh3.googleusercontent.com/-ZMQliUfRcHo/WqW4JkJotEI/AAAAAAAACkA/_YilMUvevE0CJKCeChCPhM9Sfdntg9dVACHMYBhgL/s1600/Buffered%2BBike%2BLanes%2BUS%2B189%2BProvo%2B4.jpg",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-8o9x65": {
+      "type": "webmap",
+      "data": {
+        "type": "minimal",
+        "itemId": "6cc4c07203f14b30a0cfef3ceac3ed9b",
+        "itemType": "webmap"
+      }
+    },
+    "r-6axlvq": {
+      "type": "webmap",
+      "data": {
+        "type": "minimal",
+        "itemId": "6cc4c07203f14b30a0cfef3ceac3ed9b",
+        "itemType": "webmap"
+      }
+    },
+    "r-pkve3e": {
+      "type": "webmap",
+      "data": {
+        "type": "minimal",
+        "itemId": "6cc4c07203f14b30a0cfef3ceac3ed9b",
+        "itemType": "webmap"
+      }
+    },
+    "r-ni0wdp": {
+      "type": "story-theme",
+      "data": {
+        "themeId": "summit",
+        "themeBaseVariableOverrides": {}
+      }
+    }
+  }
+}

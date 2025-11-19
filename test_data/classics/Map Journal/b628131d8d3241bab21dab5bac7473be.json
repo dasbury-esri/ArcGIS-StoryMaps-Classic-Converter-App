@@ -1,0 +1,144 @@
+{
+    "values": {
+        "settings": {
+            "layout": {
+                "id": "float"
+            }
+        },
+        "story": {
+            "storage": "WEBAPP",
+            "sections": [
+                {
+                    "title": "<p><strong><span style=\"font-size:36px\">Feeding Our Planet</span></strong></p>\n",
+                    "content": "<p><span style=\"font-size:24px\">Crop production will have to double by 2050 to fulfill the needs of a growing and increasingly affluent population. According to the University of Minnesota&rsquo;s Institute on the Environment, meeting this challenge will be difficult, but not impossible.</span></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1427316266144,
+                    "pubDate": 1427316266144,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "image",
+                        "image": {
+                            "url": "http://farm8.static.flickr.com/7642/16917003385_84c3fdc0ae_b.jpg",
+                            "type": "image",
+                            "display": "fill"
+                        }
+                    }
+                },
+                {
+                    "title": "<strong><span style=\"font-size: 22px\">Current Crop Yields</span></strong>",
+                    "content": "<p><span style=\"font-size:16px\">Crop production will have to double by 2050 to fulfill the needs of a growing and increasingly affluent population. According to the University of Minnesota&rsquo;s Institute on the Environment meeting this challenge will be difficult but not impossible.</span></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1427316488172,
+                    "pubDate": 1427316488172,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "b324ffc1336c49e78b76c9ee99909ca4",
+                            "extent": null,
+                            "layers": [
+                                {
+                                    "id": "FoodFeedAndFuel_340",
+                                    "visibility": false
+                                },
+                                {
+                                    "id": "WaterUseEfficiency_4112",
+                                    "visibility": false
+                                },
+                                {
+                                    "id": "ClosingYieldGaps_6071",
+                                    "visibility": false
+                                },
+                                {
+                                    "id": "csv_233_0",
+                                    "visibility": false
+                                },
+                                {
+                                    "id": "csv_9418_0",
+                                    "visibility": false
+                                },
+                                {
+                                    "id": "csv_4041_0",
+                                    "visibility": false
+                                }
+                            ],
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Closing Yield Gaps</span></strong></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"http://farm9.static.flickr.com/8736/16296983623_9fa41c560d_b.jpg\" /></div>\n\n<p>&nbsp;</p>\n\n<p class=\"c5\"><span class=\"c12\" style=\"font-size:12pt\">A key way to meet increasing demand for food is to make croplands more productive. Many croplands, however, fall well short of their full yield potential for their climate. Boosting yields to 95% of their potential--largely through improving nutrient and water management--would increase crop production by 58%.</span></p>\n\n<p>&nbsp;</p>\n\n<p class=\"c5 c10\">&nbsp;</p>\n\n<p class=\"c5\"><span class=\"c12\" style=\"font-size:12pt\">This map illustrates the potential calorie gains by closing yield gaps of 16 major crops.</span></p>\n\n<p class=\"c5 c10\">&nbsp;</p>\n\n<p class=\"c5\"><span class=\"c12\" style=\"font-size:12pt\">Source: Foley et al. 2011; Johnston et al. 2011; Licker et al. 2010</span></p>\n\n<div>&nbsp;</div>\n",
+                    "contentActions": [],
+                    "creaDate": 1427316581905,
+                    "pubDate": 1427316581905,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "b324ffc1336c49e78b76c9ee99909ca4",
+                            "extent": {
+                                "xmin": -14954750.31844064,
+                                "ymin": -924578.7411663152,
+                                "xmax": 1951897.3457832872,
+                                "ymax": 7470041.45322265,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": [
+                                {
+                                    "id": "FoodFeedAndFuel_340",
+                                    "visibility": false
+                                },
+                                {
+                                    "id": "WaterUseEfficiency_4112",
+                                    "visibility": false
+                                },
+                                {
+                                    "id": "CurrentCropYields_4091",
+                                    "visibility": false
+                                },
+                                {
+                                    "id": "csv_233_0",
+                                    "visibility": false
+                                },
+                                {
+                                    "id": "csv_9418_0",
+                                    "visibility": false
+                                },
+                                {
+                                    "id": "csv_6865_0",
+                                    "visibility": false
+                                }
+                            ],
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "title": "Feeding Our Planet\n",
+        "template": {
+            "name": "Map Journal",
+            "createdWith": "1.3.0",
+            "editedWith": "1.3.0"
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "source": "94c57691bc504b80859e919bad2e0a1b",
+    "folderId": "cc099e8a89fb41b0b988109a624b0996",
+    "values": {
+        "webmap": "7aa296a11763437ca879fb096e5a5283",
+        "searchConfig": {
+            "sources": [
+                {
+                    "locator": "{\"url\":\"https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer\",\"_url\":{\"path\":\"https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer\",\"query\":null},\"normalization\":true}",
+                    "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+                    "northLat": "Ymax",
+                    "southLat": "Ymin",
+                    "eastLon": "Xmax",
+                    "westLon": "Xmin",
+                    "name": "Esri World Geocoder",
+                    "enableSuggestions": true,
+                    "singleLineFieldName": "SingleLine",
+                    "placeholder": "Find address or place",
+                    "enable": true,
+                    "id": "dojoUnique1"
+                }
+            ],
+            "activeSourceIndex": 0
+        },
+        "title": "Average daily traffic shown using two variables",
+        "subtitle": "In this map the symbol COLOR represents the road district. The symbol SIZE indicates the average daily flow of traffic"
+    }
+}

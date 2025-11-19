@@ -1,0 +1,211 @@
+{
+    "authoringApp": "InstantAppsHomePage",
+    "source": "a3cbc26d59124dfd9b6b740937f37d10",
+    "folderId": "root",
+    "values": {
+        "webmap": "c8535a27039942e29fc7082fa14fbd38",
+        "type": "webmap",
+        "landingPage": null,
+        "landingPageConfig": {
+            "titleText": "",
+            "subtitleText": "",
+            "descriptionText": "",
+            "entryButtonText": "",
+            "alignment": "center",
+            "backgroundType": "color",
+            "textColor": "#FFFFFF",
+            "entryButtonColor": "#0079C1",
+            "backgroundColor": "#0079C1",
+            "iconImage": null,
+            "iconImageScale": "m",
+            "backgroundImageSrc": null
+        },
+        "splashButtonText": "Enter",
+        "title": "Compare 2019 to 2020 Census Tracts (swipe test)",
+        "searchConfiguration": {
+            "searchAllEnabled": true,
+            "allPlaceholder": "Find address or place",
+            "sources": [
+                {
+                    "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+                    "singleLineFieldName": "SingleLine",
+                    "name": "ArcGIS World Geocoding Service",
+                    "placeholder": "Find address or place",
+                    "maxResults": null,
+                    "maxSuggestions": null,
+                    "suggestionsEnabled": null,
+                    "minSuggestCharacters": null,
+                    "withinViewEnabled": false,
+                    "countryCode": null,
+                    "zoomScale": null,
+                    "_uid": "7fdf83f02d3"
+                }
+            ],
+            "activeSourceIndex": -1
+        },
+        "exportToPDFPosition": {
+            "position": "top-left",
+            "index": 0
+        },
+        "printPosition": {
+            "position": "top-left",
+            "index": 1
+        },
+        "homePosition": {
+            "position": "top-right",
+            "index": 1
+        },
+        "compassWidgetPosition": {
+            "position": "top-left",
+            "index": 2
+        },
+        "mapZoomPosition": {
+            "position": "top-right",
+            "index": 2
+        },
+        "keyboardShortcutsPosition": {
+            "position": "top-left",
+            "index": 3
+        },
+        "searchPosition": {
+            "position": "top-right",
+            "index": 0
+        },
+        "sharePosition": {
+            "position": "top-right",
+            "index": 4
+        },
+        "filterPosition": {
+            "position": "top-right",
+            "index": 5
+        },
+        "sketchToolsPosition": {
+            "position": "top-right",
+            "index": 6
+        },
+        "floorFilterPosition": {
+            "position": "top-right",
+            "index": 7
+        },
+        "measurePosition": {
+            "position": "top-right",
+            "index": 8
+        },
+        "locateWidgetPosition": {
+            "position": "top-right",
+            "index": 9
+        },
+        "trackWidgetPosition": {
+            "position": "top-right",
+            "index": 10
+        },
+        "bookmarksPosition": {
+            "position": "top-right",
+            "index": 11
+        },
+        "splashButtonPosition": {
+            "position": "top-right",
+            "index": 12
+        },
+        "legendPosition": {
+            "position": "bottom-left",
+            "index": 1
+        },
+        "informationPanelPosition": {
+            "position": "top-right",
+            "index": 13
+        },
+        "languageSwitcherPosition": {
+            "position": "top-right",
+            "index": 14
+        },
+        "timePosition": {
+            "position": "bottom-left",
+            "index": 0
+        },
+        "swipeConfigurationPosition": {
+            "position": "top-right",
+            "index": 3
+        },
+        "basemapTogglePosition": {
+            "position": "bottom-left",
+            "index": 2
+        },
+        "scalebarPosition": {
+            "position": "bottom-left",
+            "index": 3
+        },
+        "overviewMapPosition": {
+            "position": "bottom-left",
+            "index": 4
+        },
+        "layerListPosition": {
+            "position": "bottom-right",
+            "index": 0
+        },
+        "fullScreenPosition": {
+            "position": "bottom-right",
+            "index": 1
+        },
+        "elevationProfilePosition": {
+            "position": "bottom-right",
+            "index": 2
+        },
+        "magnifierPosition": {
+            "position": "bottom-right",
+            "index": 3
+        },
+        "swipe": true,
+        "swipeLeadingLayers": {
+            "layers": [
+                {
+                    "id": "17d9b27a62f-layer-3",
+                    "fields": [],
+                    "fieldOrder": []
+                }
+            ]
+        },
+        "swipeTrailingLayers": {
+            "layers": [
+                {
+                    "id": "17d9b27a630-layer-4",
+                    "fields": [],
+                    "fieldOrder": []
+                }
+            ]
+        },
+        "search": true,
+        "searchOpenAtStart": true,
+        "popupHover": true,
+        "popupFixed": true,
+        "popupFixedPosition": "bottom-right",
+        "legend": true,
+        "splash": true,
+        "splashTitle": "",
+        "splashContent": "<p><span style=\"color:rgb(51,51,51);\"><span style=\"background-color:rgb(255, 255, 255); display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; font-style:normal; font-variant-caps:normal; font-variant-ligatures:normal; font-weight:400; letter-spacing:normal; text-align:start; text-decoration-color:initial; text-decoration-style:initial; text-indent:0px; text-transform:none; word-spacing:0px;\">Search for your city or Census Tract to see what is changing between 2019 and 2020.&nbsp;</span></span></p>",
+        "datePublished": 1763178997750,
+        "fullAppSettings": false,
+        "header": true,
+        "theme": "dark",
+        "customTheme": {
+            "applySharedTheme": false,
+            "applyPresetTheme": true,
+            "font": "Avenir Next",
+            "appFont": "Avenir Next",
+            "logo": null,
+            "logoAltText": "",
+            "logoLink": "",
+            "logoScale": "m",
+            "logoUrl": "",
+            "logoSource": "upload",
+            "preset": "clay",
+            "themes": {
+                "primary": {
+                    "type": "primary",
+                    "background": "#6F3018",
+                    "text": "#FFFFFF"
+                }
+            }
+        }
+    }
+}

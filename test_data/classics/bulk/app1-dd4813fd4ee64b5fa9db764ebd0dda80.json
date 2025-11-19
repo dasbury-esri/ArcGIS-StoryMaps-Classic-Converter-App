@@ -1,0 +1,30 @@
+{
+    "source": "94c57691bc504b80859e919bad2e0a1b",
+    "folderId": null,
+    "values": {
+        "webmap": "ebc85aa4c3c8443e99441e926e33d279",
+        "searchConfig": {
+            "sources": [
+                {
+                    "flayerId": "i4b1n_6069",
+                    "url": "http://services.arcgis.com/AgwDJMQH12AGieWa/arcgis/rest/services/i4b1n/FeatureServer/0",
+                    "name": "Albany Area Wealth Rankings",
+                    "id": "dojoUnique6",
+                    "enable": true,
+                    "placeholder": "",
+                    "searchFields": []
+                }
+            ],
+            "activeSourceIndex": 0,
+            "enableSearchingAll": false
+        },
+        "headerHeight": "95",
+        "title": "The Capital Region's Wealthiest ZIP Codes",
+        "subtitle": "Explore which areas  are the wealthiest using Esri's wealth indicators, lifestyle, and other demographic characteristics",
+        "background": "#00458c",
+        "legendOpen": true,
+        "search": true,
+        "logoLink": "http://www.bizjournals.com/albany/news/",
+        "logo": "http://mediamaps.esri.com/AlbanyBR_Logo.png"
+    }
+}

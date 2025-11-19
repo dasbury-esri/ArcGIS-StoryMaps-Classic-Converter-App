@@ -1,0 +1,183 @@
+{
+    "operationalLayers": [
+        {
+            "url": "http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/Pacific_StoryMap_Features/FeatureServer/0",
+            "id": "Pacific_StoryMap_Features_4383",
+            "visibility": true,
+            "opacity": 1,
+            "mode": 1,
+            "title": "Pacific_StoryMap_Features",
+            "itemId": "2e3e5cbe2c8d4dc48a419b59bdb7f611",
+            "popupInfo": {
+                "title": "Pacific_StoryMap_Features: ",
+                "fieldInfos": [
+                    {
+                        "fieldName": "Number",
+                        "label": "Number",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "Name",
+                        "label": "Name",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": null,
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "Caption",
+                        "label": "Caption",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": null,
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "Long",
+                        "label": "Long",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "Lat",
+                        "label": "Lat",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "URL",
+                        "label": "URL",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": null,
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "Thumb_URL",
+                        "label": "Thumb_URL",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": null,
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "FULL_Caption",
+                        "label": "FULL Caption",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": null,
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "FID",
+                        "label": "FID",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "CreationDate",
+                        "label": "CreationDate",
+                        "isEditable": false,
+                        "tooltip": "",
+                        "visible": false,
+                        "format": {
+                            "dateFormat": "longMonthDayYear"
+                        },
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "Creator",
+                        "label": "Creator",
+                        "isEditable": false,
+                        "tooltip": "",
+                        "visible": false,
+                        "format": null,
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "EditDate",
+                        "label": "EditDate",
+                        "isEditable": false,
+                        "tooltip": "",
+                        "visible": false,
+                        "format": {
+                            "dateFormat": "longMonthDayYear"
+                        },
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "Editor",
+                        "label": "Editor",
+                        "isEditable": false,
+                        "tooltip": "",
+                        "visible": false,
+                        "format": null,
+                        "stringFieldOption": "textbox"
+                    }
+                ],
+                "description": null,
+                "showAttachments": true,
+                "mediaInfos": []
+            }
+        }
+    ],
+    "baseMap": {
+        "baseMapLayers": [
+            {
+                "id": "Ocean_Basemap_136",
+                "opacity": 1,
+                "visibility": true,
+                "url": "http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer",
+                "baseMapLayer": true
+            }
+        ],
+        "title": "Oceans"
+    },
+    "widgets": {
+        "editor": {}
+    },
+    "version": "1.9",
+    "applicationProperties": {
+        "viewing": {
+            "routing": {
+                "enabled": true
+            },
+            "basemapGallery": {
+                "enabled": true
+            },
+            "measure": {
+                "enabled": true
+            }
+        }
+    }
+}

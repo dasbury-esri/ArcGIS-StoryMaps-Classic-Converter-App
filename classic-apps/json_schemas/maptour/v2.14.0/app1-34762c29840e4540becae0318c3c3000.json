@@ -1,0 +1,118 @@
+{
+    "source": "91d75e9b375e4e9b9b3a4004544bfadf",
+    "folderId": null,
+    "values": {
+        "webmap": "5149f4987d904cad9dd5095cad3d4194",
+        "title": "Esri Chief Scientist 2018 Map Tour",
+        "layout": "integrated",
+        "placardPosition": "",
+        "order": [
+            {
+                "id": 0,
+                "visible": true
+            },
+            {
+                "id": 1,
+                "visible": true
+            },
+            {
+                "id": 2,
+                "visible": true
+            },
+            {
+                "id": 3,
+                "visible": true
+            },
+            {
+                "id": 4,
+                "visible": true
+            },
+            {
+                "id": 5,
+                "visible": true
+            },
+            {
+                "id": 6,
+                "visible": true
+            },
+            {
+                "id": 7,
+                "visible": true
+            },
+            {
+                "id": 8,
+                "visible": true
+            },
+            {
+                "id": 9,
+                "visible": true
+            },
+            {
+                "id": 10,
+                "visible": true
+            },
+            {
+                "id": 11,
+                "visible": true
+            },
+            {
+                "id": 12,
+                "visible": true
+            },
+            {
+                "id": 13,
+                "visible": true
+            },
+            {
+                "id": 14,
+                "visible": true
+            },
+            {
+                "id": 15,
+                "visible": true
+            },
+            {
+                "id": 16,
+                "visible": true
+            },
+            {
+                "id": 17,
+                "visible": true
+            },
+            {
+                "id": 18,
+                "visible": true
+            },
+            {
+                "id": 19,
+                "visible": true
+            },
+            {
+                "id": 20,
+                "visible": true
+            },
+            {
+                "id": 21,
+                "visible": true
+            }
+        ],
+        "subtitle": "",
+        "locationButton": true,
+        "colors": "#1a3606;#737c6c;#a8b09e",
+        "headerLinkText": "A Story Map",
+        "headerLinkURL": "http://esriurl.com/scicomm",
+        "logoURL": null,
+        "logoTarget": "",
+        "social": {
+            "facebook": true,
+            "twitter": true,
+            "bitly": true
+        },
+        "zoomLevel": "4",
+        "sourceLayer": "csv_3721_0",
+        "template": "Map Tour",
+        "templateCreation": "2.14.0",
+        "templateVersion": "2.14.0"
+    },
+    "_ssl": null
+}

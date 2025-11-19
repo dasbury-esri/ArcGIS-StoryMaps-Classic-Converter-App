@@ -1,0 +1,324 @@
+{
+  "root": "n-lkQ3ch",
+  "nodes": {
+    "n-IR8vxK": {
+      "type": "storycover",
+      "data": {
+        "type": "minimal",
+        "title": "Demo Story",
+        "summary": "summary",
+        "byline": "byline",
+        "titlePanelVerticalPosition": "top",
+        "titlePanelHorizontalPosition": "start",
+        "titlePanelStyle": "gradient"
+      }
+    },
+    "n-wfCeko": {
+      "type": "navigation",
+      "data": {
+        "links": [
+          {
+            "nodeId": "n-nO73XC"
+          }
+        ]
+      },
+      "config": {
+        "isHidden": true
+      }
+    },
+    "n-tbvTny": {
+      "type": "image",
+      "data": {
+        "image": "r-mlWFXc"
+      }
+    },
+    "n-RQZTxl": {
+      "type": "embed",
+      "data": {
+        "url": "https://www.youtube.com/watch?v=uU8DrI4vdLY&t=33s",
+        "embedType": "video",
+        "title": "NO WASTE! | Pass it On Recipe Relay Challenge",
+        "thumbnailUrl": "https://i.ytimg.com/vi/uU8DrI4vdLY/hqdefault.jpg",
+        "providerUrl": "https://www.youtube.com/",
+        "height": 480,
+        "width": 854,
+        "caption": "NO WASTE! | Pass it On Recipe Relay Challenge",
+        "isEmbedSupported": true,
+        "display": "inline",
+        "embedSrc": "https://cdn.embedly.com/widgets/media.html?a=0&src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FuU8DrI4vdLY%3Fstart%3D33%26feature%3Doembed%26start%3D33&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DuU8DrI4vdLY&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FuU8DrI4vdLY%2Fhqdefault.jpg&type=text%2Fhtml&schema=youtube"
+      }
+    },
+    "n-gQGKn3": {
+      "type": "embed",
+      "data": {
+        "url": "https://example.com/",
+        "embedType": "link",
+        "title": "Example Domain",
+        "description": "This domain is for use in documentation examples without needing permission. Avoid use in operations.",
+        "providerUrl": "https://example.com",
+        "caption": "Example Domain",
+        "isEmbedSupported": true,
+        "display": "inline",
+        "embedSrc": "https://example.com/"
+      }
+    },
+    "n-nO73XC": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "Heading"
+      }
+    },
+    "n-VZrw9J": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Some text"
+      }
+    },
+    "n-fuhjB5": {
+      "type": "image",
+      "data": {
+        "image": "r-R5DxPv"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-gsXwhX": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Some text"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-IMPMz4": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      },
+      "children": ["n-fuhjB5", "n-gsXwhX"]
+    },
+    "n-1uihIt": {
+      "type": "webmap",
+      "data": {
+        "map": "r-b976fe5516a1419faf92d97614531329",
+        "caption": "Map saving",
+        "timeSlider": false,
+        "viewPlacement": "extent"
+      }
+    },
+    "n-NUtacC": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-IMPMz4", "n-1uihIt"]
+    },
+    "n-2vSGe1": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      }
+    },
+    "n-jUJNuk": {
+      "type": "image",
+      "data": {
+        "image": "r-wmYmoA"
+      }
+    },
+    "n-dfYtyv": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-2vSGe1", "n-jUJNuk"]
+    },
+    "n-EBCimM": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      }
+    },
+    "n-BNNTXI": {
+      "type": "embed",
+      "data": {
+        "url": "https://www.youtube.com/watch?v=uU8DrI4vdLY&t=33s",
+        "embedType": "video",
+        "title": "NO WASTE! | Pass it On Recipe Relay Challenge",
+        "description": "The guys are back with another recipe relay challenge. Our 4 cooks have 10 minutes each to create an impressive dish and we're introducing a BRAND NEW rule. FIND OUT ABOUT SORTED LIVE: THE LAST BITE here: https://sortedlive.framer.website/ STOP EATING BORING DINNERS! It's easier than you think to cook up banging food...",
+        "thumbnailUrl": "https://i.ytimg.com/vi/uU8DrI4vdLY/hqdefault.jpg",
+        "providerUrl": "https://www.youtube.com/",
+        "height": 480,
+        "width": 854,
+        "caption": "NO WASTE! | Pass it On Recipe Relay Challenge",
+        "isEmbedSupported": true,
+        "display": "inline",
+        "embedSrc": "https://cdn.embedly.com/widgets/media.html?a=0&src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FuU8DrI4vdLY%3Fstart%3D33%26feature%3Doembed%26start%3D33&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DuU8DrI4vdLY&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FuU8DrI4vdLY%2Fhqdefault.jpg&type=text%2Fhtml&schema=youtube"
+      }
+    },
+    "n-9INjbO": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-EBCimM", "n-BNNTXI"]
+    },
+    "n-vl7WmT": {
+      "type": "immersive",
+      "data": {
+        "type": "sidecar",
+        "subtype": "floating-panel",
+        "narrativePanelPosition": "start",
+        "narrativePanelSize": "small"
+      },
+      "children": ["n-NUtacC", "n-dfYtyv", "n-9INjbO"]
+    },
+    "n-wg1zn9": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "h4"
+      }
+    },
+    "n-9TUHhT": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph"
+      }
+    },
+    "n-I2yyDM": {
+      "type": "attribution",
+      "data": {
+        "content": "",
+        "attribution": ""
+      }
+    },
+    "n-4lryo7": {
+      "type": "credits",
+      "children": ["n-wg1zn9", "n-9TUHhT", "n-I2yyDM"]
+    },
+    "n-lkQ3ch": {
+      "type": "story",
+      "data": {
+        "storyTheme": "r-HFL4Yd"
+      },
+      "config": {
+        "coverDate": "first-published"
+      },
+      "children": [
+        "n-IR8vxK",
+        "n-wfCeko",
+        "n-tbvTny",
+        "n-RQZTxl",
+        "n-gQGKn3",
+        "n-nO73XC",
+        "n-VZrw9J",
+        "n-vl7WmT",
+        "n-4lryo7"
+      ]
+    }
+  },
+  "resources": {
+    "r-mlWFXc": {
+      "type": "image",
+      "data": {
+        "resourceId": "dtI8sidB5WSgqoL5bCS70.png",
+        "provider": "item-resource",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-R5DxPv": {
+      "type": "image",
+      "data": {
+        "resourceId": "lEY53GNl9A8K6mEjfgTkq.png",
+        "provider": "item-resource",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-b976fe5516a1419faf92d97614531329": {
+      "type": "webmap",
+      "data": {
+        "extent": {
+          "spatialReference": {
+            "latestWkid": 3857,
+            "wkid": 102100
+          },
+          "xmin": -16666981.418248363,
+          "ymin": 1792271.9266658984,
+          "xmax": -4740201.939259506,
+          "ymax": 8499162.536518618
+        },
+        "center": {
+          "spatialReference": {
+            "latestWkid": 3857,
+            "wkid": 102100
+          },
+          "x": -10703591.678753935,
+          "y": 5145717.231592258
+        },
+        "zoom": 3.9518348623853212,
+        "viewpoint": {
+          "rotation": 0,
+          "scale": 38759674.61429748,
+          "targetGeometry": {
+            "spatialReference": {
+              "latestWkid": 3857,
+              "wkid": 102100
+            },
+            "x": -10703591.678753935,
+            "y": 5145717.231592258
+          }
+        },
+        "mapLayers": [
+          {
+            "id": "1980a03be4f-layer-10",
+            "title": "NOAA HMS Smoke Detection",
+            "visible": true
+          },
+          {
+            "id": "1980a03b484-layer-7",
+            "title": "Recent Earthquakes",
+            "visible": true
+          },
+          {
+            "id": "1980a02f3fc-layer-2",
+            "title": "Global Hexagons: Biodiversity and Conservation",
+            "visible": true
+          }
+        ],
+        "itemId": "b976fe5516a1419faf92d97614531329",
+        "itemType": "Web Map",
+        "type": "default"
+      }
+    },
+    "r-wmYmoA": {
+      "type": "image",
+      "data": {
+        "resourceId": "EErr3l-zvgJ7t5IF5qCVe.png",
+        "provider": "item-resource",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-HFL4Yd": {
+      "type": "story-theme",
+      "data": {
+        "themeId": "summit",
+        "themeBaseVariableOverrides": {}
+      }
+    }
+  }
+}

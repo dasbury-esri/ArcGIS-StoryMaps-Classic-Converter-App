@@ -1,0 +1,169 @@
+{
+  "source": "32f733be56ce48b5993932715e1070ee",
+  "folderId": null,
+  "values": {
+    "settings": {
+      "layout": {
+        "id": "tab"
+      },
+      "layoutOptions": {
+        "description": false,
+        "legend": "panel",
+        "panel": {
+          "position": "left",
+          "size": "small"
+        },
+        "panelMapOverlap": false
+      },
+      "appGeocoders": [
+        {
+          "singleLineFieldName": "SingleLine",
+          "name": "Esri World Geocoder",
+          "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+        }
+      ],
+      "mapOptions": {
+        "overview": {
+          "enable": false,
+          "openByDefault": true
+        },
+        "locateBtn": {
+          "enable": false
+        },
+        "geocoder": {
+          "enable": false
+        },
+        "mapsSync": true
+      },
+      "theme": {
+        "colors": {
+          "name": "tab-org",
+          "tabActive": "#ffffff",
+          "tabTextActive": "#045388",
+          "tab": "rgba(255, 255, 255, 0.75)",
+          "tabText": "rgba(4, 83, 136, 0.6)",
+          "tabHover": "rgba(255, 255, 255, 0.9)",
+          "tabTextHover": "rgba(4, 83, 136, 0.8)",
+          "group": "org",
+          "themeMajor": "white",
+          "header": "#045388",
+          "headerText": "#ffffff",
+          "headerTitle": "#ffffff",
+          "panel": "#ffffff",
+          "text": "#045388",
+          "textLink": "#045388",
+          "media": "#eee",
+          "mapControls": "#ffffff",
+          "softText": "#045388",
+          "softBtn": "#045388",
+          "esriLogo": "white",
+          "esriLogoMobile": "black"
+        }
+      },
+      "header": {
+        "linkText": "",
+        "linkURL": "",
+        "logoURL": "https://www.arcgis.com/sharing/rest/content/items/89d2e393f2c64d7cae07264f4d00c19d/resources/sm_series_logo__1553009401220.png",
+        "logoTarget": "https://www.fema.gov/coastal-flood-risks-achieving-resilience-together",
+        "social": {
+          "facebook": true,
+          "twitter": true,
+          "bitly": true
+        },
+        "compactSize": true
+      }
+    },
+    "title": "An Introduction to FEMA Coastal Floodplain Mapping",
+    "story": {
+      "storage": "WEBAPP",
+      "entries": [
+        {
+          "title": "Introduction",
+          "contentActions": [],
+          "creaDate": 1542396959044,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webpage",
+            "webpage": {
+              "url": "https://fema.maps.arcgis.com/apps/Cascade/index.html?appid=830fb43fd4334dd584174eeb95db5df8&embed",
+              "type": "webpage",
+              "altText": "",
+              "display": "stretch",
+              "unload": true
+            }
+          },
+          "description": ""
+        },
+        {
+          "title": "Coastal Hazards",
+          "contentActions": [],
+          "creaDate": 1523644402804,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webpage",
+            "webpage": {
+              "url": "https://fema.maps.arcgis.com/apps/MapJournal/index.html?appid=c6c952d95de64679ae6c53a0a7821846&embed",
+              "type": "webpage",
+              "display": "stretch",
+              "unload": true
+            }
+          },
+          "description": ""
+        },
+        {
+          "title": "Flood Map Features",
+          "contentActions": [],
+          "creaDate": 1526586951204,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webpage",
+            "webpage": {
+              "url": "https://arcg.is/1W94yD0",
+              "type": "webpage",
+              "display": "stretch",
+              "unload": true
+            }
+          },
+          "description": ""
+        },
+        {
+          "title": "Tutorials",
+          "contentActions": [],
+          "creaDate": 1525813835776,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webpage",
+            "webpage": {
+              "url": "https://arcg.is/0X9iH1",
+              "type": "webpage",
+              "display": "stretch",
+              "unload": true
+            }
+          },
+          "description": ""
+        },
+        {
+          "title": "Resources",
+          "contentActions": [],
+          "creaDate": 1525286742097,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webpage",
+            "webpage": {
+              "url": "https://fema.maps.arcgis.com/apps/Cascade/index.html?appid=29a92a4809b84f3f9adc5aac765a0cd3",
+              "type": "webpage",
+              "display": "stretch",
+              "unload": true
+            }
+          },
+          "description": ""
+        }
+      ]
+    },
+    "template": {
+      "name": "Map Series",
+      "createdWith": "1.11.0",
+      "editedWith": "1.14.0"
+    }
+  }
+}

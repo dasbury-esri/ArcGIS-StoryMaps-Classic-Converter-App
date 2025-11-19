@@ -1,0 +1,837 @@
+{
+    "values": {
+        "config": {
+            "author": {
+                "name": ""
+            }
+        },
+        "settings": {
+            "theme": {
+                "colors": {
+                    "id": "white-on-black-1",
+                    "label": "Dark",
+                    "themeMajor": "dark",
+                    "themeContrast": "light",
+                    "bgMain": "#0E0E0E",
+                    "textMain": "#DDD",
+                    "selected": true
+                },
+                "fonts": {
+                    "titleFont": {
+                        "label": "Open Sans",
+                        "fontFamily": "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+                    },
+                    "bodyFont": {
+                        "label": "Noto Serif",
+                        "fontFamily": "'noto_serif', 'Georgia', 'Hoefler Text', 'Palatino', cursive"
+                    }
+                }
+            },
+            "header": {
+                "logo": {
+                    "enabled": true,
+                    "url": "//www.arcgis.com/sharing/rest/content/items/dd67df15b861498f959bc67b01b881ff/resources/sm_series_logo__1526665275831.png",
+                    "link": "http://www.mdot.maryland.gov/newMDOT/Environmental_Programs/Index.html"
+                },
+                "link": {
+                    "url": "http://www.mdot.maryland.gov/newMDOT/Environmental_Programs/Index.html",
+                    "title": "A State of MD Story Map"
+                },
+                "social": {
+                    "enabled": true
+                }
+            }
+        },
+        "template": {
+            "name": "Story Map Cascade",
+            "createdWith": "1.9.1",
+            "editedWith": "1.16.0",
+            "dataVersion": "1.0.0"
+        },
+        "sections": [
+            {
+                "type": "cover",
+                "foreground": {
+                    "title": "Get Kids Outside in Maryland!",
+                    "subtitle": "A State of MD Initiative",
+                    "options": {
+                        "titleStyle": {
+                            "shadow": true,
+                            "text": "light",
+                            "background": null
+                        }
+                    }
+                },
+                "options": {},
+                "layout": "cover-1",
+                "background": {
+                    "type": "video",
+                    "video": {
+                        "type": "video",
+                        "id": "n_hNyDlWbEg",
+                        "source": "youtube",
+                        "url": "//www.youtube.com/embed/n_hNyDlWbEg",
+                        "options": {
+                            "size": "small"
+                        },
+                        "altText": "Get Kids Outside in Maryland Cover Image"
+                    },
+                    "alternate": {
+                        "type": "image",
+                        "image": {
+                            "type": "image",
+                            "url": "https://www.arcgis.com/sharing/rest/content/items/98f8e3dd817e44159c8a90e99c6041b7/resources/Nature%20Classroom__1539630740686.jpeg",
+                            "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/98f8e3dd817e44159c8a90e99c6041b7/resources/Nature%20Classroom__1539630740686__thumb.jpeg",
+                            "options": {
+                                "placement": {
+                                    "type": "fill",
+                                    "fit": {
+                                        "color": "rgb(114, 117, 74)"
+                                    },
+                                    "fill": {
+                                        "x": 0.39227490234375,
+                                        "y": 0.5887350664881175
+                                    }
+                                },
+                                "size": "small"
+                            },
+                            "width": 1920,
+                            "height": 1280
+                        }
+                    }
+                },
+                "bookmark": {
+                    "enabled": true,
+                    "title": "Home"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1920,
+                                "height": 1278,
+                                "options": {
+                                    "size": "small",
+                                    "placement": {
+                                        "type": "fill",
+                                        "fit": {
+                                            "color": "rgb(50, 53, 35)"
+                                        },
+                                        "fill": {
+                                            "x": 0.5,
+                                            "y": 0.5
+                                        }
+                                    }
+                                },
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/98f8e3dd817e44159c8a90e99c6041b7/resources/Nature%20Playground__1539628614107.jpeg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/98f8e3dd817e44159c8a90e99c6041b7/resources/Nature%20Playground__1539628614107__thumb.jpeg",
+                                "altText": "Child playing in octagonal sculpture outside"
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "center",
+                                        "size": "large",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><span style=\"color: rgb(217, 240, 163);\">Project Green Classrooms </span></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><span style=\"color: rgb(173, 221, 142);\">(</span><span style=\"color: rgb(120, 198, 121);\">AKA: Get Kids Outside in Maryland</span><span style=\"color: rgb(173, 221, 142);\">) </span></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><span style=\"color: rgb(217, 240, 163);\">Why do we want to get kids outside?<br>What program is this?</span></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><span style=\"letter-spacing: inherit; font-style: italic; color: rgb(65, 171, 93);\">Glad you asked!</span></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><span style=\"color: rgb(217, 240, 163);\">Project Green Classrooms is a joint effort by several Maryland state agencies and some other helpful partners to ensure that every child in Maryland has the opportunity to learn about their local environment, develop a connection with nature, and have a better sense of place in their natural surroundings.</span></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><span style=\"color: rgb(65, 171, 93);\">Please explore this site and the included maps. Find destinations statewide where natural interactive learning and recreation can occur. Many of these facilities schedule programs with schools or communities or hold events for families or groups. The map also contains transportation options, and public school locations (to determine proximity to nature sites) throughout Maryland.&nbsp;</span></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><span style=\"color: rgb(217, 240, 163);\">We like learning too! So if you have any suggestions for additional locations or questions, please email us at </span><span style=\"color: rgb(166, 191, 219);\">mdotgis@mdot.state.md.us</span></p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "dark",
+                                    "background": "light"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "bookmark": {
+                    "enabled": false,
+                    "title": "Project Green Classr"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#0E0E0E"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h1 class=\"block\">Let's start with the <span style=\"color: rgb(65, 171, 93); font-weight: bold;\">Destinations</span></h1>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": true,
+                    "title": "The Destinations"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "9240781f61d84840a6a978080bfeaf82",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "large",
+                                        "style": "text-shadow",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">These <span style=\"font-weight: bold; color: rgb(173, 221, 142);\">Destinations</span> are the places you want to visit. This is the heart of this site. Visit! Get outside!</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">&nbsp;<br>Zoom in and out and check out various&nbsp;<span style=\"color: rgb(217, 240, 163);\">locations</span> and move around in the map.<br><br></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Each location has a picture and a link for Google Map directions and specific details.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "The Destinations",
+                                "global": true,
+                                "style": {
+                                    "shadow": true,
+                                    "text": "light",
+                                    "background": null
+                                }
+                            }
+                        }
+                    }
+                ],
+                "bookmark": {
+                    "enabled": false,
+                    "title": "The Destinations"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#0E0E0E"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h2 class=\"block\"><span style=\"color: rgb(255, 255, 255);\">By</span><span style=\"color: rgb(65, 171, 93);\"> </span><span style=\"color: rgb(182, 92, 48); font-weight: bold;\">Foot &amp; By Bike</span></h2>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": true,
+                    "title": "By Foot & By Bike"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "e42d7b87a40d48faa3abfd6332efe052",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "extent": {
+                                    "xmin": -9102550.245240534,
+                                    "ymin": 4468955.19794697,
+                                    "xmax": -8091746.983197412,
+                                    "ymax": 4960598.163877199,
+                                    "spatialReference": {
+                                        "wkid": 102100
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "large",
+                                        "style": "text-shadow",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">So how do we get there? And what is nearby?</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"><br></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Can we get to it from 2 feet or 2 wheels?</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"><br></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">These are some select hiking trails from our friends over at <a href=\"https://www.usgs.gov/\" target=\"_blank\" rel=\"noopener noreferrer\">USGS</a>.&nbsp;The <span style=\"color: rgb(116, 252, 48);\">bright green trails</span>&nbsp;represent the best biking trails in the state. These are road-separated bike routes. There are also some opportunities for <span style=\"color: rgb(182, 92, 48); font-weight: bold;\">off-road riding on trails</span>, and even some preliminary ideas about some<span style=\"font-weight: bold;\"> <span style=\"color: rgb(182, 198, 232);\">streets that are more accommodating for bikes</span></span>.&nbsp;&nbsp;</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"><br></p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "By Foot & By Bike",
+                                "global": true,
+                                "style": {
+                                    "shadow": true,
+                                    "text": "light",
+                                    "background": null
+                                }
+                            }
+                        }
+                    }
+                ],
+                "bookmark": {
+                    "enabled": false,
+                    "title": "By Foot & By Bike"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#0E0E0E"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h1 class=\"block\">By <span style=\"font-weight: bold; color: rgb(177, 0, 38);\">Train</span></h1>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": true,
+                    "title": "By Train"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "b07df9b9a3d442bca5875e5800d6e612",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "large",
+                                        "style": "text-shadow",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"><br></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Ride the Rails!</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Maryland boasts a superb regional rail system with statewide <span style=\"color: rgb(155, 103, 77); font-weight: bold;\">MARC Commuter trains</span> and interstate <span style=\"color: rgb(0, 255, 197); font-weight: bold;\">Amtrak routes</span>.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">More locally to Washington DC &amp; Baltimore, there are the various <span style=\"font-weight: bold;\"><span style=\"color: rgb(230, 0, 0);\">WMATA</span> <span style=\"color: rgb(51, 151, 7);\">Metro</span> <span style=\"color: rgb(255, 255, 0);\">Lines</span></span> in the District, the <span style=\"font-weight: bold; color: rgb(230, 152, 0);\">Baltimore Subway Line</span>, and the <span style=\"font-weight: bold; color: rgb(169, 0, 230);\">Baltimore Light Rail</span>.&nbsp;&nbsp;</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"><span style=\"font-style: italic;\">Zoom in to see the associated stations in proximity to our <span style=\"color: rgb(0, 136, 0);\">Green Classrooms</span>.</span></p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "By Train",
+                                "global": true,
+                                "style": {
+                                    "shadow": true,
+                                    "text": "light",
+                                    "background": null
+                                }
+                            }
+                        }
+                    }
+                ],
+                "bookmark": {
+                    "enabled": false,
+                    "title": "By Train"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#0E0E0E"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h1 class=\"block\">By <span style=\"color: rgb(105, 167, 195); font-weight: bold;\">Bus</span></h1>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": true,
+                    "title": "By Bus"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "0f0574f158f54f7fb9cdea938eddc4a9",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "extent": {
+                                    "xmin": -9080468.263132563,
+                                    "ymin": 4433120.298552516,
+                                    "xmax": -8069665.001089442,
+                                    "ymax": 4900303.415431489,
+                                    "spatialReference": {
+                                        "wkid": 102100
+                                    }
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "large",
+                                        "style": "text-shadow",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Numerous <span style=\"font-weight: bold; color: rgb(132, 199, 229);\">bus routes</span> throughout the state also provide access to large areas of Maryland communities. These <span style=\"color: rgb(132, 199, 229);\">buses</span> connect the major metropolitan areas of Baltimore &amp; Washington as well as traversing nearly the entire state. Chances are pretty good that a bus will get you to a nearby <span style=\"font-style: italic; color: rgb(0, 136, 0);\">Green Classroom</span>.&nbsp;</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "By Bus",
+                                "global": true,
+                                "style": {
+                                    "shadow": true,
+                                    "text": "light",
+                                    "background": null
+                                }
+                            }
+                        }
+                    }
+                ],
+                "bookmark": {
+                    "enabled": false,
+                    "title": "By Bus"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#0E0E0E"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h1 class=\"block\">From <span style=\"font-weight: bold; color: rgb(142, 30, 71);\">Schools</span></h1>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": true,
+                    "title": "From Schools"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "3516c9fdd3014278b5dcff22e90cdcf0",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "large",
+                                        "style": "text-shadow",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">And while our Green Classrooms are fun, let's mix them in with our more traditional schools.&nbsp;</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Chances are that a <span style=\"font-weight: bold; color: rgb(90, 115, 217);\">public</span> and/or <span style=\"color: rgb(142, 30, 71); font-weight: bold;\">charter</span> K-12 school is located close to a <span style=\"color: rgb(0, 136, 0); font-style: italic;\">Project Green Classroom</span>.&nbsp;&nbsp;</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Find your school on the map and <span style=\"color: rgb(217, 240, 163);\">Explore</span>!</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "From Schools",
+                                "global": true,
+                                "style": {
+                                    "shadow": true,
+                                    "text": "light",
+                                    "background": null
+                                }
+                            }
+                        }
+                    }
+                ],
+                "bookmark": {
+                    "enabled": false,
+                    "title": "From Schools"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#0E0E0E"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h1 class=\"block\">Thanks For Visiting! <span style=\"font-style: italic; color: rgb(217, 240, 163);\">Get out there!</span></h1>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "Thanks For Visiting!"
+                }
+            },
+            {
+                "type": "credits",
+                "layout": "credits-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#000"
+                    }
+                },
+                "foreground": {
+                    "panels": [
+                        {
+                            "type": "blocks",
+                            "blocks": [
+                                {
+                                    "type": "text",
+                                    "text": {
+                                        "value": "<p class=\"block\" style=\"text-align: center;\"></p>"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "credits",
+                            "credits": [
+                                {
+                                    "label": "Story Map created by",
+                                    "source": "KFH Group | Andrew Bernish",
+                                    "link": "http://www.kfhgroup.com/staff/andrewbernish/"
+                                },
+                                {
+                                    "label": "On behalf of",
+                                    "source": "Maryland Department of Transportation (MDOT)",
+                                    "link": "http://www.mdot.maryland.gov/"
+                                },
+                                {
+                                    "label": "Data provided by",
+                                    "source": "The State of Maryland (MDOT, MD DNR, MD iMAP)",
+                                    "link": "http://data.imap.maryland.gov/"
+                                },
+                                {
+                                    "label": "Additional Data Sources Credit",
+                                    "source": "The Chesapeake Conservancy",
+                                    "link": "https://chesapeakeconservancy.org/"
+                                },
+                                {
+                                    "label": "Bird Video credit",
+                                    "source": "Beachfront B Roll",
+                                    "link": "http://www.beachfrontbroll.com/"
+                                },
+                                {
+                                    "label": "Platform",
+                                    "source": "ESRI",
+                                    "link": "https://storymaps.arcgis.com/en/"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

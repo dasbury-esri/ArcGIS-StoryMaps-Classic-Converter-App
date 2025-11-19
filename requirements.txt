@@ -1,0 +1,9 @@
+# Classic StoryMap Converter Dependencies
+
+# Required for all converters
+beautifulsoup4>=4.9.0
+
+dev dependencies:
+npm install @esri/arcgis-rest-auth
+npm install node-fetch@2
+npm install image-size

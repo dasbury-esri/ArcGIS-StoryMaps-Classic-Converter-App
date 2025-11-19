@@ -1,0 +1,1026 @@
+{
+    "operationalLayers": [
+        {
+            "id": "Florida_Annual_Average_Daily_Traffic_3840_5496",
+            "title": "Florida Daily Traffic by Color",
+            "url": "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Florida_Annual_Average_Daily_Traffic/FeatureServer/0",
+            "visibility": false,
+            "layerType": "ArcGISFeatureLayer",
+            "popupInfo": {
+                "popupElements": [
+                    {
+                        "type": "text",
+                        "text": "The annual average daily traffic on this road is <b>{aadt}</b> people per day. This road is in district <b>{district}</b>."
+                    },
+                    {
+                        "type": "attachments",
+                        "displayType": "list"
+                    }
+                ],
+                "description": "The annual average daily traffic on this road is <b>{aadt}</b> people per day. This road is in district <b>{district}</b>.",
+                "showAttachments": true,
+                "fieldInfos": [
+                    {
+                        "fieldName": "FID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "FID",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "YEAR_",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "YEAR_",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DISTRICT",
+                        "isEditable": true,
+                        "label": "District",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "COSITE",
+                        "isEditable": true,
+                        "label": "COSITE",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ROADWAY",
+                        "isEditable": true,
+                        "label": "ROADWAY",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DESC_FRM",
+                        "isEditable": true,
+                        "label": "DESC_FRM",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DESC_TO",
+                        "isEditable": true,
+                        "label": "DESC_TO",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "AADT",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Annual Average Daily Traffic",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "AADTFLG",
+                        "isEditable": true,
+                        "label": "AADTFLG",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "KFLG",
+                        "isEditable": true,
+                        "label": "KFLG",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "K100FLG",
+                        "isEditable": true,
+                        "label": "K100FLG",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DFLG",
+                        "isEditable": true,
+                        "label": "DFLG",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "TFLG",
+                        "isEditable": true,
+                        "label": "TFLG",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "BEGIN_POST",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "BEGIN_POST",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "END_POST",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "END_POST",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "KFCTR",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "KFCTR",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "K100FCTR",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "K100FCTR",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DFCTR",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "DFCTR",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "TFCTR",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "TFCTR",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Shape_Leng",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "Shape_Leng",
+                        "tooltip": "",
+                        "visible": false
+                    }
+                ],
+                "title": ""
+            },
+            "layerDefinition": {
+                "drawingInfo": {
+                    "renderer": {
+                        "authoringInfo": {
+                            "visualVariables": [
+                                {
+                                    "maxSliderValue": 299000,
+                                    "minSliderValue": 0,
+                                    "theme": "high-to-low",
+                                    "type": "colorInfo"
+                                }
+                            ]
+                        },
+                        "type": "classBreaks",
+                        "visualVariables": [
+                            {
+                                "type": "colorInfo",
+                                "field": "AADT",
+                                "stops": [
+                                    {
+                                        "color": [
+                                            0,
+                                            104,
+                                            55,
+                                            255
+                                        ],
+                                        "value": 1000
+                                    },
+                                    {
+                                        "color": [
+                                            49,
+                                            163,
+                                            84,
+                                            255
+                                        ],
+                                        "value": 10750
+                                    },
+                                    {
+                                        "color": [
+                                            120,
+                                            198,
+                                            121,
+                                            255
+                                        ],
+                                        "value": 20500
+                                    },
+                                    {
+                                        "color": [
+                                            194,
+                                            230,
+                                            153,
+                                            255
+                                        ],
+                                        "value": 30250
+                                    },
+                                    {
+                                        "color": [
+                                            255,
+                                            255,
+                                            204,
+                                            255
+                                        ],
+                                        "value": 40000
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sizeInfo",
+                                "valueExpression": "$view.scale",
+                                "stops": [
+                                    {
+                                        "size": 1.5,
+                                        "value": 4513.988705
+                                    },
+                                    {
+                                        "size": 0.75,
+                                        "value": 36111.909643
+                                    },
+                                    {
+                                        "size": 0.5625,
+                                        "value": 288895.277144
+                                    },
+                                    {
+                                        "size": 0.375,
+                                        "value": 2311162.217155
+                                    }
+                                ]
+                            }
+                        ],
+                        "classBreakInfos": [
+                            {
+                                "classMaxValue": 9007199254740991,
+                                "symbol": {
+                                    "type": "esriSLS",
+                                    "color": [
+                                        170,
+                                        170,
+                                        170,
+                                        255
+                                    ],
+                                    "width": 0.48,
+                                    "style": "esriSLSSolid"
+                                }
+                            }
+                        ],
+                        "field": "AADT",
+                        "minValue": -9007199254740991
+                    }
+                }
+            }
+        },
+        {
+            "id": "17a49473c16-layer-6",
+            "title": "Florida Daily Traffic by Size",
+            "url": "https://services1.arcgis.com/O1JpcwDW8sjYuddV/arcgis/rest/services/Annual_Average_Daily_Traffic_TDA/FeatureServer/0",
+            "visibility": false,
+            "itemId": "cca8f554a0764b94b35f8b1781e399de",
+            "layerType": "ArcGISFeatureLayer",
+            "layerDefinition": {
+                "drawingInfo": {
+                    "renderer": {
+                        "authoringInfo": {
+                            "visualVariables": [
+                                {
+                                    "maxSliderValue": 296000,
+                                    "minSliderValue": 20,
+                                    "theme": "high-to-low",
+                                    "type": "sizeInfo"
+                                },
+                                {
+                                    "maxSliderValue": 299000,
+                                    "minSliderValue": 10,
+                                    "type": "transparencyInfo"
+                                }
+                            ]
+                        },
+                        "type": "classBreaks",
+                        "visualVariables": [
+                            {
+                                "type": "sizeInfo",
+                                "field": "AADT",
+                                "maxDataValue": 295000,
+                                "maxSize": {
+                                    "type": "sizeInfo",
+                                    "valueExpression": "$view.scale",
+                                    "stops": [
+                                        {
+                                            "size": 24,
+                                            "value": 4513.988705
+                                        },
+                                        {
+                                            "size": 13.5,
+                                            "value": 36111.909643
+                                        },
+                                        {
+                                            "size": 9,
+                                            "value": 288895.277144
+                                        },
+                                        {
+                                            "size": 4.5,
+                                            "value": 2311162.217155
+                                        }
+                                    ]
+                                },
+                                "minDataValue": 100,
+                                "minSize": {
+                                    "type": "sizeInfo",
+                                    "valueExpression": "$view.scale",
+                                    "stops": [
+                                        {
+                                            "size": 1.5,
+                                            "value": 4513.988705
+                                        },
+                                        {
+                                            "size": 0.75,
+                                            "value": 36111.909643
+                                        },
+                                        {
+                                            "size": 0.5625,
+                                            "value": 288895.277144
+                                        },
+                                        {
+                                            "size": 0.375,
+                                            "value": 2311162.217155
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "type": "transparencyInfo",
+                                "field": "AADT",
+                                "legendOptions": {
+                                    "showLegend": false
+                                },
+                                "stops": [
+                                    {
+                                        "transparency": 70,
+                                        "value": 10
+                                    },
+                                    {
+                                        "transparency": 0,
+                                        "value": 37988
+                                    }
+                                ]
+                            }
+                        ],
+                        "classBreakInfos": [
+                            {
+                                "classMaxValue": 9007199254740991,
+                                "symbol": {
+                                    "type": "esriSLS",
+                                    "color": [
+                                        226,
+                                        119,
+                                        40,
+                                        255
+                                    ],
+                                    "width": 0.75,
+                                    "style": "esriSLSSolid"
+                                }
+                            }
+                        ],
+                        "field": "AADT",
+                        "minValue": -9007199254740991
+                    }
+                }
+            }
+        },
+        {
+            "id": "Annual_Average_Daily_Traffic_TDA_523",
+            "title": "Florida Daily Traffic by Type & Size",
+            "url": "https://services1.arcgis.com/O1JpcwDW8sjYuddV/arcgis/rest/services/Annual_Average_Daily_Traffic_TDA/FeatureServer/0",
+            "layerType": "ArcGISFeatureLayer",
+            "popupInfo": {
+                "popupElements": [
+                    {
+                        "type": "text",
+                        "text": "<font size='3'>The annual average daily traffic on this road is </font><b><font size='4'>{aadt}</font></b><font size='3'> vehicles per day.</font>"
+                    },
+                    {
+                        "type": "attachments",
+                        "displayType": "list"
+                    }
+                ],
+                "description": "<font size='3'>The annual average daily traffic on this road is </font><b><font size='4'>{aadt}</font></b><font size='3'> vehicles per day.</font>",
+                "showAttachments": true,
+                "fieldInfos": [
+                    {
+                        "fieldName": "OBJECTID",
+                        "isEditable": true,
+                        "label": "OBJECTID",
+                        "tooltip": "",
+                        "visible": false
+                    },
+                    {
+                        "fieldName": "YEAR_",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "YEAR_",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DISTRICT",
+                        "isEditable": true,
+                        "label": "District",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "COSITE",
+                        "isEditable": true,
+                        "label": "COSITE",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ROADWAY",
+                        "isEditable": true,
+                        "label": "ROADWAY",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DESC_FRM",
+                        "isEditable": true,
+                        "label": "DESC_FRM",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DESC_TO",
+                        "isEditable": true,
+                        "label": "DESC_TO",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "AADT",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Annual Average Daily Traffic",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "AADTFLG",
+                        "isEditable": true,
+                        "label": "AADTFLG",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "KFLG",
+                        "isEditable": true,
+                        "label": "KFLG",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "K100FLG",
+                        "isEditable": true,
+                        "label": "K100FLG",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DFLG",
+                        "isEditable": true,
+                        "label": "DFLG",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "TFLG",
+                        "isEditable": true,
+                        "label": "TFLG",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "COUNTYDOT",
+                        "isEditable": true,
+                        "label": "COUNTYDOT",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "COUNTY",
+                        "isEditable": true,
+                        "label": "COUNTY",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "MNG_DIST",
+                        "isEditable": true,
+                        "label": "MNG_DIST",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "BEGIN_POST",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "BEGIN_POST",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "END_POST",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "END_POST",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "KFCTR",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "KFCTR",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "K100FCTR",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "K100FCTR",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DFCTR",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "DFCTR",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "TFCTR",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "TFCTR",
+                        "tooltip": "",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Shape_Leng",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "Shape_Leng",
+                        "tooltip": "",
+                        "visible": false
+                    },
+                    {
+                        "fieldName": "Shape__Length",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "Shape__Length",
+                        "tooltip": "",
+                        "visible": false
+                    }
+                ],
+                "title": "District {DISTRICT}"
+            },
+            "layerDefinition": {
+                "drawingInfo": {
+                    "renderer": {
+                        "authoringInfo": {
+                            "visualVariables": [
+                                {
+                                    "maxSliderValue": 306000,
+                                    "minSliderValue": 10,
+                                    "theme": "high-to-low",
+                                    "type": "sizeInfo"
+                                },
+                                {
+                                    "maxSliderValue": 306000,
+                                    "minSliderValue": 10,
+                                    "type": "transparencyInfo"
+                                }
+                            ]
+                        },
+                        "type": "uniqueValue",
+                        "visualVariables": [
+                            {
+                                "type": "sizeInfo",
+                                "field": "AADT",
+                                "maxDataValue": 300000,
+                                "maxSize": 13.5,
+                                "minDataValue": 10,
+                                "minSize": 0.75
+                            },
+                            {
+                                "type": "transparencyInfo",
+                                "field": "AADT",
+                                "legendOptions": {
+                                    "showLegend": false
+                                },
+                                "stops": [
+                                    {
+                                        "transparency": 30,
+                                        "value": 10
+                                    },
+                                    {
+                                        "transparency": 0,
+                                        "value": 15000
+                                    }
+                                ]
+                            }
+                        ],
+                        "field1": "DISTRICT",
+                        "uniqueValueGroups": [
+                            {
+                                "classes": [
+                                    {
+                                        "label": "1",
+                                        "symbol": {
+                                            "type": "esriSLS",
+                                            "color": [
+                                                110,
+                                                196,
+                                                174,
+                                                255
+                                            ],
+                                            "width": 1.5,
+                                            "style": "esriSLSSolid"
+                                        },
+                                        "values": [
+                                            [
+                                                "1"
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "label": "2",
+                                        "symbol": {
+                                            "type": "esriSLS",
+                                            "color": [
+                                                55,
+                                                169,
+                                                183,
+                                                255
+                                            ],
+                                            "width": 1.5,
+                                            "style": "esriSLSSolid"
+                                        },
+                                        "values": [
+                                            [
+                                                "2"
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "label": "3",
+                                        "symbol": {
+                                            "type": "esriSLS",
+                                            "color": [
+                                                214,
+                                                137,
+                                                137,
+                                                255
+                                            ],
+                                            "width": 1.5,
+                                            "style": "esriSLSSolid"
+                                        },
+                                        "values": [
+                                            [
+                                                "3"
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "label": "4",
+                                        "symbol": {
+                                            "type": "esriSLS",
+                                            "color": [
+                                                188,
+                                                126,
+                                                186,
+                                                255
+                                            ],
+                                            "width": 1.5,
+                                            "style": "esriSLSSolid"
+                                        },
+                                        "values": [
+                                            [
+                                                "4"
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "label": "5",
+                                        "symbol": {
+                                            "type": "esriSLS",
+                                            "color": [
+                                                249,
+                                                123,
+                                                96,
+                                                255
+                                            ],
+                                            "width": 1.5,
+                                            "style": "esriSLSSolid"
+                                        },
+                                        "values": [
+                                            [
+                                                "5"
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "label": "6",
+                                        "symbol": {
+                                            "type": "esriSLS",
+                                            "color": [
+                                                123,
+                                                250,
+                                                235,
+                                                255
+                                            ],
+                                            "width": 1.5,
+                                            "style": "esriSLSSolid"
+                                        },
+                                        "values": [
+                                            [
+                                                "6"
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "label": "7",
+                                        "symbol": {
+                                            "type": "esriSLS",
+                                            "color": [
+                                                161,
+                                                215,
+                                                126,
+                                                255
+                                            ],
+                                            "width": 1.5,
+                                            "style": "esriSLSSolid"
+                                        },
+                                        "values": [
+                                            [
+                                                "7"
+                                            ]
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "uniqueValueInfos": [
+                            {
+                                "label": "1",
+                                "symbol": {
+                                    "type": "esriSLS",
+                                    "color": [
+                                        110,
+                                        196,
+                                        174,
+                                        255
+                                    ],
+                                    "width": 1.5,
+                                    "style": "esriSLSSolid"
+                                },
+                                "value": "1"
+                            },
+                            {
+                                "label": "2",
+                                "symbol": {
+                                    "type": "esriSLS",
+                                    "color": [
+                                        55,
+                                        169,
+                                        183,
+                                        255
+                                    ],
+                                    "width": 1.5,
+                                    "style": "esriSLSSolid"
+                                },
+                                "value": "2"
+                            },
+                            {
+                                "label": "3",
+                                "symbol": {
+                                    "type": "esriSLS",
+                                    "color": [
+                                        214,
+                                        137,
+                                        137,
+                                        255
+                                    ],
+                                    "width": 1.5,
+                                    "style": "esriSLSSolid"
+                                },
+                                "value": "3"
+                            },
+                            {
+                                "label": "4",
+                                "symbol": {
+                                    "type": "esriSLS",
+                                    "color": [
+                                        188,
+                                        126,
+                                        186,
+                                        255
+                                    ],
+                                    "width": 1.5,
+                                    "style": "esriSLSSolid"
+                                },
+                                "value": "4"
+                            },
+                            {
+                                "label": "5",
+                                "symbol": {
+                                    "type": "esriSLS",
+                                    "color": [
+                                        249,
+                                        123,
+                                        96,
+                                        255
+                                    ],
+                                    "width": 1.5,
+                                    "style": "esriSLSSolid"
+                                },
+                                "value": "5"
+                            },
+                            {
+                                "label": "6",
+                                "symbol": {
+                                    "type": "esriSLS",
+                                    "color": [
+                                        123,
+                                        250,
+                                        235,
+                                        255
+                                    ],
+                                    "width": 1.5,
+                                    "style": "esriSLSSolid"
+                                },
+                                "value": "6"
+                            },
+                            {
+                                "label": "7",
+                                "symbol": {
+                                    "type": "esriSLS",
+                                    "color": [
+                                        161,
+                                        215,
+                                        126,
+                                        255
+                                    ],
+                                    "width": 1.5,
+                                    "style": "esriSLSSolid"
+                                },
+                                "value": "7"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "baseMap": {
+        "baseMapLayers": [
+            {
+                "id": "VectorTile_918",
+                "opacity": 1,
+                "title": "Human Geography Dark Base",
+                "visibility": true,
+                "itemId": "d7397603e9274052808839b70812be50",
+                "layerType": "VectorTileLayer",
+                "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/d7397603e9274052808839b70812be50/resources/styles/root.json"
+            },
+            {
+                "id": "VectorTile_4801",
+                "opacity": 1,
+                "title": "Human Geography Dark Detail",
+                "visibility": true,
+                "itemId": "1ddbb25aa29c4811aaadd94de469856a",
+                "layerType": "VectorTileLayer",
+                "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/1ddbb25aa29c4811aaadd94de469856a/resources/styles/root.json",
+                "isReference": true
+            },
+            {
+                "id": "VectorTile_7675",
+                "opacity": 1,
+                "title": "Human Geography Dark Label",
+                "visibility": true,
+                "itemId": "4a3922d6d15f405d8c2b7a448a7fbad2",
+                "layerType": "VectorTileLayer",
+                "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/4a3922d6d15f405d8c2b7a448a7fbad2/resources/styles/root.json",
+                "isReference": true
+            }
+        ],
+        "title": "Human Geography Dark Map"
+    },
+    "applicationProperties": {
+        "viewing": {
+            "search": {
+                "disablePlaceFinder": false,
+                "enabled": true,
+                "hintText": "Place or Address"
+            }
+        }
+    },
+    "authoringApp": "ArcGISMapViewer",
+    "authoringAppVersion": "2023.2",
+    "initialState": {
+        "viewpoint": {
+            "targetGeometry": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "xmin": -9375414.93954531,
+                "ymin": 2943309.8769542486,
+                "xmax": -8837298.26041781,
+                "ymax": 3587826.8994546835
+            }
+        }
+    },
+    "spatialReference": {
+        "latestWkid": 3857,
+        "wkid": 102100
+    },
+    "version": "2.28"
+}

@@ -1,0 +1,45 @@
+{
+    "operationalLayers": [],
+    "baseMap": {
+        "baseMapLayers": [
+            {
+                "id": "mapslt_ortofoto_6585",
+                "layerType": "ArcGISTiledMapServiceLayer",
+                "url": "https://www.maps.lt/arcgis/rest/services/mapslt_ortofoto/MapServer",
+                "visibility": true,
+                "opacity": 1,
+                "title": "mapslt_ortofoto",
+                "minScale": 166263,
+                "maxScale": 1000
+            },
+            {
+                "id": "mapslt_ortofoto_overlay_7243",
+                "layerType": "ArcGISTiledMapServiceLayer",
+                "url": "https://www.maps.lt/arcgis/rest/services/mapslt_ortofoto_overlay/MapServer",
+                "visibility": true,
+                "opacity": 1,
+                "title": "mapslt_ortofoto_overlay",
+                "minScale": 142206,
+                "maxScale": 1000
+            },
+            {
+                "id": "mapslt_5492",
+                "layerType": "ArcGISTiledMapServiceLayer",
+                "url": "https://www.maps.lt/arcgis/rest/services/mapslt/MapServer",
+                "visibility": true,
+                "opacity": 1,
+                "title": "mapslt",
+                "minScale": 6000000,
+                "maxScale": 160000
+            }
+        ],
+        "title": "mapslt"
+    },
+    "spatialReference": {
+        "wkid": 2600,
+        "latestWkid": 3346
+    },
+    "authoringApp": "WebMapViewer",
+    "authoringAppVersion": "5.3",
+    "version": "2.10"
+}

@@ -1,0 +1,177 @@
+{
+    "values": {
+        "settings": {
+            "appGeocoders": [
+                {
+                    "singleLineFieldName": "SingleLine",
+                    "name": "ArcGIS World Geocoding Service",
+                    "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+                },
+                {
+                    "singleLineFieldName": "SingleLine",
+                    "name": "ArcGIS World Geocoding Service",
+                    "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+                }
+            ],
+            "layout": {
+                "id": "accordion"
+            },
+            "layoutOptions": {
+                "description": true,
+                "legend": "dropdown",
+                "panel": {
+                    "position": "left",
+                    "size": "medium"
+                },
+                "numbering": false,
+                "reverse": false
+            },
+            "mapOptions": {
+                "overview": {
+                    "enable": false,
+                    "openByDefault": true
+                },
+                "locateBtn": {
+                    "enable": false
+                },
+                "geocoder": {
+                    "enable": false
+                },
+                "mapsSync": true
+            },
+            "theme": {
+                "colors": {
+                    "name": "accordion-default-1",
+                    "group": "default",
+                    "themeMajor": "white",
+                    "header": "#283239",
+                    "headerTitle": "#FFFFFF",
+                    "headerText": "#D9D9D9",
+                    "panel": "#DBD9DA",
+                    "text": "#000000",
+                    "textLink": "#555555",
+                    "media": "#8f999f",
+                    "mapControls": "#DBD9DA",
+                    "softText": "#444444",
+                    "softBtn": "#444444",
+                    "esriLogo": "white",
+                    "esriLogoMobile": "black",
+                    "accordionArrow": "#58ADCC",
+                    "accordionArrowActive": "#FFFFFF",
+                    "accordionArrowHover": "#9ACCDE",
+                    "accordionNumber": "#60788A",
+                    "accordionTitle": "#000000"
+                }
+            },
+            "header": {
+                "linkText": "",
+                "linkURL": "",
+                "logoURL": "NO_LOGO",
+                "logoTarget": "",
+                "social": {
+                    "facebook": false,
+                    "twitter": false,
+                    "bitly": false
+                },
+                "compactSize": true
+            }
+        },
+        "title": "Stewardship",
+        "story": {
+            "storage": "WEBAPP",
+            "entries": [
+                {
+                    "title": "Request Tree Trimming or Removal",
+                    "contentActions": [],
+                    "creaDate": 1734447252220,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "ff7ff7d377554a04bf6f308fecd62604",
+                            "extent": {
+                                "xmin": -7911981.378581384,
+                                "ymin": 5194917.548711253,
+                                "xmax": -7896082.476698089,
+                                "ymax": 5205007.236444883,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": [
+                                {
+                                    "id": "193d519a8b8-layer-17",
+                                    "visibility": true
+                                }
+                            ],
+                            "popup": null,
+                            "legend": {
+                                "enable": true,
+                                "openByDefault": false
+                            },
+                            "altText": ""
+                        }
+                    },
+                    "description": "<p style=\"text-align:center\"><span style=\"font-size:16px;\">Click <a href=\"https://www.quincyma.gov/departments/natural_resources/forestry/report_forestry_related_issues.php\" target=\"_blank\">here </a>to request tree trimming or removal.</span></p>\n\n<p style=\"text-align:center\">&nbsp;</p>\n\n<figure class=\"caption\">\n<div class=\"image-container\">\n<p style=\"text-align:center\"><img alt=\"\" height=\"446\" src=\"https://www.arcgis.com/sharing/rest/content/items/77245a2c7bb540878fd3b24ebd048b20/resources/fruit-tree-pruning__1653399618025__w1694.jpg\" width=\"667\"></p>\n</div>\n\n<figcaption>&nbsp;</figcaption>\n</figure>\n"
+                },
+                {
+                    "title": "Greening the Gateway Cities",
+                    "contentActions": [],
+                    "creaDate": 1734451710889,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "ff7ff7d377554a04bf6f308fecd62604",
+                            "extent": null,
+                            "layers": [
+                                {
+                                    "id": "193b6a3d7db-layer-10",
+                                    "visibility": false
+                                },
+                                {
+                                    "id": "193d0d89679-layer-17",
+                                    "visibility": true
+                                },
+                                {
+                                    "id": "193d0d85f89-layer-16",
+                                    "visibility": true
+                                }
+                            ],
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "altText": ""
+                        }
+                    },
+                    "description": "<p><span style=\"font-size:16px\">The Massachusetts Department of Conservation and Recreation&rsquo;s Greening the Gateway Cities Program (GGCP) is an urban tree planting program designed to reduce household heating and cooling energy use. A healthy urban forest also cleans the water we drink and the air we breathe, and contributes to neighborhood stability and overall quality of life. They are especially important to plant in neighborhoods that have lower existing canopy coverage, older housing stock, and higher wind speeds.<br />\n<br />\nSee more on the&nbsp;<a href=\"https://www.maurbancanopy.org/\" target=\"_blank\">GGCP&rsquo;s Website</a>&nbsp;or leave us a message on our Quincy hotline at&nbsp;<a href=\"tel:6176261570\" target=\"_blank\">(617) 626-1570</a>.</span></p>\n\n<p>&nbsp;</p>\n\n<p style=\"text-align:center\"><strong><span style=\"font-size:16px\">2,434 / 2,400 Trees Planted</span></strong></p>\n\n<p style=\"text-align:center\"><em><span style=\"font-size:16px\">The map to the right shows&nbsp;the trees planting areas in Quincy.</span></em></p>\n\n<p style=\"text-align:center\">&nbsp;</p>\n\n<figure class=\"caption\">\n<div class=\"image-container\" style=\"text-align:center\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/77245a2c7bb540878fd3b24ebd048b20/resources/Greening_The_Gateway_logo__1652101825460__w263.jpg\" /></div>\n</figure>\n\n<p style=\"text-align:center\">&nbsp;</p>\n"
+                },
+                {
+                    "title": "Tree Ambassadors",
+                    "contentActions": [],
+                    "creaDate": 1655834734386,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "https://www.quincytreealliance.com/trees",
+                            "type": "webpage",
+                            "altText": "",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    },
+                    "description": "<p><span style=\"font-size:16px;\">The Quincy Tree Alliance is a volunteer group that collaborates with local public officials, national and state agencies, and other community organizations to sustain and expand the urban forest in Quincy, Massachusetts.&nbsp;They strive to recruit and engage allies in their quest to protect and grow Quincy's tree canopy for the benefit and well-being of current residents and future generations.</span></p>\n\n<p>&nbsp;</p>\n\n<p style=\"text-align:center\">&nbsp;</p>\n\n<figure class=\"caption\">\n<div class=\"image-container\" style=\"text-align:center;\"><img alt=\"\" height=\"323\" src=\"https://www.arcgis.com/sharing/rest/content/items/77245a2c7bb540878fd3b24ebd048b20/resources/QTA__1652724510926__w1500.png\" width=\"323\"></div>\n\n<figcaption>\n<p style=\"text-align:center\">&nbsp;</p>\n</figcaption>\n</figure>\n"
+                }
+            ]
+        },
+        "template": {
+            "name": "Map Series",
+            "createdWith": "1.26.0",
+            "editedWith": "1.29.0"
+        }
+    },
+    "_ssl": null
+}

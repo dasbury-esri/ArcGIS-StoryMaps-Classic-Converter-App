@@ -1,0 +1,162 @@
+{
+    "_ssl": false,
+    "source": "StoryMap_Crowdsource_Builder",
+    "values": {
+        "settings": {
+            "components": {
+                "common": {
+                    "acceptNewContributions": true,
+                    "participateShort": "投稿する",
+                    "participateLong": "Share your experience",
+                    "exploreText": "マップを見る",
+                    "sharing": {
+                        "services": {
+                            "facebook": true,
+                            "twitter": true,
+                            "link": true
+                        },
+                        "twitter": {
+                            "text": "",
+                            "related": "EsriStoryMaps"
+                        }
+                    }
+                },
+                "contribute": {
+                    "title": "Add your contribution",
+                    "participationAllowed": false,
+                    "loginOptions": {
+                        "arcgis": true,
+                        "facebook": true,
+                        "google": true,
+                        "guest": true
+                    },
+                    "termsAndConditions": "You warrant and represent that (1) you possess all rights, title, and ownership in the photos to be shared up to this site, and grant Esri, and its contractors the nonexclusive, royalty free right to use, copy, store, cache, host, prepare derivative works, reproduce, publicly display and perform, redistribute, rebroadcast, and retransmit the shared photo as part of this service, and (2) your sharing of photos and any associated geolocational information will not infringe or misappropriate any third party’s proprietary rights or rights of privacy or publicity. Sharing photos that could be deemed defamatory, obscene, pornographic, excessively violent, or to encourage unlawful activities are strictly prohibited."
+                },
+                "gallery": {
+                    "thumbnailField": "PrimaryThumbnail",
+                    "thumbnailIsAttachment": true
+                },
+                "header": {
+                    "logo": {
+                        "type": "upload",
+                        "source": "https://www.arcgis.com/sharing/rest/content/items/3625639d89454282b44c7eb899fc910f/resources/logo_jlv1bk7s6.png",
+                        "link": "https://www.esrij.com"
+                    },
+                    "title": "京都大学地理学教室所蔵の絵葉書コレクション"
+                },
+                "intro": {
+                    "background": {
+                        "type": "photo",
+                        "source": "https://www.arcgis.com/sharing/rest/content/items/3625639d89454282b44c7eb899fc910f/resources/introSplashBackgroundPhoto_lg9mu0fgs.jpeg"
+                    },
+                    "title": "京都大学地理学教室所蔵の絵葉書コレクション",
+                    "subtitle": "The Postcard Collection Stored at the Department of Geography, Graduate School of Letters, Kyoto University"
+                },
+                "map": {
+                    "crowdsourceLayer": {
+                        "id": "crowdsource-layer-1474725240746",
+                        "attributePath": "attributes",
+                        "idField": "FID",
+                        "primaryField": "Name",
+                        "secondaryField": "LocationName",
+                        "hiddenField": "Hidden",
+                        "vettedField": "Vetted",
+                        "fields": {
+                            "PrimaryPhoto": {
+                                "required": true,
+                                "type": "photo",
+                                "fieldID": "PrimaryPhoto",
+                                "label": "Photo",
+                                "placeholder": "Drag and Drop",
+                                "attributeName": "photo",
+                                "validations": [],
+                                "isAttachment": true,
+                                "extras": {
+                                    "dataType": "photo",
+                                    "minimumSize": 700,
+                                    "photoSettings": [
+                                        {
+                                            "name": "PrimaryPhoto",
+                                            "smallestSide": 1000
+                                        },
+                                        {
+                                            "name": "PrimaryThumbnail",
+                                            "height": 200,
+                                            "width": 200
+                                        }
+                                    ]
+                                }
+                            },
+                            "Name": {
+                                "required": true,
+                                "type": "text",
+                                "fieldID": "Name",
+                                "label": "Title",
+                                "attributeName": "title",
+                                "placeholder": "Enter a title",
+                                "validations": [
+                                    "arcgisSupportedHtml"
+                                ]
+                            },
+                            "LocationName": {
+                                "required": true,
+                                "type": "location",
+                                "fieldID": "LocationName",
+                                "label": "Location",
+                                "attributeName": "location",
+                                "placeholder": "Enter a location",
+                                "validations": [],
+                                "extras": {
+                                    "dataType": "location",
+                                    "storeGeometry": true
+                                }
+                            },
+                            "Description": {
+                                "required": true,
+                                "type": "textarea",
+                                "fieldID": "Description",
+                                "label": "Description",
+                                "attributeName": "description",
+                                "placeholder": "Enter a description (200 words or fewer please)",
+                                "validations": [
+                                    "arcgisSupportedHtml"
+                                ]
+                            }
+                        },
+                        "visibleFeaturesQuery": [
+                            "vetted:new",
+                            "vetted:approved"
+                        ]
+                    },
+                    "webmap": "a9c700d1d091457a9d1a5cd932d79765",
+                    "webmapOptions": {
+                        "ignorePopups": true,
+                        "usePopupManager": false,
+                        "mapOptions": {}
+                    }
+                },
+                "shareDisplay": {
+                    "media": {
+                        "type": "photo",
+                        "field": "PrimaryPhoto"
+                    },
+                    "displayOrder": [
+                        "Description"
+                    ]
+                }
+            },
+            "layout": {
+                "id": "sidePanel",
+                "font": "openSans",
+                "theme": "default"
+            },
+            "oauth": {
+                "clientId": "Bv7ejkIdqrMtfLp8"
+            }
+        },
+        "properties": {
+            "version": "0.8.0",
+            "versionUpdated": 1524103944328
+        }
+    }
+}

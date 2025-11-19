@@ -1,0 +1,579 @@
+{
+    "operationalLayers": [
+        {
+            "layerType": "ArcGISFeatureLayer",
+            "id": "csv_3721",
+            "title": "Chief-Sci-2018",
+            "featureCollection": {
+                "layers": [
+                    {
+                        "featureSet": {
+                            "features": [
+                                {
+                                    "attributes": {
+                                        "Number": 1,
+                                        "Name": "2018 Carbon Footprint Offset",
+                                        "Description": "Because I fly so much, my flights tend to be the largest part of my carbon footprint. <a target='new' href='https://www.climatestewards.org' style=''>Climate Stewards</a> allows me to calculate this for each trip and donate the offset to support community forestry, water filter and cookstove projects in Ghana, Kenya, Uganda and Mexico. ",
+                                        "icon_color": "P",
+                                        "Long": -0.117197,
+                                        "Lat": 51.511096,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/flying.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/flying-th.jpg",
+                                        "__OBJECTID": 0
+                                    },
+                                    "geometry": {
+                                        "x": -13046.31,
+                                        "y": 6712203.54,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 2,
+                                        "Name": "Portland, OR, Feb 11-16",
+                                        "Description": "2018 got off to a great start among 5000 at the Ocean Sciences Meeting, with efforts focused on Part 2 of the OceanObs Research Coordination Network, sharing Phase 2 of the Ecological Marine Units, and moderating one of the <a target='new' href='https://osm.agu.org/2018/data-fair/'>AGU Data Fair panels</a>.",
+                                        "icon_color": "R",
+                                        "Long": -122.663019,
+                                        "Lat": 45.528088,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/osm18.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/osm18-th.jpg",
+                                        "__OBJECTID": 1
+                                    },
+                                    "geometry": {
+                                        "x": -13654784.81,
+                                        "y": 5705044.83,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 3,
+                                        "Name": "Palo Alto, CA, Feb 21",
+                                        "Description": "Conservation International Science Advisory Board meeting and joint session with Ocean Health Council",
+                                        "icon_color": "R",
+                                        "Long": -122.151853,
+                                        "Lat": 37.4098,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/ci-moore.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/ci-th.jpg",
+                                        "__OBJECTID": 2
+                                    },
+                                    "geometry": {
+                                        "x": -13597882.08,
+                                        "y": 4496382.6,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 4,
+                                        "Name": "Vienna, Austria, Apr 8-11",
+                                        "Description": "The <a target='new' href='http://egu2018.eu'>European Geosciences Union General Assembly</a> among over 15,000 scientists from 106 countries, helping to increase Esri's footprint at this important meeting.",
+                                        "icon_color": "R",
+                                        "Long": 16.413756,
+                                        "Lat": 48.234902,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2016/vienna-march.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2015/egu-th.jpg",
+                                        "__OBJECTID": 3
+                                    },
+                                    "geometry": {
+                                        "x": 1827170.96,
+                                        "y": 6146023.51,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 5,
+                                        "Name": "New Orleans, LA, Apr 12",
+                                        "Description": "The 2018 <a target='new' href='http://www.aag.org'>American Association of Geographers Annual Meeting</a> featured over 7000 presentations, posters, and workshops, including many by Esri on analytics, smart mapping, open data, and <a href='http://esriurl.com/dltool' target='new'>artificial intelligence</a>. <i>Photo credit: Falkue, Wikipedia</i>.",
+                                        "icon_color": "R",
+                                        "Long": -90.076688,
+                                        "Lat": 29.952535,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/new-orleans.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/new-orleans-th.jpg",
+                                        "__OBJECTID": 4
+                                    },
+                                    "geometry": {
+                                        "x": -10027291.04,
+                                        "y": 3497450.12,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 6,
+                                        "Name": "Dallas, TX, Apr 20-22",
+                                        "Description": "Did you know that the world's largest annual environmental exhibition occurs annually in Texas? It was fun to speak at the <a target='new' href='https://earthx.org'>EarthX</a> National League of Cities Symposium on Strategies for Creating Climate Resilient Cities, EarthX Oceans, and on the main EarthX stage.",
+                                        "icon_color": "R",
+                                        "Long": -96.759069,
+                                        "Lat": 32.779408,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/earthx.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/earthx-th.jpg",
+                                        "__OBJECTID": 5
+                                    },
+                                    "geometry": {
+                                        "x": -10771170.29,
+                                        "y": 3866060.54,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 7,
+                                        "Name": "Santa Barbara, CA, May 7-12",
+                                        "Description": "Enjoyed excellent talks and interactions at  <a target='new' href='https://www.geohab2018.org'>GEOHAB 2018</a>, Marine Geological &amp; Biological Habitat Mapping.",
+                                        "icon_color": "R",
+                                        "Long": -119.677256,
+                                        "Lat": 34.416942,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/sb.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/sb-th.jpg",
+                                        "__OBJECTID": 6
+                                    },
+                                    "geometry": {
+                                        "x": -13322411.2,
+                                        "y": 4084925.5,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 8,
+                                        "Name": "Corvallis, OR, May 12-15",
+                                        "Description": "Great to be back \"home\" again in Corvallis at Oregon State for many meetings and <a target='new' href='http://esriurl.com/osu14may18'>a special seminar on Ecological Marine Units</a> to Integrative Biology, CEOAS, and other colleagues. Thanks to Jane Lubchenco and Bruce Menge for hosting me!",
+                                        "icon_color": "R",
+                                        "Long": -123.282716,
+                                        "Lat": 44.567144,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/macforest.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/macforest-th.jpg",
+                                        "__OBJECTID": 7
+                                    },
+                                    "geometry": {
+                                        "x": -13723769.17,
+                                        "y": 5553632.64,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 9,
+                                        "Name": "Washington, DC, Jun 4-6",
+                                        "Description": "The <a target='new' href='https://www.4d-workshop.net'>4D Workshop at Carnegie Institution for Science</a> (Deep Time Data-Driven Discovery) explored ways to advance our understanding of Earth's complex co-evolving geosphere and biosphere through the collection, analysis, and visualization of large and growing data resources.\" I was asked to speak on <a target='new' href='http://esriurl.com/4d'><i> Artificial Intelligence and Machine Learning for Earth Surface Data and Conservation Priorities</i></a>",
+                                        "icon_color": "R",
+                                        "Long": -77.03592,
+                                        "Lat": 38.909367,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/carnegie.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/carnegie-th.jpg",
+                                        "__OBJECTID": 8
+                                    },
+                                    "geometry": {
+                                        "x": -8575599.39,
+                                        "y": 4708697.48,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 10,
+                                        "Name": "San Diego, CA, Jul 7-13",
+                                        "Description": "Of course, it's Esri's <a href='http://arcg.is/1HvFqOP' target='new'>biggest dance</a> of the year, and for me included the Student Conference Assistants orientation, and the 3rd annual <a href='https://wakelet.com/wake/7ef0545e-d8c7-4aed-8e47-17a22ad98480' target='new'>Science Symposium</a>.",
+                                        "icon_color": "G",
+                                        "Long": -117.160392,
+                                        "Lat": 32.705718,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2016/uc2016.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2015/esriuc-th.jpg",
+                                        "__OBJECTID": 9
+                                    },
+                                    "geometry": {
+                                        "x": -13042235.18,
+                                        "y": 3856307.78,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 11,
+                                        "Name": "La Jolla, CA, Jul 16",
+                                        "Description": "A <i>Technology for Conservation Convening</i>, sponsored by Scripps, Oceana, and National Geographic and including participants from Conservation X Labs, Stanford, Vulcan, Saildrone, Pew Charitable Trusts, Esri, MBARI, Monterey Bay Aquarium, and Gulf of Maine Research Institute.",
+                                        "icon_color": "R",
+                                        "Long": -117.254108,
+                                        "Lat": 32.864465,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/scripps.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/scripps-th.jpg",
+                                        "__OBJECTID": 10
+                                    },
+                                    "geometry": {
+                                        "x": -13052667.6,
+                                        "y": 3877327.75,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 12,
+                                        "Name": "Woods Hole + Cambridge, MA, Jul 27-Aug 2",
+                                        "Description": "An amazing week as an invited At-Large Steinbach Scholar with students, post-docs faculty at both Woods Hole Oceanographic in Woods Hole and MIT in Cambridge. More info and photos <a target='new' href='https://www.flickr.com/photos/deepseadawn/albums/72157696902613882'>here</a> + <a target='new' href='http://esriurl.com/steinbach1'>Talk 1</a>, <a target='new' href='http://esriurl.com/steinbach2'>Talk 2</a>, <a target='new' href='http://esriurl.com/steinbach3'>Talk 3</a>.",
+                                        "icon_color": "R",
+                                        "Long": -70.658779,
+                                        "Lat": 41.529633,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/whoi.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/whoi-th.jpg",
+                                        "__OBJECTID": 11
+                                    },
+                                    "geometry": {
+                                        "x": -7865699.3,
+                                        "y": 5090779.1,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 13,
+                                        "Name": "San Francisco Bay Area, CA, Sep 12-15",
+                                        "Description": "Representing Esri at many events related to the Global Climate Action Summit, including Do-Fest, \"to chart new solutions and accelerate plans to address systemic challenges afflicting nature, our communities, and our climate.\" ",
+                                        "icon_color": "R",
+                                        "Long": -122.479411,
+                                        "Lat": 37.837667,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/global-climate.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/global-climate-th.jpg",
+                                        "__OBJECTID": 12
+                                    },
+                                    "geometry": {
+                                        "x": -13634345.67,
+                                        "y": 4556518.92,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 14,
+                                        "Name": "Baton Rouge, LA, Sep 20-21",
+                                        "Description": "Delivery of the <a target='new' href='https://lsu.edu/ga/about/pruittlecture.php/'>Evelyn Pruitt Distinguished Lecture</a>  + meetings with geography and coastal environmental science faculty and students at LSU.",
+                                        "icon_color": "R",
+                                        "Long": -91.130547,
+                                        "Lat": 30.49301,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/pruitt.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/pruitt-th.jpg",
+                                        "__OBJECTID": 13
+                                    },
+                                    "geometry": {
+                                        "x": -10144606.09,
+                                        "y": 3567080.4,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 15,
+                                        "Name": "New York City, Sep 20",
+                                        "Description": "Premiere at Tribeca Film Festival of <a target='new' href='http://letsciencespeak.com'>Let Science Speak</a>, a 6-part, web film series \"designed to change the anti-science narrative sweeping America, and build a groundswell of bi-partisan support for scientists on the front lines of solving our planet's gravest challenges.\" Featured in <i>New York Times, Forbes</i>, and the Weather Channel, and <i>Rolling Stone</i>. Dawn is Episode 6. <i>Photo credit: Generous Films</i>",
+                                        "icon_color": "G",
+                                        "Long": -74.005947,
+                                        "Lat": 40.720862,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/justice-league.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/justice-th.jpg",
+                                        "__OBJECTID": 14
+                                    },
+                                    "geometry": {
+                                        "x": -8238304.34,
+                                        "y": 4971255.65,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 16,
+                                        "Name": "Santa Barbara Co., CA, Sept 28",
+                                        "Description": "Special trip to the new <a target='new' href='https://youtu.be/llZcin6AulU'>Jack and Laura Dangermond Preserve</a> (24,000 undeveloped acres, of grassland, scrub, woodland, live oak w/54 special status species),and meeting at UCSB to lay foundation for an accompanying conservation institute to be designed, launched and managed by The Nature Conservancy in collaboration with Esri and UCSB. ",
+                                        "icon_color": "R",
+                                        "Long": -120.436343,
+                                        "Lat": 34.490268,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/preserve.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/preserve-th.jpg",
+                                        "__OBJECTID": 15
+                                    },
+                                    "geometry": {
+                                        "x": -13406912.38,
+                                        "y": 4094824.56,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 17,
+                                        "Name": "Washington, DC, Oct 17",
+                                        "Description": "Conservation International Science Advisory Board meeting at Arizona State University Washington, DC campus while CI headquarters under renovation.",
+                                        "icon_color": "R",
+                                        "Long": -77.042014,
+                                        "Lat": 38.901141,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/asu.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/asu-th.jpg",
+                                        "__OBJECTID": 16
+                                    },
+                                    "geometry": {
+                                        "x": -8576277.77,
+                                        "y": 4707520.75,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 18,
+                                        "Name": "Redlands, CA, Nov 6-8",
+                                        "Description": "Esri's 6th <a href='http://www.esri.com/events/ocean' target='_blank'>Ocean GIS Forum</a>, featuring ocean and atmospheric science, conservation, the blue economy,  growth of the ocean/atmo GIS community, and more.",
+                                        "icon_color": "G",
+                                        "Long": -117.195952,
+                                        "Lat": 34.056295,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/ocean-forum.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/ocean-forum-th.jpg",
+                                        "__OBJECTID": 17
+                                    },
+                                    "geometry": {
+                                        "x": -13046193.7,
+                                        "y": 4036363.58,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 19,
+                                        "Name": "Minneapolis, MN, Nov 13-16",
+                                        "Description": "Delivery of the <a target='new' href='https://cla.umn.edu/mgis/projects-collaboration/borchert-lecture'>Borchert Distinguished Lecture</a> + meetings at University of Minnesota <a target='new' href='http://environment.umn.edu'>Institute on the Environment</a>, <a target='new' href='https://research.umn.edu/units/uspatial/news/save-date-gis-day-november-14'>U-Spatial</a>, Population Ctr, Polar Geospatial Center and more. ",
+                                        "icon_color": "R",
+                                        "Long": -93.182296,
+                                        "Lat": 44.983958,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/MN-capitol.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/MN-capitol-th.jpg",
+                                        "__OBJECTID": 18
+                                    },
+                                    "geometry": {
+                                        "x": -10373005.74,
+                                        "y": 5618996.36,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 20,
+                                        "Name": "Washington, DC, Dec 7",
+                                        "Description": "Delivery of the <a target='new' href='http://dels.nas.edu/global/besr/GW-Lecture'>Gilbert F. White Lecture in the Geographical Sciences</a>, National Academy of Sciences. Download lecture <a target='new' href='http://esriurl.com/gilbertwhite'>here</a>.",
+                                        "icon_color": "R",
+                                        "Long": -77.047772,
+                                        "Lat": 38.893054,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/gilbert.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/gilbert-th.jpg",
+                                        "__OBJECTID": 19
+                                    },
+                                    "geometry": {
+                                        "x": -8576918.75,
+                                        "y": 4706364.03,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 21,
+                                        "Name": "Washington, DC, Dec 9-14",
+                                        "Description": "The American Geophysical Union <a target='new' href='https://fallmeeting.agu.org/2018/'>Fall Meeting</a> is the world's largest Earth science scholarly gathering, where Esri now has a <a target='new' href='http://esriurl.com/agu18'>growing presence</a>, mainly in the Earth &amp; Space Science Informatics sessions, and the activities of the OceanObs Research Coordination Network, the Federation of <a target='new' href='http://esipfed.org'>Earth Science Information Partners</a>, NSF Earthcube and other initiatives.",
+                                        "icon_color": "R",
+                                        "Long": -77.02295,
+                                        "Lat": 38.905148,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/agu2018.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/agu2018-th.jpg",
+                                        "__OBJECTID": 20
+                                    },
+                                    "geometry": {
+                                        "x": -8574155.57,
+                                        "y": 4708093.93,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                {
+                                    "attributes": {
+                                        "Number": 22,
+                                        "Name": "2018 Cycling and Fitness Studios",
+                                        "Description": "Life can't be all work and no play! See my <a target='new' href='https://dusk.geo.orst.edu/Pickup/Esri/2018/dawn-strava.mp4'>Strava Year in Sport video</a>. <i>Image credit: Jim McLeman, Pro Cycling Trumps, @procycletrumps</i>",
+                                        "icon_color": "R",
+                                        "Long": -117.147445,
+                                        "Lat": 34.023139,
+                                        "URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/dawn-bora.jpg",
+                                        "Thumb_URL": "https://dusk.geo.orst.edu/Pickup/Esri/2018/dawn-bora-th.jpg",
+                                        "__OBJECTID": 21
+                                    },
+                                    "geometry": {
+                                        "x": -13040793.93,
+                                        "y": 4031909.45,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                }
+                            ],
+                            "geometryType": "esriGeometryPoint"
+                        },
+                        "layerDefinition": {
+                            "geometryType": "esriGeometryPoint",
+                            "objectIdField": "__OBJECTID",
+                            "name": "Chief-Sci-2018",
+                            "type": "Feature Layer",
+                            "typeIdField": "",
+                            "drawingInfo": {
+                                "renderer": {
+                                    "type": "simple",
+                                    "symbol": {
+                                        "type": "esriPMS",
+                                        "url": "http://static.arcgis.com/images/Symbols/Basic/RedSphere.png",
+                                        "imageData": "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",
+                                        "contentType": "image/png",
+                                        "width": 15,
+                                        "height": 15
+                                    }
+                                }
+                            },
+                            "fields": [
+                                {
+                                    "name": "__OBJECTID",
+                                    "alias": "__OBJECTID",
+                                    "type": "esriFieldTypeOID",
+                                    "editable": false,
+                                    "domain": null
+                                },
+                                {
+                                    "name": "Number",
+                                    "alias": "Number",
+                                    "type": "esriFieldTypeInteger",
+                                    "editable": true,
+                                    "domain": null
+                                },
+                                {
+                                    "name": "Name",
+                                    "alias": "Name",
+                                    "type": "esriFieldTypeString",
+                                    "editable": true,
+                                    "domain": null
+                                },
+                                {
+                                    "name": "Description",
+                                    "alias": "Description",
+                                    "type": "esriFieldTypeString",
+                                    "editable": true,
+                                    "domain": null
+                                },
+                                {
+                                    "name": "icon_color",
+                                    "alias": "icon_color",
+                                    "type": "esriFieldTypeString",
+                                    "editable": true,
+                                    "domain": null
+                                },
+                                {
+                                    "name": "Long",
+                                    "alias": "Long",
+                                    "type": "esriFieldTypeDouble",
+                                    "editable": true,
+                                    "domain": null
+                                },
+                                {
+                                    "name": "Lat",
+                                    "alias": "Lat",
+                                    "type": "esriFieldTypeDouble",
+                                    "editable": true,
+                                    "domain": null
+                                },
+                                {
+                                    "name": "URL",
+                                    "alias": "URL",
+                                    "type": "esriFieldTypeString",
+                                    "editable": true,
+                                    "domain": null
+                                },
+                                {
+                                    "name": "Thumb_URL",
+                                    "alias": "Thumb_URL",
+                                    "type": "esriFieldTypeString",
+                                    "editable": true,
+                                    "domain": null
+                                }
+                            ],
+                            "types": [],
+                            "capabilities": "Query,Editing"
+                        }
+                    }
+                ],
+                "showLegend": true
+            },
+            "visibility": true,
+            "opacity": 1
+        }
+    ],
+    "baseMap": {
+        "baseMapLayers": [
+            {
+                "id": "Ocean_Basemap_2089",
+                "layerType": "ArcGISTiledMapServiceLayer",
+                "url": "https://services.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Base/MapServer",
+                "visibility": true,
+                "opacity": 1,
+                "title": "World Ocean Base"
+            },
+            {
+                "id": "World_Ocean_Reference_1261",
+                "layerType": "ArcGISTiledMapServiceLayer",
+                "url": "https://services.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Reference/MapServer",
+                "visibility": true,
+                "opacity": 1,
+                "title": "World Ocean Reference",
+                "isReference": true
+            }
+        ],
+        "title": "Oceans"
+    },
+    "spatialReference": {
+        "wkid": 102100,
+        "latestWkid": 3857
+    },
+    "authoringApp": "StoryMapTour",
+    "authoringAppVersion": "2.14.0",
+    "version": "2.9"
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Gallery Block",
+  "description": "A block that renders a gallery",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "gallery"
+    },
+    "config": {
+      "title": "Config",
+      "description": "Config object for the Gallery block",
+      "type": "object",
+      "properties": {
+        "size": {
+          "title": "Block Size",
+          "description": "Size of the block layout",
+          "type": "string",
+          "default": "standard",
+          "enum": ["standard", "wide", "full"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "data": {
+      "title": "Data",
+      "description": "Data object for the Gallery block",
+      "type": "object",
+      "properties": {
+        "alt": {
+          "title": "Alt Text",
+          "description": "The alternative text for the gallery",
+          "type": "string"
+        },
+        "caption": {
+          "title": "Caption Text",
+          "description": "The caption text for the gallery",
+          "type": "string"
+        },
+        "galleryLayout": {
+          "title": "Gallery Layout",
+          "description": "The layout for the gallery",
+          "default": "square-dynamic",
+          "type": "string",
+          "enum": ["square-dynamic", "jigsaw", "filmstrip"]
+        }
+      },
+      "required": ["galleryLayout"],
+      "additionalProperties": false
+    },
+    "children": {
+      "title": "Children",
+      "description": "An array of children rendered within the Gallery block",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "maxItems": 12,
+      "additionalProperties": false
+    }
+  },
+  "required": ["type", "data"],
+  "additionalProperties": false
+}

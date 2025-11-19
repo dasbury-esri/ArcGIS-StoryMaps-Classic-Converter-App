@@ -1,0 +1,338 @@
+{
+    "source": "da029c7670514be1b5a10b60825cd8da",
+    "folderId": "2109c094a3a04c50848c3501d7db7471",
+    "values": {
+        "webmap": "ce23239c211c46c8baaffb01959e0df5",
+        "settings": {
+            "layout": {
+                "id": "side"
+            },
+            "layoutOptions": {
+                "layoutCfg": {
+                    "size": "medium",
+                    "position": "left"
+                },
+                "socialLinks": false
+            },
+            "theme": {
+                "colors": {
+                    "name": "side-default-1",
+                    "themeMajor": "white",
+                    "dotNav": "#777777",
+                    "panel": "#FFFFFF",
+                    "media": "#EEEEEE",
+                    "text": "#000000",
+                    "textLink": "#555",
+                    "softText": "#c0c0c0",
+                    "softBtn": "#444",
+                    "esriLogo": "black"
+                },
+                "fonts": {
+                    "sectionTitle": {
+                        "id": "default",
+                        "value": "font-family:'open_sansregular', sans-serif;"
+                    },
+                    "sectionContent": {
+                        "id": "default",
+                        "value": "font-family:'open_sansregular', sans-serif;"
+                    }
+                }
+            },
+            "header": {
+                "linkText": "Story Map Author | References",
+                "linkURL": "http://atlaspr.maps.arcgis.com/home/item.html?id=22da771a5fe24b9d8ddca325fd0fb8f5",
+                "logoURL": "https://farm1.staticflickr.com/591/22582577855_7c20abf5db_o.png",
+                "logoTarget": "http://www.gmtgis.com",
+                "social": {
+                    "facebook": true,
+                    "twitter": true,
+                    "bitly": true
+                }
+            },
+            "appGeocoders": [
+                {
+                    "singleLineFieldName": "SingleLine",
+                    "name": "ArcGIS World Geocoding Service",
+                    "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+                }
+            ]
+        },
+        "story": {
+            "storage": "WEBAPP",
+            "sections": [
+                {
+                    "title": "<p><strong><span style=\"font-size:36px\">An&aacute;lisis Electoral: Una representaci&oacute;n espacial sobre las elecciones en Puerto Rico</span></strong></p>\n",
+                    "content": "<p><span style=\"font-size:16px\"><strong>Los mapas electorales a los que estamos acostumbrados muestran los resultados de los procesos eleccionarios utilizando técnicas tradicionales de representación cartográfica. Los resultados se presentan por partido político de manera uniforme a través de toda la extensión territorial de Puerto Rico. Un Municipio rojo, representa un Municipio con victoria del Partido Popular Democrático (PPD). Por otra parte, un Municipio azul, representa un Municipio con victoria del Partido Nuevo Progresista (PNP). Este tipo de representación cartográfica no considera aspectos como distribución poblacional o márgenes de victoria. Este&nbsp;<em>Story Map Journal</em>&nbsp;busca ilustrar las elecciones de Puerto Rico desde el 2004 hasta el 2016 de una manera más dinámica, considerando variables como población, márgenes de victoria y el impacto del voto por candidatos independientes. El propósito es obtener una perspectiva más amplia del voto puertorriqueño.</strong></span></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1480356071089,
+                    "pubDate": 1480356071089,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "image",
+                        "image": {
+                            "url": "https://c3.staticflickr.com/6/5719/30793138450_76c6ed1a51_b.jpg",
+                            "type": "image",
+                            "display": "stretch"
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px; outline:none\">Descripci&oacute;n de las Divisiones Geogr&aacute;ficas Electorales</span></strong></p>\n",
+                    "content": "<p><span style=\"font-size:14px\"><strong>¿Por qué&nbsp;la división? ¿Por qué&nbsp;8 Distritos Senatoriales, 40 Distritos Representativos, 110 precintos y 1,501&nbsp;unidades electorales?</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong>Según la Sección3 del Artículo III de la&nbsp;Constitución del Estado Libre Asociado (Artículo III del Poder Legislativo), Puerto Rico estará dividido en (8)Distritos Senatoriales y en (40) Distritos Representativos. Esta división será&nbsp;evaluada&nbsp;por la Junta Constitucional de Revisión de Distritos Electorales, Senatoriales y Representativos, también conocida&nbsp;como la Junta de Redistribución Electoral. Esta Junta se crea por disposición constitucional para&nbsp;Ilevar a cabo la Redistribución Electoral después de cada censo decenal, a partir del año 1960.&nbsp;</strong></span><span style=\"font-size:14px\"><strong>La sección 4 del Artículo III aclara que estas divisiones estarán compuestas de territorios contiguos y compactos y se organizarán, hasta donde sea posible, sobre la&nbsp;<em>base de población&nbsp;</em>y <em>medios de comunicación</em>. Cada distrito senatorial incluirá siempre cinco distritos representativos.</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"font-size:14px\">Por otro lado, las unidades electorales, representan la unidad geográfica más pequeña compuesta por los colegios electorales.<a target=\"_blank\">&nbsp;</a>La delimitación de las unidades electorales le compete a la Comisión Estatal de Elecciones.</span></strong><br>\n&nbsp;</p>\n\n<p><strong><span style=\"font-size:14px\">El mapa muestra las divisiones geográficas electorales. En color rosado con bordes amarillos se muestran los precintos. La línea azul corresponde a la delimitación de los distritos representativos. Los distritos senatoriales están representados por la línea negra.</span></strong></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1480476997778,
+                    "pubDate": 1480476997778,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "https://atlaspr.maps.arcgis.com/apps/webappviewer/index.html?id=ba8e42cf64dc40d6b1ee59aaa81ae4bb",
+                            "type": "webpage",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Divisiones Electorales</span></strong></p>\n",
+                    "content": "<p><span style=\"font-size:14px\"><strong>Cada censo presenta cambios de población. &nbsp;Algunos municipios mostrarán un aumento en población y otros una disminución. Debido a que la redistribución electoral se realiza sobre una base poblacional, entre otros criterios, la delimitación de los precintos, distritos representativos y distritos senatoriales pudieran cambiar cada diez años.</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong>El mapa presenta en color negro&nbsp;la redistribución electoral para el año 2000 y en color rosado&nbsp;la redistribución electoral del año 2010.&nbsp;Observe los cambios en la delimitación de los precintos electorales en Ponce, Juana Díaz, Salinas.</strong></span></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1479479176432,
+                    "pubDate": 1479479160000,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "http://atlaspr.maps.arcgis.com/apps/StorytellingSwipe/index.html?appid=d5e894dc331f4c2da94f8aa6b034bc6c",
+                            "type": "webpage",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Poblaci&oacute;n - Censo 2000</span></strong></p>\n",
+                    "content": "<p>En este mapa se puede analizar el total de población por municipios según el Censo del 2000. Se puede observar que la mayor cantidad de la población se encuentra en la región costera de la isla, mientras que la región montañosa es donde menos población hay, exceptuando&nbsp;municipios como Caguas.</p>\n\n<p>&nbsp;</p>\n\n<p>Al seleccionar un Municipio podrá obtener los datos de población total y población mayor de 18 años (personas elegibles para ejercer su derecho al voto).</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1480477664089,
+                    "pubDate": 1480477664089,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "89e4ddde2d064c529f217e2bd7c4ec75",
+                            "extent": null,
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Poblaci&oacute;n - Censo 2010</span></strong></p>\n",
+                    "content": "<p><span style=\"font-size:14px\"><strong>Este mapa se puede analizar&nbsp;la población por municipio según el Censo del 2010. Podemos observar que los rasgos son similares. Pero, sabemos que Puerto Rico a disminuido en población, pero lo que se puede observar en este mapa y en las estadísticas de ambos censos es que la población de 18 años o más a aumentado en el censo del 2010.</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong>Mientras más grande y más oscuro el círculo, la población es mayor. Este mapa muestra una distribución similar al mapa de población del año 2000. A pesar de la disminución poblacional debido a la emigración, la población de personas mayores de 18 años ha aumentado. Esto es un claro reflejo, del envejecimiento poblacional.</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong>Se puede observar que &nbsp;los municipios más poblados se encuentran en las zonas costeras y la zona metropolitana de San Juan. En la región central de la Isla la población es menor, con excepción del Municipio de Caguas.</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong>Al seleccionar un Municipio podrá obtener los datos de población total y población mayor de 18 años (elegibles para ejercer su derecho al voto<font color=\"#555555\">.)</font></strong></span></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1479483217228,
+                    "pubDate": 1479483180000,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "4b59595902a3400f878a66db580ac01d",
+                            "extent": null,
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Comparaci&oacute;n Poblacional 2000-2010</span></strong></p>\n",
+                    "content": "<p>En este mapa se pueden ver los cambios en la población por municipio entre el 2000 y el 2010. Los municipios de tonalidad más oscura representan aquellos municipios que aumentaron en población mientras que los blancos y algunos que están de tonalidad clarita perdieron población. En este mapa podrán ver que aunque la población total disminuyó de 3,808,610 en el 2000 a 3,725,789 en el 2010, la población de 18 años o más aumento en su totalidad de 2,716,509 a 2,822,494.</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1480476561246,
+                    "pubDate": 1480476561246,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "c7aeaa1f93f143239a361de6f0e904ee",
+                            "extent": null,
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Resultados por Precinto 2004</span></strong></p>\n",
+                    "content": "<p><span style=\"font-size:14px\"><strong>En este mapa se presentan los resultados de la papeleta estatal por Precinto para las elecciones del 2004.</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong>Estadísticas electorales:</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong>Total de Electores Hábiles: 2,440,131</strong></span></p>\n\n<p><span style=\"font-size:14px\"><strong>Participantes: 1,993,572 (81.70%)</strong></span></p>\n\n<p><span style=\"font-size:14px\"><strong>No Participantes: 446,559 (18.30%)</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong>Voto Íntegro: 1,879,982 (94.30%)</strong></span></p>\n\n<p><span style=\"font-size:14px\"><strong>Voto Mixto: 28,004 (1.40%)</strong></span></p>\n\n<p><span style=\"font-size:14px\"><strong>Voto por Candidatura: 76,826 (3.85%)</strong></span></p>\n\n<p><span style=\"font-size:14px\"><strong>Voto Nulo: 3,800 (0.19%)</strong></span></p>\n\n<p><span style=\"font-size:14px\"><strong>Voto en Blanco: 4,960 (0.25%)</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"font-size:14px\">La representación cartográfica rompe con el esquema tradicional de presentar los resultados electorales. Aunque el azul y rojo indica el partido que prevaleció&nbsp;en la papeleta estatal, la intensidad del color representa el margen de victoria. Mientras menos intenso, la victoria fue más cerrada.</span></strong></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1480477757156,
+                    "pubDate": 1480477757156,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "2287634390634446aa2b3d1956c82089",
+                            "extent": null,
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px; outline:none\">Resultados por Precinto 2008</span></strong></p>\n",
+                    "content": "<p>En este mapa se presentan los resultados de la papeleta estatal por precinto para las elecciones del 2008.</p>\n\n<p>&nbsp;</p>\n\n<p>Estadísticas electorales:</p>\n\n<p>&nbsp;</p>\n\n<p>Total de Electores Hábiles: 2,458,033</p>\n\n<p>Participantes: 1,941,704 (78.99%)</p>\n\n<p>No Participantes: 516,329 (21.01%)</p>\n\n<p>&nbsp;</p>\n\n<p>Voto Íntegro: 1,842,366 (94.88%)</p>\n\n<p>Voto Mixto: 26,261 (1.35%)</p>\n\n<p>Voto por Candidatura: 64,907 (3.34%)</p>\n\n<p>Voto Nulo: 4,888&nbsp;(0.25%)</p>\n\n<p>Voto en Blanco: 3,282 (0.17%)</p>\n\n<p>&nbsp;</p>\n\n<p>El color azul y rojo indica el partido que prevaleció en la papeleta estatal, la intensidad del color representa el margen de victoria. Mientras más intenso el color, el margen de victoria es mayor. Mientras menos intenso, la victoria fue más cerrada.</p>\n\n<p>&nbsp;</p>\n\n<p>Estas elecciones se pueden ver como el tsunami azul ya que el Partido Popular Democrático ganó&nbsp;en solamente diez precintos. Dando el primer indicador de que en Puerto Rico personas que votan por el<span style=\"color:#FF0000\"> PPD</span> también votan por el <span style=\"color:#0000FF\">PNP.</span></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1480477528636,
+                    "pubDate": 1480477528636,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "e413c343409b488ea9d05fc13129be77",
+                            "extent": null,
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Resultados por Precinto 2012</span></strong></p>\n",
+                    "content": "<p>En este mapa se presentan los resultados de la papeleta estatal por precinto para las elecciones del 2012.</p>\n\n<p>&nbsp;</p>\n\n<p>Estadísticas electorales:</p>\n\n<p>&nbsp;</p>\n\n<p>Total de Electores Hábiles: 2,402,941</p>\n\n<p>Participantes: 1,879,605 (78.22%)</p>\n\n<p>No Participantes: 523,336 (21.78%)</p>\n\n<p>&nbsp;</p>\n\n<p>Voto Íntegro: 1,796,999 (95.61%)</p>\n\n<p>Voto Mixto: 23,878 (1.27%)</p>\n\n<p>Voto por Candidatura: 46,717 (2.49%)</p>\n\n<p>Voto Nulo: 7,488 (0.40%)</p>\n\n<p>Voto en Blanco: 4,523 (0.24%)</p>\n\n<p>&nbsp;</p>\n\n<p>El color azul y rojo indica el partido que prevaleció en la papeleta estatal, la intensidad del color representa el margen de victoria. Mientras más intenso el color, el margen de victoria es mayor. Mientras menos intenso, la victoria fue más cerrada.</p>\n\n<p>&nbsp;</p>\n\n<p>En este mapa podemos ver que el PPD gano en 51 precintos, retomando el voto popular en 41 de estos precintos. Otro dato interesante que pueden ver es que el total de participantes disminuye cuando toma en comparación las dos elecciones anteriores.</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1480477227912,
+                    "pubDate": 1480477227912,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "78c304d1dfd343498abd870122a5ae06",
+                            "extent": null,
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Resultados por Precinto 2016</span></strong></p>\n",
+                    "content": "<p>En este mapa se presentan los resultados de la papeleta estatal por precinto para las elecciones del 2016.</p>\n\n<p>&nbsp;</p>\n\n<p>Estadísticas electorales:</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>Total de Electores Hábiles: 2,866,943</p>\n\n<p>Participantes: 1,579,624 (55.10%)</p>\n\n<p>No Participantes:&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>Voto Íntegro: 1,130,322 (71.56%)</p>\n\n<p>Voto Mixto: 34,046 &nbsp;(2.16%)</p>\n\n<p>Voto por Candidatura: 410,823 (26%)</p>\n\n<p>Voto Nulo: 3,766 (0.24)</p>\n\n<p>Voto en Blanco: 3,803 (0.25%)</p>\n\n<p>&nbsp;</p>\n\n<p>El color azul y rojo indica el partido que prevaleció en la papeleta estatal, la intensidad del color representa el margen de victoria. Mientras más intenso el color, el margen de victoria es mayor. Mientras menos intenso, la victoria fue más cerrada.</p>\n\n<p>&nbsp;</p>\n\n<p>En estas elecciones vamos a ver una disminución sustancial de participantes electorales cuando la comparamos&nbsp;con las elecciones del 2004 al 2012.</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1480477325335,
+                    "pubDate": 1480477325335,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "26082019035a4f37b342062eb665190d",
+                            "extent": null,
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px; outline:none\">Resultados de los Candidatos Independientes 2016</span></strong></p>\n",
+                    "content": "<p><strong>En este mapa podemos observar los totales de votos por los candidatos independientes de las elecciones del 2016. La candidata Alexandra Lúgaro y el candidato Manuel Cidre demostraron ser un elemento significativo en las elecciones del 2016. No tan solo recibieron un total de 264,419 votos, equivalente a un 16.85% del total de votos emitidos, sino que su participación marcó un cambio en la manera de votar en Puerto Rico. En este evento electoral se observó un aumento sustancial de votos por candidatura. El voto íntegro fue el más bajo que se ha visto en la historia de&nbsp; Puerto Rico (71.56%) y los partidos <span style=\"color:#0000FF\">PNP</span> y <span style=\"color:#FF0000\">PPD</span> recibieron la menor cantidad de votos en su historia (41.76%&nbsp;<span style=\"color:#0000FF\">PNP</span>) y (38.92%<span style=\"color:#FF0000\">&nbsp;PPD</span>). Además,&nbsp; José Antonio Vargas Vidot se convirtió en el primer candidato independiente que logra un escaño en la Legislatura. No solo es el primero, sino que obtuvo la mayor cantidad de votos para senador por acumulación con un total de 157,599 votos (10.75%), por encima de figuras establecidas de la política puertorriqueña. Claramente, los resultados de las elecciones 2016 revelan un cambio en la manera de votar del puertorriqueño, mostrando señales concretas del quebrantamiento del bipartidismo tradicional que ha caracterizado a nuestro país en las últimas décadas.</strong></p>\n\n<p>&nbsp;</p>\n\n<p><strong>El mapa muestra los resultados electorales de los candidatos independientes. El color amarillo representa al candidato Manuel Cidre. La candidata Alexendra Lúgaro está representada por el color negro. La variación en la intensidad del color negro muestra el margen de victoria de Lúgaro sobre Cidre. Podemos observar que Alexandra Lúgaro dominó ampliamente el voto independiente, con excepción de Arecibo y Hatillo en donde Cidre prevaleció. Sin contar con una estructura política y maximizando el alcance de las redes sociales, Alexandra Lúgaro fue la gran sorpresa de estas elecciones, alcanzando un 11.12%&nbsp;de los votos emitidos y posicionándose en el tercer lugar en los resultados de la contienda electoral por la gobernación.</strong></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1480358356122,
+                    "pubDate": 1480358356122,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "04adb633e3fc44c6a5a15d140c63e32e",
+                            "extent": null,
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Distribuci&oacute;n del voto del 2004 al 2016&nbsp;</span></strong></p>\n",
+                    "content": "<p><span style=\"font-size:14px\"><strong>Conclusiones:</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"font-size:12px\">El voto íntegro promedio para las elecciones de 2004, 2008 y 2012 es de 94.93%. Este número disminuyó a 71.56% en las elecciones del 2016. Esto equivale a una disminución aproximada de 25%. El voto independiente ciertamente tuvo un impacto significativo en la disminución del voto íntegro.</span></strong></p>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"font-size:12px\">El voto por candidatura aumentó a un 26% de los votos en estas elecciones en comparación al 3.23% que promedió en las tres elecciones previas.</span></strong></p>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"font-size:12px\">Otro aspecto importante es la disminución consistente, elección tras elección, de la participación electoral (81.70% en el 2004, 78.99% en el 2008, 78.22% en el 2012 y 55.10% en el 2016).</span></strong></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong>A continuación se presenta una animación con una línea del tiempo que muestra los resultados de la papeleta estatal por precinto para los procesos eleccionarios del 2004, 2008, 2010, 2012 y 2016.</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong>Al estudiar los resultados de la papeleta estatal resulta evidente que el voto PNP, a nivel de precinto tiende a dominar. Aun en los comicios del 2004 y 2012, cuando el candidato del PPD prevaleció, el PNP ganó mayor cantidad de precintos. Aunque los partidos principales tienen cada uno sus bastiones políticos tradicionales, en donde siempre prevalece su candidato, el análisis espacial de los resultados electorales demuestra que, si el elector no le satisface o está en desacuerdo con su candidato, cruza líneas partidistas. Esto es particularmente evidente en las elecciones del 2008, cuando el PNP prevaleció abrumadoramente. El elector puertorriqueño, cada cuatro años, premia o castiga a sus candidatos en las urnas.</strong></span></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1479760741258,
+                    "pubDate": 1479760741258,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "video",
+                        "video": {
+                            "url": "//www.youtube.com/embed/8nF7Usua95s?wmode=opaque&rel=0",
+                            "type": "video",
+                            "display": "stretch"
+                        }
+                    }
+                }
+            ]
+        },
+        "title": "Análisis Electoral: Una representación espacial sobre las elecciones en Puerto Rico\n",
+        "template": {
+            "name": "Map Journal",
+            "createdWith": "1.8.1",
+            "editedWith": "1.33.0"
+        }
+    }
+}

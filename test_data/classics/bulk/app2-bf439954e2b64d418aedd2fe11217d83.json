@@ -1,0 +1,828 @@
+{
+    "values": {
+        "config": {
+            "author": {
+                "name": ""
+            }
+        },
+        "settings": {
+            "header": {}
+        },
+        "template": {
+            "name": "storymap-cascade",
+            "createdWith": "1.1.3",
+            "editedWith": "1.1.3",
+            "dataVersion": "1.0.0"
+        },
+        "sections": [
+            {
+                "type": "cover",
+                "foreground": {
+                    "title": "Firefly Cartography",
+                    "subtitle": "A Vehicle for Tricking Normal People into Wanting to Make Maps",
+                    "options": {}
+                },
+                "options": {},
+                "layout": "cover-1",
+                "background": {
+                    "type": "image",
+                    "image": {
+                        "type": "image",
+                        "url": "https://adventuresinmapping.files.wordpress.com/2016/10/10fireflythematicrecruits.jpg",
+                        "options": {
+                            "size": "small"
+                        },
+                        "width": 2100,
+                        "height": 1275
+                    }
+                }
+            },
+            {
+                "type": "sequence",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#FFF"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Firefly cartography (or glow-maps, overproduced tripe, whatever you like to call it…) has a pretty tight set of characteristics that converge to deliver a pretty standard effect. I can say this with confidence because I am making up the name and applying it to these characteristics. Generally, a firefly map has a…</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h1 class=\"block\" style=\"text-align: left; \">Dark, de-saturated basemap (usually imagery)</h1>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h1 class=\"block\" style=\"text-align: left; \">Masked highlight area and vignette</h1>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h1 class=\"block\" style=\"text-align: left; \">Single bright, glowing, thematic layer</h1>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">I started making them around 2012, but others were probably doing similar things long before me.</p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1450,
+                                "height": 846,
+                                "url": "//nation.maps.arcgis.com/sharing/rest/content/items/bf439954e2b64d418aedd2fe11217d83/resources/Montage__1476962893560.jpg",
+                                "thumbUrl": "//nation.maps.arcgis.com/sharing/rest/content/items/bf439954e2b64d418aedd2fe11217d83/resources/Montage__1476962893560__thumb.jpg",
+                                "options": {
+                                    "size": "medium"
+                                },
+                                "caption": ""
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h2 class=\"block\">Capturing Eyeballs</h2>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Firefly cartography tricks normal people into realizing how much they like maps.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Why? what is it about this aesthetic that tends to earn a second glance? I have a few purely speculative ideas…</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\"><i>Cinematic Effect (affect)</i></p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">This sort of map looks a bit like what you might see on the overhead monitors of intelligence officers or hackers in a dimly-lit command center in a thriller. Now, people may be attracted to this style because of that familiarity, or they are familiar with them because digital set designers make stuff that looks attractive. Cart/horse, but either way, there is a distinct Jason Bourne vibe these maps put out.</p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/jason-bourne-cia.jpg",
+                                "options": {
+                                    "size": "medium"
+                                },
+                                "caption": "",
+                                "width": 1600,
+                                "height": 900
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\"><i>Clarity of Theme</i></p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Sadly, many maps just have way too many themes (different than lots of data) going on all at once to be attractive at a glance (or all that useful even with careful study). Maps that inspire and get passed to friends tend to have a tight focus in topic. A map without an inherent elevator pitch, a dozen thematic layers, and cascades of shapes and color will have a difficult time engendering reader enthusiasm.</p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/raindrop.jpg",
+                                "options": {
+                                    "size": "medium"
+                                },
+                                "caption": "",
+                                "width": 1000,
+                                "height": 751
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\"><i>They Glow!</i></p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">A firefly map is to regular thematic maps the way that a lightsaber is to swords. Thematic layers that look like they are etched with white hot plasma tend to draw eyeballs and provide a sense of intensity that solid Boolean symbology just doesn’t offer.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">I think we are wired to note well things that glow. Whether it is marking time by the sun or moon, staring into embers, watching for nighttime travelers by the open flame they carry, or noting the churned phosphorescence of the sea, we historically have done well to keep an eye on the glowing stuff.</p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/lightsaber.jpg",
+                                "options": {
+                                    "size": "medium"
+                                },
+                                "caption": "",
+                                "width": 1190,
+                                "height": 595
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h2 class=\"block\">Exciting Students</h2>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Firefly cartography tricks students into realizing how much they like making maps.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Like no other type of map that I’ve made, this aesthetic has (anecdotally) resulted in far and away the overwhelming majority of feedback from folks who tell me they are excited to try something similar, or show me the results of their work. Something about it encourages new map makers to roll up their sleeves and have a go.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">There is no better result of having made a map, to me, than that. In putting together this aesthetic, new map makers are blasting through a lot of general cartographic concepts that are helpful no matter the resulting aesthetic they prefer (for what it’s worth, the following concepts make up a healthy proportion of these 20 map-making tips nobody asked for).</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Here is a procedural walk-through of how to create this aesthetic, and why…</p>"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/1satellite.jpg",
+                                "options": {
+                                    "size": "small",
+                                    "placement": {
+                                        "type": "fill",
+                                        "fill": {
+                                            "x": 0.5,
+                                            "y": 0.5
+                                        }
+                                    }
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: left;\">A fundamental (and often overlooked) cartographic concept is the firm establishment of a foreground/background visual hierarchy. Content meant to provide spatial context (the basemap) should recede in visual priority, helping to establish the thematic layers that they support (rather than compete with them).</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Basemap | Fore/Ground",
+                                "global": true,
+                                "style": null
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/2desaturation.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">There are lots of ways to sufficiently mute your basemap (including having no basemap at all), but for satellite imagery, de-saturation is a nice option. An image that is all or mostly black and white won’t pollute as much of the color channel, ideally reserved for thematic data, in our cognitive wet-works.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/3highlightmask.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Defining the topic area helps establish a focused coverage. In this case, an inverted semitransparent fill of the area of interest reduces perimeter noise. Additionally, there are a few offset copies of the border with reduced opacity to create a subtle drop-shadow of the area.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/4vignette.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Additionally, a vignette effect draws the eye to where it needs to be, burning the edges of the composition back, to further frame the subject (in ArcGIS Pro you can add a rectangle to the layout, with a gradient fill -or you can apply it in a graphic design program).</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">This is a photography minor talking -I don’t think I would have thought of it without lots of hours in a darkroom. This is a nice talking point on the difference between training and an education. Anyway…</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/5context.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">There’s a fine line to walk when trying to provide enough context for a map reader, without bloating the basemap with too much attention-stealing detail. We Americans are used to seeing our maps with state borders, so they do a good job of providing a reference. But these are far too bright.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Basemap | Context",
+                                "global": true,
+                                "style": null
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/6subtlecontext.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">So here they are toned down almost to nothing (line opacity pushed down to about 20% -also, a dark version in a thicker stroke underneath that, for a little contrast over the variable satellite background).</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/7data.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Here’s the star player. First chair. The reason for this basemap to exist. This is a map of all the military bases in the United States. But there are some interesting attributes about this data that we don’t see when we just use dots.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Thematic Data & Glow",
+                                "global": true,
+                                "style": null
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/8thematic.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Here are those military installations colored and scaled by their size. Some general rules of thematic cartography:</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">– If the basemap is dark, the thematic data should increase towards brightness. If it’s a light basemap, the thematic data should increase to darkness. Contrast is the vehicle for communicating prominence. But these are just solid-colored dots.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">– Color gradients should not replicate the rainbow. There are plenty of studies that demonstrate how poor of a choice a rainbow color gradient is for continuous data graphics (relatedly, check out <a href=\"http://earthobservatory.nasa.gov/blogs/elegantfigures/2013/08/05/subtleties-of-color-part-1-of-6/\" target=\"_blank\">this</a> amazing color bonanza). If you stick to the cool end or the warm end of the spectrum for a thematic gradient, stay on that side.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/9fireflythematic.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">What if they glowed?! Here are those same military locations using a glow effect for the point symbol, rather than a solid color. Some notes on glows…</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "transition": "none",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/9fireflythematic.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">– How: Glows are a radial gradient. The have an abrupt white center (yes, white), followed by an opaque theme color, finally grading to a fully transparent theme color at the perimeter.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">– Why: The glow effect, while providing a distinct aesthetic, and perhaps hijacking some primitive cognitive wires, is a fitting example of <a href=\"https://en.wikipedia.org/wiki/Waldo_R._Tobler\" target=\"_blank\">Waldo Tobler</a>‘s First Law of Geography: “everything is related to everything else, but near things are more related than distant things.” Or, the effect a thing has on its surroundings dissipates with distance. It’s the foundational concept of quantitative geography -and happens to be a convenient rationalization for glowing symbology.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "transition": "none",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/9fireflythematic.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">For example, the impact that these military bases impart on their surrounding areas is quite strong on-base, and diminishes as you travel away (air and ground transportation noise, traffic impacts, employment draw to local residents, the visual impact on the land). Things rarely just end abruptly -they make a difference to their surroundings. This is why I grate a little when I see hurricane maps with fine solid crisp one-dimensional lines sweeping out the path of the eye.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/10fireflythematicrecruits.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">While military bases are intentionally evenly distributed, here’s the same method applied to top high school football recruits (themed by player size).&nbsp;</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/11fireflythematicchipotle.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">And here it is applied to the locations of Chipotle restaurants (themed by order of opening).</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "https://adventuresinmapping.files.wordpress.com/2016/10/12fireflyhexbinschipotle.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "width": 2100,
+                                "height": 1275
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Sure, points can glow, but what about lines and polygons? You can apply the same concepts for other geometry types, as well. It’s maybe a bit more tricky to apply the aesthetic, but the concepts and rational hold for any geometry type. Here are those Chipotle locations aggregated into glowing hexagons (three of my favorite things!). Likewise, the paths of hurricanes and tornadoes, roads, flight paths, pipelines, these things all have a first-law influence on their surroundings. And so they can be justifiably made to glow.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#FFF"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Firefly cartography may be over-wrought, overdone(?), overthought, but I like it. And I’ve seen it’s ability to earn a map a thoughtful look in a bloated busy internet; I’ve been encouraged by its tendency to inspire the creative process in others; I’m excited to ride it as a means of teaching cartography to people who didn’t realize they wanted to learn cartography.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">It is a crafty, sometimes beautiful, technique that I am happy to promote and excited to describe. I do hope you give it a try and share your results.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Happy mapping! <a href=\"https://twitter.com/John_M_Nelson\" target=\"_blank\">John</a></p>"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

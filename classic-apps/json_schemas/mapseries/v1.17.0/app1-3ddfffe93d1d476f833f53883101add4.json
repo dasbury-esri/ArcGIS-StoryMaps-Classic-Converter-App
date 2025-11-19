@@ -1,0 +1,125 @@
+{
+    "source": "32f733be56ce48b5993932715e1070ee",
+    "folderId": "98809eb48f504d2e914d19faad903cee",
+    "values": {
+        "webmap": "d89d6087ed284c05beb323f70570166d",
+        "settings": {
+            "layout": {
+                "id": "bullet"
+            },
+            "layoutOptions": {
+                "description": false,
+                "legend": "panel",
+                "panel": {
+                    "position": "left",
+                    "size": "small"
+                },
+                "reverse": false,
+                "panelMapOverlap": false
+            },
+            "theme": {
+                "colors": {
+                    "name": "bullet-org-modified",
+                    "tabActive": "#ebebeb",
+                    "tabTextActive": "#cb0e3e",
+                    "tab": "rgba(235, 235, 235, 0.75)",
+                    "tabText": "rgba(203, 14, 62, 0.6)",
+                    "tabHover": "rgba(235, 235, 235, 0.9)",
+                    "tabTextHover": "rgba(203, 14, 62, 0.8)",
+                    "group": "modified",
+                    "themeMajor": "white",
+                    "header": "#000000",
+                    "headerText": "#ffffff",
+                    "headerTitle": "#ffffff",
+                    "panel": "#fff",
+                    "text": "#333",
+                    "textLink": "#666",
+                    "media": "#eee",
+                    "mapControls": "#fff",
+                    "softText": "#333",
+                    "softBtn": "#333",
+                    "esriLogo": "white",
+                    "esriLogoMobile": "black"
+                }
+            },
+            "appGeocoders": [
+                {
+                    "singleLineFieldName": "SingleLine",
+                    "name": "MD Statewide Composite Locator",
+                    "placeholder": "",
+                    "url": "https://geodata.md.gov/imap/rest/services/GeocodeServices/MD_CompositeLocator/GeocodeServer"
+                },
+                {
+                    "singleLineFieldName": "Single Line Input",
+                    "name": "MD Statewide Addressing Locator",
+                    "placeholder": "Find MD Addresses",
+                    "url": "https://geodata.md.gov/imap/rest/services/GeocodeServices/MD_AddressPointLocator/GeocodeServer"
+                },
+                {
+                    "singleLineFieldName": "SingleLine",
+                    "name": "ArcGIS World Geocoding Service",
+                    "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+                }
+            ],
+            "mapOptions": {
+                "overview": {
+                    "enable": false,
+                    "openByDefault": true
+                },
+                "locateBtn": {
+                    "enable": true
+                },
+                "geocoder": {
+                    "enable": true
+                },
+                "mapsSync": true
+            },
+            "header": {
+                "linkText": "",
+                "linkURL": "",
+                "logoURL": "https://www.arcgis.com/sharing/rest/content/items/3ddfffe93d1d476f833f53883101add4/resources/sm_series_logo__1578930739903.png",
+                "logoTarget": "",
+                "social": {
+                    "facebook": false,
+                    "twitter": false,
+                    "bitly": false
+                },
+                "compactSize": false
+            }
+        },
+        "title": "MDOT MVA offices with link to average/updated Wait Times",
+        "story": {
+            "storage": "WEBAPP",
+            "entries": [
+                {
+                    "title": "MDOT MVA office locations with live wait times",
+                    "contentActions": [],
+                    "creaDate": 1578930997938,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "d89d6087ed284c05beb323f70570166d",
+                            "extent": null,
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "altText": ""
+                        }
+                    },
+                    "description": ""
+                }
+            ]
+        },
+        "template": {
+            "name": "Map Series",
+            "createdWith": "1.17.0",
+            "editedWith": "1.29.0"
+        },
+        "subtitle": "Temporary annex locations may be available throughout the year to assist customers with REAL ID compliance. Please visit the MDOT MVA web page for more information"
+    },
+    "_ssl": null
+}

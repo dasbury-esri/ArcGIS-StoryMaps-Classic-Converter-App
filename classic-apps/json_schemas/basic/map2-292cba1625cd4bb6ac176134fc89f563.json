@@ -1,0 +1,306 @@
+{
+    "operationalLayers": [
+        {
+            "id": "Affordable_Housing_Units_5602",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "http://services5.arcgis.com/VAb1qw880ksyBtIL/arcgis/rest/services/Affordable_Housing_Units/FeatureServer/0",
+            "visibility": true,
+            "opacity": 0.91,
+            "title": "Affordable Housing Units",
+            "itemId": "378f68ab28214778976d46d94f6ca683",
+            "layerDefinition": {
+                "drawingInfo": {
+                    "renderer": {
+                        "type": "uniqueValue",
+                        "field1": "Program_Type",
+                        "uniqueValueInfos": [
+                            {
+                                "value": "AHTF",
+                                "symbol": {
+                                    "color": [
+                                        237,
+                                        81,
+                                        81,
+                                        255
+                                    ],
+                                    "size": 6,
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriSMS",
+                                    "style": "esriSMSCircle",
+                                    "outline": {
+                                        "color": [
+                                            153,
+                                            153,
+                                            153,
+                                            255
+                                        ],
+                                        "width": 0.75,
+                                        "type": "esriSLS",
+                                        "style": "esriSLSSolid"
+                                    }
+                                },
+                                "label": "Affordable Housing Trust Fund (AHTF) Projects"
+                            },
+                            {
+                                "value": "Land Use",
+                                "symbol": {
+                                    "color": [
+                                        20,
+                                        158,
+                                        206,
+                                        255
+                                    ],
+                                    "size": 6,
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriSMS",
+                                    "style": "esriSMSCircle",
+                                    "outline": {
+                                        "color": [
+                                            153,
+                                            153,
+                                            153,
+                                            255
+                                        ],
+                                        "width": 0.75,
+                                        "type": "esriSLS",
+                                        "style": "esriSLSSolid"
+                                    }
+                                },
+                                "label": "Land Use Programs"
+                            },
+                            {
+                                "value": "CRA",
+                                "symbol": {
+                                    "color": [
+                                        167,
+                                        198,
+                                        54,
+                                        255
+                                    ],
+                                    "size": 6,
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriSMS",
+                                    "style": "esriSMSCircle",
+                                    "outline": {
+                                        "color": [
+                                            153,
+                                            153,
+                                            153,
+                                            255
+                                        ],
+                                        "width": 0.75,
+                                        "type": "esriSLS",
+                                        "style": "esriSLSSolid"
+                                    }
+                                },
+                                "label": "Former Community Redevelopment Agency (CRA) Programs"
+                            },
+                            {
+                                "value": "California State",
+                                "symbol": {
+                                    "color": [
+                                        158,
+                                        85,
+                                        156,
+                                        255
+                                    ],
+                                    "size": 6,
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriSMS",
+                                    "style": "esriSMSCircle",
+                                    "outline": {
+                                        "color": [
+                                            153,
+                                            153,
+                                            153,
+                                            255
+                                        ],
+                                        "width": 0.75,
+                                        "type": "esriSLS",
+                                        "style": "esriSLSSolid"
+                                    }
+                                },
+                                "label": "California State Programs"
+                            },
+                            {
+                                "value": "Federal",
+                                "symbol": {
+                                    "color": [
+                                        252,
+                                        146,
+                                        31,
+                                        255
+                                    ],
+                                    "size": 6,
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriSMS",
+                                    "style": "esriSMSCircle",
+                                    "outline": {
+                                        "color": [
+                                            153,
+                                            153,
+                                            153,
+                                            255
+                                        ],
+                                        "width": 0.75,
+                                        "type": "esriSLS",
+                                        "style": "esriSLSSolid"
+                                    }
+                                },
+                                "label": "Federal Programs"
+                            }
+                        ]
+                    }
+                }
+            },
+            "popupInfo": {
+                "title": "Affordable_Housing_Units",
+                "fieldInfos": [
+                    {
+                        "fieldName": "Specified_Program_Type",
+                        "label": "Specified Program Type",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": false,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "Address",
+                        "label": "Address",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "City",
+                        "label": "City",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "State",
+                        "label": "State",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "Zip",
+                        "label": "Zip",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": false
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "Program_Type",
+                        "label": "Program Type",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "Number_of_Units",
+                        "label": "Number of Units in Program",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "Latitude",
+                        "label": "Latitude",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": false,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "Longitude",
+                        "label": "Longitude",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": false,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "FID",
+                        "label": "FID",
+                        "isEditable": false,
+                        "tooltip": "",
+                        "visible": false,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": false
+                    }
+                ],
+                "description": null,
+                "showAttachments": true,
+                "mediaInfos": []
+            }
+        }
+    ],
+    "baseMap": {
+        "baseMapLayers": [
+            {
+                "id": "defaultBasemap",
+                "layerType": "ArcGISTiledMapServiceLayer",
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
+                "visibility": true,
+                "opacity": 1,
+                "title": "Topographic"
+            }
+        ],
+        "title": "Topographic"
+    },
+    "spatialReference": {
+        "wkid": 102100,
+        "latestWkid": 3857
+    },
+    "authoringApp": "WebMapViewer",
+    "authoringAppVersion": "4.4",
+    "version": "2.7"
+}

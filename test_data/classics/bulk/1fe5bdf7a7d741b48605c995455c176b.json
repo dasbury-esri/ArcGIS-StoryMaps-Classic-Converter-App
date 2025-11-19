@@ -1,0 +1,2111 @@
+{
+  "values": {
+    "settings": {
+      "layout": {
+        "id": "side"
+      },
+      "layoutOptions": {
+        "layoutCfg": {
+          "size": "medium",
+          "position": "left"
+        },
+        "socialLinks": true
+      },
+      "theme": {
+        "colors": {
+          "name": "side-default-4",
+          "themeMajor": "black",
+          "dotNav": "#5A5A5A",
+          "panel": "#000000",
+          "media": "#EEEEEE",
+          "text": "#FFFFFF",
+          "textLink": "#DDD",
+          "softText": "#FFF",
+          "softBtn": "#AAA",
+          "esriLogo": "white"
+        },
+        "fonts": {
+          "sectionTitle": {
+            "id": "verdana",
+            "value": "font-family:verdana,geneva,sans-serif;"
+          },
+          "sectionContent": {
+            "id": "trebuchet",
+            "value": "font-family:trebuchet ms,helvetica,sans-serif;"
+          }
+        }
+      },
+      "header": {
+        "linkText": "",
+        "linkURL": "",
+        "logoURL": "NO_LOGO",
+        "logoTarget": "",
+        "social": {
+          "facebook": true,
+          "twitter": true,
+          "bitly": true
+        }
+      },
+      "appGeocoders": [
+        {
+          "singleLineFieldName": "SingleLine",
+          "name": "Esri World Geocoder",
+          "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+        }
+      ]
+    },
+    "story": {
+      "storage": "WEBAPP",
+      "sections": [
+        {
+          "title": "<p>The Great In-Between</p>\n",
+          "content": "<p tabindex=\"0\"><strong>Three friends. 15,000 kilometers. 20 countries. One Suzuki Alto. This is the story of a six-week overland voyage from England to Mongolia.</strong></p>\n\n<p>&nbsp;</p>\n\n<p tabindex=\"0\">As participants in the annual Mongol Rally, Nick, Benjie, and Cooper—or&nbsp;<em>the Rubikhans</em>, as we came to be known—joined some 250 other teams in a mad dash across Eurasia, all in the name of adventure.</p>\n\n<p tabindex=\"0\">&nbsp;</p>\n\n<p tabindex=\"0\">Although our journey lasted just 40 days, we drove nearly 15,000 kilometers during that time, passing through 20 different countries along the way. From the spires and cobblestones of Western Europe, to the serpentine rivers&nbsp;of the Caucasus, to the sun-baked sands of the Karakum Desert, to the soaring Tien Shan Mountains, to the endless Mongolian steppe, we experienced a remarkable diversity of geographies and cultures. We strove to capture all of our experiences in photos and written narration, and we're eager to share those memories here.</p>\n\n<p>&nbsp;</p>\n\n<p tabindex=\"0\">Join us as we journey along the path less traveled. Join us as we explore the Great In-Between.</p>\n\n<p tabindex=\"0\">&nbsp;</p>\n\n<p style=\"text-align:center\" tabindex=\"0\"><em><strong>↓ Scroll down to begin</strong></em></p>\n\n<p tabindex=\"0\">&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8241917__1508164107626__w1440.jpg\"></div>\n",
+          "contentActions": [],
+          "creaDate": 1511902183512,
+          "pubDate": 1511902183512,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": -8273239.9871941,
+                "ymin": -1366278.1468040172,
+                "xmax": 6754891.269893838,
+                "ymax": 10971269.714646433,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": null,
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><span style=\"font-size:24px\">Day 0: London, England</span></p>\n",
+          "content": "<p>We’ve spent the past few days running a few last-minute errands in London, purchasing some crucial rally equipment like car tools and garish Hawaiian shirts, and, in our spare time, checking off some London tourism highlights.</p>\n\n<p>&nbsp;</p>\n\n<p>Today was an eventful day for us, as we went to pick up our car where we had left it in a car park in the London suburbs for the past few days, only to discover that the battery was completely dead. Fortunately, we found some nice chaps at a nearby auto repair shop who jumped it for us, and we’re hoping that if we run the car a bit every day from now on she’ll be okay. We do understand that there is a fine line between optimism and naïveté, but knock on aluminum, we won’t have to cross it. <a href=\"http://crossingtherubikhan.com/last-days-in-london/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7140484__1508164174954__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7160050__1508164209910__w1440.jpg\"></div>\n\n<div class=\"image-container activate-fullscreen\">&nbsp;</div>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7150009__1508164222075__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n",
+          "contentActions": [],
+          "creaDate": 1508164233497,
+          "pubDate": 1508164233497,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": -1882492.926328768,
+                "ymin": 5766825.332766761,
+                "xmax": 230838.03169922286,
+                "ymax": 7591530.071990003,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_1306",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 1: London, England to Siegburg, Germany</span></strong></p>\n",
+          "content": "<div class=\"image-container activate-fullscreen\">\n<p>We awoke at the crack of dawn yesterday to join the ~250 other teams at the Mongol Rally starting line in London’s Battersea Park. After waiting a couple hours for our turn to process out of the park and begin our journey (read: get the h*ll on the road already) we finagled our car off the steep platform that served as the official launch and promptly slammed our sump guard into the ground. Five feet into the Rally and our car already has battle scars.</p>\n\n<p class=\"pullquote\">\"Five feet into the Rally and our car already has battle scars.\"</p>\n\n<p>Needless to say, we powered on — and made great time to the English Channel ferry, where we reunited with dozens of other Rally teams. After a ferry ride chatting with the other teams, napping, and cautiously watching our car to make sure it didn’t fall into the channel, we made it to France.</p>\n\n<p>&nbsp;</p>\n\n<p>Thirty minutes later we made it out of France and to Veurne, a picturesque Belgian town where my (Nick’s) great-grandmother saved and resurrected a bombed-out hotel just after WWI. And we found the plaque to prove it! <a href=\"http://crossingtherubikhan.com/life-in-the-slow-lane/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 687 km</strong></p>\n\n<p><strong>Distance traveled (total): 1,346 km</strong></p>\n</div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7200153__1508164336501__w1440.jpg\"></div>\n\n<div class=\"image-container activate-fullscreen\">&nbsp;</div>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7200174__1508164356856__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7200182__1508164370999__w1440.jpg\"></div>\n",
+          "contentActions": [],
+          "creaDate": 1508164985073,
+          "pubDate": 1508164985073,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": -1045966.0887760215,
+                "ymin": 5664093.966751511,
+                "xmax": 1067364.8692519695,
+                "ymax": 7488798.705974753,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_6156",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_1306",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 2: Siegburg, Germany to Prague, Czech Republic</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>We arrived in Prague in the early evening, after enduring several hours of thunderstorms and stop-and-go Autobahn traffic. While we only had time for one night in the city, for Nick and Cooper (who studied here in 2012), these 16 hours were a whirlwind of nostalgia and remembrance. <a href=\"http://crossingtherubikhan.com/another-five-country-day/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 687 km</strong></p>\n\n<p><strong>Distance traveled (total): 1,346 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7210184__1508164544503__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7210186__1508164572045__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508164999846,
+          "pubDate": 1508164999846,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": -268142.88894627505,
+                "ymin": 5534456.766779887,
+                "xmax": 1845188.069081716,
+                "ymax": 7359161.506003128,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_1328",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px; outline:none\">Day 3: Prague, Czech Republic to Klenova, Czech Republic</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>It was tough to say our goodbyes come Tuesday morning, but our tears were dried by prospect of the Mongol Rally “Czech Out Party” located at a castle in southern Bohemia. While the location proved to be more field then castle, we had a blast with the other Ralliers, eating, drinking, being merry, and sharing stories from the road. <a href=\"http://crossingtherubikhan.com/another-five-country-day/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 146 km</strong></p>\n\n<p><strong>Distance traveled (total): 1,492&nbsp;km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7220222__1508164647007__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7220249__1508164664106__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7220257__1508164693793__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508164722971,
+          "pubDate": 1508164722971,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": -370874.2549615246,
+                "ymin": 5417049.491333887,
+                "xmax": 1742456.7030664664,
+                "ymax": 7241754.230557129,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_7389",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px; outline:none\">Day 4: Klenova, Czech Republic to Zadar, Croatia</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>While we enjoyed sleeping in our too-tall tent for the first time, we had planned to reach Zadar, Croatia, by Wednesday evening (to meet our good friend Isaac for dinner), and so we had to wake up at the crack of dawn Wednesday morning to hit the road. Fortunately, we were treated to eleven hours of some of the most diverse and spectacular landscapes we’ll ever encounter.</p>\n\n<p>&nbsp;</p>\n\n<p>Beginning in the hilltop towns and golden fields of the southern Czech Republic, we gradually progressed into the distinctively Bavarian borderlands of Germany, replete with old timber halls and (we imagine) lederhosen-clad beer maids. Shortly after, we traversed the eastern reaches of the Austrian Alps, before descending into Mediterranean Slovenia, and then cruising across Croatia just in time to catch a spectacular sunset over the Adriatic. <a href=\"http://crossingtherubikhan.com/another-five-country-day/\" target=\"_blank\">Read&nbsp;full journal entry</a></p>\n\n<p class=\"pullquote\">\"Fortunately, we were treated to eleven hours of some of the most diverse and spectacular landscapes we’ll ever encounter.\"</p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 953 km</strong></p>\n\n<p><strong>Distance traveled (total): 2,445&nbsp;km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7230302__1508164769016__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7230339__1508164800464__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7230365__1508164888267__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508165018756,
+          "pubDate": 1508165018756,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": -145843.6436900255,
+                "ymin": 4543832.880204266,
+                "xmax": 1967487.3143379653,
+                "ymax": 6368537.619427508,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_9611",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px; outline:none\">Day 5:&nbsp;Zadar, Croatia to Dubrovnik, Croatia</span></strong></p>\n",
+          "content": "<div class=\"image-container activate-fullscreen\">\n<div class=\"image-container activate-fullscreen\">\n<p>A thoroughly enjoyable night out in Zadar somehow reenergized us, and we awoke at a reasonable hour Thursday morning, excited to make the famous drive down the Dalmatian Coast to Dubrovnik.</p>\n\n<p>&nbsp;</p>\n\n<p>The drive took longer than expected, but was just as spectacular as the previous day’s: for nearly six hours we hugged the beaches and cliffs overlooking the crystal-clear Adriatic, while faster cars waited (not-so) patiently behind. Benjie videoed himself woo-ing out the window while Nick learned manual in a sort of trial-by-fire manner and Cooper took pictures of Benjie videoing himself and of Nick repeatedly stalling out next to a crowded beach. <a href=\"http://crossingtherubikhan.com/another-five-country-day/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 338 km</strong></p>\n\n<p><strong>Distance traveled (total): 2,783 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7250483__1508165075442__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7240451__1508165095767__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7240472__1508165112166__w1440.jpg\"></div>\n</div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508165148070,
+          "pubDate": 1508165148070,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 128106.66568397329,
+                "ymin": 4340816.133078893,
+                "xmax": 2241437.623711964,
+                "ymax": 6165520.8723021345,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_9790",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px; outline:none\">Day 6: Dubrovnik, Croatia to Slavonski Brod, Croatia</span></strong></p>\n",
+          "content": "<div class=\"image-container activate-fullscreen\">\n<p>After much deliberation, we decided on an indirect Bosnian route that took us through the picturesque town of Mostar before leading us up the center of the country, past the war-torn capital of Sarajevo, and finally spitting us out on Croatia’s northern fork. This turned out to be the best decision we could have made, as Bosnia (and, lest we forget, Herzegovina) was unexpectedly gorgeous.</p>\n\n<p>&nbsp;</p>\n\n<p>Dramatic mountain landscapes, turquoise rivers, and cool winds accompanied us along the winding roads leading to Sarajevo – not to mention a picturesque&nbsp;Bruce Lee statue&nbsp;bridge and a delicious meat-and-bread lunch in Mostar. Aside from an unfortunate Sarajevo traffic jam (smoggy grey rain included), which ultimately precluded a visit into the center of the city, we steadily crawled our way up the country and made it safely back across the Croatian border.</p>\n\n<p class=\"pullquote\">\"If we were looking for the most direct way, we would’ve flown to Mongolia.\"</p>\n\n<p>We may only be an hour past where we were two days ago, as the crow flies, but this was certainly a worthy detour. And if we were looking for the most direct way, we would’ve flown to Mongolia. <a href=\"http://crossingtherubikhan.com/another-five-country-day/\" target=\"_blank\">Read&nbsp;full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 471 km</strong></p>\n\n<p><strong>Distance traveled (total): 3,254 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7250502__1508165190051__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7250523__1508165254653__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7250511__1508165237109__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508165380121,
+          "pubDate": 1508165380121,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 181918.3335967231,
+                "ymin": 4739511.672614266,
+                "xmax": 2295249.291624714,
+                "ymax": 6564216.411837508,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_8271",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><span style=\"font-size:22px\"><strong>Day 7: Slavonski Brod, Croatia to Ni&scaron;, Serbia</strong></span></p>\n",
+          "content": "<div class=\"image-container activate-fullscreen\">\n<p>We left Slavonski Brod Saturday morning to hit the highway and cruise through Serbia. Or so we thought. No more than half an hour into the drive we hit traffic, or more accurately, we hit a 10km-long parking lot – precisely the distance to the Serbian border. People were out of their cars, walking down the shoulder, and napping, because as far as the eye could see, not a single car was moving.</p>\n\n<p>&nbsp;</p>\n\n<p>With daylight hours already waning, we abandoned our plans to make it to Bulgaria. Instead, we drove (through a couple more traffic jams) to the Serbian city of Niš (pronounced “Nish”, not “Nees”, which is helpful, since it bears no resemblance whatsoever to the pleasant French city on the Mediterranean). There, after a few dead ends (literal and figurative), we found a hotel willing to take us in. The receptionist (slash owner slash maid slash chief coffee-maker?) even offered us breakfast and a parking spot up on the sidewalk outside.</p>\n\n<p class=\"pullquote\">\"We are beginning to acknowledge the value of modest expectations.\"</p>\n\n<p>&nbsp;</p>\n\n<p>Until this point, our only interaction with Serbia, and its people, had been with its traffic-choked roads and utterly loony drivers. So, we were pleasantly surprised by the warm hospitality and helpfulness of the local people we encountered in Niš. Plus, the local beer wasn’t half bad! We are beginning to acknowledge the value of modest expectations, and we look forward to exploring more of the off-the-beaten-path locales that lie ahead. <a href=\"http://crossingtherubikhan.com/another-five-country-day/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 459 km</strong></p>\n\n<p><strong>Distance traveled (total): 3,713 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7260529__1508165443406__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508165460508,
+          "pubDate": 1508165460508,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 617303.6467089711,
+                "ymin": 4445993.483999267,
+                "xmax": 2730634.6047369624,
+                "ymax": 6270698.223222509,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_89",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px\">Day 8: Ni&scaron;, Serbia to Istanbul, Turkey</span></strong></p>\n",
+          "content": "<div class=\"image-container activate-fullscreen\">\n<p>We hit the road early the next morning, with our driving goals for the day tempered by the previous day’s frustration. Fortunately, traffic wasn’t bad, and we coasted through Eastern Serbia and rejoined our Turkish friends at the mercifully painless Bulgarian border. It was here that Cooper noticed a small sign warning of construction at the major Bulgaria-Turkey border and recommending that cars detour north to the much smaller border in Lesovo.</p>\n\n<p>&nbsp;</p>\n\n<p>Nightmares of border traffic were still fresh in our memory, so 300km later we veered north to the smaller crossing, where we were thankfully met by absolutely no traffic, two Rally teams to chat with, some bird poop for Nick's shoulder, and a friendly Bulgarian exit guard who laughed us through once we told him our final destination. And it was only 5:00pm. We could make it to Istanbul after all.</p>\n\n<p>&nbsp;</p>\n\n<p>So we drove through the twilight and made it to Istanbul with enough energy to meet some other Rallyers for a beer or two in our neighborhood. We looked forward to three nights, and two full days, of recuperation in the city. <a href=\"http://crossingtherubikhan.com/serbulgarstanbul/\" target=\"_blank\">Read&nbsp;full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 459 km</strong></p>\n\n<p><strong>Distance traveled (total): 3,713 km</strong></p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7270565__1508165489328__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7270585__1508165506179__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7270591__1508165527328__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508165550500,
+          "pubDate": 1508165550500,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 1331531.2390054679,
+                "ymin": 4086433.702945894,
+                "xmax": 3444862.1970334593,
+                "ymax": 5911138.442169135,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_792",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Days 9&ndash;10: Istanbul, Turkey</span></strong></p>\n",
+          "content": "<div class=\"image-container activate-fullscreen\">\n<p>Yesterday was our first day away from the car in over a week. We explored Istanbul by foot (for a change) stopping by the Hagia Sofia and Blue Mosque before the heat induced us to yield to the simpler pleasures of tea, beer, deep-fried mussels, lamb kidney, and goat intestines. (Seriously.) That night, we met up with our friend Sera from school who invited us to her home to unwind and catch up. It was exactly what we wanted.</p>\n\n<p>&nbsp;</p>\n\n<p>We’re crossing our fingers that a garage will be open this afternoon (it’s still Bayram) so we can get someone a little smarter to examine our car before we begin the next legs of our journey. Also in store is a big night out with Sera and friends. So let’s see what time we manage to hit the road tomorrow…&nbsp;<a href=\"http://crossingtherubikhan.com/serbulgarstanbul/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7280623__1508165581187__w1440.jpg\"></div>\n</div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7280655__1508165603772__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7290690__1508165621590__w1440.jpg\"></div>\n",
+          "contentActions": [],
+          "creaDate": 1508165638155,
+          "pubDate": 1508165638155,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 1333977.2239105927,
+                "ymin": 4088879.6878510187,
+                "xmax": 3447308.1819385844,
+                "ymax": 5913584.427074261,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_792",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 11: Istanbul, Turkey to </span><span style=\"font-size:22px\">&Ccedil;avundur</span><span style=\"font-size:22px\">, Turkey</span></strong></p>\n",
+          "content": "<div class=\"image-container activate-fullscreen\">\n<p>The mood had improved dramatically by the time we pulled off the expressway a few hours later and happened upon another Rally team, the indomitable Americans known as Boyz II Mon, three guys about our age: Charlie, Harry, and Mark. We have been convoying with them since. First night was at a pseudo-campsite by the side of the highway that would have been perfect if not for the occasional freight train that trundled by about a hundred yards away. <a href=\"http://crossingtherubikhan.com/im-still-chewing/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 367 km</strong></p>\n\n<p><strong>Distance traveled (total): 4,870 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7300716__1508165777712__w1440.jpg\"></div>\n\n<div class=\"image-container activate-fullscreen\">&nbsp;</div>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7310728__1508165798810__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508165807667,
+          "pubDate": 1508165807667,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 1867201.9332278403,
+                "ymin": 4074203.778420269,
+                "xmax": 3980532.8912558323,
+                "ymax": 5898908.517643511,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_7514",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><span style=\"font-size:22px\">Day 12: </span><span style=\"font-size:22px\">&Ccedil;avundur</span><span style=\"font-size:22px\">, Turkey to Ordu, Turkey</span></p>\n",
+          "content": "<div class=\"image-container activate-fullscreen\">\n<p>The next night we made it to the Black Sea and camped by the beach near the little city of Ordu, setting our tents up just in time to take a swim as the sun set. For dinner we had köfte, essentially small spiced hamburger patties, for the fourth meal in a row. <a href=\"http://crossingtherubikhan.com/im-still-chewing/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 429 km</strong></p>\n\n<p><strong>Distance traveled (total): 5,299 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7310749__1508165857690__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7310766__1508165885202__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P7310770__1508165903444__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1511891011815,
+          "pubDate": 1511891011815,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 2388196.718019463,
+                "ymin": 4123123.476522769,
+                "xmax": 4501527.6760474555,
+                "ymax": 5947828.215746011,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_3990",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px; outline:none\">Day 13: Ordu, Turkey to Batumi, Georgia</span></strong></p>\n",
+          "content": "<div class=\"image-container activate-fullscreen\">\n<p>After enjoying a fifth consecutive köfte meal the next morning, we headed for the Georgia line (not the one from the band). The queue to get across the border stretched along the shores of the Black Sea, and we spent about three hours waiting in the late afternoon sun – ultimately a success, given the stories of seven-hour waits we had heard from other Ralliers. We met another team, Ulaan Rouge, a spirited English couple with a spirited bright red car, and decided to add another car to our convoy.</p>\n\n<p>&nbsp;</p>\n\n<p>The party capital of Georgia, Batumi, lay only 20 minutes past the border, so the eight of us spent the night there. A very strange place for a party capital, we passed various roadside cows before emerging into a city that could best be described as a blend of Las Vegas and Odessa. Huge casinos glittering with neon lights and skyscrapers with built-in Ferris wheels shared streets with run-down tenements. We passed up a strange hotel filled with green lights and various artificial fauna for a wonderful little guesthouse run by a woman named Alika who could not have been more accommodating, even helping to wash the clothes of eight filthy Ralliers. <a href=\"http://crossingtherubikhan.com/im-still-chewing/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 358 km</strong></p>\n\n<p><strong>Distance traveled (total): 5,657 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8010777__1508165977508__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8010791__1508166007584__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8020832__1508166036813__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8010823__1508166057922__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508166086331,
+          "pubDate": 1508166086331,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 2818690.061321461,
+                "ymin": 4184273.0991508937,
+                "xmax": 4932021.019349454,
+                "ymax": 6008977.838374135,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_1029",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px; outline:none\">Day 14: Batumi, Georgia to Shorapani, Georgia</span></strong></p>\n",
+          "content": "<div class=\"image-container activate-fullscreen\">\n<p>The following morning we decided to give our car some much-needed love, so we headed to the outskirts of Batumi and found a garage that had four new tires and two steel wheels for us. We also found a friendly Georgian guy who happily translated for us, and helped us find some cheap jerry cans and beaded seat covers. The baker next door insisted on giving us free bread out of his massive cauldron of an oven.</p>\n\n<p class=\"pullquote\">\"It was somewhat surreal to be seated in the living room of a family with whom we can only communicate by typing sentences into Google translate.\"</p>\n\n<p>An afternoon of driving led us to a setting sun and a dirt road somewhere in central Georgia where we decided to set up camp for the night. It seemed at first that no one was around, but eventually a stray sheep led us to a small house where we found a woman and her daughter. Communication was difficult, but with hand signals we were able to explain that we were looking for a place to camp. She led us to a perfect spot next to the nearby river, and one of the Ulaan Rougers and I went in search of food and beer while the others made camp.</p>\n\n<p>&nbsp;</p>\n\n<p>Later that night the woman’s husband invited us to their house for coffee and watermelon, which we gladly accepted. It was somewhat surreal to be seated in the living room of a family with whom we can only communicate by typing sentences into Google translate, eating melon and watching Lindsay Lohan dubbed on the Georgian version of Disney Channel. I think it is safe to say that Georgia has been our favorite country so far: everyone we met was kind, interested in our adventure, and very helpful despite communication difficulties. <a href=\"http://crossingtherubikhan.com/im-still-chewing/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 185 km</strong></p>\n\n<p><strong>Distance traveled (total): 5,842 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8020844__1508166125673__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8020848__1508166154221__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8020863__1508166174735__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8020882__1508166193730__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508166218921,
+          "pubDate": 1508166218921,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 2950773.2461982104,
+                "ymin": 4267436.585925144,
+                "xmax": 5064104.204226203,
+                "ymax": 6092141.325148385,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_3571",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 15: Shorapani, Georgia to Balakan, Azerbaijan</span></strong></p>\n",
+          "content": "<div class=\"image-container activate-fullscreen\">\n<p>This evening we made it to the Azerbaijan border, which, despite what we had heard about long waits and corruption, was relatively painless. We stopped in the first Azeri town we came to and decided to treat ourselves to a night in a hotel with hot showers and shampoo. Unfortunately the only food we could find at such a late hour was pretty much the same thing we have been eating for days now: meat and bread. That brings me to the title of this blog post, “I’m Still Chewing,” which is in fact nearly the case. Tough pork, beef, and lamb with tough, thick bread have sustained us through much of Turkey, Georgia, and now Azerbaijan.</p>\n\n<p>&nbsp;</p>\n\n<p>Since our last blog post we have certainly begun to enter the more challenging half of the trip. Communication is difficult and cultural differences are more pronounced. The course of each day is increasingly difficult to predict. Surprises are becoming the norm—but so far, these surprises have been overwhelmingly pleasant. Most people we meet are friendly and interested in where we come from and where we are going, even if they think we’re a bit crazy and don’t understand a word we’re saying. <a href=\"http://crossingtherubikhan.com/im-still-chewing/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 324 km</strong></p>\n\n<p><strong>Distance traveled (total): 6,166 km</strong></p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8030928__1508166267256__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8030896__1508166287194__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8030937__1508166312578__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8030940__1508166342313__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508166361691,
+          "pubDate": 1508166361691,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 3367813.6725220215,
+                "ymin": 4230746.812348266,
+                "xmax": 5481144.630550013,
+                "ymax": 6055451.551571508,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_9129",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 16: Balakan, Azerbaijan to Baku, Azerbaijan</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>We had high hopes that we could fly through Azerbaijan in one day, take care of visa stuff the next day, and hop on a Turkmenistan-bound ferry the same evening. Well, that did not happen.</p>\n\n<p>&nbsp;</p>\n\n<p>We made it across Azerbaijan just fine, caravaning with Boyz II Mon up and over the mountains and down to the coastal plain. Our little convoy made it to Baku just in time for a celebratory dinner along the shores of the Caspian.</p>\n\n<p>&nbsp;</p>\n\n<p>Little did we know just how much time we would be spending along the shores of the Caspian. <a href=\"http://crossingtherubikhan.com/caspian-purgatory/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 396 km</strong></p>\n\n<p><strong>Distance traveled (total): 6,562 km</strong></p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8040945__1508166394311__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8040957__1508166410005__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8040965__1508166430577__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8040967__1508166456343__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508166475697,
+          "pubDate": 1508166475697,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 3699244.627166457,
+                "ymin": 4025284.0803177697,
+                "xmax": 5812575.58519445,
+                "ymax": 5849988.81954101,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_2528",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px; outline:none\">Day 17: Baku, Azerbaijan</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>The next day (Tuesday), we woke up early to head to the ridiculously hidden Turkmen embassy – it was nestled in a nondescript alley in an industrial part of the city, which we could only find thanks to GPS coordinates shared by another Rally team – and began the arduous visa-acquistion process required to enter Turkmenistan. Upon showing up at the embassy, our passport numbers were taken down and we were sent some three kilometers away to a bank where we could make some sort of payment.</p>\n\n<p>&nbsp;</p>\n\n<p>We made it to the bank without problem, and then to a passport photo office, then back to the embassy, where, after we waited in a growing line of other rallyers for nearly an hour, our passports were ceremoniously adorned with the coveted Turkmenistan visa sticker. So far, so good.</p>\n\n<p>&nbsp;</p>\n\n<p>Our spirits high, we headed down to the cargo port from where the “ferry” was rumored to depart, in hopes of securing passage that evening. We found the ticket office, but were told to come back at 10AM the next day.&nbsp;<a href=\"http://crossingtherubikhan.com/caspian-purgatory/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8050975__1508166551419__w1440.jpg\"></div>\n\n<div class=\"image-container activate-fullscreen\">&nbsp;</div>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8050992__1508166580877__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8050982__1508166600682__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508166617785,
+          "pubDate": 1508166617785,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 3699244.627166457,
+                "ymin": 4025284.0803177697,
+                "xmax": 5812575.58519445,
+                "ymax": 5849988.81954101,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_2528",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 18: Baku, Azerbaijan</span></strong></p>\n",
+          "content": "<p>Now this next part of the story is in log form, a medium we’ve chosen since time and duration are integral themes, as you will see:</p>\n\n<p>&nbsp;</p>\n\n<p>10:00AM (Wednesday): We show up at the ferry terminal. There’s no sign of the woman we spoke with at the ticket office yesterday. Twelve other rally teams slowly join us, and together wait outside the gates. No one (including the young customs officials who saunter around the premises, smoking and cracking jokes amongst themselves), knows much of anything. It’s really hot outside. We seek refuge in the shade of a diesel pipeline.</p>\n\n<p>&nbsp;</p>\n\n<p>2:00PM: A local fixer arrives, and assures us that, for the princely sum of $50USD per team, he will help us clear customs and acquire the necessary ferry tickets. As he is the only person at the dock who speaks a word of English, we reluctantly oblige, along with every other team.</p>\n\n<p>&nbsp;</p>\n\n<p>3:00PM: All of the rally teams are ushered through the gate and onto a giant shipping dock. Our cars clear customs, and thus are no longer allowed to drive back into Azerbaijan.</p>\n\n<p>&nbsp;</p>\n\n<p>5:00PM: The Rubikhans pay their first bribe of the trip when Cooper returns from a quick grocery run and is subsequently forbidden from bringing alcohol through customs. After a tense and lengthy negotiation process, Cooper successfully offers the guards one 12-ounce fruit smoothie in exchange for free passage for his beers.</p>\n\n<p>&nbsp;</p>\n\n<p>6:00PM: Benjie joins representatives from a few teams to pick up KFC for us from what is surely the largest KFC in the world. We’re forever grateful.</p>\n\n<p>&nbsp;</p>\n\n<p>1:00AM: I (Nick) realize we’re probably not boarding tonight, so I set up my sleeping bag by the car for a grim night’s sleep out on the dock.</p>\n\n<p class=\"pullquote\">\"2:00AM: Cooper spots a cargo freighter named the Professor Gül approaching the docks. This is the boat we’re to take to Turkmenistan. It’s already twelve hours late.\"</p>\n\n<p>2:00AM: Cooper spots a cargo freighter named the Professor Gül approaching the docks. This is the boat we’re to take to Turkmenistan. It’s already twelve hours late.</p>\n\n<p>&nbsp;</p>\n\n<p>2:45AM: The immigration officers promptly wake everyone up and rush us through their office before sending our cars over to our vessel, the aptly named Professor Gül (pronounced ‘Ghoul’).</p>\n\n<p>&nbsp;</p>\n\n<p>4:30AM: We’re finally allowed to board the Ghoul, and we park our cars on the very bottom deck of the ship. This becomes important later on. We promptly pass out in the ship’s canteen, since all of the cabins are apparently filled with snoring Azeri sailors. <a href=\"http://crossingtherubikhan.com/caspian-purgatory/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8061020__1508166684026__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8061039__1508166701762__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8071045__1508166720723__w1440.jpg\"></div>\n",
+          "contentActions": [],
+          "creaDate": 1508166765918,
+          "pubDate": 1508166765918,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 3699244.6271664575,
+                "ymin": 4027730.0652228943,
+                "xmax": 5812575.585194449,
+                "ymax": 5852434.804446136,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_2528",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px; outline:none\">Day 19: Baku, Azerbaijan to the Middle of the Caspian Sea</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>7:30AM: We’re not-so-gently woken up by a very lound and angry woman, who shows us to our proper cabins through a masterful routine of pointing, yelling, and calling everyone “Francis.” It’s Thursday now. Peering out the windows, we’re dismayed to find that the ferry is still in port. So, we take to exploring the noble Ghoul.</p>\n\n<p class=\"pullquote\">\"Nothing is off limits, and so we wander from the bow to the stern, up and down decks, and even into the emergency escape vessels.\"</p>\n\n<p>Built in the 1980s, the Ghoul has been in service ever since, and it doesn’t seem like a single piece of equipment, furniture, or paint had been replaced since that time. It is a hulking, rusted relic of the golden age of Caspian Sea shipping (based on our extensive knowledge about the history of Caspian Sea shipping).</p>\n\n<p>&nbsp;</p>\n\n<p>But nothing is off limits, and so we wander from the bow to the stern, up and down decks, and even into the emergency escape vessels. The 30-odd ralliers share the ship with the crew and several other passengers, eating our stored food, drinking our stored vodka and convivially passing the time – and there is certainly time to pass because…</p>\n\n<p>&nbsp;</p>\n\n<p>5:15PM: The ferry finally leaves port, over 31 hours after we arrived at the terminal. A massive cheer erupts from the ralliers.&nbsp; <a href=\"http://crossingtherubikhan.com/caspian-purgatory/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 162 km</strong></p>\n\n<p><strong>Distance traveled (total): 6,724 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8071055__1508166813973__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8071070__1508166844518__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8071093__1508166862386__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8071118__1508166882020__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508166902590,
+          "pubDate": 1508166902590,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 3903484.366744394,
+                "ymin": 3949458.548258892,
+                "xmax": 6016815.324772385,
+                "ymax": 5774163.287482135,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_4346",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 20: Middle of the Caspian Sea to Turkmenbashi, Turkmenistan</span></strong></p>\n",
+          "content": "<p>1:00PM (Friday): The ferry docks in Turkmenbashi, and we are immediately shooed down to our cars in the bowels of the ship by the same nameless lady who unceremoniously woke us up the previous morning.</p>\n\n<p class=\"pullquote\">\"We impatiently linger in the hot, stuffy, cargo hull—chugging water and trying to move as little as possible.\"</p>\n\n<p>Remember how I said our cars were at the very bottom? This is important because we must now wait for every single truck to offload before we can even think of getting off the ship. So we impatiently linger in the hot, stuffy, cargo hull – chugging water and trying to move as little as possible. Occasionally, we sneak up to the upper decks for some fresh air, but the crazy “Francis” lady inevitably spots us and corrals us back down into the hull.</p>\n\n<p>&nbsp;</p>\n\n<p>4:30PM: The door opens and we’re finally able to drive off the boat – and right into the Turkmenistan border!</p>\n\n<p>&nbsp;</p>\n\n<p>The Turkmen immigration process is the most absurd and horrible bureaucratic nightmare we’ve ever encountered. It deserves its own 16-step subsection. (I know you may be bored reading all of this, but consider it part of the experience. It’s almost like you’re here with us!):</p>\n\n<p>&nbsp;</p>\n\n<p>1) Go one-by-one to a booth where your passports are returned (the ship had held onto them)</p>\n\n<p>2) Go to a 2nd booth to pay the $12 fee to get your passport back, acquire receipt</p>\n\n<p>3) Return to the first booth to hand in receipt, receive indecipherable random form</p>\n\n<p>4) Take indecipherable form to an office, receive another indecipherable form</p>\n\n<p>5) Take all forms to a 2nd office, get something stamped</p>\n\n<p>6) Take forms to a 3rd office, get another stamp</p>\n\n<p>7) Go around building to a 4th office where a man tells you he needs six drivers at a time in order to bestow yet another indecipherable form</p>\n\n<p>8) After waiting for five more drivers, get forms and head to Ticket Office to trade in form for another indecipherable form</p>\n\n<p>9) Take new form to 2nd booth (from before!), pay $158 for some reason or another, receive another receipt</p>\n\n<p>10) Take all forms to 5th office to get signed, stamped, whatevered by someone who looks somewhat more official. Receive new indecipherable form</p>\n\n<p>11) Take newest form to 6th office to get stamped</p>\n\n<p>12) Take same form to 7th office to get stamped and signed</p>\n\n<p>13) Return to 5th office to turn in form</p>\n\n<p>14) Fill out customs declaration</p>\n\n<p>15) Get car searched by military officer in green forest camo (because no one told him that Turkmenistan is entirely desert)</p>\n\n<p>16) Turn in one of the dozen or so accumulated forms to man at gate, revel in your freedom</p>\n\n<p>&nbsp;</p>\n\n<p>9:30PM: we leave the border and promptly find a hotel, restaurant, and a round of cold beers. It is Friday night after all… <a href=\"http://crossingtherubikhan.com/caspian-purgatory/\" target=\"_blank\">Read&nbsp;full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 184 km</strong></p>\n\n<p><strong>Distance traveled (total): 6,908 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8081153__1508166938236__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8081156__1508166953600__w1440.jpg\"></div>\n",
+          "contentActions": [],
+          "creaDate": 1508166974504,
+          "pubDate": 1508166974504,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 4062473.3855775185,
+                "ymin": 3934782.6388281416,
+                "xmax": 6175804.343605509,
+                "ymax": 5759487.378051385,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_2273",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 21: Turkmenbashi, Turkmenistan to Ashgabat, Turkmenistan</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>The Turkmenbashi-Ashgabat “highway” (a generous use of the term) was fine for the first couple hundred kilometers (we’ve taken to the metric system), save for the occasional rough patch. We tore across the stark Karakum Desert as fast as our steed would carry us, with nothing but camels to keep us company. Then we hit the war zone. We’re unsure if an actual war had taken place on this 150km stretch of “highway,” but it sure seemed like it. The potholes were a little smaller than our car, or about the same size as Benjie’s driving hubris.</p>\n\n<p class=\"pullquote\">\"We tore across the stark Karakum Desert as fast as our steed would carry us, with nothing but camels to keep us company.\"</p>\n\n<p>It was on these roads that our steed earned its name, and it is with great excitement that we can now introduce to you the Tandoori Terror, the Massala Menace, the Vindaloo Vehicle: Keshav Pothole! Indeed, we’ve chosen to memorialize our late teammate by naming our car after him. There’s one catch, however – we’ve already determined that our car is a female. Sorry, Shav.</p>\n\n<p>&nbsp;</p>\n\n<p>Just when we thought we couldn’t take the brutal roads any longer, Ashgabat’s gaudy, opulent tentacles reached out in the form of a freshly paved four-lane highway, replete with gold and white fencing and shimmering statues of the Dear Leader. The bridges were still crap though. <a href=\"http://crossingtherubikhan.com/keshav-pothole/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 579 km</strong></p>\n\n<p><strong>Distance traveled (total): 7,487&nbsp;km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8091170__1508167886320__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8091173__1508167022833__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8091183__1508167037979__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508167933381,
+          "pubDate": 1508167933381,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 4642171.808092141,
+                "ymin": 3660832.3294541426,
+                "xmax": 6755502.766120131,
+                "ymax": 5485537.068677386,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_5033",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 22: Ashgabat, Turkmenistan to Mary, Turkmenistan</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>The Rubikhans slowly navigated their way out of Ashgabat (no thanks to three inexplicably closed highways), and eventually wound up on more beautiful tarmac – the gaudy tentacles of Ashgabat extending out towards Mary, our destination for the night. Cautiously optimistic that the tarmac would continue for quite some time, we were pleasantly surprised to make it a solid 100km out of the city before returning to Pothole Land. So we grueled through it, our suspension shaking and groaning, our roof box rattling, and our teeth chattering. We fought off the 114-degree desert heat with warm water and open windows.</p>\n\n<p>&nbsp;</p>\n\n<p>And we were rewarded for our toilsome efforts, for our accommodations in Mary had the one thing we needed most but didn’t expect to find in the desert: a swimming pool. <a href=\"http://crossingtherubikhan.com/keshav-pothole/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 360 km</strong></p>\n\n<p><strong>Distance traveled (total): 7,847&nbsp;km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8101199__1508167111943__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508167143995,
+          "pubDate": 1508167143995,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 5023745.453291639,
+                "ymin": 3592344.752110643,
+                "xmax": 7137076.411319629,
+                "ymax": 5417049.491333886,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_7910",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 23: Mary, Turkmenistan to Bukhara, Uzbekistan</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>The roads from Mary were thankfully not terrible, and we made it to the border by early afternoon. We suffered a bit of PTSD at the Turkmen exit border (only about five pointless stations this time) and drove on to Uzbekistan, where the border guards had big guns and bigger senses of humor.</p>\n\n<p class=\"pullquote\">\"After hours upon hours of bleak desert terrain, arriving in Bukhara was like dream.\"</p>\n\n<p>We had been dreading the thorough search of the car that other teams had encountered at the Uzbek border, but the guards just had us open a couple doors, tried on our sunglasses, and waved us into their country, telling us to bring girls next time. Maybe not, given how we smell right now.</p>\n\n<p>&nbsp;</p>\n\n<p>After hours upon hours of bleak desert terrain, arriving in Bukhara was like dream. We dropped our bags at the hotel (which had, along with many other hotels in the city, incidentally lost all electricty), and then meandered through the carefully preserved old city, surrounding ourselves in a buzzing maze of sandstone mosques, turquoise minarets, and lush courtyards. It’s no wonder that this city is heralded as one of the most beautiful in Eurasia. It hardly felt real. <a href=\"http://crossingtherubikhan.com/keshav-pothole/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 425 km</strong></p>\n\n<p><strong>Distance traveled (total): 8,272 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8111215__1508167181150__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8111236__1508167206580__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8111250__1508167223668__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508167275236,
+          "pubDate": 1508167275236,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 5317263.641906638,
+                "ymin": 3917660.7444922663,
+                "xmax": 7430594.599934628,
+                "ymax": 5742365.48371551,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_2195",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 24: Bukhara, Uzbekistan to Samarkand, Uzbekistan</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>After an excellent breakfast from our lovely hosts the next morning, we set off for Samarkand in high spirits. Unfortunately, as Nick mentioned, these were quickly crushed. Potholes and bumps everywhere. Dozens of closed gas stations – the only open one we saw had a line that stretched over a hundred yards. And then our roof rack, which has been slowly deteriorating, finally cracked and the lid to our front compartment flew off like a leaf in the breeze. Fortunately, no one was behind us, and so we simply pulled off the road and stuffed our tent and sleeping bags into the car, bringing our packing jigsaw puzzle to an entirely new level.</p>\n\n<p class=\"pullquote\">\"And then our roof rack, which has been slowly deteriorating, finally cracked and the lid to our front compartment flew off like a leaf in the breeze.\"</p>\n\n<p>It was also at this point that gas became a serious problem, and we decided to pull off by the small shack/repair shop where Nick began writing this blog post. Eventually, we communicated with the proprietors that we wanted petrol, and agreed on a price for the 6.5 liters we could carry in our empty plastic water bottles. So I rode off with our generous providers, a father and his son who had outfitted their Soviet-era Lada Riva with a set of massive Pioneer speakers that blasted Uzbek dance music at a nearly intolerable volume. We went to the next town over where a nice lady filled the water bottles out of a massive black plastic drum next to her shop, and we were off to Samarkand! <a href=\"http://crossingtherubikhan.com/keshav-pothole/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 266 km</strong></p>\n\n<p><strong>Distance traveled (total): 8,538&nbsp;km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8121274__1508167359037__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8131289-Edit-2__1508167665180__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508167707107,
+          "pubDate": 1508167707107,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 5618119.785237012,
+                "ymin": 3895646.8803461418,
+                "xmax": 7731450.743265003,
+                "ymax": 5720351.619569385,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_476",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 25: Samarkand, Uzbekistan to Tashkent, Uzbekistan</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>Generally thought to be the pearl of Central Asia, Samarkand is a mystically beautiful city that was once the most powerful point on the Silk Road and an important center of Islamic learning. Its central square, known as the Registan, is bordered on three sides by medressas (Islamic theological schools) that were built beginning in the 1400s. Because we arrived too late to see them last night, Cooper and I woke up at 7am this morning to have a look, and were rewarded with an incredible experience.</p>\n\n<p>&nbsp;</p>\n\n<p>Since the buildings didn’t open to the public until 8:am, hardly anyone was around: just a couple of policemen and a few babushkas sweeping the square, which was bathed in morning light. The exquisite geometric patterns that adorn the ancient buildings glowed in soft hues of turquoise and green and gold. For 12,000 som – a little over four dollars – a policeman allowed us to clandestinely climb the narrow spiral steps up one of the minarets from which we could observe the whole scene from above. Words can’t do it justice, so have a look at the pictures below, but without a doubt it was one of the most remarkable places I have ever seen. <a href=\"http://crossingtherubikhan.com/keshav-pothole/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 327 km</strong></p>\n\n<p><strong>Distance traveled (total): 8,865 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8131293__1508167966585__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/15308140580_7b676a0831_o__1508168373672__w1500.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8131336__1508168398032__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8131343__1508168415979__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8131357__1508168436923__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508168476372,
+          "pubDate": 1508168476372,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 5850488.351223887,
+                "ymin": 4132907.4161432656,
+                "xmax": 7963819.309251877,
+                "ymax": 5957612.155366509,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_3579",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 26: Tashkent, Uzbekistan to Osh, Kyrgyzstan</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>There are several segments of this journey that I expected to be beautiful—the Croatian coast, Istanbul, and Bukhara to name a few. Then there are those moments that catch you totally by surprise. The landscapes and cities that we’d overlooked and subsequently took our breath away. These moments are what the Rally is all about. And the drive into the Fergana Valley was one of those moments.</p>\n\n<p>&nbsp;</p>\n\n<p>Mostly known as a bastion of Islamic fundamentalism and for the tragic massacre of 2005, we were traversing the Fergana simply as a means to get between Tashkent and Osh, gateway to Kyrgyzstan and the towering Tian Shan mountains. Entering the valley from Tashkent required several police checkpoints and one massive mountain pass. Keshav Pothole chugged up and up and up until we finally got a glance behind us and were met with a stunning vista of the valley behind us.</p>\n\n<p>&nbsp;</p>\n\n<p>Working our way through the pass, we stumbled upon a traditional mountainside teahouse and spread out on the carpeted benches to nibble on shashlyk and enjoy the mountain air. Cooper taught Benjie and me the traditional way to pour tea—which was not, as I had hoped, onto Cooper’s head. Our bellies full, we descended into the valley and sped our way towards Osh, making it to the border just before it closed for the evening. <a href=\"http://crossingtherubikhan.com/best-roads-worst-roads/\" target=\"_blank\">Read full journal entry</a></p>\n</div>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 400 km</strong></p>\n\n<p><strong>Distance traveled (total): 9,265 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8141368__1508168508806__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8141394__1508168547435__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8141405__1508168623698__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8141415__1508168655855__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/15471770906_3a96c02ce0_o__1508168727827__w1500.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/15471770126_b552f05e6c_o__1508168759900__w1500.jpg\"></div>\n",
+          "contentActions": [],
+          "creaDate": 1508168779981,
+          "pubDate": 1508168779981,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 6258967.83037976,
+                "ymin": 4022838.095412641,
+                "xmax": 8372298.78840775,
+                "ymax": 5847542.8346358845,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_8397",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 27: Osh, Kyrgyzstan to Uch-Terek, Kyrgyzstan</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>Cooper and Benjie took to the bazaar the next morning while I took advantage of the finally cool weather to go for a run. We said goodbye to Osh just before noon and pushed headword into the mountains, stopping to link up with a few more Ralliers, one of whom graciously noted that a lug nut on our front wheel was missing. Thanks for the heads up!</p>\n\n<p>&nbsp;</p>\n\n<p>Several hours of progressively higher foothills brought us to an emerald blue reservoir with a swimming area and café. Needless to say, we stopped for a couple hours of swimming and eating, which culminated in the loquacious owner bringing forth a bottle of vodka to drink with us. The non-drivers toasted with him as we endured detailed descriptions of his business plan and the tourism industry (Allen family—picture a Kyrgyz Sharky).</p>\n\n<p>&nbsp;</p>\n\n<p>We left the reservoir and wound our way up the side of a deep and narrow canyon before darkness set and the three teams set up camp in the backyard of a roadside café, where we were quickly joined by a fourth team who had spotted our ubiquitous Mongol Rally stickers from the highway. <a href=\"http://crossingtherubikhan.com/best-roads-worst-roads/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 320 km</strong></p>\n\n<p><strong>Distance traveled (total): 9,585 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8151424__1508168832283__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8151426__1508168862882__w1440.jpg\"></div>\n</div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8151429__1508168882904__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8151449__1508168906175__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8151460__1508168954649__w1440.jpg\"></div>\n",
+          "contentActions": [],
+          "creaDate": 1508168980617,
+          "pubDate": 1508168980617,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 6307887.528482259,
+                "ymin": 4208732.948202141,
+                "xmax": 8421218.48651025,
+                "ymax": 6033437.687425384,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_1080",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 28: Uch-Terek, Kyrgyzstan to Almaty, Kazakhstan</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>The mountains on [today's]&nbsp;drive cannot, should not, and will not be described in words. Cooper’s pictures will surely tell a better story (our update from Almaty had a sneak peek—peak?—as well).</p>\n\n<p>&nbsp;</p>\n\n<p>We thoroughly enjoyed the stunning scenery and good road, taking pictures, whipping out the drone for a thin-air flight, and mostly just staring out the windows in wonder. We descended into Bishkek early enough to stock up on camping supplies, grab a meal and push across the Kazakh border to Almaty.</p>\n\n<p>&nbsp;</p>\n\n<p>It felt weird spending so little time in the city that Cooper is two weeks away from calling home, but it was early in the day and we had heard bad things about the roads in Kazakhstan so we wanted a head start. Also Cooper will be spending enough time there soon enough—all’s fair in love and rallying. <a href=\"http://crossingtherubikhan.com/best-roads-worst-roads/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 537 km</strong></p>\n\n<p><strong>Distance traveled (total): 10,122 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8161482__1508169014170__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8161498__1508169026773__w1440.jpg\"></div>\n</div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8161480__1508169143214__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8161507__1508169060331__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8161511__1508169073207__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8161532__1508169196129__w1440.jpg\"></div>\n",
+          "contentActions": [],
+          "creaDate": 1508169211115,
+          "pubDate": 1508169211115,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 6718812.992543258,
+                "ymin": 4438655.52928389,
+                "xmax": 8832143.950571248,
+                "ymax": 6263360.268507133,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_4981",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 29: Almaty, Kazakhstan to Sarkand, Kazakhstan</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>From Almaty we gritted our teeth and trekked north, ready for the 1,100km of potholed roads we had heard so much about. Suburbs quickly gave way to vast nothingness—just the rolling hills and massive grass plain of the steppe—and the roads were indeed bad. In typical Central Asian fashion, a brand new but not-quite –open highway paralleled our route as we bumped and rattled along before the highway disappeared all together and the roads got…better? They weren’t good by any standards, but they were better than we expected and by the time the sun was setting, we had made surprisingly good progress.</p>\n\n<p>&nbsp;</p>\n\n<p>We pulled off onto a dirt track and found a creek-side grove of trees in which to pitch our tent. As the sky turned orange, we meandered out of the grove to watch the sun set over an endless ocean of grass—the horizon line perfectly straight, as if over an actual sea. <a href=\"http://crossingtherubikhan.com/best-roads-worst-roads/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 468 km</strong></p>\n\n<p><strong>Distance traveled (total): 10,590 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8171545__1508169248648__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8171565__1508169308853__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8171570__1508169323174__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8171576__1508169333983__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508169348999,
+          "pubDate": 1508169348999,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 7051466.939640257,
+                "ymin": 4776201.446191138,
+                "xmax": 9164797.897668246,
+                "ymax": 6600906.185414381,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_2531",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px; outline:none\">Day 30: Sarkand, Kazakhstan to Qalbatau, Kazakhstan</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>We awoke early the next day and traversed the tranquil steppe on surprisingly ok roads (with the occasional nasty surprise) until, just as we had started to look for places to camp, we were passed by none other than our Austrian friends, Team Adventureland! This was our fifth time running into Alexander and Niklas and the first since Bukhara, where we had had dinner with them a week before.</p>\n\n<p>&nbsp;</p>\n\n<p>So we went to the next town, picked up some necessities (water and beer) and pulled off to camp in a field a few hundred kilometers from the highway. But we cooked, and we drank our beers, and we happily chatted until the late hour of 9:30, when we retreated to our tents to prepare for one last day of Kazakhstan. <a href=\"http://crossingtherubikhan.com/best-roads-worst-roads/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 662 km</strong></p>\n\n<p><strong>Distance traveled (total): 11,252 km</strong></p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8181583__1508169375734__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8181602__1508169406047__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8181610__1508169422976__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8181624__1508169446675__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508169483658,
+          "pubDate": 1508169483658,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 7244699.747145131,
+                "ymin": 5434171.3856697595,
+                "xmax": 9358030.705173118,
+                "ymax": 7258876.124893003,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_6109",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px; outline:none\">Day 31: Qalbatau, Kazakhstan to Barnaul, Russia</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>We said goodbye to the Austrians at the campsite—they were off to see the Polygon, a defunct nuclear testing zone from the Soviet era where the leftover radiation still plagues the residents of nearby Semey.</p>\n\n<p>&nbsp;</p>\n\n<p>We were also going through Semey and were met with 150km of almost-finished highway. In the starkest road quality contrast of the entire rally to date, we alternated between spanking new tarmac and a horrible concoction of rocks-that are-a-little-too-big-to-be-considered-gravel and sneaky, vicious pot holes.</p>\n\n<p>&nbsp;</p>\n\n<p>So overall we made decently good time, and worked our way to the Russian border, where getting out of Kazakhstan turned out to be a much bigger pain than getting into Russia. So long Central Asia! <a href=\"http://crossingtherubikhan.com/best-roads-worst-roads/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 730 km</strong></p>\n\n<p><strong>Distance traveled (total): 11,982 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8191629__1508169580025__w1440.jpg\"></div>\n\n<div class=\"image-container activate-fullscreen\">&nbsp;</div>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8191630__1508169538726__w1440.jpg\"></div>\n\n<div class=\"image-container activate-fullscreen\">&nbsp;</div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508169636388,
+          "pubDate": 1508169636388,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 7481960.282942255,
+                "ymin": 6121493.144009881,
+                "xmax": 9595291.240970243,
+                "ymax": 7946197.883233124,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_1274",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 32: Barnaul, Russia to Onguday, Russia</span></strong></p>\n",
+          "content": "<p>After stocking up on supplies (read: an assortment of commie-brand instant noodle packets and cans of something that turned to be anything BUT tuna), we hit the good Russian motorway and made for the Altai Mountains. The smooth, winding mountain roads gave us little trouble – in fact, they were some of the nicest roads we’d encountered in weeks, and they offered incredible alpine views, to boot.</p>\n\n<p class=\"pullquote\">\"We turned up the volume on Cooper’s Tuvan throat singing collection and tumbled along at a heady 80km/h.\"</p>\n\n<p>So, we turned up the volume on Cooper’s Tuvan throat singing collection and tumbled along at a heady 80km/h. It was almost as though we’d suddenly returned to Europe (and, depending on how you define Russia geographically, perhaps we did). <a href=\"http://crossingtherubikhan.com/mongolia-part-i/\" target=\"_blank\">Read&nbsp;full journal entry</a><!--/p--></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 513 km</strong></p>\n\n<p><strong>Distance traveled (total): 12,495 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8201644__1508169685930__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8201631__1508169708596__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8201646__1508169725030__w1440.jpg\"></div>\n",
+          "contentActions": [],
+          "creaDate": 1508169790595,
+          "pubDate": 1508169790595,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 7682531.045162505,
+                "ymin": 5666539.951656634,
+                "xmax": 9795862.003190491,
+                "ymax": 7491244.690879878,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_6434",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 33: Onguday, Russia to Tsagaannuur, Mongolia</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>The mountains abruptly crumbled back into the endless steppe, and before long, we reached the border – well, the Russian exit border, that is. Before actually entering Mongolia, we had to pass through 20km of no-man’s land, occupied solely by some goats of ambiguous nationality, some blubbery beaver-like marmots skittering about (they’ll make a return appearance), and a man bizarrely mowing a small patch of grass next to the road. Also in no-man’s land, Keshav “the KP Cruiser” Pothole’s odometer hit 100,000km, and the road turned from asphalt to dirt.</p>\n\n<p class=\"pullquote\">\"He proceeded to explain to us, while carelessly smoking a cigarette inches from the fuel, that he needed the petrol to go hunting after work. We asked if we could come along. And so began one of the strangest side-trips of our adventure.\"</p>\n\n<p>What began as a relatively routine border crossing (“passport, mister!” “driver here, passenger there, mister!”) took a turn for the Mongolian when a border agent asked us to sell him some petrol from our jerry can. Since he still had Nick’s passport and unstamped documents in hand, we were in no position to refuse. He proceeded to explain to us, while carelessly smoking a cigarette inches from the fuel, that he needed the petrol to go hunting after work. We asked if we could come along. And so began one of the strangest side-trips of our adventure.</p>\n\n<p>&nbsp;</p>\n\n<p>The border official told us to wait for him in a small restaurant down the road, and 40 minutes later, while were feasting on buuz (delicious Mongolian dumplings), our friend rolled up in a souped-up Prius, accompanied by another border guard and a .22 rifle. We piled into the back seat and sped off, abandoning the dirt path (or “highway,” as our maps labeled it) to careen up a grass hill in search of the large Tarbagan marmots that burrow in the hillsides. Spotting one particularly plump beast scuttling around in the rocks, our hosts chased it into its hole, pulled up nearby – utilizing the lethal silence of our hybrid cruiser – and trained the rifle out the passenger window. Thirty seconds later, the marmot peeped his little head up for a looksie, and was immediately nailed between the eyes. While the shooter whooped and hollered, his friend leapt out of the car, ran over to the hole, and reaching down, grabbed the twitching marmot by its tail and flung it a full 10 feet into the air. Once the poor beast was sufficiently dead, our hosts bagged it up, and stuck it in the trunk. <a href=\"http://crossingtherubikhan.com/mongolia-part-i/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 365 km</strong></p>\n\n<p><strong>Distance traveled (total): 12,860 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8211658__1508169874510__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8211674__1508169890519__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8211682__1508169901063__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8211685__1508169914444__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8211690__1508169956334__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8211692__1508169972183__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8211693__1508169996731__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508170020882,
+          "pubDate": 1508170020882,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 8078780.599792753,
+                "ymin": 5436617.370574885,
+                "xmax": 10192111.557820741,
+                "ymax": 7261322.109798129,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_2171",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 34: Tsagaannuur, Mongolia to Tolbo, Mongolia</span></strong></p>\n",
+          "content": "<p>The next day delivered our first taste of Mongolian off-roading. While the dirt roads, river crossings, and the Danes’ 1984 Fiat 127 hindered our progress, we had a blast tearing across the rugged steppe, dangling out the car windows with wanton disregard for our personal safety, and hooting and hollering like we were young again.</p>\n\n<p>&nbsp;</p>\n\n<p>Sometimes, the dirt paths would diverge, and our entire convoy would barrel ahead five cars abreast. Though our speed rarely exceeded 40km/h, it felt like we were flying over the dirt. This is what Mongolia was all about. This is what we’d traveled all this way to experience.</p>\n\n<p>&nbsp;</p>\n\n<p>At one point, a particularly muddy mud pit rendered the Israelis immobile. Fortunately, a local jeep, commandeered by a man who was almost certainly drunk, arrived on the spot, and offered to tow them out from behind. The driver got a bit overzealous, and yanked the Israeli’s Renault Kangoo across the mud like a water skier, while Stav, the driver, helplessly jamming on the brakes and handbrake and bellowing “stop!”, before the tow hook mercifully snapped. We all had a good laugh. The jeep driver offered to tow the rest of us, and we quickly declined. Onward we trekked, our clothes a little muddier and our cars a little creakier. As the sun began to set, we pitched camp at the foot of a steep slope, the hillside offering solid protection from the wind. <a href=\"http://crossingtherubikhan.com/mongolia-part-i/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 223 km</strong></p>\n\n<p><strong>Distance traveled (total): 13,083 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8221708__1508170070312__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8221775__1508170084659__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/15308236690_094e55f8c9_o__1508170140697__w1500.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/15308048469_8104073545_o__1508170162442__w1500.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8221812__1508170175186__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n",
+          "contentActions": [],
+          "creaDate": 1508170209694,
+          "pubDate": 1508170209694,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 8247553.558246379,
+                "ymin": 5228708.653639262,
+                "xmax": 10360884.516274365,
+                "ymax": 7053413.392862505,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_7132",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 35: Tolbo, Mongolia to Darvi, Mongolia</span></strong></p>\n",
+          "content": "<p>We got an early start the next morning, hoping to recoup some of the mileage (kilometerage?) that we’d lost the previous day. For hours, we sped through the hills and mountains on interwoven dirt paths. The driving experience itself was akin to backcountry skiing: we carefully picked our lines to avoid bumpy roads and loose boulders, weaving left and right around tightly banked turns, power sliding over loose sand, and literally flying over small crests in the road. It was wild fun, unlike any driving we’d encountered previously. Frankly, we were ‘shocked’ (foreshadowing) that our little Alto could handle the abuse.</p>\n\n<p class=\"pullquote\">\"We carefully picked our lines to avoid bumpy roads and loose boulders, weaving left and right around tightly banked turns, power sliding over loose sand, and literally flying over small crests in the road.\"</p>\n\n<p>Unfortunately, however, our roof box (which, you may recall, began to disintegrate in Turkmenistan) had plans of its own. Somewhere near Khovd, a nasty, well-concealed bump sent us completely airborne, and the rough landing launched the roof box forward, so that it dangled precariously over the windshield. We happily poured the rest of our jerry can into the tank, strapped Cooper’s bag to the roof, and stuffed what we could into the trunk. To the rest, we said good riddance and gave it a new home in the middle of the steppe. <a href=\"http://crossingtherubikhan.com/mongolia-part-i/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 262 km</strong></p>\n\n<p><strong>Distance traveled (total): 13,345 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8231826__1508170368287__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8231830__1508170433028__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/15494942905_d945e3432f_o__1508170499108__w1500.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/15471646206_31bd82c661_o__1508170511037__w1500.jpg\"></div>\n",
+          "contentActions": [],
+          "creaDate": 1508170526196,
+          "pubDate": 1508170526196,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 8533733.792146003,
+                "ymin": 5015907.966893387,
+                "xmax": 10647064.750173988,
+                "ymax": 6840612.706116631,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_2160",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 36: Darvi, Mongolia to Altai, Mongolia</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>This may have been the most frustrating stretch of our drive through Mongolia: the landscape was flat and repetitive, offering no distraction from the torturous, obscenity-inducing washboard road we were forced to drive on. Roads like these wreak havoc on cars’ suspension systems, and while ours remained intact (for the moment) our Danish friends had frequent problems including one harrowing moment when their left rear suspension spring cracked entirely and busted through the frame of their car, allowing the person in the back seat to see straight through to the road below.</p>\n\n<p class=\"pullquote\">\"Two days, two roof racks gone—but hey, it’s Mongolia, that’s what’s supposed to happen.\"</p>\n\n<p>After ten hours and several stops for MacGyver-esque repairs to the Danes’ Fiat, we emerged from the Valley of Death and climbed over some small mountains onto a beautiful green plateau that puts the ubiquitous Windows desktop picture to shame. We careened along, thrilled to be back on pleasant dirt roads. The skiing metaphor mentioned in our last post is entirely apt: some lines are better than others, and I would alternately cackle as we flew by other cars or mutter oaths after making a bad choice. Our English friends, Rob and Jack, were a little over-zealous and gunned it over the plateau too fast to notice a massive pothole in front of them that stopped their car dead in its tracks and caused their roof rack to fly a good ten feet further. Two days, two roof racks gone—but hey, it’s Mongolia, that’s what’s supposed to happen.&nbsp;<a href=\"http://crossingtherubikhan.com/mongolia-part-ii/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 323 km</strong></p>\n\n<p><strong>Distance traveled (total): 13,668 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8241873__1508170575939__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8241886__1508170584643__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8241908__1508170598326__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8241917__1508164107626__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/DSC_0085-Edit__1508170681637__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/15494624942_c0fa732a6c_o__1508170721833__w1500.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508170741199,
+          "pubDate": 1508170741199,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 8868833.724148126,
+                "ymin": 4922960.540498638,
+                "xmax": 10982164.682176111,
+                "ymax": 6747665.279721881,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_105",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">Day 37: Altai, Mongolia to Buutsagaan, Mongolia</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<p>Around noon, we rolled out of town and spent about 100km on a nice paved road which ended with absolutely no warning just over the crest of a small hill. I wasn’t disappointed, though: save for the washboard stuff, off-roading in Mongolia was the most fun I’ve ever had behind the wheel. With dark clouds building and the wind picking up, Keshav Pothole got its first flat tire of the trip; fortunately, changing a tire is within our extremely limited realm of auto-expertise. Soon after, the storm began in earnest—and with the rain being blown in sheets across the unprotected steppe, the Danes lost their roof rack to an unexpected ridge. The poor guys could not get a break. Three days, three roof racks.</p>\n\n<p>&nbsp;</p>\n\n<p>We made it across hills and valleys covered in bizarre rock formations to a little town where we came upon a Scottish team and a French team who were getting repairs. They joined us at our campsite just past the town, where we had an excellent bonfire with the remains of Rob and Jack’s roof rack, drank brandy, and had a lovely conversation that took full advantage of the myriad nationalities and languages represented by our convoy. Being in convoy with other teams was a crucial part of crossing Mongolia: it’s safer and a hell of a lot more fun. Anybody crazy enough to do the Rally is likely someone you would be happy to spend time with. <a href=\"http://crossingtherubikhan.com/mongolia-part-ii/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 217 km</strong></p>\n\n<p><strong>Distance traveled (total): 13,885 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8251928__1508170838486__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8251932__1508170848039__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8251947__1508170864112__w1440.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508170895339,
+          "pubDate": 1508170895339,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 9135446.07880675,
+                "ymin": 4891162.736732013,
+                "xmax": 11248777.036834735,
+                "ymax": 6715867.475955256,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_2779",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px; outline:none\">Day 38: Buutsagaan, Mongolia to Bayankhongor, Mongolia</span></strong></p>\n",
+          "content": "<div class=\"image-container\">\n<div class=\"image-container\">\n<p>The next morning we negotiated a small stream and then made decent time over the endless steppe with only animals for company: confused sheep, curious goats, arrogant camels. The Danes didn’t have to stop for repairs until mid-afternoon, easily a record, and at this point we found ourselves next to a few yurts, one of which had a food sign on it.</p>\n\n<p>&nbsp;</p>\n\n<p>We walked inside expecting a restaurant of sorts, but it turned out it was just a family’s home: two beds, some chairs, and a central stove that burned cakes of dung. We asked if they could cook us food; they nodded and began showing us different ingredients: carrots, turnips, noodles, a large piece of an unidentified animal. Everything was cut up and thrown into a massive metal bowl on top of the stove with a healthy amount of salt. We drank hot horse milk while waiting, and eventually were treated to a hearty—if rather bland—meal.</p>\n\n<p>&nbsp;</p>\n\n<p>We continued our journey. Mongolia is indeed one of the most beautiful countries in the world, but it’s huge and the landscape, though stunning, becomes repetitive. Still, every once in a while we were treated to moments of the sublime, like when we crested a hill with the golden evening light behind us, dark storm clouds in the distance, and a perfect 180-degree rainbow dead ahead.&nbsp;<a href=\"http://crossingtherubikhan.com/mongolia-part-ii/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 176 km</strong></p>\n\n<p><strong>Distance traveled (total): 14,061 km</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8261962__1508170926623__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8261983__1508170938943__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8261986__1508170949896__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8261992__1508170957608__w1440.jpg\"></div>\n</div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508170984192,
+          "pubDate": 1508170984192,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 9360476.69007825,
+                "ymin": 4871594.857491013,
+                "xmax": 11473807.648106234,
+                "ymax": 6696299.596714256,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_1181",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px; outline:none\">Day 39: Bayankhongor, Mongolia to Erdenesant, Mongolia</span></strong></p>\n",
+          "content": "<p>We were told that “the fun is over after Bayankhongor,” meaning that from there to Ulaanbaatar the roads are all paved. Turns out this is not entirely the case: there are still stretches of unfinished highway, and the paved roads are mediocre at best (since the roads out of the capital were the first to be built, they’re the oldest in the country). Nevertheless we made good progress and ended our day about <s>180km</s>&nbsp;230km from the finish line in UB.</p>\n\n<p>&nbsp;</p>\n\n<p>Our final night camping was bittersweet: though we looked forward to beds and toilets and real food, we had come to really enjoy sitting around and cooking pasta together under the stars, bundling up against the cold, and crawling in to our sleeping bags at the end of a long day. <a href=\"http://crossingtherubikhan.com/mongolia-part-ii/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Distance traveled (today): 440 km</strong></p>\n\n<p><strong>Distance traveled (total): 14,501&nbsp;km</strong></p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8272015__1508171092502__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8272017__1508171105216__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8272022__1508171121122__w1440.jpg\"></div>\n",
+          "contentActions": [],
+          "creaDate": 1508171180544,
+          "pubDate": 1508171180544,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 9778740.108854624,
+                "ymin": 5052597.740470262,
+                "xmax": 11892071.066882608,
+                "ymax": 6877302.479693506,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                },
+                {
+                  "id": "MongolRallyPoints_7358",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:22px\">Day 40: Erdenesant, Mongolia to Ulaanbaatar, Mongolia</span></strong></p>\n",
+          "content": "<p>We were close enough that we could taste the finish, and the next day we constantly monitored the odometer as the kilometers ticked slowly by. The roads improved, the land became more developed, and eventually we hit a toll booth. Just after was a most welcome sign: Ulaanbaatar. We made our way to the “graveyard,” from where the cars will be shipped back to Europe, and blasted music while we drove up onto the finish line platform and climbed out of the car for some celebratory photos, followed by the Israelis and, incredibly, the Danes in their embattled Fiat.</p>\n\n<p>&nbsp;</p>\n\n<p>We were ecstatic, but it felt surreal at the same time: we had been planning this trip for over a year, and we’d been on the road for nearly six weeks through an extraordinary succession of different places and cultures. Remarkably, our little car had taken us all this way with hardly any problems. And here we were, suddenly finished, packing up our gear and driving away in a taxi, never to see our beloved KP again. <a href=\"http://crossingtherubikhan.com/mongolia-part-ii/\" target=\"_blank\">Read full journal entry</a></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container\">\n<p><strong>Distance traveled (today): 243 km</strong></p>\n\n<p><strong>Distance traveled (total): 14,744 km</strong></p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8282050__1508171160942__w1440.jpg\"></div>\n\n<div class=\"image-container activate-fullscreen\">&nbsp;</div>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/P8282056__1508171202655__w1440.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/1fe5bdf7a7d741b48605c995455c176b/resources/15308391607_bbdac45646_o__1508171229587__w1500.jpg\"></div>\n</div>\n",
+          "contentActions": [],
+          "creaDate": 1508171244952,
+          "pubDate": 1508171244952,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": 10011108.674841499,
+                "ymin": 5174896.985726512,
+                "xmax": 12124439.632869484,
+                "ymax": 6999601.724949756,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "POIs_8463",
+                  "visibility": true
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              },
+              "geocoder": {
+                "enable": false
+              }
+            }
+          }
+        },
+        {
+          "title": "<p><strong><span style=\"font-size:22px\">The End</span></strong></p>\n",
+          "content": "<p>When you fly, you’re sort of like a gopher: popping up in a new place with no sense of what lies in between. Traveling by car may not be the most efficient method, but it allows you to see everything along the way, which we often found to be more interesting and rewarding than the destination itself. We hope you’ve enjoyed the blog, and that it’s helped to give you a sense of the Great In-Between. Thanks again for all of your support—we truly couldn’t have done this without you.</p>\n\n<p>&nbsp;</p>\n\n<p>Stay tuned for our next adventure, whenever,&nbsp;wherever, and whatever that may be!</p>\n\n<p>&nbsp;</p>\n\n<p>— Benjie, Nick, and Cooper</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p><strong><em>Maps, photos, &amp; design&nbsp;by&nbsp;<a href=\"http://cooper-thomas.com\" target=\"_blank\">Cooper Thomas</a></em></strong></p>\n\n<p><strong><em>Text by Nick Allen &amp;&nbsp;Benjie Jenkins</em></strong></p>\n\n<p>&nbsp;</p>\n",
+          "contentActions": [],
+          "creaDate": 1459181922777,
+          "pubDate": 1459181922777,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "c4e88ca535a248bf8507f1d127fa01cd",
+              "extent": {
+                "xmin": -2686610.463888622,
+                "ymin": -1371170.1166142677,
+                "xmax": 14220037.200335307,
+                "ymax": 13226467.797171673,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": [
+                {
+                  "id": "POIsSmallScale_7761",
+                  "visibility": false
+                },
+                {
+                  "id": "MongolRallyPointsStartFinish_2630",
+                  "visibility": false
+                },
+                {
+                  "id": "MongolRallyPointsStartFinish_593",
+                  "visibility": false
+                }
+              ],
+              "popup": null,
+              "overview": {
+                "enable": false,
+                "openByDefault": true
+              },
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "title": "The Great In-Between\n",
+    "template": {
+      "name": "Map Journal",
+      "createdWith": "1.6.1",
+      "editedWith": "1.12.2"
+    }
+  }
+}

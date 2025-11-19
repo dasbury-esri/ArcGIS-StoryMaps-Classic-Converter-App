@@ -1,0 +1,209 @@
+{
+  "source": "f99fb5f7c91f4424b6ae1ca90678f58a",
+  "folderId": "18b9d2484d0c4870a5fb4167d6764114",
+  "values": {
+    "config": {
+      "author": {
+        "name": ""
+      }
+    },
+    "settings": {
+      "theme": {
+        "colors": {
+          "id": "black-on-white-1",
+          "label": "Svijetlo",
+          "themeMajor": "light",
+          "themeContrast": "dark",
+          "bgMain": "white",
+          "textMain": "#4c4c4c",
+          "selected": true
+        },
+        "fonts": {
+          "titleFont": {
+            "label": "Open Sans",
+            "fontFamily": "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+          },
+          "bodyFont": {
+            "label": "Open Sans",
+            "fontFamily": "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+          }
+        }
+      },
+      "header": {
+        "logo": {
+          "enabled": false,
+          "url": "https://www.arcgis.com/sharing/rest/content/items/b04ee8401f804bd486661a27ff8c30a1/resources/5_grb__1554315609855.jpg",
+          "link": "https://www.esri.com"
+        },
+        "link": {
+          "url": "https://storymaps.arcgis.com",
+          "title": ""
+        },
+        "social": {
+          "enabled": false
+        }
+      }
+    },
+    "template": {
+      "name": "Story Map Cascade",
+      "createdWith": "1.9.1",
+      "editedWith": "1.25.0",
+      "dataVersion": "1.0.0"
+    },
+    "sections": [
+      {
+        "type": "cover",
+        "foreground": {
+          "title": "Zdravstvene ustanove",
+          "subtitle": "",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        },
+        "options": {},
+        "layout": "cover-1",
+        "background": {
+          "type": "image",
+          "image": {
+            "type": "image",
+            "width": 1920,
+            "height": 678,
+            "options": {
+              "size": "small",
+              "placement": {
+                "type": "fill",
+                "fill": {
+                  "x": 0.48914990234375,
+                  "y": 0.27201704545454547
+                },
+                "fit": {
+                  "color": "rgb(52, 52, 52)"
+                }
+              }
+            },
+            "url": "https://www.arcgis.com/sharing/rest/content/items/b04ee8401f804bd486661a27ff8c30a1/resources/naslovnica%20za%20mapseries__1539528165654.jpg",
+            "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/b04ee8401f804bd486661a27ff8c30a1/resources/naslovnica%20za%20mapseries__1539528165654__thumb.jpg"
+          }
+        },
+        "bookmark": {
+          "enabled": true,
+          "title": "Početna"
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p style=\"text-align: center;\" class=\"block\"><b>JAVNA I DRUŠTVENA NAMJENA - ZDRAVSTVENA D3</b></p>"
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1920,
+                "height": 1356,
+                "options": {
+                  "fitHeight": false,
+                  "size": "large"
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/b04ee8401f804bd486661a27ff8c30a1/resources/Pregledna%20karta%20Zdravstvo__1539528268484.jpg",
+                "caption": "",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/b04ee8401f804bd486661a27ff8c30a1/resources/Pregledna%20karta%20Zdravstvo__1539528268484__thumb.jpg"
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "url": "https://www.arcgis.com/sharing/rest/content/items/b04ee8401f804bd486661a27ff8c30a1/resources/Pregledna%20karta%20Zdravstvo_Opterecenje_LT__1539527173481.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/b04ee8401f804bd486661a27ff8c30a1/resources/Pregledna%20karta%20Zdravstvo_Opterecenje_LT__1539527173481__thumb.jpg",
+                "options": {
+                  "fitHeight": false,
+                  "size": "large"
+                },
+                "caption": "",
+                "width": 1920,
+                "height": 1356
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1920,
+                "height": 1356,
+                "options": {
+                  "fitHeight": false,
+                  "size": "large"
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/b04ee8401f804bd486661a27ff8c30a1/resources/Pregledna%20karta%20Zdravstvo%20D3__1539528484641.jpg",
+                "caption": "",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/b04ee8401f804bd486661a27ff8c30a1/resources/Pregledna%20karta%20Zdravstvo%20D3__1539528484641__thumb.jpg"
+              }
+            }
+          ]
+        },
+        "bookmark": {
+          "enabled": true,
+          "title": "Prostorna analiza"
+        }
+      },
+      {
+        "type": "credits",
+        "layout": "credits-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "#000"
+          }
+        },
+        "foreground": {
+          "panels": [
+            {
+              "type": "blocks",
+              "blocks": [
+                {
+                  "type": "text",
+                  "text": {
+                    "value": "<p class=\"block\" style=\"text-align: center;\">Gradski ured za zdravstvo&nbsp;</p>"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": {
+                    "value": "<p class=\"block\" style=\"text-align: center;\">Gradki ured za strategijsko planiranje i razvoj Grada</p>"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": {
+                    "value": "<p class=\"block\" style=\"text-align: center;\">listopad 2018.</p>"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "credits",
+              "credits": []
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

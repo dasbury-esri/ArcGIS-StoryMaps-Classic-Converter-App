@@ -1,0 +1,230 @@
+{
+  "source": "32f733be56ce48b5993932715e1070ee",
+  "folderId": "a246ca5c7eb146e588f763be8e471b0f",
+  "values": {
+    "settings": {
+      "layout": {
+        "id": "accordion"
+      },
+      "layoutOptions": {
+        "description": true,
+        "legend": "dropdown",
+        "panel": {
+          "position": "left",
+          "size": "small"
+        },
+        "numbering": true,
+        "reverse": false
+      },
+      "appGeocoders": [
+        {
+          "singleLineFieldName": "SingleLine",
+          "name": "Esri World Geocoder",
+          "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+        }
+      ],
+      "mapOptions": {
+        "overview": {
+          "enable": false,
+          "openByDefault": true
+        },
+        "locateBtn": {
+          "enable": false
+        },
+        "geocoder": {
+          "enable": false
+        },
+        "mapsSync": false
+      },
+      "theme": {
+        "colors": {
+          "name": "accordion-default-3",
+          "group": "bright",
+          "themeMajor": "white",
+          "header": "#6396BC",
+          "headerTitle": "#FFFFFF",
+          "headerText": "#FFFFFF",
+          "panel": "#FFFFFF",
+          "text": "#333333",
+          "textLink": "#555555",
+          "media": "#DBDBDB",
+          "mapControls": "#FFFFFF",
+          "softText": "#444444",
+          "softBtn": "#444444",
+          "esriLogo": "white",
+          "esriLogoMobile": "black",
+          "accordionArrow": "#ACDAFF",
+          "accordionArrowActive": "#4B7697",
+          "accordionArrowHover": "#73A0C4",
+          "accordionNumber": "#4E8DC1",
+          "accordionTitle": "#333333"
+        }
+      },
+      "header": {
+        "linkText": "",
+        "linkURL": "",
+        "logoURL": "NO_LOGO",
+        "logoTarget": "",
+        "social": {
+          "facebook": false,
+          "twitter": false,
+          "bitly": false
+        },
+        "compactSize": true
+      }
+    },
+    "title": "S.R. 68; Redwood Road in Saratoga Springs",
+    "story": {
+      "storage": "WEBAPP",
+      "entries": [
+        {
+          "title": "Multiuse Trail from 400 South to Pioneer Crossing",
+          "creaDate": 1520810461138,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "966819fbb91a45b9bc900e699101435a",
+              "extent": null,
+              "layers": null,
+              "popup": null,
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              }
+            }
+          },
+          "description": ""
+        },
+        {
+          "title": "Bike Signal at Pony Express Parkway",
+          "creaDate": 1520630845690,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "6cc4c07203f14b30a0cfef3ceac3ed9b",
+              "extent": {
+                "xmin": -12458681.575039467,
+                "ymin": 4918540.713328439,
+                "xmax": -12458251.616755495,
+                "ymax": 4918789.730834573,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": null,
+              "popup": null,
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              }
+            }
+          },
+          "description": ""
+        },
+        {
+          "title": "Buffered Bike Lanes",
+          "creaDate": 1520531501012,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "6cc4c07203f14b30a0cfef3ceac3ed9b",
+              "extent": {
+                "xmin": -12457943.695135053,
+                "ymin": 4914223.170793454,
+                "xmax": -12457728.715993065,
+                "ymax": 4914347.679546521,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": null,
+              "popup": null,
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              }
+            }
+          },
+          "description": "<p>&nbsp;</p>\n\n<figure class=\"caption\">\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"http://lh3.googleusercontent.com/-ZMQliUfRcHo/WqW4JkJotEI/AAAAAAAACkA/_YilMUvevE0CJKCeChCPhM9Sfdntg9dVACHMYBhgL/s1600/Buffered%2BBike%2BLanes%2BUS%2B189%2BProvo%2B4.jpg\"></div>\n\n<figcaption>Buffered bike lanes on U.S. 189 in Provo</figcaption>\n</figure>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n"
+        },
+        {
+          "title": "Continuous Flow Intersection (CFI)",
+          "creaDate": 1520810305552,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "6cc4c07203f14b30a0cfef3ceac3ed9b",
+              "extent": {
+                "xmin": -12458874.757685294,
+                "ymin": 4919991.523955071,
+                "xmax": -12458014.841116967,
+                "ymax": 4920489.5589675605,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": null,
+              "popup": null,
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              }
+            }
+          },
+          "description": "<ul>\n\t<li><span style=\"font-size:20px\">Green pavement marking</span></li>\n\t<li><span style=\"font-size:20px\">Two-stage turn box</span></li>\n</ul>\n"
+        },
+        {
+          "title": "3D Virtual Tour",
+          "creaDate": 1520463098357,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webpage",
+            "webpage": {
+              "url": "https://sketchfab.com/models/01a0376b14b94a91bc25c0068962e7a8/embed?autostart=0&preload=1&annotations_visible=0&annotation_cycle=10&camera=0",
+              "type": "webpage",
+              "display": "stretch",
+              "unload": true
+            }
+          },
+          "description": ""
+        },
+        {
+          "title": "Project Overview",
+          "creaDate": 1520526250697,
+          "status": "PUBLISHED",
+          "media": {
+            "type": "webmap",
+            "webmap": {
+              "id": "6cc4c07203f14b30a0cfef3ceac3ed9b",
+              "extent": {
+                "xmin": -12464382.735077621,
+                "ymin": 4914061.966779803,
+                "xmax": -12450624.069986308,
+                "ymax": 4922030.526978522,
+                "spatialReference": {
+                  "wkid": 102100
+                }
+              },
+              "layers": null,
+              "popup": null,
+              "legend": {
+                "enable": false,
+                "openByDefault": false
+              }
+            }
+          },
+          "description": "<p><span style=\"font-size:18px\">2017</span></p>\n\n<ul>\n\t<li><span style=\"font-size:18px\">Widened road (from three to five lanes between 400 S. to Lake View Terrace Rd.)</span></li>\n\t<li><span style=\"font-size:18px\">Dual left-turn lanes on Grandview Blvd.</span></li>\n\t<li><span style=\"font-size:18px\">Resurfaced road from Village Pkwy. south, approximately 10 miles</span></li>\n</ul>\n\n<p><span style=\"font-size:18px\">2018</span></p>\n\n<ul>\n\t<li><span style=\"font-size:18px\">New east-west Continuous Flow Intersection (CFI) at Pioneer Crossing</span>\n\n\t<ul>\n\t\t<li><span style=\"font-size:18px\">Bike lanes with green paint</span></li>\n\t\t<li><span style=\"font-size:18px\">Two-stage turn box</span></li>\n\t</ul>\n\t</li>\n\t<li><span style=\"font-size:18px\">Widened road (from three to five lanes between Lake View Terrace Rd. and Village Pkwy.)</span></li>\n\t<li><span style=\"font-size:18px\">New traffic signals at Ring Rd. and Stillwater Dr.</span></li>\n\t<li><span style=\"font-size:18px\">New trail from Pioneer Crossing to 400 S.</span></li>\n\t<li><span style=\"font-size:18px\">New bike signal at Pony Express Pkwy.</span></li>\n\t<li><span style=\"font-size:18px\">Extended bike lanes from 400 S. to Village Pkwy.</span></li>\n</ul>\n\n<p>&nbsp;</p>\n"
+        }
+      ]
+    },
+    "template": {
+      "name": "Map Series",
+      "createdWith": "1.10.1",
+      "editedWith": "1.10.1"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+    "source": "94c57691bc504b80859e919bad2e0a1b",
+    "folderId": null,
+    "values": {
+        "background": "#ffffff",
+        "color": "#002673",
+        "legendTitleBackground": "#bed2ff",
+        "showSocialIcons": true,
+        "showLogo": true,
+        "showTitle": true,
+        "showSubTitle": true,
+        "showSocialText": true,
+        "subtitleColor": "#242424",
+        "legend": true,
+        "legendOpen": true,
+        "scalebar": true,
+        "search": false,
+        "searchConfig": {
+            "sources": [
+                {
+                    "locator": {
+                        "url": "http://maps.lacity.org/arcgis/rest/services/Locators/Centerline_WebMerc/GeocodeServer",
+                        "_url": {
+                            "path": "http://maps.lacity.org/arcgis/rest/services/Locators/Centerline_WebMerc/GeocodeServer",
+                            "query": null
+                        },
+                        "normalization": true
+                    },
+                    "singleLineFieldName": "Single Line Input",
+                    "url": "http://maps.lacity.org/arcgis/rest/services/Locators/Centerline_WebMerc/GeocodeServer",
+                    "name": "BOE Centerline Geocoder",
+                    "placeholder": "",
+                    "batch": true,
+                    "zoomScale": 10000,
+                    "placefinding": true,
+                    "enable": true,
+                    "id": "dojoUnique4"
+                }
+            ],
+            "activeSourceIndex": 0,
+            "enableSearchingAll": false
+        },
+        "webmap": "292cba1625cd4bb6ac176134fc89f563",
+        "title": "Affordable Housing Units",
+        "subtitle": "Source: City of Los Angeles' Housing and Community Investment Department. 2014. <br> *Map excludes any properties monitored by the Housing Authority of Los Angeles (HACLA).</br>",
+        "logoLink": "http://www.lacontroller.org/",
+        "socialText": "Affordable Housing Incentives",
+        "socialLink": "https://lacontroller.maps.arcgis.com/apps/Cascade/index.html?appid=7cec3765fd39464a9c877a3b697176dc&edit",
+        "logo": "http://d3n8a8pro7vhmx.cloudfront.net/controllergalperin/sites/2/meta_images/original/la_city_logo_med.png?1436559733"
+    }
+}

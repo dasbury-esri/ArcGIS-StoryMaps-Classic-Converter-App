@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@esri/arcgis-rest-auth": "^3.8.0",
+    "express": "^5.1.0",
+    "image-size": "^2.0.2",
+    "node-fetch": "^2.7.0"
+  },
+  "scripts": {
+    "proxy": "node proxy-server/proxy-server.js"
+  }
+}

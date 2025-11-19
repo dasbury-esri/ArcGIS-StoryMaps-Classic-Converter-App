@@ -1,0 +1,711 @@
+{
+    "operationalLayers": [
+        {
+            "id": "Skrydis_GX_1292_SD_2867",
+            "opacity": 1,
+            "title": "Skrydis GX_1292_SD",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/RasterGX_1292_SD_package/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "4cebb90839dc49c28b7dba90904b6c33",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "SK_GX_2197_SD_5951",
+            "opacity": 1,
+            "title": "Skrydis GX_2197_SD",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/RasterGX_2197_SD_package/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "13305fff543242878fc50d8691fa3095",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "GX_511_package_3917",
+            "opacity": 1,
+            "title": "Skrydis GX_511",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/RasterGX_511_package/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "7097db1e6c6d4709a7526570b1b86b64",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "Skrydis_GX_184_SK_7328",
+            "opacity": 1,
+            "title": "Skrydis GX_184_SK",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/RasterGX_184_SD_package/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "0ebfba46682647778ea5cd158f382a91",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "Skrydis_GX_619_SD_4266",
+            "opacity": 1,
+            "title": "Skrydis GX_619_SD",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/RasterGX_619_SD_package/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "54aeacd3e6a544e3bf7758b8e515e15d",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "Skrydis_GX_2186_SD_new_5319",
+            "opacity": 1,
+            "title": "Skrydžio GX-2186-SD aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/Skrydis_GX_2186_SD_new/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "75cd9a3d1b314b33b2adbe35279833a3",
+            "layerType": "ArcGISTiledMapServiceLayer",
+            "layers": [
+                {
+                    "id": 0,
+                    "popupInfo": {
+                        "popupElements": [
+                            {
+                                "type": "fields"
+                            },
+                            {
+                                "type": "attachments",
+                                "displayType": "auto"
+                            }
+                        ],
+                        "showAttachments": true,
+                        "fieldInfos": [
+                            {
+                                "fieldName": "OBJECTID",
+                                "label": "OBJECTID",
+                                "tooltip": "",
+                                "visible": false
+                            },
+                            {
+                                "fieldName": "PAVADINIMAS",
+                                "isEditable": true,
+                                "label": "Pavadinimas",
+                                "tooltip": "",
+                                "visible": true
+                            },
+                            {
+                                "fieldName": "DATA",
+                                "isEditable": true,
+                                "label": "Skrydžio data",
+                                "tooltip": "",
+                                "visible": true
+                            },
+                            {
+                                "fieldName": "NUOTRSK",
+                                "format": {
+                                    "digitSeparator": true,
+                                    "places": 2
+                                },
+                                "isEditable": true,
+                                "label": "Nuotraukų sk.",
+                                "tooltip": "",
+                                "visible": true
+                            },
+                            {
+                                "fieldName": "Shape__Area",
+                                "format": {
+                                    "digitSeparator": true,
+                                    "places": 2
+                                },
+                                "label": "Shape__Area",
+                                "tooltip": "",
+                                "visible": false
+                            },
+                            {
+                                "fieldName": "Shape__Length",
+                                "format": {
+                                    "digitSeparator": true,
+                                    "places": 2
+                                },
+                                "label": "Shape__Length",
+                                "tooltip": "",
+                                "visible": false
+                            }
+                        ],
+                        "title": "Skrydziai_VISI_: {PAVADINIMAS}"
+                    },
+                    "layerUrl": "https://services2.arcgis.com/JsmgSi5uHprzmR5k/arcgis/rest/services/SkrydzioAeronuotraukuTeritorijos/FeatureServer/0"
+                }
+            ]
+        },
+        {
+            "id": "GX3800SK_7038",
+            "opacity": 1,
+            "title": "Skrydžio GX-3800-SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX3800SK/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "1d6732320ba643318a4958748d7e79c7",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "Skrydis_GX_1295_SD_9575",
+            "opacity": 1,
+            "title": "Skrydžio GX_1295_SD aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/Skrydis_GX_1295_SD/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "a980bd3e541e4d70888f9ceb40264f28",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "GX_2687_SD_map_8025",
+            "opacity": 1,
+            "title": "Skrydžio GX_2687_SD_A aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_2687_SD_map/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "6cab2b0b90c24b669d9855f90cab9fa7",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "GX_735_SD_9599",
+            "opacity": 1,
+            "title": "Skrydžio GX_735_SD aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_735_SD/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "693d9782373c48f8bbebd6ca793b97af",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "gX_SG_A_mok_3944",
+            "opacity": 1,
+            "title": "Skrydžio GX_850_SG_A aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/gX_SG_A_mok/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "843a8463d77f44f9ac6262ce95c6337a",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "GX_850_B_mokymai1_442",
+            "opacity": 1,
+            "title": "Skrydžio GX_850_SG_B aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_850_B_mokymai1/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "68a34108d06c4af4b38dd75fea025797",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "GX_8211_SD_2a_2264",
+            "opacity": 1,
+            "title": "Skrydžio GX_8211_SD aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_8211_SD_2a/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "afa90751dcf843f5a20b388463480d34",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_1680_SK_8950",
+            "opacity": 1,
+            "title": "Skrydžio TUGX_1680_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_1680_SK/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "0ad68a56ec544d1d8b01e0dbdebefe3c",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_1678_SK_red_214",
+            "opacity": 1,
+            "title": "Skrydžio TUGX_1678_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_1678_SK_red/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "7afca7f577f247a1a912f433fe4f5601",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_1677_SK_8492",
+            "opacity": 1,
+            "title": "Skrydžio TUGX_1677_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_1677_SK/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "3ddbde5f0d164a61a73f08d2088b7ae9",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_1068_SG_6947",
+            "opacity": 1,
+            "title": "Skrydžio TUGX_1068_SG aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_1068_SG/MapServer",
+            "visibility": true,
+            "minScale": 96939,
+            "maxScale": 1000,
+            "itemId": "49677e9751d744aeaf577f350adb583b",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_926_SK_7244",
+            "opacity": 1,
+            "title": "Skrydžio TUGX_926_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_926_SK/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1250,
+            "itemId": "3519130933684185a0d8c210d7af3e1d",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_462_SK_4179",
+            "opacity": 1,
+            "title": "Skrydžio TUGX_462_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_462_SK/MapServer",
+            "visibility": true,
+            "minScale": 69181,
+            "maxScale": 1250,
+            "itemId": "31052a193c8f403e937085a9c275e794",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_461_SK_499",
+            "opacity": 1,
+            "title": "Skrydžio TUGX_461_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_461_SK/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "c05ad8d23bf146c5bf3f3e48f6ca82a2",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_414_SK_A_989",
+            "opacity": 1,
+            "title": "Skrydžio  TUGX_414_SK_A aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_414_SK_A/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "cbabeb5084db4293a04fe1cee6aeea2d",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_414_SK_B_8505",
+            "opacity": 1,
+            "title": "Skrydžio  TUGX_414_SK_B aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_414_SK_B/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "e6e19da1dffd405a9eb05fa17d25a515",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_412_SK_C_6774",
+            "opacity": 1,
+            "title": "Skrydžio TUGX_412_SK_C aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_412_SK_C/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "efaae30369a341ae918918e60bc98f2a",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_406_SK_3127",
+            "opacity": 1,
+            "title": "Skrydžio TUGX_406_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_406_SK/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "c8bbd2f7eadf4537a717fb78023e4db5",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_335_SG_432",
+            "opacity": 1,
+            "title": "Skrydžio TUGX_335_SG aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_335_SG/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "c504fc06feb8473fad29a9d6b2307dbd",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_335_SK_8324",
+            "opacity": 1,
+            "title": "Skrydžio TUGX_335_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_335_SK/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "fef32a7d8b1e4c72afceaa43a37aec85",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_334_SK_1972",
+            "opacity": 1,
+            "title": "Skrydžio TUGX_334_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_334_SK/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "408497f9ece1454b9b349fa14628d999",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "TUGX_333_SD_2956",
+            "opacity": 1,
+            "title": "Skrydžio TUGX_333_SD aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/TUGX_333_SD/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "d1571d70bd57430999f85347aa79d69d",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "181f2371cf3-layer-34",
+            "opacity": 1,
+            "title": "Skrydžio GX_18627_SG aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_18627_SG/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 0,
+            "itemId": "002814751ca34cb28059e456bf16dc87",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "GX_16777_SK_7550",
+            "opacity": 1,
+            "title": "Skrydžio GX_16777_SK  aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_16777_SK/MapServer",
+            "visibility": true,
+            "minScale": 80000,
+            "maxScale": 1000,
+            "itemId": "c1575990208440b38d19443207ae36ac",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "183c6994aac-layer-35",
+            "title": "Skrydžio GX_16460_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_16460_SK_fix_v2/MapServer",
+            "minScale": 80000,
+            "itemId": "7725b6a74a7c48188eb246776533bce0",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "183d1200086-layer-35",
+            "title": "Skrydžio GX_16759_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_16759_SK/MapServer",
+            "minScale": 80000,
+            "itemId": "8873e70e3d234bbdac0d2f58855d2bee",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "183f0318f33-layer-36",
+            "title": "Skrydžio GX_16758_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_16758_SK/MapServer",
+            "minScale": 80000,
+            "itemId": "15b3fa7f67c941a4a7f8407d883cac59",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "1845c5dc531-layer-37",
+            "title": "Skrydžio  GX_16757_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_16757_SK/MapServer",
+            "minScale": 80000,
+            "itemId": "8c2ea2761bc44489b68f3f57a3cb92db",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "1850523d492-layer-38",
+            "title": "Skrydžio GX_16756_SK aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_16756_SK/MapServer",
+            "minScale": 80000,
+            "maxScale": 1250,
+            "itemId": "38f3834fbb7746ab91d0526e4f931c27",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "1859645a688-layer-39",
+            "title": "Skrydžio  GX_16188_SK_A  aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_16188_SK_A/MapServer",
+            "minScale": 80000,
+            "maxScale": 1250,
+            "itemId": "ea275eb7b82e44a9aa09fb2eb60f2518",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "1866e794819-layer-40",
+            "title": "Skrydžio GX_16188_SK_B aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_16188_SK_B/MapServer",
+            "minScale": 80000,
+            "maxScale": 1250,
+            "itemId": "064c14945f404c80a4e29f09de031520",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "1866ef58014-layer-41",
+            "title": "Skrydžio GX_16186_SK_C aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_16186_SK_C/MapServer",
+            "itemId": "3a09967644d04c2380a535d3a401bdec",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "1882490a0a2-layer-42",
+            "title": "Skrydžio GX_13016_SD_A aerofotonuotraukos",
+            "url": "https://tiles.arcgis.com/tiles/JsmgSi5uHprzmR5k/arcgis/rest/services/GX_13016_SD_A/MapServer",
+            "minScale": 80000,
+            "maxScale": 1250,
+            "itemId": "ff5dcb25eb0243f99d291dd4eee78805",
+            "layerType": "ArcGISTiledMapServiceLayer"
+        },
+        {
+            "id": "GX_ALL_9748",
+            "showLegend": true,
+            "opacity": 0.74,
+            "title": "Skrydžių aeronuotraukų teritorijos",
+            "url": "https://services2.arcgis.com/JsmgSi5uHprzmR5k/arcgis/rest/services/SkrydzioAeronuotraukuTeritorijos/FeatureServer/0",
+            "visibility": true,
+            "itemId": "74731205f3eb4b6484aabc92f6b67f87",
+            "layerType": "ArcGISFeatureLayer",
+            "layerDefinition": {
+                "minScale": 0,
+                "maxScale": 80000,
+                "drawingInfo": {
+                    "labelingInfo": [
+                        {
+                            "labelExpression": "[PAVADINIMAS]",
+                            "labelExpressionInfo": {
+                                "expression": "$feature[\"PAVADINIMAS\"]"
+                            },
+                            "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                            "maxScale": 160000,
+                            "minScale": 750000,
+                            "repeatLabel": true,
+                            "symbol": {
+                                "type": "esriTS",
+                                "color": [
+                                    255,
+                                    255,
+                                    255,
+                                    255
+                                ],
+                                "font": {
+                                    "family": "Arial Unicode MS",
+                                    "size": 8.25
+                                },
+                                "horizontalAlignment": "center",
+                                "kerning": true,
+                                "haloColor": [
+                                    47,
+                                    79,
+                                    79,
+                                    255
+                                ],
+                                "haloSize": 0.75,
+                                "rightToLeft": false,
+                                "rotated": false,
+                                "text": "",
+                                "verticalAlignment": "baseline",
+                                "xoffset": 0,
+                                "yoffset": 0,
+                                "angle": 0
+                            },
+                            "useCodedValues": true
+                        }
+                    ],
+                    "renderer": {
+                        "type": "simple",
+                        "symbol": {
+                            "type": "esriSFS",
+                            "color": [
+                                255,
+                                0,
+                                0,
+                                137
+                            ],
+                            "outline": {
+                                "type": "esriSLS",
+                                "color": [
+                                    230,
+                                    0,
+                                    0,
+                                    255
+                                ],
+                                "width": 0.75,
+                                "style": "esriSLSSolid"
+                            },
+                            "style": "esriSFSSolid"
+                        }
+                    }
+                }
+            },
+            "showLabels": true,
+            "popupInfo": {
+                "popupElements": [
+                    {
+                        "type": "fields"
+                    },
+                    {
+                        "type": "attachments",
+                        "displayType": "auto"
+                    }
+                ],
+                "showAttachments": true,
+                "fieldInfos": [
+                    {
+                        "fieldName": "Shape__Area",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "label": "Shape__Area",
+                        "tooltip": "",
+                        "visible": false
+                    },
+                    {
+                        "fieldName": "Shape__Length",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "label": "Shape__Length",
+                        "tooltip": "",
+                        "visible": false
+                    },
+                    {
+                        "fieldName": "DATA",
+                        "isEditable": true,
+                        "label": "Skrydžio data",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "NUOTRSK",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Nuotraukų sk.",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "OBJECTID",
+                        "label": "OBJECTID",
+                        "visible": false
+                    },
+                    {
+                        "fieldName": "PAVADINIMAS",
+                        "isEditable": true,
+                        "label": "Pavadinimas",
+                        "visible": false
+                    }
+                ],
+                "title": "Skrydžio Nr.: {PAVADINIMAS}"
+            }
+        }
+    ],
+    "baseMap": {
+        "baseMapLayers": [
+            {
+                "id": "mapslt_ortofoto_6585",
+                "opacity": 1,
+                "title": "mapslt_ortofoto",
+                "url": "https://www.maps.lt/arcgis/rest/services/mapslt_ortofoto/MapServer",
+                "visibility": true,
+                "minScale": 166263,
+                "maxScale": 1000,
+                "layerType": "ArcGISTiledMapServiceLayer"
+            },
+            {
+                "id": "mapslt_ortofoto_overlay_7243",
+                "opacity": 1,
+                "title": "mapslt_ortofoto_overlay",
+                "url": "https://www.maps.lt/arcgis/rest/services/mapslt_ortofoto_overlay/MapServer",
+                "visibility": true,
+                "minScale": 142206,
+                "maxScale": 1000,
+                "layerType": "ArcGISTiledMapServiceLayer"
+            },
+            {
+                "id": "mapslt_2894",
+                "opacity": 1,
+                "title": "mapslt",
+                "url": "https://www.maps.lt/arcgis/rest/services/mapslt/MapServer",
+                "visibility": true,
+                "minScale": 6000000,
+                "maxScale": 160000,
+                "layerType": "ArcGISTiledMapServiceLayer"
+            }
+        ],
+        "title": "mapslt"
+    },
+    "authoringApp": "ArcGISMapViewer",
+    "authoringAppVersion": "2023.1",
+    "bookmarks": [
+        {
+            "name": "Standartinė aprėptis",
+            "extent": {
+                "spatialReference": {
+                    "latestWkid": 3346,
+                    "wkid": 2600
+                },
+                "xmin": 297155.5830883302,
+                "ymin": 6023965.621963992,
+                "xmax": 659106.3069897781,
+                "ymax": 6206793.070952223
+            },
+            "viewpoint": {
+                "rotation": 0,
+                "scale": 0,
+                "targetGeometry": {
+                    "spatialReference": {
+                        "latestWkid": 3346,
+                        "wkid": 2600
+                    },
+                    "xmin": 297155.5830883302,
+                    "ymin": 6023965.621963992,
+                    "xmax": 659106.3069897781,
+                    "ymax": 6206793.070952223
+                }
+            }
+        }
+    ],
+    "initialState": {
+        "viewpoint": {
+            "targetGeometry": {
+                "spatialReference": {
+                    "latestWkid": 3346,
+                    "wkid": 2600
+                },
+                "xmin": 136553.17855018773,
+                "ymin": 5873814.2799946405,
+                "xmax": 819708.7115279206,
+                "ymax": 6356944.412921574
+            }
+        }
+    },
+    "spatialReference": {
+        "latestWkid": 3346,
+        "wkid": 2600
+    },
+    "version": "2.27"
+}

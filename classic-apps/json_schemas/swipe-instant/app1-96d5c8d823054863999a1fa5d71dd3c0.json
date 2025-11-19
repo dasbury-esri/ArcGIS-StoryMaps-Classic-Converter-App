@@ -1,0 +1,654 @@
+{
+    "pages": {
+        "page_0": {
+            "id": "page_0",
+            "mode": "FIT_WINDOW",
+            "type": "NORMAL",
+            "layout": {
+                "LARGE": "layout_0"
+            },
+            "isDefault": true,
+            "isVisible": true,
+            "label": "Page",
+            "header": true
+        }
+    },
+    "layouts": {
+        "layout_0": {
+            "type": "FIXED",
+            "content": {
+                "0": {
+                    "type": "WIDGET",
+                    "bbox": {
+                        "left": "50%",
+                        "right": "58.6%",
+                        "top": "50%",
+                        "bottom": "38.9%",
+                        "width": "31.3%",
+                        "height": "50.0%"
+                    },
+                    "widgetId": "widget_1",
+                    "setting": {
+                        "autoProps": {
+                            "left": false,
+                            "right": true,
+                            "top": false,
+                            "bottom": true
+                        },
+                        "hCenter": true,
+                        "vCenter": true,
+                        "heightMode": "fixed",
+                        "aspectRatio": 1
+                    }
+                },
+                "1": {
+                    "type": "WIDGET",
+                    "widgetId": "widget_2",
+                    "bbox": {
+                        "left": "0%",
+                        "right": "0%",
+                        "top": "0%",
+                        "bottom": "0%",
+                        "width": "100%",
+                        "height": "100%"
+                    },
+                    "setting": {
+                        "autoProps": {
+                            "left": false,
+                            "right": false,
+                            "top": false,
+                            "bottom": false,
+                            "height": "STRETCH",
+                            "width": "STRETCH"
+                        },
+                        "vCenter": false,
+                        "hCenter": false
+                    }
+                }
+            },
+            "order": [
+                "0",
+                "1"
+            ]
+        },
+        "layout_1": {
+            "type": "FIXED",
+            "label": "Map FixedLayout"
+        },
+        "layout_2": {
+            "content": {
+                "0": {
+                    "type": "WIDGET",
+                    "widgetId": "widget_3",
+                    "bbox": {
+                        "left": "-0.0%",
+                        "right": "85.8%",
+                        "top": "93.1%",
+                        "bottom": "0.1%",
+                        "width": "14.2%",
+                        "height": "55px"
+                    },
+                    "setting": {
+                        "autoProps": {
+                            "right": true,
+                            "left": false,
+                            "top": true,
+                            "bottom": false,
+                            "height": "AUTO"
+                        },
+                        "vCenter": false,
+                        "hCenter": false
+                    }
+                },
+                "1": {
+                    "type": "WIDGET",
+                    "widgetId": "widget_5",
+                    "bbox": {
+                        "left": "0.0%",
+                        "right": "72.6%",
+                        "top": "0.1%",
+                        "bottom": "35.2%",
+                        "width": "27.4%",
+                        "height": "64.7%"
+                    },
+                    "setting": {
+                        "autoProps": {
+                            "left": false,
+                            "right": true,
+                            "top": false,
+                            "bottom": true
+                        },
+                        "vCenter": false,
+                        "hCenter": false
+                    }
+                }
+            },
+            "type": "FIXED",
+            "label": "Map FixedLayout",
+            "order": [
+                "0",
+                "1"
+            ]
+        },
+        "layout_6": {
+            "type": "FIXED",
+            "order": [
+                "5"
+            ],
+            "content": {
+                "5": {
+                    "type": "WIDGET",
+                    "widgetId": "widget_8",
+                    "bbox": {
+                        "left": "0px",
+                        "right": "0px",
+                        "top": "0.0%",
+                        "bottom": "0.0%",
+                        "width": "100.0%",
+                        "height": "100.0%"
+                    },
+                    "setting": {
+                        "autoProps": {
+                            "right": false,
+                            "left": false,
+                            "top": false,
+                            "bottom": false,
+                            "height": "STRETCH",
+                            "width": "STRETCH"
+                        },
+                        "vCenter": false,
+                        "hCenter": false
+                    }
+                }
+            }
+        },
+        "layout_7": {
+            "content": {
+                "0": {
+                    "type": "WIDGET",
+                    "widgetId": "widget_10",
+                    "bbox": {
+                        "width": "824px",
+                        "height": "67px"
+                    },
+                    "setting": {
+                        "autoProps": {
+                            "height": "AUTO",
+                            "width": "STRETCH"
+                        },
+                        "style": {
+                            "alignSelf": "center"
+                        }
+                    }
+                },
+                "1": {
+                    "type": "WIDGET",
+                    "widgetId": "widget_9",
+                    "bbox": {
+                        "width": "80px",
+                        "height": "36px"
+                    },
+                    "setting": {
+                        "autoProps": {
+                            "height": "CUSTOM"
+                        },
+                        "style": {
+                            "alignSelf": "center"
+                        }
+                    }
+                }
+            },
+            "type": "FLEX_ROW",
+            "order": [
+                "0",
+                "1"
+            ],
+            "label": "Default",
+            "setting": {
+                "space": 0
+            }
+        },
+        "layout_8": {
+            "type": "FIXED",
+            "content": {
+                "3": {
+                    "type": "WIDGET",
+                    "widgetId": "widget_11",
+                    "bbox": {
+                        "left": "10.00px",
+                        "right": "50.00px",
+                        "top": "0%",
+                        "bottom": "0%",
+                        "width": "100%",
+                        "height": "100%"
+                    },
+                    "setting": {
+                        "autoProps": {
+                            "right": false,
+                            "left": false,
+                            "top": false,
+                            "bottom": false,
+                            "height": "STRETCH",
+                            "width": "STRETCH"
+                        },
+                        "vCenter": false,
+                        "hCenter": false
+                    }
+                }
+            },
+            "order": [
+                "3"
+            ]
+        },
+        "layout_9": {
+            "content": {
+                "0": {
+                    "type": "WIDGET",
+                    "widgetId": "widget_9",
+                    "bbox": {
+                        "width": "80.00px",
+                        "height": "36px"
+                    },
+                    "setting": {
+                        "autoProps": {
+                            "height": "CUSTOM"
+                        },
+                        "style": {
+                            "alignSelf": "center"
+                        }
+                    }
+                },
+                "1": {
+                    "type": "WIDGET",
+                    "widgetId": "widget_10",
+                    "bbox": {
+                        "width": "237px",
+                        "height": "54px"
+                    },
+                    "setting": {
+                        "autoProps": {
+                            "width": "STRETCH",
+                            "height": "AUTO"
+                        },
+                        "style": {
+                            "alignSelf": "center"
+                        }
+                    }
+                }
+            },
+            "type": "FLEX_ROW",
+            "order": [
+                "0",
+                "1"
+            ],
+            "label": "Default"
+        }
+    },
+    "exbVersion": "1.19.0",
+    "mainSizeMode": "LARGE",
+    "theme": "themes/master/",
+    "forBuilderAttributes": {
+        "lockLayout": false
+    },
+    "template": "blankfullscreen",
+    "widgets": {
+        "widget_1": {
+            "uri": "widgets/arcgis/arcgis-map/",
+            "version": "1.19.0",
+            "config": {
+                "toolConfig": {
+                    "canZoom": true,
+                    "canHome": true,
+                    "canSearch": true,
+                    "canNavigation": true
+                },
+                "isUseCustomMapState": false,
+                "initialMapState": null
+            },
+            "id": "widget_1",
+            "layouts": {
+                "MapFixedLayout": {
+                    "LARGE": "layout_1"
+                }
+            },
+            "useDataSources": [
+                {
+                    "dataSourceId": "faee54e3666e4b0fbf145ca713061041",
+                    "mainDataSourceId": "faee54e3666e4b0fbf145ca713061041"
+                }
+            ],
+            "label": "Map"
+        },
+        "widget_2": {
+            "uri": "widgets/arcgis/arcgis-map/",
+            "version": "1.19.0",
+            "label": "Map 2",
+            "config": {
+                "toolConfig": {
+                    "canZoom": true,
+                    "canHome": true,
+                    "canSearch": true,
+                    "canNavigation": true
+                },
+                "isUseCustomMapState": false,
+                "initialMapDataSourceID": "dataSource_1",
+                "initialMapState": null,
+                "scaleRange": null,
+                "customLODs": null
+            },
+            "id": "widget_2",
+            "layouts": {
+                "MapFixedLayout": {
+                    "LARGE": "layout_2"
+                }
+            },
+            "dataActions": {
+                "showOnMap": {
+                    "config": {
+                        "isUseCustomSymbol": true,
+                        "isOperationalLayer": true,
+                        "symbolOption": {
+                            "pointSymbol": {
+                                "type": "esriSMS",
+                                "color": [
+                                    255,
+                                    255,
+                                    0,
+                                    150
+                                ],
+                                "angle": 0,
+                                "xoffset": 0,
+                                "yoffset": 0,
+                                "size": 12,
+                                "style": "esriSMSCircle",
+                                "outline": {
+                                    "type": "esriSLS",
+                                    "color": [
+                                        255,
+                                        255,
+                                        0,
+                                        150
+                                    ],
+                                    "width": 1,
+                                    "style": "esriSLSSolid"
+                                }
+                            },
+                            "polylineSymbol": {
+                                "type": "esriSLS",
+                                "color": [
+                                    255,
+                                    255,
+                                    0,
+                                    150
+                                ],
+                                "width": 0.75,
+                                "style": "esriSLSSolid"
+                            },
+                            "polygonSymbol": {
+                                "type": "esriSFS",
+                                "color": [
+                                    255,
+                                    255,
+                                    0,
+                                    150
+                                ],
+                                "outline": {
+                                    "type": "esriSLS",
+                                    "color": [
+                                        255,
+                                        255,
+                                        0,
+                                        150
+                                    ],
+                                    "width": 1,
+                                    "style": "esriSLSSolid"
+                                },
+                                "style": "esriSFSSolid"
+                            }
+                        }
+                    }
+                }
+            },
+            "useDataSources": [
+                {
+                    "dataSourceId": "faee54e3666e4b0fbf145ca713061041",
+                    "mainDataSourceId": "faee54e3666e4b0fbf145ca713061041"
+                },
+                {
+                    "dataSourceId": "dataSource_1",
+                    "mainDataSourceId": "dataSource_1"
+                }
+            ]
+        },
+        "widget_3": {
+            "uri": "widgets/arcgis/swipe/",
+            "version": "1.19.0",
+            "label": "Swipe",
+            "config": {
+                "swipeStyle": "SIMPLE_HORIZONTAL",
+                "swipeMode": "SWIPE_BETWEEN_WEBMAPS_OR_WEBSCENES",
+                "styleConfig": {
+                    "detailsVisibility": false,
+                    "sliderPosition": {
+                        "distance": 50,
+                        "unit": "%"
+                    },
+                    "defaultActivation": true
+                }
+            },
+            "id": "widget_3",
+            "useMapWidgetIds": [
+                "widget_2"
+            ],
+            "offPanel": true
+        },
+        "widget_5": {
+            "uri": "widgets/common/text/",
+            "version": "1.19.0",
+            "label": "Text",
+            "config": {
+                "text": "<p style=\"text-align: left; line-height: 1.5; margin: 0px;\">﻿<span style=\"background-color: rgb(249, 238, 238); letter-spacing: normal; font-family: Arial, Helvetica, sans-serif; color: rgb(51, 51, 51); font-size: medium;\">Šioje aplikacijoje rasite Vokietijos karinių oro pajėgų žvalgybos skrydžių, 1941–1945 m. atliktų virš dabartinės Lietuvos teritorijos, aerofotonuotraukas. Šiuo metu peržiūrai&nbsp;</span><span style=\"background-color: rgb(249, 238, 238); letter-spacing: normal; font-family: Arial, Helvetica, sans-serif; color: black; font-size: medium;\">yra pateiktos 5 skrydžių maršrutų aeronuotraukos, apjungtos į aerofotonuotraukų mozaikas (viso 368 aerofotonuotraukos). Naujos lokalizuotos aeronuotraukos į aplikaciją bus įkeliamos palaipsniui.</span></p><p style=\"text-align: left; margin: 0px; line-height: 1.5;\"><br></p><p style=\"text-align: left; margin: 0px; line-height: 1.5;\"><span style=\"background-color: rgb(249, 238, 238); letter-spacing: normal; font-family: Arial, Helvetica, sans-serif; color: rgb(51, 51, 51); font-size: medium;\">Aplikacija leidžia palyginti istorines aerofotonuotraukas su šiuolaikiniais ortofotografiniais žemėlapiais. </span></p><p style=\"text-align: left; margin: 0px; line-height: 1.5;\"><span style=\"background-color: rgb(249, 238, 238); letter-spacing: normal; font-family: Arial, Helvetica, sans-serif; color: rgb(51, 51, 51); font-size: medium;\">Kompiuterio pelės pagalba priartinkite dominančio skrydžio teritoriją ir norėdami palyginti, vilkite žemėlapio vertikalųjį slankiklį. </span></p><p style=\"text-align: left; line-height: 1.5; margin: 0px;\"><span style=\"background-color: rgb(249, 238, 238); letter-spacing: normal; font-family: Arial, Helvetica, sans-serif; font-size: medium; color: black;\">Daugiau apie šias aeronuotraukas ir projektą rasite&nbsp;</span><strong style=\"background-color: rgb(249, 238, 238); letter-spacing: normal; font-family: Arial, Helvetica, sans-serif; font-size: medium; color: rgb(85, 85, 85);\"><u><a href=\"https://lcva.maps.arcgis.com/\" target=\"_blank\" data-uniqueid=\"\" data-dsid=\"\" data-link=\"null\">čia</a></u></strong><span style=\"background-color: rgb(249, 238, 238); letter-spacing: normal; font-family: Arial, Helvetica, sans-serif; font-size: medium; color: black;\">.</span></p><p><br></p>",
+                "style": {
+                    "wrap": true
+                }
+            },
+            "id": "widget_5",
+            "style": {
+                "background": {
+                    "color": "#f9eeed",
+                    "fillType": "fill",
+                    "image": {
+                        "url": ""
+                    }
+                },
+                "textColor": "#1f1a1a"
+            }
+        },
+        "widget_8": {
+            "uri": "widgets/layout/flowrow/",
+            "version": "1.19.0",
+            "label": "Flow Row",
+            "config": {
+                "space": {
+                    "distance": 0,
+                    "unit": "px"
+                },
+                "style": {
+                    "padding": {
+                        "space": [
+                            10
+                        ],
+                        "unit": "px"
+                    },
+                    "justifyContent": "flex-start",
+                    "alignItems": "stretch"
+                }
+            },
+            "id": "widget_8",
+            "layouts": {
+                "DEFAULT": {
+                    "LARGE": "layout_7"
+                }
+            },
+            "style": {
+                "background": {
+                    "color": "#585858",
+                    "fillType": "fill",
+                    "image": {
+                        "url": ""
+                    }
+                },
+                "textColor": "#ffffff"
+            }
+        },
+        "widget_9": {
+            "uri": "widgets/common/image/",
+            "version": "1.19.0",
+            "label": "Image",
+            "config": {
+                "functionConfig": {
+                    "altText": "",
+                    "toolTip": "",
+                    "linkParam": {
+                        "linkType": "WEB_ADDRESS",
+                        "openType": "_blank",
+                        "value": "https://www.archyvai.lt/",
+                        "expression": null
+                    },
+                    "scale": "Fit",
+                    "imageParam": {
+                        "url": "${appResourceUrl}/images/widget_9/1763181277927.png",
+                        "originalUrl": "${appResourceUrl}/images/widget_9/1763181277927.png",
+                        "fileName": "1763181277927.png",
+                        "originalName": "38023504025_4fe782e490_o.png",
+                        "imgSourceType": "BY_UPLOAD",
+                        "fileFormat": "image/png",
+                        "originalId": "1763181277927",
+                        "originalWidth": 137,
+                        "originalHeight": 50
+                    },
+                    "imgSourceType": "",
+                    "srcExpression": null
+                },
+                "styleConfig": {}
+            },
+            "id": "widget_9",
+            "style": {
+                "background": {
+                    "image": {
+                        "url": ""
+                    },
+                    "color": ""
+                },
+                "borderRadius": {
+                    "number": [
+                        3
+                    ],
+                    "unit": "px"
+                }
+            },
+            "useDataSources": []
+        },
+        "widget_10": {
+            "uri": "widgets/common/text/",
+            "version": "1.19.0",
+            "label": "Text 2",
+            "config": {
+                "text": "<h5><strong style=\"background-color: rgb(88, 88, 88); letter-spacing: normal; color: rgb(255, 255, 255); display: -webkit-box; font-family: open_sanssemibold, sans-serif; font-size: 20px;\">Antrojo pasaulinio karo metų aerofotonuotraukos </strong><span style=\"background-color: rgb(88, 88, 88); letter-spacing: normal; color: rgb(197, 213, 213); font-family: open_sansregular, sans-serif; font-size: 13px;\">Priartinkite dominančio skrydžio teritoriją ir norėdami palyginti, vilkite žemėlapio slankiklį. </span></h5>",
+                "style": {
+                    "verticalAlign": "start",
+                    "wrap": true
+                }
+            },
+            "id": "widget_10"
+        },
+        "widget_11": {
+            "uri": "widgets/layout/flowrow/",
+            "version": "1.19.0",
+            "label": "Flow Row 2",
+            "config": {
+                "space": 10,
+                "style": {
+                    "padding": {
+                        "space": [
+                            10
+                        ],
+                        "unit": "px"
+                    },
+                    "justifyContent": "flex-start",
+                    "alignItems": "stretch"
+                }
+            },
+            "id": "widget_11",
+            "layouts": {
+                "DEFAULT": {
+                    "SMALL": "layout_9"
+                }
+            }
+        }
+    },
+    "widgetsManifest": {},
+    "views": {},
+    "sections": {},
+    "dialogs": {},
+    "messageConfigs": {},
+    "attributes": {
+        "portalUrl": "https://Story.maps.arcgis.com",
+        "favicon": {
+            "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 16 16\"><path fill=\"#000\" d=\"M8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2M6.5 7.5A.5.5 0 0 1 7 7h1.5v4.5h1a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1h1V8H7a.5.5 0 0 1-.5-.5\"></path><path fill=\"#000\" fill-rule=\"evenodd\" d=\"M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16m0-1A7 7 0 1 0 8 1a7 7 0 0 0 0 14\" clip-rule=\"evenodd\"></path></svg>",
+            "properties": {
+                "filename": "Info",
+                "originalName": "outlined/suggested/info.svg",
+                "path": [
+                    "generalAndArrows",
+                    "info"
+                ],
+                "inlineSvg": true,
+                "isUploaded": false,
+                "color": "var(--ref-palette-neutral-1100)"
+            }
+        }
+    },
+    "timestamp": 1763181809322,
+    "sharedThemeVariables": {
+        "header": {},
+        "body": {},
+        "button": {},
+        "logo": {
+            "small": "https://story.maps.arcgis.com/sharing/rest/content/items/6fee9e7d9b014dcd9f7d2004548c633b/data",
+            "link": "https://storymaps.arcgis.com/"
+        }
+    },
+    "mainLocale": "en-ca",
+    "dataSources": {
+        "faee54e3666e4b0fbf145ca713061041": {
+            "type": "WEB_MAP",
+            "itemId": "faee54e3666e4b0fbf145ca713061041",
+            "id": "faee54e3666e4b0fbf145ca713061041",
+            "portalUrl": "https://Story.maps.arcgis.com",
+            "sourceLabel": "Vaizdu archyvo WebMap su nuotraukomis"
+        },
+        "dataSource_1": {
+            "id": "dataSource_1",
+            "type": "WEB_MAP",
+            "sourceLabel": "Vaizdu archyvo  WebMap",
+            "itemId": "063f2a970e3943e6a197fa4ee2c8c5db",
+            "portalUrl": "https://Story.maps.arcgis.com"
+        }
+    },
+    "pageStructure": [
+        {
+            "page_0": []
+        }
+    ],
+    "header": {
+        "layout": {
+            "LARGE": "layout_6",
+            "SMALL": "layout_8"
+        },
+        "height": {
+            "LARGE": "97"
+        }
+    },
+    "publishTimestamp": 1763181814354
+}

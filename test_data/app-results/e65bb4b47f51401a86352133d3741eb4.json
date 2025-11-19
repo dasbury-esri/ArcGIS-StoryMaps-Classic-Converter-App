@@ -1,0 +1,696 @@
+{
+  "root": "n-6wn058",
+  "nodes": {
+    "n-6wn058": {
+      "type": "story",
+      "data": {
+        "storyTheme": "r-ndt8d5"
+      },
+      "children": [
+        "n-9tijt0",
+        "n-tjh8ui",
+        "n-1tap18",
+        "n-h9xv55",
+        "n-8klfc9",
+        "n-iz8p2b",
+        "n-k28he9",
+        "n-1up9ob",
+        "n-b0tu0u",
+        "n-brn05h",
+        "n-i67naq",
+        "n-eavgm4",
+        "n-9k9271",
+        "n-yecrf2",
+        "n-vxhgwf",
+        "n-1b1lkz",
+        "n-syo4zx",
+        "n-49tk7r",
+        "n-nm58n1",
+        "n-rcdulc",
+        "n-64akgx",
+        "n-33g5up",
+        "n-5hsf4z",
+        "n-lnuchj",
+        "n-3zw4ye",
+        "n-h2rvfk",
+        "n-ji7dmb",
+        "n-9lscsh",
+        "n-xyvgp4",
+        "n-dayeni",
+        "n-g4gsuv",
+        "n-0p920g",
+        "n-779cp0",
+        "n-8wm01w",
+        "n-h9afqp",
+        "n-oo8gws",
+        "n-4xmz6g",
+        "n-bbpclt",
+        "n-hukh5a",
+        "n-m6eokz",
+        "n-aurycf",
+        "n-jkqo7m",
+        "n-9v9wm6",
+        "n-5gk393"
+      ]
+    },
+    "n-9tijt0": {
+      "type": "storycover",
+      "data": {
+        "type": "full",
+        "title": "(COPY) Verstedelijking Noord-Nederland",
+        "summary": "In de periode 1950 - 2017 - Leon van der Meulen",
+        "byline": "",
+        "image": "r-crarxv"
+      }
+    },
+    "n-tjh8ui": {
+      "type": "navigation",
+      "data": {
+        "links": []
+      },
+      "config": {
+        "isHidden": true
+      }
+    },
+    "n-5gk393": {
+      "type": "credits",
+      "children": []
+    },
+    "n-1tap18": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "<h2 class=\"block\"><strong>This item is deprecated and will stop working in the near future due to the retirement of <a href=\"https://www.esri.com/arcgis-blog/products/js-api-arcgis/developers/arcgis-api-for-javascript-version-3-x-retirement\" target=\"_blank\" rel=\"noopener noreferrer\">ArcGIS API for Javascript 3</a>.\n\nUnfortunately there is no new version available at this moment. If you wish to have it updated to a new version, please contact Geodienst at <a href=\"http://rug.nl/geo\" rel=\"noopener noreferrer\" target=\"_blank\"><span data-auto-link=\"true\" data-href=\"http://rug.nl/geo\">rug.nl/geo</span></a> or <a href=\"mailto:geodienst@rug.nl\" target=\"_blank\" rel=\"noopener noreferrer\">geodienst@rug.nl</a>.</strong></h2>",
+        "textAlignment": "center"
+      }
+    },
+    "n-h9xv55": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "In (Noord-) Nederland heeft de afgelopen decennia verstedelijking plaatsgevonden. Recent uitgebrachte Atlassen van de Verstedelijking, Wederopbouw en Nieuwe steden geven een gedetailleerd beeld op lokale schaal. Een algeheel beeld op grote schaal ontbreekt echter. Deze thesis zoekt naar een kwantificatie van de omvang en het verloop van de verstedelijking in Noord Nederland",
+        "textAlignment": "start"
+      }
+    },
+    "n-8klfc9": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "In deze story map zijn de resultaten te vinden van een analyse op basis van de Basisregistratie Adressen en Gebouwen (BAG). De stand van de gebruikte download is februari 2017. Een uitleg van de gebruikte methode en een reflectie op de resultaten is terug te vinden in het geschreven deel van deze thesis (zie bronvermelding). &nbsp;",
+        "textAlignment": "start"
+      }
+    },
+    "n-iz8p2b": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Maar liefst <strong>80% </strong>van de huidige panden&nbsp;in Noord Nederland is gebouwd na 1950, dat zijn <strong>842.942</strong> panden. De verdeling van het aantal panden naar bouwjaar is hieronder geplot:",
+        "textAlignment": "start"
+      }
+    },
+    "n-k28he9": {
+      "type": "image",
+      "config": {
+        "size": "standard"
+      },
+      "data": {
+        "image": "r-e24nsl",
+        "caption": "Aantal panden naar Bouwjaar"
+      }
+    },
+    "n-1up9ob": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Opvallend in de bovenstaande grafiek zijn de pieken op decennia en tussenliggende vijf jaren. Deze zijn mogelijk te verklaren door het \"age heaping\" effect, wat wil zeggen dat mensen geneigd zijn om getallen af te ronden. Door de aantallen te groeperen in periodes van vijf jaar ontstaat er een overzichtelijker beeld en verdwijnen deze pieken enigszins.",
+        "textAlignment": "start"
+      }
+    },
+    "n-b0tu0u": {
+      "type": "image",
+      "config": {
+        "size": "standard"
+      },
+      "data": {
+        "image": "r-kybt1g",
+        "caption": "Aantal panden per periode van 5 jaar"
+      }
+    },
+    "n-brn05h": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "In de bovenstaande grafiek is groei te zien in het aantal panden vanaf 1960 met een piek in de periode 1970-1974. Na die piek stabiliseert het aantal panden enigszins. In onderstaande grafiek is de procentuele groei van het aantal panden en de groei van de totale (grond)oppervlakte van panden geplot. groter dan de groei van het aantal panden. Er worden dus sindsdien minder panden gebouwd, maar wel grotere panden.&nbsp;",
+        "textAlignment": "start"
+      }
+    },
+    "n-i67naq": {
+      "type": "image",
+      "config": {
+        "size": "standard"
+      },
+      "data": {
+        "image": "r-y2nl0u",
+        "caption": "Procentuele groei aantal panden en totale oppervlakte panden"
+      }
+    },
+    "n-eavgm4": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Er zijn ook veel panden gesloopt in deze periode. Alleen de panden die ná 2009 zijn gesloopt zijn, zijn opgenomen in de BAG en is dus het bouwjaar bekend. Het gaat in Noord-Nederland om totaal&nbsp;<strong>103.089 </strong>gesloopte&nbsp;panden sinds 2009. In onderstaande grafiek is de verdeling van het aantal ná 2009 gesloopte panden naar bouwjaar geplot, bovenop het aantal nog bestaande panden uit dezelfde periode.",
+        "textAlignment": "start"
+      }
+    },
+    "n-9k9271": {
+      "type": "image",
+      "config": {
+        "size": "standard"
+      },
+      "data": {
+        "image": "r-u8hipm",
+        "caption": "Aantal panden naar bouwjaar per periode (blauw) en het aantal ná 2009 gesloopte panden naar bouwjaar per periode"
+      }
+    },
+    "n-yecrf2": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Uit de cijfers voor geheel Noord-Nederland is duidelijk de omvang en het verloop van de ruimtelijke naoorlogse verstedelijking te zien. Deze verstedelijking heeft niet overal in Noord-Nederland op dezelfde schaal plaatsgevonden. Er is duidelijk sprake van concentratie rondom een aantal steden en kernen. De volgende kaarten gaan hier verder op in.",
+        "textAlignment": "start"
+      }
+    },
+    "n-vxhgwf": {
+      "type": "immersive",
+      "data": {
+        "type": "sidecar",
+        "subtype": "floating-panel"
+      },
+      "children": ["n-adcbn8", "n-3bsjaw", "n-vyssir", "n-kxiy4d", "n-2ssez5"]
+    },
+    "n-pz9laj": {
+      "type": "image",
+      "config": {
+        "size": "standard"
+      },
+      "data": {
+        "image": "r-n3l145"
+      }
+    },
+    "n-1b1lkz": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "<h2 class=\"block\">Omgevingsadressendichtheid</h2>",
+        "textAlignment": "center"
+      }
+    },
+    "n-syo4zx": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "De <a href=\"https://www.cbs.nl/nl-nl/onze-diensten/methoden/begrippen?tab=o#id=omgevingsadressendichtheid-van-een-adres\" target=\"_blank\">Omgevingsadressendichtheid</a> is de maat voor stedelijkheid van het CBS. Voor elk adres wordt het aantal adressen in de omgeving opgeteld. Hiermee is op een schaal van één t/m vijf de concentratie of stedelijkheid te zien. In deze animatie is de concentratie van stedelijkheid door de tijd te zien.",
+        "textAlignment": "start"
+      }
+    },
+    "n-49tk7r": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "In de animatie komt duidelijk naar voren dat de grote kernen sterk zijn uitgebreid, maar ook kleinere kernen hebben een stedelijker karakter gekregen.",
+        "textAlignment": "start"
+      }
+    },
+    "n-adcbn8": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-4yudpn", "n-pz9laj"]
+    },
+    "n-4yudpn": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      },
+      "children": ["n-1b1lkz", "n-syo4zx", "n-49tk7r"]
+    },
+    "n-37piso": {
+      "type": "image",
+      "config": {
+        "size": "standard"
+      },
+      "data": {
+        "image": "r-hb8zfo"
+      }
+    },
+    "n-nm58n1": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "<h2 class=\"block\">Panden naar bouwjaar</h2>",
+        "textAlignment": "center"
+      }
+    },
+    "n-rcdulc": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Naast concentratie is ook de ruimtelijke spreiding van bebouwing een interessante maatstaf. Deze animatie toont de bebouwing in 2017 naar bouwjaar. Oranje/rood is vooroorlogs, blauw naoorlogs.",
+        "textAlignment": "start"
+      }
+    },
+    "n-64akgx": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Net als bovenstaande animatie is ook hier de sterke groei van de grotere kernen te zien. Op het platteland is ontwikkeling te zien, maar veel minder dan rondom de grote kernen.",
+        "textAlignment": "start"
+      }
+    },
+    "n-3bsjaw": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-4vbew1", "n-37piso"]
+    },
+    "n-4vbew1": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      },
+      "children": ["n-nm58n1", "n-rcdulc", "n-64akgx"]
+    },
+    "n-6nrl6m": {
+      "type": "webmap",
+      "config": {
+        "size": "standard"
+      },
+      "data": {
+        "map": "r-i2tjnx",
+        "mapLayers": [
+          {
+            "id": "buurten_bouwjaar_wgs_4431_6971",
+            "title": "",
+            "visible": false
+          },
+          {
+            "id": "buurten_bouwjaar_wgs_4431",
+            "title": "",
+            "visible": true
+          }
+        ]
+      }
+    },
+    "n-33g5up": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "<h2 class=\"block\">Panden voor 1940 per Buurt</h2>",
+        "textAlignment": "center"
+      }
+    },
+    "n-5hsf4z": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Met name de buurten in het landelijke gebied in Noordwest Friesland en Noord Groningen rondom de terpdorpen vallen op. Hier is dus relatief weinig naoorlogse bebouwing. &nbsp;",
+        "textAlignment": "start"
+      }
+    },
+    "n-vyssir": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-6o6dno", "n-6nrl6m"]
+    },
+    "n-6o6dno": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      },
+      "children": ["n-33g5up", "n-5hsf4z"]
+    },
+    "n-lvr9yq": {
+      "type": "webmap",
+      "config": {
+        "size": "standard"
+      },
+      "data": {
+        "map": "r-u45hyg"
+      }
+    },
+    "n-lnuchj": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "<h2 class=\"block\">Panden na 1950 per buurt</h2>",
+        "textAlignment": "center"
+      }
+    },
+    "n-3zw4ye": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Deze kaart is de omgekeerde variant van de vorige kaart. Alle groen gekleurde buurten bevatten meer dan 40% panden van ná 1950. Ook hier is hoe donkerder, hoe hoger het percentage.",
+        "textAlignment": "start"
+      }
+    },
+    "n-h2rvfk": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Net als in de eerdere animaties, is hier ook duidelijk de uitbreiding van grote kernen als Groningen, Leeuwarden, Drachten, Assen en Emmen te zien.",
+        "textAlignment": "start"
+      }
+    },
+    "n-ji7dmb": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "In Drenthe zijn ook veel buurten buiten de grote kernen met een groot aandeel naoorlogse bebouwing. Dit hoge aandeel is deels toe te schrijven aan recreatiewoningen. Wanneer er in een buurt in landelijk gebied, waar een paar honderd huizen staan, een park met 100 nieuwe woningen gebouwd wordt, stijgt het percentage naoorlogse bebouwing.",
+        "textAlignment": "start"
+      }
+    },
+    "n-9lscsh": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "De groei van het aantal recreatiewoningen wordt in de volgende animatie uitgelicht.",
+        "textAlignment": "start"
+      }
+    },
+    "n-kxiy4d": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-j2t5sq", "n-lvr9yq"]
+    },
+    "n-j2t5sq": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      },
+      "children": ["n-lnuchj", "n-3zw4ye", "n-h2rvfk", "n-ji7dmb", "n-9lscsh"]
+    },
+    "n-2dbh0n": {
+      "type": "image",
+      "config": {
+        "size": "standard"
+      },
+      "data": {
+        "image": "r-2b3uvr"
+      }
+    },
+    "n-xyvgp4": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "<h2 class=\"block\">Recreatie</h2>",
+        "textAlignment": "center"
+      }
+    },
+    "n-dayeni": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Naast verstening, spelen ook functionele veranderingen een rol bij verstedelijking. Wanneer stedelijke functies buiten de stad voorkomen, is er ook sprake van verstedelijking.",
+        "textAlignment": "start"
+      }
+    },
+    "n-g4gsuv": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Recreatie is ook een stedelijke functie, in deze animatie is te zien hoe het aantal gebouwen met een recreatieve (logies) bestemming is gestegen. Elk gebouw is met een groene stip aangegeven. Met name (Zuid) Drenthe, de waddeneilanden en het gebied rondom de Friese Meren vallen op.",
+        "textAlignment": "start"
+      }
+    },
+    "n-2ssez5": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": ["n-l0ru6r", "n-2dbh0n"]
+    },
+    "n-l0ru6r": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "position": "start",
+        "size": "small",
+        "panelStyle": "themed"
+      },
+      "children": ["n-xyvgp4", "n-dayeni", "n-g4gsuv"]
+    },
+    "n-0p920g": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "<h2 class=\"block\">Verstedelijking in de Stadsrandzone</h2>",
+        "textAlignment": "center"
+      }
+    },
+    "n-779cp0": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Verstedelijking vindt normaal gesproken met name plaats in de zone rondom bestaande steden en verbindingswegen, de <a href=\"http://www.pbl.nl/publicaties/2009/Verstedelijking-in-de-stadsrandzone-Een-verkenning-van-de-ruimtelijke-opgave\" target=\"_blank\" rel=\"noopener noreferrer\">stadsrandzone</a>. Dit is in Noord-Nederland ook het geval in Leeuwarden en Groningen, zo blijkt uit deze thesis.&nbsp;",
+        "textAlignment": "start"
+      }
+    },
+    "n-8wm01w": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "De stadsrandzone is zeer bepaend voor de ruimtelijke verspreiding van verstedelijking. Zelf zo bepalend, dat in zowel Leeuwarden als Groningen meer dan 80% van de huidige bebouwing binnen de stadsrandzone van 1949 gelegen is. Dit is weergegeven in onderstaande kaarten. De huidige bebouwing in blauw en grijs, de stadsrandzone in oranje.",
+        "textAlignment": "start"
+      }
+    },
+    "n-h9afqp": {
+      "type": "image",
+      "config": {
+        "size": "standard"
+      },
+      "data": {
+        "image": "r-num3l8",
+        "caption": "Verstedelijking in de stadsrandzone (1949) van Leeuwarden"
+      }
+    },
+    "n-oo8gws": {
+      "type": "image",
+      "config": {
+        "size": "standard"
+      },
+      "data": {
+        "image": "r-37f2v5",
+        "caption": "Verstedelijking in de stadsrandzone (1949) van Groningen"
+      }
+    },
+    "n-4xmz6g": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "In de bovenstaande kaarten is te zien dat een deel van de bebouwing buiten de stadsrandzone ligt. Dit is veelal nieuwere bebouwing, die gebouwd is na eerdere uitbreidingen. Bij elke uitbreiding schuift de stadsrandzone naar buiten op. Dit is duidelijk te zien in Drachten en Emmen. Hier is een flink lager aandeel in de stadsrandzonde van 1949 gebouwd vergeleken met Leeuwarden en Groningen. Deze plaatsen hebben dus een relatief sterkere groei gekend in latere periodes. Wanneer voor elke 10 jaar deze zone opnieuw zou worden uitgerekend, zal nog een hoger aandeel binnen de stadsrandzone vallen.",
+        "textAlignment": "start"
+      }
+    },
+    "n-bbpclt": {
+      "type": "image",
+      "config": {
+        "size": "standard"
+      },
+      "data": {
+        "image": "r-6tfppi",
+        "caption": "Verstedelijking in de stadsrandzone (1949) van Drachten"
+      }
+    },
+    "n-hukh5a": {
+      "type": "image",
+      "config": {
+        "size": "standard"
+      },
+      "data": {
+        "image": "r-90js11",
+        "caption": "Verstedelijking in de stadsrandzone (1949) van Emmen"
+      }
+    },
+    "n-m6eokz": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Het verloop en de verspreiding van de verstedelijking vindt grotendeels plaats in de stadsrandzone. Bij de grote steden zelfs al binnen de zone van vlak na de oorlog. De situatie in &nbsp;Noord-Nederland is dus vergelijkbaar met de rest van Nederland.",
+        "textAlignment": "start"
+      }
+    },
+    "n-aurycf": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "Op basis van huidige data blijkt het mogelijk om inzicht te krijgen in de omvang en het verloop van de naoorlogse verstedelijking in Noord-Nederland. Het merendeel van de huidige gebouwen is naoorlogs. De productie is door de jaren heen afgenomen. Panden worden wel steeds groter. De verstedelijking heeft met name rondom bestaande kernen plaatsgevonden. Dit is duidelijk terug te zien aan de concentratie van stedelijkheid. Dit speelt in het bijzonder in de stadsrandzone. Naast morfologische verstedelijking is Noord-Nederland ook functioneel verstedelijkt. Er is bijvoorbeeld een duidelijke toename van recreatie te zien.&nbsp;",
+        "textAlignment": "start"
+      }
+    },
+    "n-jkqo7m": {
+      "type": "text",
+      "data": {
+        "type": "h2",
+        "text": "<h2 class=\"block\">Verantwoording</h2>",
+        "textAlignment": "center"
+      }
+    },
+    "n-9v9wm6": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "De methodologie en reflectie op de hierboven getoonde analyses is te lezen in het geschreven deel van deze thesis. Deze is te downloaden via: <a href=\"#href\" target=\"_blank\" rel=\"noopener noreferrer\">link</a>",
+        "textAlignment": "start"
+      }
+    }
+  },
+  "resources": {
+    "r-ndt8d5": {
+      "type": "story-theme",
+      "data": {
+        "themeId": "summit"
+      }
+    },
+    "r-crarxv": {
+      "type": "image",
+      "data": {
+        "src": "//static.pexels.com/photos/695/city-sky-cloudy-skyline.jpg",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-e24nsl": {
+      "type": "image",
+      "data": {
+        "src": "https://www.arcgis.com/sharing/rest/content/items/e65bb4b47f51401a86352133d3741eb4/resources/bouwjaren_pieken__1552985610815.png",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-kybt1g": {
+      "type": "image",
+      "data": {
+        "src": "https://www.arcgis.com/sharing/rest/content/items/e65bb4b47f51401a86352133d3741eb4/resources/bouwjaren_5jr_bar__1516611908130.png",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-y2nl0u": {
+      "type": "image",
+      "data": {
+        "src": "https://www.arcgis.com/sharing/rest/content/items/e65bb4b47f51401a86352133d3741eb4/resources/groei_procentueel__1515594371053.png",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-u8hipm": {
+      "type": "image",
+      "data": {
+        "src": "https://www.arcgis.com/sharing/rest/content/items/e65bb4b47f51401a86352133d3741eb4/resources/aantal_per_5jr_sloop__1516612176022.png",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-n3l145": {
+      "type": "image",
+      "data": {
+        "src": "//www.arcgis.com/sharing/rest/content/items/e65bb4b47f51401a86352133d3741eb4/resources/hist_oad__1500276881066.gif",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-hb8zfo": {
+      "type": "image",
+      "data": {
+        "src": "//www.arcgis.com/sharing/rest/content/items/e65bb4b47f51401a86352133d3741eb4/resources/hkb__1499971159577.gif",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-i2tjnx": {
+      "type": "webmap",
+      "data": {
+        "type": "minimal",
+        "itemId": "4488c1d787a0470f889efd6b0a899c46",
+        "itemType": "webmap"
+      }
+    },
+    "r-u45hyg": {
+      "type": "webmap",
+      "data": {
+        "type": "minimal",
+        "itemId": "4488c1d787a0470f889efd6b0a899c46",
+        "itemType": "webmap"
+      }
+    },
+    "r-2b3uvr": {
+      "type": "image",
+      "data": {
+        "src": "https://www.arcgis.com/sharing/rest/content/items/e65bb4b47f51401a86352133d3741eb4/resources/logies__1500036120068.gif",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-num3l8": {
+      "type": "image",
+      "data": {
+        "src": "https://www.arcgis.com/sharing/rest/content/items/e65bb4b47f51401a86352133d3741eb4/resources/stadsrandzone_leeuwarden__1533810906709.png",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-37f2v5": {
+      "type": "image",
+      "data": {
+        "src": "https://www.arcgis.com/sharing/rest/content/items/e65bb4b47f51401a86352133d3741eb4/resources/stadsrandzone_groningen__1533810719725.png",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-6tfppi": {
+      "type": "image",
+      "data": {
+        "src": "https://www.arcgis.com/sharing/rest/content/items/e65bb4b47f51401a86352133d3741eb4/resources/drachten_stadsrand_1949__1553419746748.png",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-90js11": {
+      "type": "image",
+      "data": {
+        "src": "https://www.arcgis.com/sharing/rest/content/items/e65bb4b47f51401a86352133d3741eb4/resources/emmen_stadsrand_1949__1553419774422.png",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    }
+  },
+  "config": {
+    "size": "large"
+  }
+}

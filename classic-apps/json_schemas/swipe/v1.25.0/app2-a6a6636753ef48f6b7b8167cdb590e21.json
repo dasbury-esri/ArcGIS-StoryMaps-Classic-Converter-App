@@ -1,0 +1,44 @@
+{
+    "source": "7dca95087c8941ce9feef3776a1354a6",
+    "folderId": null,
+    "values": {
+        "webmap": "c8535a27039942e29fc7082fa14fbd38",
+        "layout": "swipe",
+        "webmaps": [
+            "c8535a27039942e29fc7082fa14fbd38"
+        ],
+        "dataModel": "TWO_LAYERS",
+        "layers": [
+            "17d9b27a630-layer-4"
+        ],
+        "legend": true,
+        "description": true,
+        "popup": true,
+        "series": false,
+        "locationSearch": true,
+        "geolocator": true,
+        "popupColors": [
+            "227cd2",
+            "dc39c3"
+        ],
+        "popupTitles": [
+            "",
+            ""
+        ],
+        "template": "Swipe",
+        "templateCreation": "1.25.0",
+        "templateLastEdit": "1.26.0",
+        "colors": "#444;#FFF",
+        "headerLinkText": "A Story Map",
+        "headerLinkURL": "https://storymaps.arcgis.com/",
+        "logoURL": "NO_LOGO",
+        "logoTarget": "",
+        "social": {
+            "facebook": true,
+            "twitter": true,
+            "bitly": true
+        },
+        "sidePanelDescription": "Search for your city or Census Tract to see what is changing between 2019 and 2020.&nbsp;"
+    },
+    "_ssl": null
+}

@@ -1,0 +1,65 @@
+{
+    "source": "7dca95087c8941ce9feef3776a1354a6",
+    "folderId": "",
+    "values": {
+        "webmap": "faee54e3666e4b0fbf145ca713061041",
+        "layout": "swipe",
+        "webmaps": [
+            "faee54e3666e4b0fbf145ca713061041",
+            "063f2a970e3943e6a197fa4ee2c8c5db"
+        ],
+        "dataModel": "TWO_WEBMAPS",
+        "layers": [
+            "GX_ALL_9748"
+        ],
+        "legend": false,
+        "description": true,
+        "popup": true,
+        "series": false,
+        "locationSearch": true,
+        "geolocator": true,
+        "popupColors": [
+            "585858",
+            "585858"
+        ],
+        "popupTitles": [
+            "",
+            ""
+        ],
+        "template": "Swipe",
+        "templateCreation": "1.12.0",
+        "templateLastEdit": "1.13.0",
+        "colors": "#585858;#f9eeee",
+        "headerLinkText": "LIETUVOS CENTRINIS VALSTYBĖS ARCHYVAS",
+        "headerLinkURL": "http://www.archyvai.lt",
+        "logoURL": "https://farm5.staticflickr.com/4535/38023504025_4fe782e490_o.png",
+        "logoTarget": "http://www.archyvai.lt",
+        "social": {
+            "facebook": false,
+            "twitter": false,
+            "bitly": true
+        },
+        "bookmarks": [
+            {
+                "name": "Ukmenrgės mietas",
+                "extent": {
+                    "type": "extent",
+                    "xmin": 400716.9491508565,
+                    "ymin": 6052302.476191555,
+                    "xmax": 654717.4571518725,
+                    "ymax": 6174407.928735794,
+                    "spatialReference": {
+                        "wkid": 2600,
+                        "latestWkid": 3346
+                    }
+                },
+                "description": "Skrydis: GX-511",
+                "indexId": 0
+            }
+        ],
+        "subtitle": "<font size=\"3\">Priartinkite dominančio skrydžio teritoriją ir norėdami palyginti, vilkite žemėlapio slankiklį.</font>",
+        "title": "Antrojo pasaulinio karo metų aerofotonuotraukos",
+        "sidePanelDescription": "<p class=\"MsoNormal\" style=\"text-align: left; line-height: 115%;\"><span style=\"line-height: 115%;\"><font face=\"arial\" style=\"\" size=\"2\">Šioje\naplikacijoje rasite Vokietijos karinių oro pajėgų žvalgybos skrydžių, 1941–1945\nm. atliktų virš dabartinės Lietuvos teritorijos, aerofotonuotraukas. Šiuo metu\nperžiūrai <span style=\"color: black;\">yra pateiktos 5\nskrydžių maršrutų aeronuotraukos, apjungtos į aerofotonuotraukų mozaikas (viso 368\naerofotonuotraukos). Naujos lokalizuotos aeronuotraukos į aplikaciją bus\nįkeliamos palaipsniui.</span> <o:p></o:p></font></span></p><p class=\"MsoNormal\" style=\"text-align: left; line-height: 115%;\"><span style=\"line-height: 115%;\"><span style=\"color:black;mso-themecolor:text1\"><font face=\"arial\" size=\"2\"><br></font></span></span></p><p class=\"MsoNormal\" style=\"text-align: left; line-height: 115%;\"><span style=\"line-height: 115%;\"><font face=\"arial\" size=\"2\">Aplikacija\nleidžia palyginti istorines aerofotonuotraukas su šiuolaikiniais\nortofotografiniais žemėlapiais. <o:p></o:p></font></span></p><p class=\"MsoNormal\" style=\"text-align: left; line-height: 115%;\"><span style=\"line-height: 115%;\"><font face=\"arial\" size=\"2\"><br></font></span></p><p class=\"MsoNormal\" style=\"text-align: left; line-height: 115%;\"><span style=\"line-height: 115%;\"><font face=\"arial\" size=\"2\">Kompiuterio\npelės pagalba priartinkite dominančio skrydžio teritoriją ir norėdami\npalyginti, vilkite žemėlapio vertikalųjį slankiklį.<o:p></o:p></font></span></p><p class=\"MsoNormal\" style=\"text-align: left; line-height: 115%;\"><span style=\"line-height: 115%;\"><font face=\"arial\" size=\"2\"><br></font></span></p><p class=\"MsoNormal\" style=\"text-align: left; line-height: 115%;\"><span style=\"line-height: 115%; color: black;\"><font face=\"arial\" size=\"2\">Daugiau apie šias aeronuotraukas ir projektą\nrasite <a href=\"https://lcva.maps.arcgis.com\" title=\"https://lcva.maps.arcgis.com\" target=\"_blank\">čia</a>.</font></span></p><p class=\"MsoNormal\" style=\"text-align: left; line-height: 115%;\"><br></p><p class=\"MsoNormal\" style=\"text-align: center; line-height: 115%;\"><br></p><p class=\"MsoNormal\" style=\"text-align: center;\"><o:p></o:p></p>",
+        "labels": false
+    }
+}

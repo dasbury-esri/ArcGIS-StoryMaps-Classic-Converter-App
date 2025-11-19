@@ -1,0 +1,1137 @@
+{
+    "source": "f99fb5f7c91f4424b6ae1ca90678f58a",
+    "folderId": null,
+    "values": {
+        "config": {
+            "author": {
+                "name": ""
+            }
+        },
+        "settings": {
+            "header": {
+                "logo": {
+                    "enabled": true,
+                    "url": "resources/tpl/viewer/icons/esri-logo.png",
+                    "link": "https://www.esri.com"
+                },
+                "link": {
+                    "url": "https://storymaps.arcgis.com",
+                    "title": "Story Map"
+                },
+                "social": {
+                    "enabled": true
+                }
+            }
+        },
+        "template": {
+            "name": "storymap-cascade",
+            "createdWith": "1.1.3",
+            "editedWith": "1.1.3",
+            "dataVersion": "1.0.0"
+        },
+        "sections": [
+            {
+                "type": "cover",
+                "foreground": {
+                    "title": "Investigando nuestro pasado",
+                    "subtitle": "Las calzadas romanas",
+                    "options": {
+                        "titleStyle": {
+                            "shadow": true,
+                            "text": "light",
+                            "background": null
+                        }
+                    }
+                },
+                "options": {},
+                "layout": "cover-1",
+                "background": {
+                    "type": "image",
+                    "image": {
+                        "type": "image",
+                        "width": 1500,
+                        "height": 996,
+                        "options": {
+                            "size": "small",
+                            "placement": {
+                                "type": "fill",
+                                "fit": {},
+                                "fill": {
+                                    "x": 0.5,
+                                    "y": 0.5
+                                }
+                            }
+                        },
+                        "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Rome_Via_Appia_Antica_13-01-2011_13-21-18__1479153169521.JPG",
+                        "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Rome_Via_Appia_Antica_13-01-2011_13-21-18__1479153169521__thumb.JPG"
+                    }
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "Calzadas Romanas"
+                }
+            },
+            {
+                "type": "sequence",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#FFF"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Uno de los legados que hemos recibido de la civilización romana ha sido la extensa y compleja red de calzadas que discurrían por los confines del Imperio romano. Con unos 100.000 kilómetros, recorrían los cuatro puntos cardinales del Imperio, desde la Cirinaica hasta Britania y desde Asiría hasta Hispania.</p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1262,
+                                "height": 1000,
+                                "options": {
+                                    "size": "small"
+                                },
+                                "caption": "Limes del Imperio Romano (año 150 d.c): Fuente:<a href=\"http://www.lahistoriaconmapas.com/imperios-reinos/imperio-romano/la-pax-romana-o-pax-augusta/\" target=\"_blank\"> www.bible.ca/maps</a>",
+                                "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/maps-roman-empire-peak-150AD__1479153028182.jpg",
+                                "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/maps-roman-empire-peak-150AD__1479153028182__thumb.jpg"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Los romanos tuvieron claro que necesitarían una extensa red de comunicaciones para expandir su cultura, su economía y por su puesto sus tropas. La primera vía fue creada en el año 312 a.c por <a href=\"https://es.wikipedia.org/wiki/Apio_Claudio_el_Censor\" target=\"_blank\">Appius Claudius Caecus</a> que unía Roma con Capua, es la llamada <a href=\"https://es.wikipedia.org/wiki/V%C3%ADa_Apia\" target=\"_blank\">vía Appia</a>. Al final de la república romana toda la península italiana estaba recorrida por estos grandes ejes. Cada vía recibía el nombre del <a href=\"https://es.wikipedia.org/wiki/Censor_romano\" target=\"_blank\">Censor</a> que la había creado.</p>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "Uno de los legados q"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/arraona romana__1479154708327.jpg",
+                                "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/arraona%20romana__1479154708327__thumb.jpg",
+                                "options": {
+                                    "size": "small",
+                                    "placement": {
+                                        "type": "fit",
+                                        "fit": {
+                                            "color": "rgb(205, 184, 151)"
+                                        }
+                                    }
+                                },
+                                "width": 960,
+                                "height": 856
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "right",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black",
+                                        "layout": "scroll-full"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Las vías romanas se caracterizan por ser muy rectilíneas en los terrenos llanos. Evitan al máximo las zonas inundables y las inmediaciones de los ríos. Cuando había de cruzar un río, la vía pasaba por un puente, generalmente de piedra, de los que aún quedan unos pocos ejemplos. Las vías se ensanchaban en las curvas para permitir que los carros girasen mejor.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "La Construcción de las vías romanas",
+                                "global": true,
+                                "style": null
+                            }
+                        }
+                    }
+                ],
+                "bookmark": {
+                    "enabled": false,
+                    "title": "La Construcción de l"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#FFF"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Cuando se había tomado la decisión de la construcción, la delimitación de la ruta era encomendada a los topógrafos, <a href=\"https://it.wikipedia.org/wiki/Mensor\" target=\"_blank\"><i>mensores romanos</i></a>. Los topógrafos utilizaban instrumentos para el replanteo de las vías romanas como <a href=\"https://es.wikipedia.org/wiki/Dioptra\" target=\"_blank\"><i>La Dioptra</i></a>, instrumento compuesto por dos limbos graduados, uno vertical y uno horizontal. Servía para el replanteo de las alineaciones de la carretera.</p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Groma__1479156425910.jpg",
+                                "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Groma__1479156425910__thumb.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "caption": "<a href=\"https://commons.wikimedia.org/wiki/File:Groma.jpg\" target=\"_blank\">Groma</a>: Autor: Mathias Kabel",
+                                "width": 657,
+                                "height": 1000
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Después de tomar las medidas, los topógrafos señalaban la ruta por medio de hitos. Para completar la preparación del trazado se llevaba a cabo el desmonte y la tala de árboles.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">La labor de los topógrafos no se limitaba al cálculo y señalización de las vías. Gracias a la enorme cantidad de datos que se recogieron: distancias entre las ciudades, obstáculos, puentes, etc., fueron la base para la elaboración de los mapas.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Los viajeros romanos pudieron encontrar en ellos muchas indicaciones sobre las distancias o los albergues, la duración de las etapas, los obstáculos o lugares notables (ciudades, santuarios), que era lo que más importaba a los viajeros en esos momentos.<br></p>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "Cuando se había toma"
+                }
+            },
+            {
+                "type": "title",
+                "layout": "title-regular",
+                "background": {
+                    "type": "image",
+                    "image": {
+                        "type": "image",
+                        "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Rome_Via_Appia_Antica_13-01-2011_13-21-18__1479153169521.JPG",
+                        "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Rome_Via_Appia_Antica_13-01-2011_13-21-18__1479153169521__thumb.JPG",
+                        "options": {
+                            "size": "small"
+                        },
+                        "width": 1500,
+                        "height": 996
+                    }
+                },
+                "foreground": {
+                    "title": "La documentación histórica",
+                    "credits": "",
+                    "options": {}
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "La documentación his"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "b81835d9c20a4415b47fb8b7e66c68e5",
+                                "options": {
+                                    "interaction": "button"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "black-over-white"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">El Itinerario de Antonino es un libro indicador que contiene una lista de todas las vías, la lista de las etapas y las distancias.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">En este documento se señalan 372 rutas, de las cuales 34 corresponden a las Provincias de Hispania.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Itinerario de Antonino y la Tabula Pentaugerina",
+                                "global": true,
+                                "style": null
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1500,
+                                "height": 874,
+                                "options": {
+                                    "size": "small"
+                                },
+                                "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/tab_pe10__1479811416811.jpg",
+                                "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/tab_pe10__1479811416811__thumb.jpg"
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "black-over-white"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">El documento más conocido que ha llegado hasta nosotros es la Tabula Peutingeriana o el cuadro Teodosiense.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">En 11 hojitas (6,80 m x 0,34 m en total), la Tabla representa el mundo conocido en esa época, desde Inglaterra a África del Norte y del Atlántico hasta la India.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "bookmark": {
+                    "enabled": false,
+                    "title": "Itinerario de Antoni"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#FFF"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">En cada ruta, se identificaban las <i>mansiones</i> y la distancia que las separaba en millas.El Itinerario de Antonino ha permitido localizar un gran número de ciudades romanas desaparecidas y un gran número de calzadas.</p>"
+                            }
+                        },
+                        {
+                            "type": "image-gallery",
+                            "image-gallery": {
+                                "images": [
+                                    {
+                                        "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/miliario084__1479197133922.jpg",
+                                        "width": 263,
+                                        "height": 350
+                                    },
+                                    {
+                                        "type": "image",
+                                        "width": 1280,
+                                        "height": 960,
+                                        "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/1280px-Bridge_Alcantara__1479199447453.JPG",
+                                        "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/1280px-Bridge_Alcantara__1479199447453__thumb.JPG"
+                                    }
+                                ],
+                                "caption": "En la imagen de la izquierda Miliario romano. <a href=\"http://www.laviadelaplata.es/miliarios.php?ididioma=1\" target=\"_blank\">Vía de la Plata.</a>&nbsp;La figura de la Derecha. <a href=\"https://commons.wikimedia.org/wiki/File:Bridge_Alcantara.JPG\" target=\"_blank\">Puente romano de Alcántara en la provincia de Cáceres</a>. Autor: Dantla"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">En estos últimos años, la arqueología tradicional y la \"<a href=\"https://es.wikipedia.org/wiki/Arqueolog%C3%ADa_procesual\" target=\"_blank\">nueva arqueología</a>\" han proporcionado un volumen de información, sin precedentes, tanto en el conocimiento histórico de antiguas ciudades romanas como en el conocimiento de la red de caminos y calzadas que surcaban el T<i>erritorium</i> de los M<i>unicipium</i>.</p>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "En cada ruta, se ide"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1500,
+                                "height": 851,
+                                "options": {
+                                    "size": "small"
+                                },
+                                "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Pompeya__1479924540773.png",
+                                "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Pompeya__1479924540773__thumb.png"
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "black-over-white"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">La <a href=\"https://es.wikipedia.org/wiki/Arqueolog%C3%ADa_procesual\" target=\"_blank\">arqueología procesual</a> recibe ese nombre porque el objetivo último es reconstruir completamente, de manera virtual, los «procesos culturales» del ser humano. </p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"> La teoría de sistemas, la teoría de juegos, la teoría de conjuntos, la topología matemática, la teoría de la información, el análisis geográfico de la \"Nueva Geografía\", la estadística analítica e inductiva tienen en común que en todos estos procesos interviene la informática.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "La Arqueología Procesual",
+                                "global": true,
+                                "style": null
+                            }
+                        }
+                    }
+                ],
+                "bookmark": {
+                    "enabled": false,
+                    "title": "La Arqueología Proce"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#FFF"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\"><a href=\"https://dialnet.unirioja.es/servlet/autor?codigo=1440201\" target=\"_blank\"><b><i>Consabura</i></b></a>&nbsp;(Consuegra, Toledo) y <a href=\"https://www.ua.es/personal/juan.abascal/segobriga.html\" target=\"_blank\"><b><i>Segobriga</i></b> </a>(Saélices, Cuenca) son dos ciudades romanas, situadas en la Meseta Sur separadas por unos 85 km, que no aparecen conectadas en ninguno de los itinerarios romanos mencionados anteriormente.&nbsp;<i><b><br></b></i></p>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "En cada ruta, se ide"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "4e6ea89204054a158f9a86332e597b2d",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">La ciudad romana de <b><i>Consabura</i></b> esta identificada con la actual ciudad toledana de Consuegra.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">El primitivo asentamiento romano parece que se ubico en las laderas del Cerro El Calderico. Posteriormente, durante el Siglo I d.c la población ocupo el llano.&nbsp;</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">En la imagen destaca el trazado hipodámico de la ciudad con una traza muy singular.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 1487,
+                                                "height": 1000,
+                                                "options": {
+                                                    "size": "small"
+                                                },
+                                                "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/consuegra%20presa%20romana%203__1481281994109.jpg",
+                                                "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/consuegra%20presa%20romana%203__1481281994109__thumb.jpg",
+                                                "caption": "Presa romana de Consuegra. Una de las presas de mayor longitud del Imperio Romano"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Consabura y Segobriga",
+                                "global": true,
+                                "style": null
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "3d75634692d543e889dd4df55e2ba5b9",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "black-over-white"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">El parque arqueológico de Segóbriga es un importante yacimiento celtíbero y romano situado en torno al cerro llamado cerro de Cabeza de Griego en la localidad de Saelices (Cuenca, España).</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">La ciudad fue el centro del control económico y de comercialización de las minas de <i>lapis specularis</i> o yeso traslúcido, lo que permitió su auge económico y su monumentalización a partir de época de Augusto.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 1500,
+                                                "height": 844,
+                                                "options": {
+                                                    "size": "small"
+                                                },
+                                                "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Teatro%20Segobriga__1481282141392.jpg",
+                                                "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Teatro%20Segobriga__1481282141392__thumb.jpg",
+                                                "caption": "Teatro de Segobriga:&nbsp;<a href=\"http://www.cuencaguiada.com/rutas-guiadas-en-cuenca-y-provincia/ucles-y-segobriga/\" target=\"_blank\">Imágenes en Cuenca Guiada</a>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#FFF"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Tenemos constancia de contactos comerciales entre ambas ciudades romanas gracias a las numerosas monedas halladas en <b><i>Consabura</i></b> procedentes de la Ceca de <b><i>Segobriga</i></b>, actualmente conservadas en las dependencias del Museo Municipal de Consuegra.</p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 236,
+                                "height": 240,
+                                "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Segobriga__1479236755114.jpg",
+                                "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Segobriga__1479236755114__thumb.jpg",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "caption": "<a href=\"https://es.wiki2.org/wiki/Seg%C3%B3briga\" target=\"_blank\">As de la Ceca de Segobriga</a>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Pero, ¿Es posible reconstruir el camino romano que comunicaba ambas ciudades?. Veamos que posibilidades nos ofrecen en este contexto los Sistemas de Información Geográfica para responder esta cuestión.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">En primer lugar, además de las ciudades tenemos que contar con los yacimientos arqueológicos documentados en este territorio, que pertenezcan cronológicamente a una misma etapa. Por ejemplo, durante época alto-imperial.</p>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "En cada ruta, se ide"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "442601fa447d442891b63f1193ad3aef",
+                                "options": {
+                                    "interaction": "button"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "black-over-white"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Se han documentado más de medio centenar de yacimientos arqueológicos correspondientes a época alto-imperial durante las tareas de prospección arqueológica .&nbsp;</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"><br></p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Yacimientos romanos",
+                                "global": true,
+                                "style": null
+                            }
+                        }
+                    }
+                ],
+                "bookmark": {
+                    "enabled": false,
+                    "title": "Yacimientos romanos"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#FFF"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Por otro lado, tenemos que seleccionar la metodología más adecuada para intentar resolver este problema. Para lo cual, utilizaremos la denominada \"<b><i><a href=\"https://es.wikipedia.org/wiki/Teor%C3%ADa_de_grafos\" target=\"_blank\">teoría de grafos</a></i></b>\".</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">La teoría de grafos es una rama de las matemáticas y las ciencias de la computación, que estudia las propiedades de los grafos. Estructuras que constan de dos partes, el conjunto de vértices, nodos o puntos; y el conjunto de aristas, líneas o lados que pueden ser orientados o no. También se la conoce como análisis de redes.</p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 684,
+                                "height": 434,
+                                "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/carreteras__1479928061955.png",
+                                "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/carreteras__1479928061955__thumb.png",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "caption": "Ejemplo clásico de un grafo representando la red de carreteras de España"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">En nuestro análisis hemos utilizado un raster de superficie que nos permite evaluar, de forma más adecuada los costes en el desplazamiento por esta superficie.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Detrás de este concepto (<i><b>raster</b></i>) se encuentra lo que \"vulgarmente\" podemos considerar una imagen, donde cada color o&nbsp;colores de la misma representan un valor de elevación en un punto determinado de la imagen (por ejemplo 700 metros de altitud).</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">El concepto \"coste\" esta vinculado con la cercanía o afinidad entre vecinos.&nbsp;De esta forma,&nbsp;dos puntos están más cercanos, si entre ellos, es más barato viajar o desplazarse que otros vecinos&nbsp;dónde la distancia puede ser menor.<br></p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/mdt__1479240554674.PNG",
+                                "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/mdt__1479240554674__thumb.PNG",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "caption": "<a href=\"http://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/cost-connectivity.htm\" target=\"_blank\">MDT utilizado durante el proceso de computación del algoritmo.</a>",
+                                "width": 781,
+                                "height": 547
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Es decir, en el hipotético caso, sería mucho más barato viajar caminando, entre Madrid y&nbsp;Toledo que entre Madrid y Ávila,&nbsp;aunque la distancia en línea recta entre las ciudades es similar.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Para nuestra investigación hemos utilizado las fantásticas herramientas que dispone la<b><i><a href=\"http://www.esri.com/\" target=\"_blank\"> Plataforma ArcGIS</a></i></b> basadas en esta teoría. Los algoritmos utilizados nos permiten obtener un grafo entre todos los nodos utilizados. Los puntos o nodos, en nuestro caso son los yacimientos arqueológicos, tal como se ilustra en el mapa que mostramos.<br></p>"
+                            }
+                        },
+                        {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "5b70ad3a69b14853bb9dc026c8bbe506",
+                                "options": {
+                                    "interaction": "enabled",
+                                    "size": "medium"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "caption": "Representación del Grafo de los yacimientos arquelógicos localizados en las proximidades de<b><i> Consabura</i></b> (Consuegra, Toledo) y <b><i>Segobriga</i></b> (Saélices, Cuenca)"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">El algoritmo utilizado nos permite obtener una serie de líneas &nbsp;que permiten conectar diferentes vecinos. Los vecinos más cercanos son aquellos donde es más barato viajar.<br></p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Otro aspecto importante que genera esta herramienta es la ruta que nos permite viajar entre todas los vecinos con el menor coste acumulado, es lo que se denomina en la teoría de grafos \"<b><i>árbol de expansión mínima</i></b>\".</p>"
+                            }
+                        },
+                        {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "c2461791306147a5bf4f97bd4a3484ec",
+                                "options": {
+                                    "interaction": "enabled",
+                                    "size": "medium"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "caption": "Ruta de Menor Coste acumulado. Árbol de expansión mínima"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Los resultados de este análisis nos permiten obtener unas conclusiones muy relevantes y esclarecedoras a nivel histórico, tal como mostramos en los siguientes mapas interactivos:</p>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "En cada ruta, se ide"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "8c0bd12a936d4368832a9709c4c1fd5e",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">La existencia de una ruta que procedente de <span style=\"font-weight: bold; font-style: italic; color: rgb(255, 0, 0);\">Toletum&nbsp;</span>(Toledo), atravesaba el río Algodor que se dirigía hacia<span style=\"font-weight: bold; font-style: italic; color: rgb(255, 0, 0);\"> Consabura</span>  (Consuegra), llegando a esta ciudad romana y a continuación, &nbsp;dirigirse con dirección sureste hasta la siguiente <span style=\"font-weight: bold; font-style: italic;\">Mansio</span> de la ruta 30 del Itinerario de Antonino.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Esta ruta romana ha sido ampliamente estudiada por erúditos, historiadores de la antigüedad, filólogos y arqueólogos. Las conclusiones de todos ellos no difieren sustancialmente a los resultados mostrados en el mapa.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "",
+                                "global": true,
+                                "style": null
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "85db61bcb9ca4f82814a47437a65baa2",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "right",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "black-over-white"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">La existencia de otra ruta que comunicaba las ciudades romanas de <span style=\"font-weight: bold; font-style: italic; color: rgb(0, 0, 255);\">Consabura </span>y <span style=\"font-weight: bold; font-style: italic; color: rgb(0, 0, 255);\">Segobriga</span>, discurriría con ligeros matices paralela a los margenes del río Cigüela, atravesando los términos de <span style=\"font-style: italic;\">Madridejos, Villacañas, Quero, La Puebla de Almoradiel, Villanueva de Alcardete,</span> todos ellos en la provincia de Toledo, para adentrarse en la Provincia de Cuenca, a la altura de <span style=\"font-style: italic;\">Villamayor de Santiago, </span>continuando con dirección noreste, remontando el cauce del río Cigüela hasta llegar a <span style=\"font-weight: bold; font-style: italic; color: rgb(0, 0, 255);\">Segobriga</span>.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#FFF"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Retomando la pregunta que nos hacíamos al principio de esta historia ¿Es posible reconstruir el camino romano que comunicaba las ciudades romanas de <b><i style=\"color: rgb(0, 0, 255);\">Consabura</i></b> y <b><i style=\"color: rgb(0, 0, 255);\">Segobriga</i></b>?.&nbsp;Presumiblemente los resultados obtenidos en este análisis parece que confirman esta hipótesis.  </p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">También, recientes prospecciones arqueológicas en el término municipal de Villacañas, en un yacimiento arqueológico próximo a la vía aquí descrita, ha permitido encontrar restos cerámicos y monedas que confirman la relación cultural y comercial entre ambas <span style=\"color: rgb(0, 0, 255);\"><a href=\"https://es.wikipedia.org/wiki/Civitas\" target=\"_blank\">civitates romanas</a></span>.&nbsp;<br></p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Es probable, que algunos de estos yacimientos pudiese ejercer ese papel de parada, descansadero o posada en la vía entre las ciudades romanas de <span style=\"font-weight: bold; font-style: italic; color: rgb(0, 0, 255);\">Consabura</span> y <span style=\"font-weight: bold; font-style: italic; color: rgb(0, 0, 255);\">Segobriga</span>. También es probable que algunos tramos de estos caminos antiguos fueron posteriormente utilizados para otros menesteres.<br></p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Hace poco releyendo algunos libros y artículos sobre la <span style=\"font-weight: bold; font-style: italic;\"><a href=\"https://es.wikipedia.org/wiki/Trashumancia\" target=\"_blank\">Trashumacia</a></span> durante época medieval y moderna, las descripciones de algunos tramos de las cañadas nos recordaban a los caminos generados por este algoritmo.&nbsp;<br></p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "url": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Trashumancia 021__1481305866206.JPG",
+                                "thumbUrl": "//geogeeks.maps.arcgis.com/sharing/rest/content/items/8a7c501d454f4caa970a77fe9124f679/resources/Trashumancia%20021__1481305866206__thumb.JPG",
+                                "options": {
+                                    "size": "small"
+                                },
+                                "caption": "Imagen representativa de La <a href=\"http://socialesarcas2.blogspot.com.es/2014_11_01_archive.html\" target=\"_blank\" style=\"font-weight: bold; font-style: italic;\">Mesta</a>",
+                                "width": 1498,
+                                "height": 1000
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Por ejemplo, basta leer algunos artículos o libros relacionados con la <a href=\"https://es.wikipedia.org/wiki/Ca%C3%B1ada_Real_Soriana_Oriental#Tramo_en_la_provincia_de_Toledo\" target=\"_blank\" style=\"text-decoration: underline; color: rgb(0, 0, 255);\">Cañada Real Soriana Oriental</a> a su paso por estas tierras manchegas.&nbsp;</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Interesante!!. Pero, eso será objeto de otro capítulo.</p>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "En cada ruta, se ide"
+                }
+            },
+            {
+                "type": "credits",
+                "layout": "credits-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#000"
+                    }
+                },
+                "foreground": {
+                    "panels": [
+                        {
+                            "type": "blocks",
+                            "blocks": [
+                                {
+                                    "type": "text",
+                                    "text": {
+                                        "value": "<p class=\"block\" style=\"text-align: center;\"></p>"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "credits",
+                            "credits": [
+                                {
+                                    "label": "Via Appia Antica te Rome",
+                                    "source": "Paul Hermans",
+                                    "link": ""
+                                },
+                                {
+                                    "label": "Autor",
+                                    "source": "Jose Joaquín Muñoz Villarreal",
+                                    "link": ""
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

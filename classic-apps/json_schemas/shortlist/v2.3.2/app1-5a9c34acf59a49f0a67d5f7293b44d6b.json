@@ -1,0 +1,78 @@
+{
+    "values": {
+        "tabs": {
+            "0": {
+                "title": "Introduction",
+                "id": 0,
+                "color": "#dc6800",
+                "extent": null
+            },
+            "1": {
+                "title": "Special Areas of Conservation",
+                "id": 1,
+                "color": "#b82323",
+                "extent": null
+            },
+            "2": {
+                "title": "Natural Heritage Areas",
+                "id": 2,
+                "color": "#37921e",
+                "extent": null
+            }
+        },
+        "settings": {
+            "themeOptions": {
+                "headerColor": "#803809"
+            },
+            "layoutOptions": {
+                "description": true
+            },
+            "generalOptions": {
+                "numberedIcons": true,
+                "filterByExtent": true,
+                "extentMode": "default",
+                "locateButton": true,
+                "geocoder": true,
+                "bookmarks": false,
+                "bookmarksAlias": "Zoom"
+            },
+            "appGeocoders": [
+                {
+                    "singleLineFieldName": "SingleLine",
+                    "name": "Esri World Geocoder",
+                    "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+                }
+            ],
+            "header": {
+                "linkText": "Map of Irish Wetlands Project",
+                "linkURL": "http://www.fossenvironmentalconsulting.com/wetland-survey-ireland--map/index.html",
+                "logoURL": "//www.arcgis.com/sharing/rest/content/items/5a9c34acf59a49f0a67d5f7293b44d6b/resources/sm_series_logo__1504092906917.jpeg",
+                "logoTarget": "http://www.fossenvironmentalconsulting.com/index.html",
+                "social": {
+                    "facebook": true,
+                    "twitter": true,
+                    "bitly": true
+                },
+                "compactSize": false
+            }
+        },
+        "shortlistLayerId": "shortlist-layer1504091175775_0",
+        "mapExtent": {
+            "xmin": -1062960.7848901963,
+            "ymin": 6807446.506383219,
+            "xmax": -754394.0563316551,
+            "ymax": 7171926.921132438,
+            "spatialReference": {
+                "wkid": 102100
+            }
+        },
+        "title": "The Raised Bogs of Ireland",
+        "webmap": "e1abda2aa9c14702a9f30a1b62bb3c88",
+        "subtitle": "Learn more about the designated Raised Bog Special Areas of Conservation and Natural Heritage Areas in Ireland",
+        "template": {
+            "name": "Shortlist",
+            "createdWith": "2.3.2",
+            "editedWith": "2.8.0"
+        }
+    }
+}

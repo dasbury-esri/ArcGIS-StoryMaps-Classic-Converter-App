@@ -1,0 +1,552 @@
+{
+    "operationalLayers": [
+        {
+            "id": "VectorTile_3162",
+            "type": "VectorTileLayer",
+            "layerType": "VectorTileLayer",
+            "title": "World Street Map (Night)",
+            "styleUrl": "http://www.arcgis.com/sharing/rest/content/items/bf79e422e9454565ae0cbe9553cf6471/resources/styles/root.json",
+            "itemId": "bf79e422e9454565ae0cbe9553cf6471",
+            "visibility": true,
+            "opacity": 1
+        },
+        {
+            "id": "i4b1n_6069",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "http://services.arcgis.com/AgwDJMQH12AGieWa/arcgis/rest/services/i4b1n/FeatureServer/0",
+            "visibility": true,
+            "opacity": 0.65,
+            "title": "Albany Area Wealth Rankings",
+            "itemId": "11c05828750e46099899ea4c1658f053",
+            "layerDefinition": {
+                "drawingInfo": {
+                    "renderer": {
+                        "type": "uniqueValue",
+                        "field1": "f3",
+                        "defaultLabel": "others",
+                        "uniqueValueInfos": [
+                            {
+                                "value": "Top 25",
+                                "symbol": {
+                                    "color": [
+                                        0,
+                                        69,
+                                        140,
+                                        255
+                                    ],
+                                    "outline": {
+                                        "color": [
+                                            153,
+                                            153,
+                                            153,
+                                            255
+                                        ],
+                                        "width": 0.6,
+                                        "type": "esriSLS",
+                                        "style": "esriSLSSolid"
+                                    },
+                                    "type": "esriSFS",
+                                    "style": "esriSFSSolid"
+                                },
+                                "label": "Top 25"
+                            },
+                            {
+                                "value": "26 to 50",
+                                "symbol": {
+                                    "color": [
+                                        48,
+                                        121,
+                                        232,
+                                        255
+                                    ],
+                                    "outline": {
+                                        "color": [
+                                            153,
+                                            153,
+                                            153,
+                                            255
+                                        ],
+                                        "width": 0.6,
+                                        "type": "esriSLS",
+                                        "style": "esriSLSSolid"
+                                    },
+                                    "type": "esriSFS",
+                                    "style": "esriSFSSolid"
+                                },
+                                "label": "26 to 50"
+                            },
+                            {
+                                "value": "All Other",
+                                "symbol": {
+                                    "color": [
+                                        236,
+                                        236,
+                                        236,
+                                        255
+                                    ],
+                                    "outline": {
+                                        "color": [
+                                            153,
+                                            153,
+                                            153,
+                                            255
+                                        ],
+                                        "width": 0.6,
+                                        "type": "esriSLS",
+                                        "style": "esriSLSSolid"
+                                    },
+                                    "type": "esriSFS",
+                                    "style": "esriSFSSolid"
+                                },
+                                "label": "All Other"
+                            },
+                            {
+                                "value": "Not Ranked",
+                                "symbol": {
+                                    "color": [
+                                        252,
+                                        252,
+                                        252,
+                                        255
+                                    ],
+                                    "outline": {
+                                        "color": [
+                                            153,
+                                            153,
+                                            153,
+                                            255
+                                        ],
+                                        "width": 0.6,
+                                        "type": "esriSLS",
+                                        "style": "esriSLSSolid"
+                                    },
+                                    "type": "esriSFS",
+                                    "style": "esriSFSSolid"
+                                },
+                                "label": "Not Ranked"
+                            }
+                        ]
+                    }
+                }
+            },
+            "popupInfo": {
+                "title": "Rank #{f2} | ZIP Code {f1} | {f4}",
+                "fieldInfos": [
+                    {
+                        "fieldName": "f1",
+                        "label": "ID",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": false
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f2",
+                        "label": "WLTHRNK_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": false
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f3",
+                        "label": "MAP_RANK",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f4",
+                        "label": "NAME",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f5",
+                        "label": "ST_ABBREV",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f6",
+                        "label": "DOMCOUNTY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f7",
+                        "label": "COUNTY_NAME",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f8",
+                        "label": "DOMCBSA",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f9",
+                        "label": "CBSA_NAME",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f10",
+                        "label": "TOTPOP_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f11",
+                        "label": "TOTHH_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f12",
+                        "label": "AVGHHSZ_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f13",
+                        "label": "MEDAGE_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f14",
+                        "label": "MEDHINC_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f15",
+                        "label": "AVGHINC_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f16",
+                        "label": "PCI_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f17",
+                        "label": "MEDNW_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f18",
+                        "label": "AVGNW_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f19",
+                        "label": "MEDDI_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f20",
+                        "label": "AVGDI_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f21",
+                        "label": "MEDVAL_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f22",
+                        "label": "AVGVAL_CY",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f23",
+                        "label": "TSEGCODE",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f24",
+                        "label": "TSEGNAME",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f25",
+                        "label": "Thumb_URL",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f26",
+                        "label": "Image_URL",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f27",
+                        "label": "Flier_PDF",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f28",
+                        "label": "LATITUDE",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "f29",
+                        "label": "LONGITUDE",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    },
+                    {
+                        "fieldName": "objectId",
+                        "label": "objectId",
+                        "isEditable": false,
+                        "tooltip": "",
+                        "visible": false,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": false
+                    },
+                    {
+                        "fieldName": "EXCEL_ID",
+                        "label": "EXCEL_ID",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "stringFieldOption": "textbox",
+                        "isEditableOnLayer": true
+                    }
+                ],
+                "description": "<font face='Verdana' size='2'><font color='#696969'>Located in </font><b>{f4}</b><font color='#696969'>, this area is home to </font><b>{f10}</b><font color='#696969'> people.</font><br /><u><font color='#4169e1'><br /><b>2016 Wealth Characteristics</b></font></u><br /><font color='#696969'>Avg. HH Income: </font><font color='#696969'><b>${f15} </b></font><br /><font color='#696969'>Avg. Home Value: </font><b><font color='#696969'>$</font></b><b><font color='#696969'>{f22}</font></b><b><br /></b><font color='#696969'>Avg. Net Worth: </font><b><font color='#696969'>$</font></b><font color='#696969'><b>{f18}</b></font><br /><font color='#696969'>Avg. Disposable Income: </font><b><font color='#696969'>${f20}</font></b><b><br /><font color='#b22222'> </font></b><font color='#4169e1'><br /><b><font color='#4169e1'><a href='http://www.esri.com/tapestry' target='_blank'><font color='#4169e1'>Tapestry Segment</font></a> </font>|</b> <i><b>{f24}</b></i></font></font>",
+                "showAttachments": true,
+                "mediaInfos": [
+                    {
+                        "title": null,
+                        "type": "image",
+                        "caption": "",
+                        "value": {
+                            "sourceURL": "{f26}",
+                            "linkURL": "{f27}"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "baseMap": {
+        "baseMapLayers": [
+            {
+                "id": "layer0",
+                "layerType": "ArcGISTiledMapServiceLayer",
+                "url": "http://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer",
+                "visibility": true,
+                "opacity": 1,
+                "title": "World Dark Gray Canvas Base"
+            },
+            {
+                "id": "World_Dark_Gray_Reference_8618",
+                "layerType": "ArcGISTiledMapServiceLayer",
+                "url": "http://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Reference/MapServer",
+                "visibility": true,
+                "opacity": 1,
+                "title": "World Dark Gray Reference"
+            }
+        ],
+        "title": "Dark Gray Canvas"
+    },
+    "spatialReference": {
+        "wkid": 102100,
+        "latestWkid": 3857
+    },
+    "authoringApp": "WebMapViewer",
+    "authoringAppVersion": "4.3",
+    "version": "2.6",
+    "applicationProperties": {
+        "viewing": {
+            "routing": {
+                "enabled": true
+            },
+            "basemapGallery": {
+                "enabled": true
+            },
+            "measure": {
+                "enabled": true
+            }
+        }
+    }
+}

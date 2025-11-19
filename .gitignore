@@ -1,0 +1,66 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Environment variables
+.env
+
+# Test outputs
+test_data/output/
+test_data/test_report.txt
+
+# Downloaded images (temporary) except classic-apps/images
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.JPG
+*.JPEG
+*.PNG
+*.GIF
+!classic-apps/images/**
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+converter-app/package-lock.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+converter-app/node_modules/
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# temp files
+classic_json.json
+converted_storymap_json.json
+webmap_json.json

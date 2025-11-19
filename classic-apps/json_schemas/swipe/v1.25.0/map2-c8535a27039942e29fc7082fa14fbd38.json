@@ -1,0 +1,328 @@
+{
+    "operationalLayers": [
+        {
+            "id": "17d9b27a62f-layer-3",
+            "title": "2019 Census Tracts No Longer Available",
+            "url": "https://services.arcgis.com/jIL9msH9OI208GCb/arcgis/rest/services/2019_to_2020_Tract_Changes/FeatureServer/1",
+            "itemId": "94b4cba3c13340c481e6ecc21b221b84",
+            "layerType": "ArcGISFeatureLayer",
+            "popupInfo": {
+                "popupElements": [
+                    {
+                        "type": "fields",
+                        "description": "",
+                        "fieldInfos": [
+                            {
+                                "fieldName": "GEOID",
+                                "isEditable": true,
+                                "label": "2019 FIPS Code",
+                                "visible": true
+                            },
+                            {
+                                "fieldName": "State",
+                                "isEditable": true,
+                                "label": "State",
+                                "visible": true
+                            },
+                            {
+                                "fieldName": "County",
+                                "isEditable": true,
+                                "label": "County",
+                                "visible": true
+                            },
+                            {
+                                "fieldName": "ALAND",
+                                "format": {
+                                    "digitSeparator": true,
+                                    "places": 0
+                                },
+                                "isEditable": true,
+                                "label": "Area of Land (square meters)",
+                                "visible": true
+                            },
+                            {
+                                "fieldName": "AWATER",
+                                "format": {
+                                    "digitSeparator": true,
+                                    "places": 0
+                                },
+                                "isEditable": true,
+                                "label": "Area of Water (square meters)",
+                                "visible": true
+                            }
+                        ],
+                        "title": ""
+                    }
+                ],
+                "expressionInfos": [],
+                "fieldInfos": [
+                    {
+                        "fieldName": "OBJECTID",
+                        "format": {
+                            "digitSeparator": false,
+                            "places": 0
+                        },
+                        "label": "OBJECTID",
+                        "visible": false
+                    },
+                    {
+                        "fieldName": "GEOID",
+                        "isEditable": true,
+                        "label": "2019 FIPS Code",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ALAND",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Area of Land (square meters)",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "AWATER",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Area of Water (square meters)",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "NAME",
+                        "isEditable": true,
+                        "label": "NAME",
+                        "visible": false
+                    },
+                    {
+                        "fieldName": "State",
+                        "isEditable": true,
+                        "label": "State",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "County",
+                        "isEditable": true,
+                        "label": "County",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Updated",
+                        "isEditable": true,
+                        "label": "Updated",
+                        "visible": false
+                    },
+                    {
+                        "fieldName": "Shape__Area",
+                        "format": {
+                            "digitSeparator": false,
+                            "places": 6
+                        },
+                        "label": "Shape__Area",
+                        "visible": false
+                    },
+                    {
+                        "fieldName": "Shape__Length",
+                        "format": {
+                            "digitSeparator": false,
+                            "places": 6
+                        },
+                        "label": "Shape__Length",
+                        "visible": false
+                    }
+                ],
+                "title": "{NAME}"
+            }
+        },
+        {
+            "id": "17d9b27a630-layer-4",
+            "title": "New 2020 Census Tracts",
+            "url": "https://services.arcgis.com/jIL9msH9OI208GCb/arcgis/rest/services/2019_to_2020_Tract_Changes/FeatureServer/0",
+            "itemId": "94b4cba3c13340c481e6ecc21b221b84",
+            "layerType": "ArcGISFeatureLayer",
+            "popupInfo": {
+                "popupElements": [
+                    {
+                        "type": "fields",
+                        "description": "",
+                        "fieldInfos": [
+                            {
+                                "fieldName": "GEOID",
+                                "isEditable": true,
+                                "label": "2020 FIPS Code",
+                                "visible": true
+                            },
+                            {
+                                "fieldName": "State",
+                                "isEditable": true,
+                                "label": "State",
+                                "visible": true
+                            },
+                            {
+                                "fieldName": "County",
+                                "isEditable": true,
+                                "label": "County",
+                                "visible": true
+                            },
+                            {
+                                "fieldName": "ALAND",
+                                "format": {
+                                    "digitSeparator": true,
+                                    "places": 0
+                                },
+                                "isEditable": true,
+                                "label": "Area of Land (square meters)",
+                                "visible": true
+                            },
+                            {
+                                "fieldName": "AWATER",
+                                "format": {
+                                    "digitSeparator": true,
+                                    "places": 0
+                                },
+                                "isEditable": true,
+                                "label": "Area of Water (square meters)",
+                                "visible": true
+                            }
+                        ],
+                        "title": ""
+                    }
+                ],
+                "expressionInfos": [],
+                "fieldInfos": [
+                    {
+                        "fieldName": "OBJECTID",
+                        "format": {
+                            "digitSeparator": false,
+                            "places": 0
+                        },
+                        "label": "OBJECTID",
+                        "visible": false
+                    },
+                    {
+                        "fieldName": "GEOID",
+                        "isEditable": true,
+                        "label": "2020 FIPS Code",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ALAND",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Area of Land (square meters)",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "AWATER",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Area of Water (square meters)",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "NAME",
+                        "isEditable": true,
+                        "label": "NAME",
+                        "visible": false
+                    },
+                    {
+                        "fieldName": "State",
+                        "isEditable": true,
+                        "label": "State",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "County",
+                        "isEditable": true,
+                        "label": "County",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Updated",
+                        "isEditable": true,
+                        "label": "Updated",
+                        "visible": false
+                    },
+                    {
+                        "fieldName": "Shape__Area",
+                        "format": {
+                            "digitSeparator": false,
+                            "places": 6
+                        },
+                        "label": "Shape__Area",
+                        "visible": false
+                    },
+                    {
+                        "fieldName": "Shape__Length",
+                        "format": {
+                            "digitSeparator": false,
+                            "places": 6
+                        },
+                        "label": "Shape__Length",
+                        "visible": false
+                    }
+                ],
+                "title": "{NAME}"
+            }
+        }
+    ],
+    "baseMap": {
+        "baseMapLayers": [
+            {
+                "id": "VectorTile_8900",
+                "title": "Human Geography Base",
+                "itemId": "2afe5b807fa74006be6363fd243ffb30",
+                "layerType": "VectorTileLayer",
+                "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/2afe5b807fa74006be6363fd243ffb30/resources/styles/root.json"
+            },
+            {
+                "id": "VectorTile_9702",
+                "opacity": 0.37,
+                "title": "Human Geography Detail",
+                "itemId": "97fa1365da1e43eabb90d0364326bc2d",
+                "layerType": "VectorTileLayer",
+                "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/97fa1365da1e43eabb90d0364326bc2d/resources/styles/root.json",
+                "isReference": true
+            },
+            {
+                "id": "VectorTile_7804",
+                "title": "Human Geography Label",
+                "itemId": "ba52238d338745b1a355407ec9df6768",
+                "layerType": "VectorTileLayer",
+                "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/ba52238d338745b1a355407ec9df6768/resources/styles/root.json",
+                "isReference": true
+            }
+        ],
+        "title": "Human Geography Map"
+    },
+    "authoringApp": "ArcGISMapViewer",
+    "authoringAppVersion": "9.3",
+    "initialState": {
+        "viewpoint": {
+            "targetGeometry": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "xmin": -9526368.842656361,
+                "ymin": 3885694.2700759512,
+                "xmax": -9290331.299311748,
+                "ymax": 4109196.140781795
+            }
+        }
+    },
+    "spatialReference": {
+        "latestWkid": 3857,
+        "wkid": 102100
+    },
+    "version": "2.23"
+}

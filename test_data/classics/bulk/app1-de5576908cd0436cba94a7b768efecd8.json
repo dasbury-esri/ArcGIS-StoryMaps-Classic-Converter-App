@@ -1,0 +1,100 @@
+{
+    "source": "91d75e9b375e4e9b9b3a4004544bfadf",
+    "folderId": null,
+    "values": {
+        "webmap": "cb530d04876a4ec0b6f8ab3b40e36204",
+        "order": [
+            {
+                "id": 1,
+                "visible": true
+            },
+            {
+                "id": 2,
+                "visible": true
+            },
+            {
+                "id": 3,
+                "visible": true
+            },
+            {
+                "id": 4,
+                "visible": true
+            },
+            {
+                "id": 5,
+                "visible": true
+            },
+            {
+                "id": 6,
+                "visible": true
+            },
+            {
+                "id": 7,
+                "visible": true
+            },
+            {
+                "id": 8,
+                "visible": true
+            },
+            {
+                "id": 9,
+                "visible": true
+            },
+            {
+                "id": 10,
+                "visible": true
+            },
+            {
+                "id": 11,
+                "visible": true
+            },
+            {
+                "id": 12,
+                "visible": true
+            },
+            {
+                "id": 15,
+                "visible": true
+            },
+            {
+                "id": 17,
+                "visible": true
+            },
+            {
+                "id": 18,
+                "visible": true
+            },
+            {
+                "id": 19,
+                "visible": true
+            }
+        ],
+        "layout": "integrated",
+        "placardPosition": "",
+        "colors": "#0e3867;#5d6f89;#9096a9",
+        "headerLinkText": "A story map",
+        "headerLinkURL": "http://esriurl.com/ocnres",
+        "logoURL": null,
+        "logoTarget": "",
+        "social": {
+            "facebook": true,
+            "twitter": true,
+            "bitly": true
+        },
+        "fieldsOverride": {
+            "fieldID": "FID",
+            "fieldName": "Name",
+            "fieldDescription": "Caption",
+            "fieldURL": "URL",
+            "fieldThumb": "Thumb_URL",
+            "fieldIconColor": "Number"
+        },
+        "zoomLevel": "4",
+        "templateCreation": "2.1",
+        "title": "Pacific Ocean Science and Exploration",
+        "sourceLayer": "Pacific_StoryMap_Features_4383",
+        "template": "Map Tour",
+        "templateVersion": "2.5.1",
+        "subtitle": "Come with us on a tour of some of the wildest, most exciting places being explored and studied in the world's largest ocean, the Pacific. Map by \"Deepsea Dawn\" Wright, dwright@esri.com."
+    }
+}
