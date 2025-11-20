@@ -16,7 +16,10 @@ import {
   updateItemKeywords,
 } from "../api/arcgis-client";
 import { convertClassicToJson } from "../converter/converter-factory";
-import { createDraftStoryMap } from "../converter/storymap-draft-creator"
+import { createDraftStoryMap } from "../converter/storymap-draft-creator";
+// Refactor pipeline imports (feature-flagged)
+import { useRefactorFlag as getRefactorFlag, convertClassicToJsonRefactored } from "../refactor";
+import { transferImage } from "../api/image-transfer";
 // import {
 //   collectImageUrls,
 //   transferImages,
@@ -72,16 +75,62 @@ export default function Converter() {
         const itemTitle = `(Converted) ${coverTitle}`;
         const targetStoryId = await createDraftStoryMap(username, token, itemTitle);
 
-        // 3.5 Convert to new JSON
+        // 3.5 Convert to new JSON (legacy or refactored pipeline)
+        const useRefactor = getRefactorFlag();
         setStatus("converting");
-        setMessage("Converting classic story to new format...");
-        let newStorymapJson = await convertClassicToJson(
-          classicData,
-          "summit",
-          username,
-          token,
-          targetStoryId
-        );
+        setMessage(useRefactor
+          ? "[Refactor] Converting classic story via new pipeline..."
+          : "Converting classic story to new format...");
+
+        let newStorymapJson: any;
+        if (useRefactor) {
+          const uploader = async (url: string, storyId: string, user: string, tk: string) => {
+            const res = await transferImage(url, storyId, user, tk);
+            return { originalUrl: url, resourceName: res.resourceName, transferred: !!res.isTransferred };
+          };
+
+          const pipelineResult = await convertClassicToJsonRefactored({
+            classicJson: classicData,
+            storyId: targetStoryId,
+            classicItemId,
+            username,
+            token,
+            themeId: "summit",
+            progress: (e) => {
+              if (e.stage === 'media') {
+                setStatus('transferring');
+                setMessage(`${e.message} (${e.current}/${e.total})`);
+              } else if (e.stage === 'fetch') {
+                setStatus('fetching');
+                setMessage(e.message);
+              } else if (e.stage === 'convert') {
+                setStatus('converting');
+                setMessage(e.message);
+              } else if (e.stage === 'finalize') {
+                setStatus('updating');
+                setMessage(e.message);
+              } else if (e.stage === 'error') {
+                setStatus('error');
+                setMessage(e.message);
+              } else if (e.stage === 'done') {
+                setStatus('success');
+                setMessage(e.message);
+              } else {
+                setMessage(e.message);
+              }
+            },
+            uploader
+          });
+          newStorymapJson = pipelineResult.storymapJson; // mapping already applied
+        } else {
+          newStorymapJson = await convertClassicToJson(
+            classicData,
+            "summit",
+            username,
+            token,
+            targetStoryId
+          );
+        }
 
         // // Skip image transfer if resources already have item-resource references
         // const needsTransfer = Object.values<any>(newStorymapJson.resources || {})
