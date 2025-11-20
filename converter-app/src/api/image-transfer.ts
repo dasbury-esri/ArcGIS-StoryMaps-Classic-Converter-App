@@ -366,37 +366,37 @@ function extractWidthFromFilename(filename: string | undefined): number | undefi
  * For transferred images: use resourceId + provider: "item-resource"
  * For external images: use src + provider: "uri"
  */
-export function updateImageUrlsInJson(storymapJson: any, transferResults: Record<string, string>) {
-  console.log('[updateImageUrlsInJson] Entering');
+export function updateImageResourcesInJson(storymapJson: any, transferResults: Record<string, string>) {
+  console.log('[updateImageResourcesInJson] Entering');
   const normalizeUrl = (url: string) => {
     let u = decodeURIComponent(url);
     if (u.startsWith('//')) u = 'https:' + u;
     return u;
   };
-  console.log('[updateImageUrlsInJson] storymapJson:', storymapJson);
+  console.log('[updateImageResourcesInJson] storymapJson:', storymapJson);
   if (!storymapJson.resources) {
-    console.log('[updateImageUrlsInJson] No resources in storymapJson!');
+    console.log('[updateImageResourcesInJson] No resources in storymapJson!');
     return storymapJson;
   }
   for (const [resourceId, resource] of Object.entries<any>(storymapJson.resources)) {
-    console.log('[updateImageUrlsInJson] Resource:', resource);
+    console.log('[updateImageResourcesInJson] Resource:', resource);
     if (resource.type !== 'image') continue;
     // Preserve original before mutation
     const originalUrl = resource.data.url || resource.data.src;
     if (!originalUrl) {
-      console.log('[updateImageUrlsInJson] SKIPPING: No url or src for', resourceId, resource);
+      console.log('[updateImageResourcesInJson] SKIPPING: No url or src for', resourceId, resource);
       continue;
     }  
-    console.log('[updateImageUrlsInJson] Original URL', originalUrl);
+    console.log('[updateImageResourcesInJson] Original URL', originalUrl);
     const matchKey = Object.keys(transferResults).find(
       k => normalizeUrl(k) === normalizeUrl(originalUrl)
     );
-    console.log('[updateImageUrlsInJson] MatchKey', matchKey);
+    console.log('[updateImageResourcesInJson] MatchKey', matchKey);
     if (matchKey) {
       // Transferred image
       const transferredName = transferResults[matchKey]; // new filename
       const widthFromOriginal = extractWidthFromFilename(originalUrl);
-      console.log('[updateImageUrlsInJson] transferred resource:', {
+      console.log('[updateImageResourcesInJson] transferred resource:', {
         resourceId,
         originalUrl,
         transferredName,
@@ -413,7 +413,7 @@ export function updateImageUrlsInJson(storymapJson: any, transferResults: Record
     } else {
       // External / not transferred
       const widthFromOriginal = extractWidthFromFilename(originalUrl);
-      console.log('[updateImageUrlsInJson] WARNING external image:', {
+      console.log('[updateImageResourcesInJson] WARNING external image:', {
         resourceId,
         originalUrl,
         widthFromOriginal

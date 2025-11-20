@@ -17,15 +17,10 @@ import {
 } from "../api/arcgis-client";
 import { convertClassicToJson } from "../converter/converter-factory";
 import { createDraftStoryMap } from "../converter/storymap-draft-creator";
-// Refactor pipeline imports (feature-flagged)
-import { useRefactorFlag as getRefactorFlag, convertClassicToJsonRefactored } from "../refactor";
 import { transferImage } from "../api/image-transfer";
-// import {
-//   collectImageUrls,
-//   transferImages,
-//   updateImageUrlsInJson,
-// } from "../api/image-transfer";
-// import { saveJsonToFile } from '../converter/utils';
+// Refactor pipeline imports (feature-flagged)
+import { useRefactorFlag } from "../refactor/util/featureFlag";
+import { convertClassicToJsonRefactored } from "../refactor";
 
 type Status =
   | "idle"
@@ -38,7 +33,7 @@ type Status =
 
 export default function Converter() {
     const [publishing, setPublishing] = useState(false);
-
+    const useRefactor = useRefactorFlag(); // Now only reflects current URL (or transient flag during redirect)
     const handleConvert = async () => {
       // Reset state
       setStatus("idle");
@@ -76,11 +71,12 @@ export default function Converter() {
         const targetStoryId = await createDraftStoryMap(username, token, itemTitle);
 
         // 3.5 Convert to new JSON (legacy or refactored pipeline)
-        const useRefactor = getRefactorFlag();
         setStatus("converting");
-        setMessage(useRefactor
-          ? "[Refactor] Converting classic story via new pipeline..."
-          : "Converting classic story to new format...");
+        setMessage(
+          useRefactor
+            ? "[Refactor] Converting classic story via new pipeline..."
+            : "Converting classic story to new format..."
+        );
 
         let newStorymapJson: any;
         if (useRefactor) {
@@ -97,31 +93,34 @@ export default function Converter() {
             token,
             themeId: "summit",
             progress: (e) => {
-              if (e.stage === 'media') {
-                setStatus('transferring');
-                setMessage(`${e.message} (${e.current}/${e.total})`);
-              } else if (e.stage === 'fetch') {
-                setStatus('fetching');
-                setMessage(e.message);
-              } else if (e.stage === 'convert') {
-                setStatus('converting');
-                setMessage(e.message);
-              } else if (e.stage === 'finalize') {
-                setStatus('updating');
-                setMessage(e.message);
-              } else if (e.stage === 'error') {
-                setStatus('error');
-                setMessage(e.message);
-              } else if (e.stage === 'done') {
-                setStatus('success');
-                setMessage(e.message);
-              } else {
-                setMessage(e.message);
+              switch (e.stage) {
+                case 'media':
+                  setStatus('transferring');
+                  setMessage(`${e.message}${e.total ? ` (${e.current}/${e.total})` : ''}`);
+                  break;
+                case 'convert':
+                  setStatus('converting');
+                  setMessage(e.message);
+                  break;
+                case 'finalize':
+                  setStatus('updating');
+                  setMessage(e.message);
+                  break;
+                case 'error':
+                  setStatus('error');
+                  setMessage(e.message);
+                  break;
+                case 'done':
+                  setStatus('success');
+                  setMessage(e.message);
+                  break;
+                default:
+                  setMessage(e.message);
               }
             },
             uploader
           });
-          newStorymapJson = pipelineResult.storymapJson; // mapping already applied
+          newStorymapJson = pipelineResult.storymapJson;
         } else {
           newStorymapJson = await convertClassicToJson(
             classicData,

@@ -11,7 +11,8 @@ import { StoryMapJSONBuilder } from './storymap-builder';
 import { 
   collectImageUrls, 
   transferImages, 
-  updateImageUrlsInJson,
+  // updateImageUrlsInJson,
+  updateImageResourcesInJson,
   collectClassicJournalImageUrls
 } from '../api/image-transfer';
 import {
@@ -116,7 +117,8 @@ export class MapJournalConverter {
       );
       transfers.forEach(t => (transferResults[t.originalUrl] = t.resourceName));
       console.log("[MapJournalConverter] Transfer complete")
-      storymapJson = updateImageUrlsInJson(storymapJson, transferResults);
+      console.log("[MapJournalConverter] Transfer results", transferResults)
+      storymapJson = updateImageResourcesInJson(storymapJson, transferResults);
     }
     return storymapJson;
   }

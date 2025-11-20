@@ -9,7 +9,11 @@
 import type { ClassicStoryMapJSON } from '../types/storymap';
 import { StoryMapJSONBuilder } from './storymap-builder';
 import { createCreditsNode } from './storymap-schema';
-import { collectImageUrls, transferImages, updateImageUrlsInJson } from '../api/image-transfer';
+import { 
+  collectImageUrls, 
+  transferImages, 
+  // updateImageUrlsInJson 
+} from '../api/image-transfer';
 import {
   determineScaleZoomLevel,
   ensureHttpsProtocol,

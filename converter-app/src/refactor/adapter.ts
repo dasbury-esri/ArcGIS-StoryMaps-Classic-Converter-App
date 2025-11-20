@@ -1,6 +1,8 @@
 import type { ClassicStoryMapJSON } from './types/classic';
-import { ConversionPipeline } from './pipeline/ConversionPipeline';
-import type { ConversionContext } from './types/core';
+import type { ConversionContext, StoryMapJSON } from './types/core';
+import { ConverterFactory } from './ConverterFactory';
+import { MediaTransferService } from './media/MediaTransferService';
+import { ResourceMapper } from './media/ResourceMapper';
 
 export interface AdapterParams {
   classicJson: ClassicStoryMapJSON;
@@ -10,10 +12,18 @@ export interface AdapterParams {
   token: string;
   themeId: string;
   progress: (e: { stage: string; message: string; current?: number; total?: number }) => void;
-  uploader: (url: string, storyId: string, username: string, token: string) => Promise<{ originalUrl: string; resourceName: string; transferred: boolean }>;
+  uploader: (url: string, storyId: string, username: string, token: string) => Promise<{
+    originalUrl: string; resourceName: string; transferred: boolean;
+  }>;
 }
 
-export async function convertClassicToJsonRefactored(params: AdapterParams) {
+export interface RefactorConversionOutput {
+  storymapJson: StoryMapJSON;
+  mediaMapping: Record<string, string>;
+}
+
+// Unified orchestration for refactored flow
+export async function convertClassicToJsonRefactored(params: AdapterParams): Promise<RefactorConversionOutput> {
   const ctx: ConversionContext = {
     classicItemId: params.classicItemId,
     storyId: params.storyId,
@@ -23,11 +33,27 @@ export async function convertClassicToJsonRefactored(params: AdapterParams) {
     progress: params.progress
   };
 
-  const pipeline = new ConversionPipeline({
+  params.progress({ stage: 'convert', message: '[Refactor] Starting converter factory...' });
+  const converterResult = ConverterFactory.create({
     classicJson: params.classicJson,
-    context: ctx,
+    themeId: params.themeId,
+    progress: (e) => params.progress(e)
+  });
+
+  params.progress({ stage: 'media', message: '[Refactor] Transferring media...' });
+  const mediaMapping = await MediaTransferService.transferBatch({
+    urls: converterResult.mediaUrls,
+    storyId: ctx.storyId,
+    username: ctx.username,
+    token: ctx.token,
+    progress: ctx.progress,
     uploader: params.uploader
   });
 
-  return pipeline.run();
+  params.progress({ stage: 'finalize', message: '[Refactor] Applying media mapping...' });
+  const updated = ResourceMapper.apply(converterResult.storymapJson, mediaMapping);
+
+  params.progress({ stage: 'done', message: '[Refactor] Conversion pipeline complete.' });
+  return { storymapJson: updated, mediaMapping };
 }
+
