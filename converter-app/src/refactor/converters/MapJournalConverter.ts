@@ -1,6 +1,7 @@
 import { BaseConverter } from './BaseConverter.ts';
 import type { ClassicValues, ClassicSection } from '../types/classic.ts';
 import type { ConverterResult, StoryMapJSON } from '../types/core.ts';
+import { createThemeWithDecisions } from '../theme/themeMapper.ts';
 import { StoryMapJSONBuilder } from '../schema/StoryMapJSONBuilder.ts';
 import type { BaseConverterOptions } from './BaseConverter.ts';
 
@@ -34,6 +35,11 @@ export class MapJournalConverter extends BaseConverter {
     this.builder.addNavigationHidden();
     this.builder.addCreditsNode();
     this.emit('Added cover/navigation/credits scaffold');
+    // Inject metaSettings (title, description, optional cover image resource when available later)
+    const metaDesc = (v.description || v.subtitle || '') + '';
+    let coverImageRes: string | undefined;
+    // Heuristic: if first resource is image and cover has image assigned later we could map; placeholder now
+    this.builder.setStoryMeta(v.title || 'Untitled Story', metaDesc.trim() || undefined, coverImageRes);
 
     // Map classic layout settings to sidecar config
     const classicValues = v as ClassicValues;
@@ -41,6 +47,7 @@ export class MapJournalConverter extends BaseConverter {
     const layoutCfg = (classicValues.settings?.layoutOptions?.layoutCfg as { size?: string; position?: string }) || {};
     const classicSize = layoutCfg.size || 'medium';
     const classicPosition = layoutCfg.position || 'right';
+    const hasClassicTheme = !!classicValues.settings?.theme && Object.keys(classicValues.settings.theme || {}).length > 0;
     const subtype: 'docked-panel' | 'floating-panel' = layoutId === 'float' ? 'floating-panel' : 'docked-panel';
     let narrativePanelSize: 'small' | 'medium' | 'large' = 'medium';
     if (classicSize === 'small' || classicSize === 'medium' || classicSize === 'large') narrativePanelSize = classicSize;
@@ -133,12 +140,16 @@ export class MapJournalConverter extends BaseConverter {
             if (media.webmap?.id) {
               const wmRes = this.builder.addWebMapResource(media.webmap.id, 'Web Map');
               actMediaNode = this.builder.createWebMapNode(wmRes, stub.text.includes('Map') ? stub.text : undefined);
-              if (media.webmap.layers) {
-                const wmNode = json.nodes[actMediaNode];
-                wmNode.data.mapLayers = media.webmap.layers.map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }));
+              const currentJson = this.builder.getJson();
+              if (actMediaNode && media.webmap.layers) {
+                const wmNode = currentJson.nodes[actMediaNode];
+                if (wmNode && wmNode.data) {
+                  wmNode.data.mapLayers = media.webmap.layers.map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }));
+                }
               }
-              if (media.webmap.extent) {
-                json.nodes[actMediaNode].data.extent = media.webmap.extent;
+              if (actMediaNode && media.webmap.extent) {
+                const wmNode = currentJson.nodes[actMediaNode];
+                if (wmNode && wmNode.data) wmNode.data.extent = media.webmap.extent;
               }
               this.media.add(media.webmap.id);
             } else if (media.image?.url) {
@@ -153,9 +164,12 @@ export class MapJournalConverter extends BaseConverter {
               actMediaNode = this.builder.createEmbedNode(media.webpage.url, media.webpage.caption, media.webpage.title, media.webpage.description, media.webpage.altText);
             }
           if (actMediaNode) {
-            const btnNode = json.nodes[stub.buttonNodeId];
-            if (!btnNode.dependents) btnNode.dependents = {};
-            btnNode.dependents.actionMedia = actMediaNode;
+            const currentJson2 = this.builder.getJson();
+            const btnNode = currentJson2.nodes[stub.buttonNodeId];
+            if (btnNode) {
+              if (!btnNode.dependents) btnNode.dependents = {};
+              btnNode.dependents.actionMedia = actMediaNode;
+            }
             this.builder.registerReplaceMediaAction(stub.buttonNodeId, slideId, actMediaNode);
           }
         }
@@ -197,12 +211,79 @@ export class MapJournalConverter extends BaseConverter {
         data.text = updated;
       }
     }
-    this.emit(`Built single sidecar with ${sidecar.children?.length || 0} slide(s); navigate buttons resolved: ${navigateButtonStubs.length}`);
+
+    // Theme provenance & inline theme resource override application
+    const classicTheme = classicValues.settings?.theme || null;
+    // Fallback branch: if no classic theme and float layout, apply obsidian with no overrides and adjust each immersive-narrative-panel (not the sidecar itself)
+    if (!hasClassicTheme && layoutId === 'float') {
+      // Update every immersive-narrative-panel to position:end & size:medium
+      const currentJson = this.builder.getJson();
+      for (const node of Object.values(currentJson.nodes)) {
+        if (node && node.type === 'immersive-narrative-panel') {
+          if (!node.data) node.data = {};
+          (node.data as Record<string, unknown>).position = 'end';
+          (node.data as Record<string, unknown>).size = 'medium';
+        }
+      }
+      const decisions: Record<string, unknown> = {
+        baseThemeId: 'obsidian',
+        forcedByMissingClassicTheme: true,
+        variableOverridesApplied: [],
+        layoutMapping: {
+          classicLayoutId: layoutId,
+          classicSize,
+          classicPosition,
+          mappedSubtype: subtype,
+          mappedNarrativePanelSize: 'medium',
+          mappedNarrativePanelPosition: 'end'
+        }
+      };
+      this.builder.applyTheme({ themeId: 'obsidian', variableOverrides: {} });
+      this.builder.addConverterMetadata('MapJournal', { classicMetadata: { theme: classicTheme, mappingDecisions: decisions } });
+      this.emit('Applied fallback obsidian theme (no classic theme present; float layout)');
+      return;
+    }
+    const { theme: mappedTheme, decisions } = createThemeWithDecisions(this.classicJson);
+    decisions.layoutMapping = {
+      classicLayoutId: layoutId,
+      classicSize,
+      classicPosition,
+      mappedSubtype: subtype,
+      mappedNarrativePanelSize: narrativePanelSize,
+      mappedNarrativePanelPosition: narrativePanelPosition
+    };
+    // Build overrides from variableOverridesApplied list
+    const overrides: Record<string,string> = {};
+    if (Array.isArray(decisions.variableOverridesApplied)) {
+      for (const key of decisions.variableOverridesApplied) {
+        if (mappedTheme.variables && key in mappedTheme.variables) {
+          overrides[key] = String(mappedTheme.variables[key]);
+        }
+      }
+    }
+    // Attach extracted custom CSS (style blocks) provenance if present
+    if (this.styleBlocks.length) {
+      try {
+        const combined = this.styleBlocks.join('\n\n');
+        (decisions as Record<string, unknown>)["customCss"] = {
+          blockCount: this.styleBlocks.length,
+          combined,
+          approxBytes: combined.length
+        } as Record<string, unknown>;
+      } catch {
+        // swallow
+      }
+    }
+    // Apply base theme and overrides to existing theme resource
+    this.builder.applyTheme({ themeId: decisions.baseThemeId, variableOverrides: overrides });
+    // Add converter metadata resource
+    this.builder.addConverterMetadata('MapJournal', { classicMetadata: { theme: classicTheme, mappingDecisions: decisions } });
+    this.emit(`Built single sidecar with ${sidecar.children?.length || 0} slide(s); theme overrides applied (${Object.keys(overrides).length})`);
   }
 
   protected applyTheme(): void {
-    this.builder.applyTheme({ themeId: this.themeId });
-    this.emit(`Applied theme ${this.themeId}`);
+    // Theme already applied with overrides inside convertContent
+    this.emit('applyTheme skipped (handled in convertContent)');
   }
 
   protected collectMedia(): string[] {

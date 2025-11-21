@@ -2,6 +2,7 @@ import type { StoryMapJSON, StoryMapNode, StoryMapImageNode, StoryMapVideoNode, 
 
 interface ThemeConfigInput {
   themeId: string;
+  variableOverrides?: Record<string, string>;
 }
 
 export class StoryMapJSONBuilder {
@@ -11,8 +12,6 @@ export class StoryMapJSONBuilder {
   constructor(themeId: string) {
     this.themeResourceId = this.generateResourceId();
     this.json = {
-      type: 'storymap',
-      version: '1.0.0',
       root: '',
       nodes: {},
       resources: {
@@ -51,6 +50,9 @@ export class StoryMapJSONBuilder {
     const theme = this.json.resources[this.themeResourceId];
     if (theme) {
       (theme.data as any).themeId = input.themeId;
+      if (input.variableOverrides && Object.keys(input.variableOverrides).length) {
+        (theme.data as any).themeBaseVariableOverrides = input.variableOverrides;
+      }
     }
   }
 
@@ -212,7 +214,43 @@ export class StoryMapJSONBuilder {
   }
 
   getJson(): StoryMapJSON {
-    return this.json;
+    // Reorder nodes so root story node is last for downstream consumers expecting that ordering
+    const nodesOrdered: Record<string, any> = {};
+    for (const [id, node] of Object.entries(this.json.nodes)) {
+      if (id === this.json.root) continue;
+      nodesOrdered[id] = node;
+    }
+    if (this.json.root) nodesOrdered[this.json.root] = this.json.nodes[this.json.root];
+    const { root, resources, actions } = this.json;
+    const ordered: StoryMapJSON = { root, nodes: nodesOrdered, resources, actions } as StoryMapJSON;
+    return ordered;
+  }
+
+  /** Set top-level story metaSettings inside root story node */
+  setStoryMeta(title: string, description?: string, imageResourceId?: string): void {
+    if (!this.json.root) return;
+    const rootNode = this.json.nodes[this.json.root];
+    if (!rootNode || rootNode.type !== 'story') return;
+    if (!rootNode.data) rootNode.data = {} as any;
+    (rootNode.data as any).metaSettings = {
+      title: title,
+      description: description || '',
+      imageResourceId: imageResourceId
+    };
+  }
+
+  /** Add converter metadata resource */
+  addConverterMetadata(classicType: string, payload: Omit<import('../types/core.ts').ConverterMetadataPayload,'type'|'version'|'classicType'>): void {
+    const id = this.generateResourceId();
+    (this.json.resources as any)[id] = {
+      type: 'converter-metadata',
+      data: {
+        type: 'storymap',
+        version: '1.0.0',
+        classicType,
+        ...payload
+      }
+    };
   }
 
   private generateNodeId(): string {

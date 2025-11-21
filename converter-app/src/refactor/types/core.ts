@@ -1,12 +1,51 @@
 /* Core types for refactored StoryMap pipeline (no any usage) */
 
 export interface StoryMapJSON {
-  type: 'storymap';
-  version: string;
   root: string; // root node id
   nodes: Record<string, StoryMapNode>;
   resources: Record<string, StoryMapResource>;
   actions?: StoryMapAction[];
+}
+
+export interface ConverterMetadataPayload {
+  type: 'storymap' | 'storymapTheme';
+  version: string;
+  classicType: string; // e.g. MapJournal, Cascade
+  classicMetadata?: {
+    theme?: any;
+    mappingDecisions?: {
+      baseThemeId: string;
+      colorMappings: {
+        panelToBackgroundColor?: string;
+        dotNavToHeaderFooterBackgroundColor?: string;
+        textToBodyColor?: string;
+        textLinkToBodyColor?: string;
+        textLinkToThemeColor1?: string;
+        softTextToBodyMutedColor?: string;
+        chosenBodyColorSource?: 'text' | 'textLink';
+      };
+      fontMappings?: {
+        classicTitleFontValue?: string;
+        mappedTitleFontId?: string;
+        classicBodyFontValue?: string;
+        mappedBodyFontId?: string;
+      };
+      variableOverridesApplied?: string[];
+      layoutMapping?: {
+        classicLayoutId: string;
+        classicSize?: string;
+        classicPosition?: string;
+        mappedSubtype: 'docked-panel' | 'floating-panel';
+        mappedNarrativePanelSize: 'small' | 'medium' | 'large';
+        mappedNarrativePanelPosition: 'start' | 'end';
+      };
+    };
+  };
+}
+
+export interface ConverterMetadataResource {
+  type: 'converter-metadata';
+  data: ConverterMetadataPayload;
 }
 
 // Resource types

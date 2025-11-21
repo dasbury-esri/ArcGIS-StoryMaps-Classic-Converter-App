@@ -1,0 +1,89 @@
+{
+    "source": "da029c7670514be1b5a10b60825cd8da",
+    "folderId": "bafd3c100a5b485d92d5203bbbaf679b",
+    "values": {
+        "settings": {
+            "layout": {
+                "id": "side"
+            },
+            "header": {
+                "linkText": "A Story Map",
+                "linkURL": "https://storymaps.arcgis.com",
+                "logoURL": "https://story.maps.arcgis.com/apps/MapSeries/resources/tpl/viewer/icons/esri-logo-white.png",
+                "logoTarget": "https://storymaps.arcgis.com/en/",
+                "social": {
+                    "facebook": true,
+                    "twitter": true,
+                    "bitly": false
+                }
+            },
+            "appGeocoders": [
+                {
+                    "singleLineFieldName": "SingleLine",
+                    "name": "ArcGIS World Geocoding Service",
+                    "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+                }
+            ],
+            "layoutOptions": {
+                "layoutCfg": {
+                    "size": "medium",
+                    "position": "left"
+                },
+                "socialLinks": false
+            },
+            "theme": {
+                "colors": {
+                    "name": "side-default-2",
+                    "themeMajor": "white",
+                    "dotNav": "#726458",
+                    "panel": "#FFF8E9",
+                    "media": "#C9C1B9",
+                    "text": "#000000",
+                    "textLink": "#555",
+                    "softText": "#c0c0c0",
+                    "softBtn": "#444",
+                    "esriLogo": "black"
+                },
+                "fonts": {
+                    "sectionTitle": {
+                        "id": "default",
+                        "value": "font-family:'open_sansregular', sans-serif;"
+                    },
+                    "sectionContent": {
+                        "id": "default",
+                        "value": "font-family:'open_sansregular', sans-serif;"
+                    }
+                }
+            }
+        },
+        "title": "Test Journal",
+        "story": {
+            "storage": "WEBAPP",
+            "sections": [
+                {
+                    "title": "<span style=\"font-size:40px;\">Test Journal</span>",
+                    "content": "<p>This is a picture of a bike in Boise.&nbsp; Please check out our other alliterative and geographical chapters!</p>\n\n<p>&nbsp;</p>\n\n<p><a href=\"http://#\" target=\"_blank\">Seals in Seattle</a></p>\n\n<p>&nbsp;</p>\n\n<p><a href=\"http://#\" target=\"_blank\">Doors in Denver</a></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1552590113658,
+                    "pubDate": 1552590113658,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "image",
+                        "image": {
+                            "url": "https://www.arcgis.com/sharing/rest/content/items/949e9f38151941eda4d1b415fb566b79/resources/IMG-20190210-WA0001__1552496972278__w1600.jpg",
+                            "type": "image",
+                            "altText": "",
+                            "display": "fill"
+                        }
+                    }
+                }
+            ]
+        },
+        "template": {
+            "name": "Map Journal",
+            "createdWith": "1.17.0",
+            "editedWith": "1.33.0"
+        }
+    },
+    "_ssl": null
+}

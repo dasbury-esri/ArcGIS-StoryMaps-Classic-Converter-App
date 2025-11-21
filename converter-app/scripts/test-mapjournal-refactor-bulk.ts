@@ -25,6 +25,13 @@ interface FileResultSummary {
   inlineNavigateAnchors: number;
   inlineNavigateAnchorsLinked: number;
   inlineNavigateAnchorsMissingLinks: number;
+  // Layout mapping decisions provenance
+  classicLayoutId?: string;
+  classicLayoutSize?: string;
+  classicLayoutPosition?: string;
+  mappedSubtype?: string;
+  mappedNarrativePanelSize?: string;
+  mappedNarrativePanelPosition?: string;
 }
 
 async function run() {
@@ -109,7 +116,41 @@ async function run() {
         }
       }
       const inlineNavigateAnchorsMissingLinks = inlineNavigateAnchors - inlineNavigateAnchorsLinked;
-      results.push({ file, template, sections, imageNodes: imageNodes.length, imageResources, captionedImages, altImages, altWebMaps, altEmbeds, altVideos, totalAltMedia, actionButtons, navigateButtons, navigateButtonsLinked, navigateButtonsMissingLinks });
+      // Layout mapping provenance (added to mappingDecisions.layoutMapping in converter)
+      // Find converter-metadata resource
+      const metaRes = Object.values(json.resources).find((r: any) => r.type === 'converter-metadata');
+      const layoutMapping = (metaRes?.data?.classicMetadata?.mappingDecisions || {}).layoutMapping || {};
+      const {
+        classicLayoutId,
+        classicSize: classicLayoutSize,
+        classicPosition: classicLayoutPosition,
+        mappedSubtype,
+        mappedNarrativePanelSize,
+        mappedNarrativePanelPosition
+      } = layoutMapping;
+      results.push({
+        file,
+        template,
+        sections,
+        imageNodes: imageNodes.length,
+        imageResources,
+        captionedImages,
+        altImages,
+        altWebMaps,
+        altEmbeds,
+        altVideos,
+        totalAltMedia,
+        actionButtons,
+        navigateButtons,
+        navigateButtonsLinked,
+        navigateButtonsMissingLinks,
+        classicLayoutId,
+        classicLayoutSize,
+        classicLayoutPosition,
+        mappedSubtype,
+        mappedNarrativePanelSize,
+        mappedNarrativePanelPosition
+      });
       // Append inline metrics to last pushed result (simpler: replace last element)
       const last = results[results.length - 1];
       Object.assign(last, { inlineNavigateAnchors, inlineNavigateAnchorsLinked, inlineNavigateAnchorsMissingLinks });
@@ -137,7 +178,15 @@ async function run() {
       navigateButtonsMissingLinks: sum(results, r=>r.navigateButtonsMissingLinks),
       inlineNavigateAnchors: sum(results, r=>r.inlineNavigateAnchors),
       inlineNavigateAnchorsLinked: sum(results, r=>r.inlineNavigateAnchorsLinked),
-      inlineNavigateAnchorsMissingLinks: sum(results, r=>r.inlineNavigateAnchorsMissingLinks)
+      inlineNavigateAnchorsMissingLinks: sum(results, r=>r.inlineNavigateAnchorsMissingLinks),
+      layoutDistributions: {
+        classicLayoutId: countBy(results, r=>r.classicLayoutId || 'unknown'),
+        classicLayoutSize: countBy(results, r=>r.classicLayoutSize || 'unknown'),
+        classicLayoutPosition: countBy(results, r=>r.classicLayoutPosition || 'unknown'),
+        mappedSubtype: countBy(results, r=>r.mappedSubtype || 'unknown'),
+        mappedNarrativePanelSize: countBy(results, r=>r.mappedNarrativePanelSize || 'unknown'),
+        mappedNarrativePanelPosition: countBy(results, r=>r.mappedNarrativePanelPosition || 'unknown')
+      }
     },
     perFile: results
   };
@@ -149,5 +198,6 @@ async function run() {
 }
 
 function sum<T>(arr:T[], sel:(t:T)=>number){return arr.reduce((acc,t)=>acc+sel(t),0);} 
+function countBy<T>(arr:T[], sel:(t:T)=>string){const m:Record<string,number>={}; for(const a of arr){const k=sel(a); m[k]=(m[k]||0)+1;} return m;}
 
 run().catch(e=>{console.error(e);process.exit(1);});

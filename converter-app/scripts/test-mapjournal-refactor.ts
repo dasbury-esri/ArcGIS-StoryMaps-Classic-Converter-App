@@ -10,7 +10,9 @@ async function run(){
   const root = path.resolve(process.cwd(),'..');
   const sampleDir = path.join(root,'test_data','classics','MapJournal');
   const files = fs.readdirSync(sampleDir).filter(f=>f.endsWith('.json'));
-  const sample = path.join(sampleDir, files[0]);
+  // Prefer a sample with embedded <style> blocks to exercise custom CSS provenance
+  const cssSampleName = files.find(f => f.includes('ccd648')) || files[0];
+  const sample = path.join(sampleDir, cssSampleName);
   const classic = load(sample);
   const uploader = async (url: string) => {
     const hash = crypto.createHash('md5').update(url).digest('hex').slice(0,8);

@@ -36,11 +36,23 @@ export default function Converter() {
   const [publishing, setPublishing] = useState(false);
   const useRefactor = useRefactorFlag(); // Reflects current URL (?refactor=1)
   const [detectedTemplate, setDetectedTemplate] = useState<string | null>(null);
+  const [customCssInfo, setCustomCssInfo] = useState<{ css: string; url: string } | null>(null);
+  // Classic item id must be 32 hex characters
+  const isValidClassicId = (id: string): boolean => /^[a-f0-9]{32}$/i.test(id.trim());
     const handleConvert = async () => {
       // Reset state
       setStatus("idle");
       setMessage("");
       setConvertedUrl("");
+      if (customCssInfo?.url) URL.revokeObjectURL(customCssInfo.url);
+      setCustomCssInfo(null);
+
+      // Validate classic item id format first
+      if (!isValidClassicId(classicItemId)) {
+        setStatus("error");
+        setMessage("Incorrect Classic Story Map item id format - please enter a 32 character hex string");
+        return;
+      }
 
       // Validate token
       if (!token) {
@@ -80,6 +92,9 @@ export default function Converter() {
         const coverTitle = classicData.values?.title || "Untitled Story";
         const itemTitle = `(Converted) ${coverTitle}`;
         const targetStoryId = await createDraftStoryMap(username, token, itemTitle);
+
+        // 3.a Determine base theme (summit/obsidian) will be applied inline with overrides during conversion
+        setMessage("Mapping theme overrides (inline resource)...");
 
         // 3.5 Convert to new JSON (legacy or refactored pipeline)
         setStatus("converting");
@@ -142,6 +157,21 @@ export default function Converter() {
             targetStoryId
           );
         }
+
+        // Extract custom CSS (if any) from converter-metadata decisions
+        try {
+          const metadataRes = newStorymapJson?.resources && Object.values<any>(newStorymapJson.resources).find((r: any) => r.type === 'converter-metadata');
+          const cssCombined = metadataRes?.data?.classicMetadata?.mappingDecisions?.customCss?.combined;
+          if (cssCombined) {
+            const blob = new Blob([cssCombined], { type: 'text/css' });
+            const url = URL.createObjectURL(blob);
+            setCustomCssInfo({ css: cssCombined, url });
+          }
+        } catch {
+          // ignore
+        }
+
+        // Theme resource already constructed during conversion with base theme + overrides.
 
         // // Skip image transfer if resources already have item-resource references
         // const needsTransfer = Object.values<any>(newStorymapJson.resources || {})
@@ -269,6 +299,11 @@ export default function Converter() {
               ? "Success:"
               : "Status:"}
           </strong> {message}
+        </div>
+      )}
+      {customCssInfo && (
+        <div className="converter-warning">
+          <strong>Custom CSS Detected!</strong> Your classic story used custom CSS settings. To recreate your custom styles you should create a new ArcGIS StoryMaps Theme <a href="https://storymaps.arcgis.com/themes/new" target="_blank" rel="noopener noreferrer">here</a> with your custom colors and styles, then apply the new Theme within the ArcGIS StoryMaps Builder (under the Design tab). <a href={customCssInfo.url} download="custom-css.css">Click this link</a> to download a copy of your custom CSS.
         </div>
       )}
       {convertedUrl && (

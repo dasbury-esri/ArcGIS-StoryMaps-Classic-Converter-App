@@ -95,6 +95,24 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
+.converter-warning {
+  border: 1px solid #e67e22;
+  background: #fff8f0;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #1D3955; /* ensure readable text on light background */
+}
+.converter-warning a {
+  color: #c05621;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.converter-warning a:hover, .converter-warning a:focus {
+  color: #8a3d15;
+}
 /* Header persistent top nav styles */
 .top-nav {
   position: fixed;

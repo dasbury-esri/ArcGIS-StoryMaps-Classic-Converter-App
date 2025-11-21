@@ -103,6 +103,10 @@ function mapClassicFontToId(value?: string, fallback?: string): string | undefin
 }
 
 export function createThemeFromClassic(classic: ClassicStoryMapJSON): StoryMapThemeJSON {
+  return createThemeWithDecisions(classic).theme;
+}
+
+export function createThemeWithDecisions(classic: ClassicStoryMapJSON): { theme: StoryMapThemeJSON; decisions: any } {
   const values: any = (classic as any).values || {};
   const settings = values.settings || {};
   const classicTheme = settings.theme || {};
@@ -110,33 +114,71 @@ export function createThemeFromClassic(classic: ClassicStoryMapJSON): StoryMapTh
   const fonts = classicTheme.fonts || {};
   const title = (values.title || '').trim() + ' (Theme)';
 
-  // Determine baseThemeId from themeMajor
-  const baseThemeId = colors.themeMajor === 'black' ? 'obsidian' : 'summit';
+  const themeMajor = (colors.themeMajor || '').toLowerCase();
+  const baseThemeId = themeMajor === 'black' ? 'obsidian' : 'summit';
   const baseTemplate = baseThemeId === 'obsidian' ? OBSIDIAN_TEMPLATE : SUMMIT_TEMPLATE;
-
-  // Start with deep clone of base template variables
+  // Start with full template variable set
   const variables: Record<string, any> = { ...baseTemplate.variables };
+  // Ensure required keys present even if template changes (forward compatibility)
+  const requiredKeys: Record<string, any> = baseThemeId === 'obsidian'
+    ? OBSIDIAN_TEMPLATE.variables
+    : SUMMIT_TEMPLATE.variables;
+  for (const [k,v] of Object.entries(requiredKeys)) {
+    if (!(k in variables)) variables[k] = v;
+  }
+  const overridesApplied: string[] = [];
 
-  // 4) panel -> backgroundColor
-  if (colors.panel) variables.backgroundColor = colors.panel;
-  // 5) dotNav -> headerFooterBackgroundColor
-  if (colors.dotNav) variables.headerFooterBackgroundColor = colors.dotNav;
-  // 8) textLink -> themeColor1
-  if (colors.textLink) variables.themeColor1 = colors.textLink;
-  // 9) textLink -> bodyColor (per instruction though unusual)
-  if (colors.textLink) variables.bodyColor = colors.textLink;
+  let chosenBodyColorSource: 'text' | 'textLink' | undefined;
+  if (colors.panel) { variables.backgroundColor = colors.panel; overridesApplied.push('backgroundColor'); }
+  if (colors.dotNav) { variables.headerFooterBackgroundColor = colors.dotNav; overridesApplied.push('headerFooterBackgroundColor'); }
+  if (colors.text) { variables.bodyColor = colors.text; overridesApplied.push('bodyColor'); chosenBodyColorSource = 'text'; }
+  // Preserve dark/light variants from template; do not remove
+  if (!variables.bodyColorDark && requiredKeys.bodyColorDark) variables.bodyColorDark = requiredKeys.bodyColorDark;
+  if (!variables.bodyColorLight && requiredKeys.bodyColorLight) variables.bodyColorLight = requiredKeys.bodyColorLight;
+  if (!variables.titleColorDark && requiredKeys.titleColorDark) variables.titleColorDark = requiredKeys.titleColorDark;
+  if (!variables.titleColorLight && requiredKeys.titleColorLight) variables.titleColorLight = requiredKeys.titleColorLight;
+  if (colors.textLink) { variables.themeColor1 = colors.textLink; overridesApplied.push('themeColor1'); }
+  if (!colors.text && colors.textLink) { variables.bodyColor = colors.textLink; overridesApplied.push('bodyColor'); chosenBodyColorSource = 'textLink'; }
+  if (colors.softText) { variables.bodyMutedColor = colors.softText; overridesApplied.push('bodyMutedColor'); }
+  // Guarantee colorRamps & basemap keys retained
+  if (!variables.colorRamps && requiredKeys.colorRamps) variables.colorRamps = requiredKeys.colorRamps;
+  if (!variables.basemapPrimary && requiredKeys.basemapPrimary) variables.basemapPrimary = requiredKeys.basemapPrimary;
+  if (!variables.basemapAlt && requiredKeys.basemapAlt) variables.basemapAlt = requiredKeys.basemapAlt;
+  if (!variables.basemapImagery && requiredKeys.basemapImagery) variables.basemapImagery = requiredKeys.basemapImagery;
+  if (baseThemeId === 'summit' && !variables.shape && requiredKeys.shape) variables.shape = requiredKeys.shape;
 
-  // Fonts mapping
-  const titleFont = mapClassicFontToId(fonts.sectionTitle?.value, variables.titleFontId);
-  if (titleFont) variables.titleFontId = titleFont;
-  const bodyFont = mapClassicFontToId(fonts.sectionContent?.value, variables.bodyFontId);
-  if (bodyFont) variables.bodyFontId = bodyFont;
+  const titleFontRaw = fonts.sectionTitle?.value;
+  const bodyFontRaw = fonts.sectionContent?.value;
+  const titleFont = mapClassicFontToId(titleFontRaw, variables.titleFontId);
+  const bodyFont = mapClassicFontToId(bodyFontRaw, variables.bodyFontId);
+  if (titleFont && titleFont !== variables.titleFontId) { variables.titleFontId = titleFont; overridesApplied.push('titleFontId'); }
+  if (bodyFont && bodyFont !== variables.bodyFontId) { variables.bodyFontId = bodyFont; overridesApplied.push('bodyFontId'); }
 
-  return {
+  const theme: StoryMapThemeJSON = {
     title,
     baseThemeId,
     isFromOrgTheme: false,
     variables,
     resources: {}
   };
+  const decisions = {
+    baseThemeId,
+    colorMappings: {
+      panelToBackgroundColor: colors.panel,
+      dotNavToHeaderFooterBackgroundColor: colors.dotNav,
+      textToBodyColor: colors.text,
+      textLinkToBodyColor: !colors.text ? colors.textLink : undefined,
+      textLinkToThemeColor1: colors.textLink,
+      softTextToBodyMutedColor: colors.softText,
+      chosenBodyColorSource
+    },
+    fontMappings: {
+      classicTitleFontValue: titleFontRaw,
+      mappedTitleFontId: titleFont,
+      classicBodyFontValue: bodyFontRaw,
+      mappedBodyFontId: bodyFont
+    },
+    variableOverridesApplied: overridesApplied
+  };
+  return { theme, decisions };
 }
