@@ -1,8 +1,8 @@
-import type { ClassicStoryMapJSON } from './types/classic';
-import type { ConversionContext, StoryMapJSON } from './types/core';
-import { ConverterFactory } from './ConverterFactory';
-import { MediaTransferService } from './media/MediaTransferService';
-import { ResourceMapper } from './media/ResourceMapper';
+import type { ClassicStoryMapJSON } from './types/classic.ts';
+import type { ConversionContext, StoryMapJSON } from './types/core.ts';
+import { ConverterFactory } from './ConverterFactory.ts';
+import { MediaTransferService } from './media/MediaTransferService.ts';
+import { ResourceMapper } from './media/ResourceMapper.ts';
 
 export interface AdapterParams {
   classicJson: ClassicStoryMapJSON;

@@ -1,0 +1,168 @@
+{
+    "_ssl": false,
+    "source": "StoryMap_Crowdsource_Builder",
+    "values": {
+        "settings": {
+            "components": {
+                "common": {
+                    "acceptNewContributions": true,
+                    "participateShort": "Participate",
+                    "participateLong": "Share your experience",
+                    "exploreText": "Explore Map",
+                    "sharing": {
+                        "services": {
+                            "facebook": true,
+                            "twitter": true,
+                            "link": true
+                        },
+                        "twitter": {
+                            "text": "San Diego Cool #storymap #EsriUC",
+                            "related": "EsriStoryMaps"
+                        }
+                    }
+                },
+                "contribute": {
+                    "title": "Add your contribution",
+                    "participationAllowed": true,
+                    "loginOptions": {
+                        "arcgis": true,
+                        "facebook": true,
+                        "google": true,
+                        "guest": true
+                    },
+                    "termsAndConditions": "You warrant and represent that (1) you possess all rights, title, and ownership in the photos to be shared up to this site, and grant Esri, and its contractors the nonexclusive, royalty free right to use, copy, store, cache, host, prepare derivative works, reproduce, publicly display and perform, redistribute, rebroadcast, and retransmit the shared photo as part of this service, and (2) your sharing of photos and any associated geolocational information will not infringe or misappropriate any third party’s proprietary rights or rights of privacy or publicity. Sharing photos that could be deemed defamatory, obscene, pornographic, excessively violent, or to encourage unlawful activities are strictly prohibited."
+                },
+                "gallery": {
+                    "thumbnailField": "PrimaryThumbnail",
+                    "thumbnailIsAttachment": true
+                },
+                "header": {
+                    "logo": {
+                        "type": "esri",
+                        "source": "resources/images/logo/esri-logo-reversed.svg",
+                        "link": "https://www.esri.com"
+                    },
+                    "title": "San Diego Cool - A Crowdsource Story Map"
+                },
+                "intro": {
+                    "background": {
+                        "type": "photo",
+                        "source": "https://www.arcgis.com/sharing/rest/content/items/f1fcc302b0864b0c94beffc5177da2b8/resources/introSplashBackgroundPhoto_svjpwh60g.jpeg"
+                    },
+                    "title": "San Diego Cool",
+                    "subtitle": "Found a cool place in town? Tell us about it and we'll put the best ones on the map."
+                },
+                "map": {
+                    "crowdsourceLayer": {
+                        "id": "crowdsource-layer-1466384958522",
+                        "attributePath": "attributes",
+                        "idField": "FID",
+                        "primaryField": "Name",
+                        "secondaryField": "LocationName",
+                        "hiddenField": "Hidden",
+                        "vettedField": "Vetted",
+                        "fields": {
+                            "PrimaryPhoto": {
+                                "required": true,
+                                "type": "photo",
+                                "fieldID": "PrimaryPhoto",
+                                "label": "Photo",
+                                "placeholder": "Drag and Drop",
+                                "attributeName": "photo",
+                                "validations": [
+                                    "required"
+                                ],
+                                "isAttachment": true,
+                                "extras": {
+                                    "dataType": "photo",
+                                    "minimumSize": 1000,
+                                    "photoSettings": [
+                                        {
+                                            "name": "PrimaryPhoto",
+                                            "smallestSide": 1000
+                                        },
+                                        {
+                                            "name": "PrimaryThumbnail",
+                                            "height": 200,
+                                            "width": 200
+                                        }
+                                    ]
+                                }
+                            },
+                            "Name": {
+                                "required": true,
+                                "type": "text",
+                                "fieldID": "Name",
+                                "label": "Title",
+                                "attributeName": "title",
+                                "placeholder": "Enter a title",
+                                "validations": [
+                                    "required",
+                                    "arcgisSupportedHtml"
+                                ]
+                            },
+                            "LocationName": {
+                                "required": true,
+                                "type": "location",
+                                "fieldID": "LocationName",
+                                "label": "Location",
+                                "attributeName": "location",
+                                "placeholder": "Enter a location",
+                                "validations": [
+                                    "required"
+                                ],
+                                "extras": {
+                                    "dataType": "location",
+                                    "storeGeometry": true
+                                }
+                            },
+                            "Description": {
+                                "required": true,
+                                "type": "textarea",
+                                "fieldID": "Description",
+                                "label": "Description",
+                                "attributeName": "description",
+                                "placeholder": "Enter a description (200 words or fewer please)",
+                                "validations": [
+                                    "required",
+                                    "arcgisSupportedHtml"
+                                ]
+                            }
+                        },
+                        "visibleFeaturesQuery": [
+                            "vetted:approved",
+                            "vetted:approved"
+                        ]
+                    },
+                    "webmap": "e07d6447f782416f8f5b3c7262ed836b",
+                    "webmapOptions": {
+                        "ignorePopups": true,
+                        "usePopupManager": false,
+                        "mapOptions": {}
+                    }
+                },
+                "shareDisplay": {
+                    "media": {
+                        "type": "photo",
+                        "field": "PrimaryPhoto"
+                    },
+                    "displayOrder": [
+                        "Description"
+                    ]
+                }
+            },
+            "layout": {
+                "id": "sidePanel",
+                "font": "openSans",
+                "theme": "default"
+            },
+            "oauth": {
+                "clientId": "hkIPwTi466BbMIHr"
+            }
+        },
+        "properties": {
+            "version": "0.9.0",
+            "versionUpdated": 1596569024527
+        }
+    }
+}

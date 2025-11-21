@@ -1,0 +1,286 @@
+{
+    "source": "eb28ae62eed041cbb8286fa1354da293",
+    "folderId": "dfbc64e2d803461fb0475b1ca8f9bb21",
+    "values": {
+        "webmap": "d14685e1fcf24036b26870281ecff197",
+        "settings": {
+            "layout": {
+                "id": "side"
+            },
+            "layoutOptions": {
+                "layoutCfg": {
+                    "size": "small",
+                    "position": "left"
+                },
+                "socialLinks": false
+            },
+            "theme": {
+                "colors": {
+                    "name": "side-default-4",
+                    "themeMajor": "black",
+                    "dotNav": "#5A5A5A",
+                    "panel": "#000000",
+                    "media": "#EEEEEE",
+                    "text": "#FFFFFF",
+                    "textLink": "#DDD",
+                    "softText": "#FFF",
+                    "softBtn": "#AAA",
+                    "esriLogo": "white"
+                },
+                "fonts": {
+                    "sectionTitle": {
+                        "id": "verdana",
+                        "value": "font-family:verdana,geneva,sans-serif;"
+                    },
+                    "sectionContent": {
+                        "id": "times",
+                        "value": "font-family:times new roman,times,serif;"
+                    }
+                }
+            },
+            "header": {
+                "linkText": "Story Map Authors | References",
+                "linkURL": "http://atlaspr.maps.arcgis.com/home/item.html?id=c3706b1a27e5457aacedb11a0beec6ce",
+                "logoURL": "https://farm1.staticflickr.com/591/22582577855_7c20abf5db_o.png",
+                "logoTarget": "http://www.gmtgis.com",
+                "social": {
+                    "facebook": true,
+                    "twitter": true,
+                    "bitly": true
+                }
+            },
+            "appGeocoders": [
+                {
+                    "singleLineFieldName": "SingleLine",
+                    "name": "Esri World Geocoder",
+                    "url": "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+                }
+            ]
+        },
+        "story": {
+            "storage": "WEBAPP",
+            "sections": [
+                {
+                    "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:36px; outline:none\">Geolog&iacute;a de Puerto Rico</span></strong></p>\n",
+                    "content": "<p>Puerto Rico forma parte de un archipiélago cuyas islas e islotes se encuentran&nbsp;localizadas&nbsp;al este de la región de las Antillas Mayores. Al norte&nbsp;se halla el Océano Atlántico y al sur el Mar Caribe. A su&nbsp;este se encuentran las Islas Vírgenes mientras que al oeste tiene a La Española.</p>\n\n<p>&nbsp;</p>\n\n<p>Ahora bien, ¿cómo se formó Puerto Rico? ¿Cuáles son sus diferentes &nbsp;zonas&nbsp;fisiográficas? ¿Cómo se diferencia el relieve?&nbsp;¿Qué diferentes rocas conforman la Isla?&nbsp;A continuación, estas preguntas&nbsp;serán representadas mediante una serie de mapas, vídeos&nbsp;e imágenes. El proyecto fue creado para propósitos pedagógicos, por ende busca enseñar de manera digital e interactiva la geología de Puerto Rico específicamente a&nbsp;estudiantes de <strong>4to Grado</strong>.&nbsp;Sin embargo, antes&nbsp;de​&nbsp;hablar sobre la formación de Puerto Rico habría que repasar algunos principios básicos en geología para luego llegar a conclusiones.</p>\n\n<p>&nbsp;</p>\n\n<p>Para accesar a las instrucciones o guía del/a maestro/a, pulse&nbsp;<a href=\"https://s3.amazonaws.com/repositoriogmt/recursos/atlaspr/Instrucciones+de+Uso+del+Map+Journal+Geologia+de+PR.pdf\" target=\"_blank\">aquí</a>.</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1463767974258,
+                    "pubDate": 1463767974258,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8a957c5ff923419181518f823b880758",
+                            "extent": {
+                                "xmin": -7584162.761796236,
+                                "ymin": 1930883.3208170685,
+                                "xmax": -7224602.980742941,
+                                "ymax": 2190769.2169865426,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong>Tect&oacute;nica de placas</strong></p>\n",
+                    "content": "<p><span style=\"font-size:16px\">El nacimiento geológico de Puerto Rico estuvo marcado por violentas explosiones volcánicas y levantamientos terrestres como resultado de la <em>tectónica de placas</em>. Actualmente esta teoría es aceptada por los/as geólogos/as en donde&nbsp;se explica el movimiento de la capa externa de la Tierra por una serie de pedazos terrestres llamados <strong>placas</strong> que se unen como un rompecabezas.&nbsp;Además, la tectónica de placas es una de las&nbsp;teorías &nbsp;más&nbsp;importantes para entender la mayoría de los procesos geológicos que ocurren en nuestro planeta.</span></p>\n\n<p><span style=\"font-size:16px\">&nbsp;</span></p>\n\n<p><span style=\"font-size:16px\">Se reconocen siete (7) placas principales por su gran extensión, estas son: </span></p>\n\n<ol>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa Norteamericana (\"North American Plate\")</span></li>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa&nbsp;Sudamericana (\"South American Plate\")</span></li>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa del Pacífico (\"Pacific Plate\")</span></li>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa Africana (\"African Plate\")</span></li>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa Euroasiática (\"Eurasian Plate\")</span></li>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa&nbsp;</span><span style=\"font-size:16px\">Australiana (\"Indo-Australian Plate\")&nbsp;</span></li>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa de Antártica (\"Antartic Plate\")</span></li>\n</ol>\n\n<p><span style=\"font-size:16px\">De igual forma,&nbsp;se consideran otras placas por su tamaño medio. Estas son: </span></p>\n\n<ol>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa Caribeña (\"Caribbean Plate\")</span></li>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa de Nazca (\"Nazca Plate\")</span></li>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa Filipina (\"Philippines Plate\")</span></li>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa de Cocos (\"Cocos Plate\")</span></li>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa&nbsp;Arábiga (\"Arabian Plate\")</span></li>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa de Juan de Fuca (\"Juan de Fuca Plate')&nbsp;</span></li>\n\t<li><span style=\"font-size:16px\">&nbsp;Placa de Scotia (\"Scotia Plate\")</span></li>\n</ol>\n\n<p><span style=\"font-size:16px\">Todas estas placas se deslizan en relación con las demás placas a una velocidad muy lenta pero continua de aproximadamente unos cinco (5) centímetros al año. Asimismo, una placa tectónica podría ser continental, oceánica o mixta. Por un lado, las placas&nbsp;continentales son aquellas que abarcan&nbsp;la corteza de los&nbsp;continentes como por ejemplo la Placa Norteamericana o la Africana. Por otro lado, las placas oceánicas son aquellas sumergidas en la corteza de los océanos como por ejemplo la Placa de Nazca o la del Pacífico. Por último, las placas mixtas son una composición entre placas continentales y oceánicas. La mayoría de las placas tectónicas son mixtas, pero suelen definirse por la cantidad de corteza que abarquen.</span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:16px\">En el mapa se puede interactuar con el planeta e identificar&nbsp;sus respectivas placas tectónicas. También se puede observar cómo Puerto Rico se encuentra en la Placa Caribeña.&nbsp;Además, los bordes de las placas se diiferencian por su color; estos son: <span style=\"color:#FF0000\">convergente</span>, <span style=\"color:#6699ff\">divergente </span>y <span style=\"color:#888888\">transformante</span>.&nbsp;</span></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1478715842611,
+                    "pubDate": 1478715842611,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "",
+                            "type": "webpage",
+                            "display": "stretch",
+                            "unload": true,
+                            "frameTag": "<iframe width=\"500\" height=\"400\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"\" src=\"https://arcg.is/2fCZ4Q1\"></iframe>",
+                            "ts": 1478715842569
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Placas tect&oacute;nicas</span></strong></p>\n",
+                    "content": "<p><span style=\"font-size:16px\">Las placas tectónicas se diferencian&nbsp;en función del movimiento en sus bordes también conocido como <em>fallas</em>.&nbsp;Para saber cómo se formó Puerto Rico, habría que primero distinguir entre estos bordes.&nbsp;Asimismo, se reconocen tres (3) bordes de placa: </span></p>\n\n<ol>\n\t<li><span style=\"font-size:16px\"><strong>Bordes divergentes</strong> (<em>bordes constructivos</em>): la separación entre dos placas&nbsp;en direcciones opuestas&nbsp;lo cual produce el ascenso de magma creando así centros de expansión oceánica.</span></li>\n\t<li><span style=\"font-size:16px\"><strong>Bordes convergentes</strong> (<em>bordes destructivos</em>):&nbsp;<br>\n\tcuando dos placas se encuentran lo cual causa dos situaciones que&nbsp;pueden ser:</span>\n\t<ul>\n\t\t<li><span style=\"font-size:16px\">la colisión (u <em>obducción</em>) entre dos placas lo cual provoca el ascenso de corteza terrestre u oceánica</span></li>\n\t\t<li><span style=\"font-size:16px\">la<em> subducción</em>&nbsp;entre dos placas que causa el descenso de&nbsp;corteza terrestre u oceánica por debajo de una placa sobrepuesta</span></li>\n\t</ul>\n\t</li>\n\t<li><span style=\"font-size:16px\"><strong>Bordes de falla transformante</strong> (<em>bordes pasivos</em>): movimiento lateral de una placa respecto a otra sin la producción ni la destrucción de la corteza.</span></li>\n</ol>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://farm2.staticflickr.com/1530/26410558112_1958352fa8_z.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:16px\">En el&nbsp;vídeo&nbsp;se puede observar el movimiento de&nbsp;los diferentes bordes de placa exceptuando&nbsp;los bordes de falla transformante (movimiento deslizante).</span></p>\n\n<ul>\n</ul>\n",
+                    "contentActions": [],
+                    "creaDate": 1462818736457,
+                    "pubDate": 1462818736457,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "video",
+                        "video": {
+                            "url": "//www.youtube.com/embed/ryrXAGY1dmE?wmode=opaque&rel=0",
+                            "type": "video",
+                            "display": "stretch"
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><strong>Formaci&oacute;n de Puerto Rico</strong></p>\n",
+                    "content": "<p><span style=\"font-size:14px\">Antes de explicar la formación geológica de Puerto Rico, habría que distinguir entre tres situaciones que ocurren en los bordes convergentes ya que este choque entre placas es lo que le dio nacimiento a la Isla.&nbsp;Estas pueden ser entre dos placas continentales, dos placas oceánicas&nbsp;o entre una placa continental y una placa oceánica.</span></p>\n\n<p>&nbsp;</p>\n\n<ul>\n\t<li><span style=\"font-size:14px\"><strong>Continental-continental</strong>: convergencia entre dos bloques continentales en donde el fondo oceánico que estaba entre ellos es consumido por debajo de una de las placas. Este tipo de contacto da formación a una nueva cordillera montañosa.&nbsp;</span></li>\n\t<li><span style=\"font-size:14px\"><strong>Oceánica-oceánica</strong>: convergencia entre dos cuencas oceánicas en donde la menos densa se mete&nbsp;por debajo de la otra iniciando una actividad volcánica. Cuando&nbsp;se mantiene la subducción, aparecen volcanes submarinos que podrían construir un arco de islas volcánicas e igualmente se podría formar&nbsp;una fosa submarina .</span></li>\n\t<li><span style=\"font-size:14px\"><strong>Continental-oceánica</strong>: convergencia entre una placa continental con una oceánica en donde la oceánica, por ser más densa, desciende por debajo de la continental. Este tipo de contacto podría&nbsp;producir arcos volcánicos continentales o también una fosa submarina.</span></li>\n</ul>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\">Asimismo, el origen geológico de Puerto Rico fue el resultado de un movimiento&nbsp;convergente entre dos cortezas oceánicas, una al sur de la placa Norteamericana y la otra al norte de la placa Caribeña. Esto ocurrió por&nbsp;una subducción entre ambas placas lo cual inció&nbsp;la formación de un arco de islas volcánicas ahora conocidas como las Antillas Mayores y Menores. &nbsp;La <em><a data-storymaps=\"MJ-ACTION-1462376926751\" data-storymaps-type=\"media\"><span style=\"color:#00FFFF\">Fosa de Puerto Rico</span></a></em> al norte de la Isla es la mayor evidencia e igualmente el resultado de esta&nbsp;convergencia. Se plantea que tanto Puerto Rico como Cuba y La Española fueron geológicamente formadas en el mismo arco de islas volcánicas.</span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\">En el video se puede observar la formación de un arco de islas volcánicas a consecuencia de una subducción por convergencia entre dos cortezas oceánicas.</span></p>\n",
+                    "contentActions": [
+                        {
+                            "id": "MJ-ACTION-1462376926751",
+                            "type": "media",
+                            "media": {
+                                "type": "image",
+                                "image": {
+                                    "url": "https://farm8.staticflickr.com/7652/26747074861_97efc40e91.jpg",
+                                    "type": "image",
+                                    "display": "fill"
+                                }
+                            }
+                        }
+                    ],
+                    "creaDate": 1462499403591,
+                    "pubDate": 1462499403591,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "video",
+                        "video": {
+                            "url": "//www.youtube.com/embed/mamgV-87X8M?wmode=opaque&rel=0",
+                            "type": "video",
+                            "display": "stretch"
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Tiempo Geol&oacute;gico</span></strong></p>\n",
+                    "content": "<p><span style=\"font-size:16px\">La Tierra tiene aproximadamente unos 4.6 millones de años. Esto parecería inconcebible, pero es importante reconocer&nbsp;que uno&nbsp;de los grandes retos que tuvo la geología fue cambiar nuestra concepción del tiempo. Por consiguiente, se creó una escala de tiempo geológico basada&nbsp;en los acontecimientos principales que ocurrieron en la&nbsp;historia de la Tierra y la vida ordenados de manera cronológica. Las unidades del tiempo están divididas&nbsp;por eones,&nbsp;eras, periodos, épocas y edades. Puerto Rico nació en el eón Fanerozoico, en la era Mesozoica a finales del periodo Jurásico, justo cuando comienzan la extinción masiva de especies como los dinosaurios. En la foto se puede apreciar en color <strong><span style=\"color:#cc0000\">rojo </span></strong>el intervalo de la formación de Puerto Rico.</span></p>\n\n<p style=\"text-align:center\">&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://farm2.staticflickr.com/1472/26502666335_21197aabd1_z.jpg\"></div>\n\n<p style=\"text-align:center\">&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1462822497352,
+                    "pubDate": 1462822497352,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "http://atlaspr.maps.arcgis.com/apps/webappviewer/index.html?id=05c6dd2bc5b44b2b9bbc5b01d040d8fe",
+                            "type": "webpage",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Periodos Geol&oacute;gicos</span></strong></p>\n",
+                    "content": "<p><span style=\"font-size:16px\">Puerto Rico tiene rocas que datan desde el periodo Cuaternario hasta&nbsp;principios&nbsp;del periodo Jurásico. Se cree que a mediados del Paleógeno y acabando en algún tiempo del Neógeno&nbsp;el arco de islas volcánicas fue desplazado hacia el norte y luego hacia el este entre la placa Norteamericana y la Sudamericana.&nbsp;</span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:16px\">Este mapa representa las eras y&nbsp;los periodos&nbsp;geológicos de Puerto Rico con su&nbsp;respectivo tiempo geológico&nbsp;dividido en cinco (5) categorías :​</span></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container activate-fullscreen\">\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" height=\"215\" src=\"https://farm2.staticflickr.com/1473/26707517731_d3940e066f.jpg\" width=\"478\"></div>\n</div>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:16px\">Como se puede observar, gran mayoría del terreno puertorriqueño fue producido en la era Mesozoica en el periodo&nbsp;Cretácico. De igual forma, los terrenos del Cenozoico particularmente del periodo Terciario&nbsp;representan&nbsp;las zonas cársticas de Puerto Rico.</span></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1462820263955,
+                    "pubDate": 1462820263955,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "7adeff11be024e05afcb975cae81b04d",
+                            "extent": {
+                                "xmin": -7591678.208047312,
+                                "ymin": 1912120.8072245247,
+                                "xmax": -7232118.426994016,
+                                "ymax": 2185459.620372183,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Zonas Fisiogr&aacute;ficas</span></strong></p>\n",
+                    "content": "<p><span style=\"font-size:14px\">La fisiografía es la ciencia que describe la Tierra y sus diferentes fenómenos. Puerto Rico está dividido en tres regiones fisiográficas principales que son responsables en dar relieve a nuestra topografía.</span></p>\n\n<ol>\n\t<li><span style=\"font-size:14px\"><span style=\"color:#669900\"><strong>Región del Carso Norteño&nbsp;</strong></span></span>: <span style=\"font-size:14px\">Se caracteriza por sus formaciones de roca caliza (lo cual es roca sedimentaria) en donde&nbsp;el agua de lluvia disuelve la roca caliza y se producen distintas formaciones. Algunas de las formaciones comúnmente conocidas son:</span>\n\n\t<ul>\n\t\t<li><span style=\"font-size:14px\">​​Formas de relieve:</span>\n\n\t\t<ul>\n\t\t\t<li><span style=\"font-size:14px\"><strong>Mogotes</strong>: Colinas cónicas que se levantan de un plano y están apartadas unas de otras por llanos de arcilla arenosa. Pueden medir de 5 a 50 metros de altura.</span></li>\n\t\t\t<li><span style=\"font-size:14px\"><strong>Sumideros</strong>: Depresión causada por el desprendimiento de superficie terrestre. Pueden medir de 1 a 600 metros en profundidad y diámetro.</span></li>\n\t\t\t<li><span style=\"font-size:14px\"><strong>Cavernas</strong>: Apertura en la tierra que se extiende más allá de lo que la luz solar puede alcanzar y suficientemente grande para un humano entrar.</span><br>\n\t\t\t&nbsp;</li>\n\t\t</ul>\n\t\t</li>\n\t</ul>\n\t</li>\n\t<li><span style=\"font-size:14px\"><span style=\"color:#ccff66\"><strong>Llanos</strong></span>: Regiones que se han formado con el flujo de los ríos que bajan del interior montañoso.&nbsp;</span><br>\n\t&nbsp;</li>\n\t<li><span style=\"font-size:14px\"><span style=\"color:#006400\"><strong>Centro Montañoso</strong></span>:&nbsp;Cadena de montañas alineadas que recorren de oeste a este y dividen a Puerto Rico en norte y sur. Esta zona es producto de procesos asociados a la convergencia donde el terreno ha sufrido compresiones y estiramientos creando formaciones onduladas que conocemos como montañas.Estas componen una amplia gama de características topográficas debido a su compleja estructura geológica y su historial de erosión.</span>\n\t<ul>\n\t\t<li><span style=\"font-size:14px\">​​Formas de relieve:</span>\n\t\t<ul>\n\t\t\t<li>​​<strong>Montaña</strong>: Elevación en el paisaje que puede alcanzar 700 metros.</li>\n\t\t\t<li><strong>Cordillera</strong>: Conjunto de montañas entrelazadas entre sí.</li>\n\t\t\t<li><strong>Pico</strong>: : Parte puntiaguda más elevada de una montaña.</li>\n\t\t\t<li><strong>Colina</strong>: Elevación aplanada que no es más alta de 100 metros.</li>\n\t\t\t<li><strong>Sierra: S</strong>erie de montañas puntiagudas o picos.</li>\n\t\t</ul>\n\t\t</li>\n\t</ul>\n\t</li>\n</ol>\n\n<p>En el siguiente mapa&nbsp;se pueden apreciar&nbsp;las tres regiones fisiográficas principales&nbsp;<strong>(Seleccionando en el \"Layer List\"&nbsp;<em>Regiones Fisiográficas</em>)</strong>. También se pueden ver&nbsp;las diferentes formas de relieve &nbsp;<strong>(Seleccionando en el \"Layer List\"&nbsp;<em>Regiones Fisiográficas Detalle</em>).</strong></p>\n\n<p>&nbsp;</p>\n\n<p><strong>Si eres más curioso selecciona en el mapa los distintos puntos en los cuales puedes asociar distintos lugares a las regiones fisiográficas.</strong></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1465486485829,
+                    "pubDate": 1465486485829,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "http://atlaspr.maps.arcgis.com/apps/webappviewer/index.html?id=2defc6bb8d63402da526d6dcaebf22f5",
+                            "type": "webpage",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                },
+                {
+                    "title": "<p><strong><span style=\"font-size:22px\">Rocas</span></strong></p>\n",
+                    "content": "<p><span style=\"font-size:16px\">Las rocas se encuentran en todas partes, es el material más abundante en toda la Tierra.&nbsp;En geología, las rocas se dividen en tres grandes grupos:</span></p>\n\n<ol>\n\t<li><span style=\"font-size:16px\">&nbsp;<em>Rocas</em>&nbsp;<em>ígneas</em>:&nbsp;se crean cuando el magma al interior del planeta sale&nbsp;a la superficie,&nbsp;se enfría&nbsp;y se solidifica. Y si al contrario&nbsp;estas se enfrían y se solidifican al interior de la Tierra, las mismas serían consideradas como <em>ígneas intrusivas.</em></span></li>\n\t<li><span style=\"font-size:16px\"><em>&nbsp;Rocas sedimentarias</em>: se forman por la acumulación de sedimentos en la superficie terrestre.&nbsp;</span><span style=\"font-size:16px\">Además, estas rocas suelen ser muy porosas como por ejemplo la caliza que domina al norte de Puerto Rico en la Región del Carso Norteño.</span></li>\n\t<li><span style=\"font-size:16px\">&nbsp;<em>Rocas metamórficas</em>:&nbsp;se forman a partir de otras rocas cuando son expuestas a altas temperaturas al interior del planeta lo cual hace que se unan dos rocas y formen una sola roca. Por ende es una formación de rocas preexistentes. </span></li>\n</ol>\n\n<p><span style=\"font-size:16px\">Por otro lado, los depósitos son materiales no consolidados que aparecen por un&nbsp;proceso geológico en el cual&nbsp;son arrastradas&nbsp;por corrientes de agua y se añaden a algún terreno como por ejemplo en los&nbsp;<em>pantanos</em> o en los&nbsp;<em>acuíferos</em>. El <em>aluvión</em> es un tipo de estos materiales no consolidados.</span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:16px\">Este&nbsp;mapa representa a Puerto Rico divido en&nbsp;sus diferentes tipos de rocas y depósitos.</span></p>\n\n<div class=\"image-container\">&nbsp;</div>\n\n<div class=\"image-container\"><img alt=\"\" height=\"197\" src=\"https://farm2.staticflickr.com/1578/26583894952_95208abf80.jpg\" width=\"188\"><img alt=\"\" height=\"132\" src=\"https://farm2.staticflickr.com/1467/26682513102_04b2a43935.jpg\" width=\"187\"></div>\n\n<div class=\"image-container\">&nbsp;</div>\n\n<p><span style=\"font-size:16px\">De igual forma, las rocas no siempre mantienen su forma original debido a que pasan por lo que se conoce como el <em>ciclo de rocas</em>. Si una roca ígnea se fragmenta, esta pasaría a considerarse como una roca sedimentaria y si esta a su vez es expuesta a grandes temperaturas al interior del planeta, pasaría entonces a convertirse en una roca metamórfica. En la imagen inferior se puede observar&nbsp;un diagrama del ciclo con sus detalles.&nbsp;</span></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container\">\n<div class=\"image-container activate-fullscreen\"><img alt=\"\" src=\"https://farm2.staticflickr.com/1628/26541875165_3e94d00acd_z.jpg\"></div>\n</div>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1463403575557,
+                    "pubDate": 1463403575557,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "784edb6fea384d0b93a525e1b7326f71",
+                            "extent": {
+                                "xmin": -7591068.755577367,
+                                "ymin": 1920831.7083636485,
+                                "xmax": -7231508.974524071,
+                                "ymax": 2194170.521511307,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><strong><span style=\"font-size:18px; outline:none\">&iexcl;Interact&uacute;a!</span></strong></p>\n",
+                    "content": "<p><span style=\"font-size:16px\">Ahora es momento para&nbsp;un ejercicio.&nbsp;En este mapa puedes seleccionar el municipio donde vives e identificar los periodos geológicos, las zonas fisiográficas, los tipos de relieve, las rocas o los depósitos que&nbsp;se encuentran cerca de tu casa.&nbsp;¡Ponte creativo/a!</span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:16px\">Aquí algunos puntos claves que deberías conocer:</span><br>\n&nbsp;</p>\n\n<ul>\n\t<li><span style=\"font-size:16px\">Puerto Rico se encuentra en la Placa del Caribe y se formó por un contacto&nbsp;convergente entre dos cortezas oceánicas </span></li>\n\t<li><span style=\"font-size:16px\">la Fosa de Puerto Rico al norte de la Isla es<strong>&nbsp;l</strong>a mayor evidencia de esta convergencia</span></li>\n\t<li><span style=\"font-size:16px\">Puerto Rico se formó justo cuando comenzó la gran extinción de especies en el periodo Jurásico</span></li>\n\t<li><span style=\"font-size:16px\">existen<strong>&nbsp;</strong>zonas fisiográficas principales de la Isla y las cuales le dan forma a todo el relieve</span></li>\n\t<li><span style=\"font-size:16px\">los mogotes, los sumideros y las cavernas son formas de relieve que pertenecen al Carso Norteño mientras que las montañas, los picos, la Cordillera, las colinas y las sierras pertenecen al Centro Montañoso</span></li>\n\t<li><span style=\"font-size:16px\">existen tres grupos principales de rocas que son: ígneas, metamórficas y sedimentarias las cuales se crean por medio del ciclo de rocas</span></li>\n</ul>\n",
+                    "contentActions": [],
+                    "creaDate": 1463426169655,
+                    "pubDate": 1463426169655,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "http://atlaspr.maps.arcgis.com/apps/webappviewer/index.html?id=447019eeaf284b0d8387a5b27d73d7a2",
+                            "type": "webpage",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                }
+            ]
+        },
+        "title": "Geología de Puerto Rico\n",
+        "template": {
+            "name": "Map Journal",
+            "createdWith": "1.7.0",
+            "editedWith": "1.11.0"
+        }
+    }
+}

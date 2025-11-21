@@ -1,4 +1,4 @@
-import type { ProgressCallback } from '../types/core';
+import type { ProgressCallback } from '../types/core.ts';
 
 export interface TransferResult {
   originalUrl: string;

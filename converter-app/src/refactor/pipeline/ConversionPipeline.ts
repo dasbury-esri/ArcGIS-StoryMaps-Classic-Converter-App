@@ -1,8 +1,9 @@
-import type { ClassicStoryMapJSON } from '../types/classic';
-import type { ConversionContext, ConverterResult, StoryMapJSON } from '../types/core';
-import { MapJournalConverter } from '../converters/MapJournalConverter';
-import { MediaTransferService } from '../media/MediaTransferService';
-import { ResourceMapper } from '../media/ResourceMapper';
+import type { ClassicStoryMapJSON } from '../types/classic.ts';
+import type { ConversionContext, ConverterResult, StoryMapJSON } from '../types/core.ts';
+import { MapJournalConverter } from '../converters/MapJournalConverter.ts';
+import { detectClassicTemplate } from '../util/detectTemplate.ts';
+import { MediaTransferService } from '../media/MediaTransferService.ts';
+import { ResourceMapper } from '../media/ResourceMapper.ts';
 
 export interface PipelineOptions {
   classicJson: ClassicStoryMapJSON;
@@ -30,7 +31,7 @@ export class ConversionPipeline {
     this.emit('Starting pipeline');
 
     // Detect template (simple heuristic placeholder)
-    const templateName = this.detectTemplate();
+    const templateName = detectClassicTemplate(this.classicJson);
     this.emit(`Detected template: ${templateName}`);
 
     // Instantiate converter (only Map Journal stub for now)
@@ -62,10 +63,6 @@ export class ConversionPipeline {
     });
   }
 
-  private detectTemplate(): string {
-    const value = this.classicJson.values.templateName || (typeof this.classicJson.values.template === 'string' ? this.classicJson.values.template : 'Unknown');
-    return value || 'Unknown';
-  }
 
   private emit(message: string): void {
     this.ctx.progress({ stage: 'convert', message });

@@ -1,0 +1,1329 @@
+{
+    "values": {
+        "settings": {
+            "theme": {
+                "colors": {
+                    "name": "side-default-2",
+                    "themeMajor": "white",
+                    "dotNav": "#726458",
+                    "panel": "#FFF8E9",
+                    "media": "#C9C1B9",
+                    "text": "#000000",
+                    "textLink": "#555",
+                    "softText": "#c0c0c0",
+                    "softBtn": "#444",
+                    "esriLogo": "black"
+                },
+                "fonts": {
+                    "sectionTitle": {
+                        "id": "default",
+                        "value": "font-family:'open_sansregular', sans-serif;"
+                    },
+                    "sectionContent": {
+                        "id": "default",
+                        "value": "font-family:'open_sansregular', sans-serif;"
+                    }
+                }
+            },
+            "appGeocoders": [
+                {
+                    "singleLineFieldName": "SingleLine",
+                    "name": "Esri World Geocoder",
+                    "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+                }
+            ],
+            "layout": {
+                "id": "side"
+            },
+            "layoutOptions": {
+                "layoutCfg": {
+                    "size": "medium",
+                    "position": "left"
+                },
+                "socialLinks": false
+            },
+            "header": {
+                "linkText": "",
+                "linkURL": "",
+                "logoURL": "//www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/sm_mj_logo__1492697154580.jpeg",
+                "logoTarget": "http://www.fossenvironmentalconsulting.com",
+                "social": {
+                    "facebook": true,
+                    "twitter": true,
+                    "bitly": true
+                }
+            }
+        },
+        "title": "Discover Green Spaces and Wildlife in Berlin\n",
+        "story": {
+            "storage": "WEBAPP",
+            "sections": [
+                {
+                    "title": "<p><span style=\"color:#006400\"><strong><span style=\"font-size:40px\">Discover Green Spaces and Wildlife in Berlin</span></strong></span></p>\n",
+                    "content": "<p><span style=\"font-size:22px\"><strong>Most people associate Berlin with the former DDR, the wall, a big city rebuilt after the war, a popular holiday destination... a city full of history. But the city is not just about history, culture and nightlife... open green spaces and their wildlife and nature abound in the city ... giving everyone the chance to enjoy nature up close and first hand.&nbsp;</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:22px\"><strong>The extent of Berlin's green side might surprise you. An average of around 80 trees line each kilometer of the city's streets, giving the city over 438,000 street trees alone ... and that just the start of the green story.</strong></span></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575648168825,
+                    "pubDate": 1575648168825,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "image",
+                        "image": {
+                            "url": "https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Tiergarten%20Opening%20Image__1575647335149__w964.jpg",
+                            "type": "image",
+                            "altText": "",
+                            "sizes": [
+                                {
+                                    "name": "Tiergarten Opening Image__1575647335149__w964.jpg",
+                                    "url": "https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Tiergarten%20Opening%20Image__1575647335149__w964.jpg",
+                                    "width": 964
+                                }
+                            ],
+                            "display": "fill"
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"color:#006400\"><span style=\"font-size:26px\">Open Spaces in Berlin</span></span></p>\n",
+                    "content": "<p><strong><span style=\"font-size:16px\">Over 2500 open green areas in Berlin come in all shapes and sizes - &nbsp;some manicured, some managed with nature in mind, and others allowed to run wild, many since the war. From small to large parks, dozens of lakes, graveyards, 161 square kilometers of forest areas, extensive water ways, nature reserves and abandoned railway lines these open areas are&nbsp;cherished as a green lung by Berlin's inhabitants - both human and the wildlife kind. </span></strong></p>\n\n<p>&nbsp;</p>\n\n<p><em><span style=\"font-size:12px\">(The map opposite was produced for the <a href=\"http://www.urbanobservatory.org\" target=\"_blank\">ESRI Urban&nbsp;Observatory Project </a>2015 by <a href=\"http://tiles.arcgis.com/tiles/4yjifSiIG17X0gW4/arcgis/rest/services/OpenSpace_Berlin/MapServer\" target=\"_blank\">UOdocent </a>and shows the open areas in Berlin including Signature Parks, Other Parks and Open Spaces).</span></em></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1492771329537,
+                    "pubDate": 1492771329537,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "997f163a75294fa1a189fa9b287949ed",
+                            "extent": {
+                                "xmin": 1455416.0273914207,
+                                "ymin": 6860405.621354866,
+                                "xmax": 1527037.5228945343,
+                                "ymax": 6924001.228888047,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"color:#006400\"><span style=\"font-size:26px\">The Tour</span></span></p>\n",
+                    "content": "<p><strong><span style=\"font-size:16px\">This tour of green spaces and&nbsp;wildlife areas will introduce&nbsp;you to just a small selection of these spaces in and around Berlin that I have got to know and explore.&nbsp;</span></strong><strong><span style=\"font-size:16px\">It is by no means a complete inventory of all the open spaces in the city.&nbsp;</span></strong></p>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"font-size:16px\">The map opposite shows the location of some wildlife areas. You can explore these areas directly from within this map, by enlarging and navigating&nbsp;around the map, and clicking on the location pins&nbsp;to read more in the pop up window. To see full sized images in the pop up just click on the thumbnail image to enlarge it.&nbsp;</span></strong></p>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"font-size:16px\">The&nbsp;wildlife areas in Berlin shown on this map are presented in more detail in the sections that follow. Here the parks and wildlife areas&nbsp;are arranged in alphabetical order by the name of the park or nature area. As you move through the list of sites an&nbsp;enlarged map showing features of interest within the area are shown in the map window.&nbsp;</span></strong></p>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"font-size:16px\">Enjoy the tour !</span></strong></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1491928155274,
+                    "pubDate": 1491928155274,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1452124.0568212501,
+                                "ymin": 6854229.916407152,
+                                "xmax": 1523745.5523243637,
+                                "ymax": 6917825.523940333,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><span style=\"font-size:26px\"><span style=\"outline:none\">B</span>&Auml;<span style=\"outline:none\">KEPARK</span></span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://wetland.maps.arcgis.com/sharing/rest/content/items/f6f545f55df34b2d9f7dcdc5fa60f162/data\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Located in Steglitz beside the Teltow&nbsp;canal, Bäkepark includes a number of wetland areas including a pond and stream, with marginal woodland areas and open meadows. Waterbirds and butterflies are commonly seen.&nbsp;</strong></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575639257559,
+                    "pubDate": 1575639257559,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1482651.0949922695,
+                                "ymin": 6880643.68699378,
+                                "xmax": 1483857.366844793,
+                                "ymax": 6881632.591047136,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><span style=\"font-size:26px; outline:none\">BERLIN WALL MEMORIAL BERNAUERSTRASSE</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://wetland.maps.arcgis.com/sharing/rest/content/items/653c59e115534363a5bd01a4551b28ef/data\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Located directly on the former border strip in Bernauer Strasse is a preserved piece of the Berlin Wall with border strip and watchtower. The facility shows how the border facilities were constructed and gives visitors a lasting impression of the construction, which once divided Berlin and Germany. On either side of the retained wall section is a new greener park development following the path of the former wall.&nbsp;</strong></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575645418757,
+                    "pubDate": 1575645418757,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1489998.6043365616,
+                                "ymin": 6896923.579690556,
+                                "xmax": 1491204.8761890852,
+                                "ymax": 6897912.483743913,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">BOTANIC GARDENS DAHLEM</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://wetland.maps.arcgis.com/sharing/rest/content/items/3d8b2505e0444cada71f6cec892a912a/data\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>The garden is located in the Berlin borough of&nbsp;Steglitz-Zehlendorf and covers 43 hectares.&nbsp;The garden complex consists of several buildings and glass-houses, such as the Cactus&nbsp;Pavilion and the Pavilion&nbsp;Victoria. The garden's open-air areas are sorted by plant geographic origin. The garden's&nbsp;arboretum&nbsp;covers&nbsp;a large area with ponds and open grassy flower meadows.</strong></p>\n\n<p>&nbsp;</p>\n\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/botanic%20garden%20autumn__1575648270279__w907.jpg\"></div>\n\n<figcaption><span style=\"font-size:14px\"><span style=\"color:#696969\">One of the many guerrilla gardens in Berlin, where an individual has taken over an area of municipal land to create a wildlife garden.</span></span></figcaption>\n</figure>\n\n<figure class=\"caption\">\n<div class=\"image-container\">&nbsp;</div>\n</figure>\n",
+                    "contentActions": [],
+                    "creaDate": 1575648296983,
+                    "pubDate": 1575648296983,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1480097.2277575345,
+                                "ymin": 6881699.156236148,
+                                "xmax": 1482082.2018358675,
+                                "ymax": 6883657.855086007,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">BRITZER GARTEN</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/britz%20lake__1575648484169__w1280.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Britz gardens are one of the most&nbsp;attractive recreational areas in Berlin. The 90 hectare park a variety of visitor attractions. At the&nbsp;centre of the gardens&nbsp;the is a large lake complex with beaches, bays, bridges and semi-natural reedswamp areas surrounded by woodlands and meadows.&nbsp;There are cafés, a museum railway and wildlife educational centre.</strong></p>\n\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/britz%20tulipana__1575648327863__w1020.jpg\"></div>\n\n<figcaption><span style=\"color:#696969\">Every year Britz Gardens hosts a number of horticultural shows of which Tulipana in the spring is the most spectacular.</span></figcaption>\n</figure>\n\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/squirrel_1213_med__1575648369477__w738.jpeg\"></div>\n\n<figcaption><span style=\"color:#696969\">Britz Gardens is also a great place to see wildlife. The birds found in the lake and woodland habitats, insects in all shapes and sizes and of course ... Red squirrels.</span></figcaption>\n</figure>\n",
+                    "contentActions": [],
+                    "creaDate": 1575648496479,
+                    "pubDate": 1575648496479,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1492321.1806402998,
+                                "ymin": 6876649.535055058,
+                                "xmax": 1496797.5241093682,
+                                "ymax": 6880624.260525992,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><span style=\"font-size:26px; outline:none\">CECILIENHOF</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Cecelien%20hof_med__1575645944623__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Cecilienhof is located in the northern part of the large&nbsp;Neuer Garten&nbsp;park, close to the shore of the&nbsp;Jungfernsee&nbsp;lake in Potsdam. Cecilienhof was the last palace built by the&nbsp;House of&nbsp;Hohenzollern&nbsp;that ruled until the&nbsp;end of&nbsp;World War I.&nbsp;It is famous for having been the location of the&nbsp;Potsdam Conference&nbsp;in 1945. Cecilienhof is part of&nbsp;Potsdam UNESCO&nbsp;world&nbsp;heritage site. An open park landscape with reedswamp along the edge of the lake are the main habitats at this site.&nbsp;</strong></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575645976046,
+                    "pubDate": 1575645976046,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1454233.2410703676,
+                                "ymin": 6874854.7764301235,
+                                "xmax": 1456082.061692064,
+                                "ymax": 6876811.086622848,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">ENGELBECKEN</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/engelbecken_med__1575646031745__w553.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>The Engelbecken in Kreuzberg is a large pond, the only remaining wet remnant of the former Luisenstadt Canal which linked&nbsp;the Landwehr Canal with the Spree River. This canal has since mostly been drained and converted to a public park which follows the route of the former canal.</strong></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575646042490,
+                    "pubDate": 1575646042490,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1492335.9053419922,
+                                "ymin": 6890741.735027945,
+                                "xmax": 1494748.4490473066,
+                                "ymax": 6892719.543134876,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">ERHOLUNGSPARK MARZAHN</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Erholungspark%20marzahn_med__1575646066763__w553.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Erholungspark Marzahn&nbsp;is a&nbsp;public park in&nbsp;Marzahn&nbsp;open since 1987 and covering 21 hectares. The park includes a variety of themed gardens from around the&nbsp;world including a Chinese, Oriental, Italian,&nbsp;Balinese,&nbsp;Korean, and&nbsp;Japanese&nbsp;garden. The park&nbsp;also includes less developed areas with woodland, small ponds and grassland areas. The park will host&nbsp;the International Garden Exhibition (IGA) festival in 2017.</strong></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575646080529,
+                    "pubDate": 1575646080529,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1509564.0949201966,
+                                "ymin": 6896320.443763954,
+                                "xmax": 1513342.9505061447,
+                                "ymax": 6900204.400263797,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">GLEISDREIECK PARK</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Gleisdreieck%20Park_med__1575646112080__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Gleisdreieck Park covers 26 hectares and&nbsp;is one of Berlins newest park developments. This new green space is being created on the site&nbsp;between Anhalter Bahnhof and Yorkstrasse, close to Potsdamer Platz. The&nbsp;park offers plenty of amenity areas, woodland and scrub, ponds, dry scree habitats and an extensive path network.&nbsp;</strong></p>\n\n<p>&nbsp;</p>\n\n<figure class=\"caption\">\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Gleisdreiecke%20park_med-2__1575879076388__w738.jpeg\"></div>\n\n<figcaption><span style=\"color:#696969\">The park has successfully managed to integrate public use of this busy open space with management of the wilder areas of the park for wildlife.&nbsp;</span></figcaption>\n</figure>\n</figure>\n",
+                    "contentActions": [],
+                    "creaDate": 1575879104344,
+                    "pubDate": 1575879104344,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1486482.5010352302,
+                                "ymin": 6888167.956966113,
+                                "xmax": 1491364.9162170743,
+                                "ymax": 6892123.573179975,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">HEILIGER SEE</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Heiliger%20see_med__1575646145162__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Heiliger See&nbsp;(Holy Lake) is a&nbsp;lake&nbsp;within the city&nbsp;limits of&nbsp;Potsdam.&nbsp;Its picturesque location amidst the historic parks and palaces of Potsdam, with&nbsp;the&nbsp;Marmorpalais&nbsp;on its west&nbsp;shore and&nbsp;Cecilienhof&nbsp;near the north shore, the lake is a popular goal for visitors. Reedswamps and wet woodland occur&nbsp;around the lakeshore.</strong></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575646155294,
+                    "pubDate": 1575646155294,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1454318.0383986237,
+                                "ymin": 6874341.215146319,
+                                "xmax": 1456207.4661915975,
+                                "ymax": 6876283.19339624,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">HUMBOLDTHEIN VOLKSPARK</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Humbolthein%20park_med__1575648591620__w553.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>The historically listed green space bears the name of the great&nbsp;naturalist Alexander von Humboldt. The park, which covers 29 hectares, includes a large World War II anti-aircraft bunker, surrounded by semi natural woodland. In the winter, six&nbsp;different species of bat hibernate in the bunker rooms. The bunker is the third largest&nbsp;bat hibernation site in Berlin.</strong></p>\n\n<p>&nbsp;</p>\n\n<p><strong>The northern wall of the \"large\" bunker as well as the wall of&nbsp;the \"small\" bunker are used for sport climbing&nbsp;by advanced&nbsp;climbers. A vineyard within the park produces 200 bottles of wine annually.</strong></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575648602775,
+                    "pubDate": 1575648602775,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1489044.3358113477,
+                                "ymin": 6898406.93577025,
+                                "xmax": 1490933.7636043215,
+                                "ymax": 6900348.91402017,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">LANDWEHR CANAL</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Landwehr%20canal_med__1575646256253__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>The Landwehr canal&nbsp;is a 10.7 km long canal&nbsp;and runs parallel to the Spree river in Berlin. It was&nbsp;built between 1845 and 1850. A large canal lock occurs on the canal near the Zoologischer Garten. The canal is an important habitat for waterbirds.&nbsp;</strong></p>\n\n<p>&nbsp;</p>\n\n<figure class=\"caption\">\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Landwehr%20canal%20cormorant_med__1575648654909__w738.jpeg\"></div>\n\n<figcaption><span style=\"color:#696969\">Cormorant (Phalacrocorax carbo) are regularly seen hunting for fish along the Landwehr Canal.</span></figcaption>\n</figure>\n</figure>\n",
+                    "contentActions": [],
+                    "creaDate": 1575648681335,
+                    "pubDate": 1575648681335,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1483189.7371761017,
+                                "ymin": 6890882.665798478,
+                                "xmax": 1487088.0256187483,
+                                "ymax": 6894785.731555393,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><span style=\"font-size:26px; outline:none\">MARIENFELDE FREIZEITPARK</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Marienfelde_med__1575646296092__w553.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Formerly the Marienfelde park was a large municipal dump for Berlin city covering some 15&nbsp;hectares. When closed the area was rehabilitated and is now managed as a nature park, with stands of woodland, large open wildflower&nbsp;meadows, and a number of ponds, lakes and wetland areas which are managed to protect a number of amphibian&nbsp;and reptile&nbsp;species as well as birds.</strong></p>\n\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Marienfelde%202_med__1575879155709__w738.jpeg\"></div>\n\n<figcaption><span style=\"color:#696969\">View over the park, showing the stands of woodland, with intervening open flower meadows.</span></figcaption>\n</figure>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575879172723,
+                    "pubDate": 1575879172723,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1486117.03649371,
+                                "ymin": 6871210.879972093,
+                                "xmax": 1489895.892079658,
+                                "ymax": 6875094.836471936,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><span style=\"font-size:26px; outline:none\">MAUERPARK</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Mauerpark%20%201a__1575646323484__w907.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Mauerpark&nbsp;is a public&nbsp;linear park&nbsp;in&nbsp;Berlin's&nbsp;Prenzlauer Berg&nbsp;district.&nbsp;The name&nbsp;translates as&nbsp;\"Wall Park\", referring to its status as a&nbsp;former part of the&nbsp;Berlin Wall&nbsp;and&nbsp;its Death Strip. The park is located at the border of Prenzlauer Berg and&nbsp;Gesundbrunnen&nbsp;district of former&nbsp;West Berlin. The park is much used by local residents at weekends and host a flea market.&nbsp;</strong></p>\n\n<p>&nbsp;</p>\n\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Mauerpark%201b__1575879232699__w1280.jpg\"></div>\n\n<figcaption>Mauer Park a popular weekend destination for Berliners.</figcaption>\n</figure>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575879367675,
+                    "pubDate": 1575879367675,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1490900.322404575,
+                                "ymin": 6898016.987493684,
+                                "xmax": 1493312.8661098895,
+                                "ymax": 6899994.7956006145,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">PANKE RIVER IN WEDDING</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Panke%20wedding%20stream__1575646352498__w1134.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>The Panke river flows through Wedding in Berlin. The river is bordered by woodlands and ornamental planting. If you venture on a trip along the 23 km&nbsp;long Pankeweg route, you can discover more about the northern part of Berlin.</strong></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575646361870,
+                    "pubDate": 1575646361870,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1488266.8279145542,
+                                "ymin": 6899552.894031011,
+                                "xmax": 1488869.9638409493,
+                                "ymax": 6900047.346057799,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">PFAUENINSEL</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Pfauneninsel%201_med__1575646382785__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>The&nbsp;Pfaueninsel (Peacock Island) is an island covering 67 hectares,&nbsp;in the River Havel situated in&nbsp;Berlin-Wannsee. It is a&nbsp;nature reserve and part of the UNESCO world heritage site&nbsp;that includes the Potsdam palaces.&nbsp;It is mostly wooded&nbsp;with some open and formal garden areas, and includes wet grassland and marginal swamp areas. It can&nbsp;only be reached by a&nbsp;small ferry, and is a popular tourist destination.</strong></p>\n\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Pfauneninsel%20buffalo_med__1575879422901__w738.jpeg\"></div>\n\n<figcaption><span style=\"color:#696969\">Water Buffalo or domestic Asian water buffalo (Bubalus bubalis) used to manage wet grassland and marsh areas on the Pfaueninsel.</span></figcaption>\n</figure>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575879433879,
+                    "pubDate": 1575879433879,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1459473.9548220178,
+                                "ymin": 6877244.627892593,
+                                "xmax": 1463252.810407966,
+                                "ymax": 6881128.584392436,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">ROETEPFUHL SEE</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Roetepfuhl%20Britz_med__1575646414748__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>A small pond in an urban setting near the&nbsp;Britzer gardens. The small pond is surrounded by reedswamp and wet woodland&nbsp;vegetation.</strong></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575646422492,
+                    "pubDate": 1575646422492,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1494553.0821498882,
+                                "ymin": 6880133.391485015,
+                                "xmax": 1495049.3256695264,
+                                "ymax": 6880623.066197533,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">SCHLOSS BRITZ</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Schloss%20britz_med__1575646435970__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>The&nbsp;Schloss Britz&nbsp;(Britz castle) is the former&nbsp;manor house of a country estate. Located near the village of Britz, in Berlin-Neukölln. The&nbsp;manorial park is well preserved with its mature trees and its 1890s system&nbsp;of trails. The site includes a pond and grassland areas managed for their spring flowers.</strong></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575646443722,
+                    "pubDate": 1575646443722,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1495553.6309069158,
+                                "ymin": 6880841.628325255,
+                                "xmax": 1496546.1179459724,
+                                "ymax": 6881820.977750075,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><span style=\"font-size:26px; outline:none\">SCHLOSS CHARLOTTENBURG</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Charlottenburg%20schloss_med__1575646464538__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Charlottenburg Palace is largest royal palace still standing in the capital, Charlottenburg was erected as the summer residence of Sophie Charlotte, the first queen of Prussia, who was also the namesake for the surrounding district.&nbsp;The famous palace gardens contain the mausoleum of Queen Louise, the Belvedere with its world-renowned collection of KPM porcelain. The grounds include a lake and&nbsp;associated waterways, mature woodland areas, formal flower gardens and lawn areas.</strong></p>\n\n<figure class=\"caption\">\n<div class=\"image-container\">\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Charlottenburg%20park%202__1575879482122__w1074.jpg\"></div>\n\n<figcaption><span style=\"color:#696969\"><strong>Even within the formal setting of the Schloss Charlottenburg park, wilder reedswamp, water and woodland habitats occur.</strong></span></figcaption>\n</figure>\n</div>\n</figure>\n",
+                    "contentActions": [],
+                    "creaDate": 1575879506137,
+                    "pubDate": 1575879506137,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1478709.8107215196,
+                                "ymin": 6894469.234485317,
+                                "xmax": 1481122.354426834,
+                                "ymax": 6896447.042592248,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">SCHLOSSPARK SANSSOUCI</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Sanssouci%20park_med__1575646489664__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>In 1744 Frederick the Great created a&nbsp;terraced garden designed in Sanssouci Park. Many additional places, baroque and informal gardens were added to the park complex in later years. Today the park landscape extends over an area of 290 hectares&nbsp;and has some 70 km of walkways. It&nbsp;includes extensive woodland planting, open flower rich meadows and a number of ponds, as well as the formal flower gardens.</strong></p>\n\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Sanssouci%20park%202__1575879557272__w983.jpg\"></div>\n\n<figcaption>Many areas within the Schlosspark are arranged as formal ornamental planting.</figcaption>\n</figure>\n",
+                    "contentActions": [],
+                    "creaDate": 1575879574667,
+                    "pubDate": 1575879574667,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1447069.6583257124,
+                                "ymin": 6869959.223634173,
+                                "xmax": 1454464.9408122932,
+                                "ymax": 6877784.464404858,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><span style=\"font-size:28px; outline:none\"><span style=\"outline:none\">SCHOENEBERGER </span><span style=\"outline:none\">S</span>&Uuml;DGEL</span><span style=\"font-size:26px\"><!--[if gte mso 9]><xml>\n <o:DocumentProperties>\n  <o:Revision>0</o:Revision>\n  <o:TotalTime>0</o:TotalTime>\n  <o:Pages>1</o:Pages>\n  <o:Characters>1</o:Characters>\n  <o:Company>na</o:Company>\n  <o:Lines>1</o:Lines>\n  <o:Paragraphs>1</o:Paragraphs>\n  <o:CharactersWithSpaces>1</o:CharactersWithSpaces>\n  <o:Version>14.0</o:Version>\n </o:DocumentProperties>\n <o:OfficeDocumentSettings>\n  <o:AllowPNG></o:AllowPNG>\n </o:OfficeDocumentSettings>\n</xml><![endif]--><!--[if gte mso 9]><xml>\n <w:WordDocument>\n  <w:View>Normal</w:View>\n  <w:Zoom>0</w:Zoom>\n  <w:TrackMoves></w:TrackMoves>\n  <w:TrackFormatting></w:TrackFormatting>\n  <w:PunctuationKerning></w:PunctuationKerning>\n  <w:ValidateAgainstSchemas></w:ValidateAgainstSchemas>\n  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>\n  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>\n  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>\n  <w:DoNotPromoteQF></w:DoNotPromoteQF>\n  <w:LidThemeOther>EN-US</w:LidThemeOther>\n  <w:LidThemeAsian>JA</w:LidThemeAsian>\n  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>\n  <w:Compatibility>\n   <w:BreakWrappedTables></w:BreakWrappedTables>\n   <w:SnapToGridInCell></w:SnapToGridInCell>\n   <w:WrapTextWithPunct></w:WrapTextWithPunct>\n   <w:UseAsianBreakRules></w:UseAsianBreakRules>\n   <w:DontGrowAutofit></w:DontGrowAutofit>\n   <w:SplitPgBreakAndParaMark></w:SplitPgBreakAndParaMark>\n   <w:EnableOpenTypeKerning></w:EnableOpenTypeKerning>\n   <w:DontFlipMirrorIndents></w:DontFlipMirrorIndents>\n   <w:OverrideTableStyleHps></w:OverrideTableStyleHps>\n   <w:UseFELayout></w:UseFELayout>\n  </w:Compatibility>\n  <m:mathPr>\n   <m:mathFont m:val=\"Cambria Math\"></m:mathFont>\n   <m:brkBin m:val=\"before\"></m:brkBin>\n   <m:brkBinSub m:val=\"&#45;-\"></m:brkBinSub>\n   <m:smallFrac m:val=\"off\"></m:smallFrac>\n   <m:dispDef></m:dispDef>\n   <m:lMargin m:val=\"0\"></m:lMargin>\n   <m:rMargin m:val=\"0\"></m:rMargin>\n   <m:defJc m:val=\"centerGroup\"></m:defJc>\n   <m:wrapIndent m:val=\"1440\"></m:wrapIndent>\n   <m:intLim m:val=\"subSup\"></m:intLim>\n   <m:naryLim m:val=\"undOvr\"></m:naryLim>\n  </m:mathPr></w:WordDocument>\n</xml><![endif]--><!--[if gte mso 9]><xml>\n <w:LatentStyles DefLockedState=\"false\" DefUnhideWhenUsed=\"true\"\n  DefSemiHidden=\"true\" DefQFormat=\"false\" DefPriority=\"99\"\n  LatentStyleCount=\"276\">\n  <w:LsdException Locked=\"false\" Priority=\"0\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Normal\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"heading 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 7\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 8\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 9\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 7\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 8\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 9\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"35\" QFormat=\"true\" Name=\"caption\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"10\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Title\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"1\" Name=\"Default Paragraph Font\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"11\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Subtitle\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"22\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Strong\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"20\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Emphasis\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"59\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Table Grid\"></w:LsdException>\n  <w:LsdException Locked=\"false\" UnhideWhenUsed=\"false\" Name=\"Placeholder Text\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"1\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"No Spacing\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" UnhideWhenUsed=\"false\" Name=\"Revision\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"34\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"List Paragraph\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"29\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Quote\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"30\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Intense Quote\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"19\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Subtle Emphasis\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"21\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Intense Emphasis\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"31\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Subtle Reference\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"32\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Intense Reference\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"33\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Book Title\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"37\" Name=\"Bibliography\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" QFormat=\"true\" Name=\"TOC Heading\"></w:LsdException>\n </w:LatentStyles>\n</xml><![endif]--><!--[if gte mso 10]>\n<style>\n /* Style Definitions */\ntable.MsoNormalTable\n\t{mso-style-name:\"Table Normal\";\n\tmso-tstyle-rowband-size:0;\n\tmso-tstyle-colband-size:0;\n\tmso-style-noshow:yes;\n\tmso-style-priority:99;\n\tmso-style-parent:\"\";\n\tmso-padding-alt:0cm 5.4pt 0cm 5.4pt;\n\tmso-para-margin:0cm;\n\tmso-para-margin-bottom:.0001pt;\n\tmso-pagination:widow-orphan;\n\tfont-size:10.0pt;\n\tfont-family:\"Times New Roman\";\n\tmso-ansi-language:EN-US;\n\tmso-fareast-language:JA;}\n</style>\n<![endif]--><!--StartFragment-->&Auml;</span><!--EndFragment--><span style=\"font-size:28px; outline:none\">NDE</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Priesterweg%20sudgelande%203__1575646539541__w1020.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Over the past 50 years, nature has reclaimed the S<!--[if gte mso 9]><xml>\n <o:DocumentProperties>\n  <o:Revision>0</o:Revision>\n  <o:TotalTime>0</o:TotalTime>\n  <o:Pages>1</o:Pages>\n  <o:Characters>1</o:Characters>\n  <o:Company>na</o:Company>\n  <o:Lines>1</o:Lines>\n  <o:Paragraphs>1</o:Paragraphs>\n  <o:CharactersWithSpaces>1</o:CharactersWithSpaces>\n  <o:Version>14.0</o:Version>\n </o:DocumentProperties>\n <o:OfficeDocumentSettings>\n  <o:AllowPNG></o:AllowPNG>\n </o:OfficeDocumentSettings>\n</xml><![endif]--><!--[if gte mso 9]><xml>\n <w:WordDocument>\n  <w:View>Normal</w:View>\n  <w:Zoom>0</w:Zoom>\n  <w:TrackMoves></w:TrackMoves>\n  <w:TrackFormatting></w:TrackFormatting>\n  <w:PunctuationKerning></w:PunctuationKerning>\n  <w:ValidateAgainstSchemas></w:ValidateAgainstSchemas>\n  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>\n  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>\n  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>\n  <w:DoNotPromoteQF></w:DoNotPromoteQF>\n  <w:LidThemeOther>EN-US</w:LidThemeOther>\n  <w:LidThemeAsian>JA</w:LidThemeAsian>\n  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>\n  <w:Compatibility>\n   <w:BreakWrappedTables></w:BreakWrappedTables>\n   <w:SnapToGridInCell></w:SnapToGridInCell>\n   <w:WrapTextWithPunct></w:WrapTextWithPunct>\n   <w:UseAsianBreakRules></w:UseAsianBreakRules>\n   <w:DontGrowAutofit></w:DontGrowAutofit>\n   <w:SplitPgBreakAndParaMark></w:SplitPgBreakAndParaMark>\n   <w:EnableOpenTypeKerning></w:EnableOpenTypeKerning>\n   <w:DontFlipMirrorIndents></w:DontFlipMirrorIndents>\n   <w:OverrideTableStyleHps></w:OverrideTableStyleHps>\n   <w:UseFELayout></w:UseFELayout>\n  </w:Compatibility>\n  <m:mathPr>\n   <m:mathFont m:val=\"Cambria Math\"></m:mathFont>\n   <m:brkBin m:val=\"before\"></m:brkBin>\n   <m:brkBinSub m:val=\"&#45;-\"></m:brkBinSub>\n   <m:smallFrac m:val=\"off\"></m:smallFrac>\n   <m:dispDef></m:dispDef>\n   <m:lMargin m:val=\"0\"></m:lMargin>\n   <m:rMargin m:val=\"0\"></m:rMargin>\n   <m:defJc m:val=\"centerGroup\"></m:defJc>\n   <m:wrapIndent m:val=\"1440\"></m:wrapIndent>\n   <m:intLim m:val=\"subSup\"></m:intLim>\n   <m:naryLim m:val=\"undOvr\"></m:naryLim>\n  </m:mathPr></w:WordDocument>\n</xml><![endif]--><!--[if gte mso 9]><xml>\n <w:LatentStyles DefLockedState=\"false\" DefUnhideWhenUsed=\"true\"\n  DefSemiHidden=\"true\" DefQFormat=\"false\" DefPriority=\"99\"\n  LatentStyleCount=\"276\">\n  <w:LsdException Locked=\"false\" Priority=\"0\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Normal\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"heading 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 7\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 8\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 9\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 7\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 8\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 9\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"35\" QFormat=\"true\" Name=\"caption\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"10\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Title\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"1\" Name=\"Default Paragraph Font\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"11\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Subtitle\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"22\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Strong\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"20\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Emphasis\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"59\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Table Grid\"></w:LsdException>\n  <w:LsdException Locked=\"false\" UnhideWhenUsed=\"false\" Name=\"Placeholder Text\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"1\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"No Spacing\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" UnhideWhenUsed=\"false\" Name=\"Revision\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"34\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"List Paragraph\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"29\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Quote\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"30\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Intense Quote\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 1\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 2\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 3\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 4\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 5\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 6\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"19\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Subtle Emphasis\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"21\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Intense Emphasis\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"31\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Subtle Reference\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"32\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Intense Reference\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"33\" SemiHidden=\"false\"\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Book Title\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"37\" Name=\"Bibliography\"></w:LsdException>\n  <w:LsdException Locked=\"false\" Priority=\"39\" QFormat=\"true\" Name=\"TOC Heading\"></w:LsdException>\n </w:LatentStyles>\n</xml><![endif]--><!--[if gte mso 10]>\n<style>\n /* Style Definitions */\ntable.MsoNormalTable\n\t{mso-style-name:\"Table Normal\";\n\tmso-tstyle-rowband-size:0;\n\tmso-tstyle-colband-size:0;\n\tmso-style-noshow:yes;\n\tmso-style-priority:99;\n\tmso-style-parent:\"\";\n\tmso-padding-alt:0cm 5.4pt 0cm 5.4pt;\n\tmso-para-margin:0cm;\n\tmso-para-margin-bottom:.0001pt;\n\tmso-pagination:widow-orphan;\n\tfont-size:10.0pt;\n\tfont-family:\"Times New Roman\";\n\tmso-ansi-language:EN-US;\n\tmso-fareast-language:JA;}\n</style>\n<![endif]--><!--StartFragment-->ü<!--EndFragment-->dgelände on the site&nbsp;of the former railway yard at Berlin-Tempelhof. The woodland and other habitats, covering 18 hectares,&nbsp;provide a home for a wealth of plants and animals. Some 50 species of bird and close to 100 species of bee occur in the park. The&nbsp;remnants of the&nbsp;historical railway line are still be seen in many of the woodland areas.</strong></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575646547914,
+                    "pubDate": 1575646547914,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1485199.7921542856,
+                                "ymin": 6882327.690273546,
+                                "xmax": 1488978.6477402337,
+                                "ymax": 6886211.646773389,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><span style=\"font-size:26px; outline:none\">SOPHIEN FRIEDHOF II</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Sophien%20Friedhof_med__1575646562355__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Sophien Friedhof II is a&nbsp;graveyard located in Berlin Mitte. As is the case with many of the other urban graveyards in the city the graveyard is heavily wooded and a valuable habitat for songbirds and other wildlife.&nbsp;</strong></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575646571062,
+                    "pubDate": 1575646571062,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1490193.279892959,
+                                "ymin": 6896683.519648618,
+                                "xmax": 1491399.5517454825,
+                                "ymax": 6897672.423701975,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">SPREE RIVER</span></p>\n",
+                    "content": "<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Spree%20river%201_med__1575879614752__w738.jpeg\"></div>\n\n<figcaption>\n<p>&nbsp;</p>\n\n<p><strong>The river Spree runs through the centre of Berlin, and is heavily used during the summer months for boat cruises. The river runs through the main government quarter in the city, and past the Reichstag and Kanzler Amt.&nbsp;</strong></p>\n</figcaption>\n</figure>\n\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Spree%20House%20Boats__1575879678471__w1280.jpg\"></div>\n\n<figcaption><span style=\"color:#696969\">House boat on the Spree at Treptow Park.</span></figcaption>\n</figure>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575879688525,
+                    "pubDate": 1575879688525,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1487330.474317841,
+                                "ymin": 6893924.620658809,
+                                "xmax": 1489743.0180231554,
+                                "ymax": 6895902.42876574,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">STEGLITZ STADTPARK</span></p>\n",
+                    "content": "<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Steglitz%20Stadtpark%201__1575879728281__w964.jpg\"></div>\n\n<figcaption>&nbsp;</figcaption>\n</figure>\n\n<p><strong>Stadtpark Steglitz is a busy park used by the residents of Steglitz. The park, covering 17 hectares, includes a number of ornamental ponds, with the main park being a mosaic of open lawn areas broken by woodland planting. There is a large children's playground in the park.&nbsp;</strong></p>\n\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Steglitz%20Stadtpark%202__1575879773025__w964.jpg\"></div>\n\n<figcaption><span style=\"color:#696969\">Horsetails, a fern like plant that reproduces by spores rather than seeds on a pond margin in Steglitz Stadtpark.</span></figcaption>\n</figure>\n",
+                    "contentActions": [],
+                    "creaDate": 1575879789435,
+                    "pubDate": 1575879789435,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1483946.9414875058,
+                                "ymin": 6881185.912163449,
+                                "xmax": 1485153.2133400294,
+                                "ymax": 6882174.816216806,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">TEMPELHOFER FELD</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Tempelhofer%20feld%201_med__1575879835579__w553.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Originally the&nbsp;Tempelhofer Feld was a military parade&nbsp;ground. At the beginning of the 1920s, Tempelhof airport was built on the 300 hectare site.&nbsp;After the airport closed in 2008, Berlin residents reclaimed the 386 hectare&nbsp;open space for&nbsp;public use following a referendum on its future use. Today the area has cycling, skating and jogging trail and picnic areas for all visitors.&nbsp;</strong></p>\n\n<p>&nbsp;</p>\n\n<figure class=\"caption\">\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Tempelhofer%20feld%20mushroom_med__1575879867573__w541.jpeg\"></div>\n\n<figcaption><span style=\"color:#696969\"><strong>Autumn fungus growing on the Tempelhofer feld.</strong></span></figcaption>\n</figure>\n</figure>\n",
+                    "contentActions": [],
+                    "creaDate": 1575879883127,
+                    "pubDate": 1575879883127,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1490034.4341934763,
+                                "ymin": 6884448.817808188,
+                                "xmax": 1493813.2897794244,
+                                "ymax": 6888332.7743080305,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"color:#006400\"><span style=\"font-size:26px\">TIERGARTEN</span></span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Tiergarten%201_med__1575879939304__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>The Tiergarten is&nbsp;the former private hunting grounds of Great Elector Friedrich Wilhelm. The park&nbsp;has a diverse landscape&nbsp;including avenues, pathways, lawns, meadows,&nbsp;ponds,&nbsp;flower beds, landscaped gardens and extensive wilder woodland areas. Covering&nbsp;210 hectares the \"Großer Tiergarten\" is the largest urban park of Berlin.&nbsp;It’s a&nbsp;favourite with locals and visitors, wonderful for a stroll, a breath of fresh&nbsp;air, a picnic, cycling&nbsp;or a jog or just lying out in the sun.</strong></p>\n\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Tiergarten%20Rosengarten_med__1575879973919__w738.jpeg\"></div>\n\n<figcaption><span style=\"color:#696969\">The Rosengarten in the Tiergarten, a classic formal garden design, loved by bees and butterflies.</span></figcaption>\n</figure>\n\n<figure class=\"caption\">\n<figcaption>\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Tiergarten%20Mushrooms_med__1575880005536__w738.jpeg\"></div>\n\n<figcaption><span style=\"font-size:14px\"><span style=\"color:#696969\">The Tiergarten is a mecca for mushroom hunters with an amazing diversity of species to be found in the woodland in autumn.</span></span></figcaption>\n</figure>\n</figcaption>\n</figure>\n",
+                    "contentActions": [],
+                    "creaDate": 1575880019116,
+                    "pubDate": 1575880019116,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1484282.5478149913,
+                                "ymin": 6891629.121152704,
+                                "xmax": 1489293.9504820704,
+                                "ymax": 6895560.850795225,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">TREPTOWER PARK</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Treptower%20park%201_med__1575880051350__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Treptower Park&nbsp;is a park alongside the river&nbsp;Spree&nbsp;in&nbsp;Alt-Treptow, in the district&nbsp;of&nbsp;Treptow-Köpenick covering 88 hectares. Its prominent feature is the&nbsp;Soviet War Memorial, built to commemorate the 80,000 Soviet soldiers who fell in the&nbsp;Battle of Berlin&nbsp;in&nbsp;1945. As a \"public park\" opened to all citizens in 1888, Treptow Park represented an innovation for its&nbsp;time. The park includes extensive woodland areas as well as a large pond, called the Karpfenteich.</strong></p>\n\n<figure class=\"caption\">\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Treptow%20Park%20Swans__1575880081875__w1280.jpg\"></div>\n\n<figcaption><span style=\"color:#696969\">Mute swan family at the Karpfenteich.</span></figcaption>\n</figure>\n</figure>\n",
+                    "contentActions": [],
+                    "creaDate": 1575880096015,
+                    "pubDate": 1575880096015,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1497905.0594495733,
+                                "ymin": 6886565.168029181,
+                                "xmax": 1501803.34789222,
+                                "ymax": 6890468.233786096,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><span style=\"font-size:26px; outline:none\">VIKTORIA LOUISE PARK</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/viktoria%20louise%20platz__1575880127776__w1280.jpg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Viktoria Louise Park is located in Schoeneberg. The park is highly managed with numerous flower beds, which are surrounded by a mature treeline. The park with its fountain&nbsp;is very popular with local residents.</strong></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575880137360,
+                    "pubDate": 1575880137360,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1484961.225023043,
+                                "ymin": 6889978.857655749,
+                                "xmax": 1485433.5819713387,
+                                "ymax": 6890464.352218283,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p style=\"outline: none;\"><span style=\"font-size:26px; outline:none\">VIKTORIAPARK KREUZBERG</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Viktoria%20park%20kreuzberg_med__1575880156397__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>The&nbsp;Viktoriapark&nbsp;(aka Victoriapark) is an&nbsp;urban park&nbsp;in Kreuzberg. It provides an excellent viewpoint over&nbsp;much of the central and southern portions of the city. The major landmark of the park is a monument erected in 1821&nbsp;dedicated by King&nbsp;Frederick William III of Prussia&nbsp;to the Liberation Wars fought to free the German states from Napoleon.&nbsp;In summer an&nbsp;artificial waterfall&nbsp;originates at the foot of the&nbsp;monument and continues down the hillside to the intersection of Großbeerenstraße and Kreuzbergstraße.</strong></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575880165180,
+                    "pubDate": 1575880165180,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1488975.0647544174,
+                                "ymin": 6888368.604165401,
+                                "xmax": 1490181.336606941,
+                                "ymax": 6889357.508218758,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">VOLKSPARK FRIEDRICHSHAIN</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Volkspark%20Friedrichshain%20med-2__1575880203063__w738.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Volkspark&nbsp;Friedrichshain&nbsp;is a large wooded&nbsp;urban park&nbsp;on the border&nbsp;of&nbsp;Friedrichshain&nbsp;and&nbsp;Prenzlauerberg which covers some 52&nbsp;hectares.&nbsp;It is the oldest public park in&nbsp;Berlin. The park has several playgrounds,&nbsp;many large&nbsp;Liegewiesen&nbsp;(open&nbsp;areas for sunbathing), a pond,&nbsp;tennis&nbsp;courts, a wading pool, and a&nbsp;restaurant. It is also criss-crossed with walking paths.</strong></p>\n\n<figure class=\"caption\">\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Volkspark%20Friedrichshain%202_med__1575880230777__w660.jpeg\"></div>\n\n<figcaption><span style=\"color:#696969\">A male Mandarin duck taking the sun, just one of the many waterbirds to be seen in the park.</span></figcaption>\n</figure>\n</figure>\n",
+                    "contentActions": [],
+                    "creaDate": 1575880244234,
+                    "pubDate": 1575880244234,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1494302.9644915063,
+                                "ymin": 6894914.719040593,
+                                "xmax": 1496252.1087128299,
+                                "ymax": 6896866.25191905,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">WUPATZSEE</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Wupatzsee_med__1575880268190__w489.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Wupatzee is located on the eastern edge of Berlin just over the border into Brandenburg.&nbsp;&nbsp;The site occurs in the Löcknitztal (Löcknitz valley) over half of which is &nbsp;managed as a nature reserve.</strong></p>\n\n<p>&nbsp;</p>\n\n<p><strong>The lake is surrounded by a narrow zone of reedswamp and wet deciduous swamp woodland, with conifer woodland beyond that. Wupatzee has a&nbsp;diverse wildlife.&nbsp;</strong></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [],
+                    "creaDate": 1575880277423,
+                    "pubDate": 1575880277423,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1532472.5111628023,
+                                "ymin": 6875284.734714114,
+                                "xmax": 1534361.9389557762,
+                                "ymax": 6877226.712964035,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">SMALL OPEN AREAS</span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Small%20spaces%20embassy%20area_med__1575880913380__w553.jpeg\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>There are many small green areas, verges, yards and&nbsp;brownfield sites throughout the city which add a diversity of habitats for pioneer plant&nbsp;species, bees, butterflies and birds. Some of these have been vacant since the last war. Other areas&nbsp;have been lost over the last 10 years to building infill as Berlin tries to address the housing shortage in the city.&nbsp;</strong></p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container\">\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Martin_Luther%20strasse_med__1575880314992__w489.jpeg\"></div>\n\n<figcaption><span style=\"color:#696969\">Even the centre island on larger roads are planted with trees and spring bulbs.</span></figcaption>\n</figure>\n</div>\n\n<figure class=\"caption\">\n<div class=\"image-container\">\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Eisenacherstrasse%202107__1575880341175__w850.jpg\"></div>\n\n<figcaption>\n<p><span style=\"font-size:14px\"><span style=\"color:#696969\">Many apartment complexes in the city have communal gardens where birds, insect and other wildlife thrive.</span></span></p>\n\n<p>&nbsp;</p>\n\n<figure class=\"caption\">\n<div class=\"image-container\"><img alt=\"\" height=\"447\" src=\"https://www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/Guerilla%20gardening__1575880379849__w960.jpg\" width=\"336\"></div>\n\n<figcaption><span style=\"font-size:14px\"><span style=\"color:#696969\">One of the many guerrilla gardens in Berlin, where an individual has taken over an area of municipal land to create a wildlife garden.</span></span></figcaption>\n</figure>\n</figcaption>\n</figure>\n</div>\n</figure>\n",
+                    "contentActions": [],
+                    "creaDate": 1575880923377,
+                    "pubDate": 1575880923377,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "43ea61ee5a0644e8b817a9002fb696cc",
+                            "extent": {
+                                "xmin": 1485644.0823811824,
+                                "ymin": 6890176.817615493,
+                                "xmax": 1486850.354233706,
+                                "ymax": 6891165.72166885,
+                                "spatialReference": {
+                                    "wkid": 102100
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "overview": {
+                                "enable": false,
+                                "openByDefault": true
+                            },
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            },
+                            "geocoder": {
+                                "enable": false
+                            },
+                            "altText": ""
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:26px\">Useful links</span></p>\n",
+                    "content": "<p>If you would like to find out more about wildlife, parks or exploring nature in Berlin why not visit the NABU website where you can learn about upcoming events they organise around the city.&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>We would like to thank the following individuals who provided photographs to illustrate the map: Peter Foss</p>\n\n<p>&nbsp;</p>\n\n<p>Map design and preparation by Peter Foss. You can check out other story maps at:&nbsp;</p>\n\n<figure class=\"caption\">\n<div class=\"image-container\"><a href=\"http://www.fossenvironmentalconsulting.com\" target=\"_blank\"><img alt=\"\" src=\"//www.arcgis.com/sharing/rest/content/items/a5846d8e82834f4398fb54e0ef0db0c5/resources/fossenvirologosml_med__1492697204120__w155.jpeg\"></a></div>\n\n<figcaption><a href=\"http://www.FossEnvironmentalConsulting.com\" style=\"font-size:16px\" target=\"_blank\">http://www.FossEnvironmentalConsulting.com</a></figcaption>\n</figure>\n\n<p>To find&nbsp;<strong>Wetlands to Visit Around Ireland</strong>&nbsp;you should check out our story map with over 40 great locations to visit around the country at&nbsp;<a href=\"http://arcg.is/2kWtYY8\" target=\"_blank\">http://arcg.is/2kWtYY8</a></p>\n\n<p>&nbsp;</p>\n\n<p tabindex=\"0\"><em><span style=\"font-size:10px\">Disclaimer:</span></em></p>\n\n<p tabindex=\"0\"><em><span style=\"font-size:10px\">We are not responsible for the accuracy of the data displayed, or data accessed from third party sources.</span></em></p>\n\n<p tabindex=\"0\"><em><span style=\"font-size:10px\">Open spaces in Berlin map from ESRI Urban Observatory Project 2015&nbsp;by UOdocent available at: <a href=\"http://www.urbanobservatory.org\" target=\"_blank\">Urban Observatory Project&nbsp;by UOdocent</a></span></em></p>\n",
+                    "contentActions": [],
+                    "creaDate": 1492771309235,
+                    "pubDate": 1492771309235,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "https://berlin.nabu.de/index.html",
+                            "type": "webpage",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                }
+            ]
+        },
+        "template": {
+            "name": "Map Journal",
+            "createdWith": "1.10.2",
+            "editedWith": "1.20.0"
+        }
+    }
+}

@@ -1,0 +1,519 @@
+{
+    "source": "32f733be56ce48b5993932715e1070ee",
+    "folderId": null,
+    "values": {
+        "webmap": "8022da92296c4b408bbbf967a862530e",
+        "settings": {
+            "layout": {
+                "id": "bullet"
+            },
+            "layoutOptions": {
+                "description": true,
+                "legend": "panel",
+                "panel": {
+                    "position": "left",
+                    "size": "small"
+                },
+                "reverse": false,
+                "panelMapOverlap": false
+            },
+            "mapOptions": {
+                "overview": {
+                    "enable": false,
+                    "openByDefault": false
+                },
+                "locateBtn": {
+                    "enable": true
+                },
+                "geocoder": {
+                    "enable": true
+                },
+                "mapsSync": false
+            },
+            "theme": {
+                "colors": {
+                    "name": "bullet-default-1-modified",
+                    "group": "modified",
+                    "themeMajor": "white",
+                    "header": "#28323A",
+                    "headerTitle": "#FFFFFF",
+                    "headerText": "#D9D9D9",
+                    "panel": "#DBD9DA",
+                    "text": "#000000",
+                    "textLink": "#555555",
+                    "media": "#FFFFFF",
+                    "mapControls": "#DBD9DA",
+                    "softText": "#444444",
+                    "softBtn": "#444444",
+                    "esriLogo": "white",
+                    "esriLogoMobile": "black",
+                    "tab": "#5F788B",
+                    "tabActive": "#58ACCB",
+                    "tabHover": "#49879E",
+                    "tabText": "#FFFFFF",
+                    "tabTextHover": "#FFFFFF",
+                    "tabTextActive": "#FFFFFF"
+                }
+            },
+            "header": {
+                "linkText": "A story map",
+                "linkURL": "http://storymaps.arcgis.com",
+                "logoURL": null,
+                "logoTarget": "",
+                "social": {
+                    "facebook": true,
+                    "twitter": true,
+                    "bitly": true
+                },
+                "compactSize": true
+            }
+        },
+        "title": "Cirkels in Nederland",
+        "story": {
+            "storage": "WEBAPP",
+            "entries": [
+                {
+                    "title": "LuchtfotoNL 2014",
+                    "creaDate": 1436430953118,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": -80769.09181592255,
+                                "ymin": 320606.47170476604,
+                                "xmax": 439423.9485701583,
+                                "ymax": 626219.8829315886,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><span style=\"font-size:22px\"><strong>LuchtfotoNL 2014</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\">CycloMedia heeft een basiskaart ontwikkeld voor gebruik in ArcGIS: LuchtfotoNL 50 cm. Deze landsdekkende luchtfoto wordt ieder jaar vernieuwd en heeft een resolutie van 50 cm. De basiskaart wordt kosteloos aangeboden aan gebruikers van het ArcGIS-platform.</span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\">Met de toevoeging van LuchtfotoNL 50 cm krijgen gebruikers een basiskaart van hoge kwaliteit tot hun beschikking. Voor toepassingen die een nog hogere resolutie nodig hebben biedt CycloMedia daarnaast&nbsp;<a href=\"http://www.cyclomedia.com/nl/producten/beeldmateriaal/#luchtfotonl\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">LuchtfotoNL</span></a>,&nbsp;die met een resolutie van 10 cm een hoge mate van detail levert.</span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\">Ontdek de details van de LuchfotoNL 50 cm via&nbsp;cirkelpatronen in Nederland&nbsp;in deze Story Map serie</span>!</p>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "Veiligheidsbuffer Oesterdam",
+                    "creaDate": 1436430773723,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 73408.45933287036,
+                                "ymin": 386277.39404885727,
+                                "xmax": 74424.46136487443,
+                                "ymax": 386874.29524265963,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><strong><span style=\"font-size:22px\">Veiligheidsbuffer&nbsp;Oesterdam</span></strong></p>\n\n<p class=\"MsoNormal\">&nbsp;</p>\n\n<p class=\"MsoNormal\"><span style=\"font-size:14px\">In 2013 is door Rijkswaterstaat, in samenwerking met Natuurmonumenten en Provincie Zeeland,&nbsp;een veiligheidsbuffer voor de Oesterdam aangelegd. Door de bouw van de Oosterscheldekering in 1986 is er zandhonger ontstaan, wat&nbsp;betekent dat de kracht van het getij om zand op de zandplaten aan te brengen is verminderd. Dit heeft ervoor gezorgd dat de golven met een grotere kracht tegen de dijken breken. Via de buffer wordt de zandhonger tegengegaan en de kustveiligheid vergroot. Daarnaast is&nbsp;ook het leefgebied voor onder andere vogels en zeehonden vergroot. Het zandlichaam is 2 kilometer lang&nbsp;en bestaat uit 600.000 m<sup>3</sup>&nbsp;zand.</span></p>\n\n<p class=\"MsoNormal\">&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><span style=\"color:rgb(0, 0, 0)\"><strong>Bronnen</strong></span></span></p>\n\n<p class=\"MsoNormal\"><span style=\"font-size:14px\"><a href=\"http://www.klimaatbuffers.nl/home-oesterdam\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Klimaatbuffers</span></a></span></p>\n\n<p class=\"MsoNormal\"><span style=\"font-size:14px\"><a href=\"https://www.natuurmonumenten.nl/oesterdam-innovatief-project-oosterschelde\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Natuurmonumenten</span></a></span></p>\n\n<p class=\"MsoNormal\"><span style=\"font-size:14px\"><a href=\"http://www.rijkswaterstaat.nl/water/veiligheid/bescherming_tegen_het_water/Deltawerken/Oesterdam/\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Rijkswaterstaat</span></a></span></p>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "Sterrenbos",
+                    "creaDate": 1436367090830,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 161512.42075644166,
+                                "ymin": 446178.0744854003,
+                                "xmax": 162334.74740109494,
+                                "ymax": 446574.95027915185,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><strong><span style=\"font-size:22px\"><span>Sterrenbos</span></span></strong></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\">In 1790 is in&nbsp;Amerongen het Sterrenbos aangelegd door kasteelheren.&nbsp;Acht beukenlanen kruizen elkaar in een stervorm omsloten door een cirkel.&nbsp;Sterrenbossen werden vaker aangelegd in de achttiende eeuw, omdat het hooggelegen middelpunt uitzicht </span>bood <span style=\"font-size:14px\">voor de jacht.&nbsp;In 1940 zijn alle bomen gekapt, maar na een herplanting in 1990 is het bos sinds 2004 weer volledig hersteld. In het midden van het bos staat de \"Eenzame Eik\".</span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><span style=\"color:rgb(0, 0, 0)\"><strong>Bronnen</strong></span></span></p>\n\n<p><span style=\"font-size:14px\"><a href=\"http://www.everytrail.com/guide/amerongen-inspires-to-the-top-naar-de-top\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Every Trail</span></a></span></p>\n\n<p><span style=\"font-size:14px\"><a href=\"http://utrechtseheuvelrug.punt.nl/content/2009/06/sterrenbos-amerongen\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Utrechtse Heuvelrug</span></a></span></p>\n\n<p><span style=\"font-size:14px\"><a href=\"http://nl.wikipedia.org/wiki/Sterrenbos\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Wikipedia</span></a></span></p>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "Zwerfsteneneiland",
+                    "creaDate": 1436367114119,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 151839.41738606986,
+                                "ymin": 452589.66817237204,
+                                "xmax": 152661.74403072314,
+                                "ymax": 452986.5439661236,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<div class=\"image-container activate-fullscreen\">\n<p><strong><span style=\"font-size:22px\"><span>Zwerfsteneneiland</span></span></strong></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\">Bij het afgraven van zand door de Nederlandse Spoorwegen zijn&nbsp;er in het verleden veel zwerfstenen gevonden op de Utrechtse Heuvelrug. Deze stenen werden in de hoek van de zandberg begraven als ongewenst materiaal. Vanaf 1999 zijn de stenen echter een aardkundig monument en zijn ze te zien op het Zwerfsteneneiland in Maarn.</span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><span style=\"color:rgb(0, 0, 0)\"><strong>Bronnen</strong></span></span></p>\n</div>\n\n<p><span style=\"font-size:14px\"><a href=\"http://www.aardkundigewaarden.nl/zwerfsteneneiland/home.php\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Aardkundige waarden</span></a></span></p>\n\n<p><span style=\"font-size:14px\"><a href=\"https://nl.wikipedia.org/wiki/Zwerfsteneneiland\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Wikipedia</span></a></span></p>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "IJsseloog",
+                    "creaDate": 1436343082337,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 177297.58557669053,
+                                "ymin": 511362.58055820887,
+                                "xmax": 180621.81722515382,
+                                "ymax": 513219.95927296625,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><span style=\"font-size:22px\"><strong>IJsseloog</strong></span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\">Het IJsseloog<span style=\"color:rgb(37, 37, 37)\">&nbsp;is een kunstmatig eiland in het Ketelmeer</span><span style=\"color:rgb(37, 37, 37)\">&nbsp;dat als doel heeft om verontreinigd slib&nbsp;uit de bodem van het meer te bergen. Dit</span>&nbsp;met kwik en zink verontreinigde&nbsp;slib is tussen 1950 en 1990 als bezinksel op de bodem van het Ketelmeer terecht gekomen. Rijkswaterstaat probeert vanaf de jaren 90 het slib op te slaan om verspreiding te voorkomen en natuurontwikkeling en recreate mogelijk te maken.&nbsp;Het depot is tussen 1996 en 1999 gebouwd, waarna delen van het Ketelmeer gesaneerd zijn.</span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><span style=\"color:rgb(0, 0, 0)\"><strong>Bronnen</strong></span></span></p>\n\n<p><span style=\"font-size:14px\"><a href=\"http://www.rijkswaterstaat.nl/water/feiten_en_cijfers/vaarwegenoverzicht/ketelmeer/\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Rijkswaterstaat</span></a></span></p>\n\n<p><span style=\"font-size:14px\"><a href=\"https://nl.wikipedia.org/wiki/IJsseloog\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Wikipedia</span></a></span></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "AWZI Harnaschpolder",
+                    "creaDate": 1436367140961,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 81303.62055278211,
+                                "ymin": 447818.25021650176,
+                                "xmax": 82125.94719743541,
+                                "ymax": 448215.1260102533,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><span style=\"font-size:22px\"><strong>AWZI Harnaschpolder</strong></span></p>\n\n<p class=\"MsoNormal\">&nbsp;</p>\n\n<p class=\"MsoNormal\"><span style=\"font-size:14px\">In de Harnaschpolder in Delft staat een van de grootste afvalwaterzuiveringsinstallaties (AWZI) van Europa. De installatie is tussen 2004 en 2007 gebouwd en is 25 hectare groot. In de AWZI wordt water gezuiverd met behulp van </span><span style=\"font-size:10.5pt\">bacteriën&nbsp;</span><span style=\"font-size:14px\">die afvalstoffen in water opeten. De installatie kan per dag ongeveer 250.000 km<sup>2</sup> afvalwater zuiveren. De acht grote bassins aan de zijkanten hebben een diameter van 63 meter en&nbsp;de zestien&nbsp; bassins in het vierkant hebben een diameter van 54 meter.</span></p>\n\n<p class=\"MsoNormal\">&nbsp;</p>\n\n<p class=\"MsoNormal\"><span style=\"font-size:14px\"><span style=\"color:rgb(0, 0, 0)\"><strong>Bronnen</strong></span></span></p>\n\n<p class=\"MsoNormal\"><span style=\"font-size:14px\"><a href=\"http://delfluent.nl/plant/awzi_harnaschpolder/\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Delfluent</span></a></span></p>\n\n<p class=\"MsoNormal\"><span style=\"font-size:14px\"><a href=\"https://nl.wikipedia.org/wiki/Harnaschpolder_(buurt)#Rioolwaterzuiveringsinstallatie\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Wikipedia</span></a></span></p>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "Knooppunt Joure",
+                    "creaDate": 1436431334636,
+                    "status": "HIDDEN",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 183338.07209957254,
+                                "ymin": 552145.3182447886,
+                                "xmax": 184354.0741315766,
+                                "ymax": 552742.219438591,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><strong><span style=\"font-size:22px\">Knooppunt Joure</span></strong></p>\n\n<p class=\"MsoListParagraphCxSpFirst\"><span style=\"font-size:10.5pt\">&nbsp;</span></p>\n\n<p class=\"MsoListParagraphCxSpLast\"><span style=\"font-size:10.5pt\">Knooppunt Joure in Friesland&nbsp;ligt op de kruising van de A6 en A7. De rotonde is met een dimater van ongeveer 250 meter&nbsp;de grootste van Nederland. Momenteel bestaat het knooppunt uit drie rijstroken.</span></p>\n\n<p class=\"MsoListParagraphCxSpLast\">&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong>Bronnen</strong></span></p>\n\n<p class=\"MsoListParagraphCxSpLast\"><span style=\"font-size:14px\"><a href=\"http://www.wegenwiki.nl/A7_(Nederland)#Het_verkeersplein_van_Joure\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Wegenwiki</span></a></span></p>\n\n<p class=\"MsoListParagraphCxSpLast\"><span style=\"font-size:14px\"><a href=\"https://nl.wikipedia.org/wiki/Knooppunt_Joure\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Wikipedia</span></a></span></p>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "Leesten",
+                    "creaDate": 1436367165351,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 212347.9246596483,
+                                "ymin": 459971.0006438509,
+                                "xmax": 213170.25130430158,
+                                "ymax": 460367.87643760245,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><strong><span style=\"font-size:16.5pt\">Leesten</span></strong></p>\n\n<p class=\"MsoListParagraphCxSpFirst\"><span style=\"font-size:10.5pt\">&nbsp;</span></p>\n\n<p class=\"MsoListParagraphCxSpLast\"><span style=\"font-size:10.5pt\">In 1992 begon de bouw van de wijk Leesten in Zuthpen. Er wonen ongeveer 10.000 inwoners. Ieder wijkdeel heeft slechts&nbsp;één of twee uitgangen die aansluiten op de hoofdweg om de wijken zelf autoluw te houden.</span></p>\n\n<p class=\"MsoListParagraphCxSpLast\">&nbsp;</p>\n\n<p class=\"MsoListParagraphCxSpLast\"><span style=\"font-size:14px\"><strong>Bron</strong></span></p>\n\n<p class=\"MsoListParagraphCxSpLast\"><span style=\"font-size:14px\"><a href=\"https://nl.wikipedia.org/wiki/Leesten\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Wikipedia</span></a></span></p>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "Cirkelbos",
+                    "creaDate": 1436432696182,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 147666.49176055787,
+                                "ymin": 481876.4169934612,
+                                "xmax": 148682.49379256193,
+                                "ymax": 482473.31818726356,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><strong><span><span style=\"font-size:12.8px\"><span style=\"font-size:22px\">Cirkelbos</span></span></span></strong></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:10.5pt\">In 1978 is het Cirkelbos in Almere geplant. Het bos bestaat uit zeven cirkels die ontstaan zijn door de rechte rijen populieren, wilgen en elzen te omsluiten met beuken. Door het bos stroomt de Gooimeerbeek. In het zuidwesten ligt het Labyrint. Dit labyrint bestaat uit 368 haagbeuken&nbsp;die een wandelroute naar het midden vormen.</span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong><span style=\"color:rgb(0, 0, 0)\">Bronnen</span></strong></span></p>\n\n<p><span style=\"font-size:14px\"><a href=\"http://www.museumbos.nl/ontwerpen/\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Museumbos</span></a></span></p>\n\n<p><span style=\"font-size:14px\"><a href=\"http://www.staatsbosbeheer.nl/natuurgebieden/stadsbossen-almere/over-stadsbossen-almere\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Staatsbosbeheer</span></a></span></p>\n\n<p><span style=\"font-size:14px\"><a href=\"http://www.walkoffamealmere.nl/jaar/1978\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Walk of Fame Almere</span></a></span></p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "Pyramide van Austerlitz",
+                    "creaDate": 1436367240250,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 151759.65155607872,
+                                "ymin": 455699.2990916156,
+                                "xmax": 152170.81487840536,
+                                "ymax": 455897.7369884914,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><strong><span><span style=\"font-size:22px\">Pyramide van Austerlitz</span></span></strong></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\">Op een van de&nbsp;hoogste punten van de Utrechtse Heuvelrug is in 1804 de Pyramide van Austerlitz gebouwd. De piramide werd in 27 dagen gebouwd door napoleontische soldaten in opdracht van de Franse generaal Auguste de Marmont. De piramide is ge</span><span style=\"font-size:10.5pt\">ï</span><span style=\"font-size:14px\">nspireerd op de piramide van Gizeh, die Marmont&nbsp;tijdens een veldtocht van Napoleon in Egypte heeft gezien. Na de Slag bij Austerlitz liet Napoleon de naam veranderen van Mont Marmont in Pyramide van Austerlitz. De piramide is 36 meter hoog&nbsp;met daarop een obelisk van 13 meter hoog.</span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><span style=\"color:rgb(0, 0, 0)\"><strong>Bronnen</strong></span></span></p>\n\n<p><span style=\"font-size:14px\"><a href=\"http://www.pyramidevanausterlitz.nl/monument.htm\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Pyramide van Austerlitz</span></a></span></p>\n\n<p><span style=\"font-size:14px\"><a href=\"https://nl.wikipedia.org/wiki/Pyramide_van_Austerlitz\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Wikipedia</span></a></span></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "Jan Gerritseheuvel",
+                    "creaDate": 1436431498911,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 93379.7225362375,
+                                "ymin": 427975.1998531849,
+                                "xmax": 94395.72456824157,
+                                "ymax": 428572.1010469873,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><strong><span style=\"font-size:22px\">Jan Gerritseheuvel</span></strong></p>\n\n<div>&nbsp;</div>\n\n<div><span style=\"font-size:14px\">De Jan Gerriseheuvelis een heuvel in recreatiegebied Jan Gerrisepolder in Barendrecht. De heuvel wordt ook wel de&nbsp;Oude Maasheuvel of Gaatkensbult&nbsp;genoemd. Bij het aanleggen van een bufferopvang voor regenwater kwam grond vrij die gebruikt werd om de heuvel aan te leggen. Bovenop de heuvel staat een kunstwerk&nbsp;ontworpen door Arno van der Mark. De <em>Sky, Moon, Mirror, Environment </em>is een spiegel die de bezoeker en het omringende landschap weergeeft.</span></div>\n\n<div>&nbsp;</div>\n\n<div><span style=\"font-size:14px\"><strong>Bron</strong></span></div>\n\n<div><span style=\"font-size:14px\"><a href=\"https://nl.wikipedia.org/wiki/Gaatkensbult\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Wikipedia</span></a></span></div>\n\n<div>&nbsp;</div>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "Ontpoldering Noordwaard",
+                    "creaDate": 1436431592382,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 113466.37910444375,
+                                "ymin": 419781.9690490224,
+                                "xmax": 114482.38113644782,
+                                "ymax": 420378.8702428248,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><strong><span style=\"font-size:22px\">Ontpoldering Noordwaard</span></strong></p>\n\n<p class=\"MsoNormal\">&nbsp;</p>\n\n<p class=\"MsoNormal\"><span style=\"font-size:14px\">Om de veiligheid in de omgeving van Gorinchem te verhogen wordt de Noordwaard ontpolderd. Dit wordt gedaan door de dijken aan de rivierzijde af te graven en de dijkring te verkleinen. Zo kan het water sneller naar zee stromen. Het is een onderdeel van het programma &quot;Ruimte voor de Rivier&quot; dat in 1995 is gestart. </span><span style=\"font-size:14px\">Dit eiland is een gronddepot en vormt een aansluitpunt aan de hoogspanningskabels.</span></p>\n\n<p class=\"MsoNormal\">&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong>Bron</strong></span></p>\n\n<p class=\"MsoNormal\"><span style=\"font-size:14px\"><a href=\"http://www.rijkswaterstaat.nl/water/plannen_en_projecten/vaarwegen/nieuwe_merwede/nieuwe_merwede_ontpoldering_noordwaard/\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Rijkswaterstaat</span></a></span></p>\n\n<p class=\"MsoNormal\">&nbsp;</p>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "Botlek Rotterdam",
+                    "creaDate": 1436367314429,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 78977.92473290736,
+                                "ymin": 432736.86791195604,
+                                "xmax": 80622.57802221394,
+                                "ymax": 433530.61949945916,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><strong><span style=\"font-size:16.5pt\">Botlek Rotterdam</span></strong></p>\n\n<p class=\"MsoListParagraphCxSpFirst\"><span style=\"font-size:10.5pt\">&nbsp;</span></p>\n\n<p class=\"MsoListParagraphCxSpLast\"><span style=\"font-size:10.5pt\">Tussen 1954 en 1960 is het haven- en industriegebied Botlek aangelegd. Botlek is genoemd naar een gedeelte van de Nieuwe Maas. In het gebied is de petrochemische industrie gevestigd en het&nbsp;biedt ruimte voor tankopslag waar&nbsp;vloeibare bulkproducten kunnen worden opgeslagen.</span></p>\n\n<p class=\"MsoListParagraphCxSpLast\">&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><strong>Bron</strong></span></p>\n\n<p class=\"MsoListParagraphCxSpLast\"><span style=\"font-size:14px\"><a href=\"https://nl.wikipedia.org/wiki/Botlek\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Wikipedia</span></a></span></p>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "Rotonde Zwolle",
+                    "creaDate": 1436367355146,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 200771.45606698835,
+                                "ymin": 502141.87849817413,
+                                "xmax": 201593.78271164163,
+                                "ymax": 502538.7542919257,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><strong><span><span style=\"font-size:16.5pt\">Rotonde Zwolle</span></span></strong></p>\n\n<p class=\"MsoListParagraphCxSpFirst\"><span style=\"font-size:10.5pt\">&nbsp;</span></p>\n\n<p class=\"MsoListParagraphCxSpLast\">​Het middelpunt van deze rotonde i<span style=\"font-size:14px\">n Zwolle dient als draagvlak voor de&nbsp; A28</span><span style=\"font-size:14px\">.</span></p>\n\n<p class=\"MsoListParagraphCxSpLast\">&nbsp;</p>\n\n<p class=\"MsoListParagraphCxSpLast\"><strong><span style=\"font-size:14px\">Bron</span></strong></p>\n\n<p class=\"MsoListParagraphCxSpLast\"><a href=\"http://www.wegenwiki.nl/A28_(Nederland)#Plusstroken_Zwolle\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\"><span style=\"font-size:14px\">Wegenwiki</span></span></a></p>\n",
+                    "contentActions": []
+                },
+                {
+                    "title": "Barcelonaplein en Venetiëhof",
+                    "creaDate": 1436367383159,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webmap",
+                        "webmap": {
+                            "id": "8022da92296c4b408bbbf967a862530e",
+                            "extent": {
+                                "xmin": 124469.38942916572,
+                                "ymin": 487561.4323895366,
+                                "xmax": 125291.71607381901,
+                                "ymax": 487958.30818328814,
+                                "spatialReference": {
+                                    "wkid": 28992,
+                                    "latestWkid": 28992
+                                }
+                            },
+                            "layers": null,
+                            "popup": null,
+                            "legend": {
+                                "enable": false,
+                                "openByDefault": false
+                            }
+                        }
+                    },
+                    "description": "<p><strong><span style=\"font-size:12.8px\"><span style=\"font-size:22px\">Barcelonaplein en&nbsp;</span></span><strong><span style=\"font-size:16.5pt\">Venetiëhof</span></strong></strong></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:10.5pt\">Eind 19</span><span style=\"color:black; font-size:10.5pt\"><sup>e</sup></span><span style=\"font-size:10.5pt\"> eeuw werd de aanleg van het KNSM-eiland in Amsterdam gestart om als golfbreker voor de Oostelijke Handelskade te dienen. Na ophoging van eiland met baggerspecie vestigde de Koninklijke Nederlandsche Stoomboot Maatschappij (KNSM) zich hier. Na het verlaten van de KNSM trokken krakers kunstenaars en stadnomaden naar het gebied. Tegenwoordig is het eiland een woonwijk met rond de 17.500 inwoners. Bruno Albert ontwierp <em>Barcelona</em>, het rechthoekig gebouw met ronde binnenplaats. Het ronde gebouw op de punt van het eiland, het <em>Emerald Empire</em>, is ontworpen door Jo Coenen.</span></p>\n\n<p>&nbsp;</p>\n\n<p><span style=\"font-size:14px\"><span style=\"color:rgb(0, 0, 0)\"><strong>Bronnen</strong></span></span></p>\n\n<p><span style=\"font-size:14px\"><a href=\"http://www.venetiehof.nl/het-gebouw/gebouwen-op-het-eiland/\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Venetiehof</span></a></span></p>\n\n<p><span style=\"font-size:14px\"><a href=\"https://nl.wikipedia.org/wiki/KNSM-eiland\" target=\"_blank\"><span style=\"color:rgb(0, 0, 255)\">Wikipedia</span></a></span></p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": []
+                }
+            ]
+        },
+        "template": {
+            "name": "Map Series",
+            "createdWith": "1.1.0",
+            "editedWith": "1.15.0"
+        },
+        "subtitle": "Zwerfsteneneiland"
+    }
+}

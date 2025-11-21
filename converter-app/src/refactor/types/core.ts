@@ -6,6 +6,7 @@ export interface StoryMapJSON {
   root: string; // root node id
   nodes: Record<string, StoryMapNode>;
   resources: Record<string, StoryMapResource>;
+  actions?: StoryMapAction[];
 }
 
 // Resource types
@@ -40,10 +41,24 @@ export interface StoryMapWebMapResource {
   };
 }
 
+export interface StoryMapVideoResource {
+  type: 'video';
+  data: {
+    resourceId?: string;
+    src?: string; // external URL when not transferred
+    provider: 'item-resource' | 'uri' | 'youtube' | 'vimeo';
+    caption?: string;
+    alt?: string;
+    width?: number;
+    height?: number;
+  };
+}
+
 export type StoryMapResource =
   | StoryMapImageResource
   | StoryMapThemeResource
-  | StoryMapWebMapResource;
+  | StoryMapWebMapResource
+  | StoryMapVideoResource;
 
 // Node types
 export interface StoryMapTextNode {
@@ -68,6 +83,30 @@ export interface StoryMapImageNode {
     width?: number;
     height?: number;
     src?: string;
+  };
+}
+
+export interface StoryMapVideoNode {
+  type: 'video';
+  data: {
+    resourceId?: string;
+    provider: 'item-resource' | 'uri' | 'youtube' | 'vimeo';
+    caption?: string;
+    alt?: string;
+    width?: number;
+    height?: number;
+    src?: string;
+  };
+}
+
+export interface StoryMapWebMapNode {
+  type: 'webmap';
+  data: {
+    resourceId?: string; // reference to StoryMapWebMapResource
+    provider: 'item' | 'portal-item';
+    caption?: string;
+    alt?: string;
+    itemId?: string; // fallback when resource not established
   };
 }
 
@@ -145,6 +184,8 @@ export interface StoryMapNavigationNode {
 export type StoryMapNode =
   | StoryMapTextNode
   | StoryMapImageNode
+  | StoryMapVideoNode
+  | StoryMapWebMapNode
   | StoryMapEmbedNode
   | StoryMapGalleryNode
   | StoryMapSidecarNode
@@ -153,6 +194,14 @@ export type StoryMapNode =
   | StoryMapCreditsNode
   | StoryMapCoverNode
   | StoryMapNavigationNode;
+
+export interface StoryMapAction {
+  origin: string; // action-button node id
+  trigger: 'ActionButton_Apply';
+  target: string; // immersive-slide id
+  event: 'ImmersiveSlide_ReplaceMedia';
+  data: { media: string }; // media node id to swap in
+}
 
 export type ProgressStage =
   | 'fetch'

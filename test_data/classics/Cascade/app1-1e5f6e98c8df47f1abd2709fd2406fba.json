@@ -1,0 +1,1151 @@
+{
+    "source": "f99fb5f7c91f4424b6ae1ca90678f58a",
+    "folderId": "76866a53e04440a398b7bffe795f3200",
+    "values": {
+        "config": {
+            "author": {
+                "name": ""
+            }
+        },
+        "settings": {
+            "theme": {
+                "colors": {
+                    "id": "black-on-white-1",
+                    "label": "Light",
+                    "themeMajor": "light",
+                    "themeContrast": "dark",
+                    "bgMain": "white",
+                    "textMain": "#4c4c4c",
+                    "selected": true
+                },
+                "fonts": {
+                    "titleFont": {
+                        "label": "Open Sans",
+                        "fontFamily": "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+                    },
+                    "bodyFont": {
+                        "label": "Noto Serif",
+                        "fontFamily": "'noto_serif', 'Georgia', 'Hoefler Text', 'Palatino', cursive"
+                    }
+                }
+            },
+            "header": {
+                "logo": {
+                    "enabled": true,
+                    "url": "resources/tpl/viewer/icons/esri-logo.png",
+                    "link": "https://www.esri.com"
+                },
+                "link": {
+                    "url": "https://storymaps.arcgis.com",
+                    "title": "A new score other than geographical compactness"
+                },
+                "social": {
+                    "enabled": true
+                }
+            }
+        },
+        "template": {
+            "name": "Story Map Cascade",
+            "createdWith": "1.5.1",
+            "editedWith": "1.7.2",
+            "dataVersion": "1.0.0"
+        },
+        "sections": [
+            {
+                "type": "cover",
+                "foreground": {
+                    "title": "How Well Do District Boundaries Reflect Natural Communities?",
+                    "subtitle": "A natural communities score that uses infrastructure, physical features, and administrative boundaries.",
+                    "options": {
+                        "titleStyle": {
+                            "shadow": false,
+                            "text": "light",
+                            "background": "dark"
+                        }
+                    }
+                },
+                "options": {},
+                "layout": "cover-1",
+                "background": {
+                    "type": "image",
+                    "image": {
+                        "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                        "width": 2048,
+                        "height": 1365,
+                        "sizes": [
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                                "height": 1365,
+                                "width": 2048,
+                                "longestSide": 2048
+                            },
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                                "height": 1067,
+                                "width": 1600,
+                                "longestSide": 1600
+                            },
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                                "height": 683,
+                                "width": 1024,
+                                "longestSide": 1024
+                            },
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                                "height": 533,
+                                "width": 800,
+                                "longestSide": 800
+                            }
+                        ],
+                        "type": "image",
+                        "thumbUrl": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                        "options": {
+                            "size": "small"
+                        }
+                    }
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": ""
+                }
+            },
+            {
+                "type": "sequence",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "white"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p style=\"text-align: left;\" class=\"block\">Many are raising questions about the current boundaries of congressional districts.&nbsp; We have a question that has received little attention:&nbsp;&nbsp;</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<blockquote class=\"block\"><b style=\"letter-spacing: inherit;\">How much are current congressional boundaries defined by physical features (e.g. mountains), infrastructure (e.g. highways, railroads), or other existing administrative boundaries (e.g. county lines)?</b>&nbsp;</blockquote>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Geographical compactness is often pointed to as a metric for defining boundaries, but communities don't form in circles! Communities form next to highways, and see themselves as belonging to a particular county and state. Several states have boundaries that score very low on the geographical compactness measure (Maryland, for example), but congressional districts must be nested within state lines.</p>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "A way to describe an"
+                }
+            },
+            {
+                "type": "title",
+                "layout": "title-regular",
+                "background": {
+                    "type": "image",
+                    "image": {
+                        "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                        "width": 2048,
+                        "height": 1365,
+                        "sizes": [
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                                "height": 1365,
+                                "width": 2048,
+                                "longestSide": 2048
+                            },
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                                "height": 1067,
+                                "width": 1600,
+                                "longestSide": 1600
+                            },
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                                "height": 683,
+                                "width": 1024,
+                                "longestSide": 1024
+                            },
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                                "height": 533,
+                                "width": 800,
+                                "longestSide": 800
+                            }
+                        ],
+                        "type": "image",
+                        "thumbUrl": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                        "options": {
+                            "size": "small"
+                        }
+                    }
+                },
+                "foreground": {
+                    "title": "A New Score for Congressional District Boundaries",
+                    "credits": "",
+                    "options": {
+                        "titleStyle": {
+                            "shadow": false,
+                            "text": "dark",
+                            "background": "light"
+                        }
+                    }
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "Methodology"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "white"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">By incorporating other aspects of the boundaries in addition to compactness, we calculated a new way to compare districts by how much their boundaries follow three main constructs: existing <b>administrative lines, infrastructure, and physical features.</b></p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 450,
+                                "height": 150,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/1e5f6e98c8df47f1abd2709fd2406fba/resources/3_icons_in_a_row__1529538208489.png",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/1e5f6e98c8df47f1abd2709fd2406fba/resources/3_icons_in_a_row__1529538208489__thumb.png",
+                                "options": {
+                                    "fitHeight": false,
+                                    "size": "small"
+                                },
+                                "caption": ""
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Using existing <b>administrative boundaries</b> (county and city lines) <b>helps the score </b>as communities view themselves belonging to a particular county or city.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Using <b>infrastructure</b> (railroad tracts or highways)<b> hurts</b> the score as infrastructure is needed to bring communities together.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Using <b>physical features</b> (rivers and mountain peaks) <b>helps</b> the score as these are divisions that exist in nature.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\"><b>Geographical compactness helps</b> the score, but is not the only information used.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h1 class=\"block\">How does your congressional district's boundaries measure up?</h1>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Districts in <b style=\"color: rgb(65, 112, 99);\">dark green score high</b>, whereas districts in <b style=\"color: rgb(126, 87, 41);\">dark brown score low.</b></p>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": ""
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "8a016751d0324b8bbfaf96f2ea8aa326",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "extent": {
+                                    "xmin": -15060180.225458408,
+                                    "ymin": 2231988.2119858833,
+                                    "xmax": -6973754.129115192,
+                                    "ymax": 6972306.958118114,
+                                    "spatialReference": {
+                                        "wkid": 102100
+                                    }
+                                },
+                                "popup": null,
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "black-over-white"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<h2 class=\"block\" style=\"text-align: center; \"><span style=\"font-weight: bold;\">Natural Communities Score</span></h2>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 192,
+                                                "height": 345,
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/71a9e220bf8f4c439355ef770fd162fa/resources/geographic_histogram_legend_round3_transparentBG__1518687103832.jpg",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/71a9e220bf8f4c439355ef770fd162fa/resources/geographic_histogram_legend_round3_transparentBG__1518687103832__thumb.jpg",
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "caption": "Click on a district in the map to see the \"Natural Communities\" score along with all the components that went into it."
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"><b>Observation:</b> urban areas tend to be brown (indicating a low natural communities score) - perhaps urban areas are more divided by infrastructure than the non-urban areas.&nbsp; Infrastructure as a boundary works against a district in this index since both infrastructure variables had negative loadings.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "dark",
+                                    "background": "light"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "none",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "8a016751d0324b8bbfaf96f2ea8aa326",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": [],
+                                "extent": {
+                                    "xmin": -11619902.456400111,
+                                    "ymin": 4397907.845474061,
+                                    "xmax": -9598295.932314306,
+                                    "ymax": 5582987.532007119,
+                                    "spatialReference": {
+                                        "wkid": 102100
+                                    }
+                                },
+                                "popup": {
+                                    "layerId": "Revised_Geographic_Scores_100",
+                                    "fieldName": "OBJECTID_1",
+                                    "fieldValue": 161,
+                                    "anchorPoint": {
+                                        "x": -10207346.173690429,
+                                        "y": 5047316.837784746,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "black-over-white"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"><b>All four of Iowa's districts have positive scores:&nbsp;</b>100% of all four districts' perimeters follow county boundaries, and all four have 0% defined by infrastructure.&nbsp; Where we start to see a slight difference is in the percent of perimeter that is a river or stream, as well as the geographic compactness scores.&nbsp;</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p style=\"text-align: left;\" class=\"block\"><i>Click on the pop-ups to explore the data!</i></p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "transition": "none",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "8a016751d0324b8bbfaf96f2ea8aa326",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": [],
+                                "extent": {
+                                    "xmin": -13421655.49738031,
+                                    "ymin": 3827984.1435193843,
+                                    "xmax": -12916253.866358967,
+                                    "ymax": 4124254.065152584,
+                                    "spatialReference": {
+                                        "wkid": 102100
+                                    }
+                                },
+                                "popup": {
+                                    "layerId": "Revised_Geographic_Scores_100",
+                                    "fieldName": "OBJECTID_1",
+                                    "fieldValue": 61,
+                                    "anchorPoint": {
+                                        "x": -13152597.157816619,
+                                        "y": 4025497.4246081845,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "black-over-white"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"><span style=\"font-weight: bold;\">Many districts in the Los Angeles area scored low</span>, for example District 40.&nbsp; While many districts in this area had near-average percentages of boundaries defined by city lines, the percent defined by a major highway was also high, which lowers a district's score.&nbsp; Unfortunately for our analysis, a highway could actually be a city line at the same time.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"><span style=\"font-style: italic;\">Click on the pop-ups to explore the data!</span><br></p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "transition": "none",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "8a016751d0324b8bbfaf96f2ea8aa326",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": [],
+                                "popup": {
+                                    "layerId": "Revised_Geographic_Scores_100",
+                                    "fieldName": "OBJECTID_1",
+                                    "fieldValue": 301,
+                                    "anchorPoint": {
+                                        "x": -9222816.659620227,
+                                        "y": 4874559.934799708,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                "extent": {
+                                    "xmin": -9640774.33028337,
+                                    "ymin": 4688970.83012339,
+                                    "xmax": -9135372.699262027,
+                                    "ymax": 4985240.751756591,
+                                    "spatialReference": {
+                                        "wkid": 102100
+                                    }
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "black-over-white"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"><span style=\"font-weight: bold;\">Ohio's District 3 scored the lowest </span>out of all 435 districts.&nbsp; The low administrative boundaries percentage, the relatively high percentage of both infrastructure variables, and the low geographical compactness measure all contributed to this district receiving the minimum score.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"><span style=\"font-style: italic;\">Click on the pop-ups to explore the data!</span><br></p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "transition": "none",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "8a016751d0324b8bbfaf96f2ea8aa326",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": [],
+                                "popup": {
+                                    "layerId": "Revised_Geographic_Scores_100",
+                                    "fieldName": "OBJECTID_1",
+                                    "fieldValue": 318,
+                                    "anchorPoint": {
+                                        "x": -10844351.77766122,
+                                        "y": 4113705.7552495813,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                },
+                                "extent": {
+                                    "xmin": -11431999.651117627,
+                                    "ymin": 3853819.859079995,
+                                    "xmax": -10421196.389074504,
+                                    "ymax": 4446359.702346652,
+                                    "spatialReference": {
+                                        "wkid": 102100
+                                    }
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "black-over-white"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Apart from the districts that are whole states that got a \"perfect\" score of 2.0, <span style=\"font-weight: bold;\">the</span> <span style=\"font-weight: bold;\">highest-scoring district was Oklahoma's District 4</span>, at 1.6.&nbsp; The high administrative boundary percentage, the zeros for both the infrastructure percentages, and the above-average geographical compactness score were advantageous, but the river as part of its boundary gave this district quite the boost to yield the maximum score among non-single-state districts.<br></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\"><span style=\"font-style: italic;\">Click on the pop-ups to explore the data!</span><br></p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "bookmark": {
+                    "enabled": true,
+                    "title": "A New Score"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "white"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">How does this index compare purely to geographical compactness?</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">In the map below, <span style=\"font-weight: bold;\"><span style=\"color: rgb(67, 19, 76);\">dark purple districts are geographically compact,</span> <span style=\"color: rgb(56, 65, 22);\">whereas dark green districts are not.</span></span>&nbsp; Geographical compactness \"punishes\" districts on the coast or districts in oddly-shaped states, and does not account for all the other aspects that go into boundaries that shape communities.</p>"
+                            }
+                        },
+                        {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "a7d9e6a7c61642f798a88b85e9eb1b59",
+                                "options": {
+                                    "interaction": "enabled",
+                                    "size": "medium"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "caption": "",
+                                "popup": {
+                                    "layerId": "Revised_Geographic_Scores_2385",
+                                    "fieldName": "OBJECTID_1",
+                                    "fieldValue": 199,
+                                    "anchorPoint": {
+                                        "x": -9611726.908807833,
+                                        "y": 5775587.788979618,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">The supreme court has ruled multiple times that a district is oddly-shaped is <i style=\"\">insufficient</i> to claim that the boundaries have been manipulated.</p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h2 class=\"block\"><span style=\"font-weight: bold;\">Our index adds information by looking at the existing administrative boundaries, infrastructure, and physical features as well as compactness.</span></h2>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": true,
+                    "title": "Not Just Compactness"
+                }
+            },
+            {
+                "type": "title",
+                "layout": "title-regular",
+                "background": {
+                    "type": "image",
+                    "image": {
+                        "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                        "width": 2048,
+                        "height": 1365,
+                        "sizes": [
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                                "height": 1365,
+                                "width": 2048,
+                                "longestSide": 2048
+                            },
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                                "height": 1067,
+                                "width": 1600,
+                                "longestSide": 1600
+                            },
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                                "height": 683,
+                                "width": 1024,
+                                "longestSide": 1024
+                            },
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                                "height": 533,
+                                "width": 800,
+                                "longestSide": 800
+                            }
+                        ],
+                        "type": "image",
+                        "thumbUrl": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                        "options": {
+                            "size": "small"
+                        }
+                    }
+                },
+                "foreground": {
+                    "title": "How Was This Score Calculated?",
+                    "credits": "",
+                    "options": {
+                        "titleStyle": {
+                            "shadow": false,
+                            "text": "dark",
+                            "background": "light"
+                        }
+                    }
+                },
+                "bookmark": {
+                    "enabled": true,
+                    "title": "Appendix/Methods"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "white"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">We created an index of how \"natural\" the boundaries of congressional districts are. Think of this index as a weighted average of the original variables. <span style=\"color: rgb(68, 68, 68);\">We chose 7 measures of \"natural\" boundaries and communities as possible candidates for inclusion in our index. These 7 measures are:&nbsp;</span></p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\"><span style=\"font-weight: bold;\">Measure 1: geographic compactness score</span> (Polsby-Popper Test) - a popularly cited measure of how oddly shaped a district is by comparing the shape to a circle with the same perimeter:</p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1619,
+                                "height": 388,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/71a9e220bf8f4c439355ef770fd162fa/resources/Shapes_for_geog_compactness_with_scores__1518657914091.png",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/71a9e220bf8f4c439355ef770fd162fa/resources/Shapes_for_geog_compactness_with_scores__1518657914091__thumb.png",
+                                "options": {
+                                    "fitHeight": false,
+                                    "size": "small"
+                                },
+                                "caption": "geog_compactness = (shape_area * 4 * pi)/(shape_length^2)"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">The geographic compactness score ranges from 1 to 0. A perfect circle will have a geographic compactness score of 1, <span style=\"color: rgb(68, 68, 68);\">a perfect hexagon, .86, and a perfect square,</span>&nbsp;.79. More oddly-shaped districts will have much lower scores. Three examples, below:</p>"
+                            }
+                        },
+                        {
+                            "type": "image-gallery",
+                            "image-gallery": {
+                                "images": [
+                                    {
+                                        "height": 190,
+                                        "width": 285,
+                                        "url": "https://www.arcgis.com/sharing/rest/content/items/71a9e220bf8f4c439355ef770fd162fa/resources/WY_District_01_with_score__1518660207205.png",
+                                        "instanceID": "1529538945592-0031016f-8462-0940-f8b8-1e698c4e2a66"
+                                    },
+                                    {
+                                        "height": 190,
+                                        "width": 286,
+                                        "url": "https://www.arcgis.com/sharing/rest/content/items/71a9e220bf8f4c439355ef770fd162fa/resources/WA_District_08_with_score__1518660215707.png",
+                                        "instanceID": "1529538945592-11995a91-5270-1533-551e-cece37c9f808"
+                                    },
+                                    {
+                                        "height": 190,
+                                        "width": 286,
+                                        "url": "https://www.arcgis.com/sharing/rest/content/items/71a9e220bf8f4c439355ef770fd162fa/resources/LA_District_01_with_score__1518660226045.png",
+                                        "instanceID": "1529538945592-ae8fc6fa-9f3e-ffbc-6d78-32f993b1432c"
+                                    }
+                                ],
+                                "caption": "<span style=\"color: rgb(58, 57, 33);\">Wyoming's only district (left) has a geographical compactness score of .77 - the highest of the 435 districts.&nbsp;&nbsp;Washington's District 8 (middle) has a geographical compactness score of .18 - the average geographical compactness score of the 435 districts.&nbsp;&nbsp;Louisiana's District 2 (right) was one of a few that has a geographical compactness score of .01 - among the lowest of the 435 districts.</span>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Avencia notes in a redistricting white paper, <a href=\"https://slidedocument.com/the-philosophy-of-money.html?utm_source=gerrymandering-index\" target=\"_blank\" style=\"background-color: rgb(248, 248, 248); letter-spacing: inherit;\">The Gerrymandering Index (2006)</a>, that districts are indeed becoming decreasingly compact when compared to older congressional districts, whereas the shapes of states have not changed. However, compactness is only a \"first test\" that flags districts worthy of higher scrutiny to determine if gerrymandering really occurred, and some of the least compact districts can also be some of the most competitive.&nbsp;<br></p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">As stated above, <i>the fact that a district is oddly-shaped is insufficient</i> <i>to claim that the boundaries have been manipulated.</i> Odd shapes are sometimes needed to connect communities, to comply with the Voting Rights Act, or result from oddly-shaped states. Furthermore, communities rarely form in circles or squares naturally. Rather,&nbsp;communities rely more on existing administrative boundaries (states, counties, municipalities), infrastructure, and physical features to form.&nbsp;</p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 96,
+                                "height": 96,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/1e5f6e98c8df47f1abd2709fd2406fba/resources/Admin_icon__1529447454341.png",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/1e5f6e98c8df47f1abd2709fd2406fba/resources/Admin_icon__1529447454341__thumb.png",
+                                "options": {
+                                    "fitHeight": false,
+                                    "size": "small"
+                                },
+                                "caption": ""
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\"><span style=\"letter-spacing: inherit; font-weight: bold;\">Measures 2 &amp; 3: </span>percent of perimeter that is defined by an existing<span style=\"letter-spacing: inherit; font-weight: bold;\"> administrative boundary</span>: a county line,<span style=\"letter-spacing: inherit; color: rgb(177, 0, 38);\">&nbsp;</span><span style=\"color: rgb(68, 68, 68);\"><span style=\"letter-spacing: inherit;\">or a city line</span><span style=\"letter-spacing: inherit;\"> (place boundaries, vintage 2011). Many districts understandably use</span></span>&nbsp;these existing definitions of communities.</p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 96,
+                                "height": 96,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/1e5f6e98c8df47f1abd2709fd2406fba/resources/Infrastructure_icon__1529447444947.png",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/1e5f6e98c8df47f1abd2709fd2406fba/resources/Infrastructure_icon__1529447444947__thumb.png",
+                                "options": {
+                                    "fitHeight": false,
+                                    "size": "small"
+                                },
+                                "caption": ""
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\"><span style=\"font-weight: bold; color: rgb(68, 68, 68);\">Measures 4 &amp; 5: </span><span style=\"color: rgb(68, 68, 68);\">percent of perimeter that is defined by</span><span style=\"font-weight: bold; color: rgb(68, 68, 68);\"> infrastructure:</span>&nbsp;highways and railroad tracks. Infrastructure has a long history of defining boundaries, and many communities define themselves as being located \"north of the highway\" vs. \"south of the highway.\"</p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 96,
+                                "height": 96,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/1e5f6e98c8df47f1abd2709fd2406fba/resources/PhysicalFeatures_Icon__1529447422862.png",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/1e5f6e98c8df47f1abd2709fd2406fba/resources/PhysicalFeatures_Icon__1529447422862__thumb.png",
+                                "options": {
+                                    "fitHeight": false,
+                                    "size": "small"
+                                },
+                                "caption": ""
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\"><span style=\"font-weight: bold; color: rgb(68, 68, 68);\">Measures 6 &amp; 7: </span><span style=\"color: rgb(68, 68, 68);\">percent of perimeter that is defined by a </span><span style=\"font-weight: bold; color: rgb(68, 68, 68);\">physical geographic feature:</span><span style=\"color: rgb(68, 68, 68);\">&nbsp;a river or stream, or&nbsp;mountain peaks that fall within 1 mile of the congressional districts' boundaries</span><span style=\"color: rgb(68, 68, 68);\">.&nbsp;</span><span style=\"color: rgb(68, 68, 68); letter-spacing: inherit;\">Permanent physical features such as rivers and mountains have been used as boundaries for defining communities for centuries.</span></p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<blockquote class=\"block\">To create our index, how can we find out what the optimal weights are? (Optimal meaning we are capturing as much information as possible based on the correlations between variables.)</blockquote>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<h2 class=\"block\"><span style=\"color: rgb(68, 68, 68); letter-spacing: inherit;\">We use thes</span><span style=\"color: rgb(68, 68, 68); letter-spacing: inherit;\">e </span><span style=\"color: rgb(68, 68, 68); letter-spacing: inherit;\">7</span><span style=\"color: rgb(68, 68, 68); letter-spacing: inherit;\"> me</span><span style=\"color: rgb(68, 68, 68); letter-spacing: inherit;\">asures as inputs in factor analysis.</span></h2>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1903,
+                                "height": 1049,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/71a9e220bf8f4c439355ef770fd162fa/resources/Geographic_Inputs__1513881788375.png",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/71a9e220bf8f4c439355ef770fd162fa/resources/Geographic_Inputs__1513881788375__thumb.png",
+                                "options": {
+                                    "fitHeight": false,
+                                    "size": "medium"
+                                },
+                                "caption": ""
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "How does this index "
+                }
+            },
+            {
+                "type": "title",
+                "layout": "title-regular",
+                "background": {
+                    "type": "image",
+                    "image": {
+                        "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                        "width": 2048,
+                        "height": 1365,
+                        "sizes": [
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                                "height": 1365,
+                                "width": 2048,
+                                "longestSide": 2048
+                            },
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                                "height": 1067,
+                                "width": 1600,
+                                "longestSide": 1600
+                            },
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                                "height": 683,
+                                "width": 1024,
+                                "longestSide": 1024
+                            },
+                            {
+                                "url": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                                "height": 533,
+                                "width": 800,
+                                "longestSide": 800
+                            }
+                        ],
+                        "type": "image",
+                        "thumbUrl": "https://images.unsplash.com/photo-1520525003249-2b9cdda513bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=45469da8d1039731faaa3c11a2284e1f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                        "options": {
+                            "size": "small"
+                        }
+                    }
+                },
+                "foreground": {
+                    "title": "Results",
+                    "credits": "",
+                    "options": {
+                        "titleStyle": {
+                            "shadow": false,
+                            "text": "dark",
+                            "background": "light"
+                        }
+                    }
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "A New Index"
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "white"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\"><span style=\"color: rgb(68, 68, 68);\">Here were the factor loadings on our single factor:</span></p>"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 749,
+                                "height": 182,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/71a9e220bf8f4c439355ef770fd162fa/resources/geographic_factor_loadings_table_round2_admin_combined__1518683414148.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/71a9e220bf8f4c439355ef770fd162fa/resources/geographic_factor_loadings_table_round2_admin_combined__1518683414148__thumb.jpg",
+                                "options": {
+                                    "fitHeight": false,
+                                    "size": "medium"
+                                },
+                                "caption": "*The maximum of percent of perimeter that is a county line, or percent that is a city/place line.&nbsp; These two were combined since they were actually negatively correlated with each other (-.56)."
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">As expected, the geographic compactness score h<span style=\"color: rgb(68, 68, 68);\">ad <span style=\"letter-spacing: inherit;\">a </span><span style=\"letter-spacing: inherit;\">low loading&nbsp;</span></span>(.37)<span style=\"letter-spacing: inherit; color: rgb(68, 68, 68);\"><span style=\"letter-spacing: inherit;\">, or a low weight in our index, meaning it won't contribute too much to each district's score</span></span>. <span style=\"color: rgb(68, 68, 68);\"><span style=\"letter-spacing: inherit;\">Interestingly, the two measures of infrastructure (railroad tracks and highways) being used as boundaries both loaded negatively, which means that using infrastructure as a boundary is somehow negatively associated with our construct of natural communities, which is </span>counter-intuitive<span style=\"letter-spacing: inherit;\">.&nbsp; Perhaps highways and railroad tracks are used to bring people within the community together rather than to separate them.</span></span></p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">Using these loadings as weights in our index, we get factor scores for each district - a measure th<span style=\"color: rgb(68, 68, 68);\">at tells us how well each district performs with respect to these 7 variables.</span></p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\">By mapping this measure by district, we can compare districts based on how well their boundaries do in terms of these variables, weighted by their factor loading. Note that these factor scores have been <i>standardized</i> to have a mean of 0 and a standard deviation of 1 for easy comparison.<span style=\"color: rgb(227, 26, 28);\"><br></span></p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p class=\"block\"><span style=\"color: rgb(68, 68, 68);\">While </span><span style=\"color: rgb(68, 68, 68); font-weight: bold;\">states with only one district</span><span style=\"color: rgb(68, 68, 68);\"> (</span><span style=\"color: rgb(68, 68, 68); font-weight: bold;\">Alaska, Delaware, Montana, North Dakota, South Dakota, Vermont, and Wyoming</span><span style=\"color: rgb(68, 68, 68);\">) generally scored highly, factor scores don't make much sense to use, since there were no other options those drawing district lines could have used.&nbsp; Since the factor scores ranged from -3.48 to 1.60, we</span><span style=\"color: rgb(68, 68, 68); font-weight: bold;\"> </span><span style=\"color: rgb(68, 68, 68);\">set</span><span style=\"color: rgb(68, 68, 68); font-weight: bold;\"> </span><span style=\"color: rgb(68, 68, 68);\">these states to a</span><span style=\"font-weight: bold;\"> <span style=\"color: rgb(65, 112, 99);\">\"perfect\" score</span> </span><span style=\"color: rgb(68, 68, 68);\">of 2.0, a bit above the max of 1.60, instead of using their factor scores in the map above.&nbsp;&nbsp;</span></p>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "placeholder"
+                }
+            },
+            {
+                "type": "credits",
+                "layout": "credits-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#000"
+                    }
+                },
+                "foreground": {
+                    "panels": [
+                        {
+                            "type": "blocks",
+                            "blocks": [
+                                {
+                                    "type": "text",
+                                    "text": {
+                                        "value": "<p class=\"block\" style=\"text-align: center;\">Learn More:</p>"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "credits",
+                            "credits": [
+                                {
+                                    "label": "Questions?",
+                                    "source": "Diana Lavery, product engineer on Esri's Policy Maps team & Living Atlas team, can be reached at dlavery@esri.com.",
+                                    "link": ""
+                                },
+                                {
+                                    "label": "Aknowledgements",
+                                    "source": "Diana would like to thank Esri's Policy Maps coworkers for input and feedback throughout this project.  She would also like to thank  Joe Catanzarita (member of Esri's Summer Intern Cohort of 2017) for his geoprocessing assistance for the boundary analysis.",
+                                    "link": ""
+                                },
+                                {
+                                    "label": "538's Atlas of Redistricting",
+                                    "source": "https://projects.fivethirtyeight.com/redistricting-maps/",
+                                    "link": "https://projects.fivethirtyeight.com/redistricting-maps/"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

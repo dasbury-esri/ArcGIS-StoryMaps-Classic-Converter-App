@@ -105,10 +105,19 @@ export interface ClassicSection {
   content?: string;
   description?: string;
   media?: ClassicSectionMedia;
+  /** Interactive actions embedded in section content (anchors triggering media) */
+  contentActions?: ClassicContentAction[];
   foreground?: unknown;
   background?: unknown;
   views?: unknown[];
   type?: string; // Cascade uses types like 'sequence'
+  [key: string]: unknown;
+}
+
+export interface ClassicContentAction {
+  id: string;
+  type: string; // usually 'media'
+  media?: ClassicSectionMedia; // media payload similar structure to section.media
   [key: string]: unknown;
 }
 
@@ -126,6 +135,7 @@ export interface ClassicWebMap {
   id: string;
   extent?: ClassicExtent;
   layers?: ClassicLayer[];
+  altText?: string; // accessibility description
   [key: string]: unknown;
 }
 

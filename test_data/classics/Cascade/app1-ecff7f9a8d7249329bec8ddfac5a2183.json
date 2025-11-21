@@ -1,0 +1,2016 @@
+{
+    "source": "c7bfbcc1c2dd493c8def41310f645de6",
+    "folderId": null,
+    "values": {
+        "config": {
+            "author": {
+                "name": ""
+            }
+        },
+        "settings": {
+            "theme": {
+                "colors": {
+                    "id": "white-on-black-1",
+                    "label": "Scuro",
+                    "themeMajor": "dark",
+                    "themeContrast": "light",
+                    "bgMain": "#0E0E0E",
+                    "textMain": "#DDD",
+                    "selected": true
+                },
+                "fonts": {
+                    "titleFont": {
+                        "label": "Noto Serif",
+                        "fontFamily": "'noto_serif', 'Georgia', 'Hoefler Text', 'Palatino', cursive"
+                    },
+                    "bodyFont": {
+                        "label": "Georgia",
+                        "fontFamily": "'Georgia', 'Hoefler Text', 'Palatino', serif"
+                    }
+                }
+            },
+            "header": {
+                "logo": {
+                    "enabled": true,
+                    "url": "resources/tpl/viewer/icons/esri-logo.png",
+                    "link": "https://www.esri.com"
+                },
+                "link": {
+                    "url": "https://storymaps.arcgis.com",
+                    "title": "Una Story Map"
+                },
+                "social": {
+                    "enabled": true
+                }
+            }
+        },
+        "template": {
+            "name": "Story Map Cascade",
+            "createdWith": "1.10.0",
+            "editedWith": "1.10.0",
+            "dataVersion": "1.0.0"
+        },
+        "sections": [
+            {
+                "type": "cover",
+                "foreground": {
+                    "title": "Il viaggio di Ulisse",
+                    "subtitle": "''Le radici sono importanti, nella vita di un uomo, ma noi uomini abbiamo le gambe, non le radici, e le gambe sono fatte per andare altrove.''",
+                    "options": {
+                        "titleStyle": {
+                            "shadow": true,
+                            "text": "light",
+                            "background": null
+                        }
+                    }
+                },
+                "options": {},
+                "layout": "cover-1",
+                "background": {
+                    "type": "image",
+                    "image": {
+                        "type": "image",
+                        "width": 960,
+                        "height": 680,
+                        "options": {
+                            "size": "small"
+                        },
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/bk%C3%B2kl__1549875670654.png",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/bk%C3%B2kl__1549875670654__thumb.png"
+                    }
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": ""
+                }
+            },
+            {
+                "type": "sequence",
+                "layout": "sequence-1",
+                "background": {
+                    "type": "color",
+                    "color": {
+                        "value": "#0E0E0E"
+                    }
+                },
+                "foreground": {
+                    "blocks": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "value": "<p style=\"text-align: center;\" class=\"block\"><i style=\"color: rgb(181, 181, 181);\">Nella letteratura il tema del viaggio è da sempre stato uno dei più trattati da autori di ogni epoca. Il più famoso di questi è quello di Ulisse, narrato da Omero nell'Odissea. In questo poema, il protagonista affronta le intemperie del Mar Mediterraneo, navigando per dieci lunghi anni con l'intento di tornare a casa, nella sua Itaca.</i></p>"
+                            }
+                        }
+                    ]
+                },
+                "bookmark": {
+                    "enabled": false,
+                    "title": "Nella letteratura il"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "24c2c6241c3c42fc914ff56aa9b9a27f",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black",
+                                        "layout": "scroll-full"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p style=\"text-align: left;\" class=\"block\"><br></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p style=\"text-align: left;\" class=\"block\">Sono state 14 le tappe che Ulisse ha raggiunto. Partendo dalla città di Troia, dove era appena finita la guerra, è passato per le terre straniere della Turchia, Tunisia, Sicilia, Campania, Sardegna,&nbsp; Lazio e Spagna, fino a tornare nella sua Itaca, in Grecia.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Un'avventura lunga 10 anni...",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "bookmark": {
+                    "enabled": false,
+                    "title": "Un'avventura lunga 1"
+                }
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "cbd7faf663114cc2a86b3e71360e2ff1",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "right",
+                                        "size": "medium",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Si trova nella costa nord-occidentale dell'Asia Minore, nell'attuale Anatolia (Turchia). Dopo gli eventi della guerra narrati nell'Iliade, da qui Ulisse parte con 12 navi e 500 uomini.&nbsp;</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/cavallo-di-troia__1549883484085.jpg",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/cavallo-di-troia__1549883484085__thumb.jpg",
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "caption": "",
+                                                "width": 300,
+                                                "height": 291
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Troia",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-slow",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1024,
+                                "height": 681,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/troia-1-1024x681__1549882229087.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/troia-1-1024x681__1549882229087__thumb.jpg",
+                                "options": {
+                                    "size": "small"
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Oggi Troia è un sito archeologico situato&nbsp;posto all'entrata dell'Ellesponto, attualmente chiamata Truva, e popolata da un centinaio di abitanti. E' stato proclamato patrimonio mondiale dell'umanità UNESCO nel 1998,&nbsp;</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "5c3876b814d246908dbbef703575d472",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Ulisse i suoi uomini fanno tappa a Ismara, capitale del Regno dei Ciconi (popolazione della Tracia), per saccheggiarla e prendere provviste per il suo viaggio di ritorno. L'eroe prese con sè anche alcuni guerrieri Ciconi e delle donne, perdendo però molti dei suoi uomini.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 327,
+                                                "height": 420,
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/2.-Ismara-Ciconi-327x420__1549883669677.jpg",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/2.-Ismara-Ciconi-327x420__1549883669677__thumb.jpg",
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "caption": ""
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Terra dei Ciconi",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1024,
+                                "height": 681,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/105226581%201__1549883869581.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/105226581%201__1549883869581__thumb.jpg",
+                                "options": {
+                                    "size": "small"
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Oggi Ismara non ha più l'importanza che aveva nell'antichità. Della capitale del Regno dei Ciconi è rimasto soltanto un villaggio, chiamato Ismaros, che è attualmente un piccolo porto sul mare, sulla strada litoranea tra Maroneia e Xylagani, molto frequentato da turisti di tutto il mondo.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "2ce0e37a739b4965a83d197057a3041c",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Dopo nove giorni di tempesta, Ulisse e i suoi uomini approdano nella Terra dei Lotofagi, i mangiatori di loto, che come dono per il loro arrivo gli offrirono questo frutto dalle proprietà magiche. Infatti, mangiandolo, i membri dell'equipaggio persero la memoria e dimenticarono la loro volontà di tornare a casa. Ulisse, però, li costrinse con la forza a tornare sulle navi e a ripartire.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 484,
+                                                "height": 371,
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Lotus-eaters__1550825761417.png",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Lotus-eaters__1550825761417__thumb.png",
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "caption": ""
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Terra dei Lotofagi",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1470,
+                                "height": 980,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/djerba-island-beach-tunisia-cd0a05dae10d__1549884738702.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/djerba-island-beach-tunisia-cd0a05dae10d__1549884738702__thumb.jpg",
+                                "options": {
+                                    "size": "small"
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "right",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">La Terra dei Lotofagi corrisponde attualmente all'isola di Djerba, sulle coste della Tunisia. E' nota per le spiagge mediterranee e le bianche città. E' popolata da persone di molte culture e religioni diverse, la più diffusa è quella Musulmana, ma si possono trovare anche quartieri di Ebrei e di altre minoranze.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "122880e4a25743ad8393eb2d27de8ddd",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Secondo delle ipotesi, la Terra dei Ciclopi si trovava nella zona del Golfo di Napoli. Ulisse approda qui con i suoi uomini e in una grotta il Ciclope Polifemo divora sei dei dodici compagni che l'eroe aveva scelto per esplorare l'isola. Lo scontro con il Ciclope è uno dei più noti dell'intero poema. Ulisse, per fuggire dall'isola, dà prova della sua astuzia e intelligenza ingannando il Ciclope, accecando il suo unico occhio e rispondendogli ''Nessuno'' quando il gigante gli chiese quale fosse il suo nome. Così, quando gli altri Ciclopi chiesero a Polifemo perchè stesse urlando, questo gli rispose che ''Nessuno l'aveva attaccato'', facendo credere ai suoi simili di essere diventato pazzo. Così Ulisse partì di nuovo, con meno uomini di quanti ne aveva all'arrivo in quella Terra.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 900,
+                                                "height": 1106,
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Polifemo-di-Carracci__1550826056559.jpg",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Polifemo-di-Carracci__1550826056559__thumb.jpg",
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "caption": ""
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Terra dei Ciclopi",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1024,
+                                "height": 683,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/5598220925_a4b5ff863d_b__1549884944402.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/5598220925_a4b5ff863d_b__1549884944402__thumb.jpg",
+                                "options": {
+                                    "size": "small"
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Oggi il Golfo di Napoli è una meta turistica conosciuta in tutto il mondo per le sue bellezze naturalistiche, storico-artistiche e culturali. Questo fa del turismo una delle principali attività economiche del luogo.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "35ce1912319a4b779c0f2a72309a3e87",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "right",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Dopo la fuga tempestiva dalla Terra dei Ciclopi, Ulisse si trova sull'Isola di Eolo, Dio dei Venti, che offre ospitalità all'eroe e al suo equipaggio per un mese. Nel momento della partenza, ricevono in dono un otre contenente tutti i venti contrari alla navigazione, per poter tornare facilmente in patria. I compagni però, convinti che contenga dei preziosi tesori, lo aprono e scatenano una terribile tempesta.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 320,
+                                                "height": 213,
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/tmpnull__1550826809258.jpg",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/tmpnull__1550826809258__thumb.jpg",
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "caption": ""
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Isola di Eolo",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "url": "https://farm5.staticflickr.com/4645/38511135975_fe4e7ebf00_h.jpg",
+                                "width": 1600,
+                                "height": 1063,
+                                "sizes": [
+                                    {
+                                        "width": 1920,
+                                        "height": 1275,
+                                        "url": "https://farm5.staticflickr.com/4645/38511135975_fbb0d9c835_o.jpg",
+                                        "longestSide": 1920
+                                    },
+                                    {
+                                        "width": 1600,
+                                        "height": 1063,
+                                        "url": "https://farm5.staticflickr.com/4645/38511135975_fe4e7ebf00_h.jpg",
+                                        "longestSide": 1600
+                                    },
+                                    {
+                                        "width": 1024,
+                                        "height": 680,
+                                        "url": "https://farm5.staticflickr.com/4645/38511135975_508036dc4c_b.jpg",
+                                        "longestSide": 1024
+                                    },
+                                    {
+                                        "width": 800,
+                                        "height": 531,
+                                        "url": "https://farm5.staticflickr.com/4645/38511135975_508036dc4c_c.jpg",
+                                        "longestSide": 800
+                                    },
+                                    {
+                                        "width": 640,
+                                        "height": 425,
+                                        "url": "https://farm5.staticflickr.com/4645/38511135975_508036dc4c_z.jpg",
+                                        "longestSide": 640
+                                    },
+                                    {
+                                        "width": 500,
+                                        "height": 332,
+                                        "url": "https://farm5.staticflickr.com/4645/38511135975_508036dc4c.jpg",
+                                        "longestSide": 500
+                                    },
+                                    {
+                                        "width": 320,
+                                        "height": 213,
+                                        "url": "https://farm5.staticflickr.com/4645/38511135975_508036dc4c_n.jpg",
+                                        "longestSide": 320
+                                    },
+                                    {
+                                        "width": 240,
+                                        "height": 159,
+                                        "url": "https://farm5.staticflickr.com/4645/38511135975_508036dc4c_m.jpg",
+                                        "longestSide": 240
+                                    },
+                                    {
+                                        "width": 150,
+                                        "height": 150,
+                                        "url": "https://farm5.staticflickr.com/4645/38511135975_508036dc4c_q.jpg",
+                                        "longestSide": 150
+                                    },
+                                    {
+                                        "width": 100,
+                                        "height": 66,
+                                        "url": "https://farm5.staticflickr.com/4645/38511135975_508036dc4c_t.jpg",
+                                        "longestSide": 100
+                                    },
+                                    {
+                                        "width": 75,
+                                        "height": 75,
+                                        "url": "https://farm5.staticflickr.com/4645/38511135975_508036dc4c_s.jpg",
+                                        "longestSide": 75
+                                    }
+                                ],
+                                "type": "image",
+                                "thumbUrl": "https://farm5.staticflickr.com/4645/38511135975_508036dc4c_n.jpg",
+                                "options": {
+                                    "size": "small"
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">L'Isola di Eolo corrisponde ovviamente ad un'isola delle Eolie, l'isola di Stromboli.&nbsp;</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "74da40f51f4b40b2ab73561f5095fdad",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 640,
+                                                "height": 511,
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Odissea_Lestrigoni%20Verlag%20von%20Neufeld%20%20Henius__1550827485988.jpg",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Odissea_Lestrigoni%20Verlag%20von%20Neufeld%20%20Henius__1550827485988__thumb.jpg",
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "caption": ""
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Trascinati dalla tempesta, Ulisse e i suoi uomini giungono nella Terra dei Lestrigoni, un popolo leggendario di giganti antropofagi (mangiatori di uomini) che per ordine del loro re Antifate distrussero la flotta di Ulisse ed uccisero tutti i marinai. Si salvò dalla strage solo la nave dell'eroe, rimasta all'ancora fuori dal porto.&nbsp;</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Terra dei Lestrigoni",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1000,
+                                "height": 575,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/In-vacanza-a-Baja-Sardinia-cosa-fare-e-dove-andare-in-Costa-Smeralda__1549885748662.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/In-vacanza-a-Baja-Sardinia-cosa-fare-e-dove-andare-in-Costa-Smeralda__1549885748662__thumb.jpg",
+                                "options": {
+                                    "size": "small"
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "right",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Questa terra corrisponde oggigiorno alla zona nord-orientale della Sardegna, più conosciuta come Costa Smeralda. La fama della Costa Smeralda è legata ad alcune località di inestimabile valore naturalistico.&nbsp;Il cuore della Costa Smeralda è Porto Cervo dove si trovano anche tutti i servizi e altre numerose zone commerciali e residenziali.&nbsp;</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "5301667081e7419db1ab0785afed4ec5",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "right",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Fuggito dalla Terra dei Lestrigoni, Ulisse con la sua unica nave arriva nella terra della maga Circe. La donna, che abitava in un lussuoso palazzo immerso nel verde, accoglie alcuni uomini dell'equipaggio, dove vengono trasformati da lei in diversi animali a seconda del loro carattere. Circe li rinchiude così nelle stalle. Euriloco, rimasto fuori dal palazzo, corre a raccontare ad Ulisse quanto accaduto, e mentre l'eroe si dirige verso la maga incontra il dio Ermes trasformato in un bambino, che gli svela il segreto per rimanere immune ai suoi incantesimi. Ulisse riesce ad ingannare Circe, costringendola a far tornare umani i suoi compagni. L'eroe chiede alla maga la strada migliore per tornare ad Itaca, così Circe consiglia loro di visita gli Inferi e di consultare l'ombra dell'indovino Tiresia, quindi Ulisse riparte con la sua nave.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 180,
+                                                "height": 294,
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/180px-Circe_Offering_the_Cup_to_Odysseus__1550828456812.jpg",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/180px-Circe_Offering_the_Cup_to_Odysseus__1550828456812__thumb.jpg",
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "caption": ""
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Terra di Circe",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1024,
+                                "height": 647,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/picco__1549885884036.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/picco__1549885884036__thumb.jpg",
+                                "options": {
+                                    "size": "small",
+                                    "placement": {
+                                        "type": "fill",
+                                        "fill": {
+                                            "x": 0.3655625,
+                                            "y": 0.3360363924050633
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "right",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Il Circeo è un piccolo promontorio che si erge sul Mar Tirreno, come estrema propaggine meridionale della provincia di Latina. Intorno ad esso, compreso un tratto delle acque marine costiere, si sviluppa il parco nazionale del Circeo, uno dei parchi storici italiani.&nbsp;</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "feb94d342d51451797a72a3f28bfbb27",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "right",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Su consiglio della maga Circe, Odisseo scende nell’Averno, nel regno dei morti, dove l’indovino Tiresia gli svela il suo futuro sul ritorno ad Itaca, dicendogli che dovrà affrontare ancora molti ostacoli prima di tornare.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 218,
+                                                "height": 231,
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/download__1550829156552.jpg",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/download__1550829156552__thumb.jpg",
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "caption": ""
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Averno, il Regno dei Morti",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1848,
+                                "height": 1200,
+                                "options": {
+                                    "size": "small"
+                                },
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Lago-dAverno__1549886129150.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Lago-dAverno__1549886129150__thumb.jpg"
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "center",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Si dice che l'entrata del Regno degli Inferi corrispondesse al lago vulcanico di Averno, un tempo collegato al mare, che si trova nel comune di Pozzuoli.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "dfd895b97a2848d7a4323220f9b4bbd1",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                },
+                                "layers": []
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Dopo il viaggio nell'Ade, Ulisse torna da Circe per informala di ciò che gli aveva detto l'indovino, e la maga gli dà molti consigli su come affrontare tutto ciò che avrebbe incontrato ancora durante il suo viaggio di ritorno. Nel Golfo di Salerno, l'eroe ed il suo equipaggio si imbattono nelle Sirene. Previdente, Ulisse mette in pratica i consigli della maga Circe e allo stesso tempo sfida la sorte, tappando le orecchie dei compagni con della cera e legando se stesso all'albero della nave per ascoltare il canto ammaliatore delle Sirene. Tutti quanti resistono e superano quel pericolo, proseguendo nel viaggio.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 410,
+                                                "height": 308,
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Le-Sirene-nellOdissea__1550829393847.jpg",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Le-Sirene-nellOdissea__1550829393847__thumb.jpg",
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "caption": ""
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Golfo di Salerno",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 900,
+                                "height": 549,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/4a071c64184f6ed127d1b90fcde1a863_XL__1550823217240.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/4a071c64184f6ed127d1b90fcde1a863_XL__1550823217240__thumb.jpg",
+                                "options": {
+                                    "size": "small"
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Le Sirene si trovavano nell'attuale Golfo di Salerno, una larga insenatura del Mar Tirreno caratterizzata da uno splendido contesto naturalistico e da numerosi elementi di attrazione, come per esempio il Tempio delle Sirene ed il Sentiero degli Dei.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "050f50af62674a3082c745e18442f97f",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Subito dopo Ulisse incontra nello stretto di Messina i mostri Scilla e Cariddi, il primo è un essere mostruoso a sei teste, mentre il secondo è un gorgo che divora le navi. L’eroe riesce a sopravvivere, ma decidendo di sacrificare sei dei suoi compagni a Scilla.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 640,
+                                                "height": 452,
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/SCILLA-E-CARIDDI-640x452__1550829962290.jpg",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/SCILLA-E-CARIDDI-640x452__1550829962290__thumb.jpg",
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "caption": ""
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Scilla e Cariddi",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1280,
+                                "height": 720,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/maxresdefault__1550823516763.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/maxresdefault__1550823516763__thumb.jpg",
+                                "options": {
+                                    "size": "small"
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "right",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">I due mostri sono collocati tradizionalmente nello Stretto di Messina, che collega il Mar Tirreno con il Mar Ionio.&nbsp;</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "9a9a7622b41a446b92e2048fd446c694",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Attraversato lo Stretto, l'eroe ed il suo equipaggio giungono all'Isola del Sole. Su quest’isola pascolano i buoi sacri al dio Zeus; i compagni di Ulisse, affamati, nonostante le raccomandazioni dell’eroe, li mangiano. Il dio, irato, si vendica scatenando una tempesta che sarà la causa della morte di tutti i compagni di Ulisse, che rimane solo nel viaggio.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 810,
+                                                "height": 872,
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Image67__1550830386882.gif",
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "caption": ""
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Isola del Sole",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1920,
+                                "height": 1080,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/cover-sicilia__1550823760242.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/cover-sicilia__1550823760242__thumb.jpg",
+                                "options": {
+                                    "size": "small"
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">L'Isola del Sole corrisponde all'attuale Sicilia, una terra che ha molto da offrire ai turisti per il suo bagaglio storico, culturale e sociale, per i suoi beni culturali e per il suo splendido paesaggio marittimo, caratterizzato da spiagge rinomate come quelle di Cefalù, Taormina e Mondello.&nbsp;</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "c4206f885ccd45259bd5c1fc90a22cee",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Molte sono le teorie sulla posizione dell'isola di Ogigia. Alcuni la collocano nello stretto di Gibilterra. Ogigia è l'isola dove Ulisse, rimasto solo, si trovò a sostare per sette anni. In questa isola vive Calipso, una ninfa che si innamora dell'eroe a tal punto da non volerlo più lasciar andare se non a seguito di un ordine del dio Ermes, inviato da Zeus. Per ripartire, Ulisse si costruisce una zattera con la quale raggiunge la penultima destinazione del suo viaggio.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 569,
+                                                "height": 444,
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/odisseo-calipso__1550831471742.png",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/odisseo-calipso__1550831471742__thumb.png",
+                                                "caption": ""
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Ogigia",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1600,
+                                "height": 1065,
+                                "options": {
+                                    "size": "small",
+                                    "placement": {
+                                        "type": "fill",
+                                        "fill": {
+                                            "x": 0.4935625,
+                                            "y": 0.44164156626506024
+                                        }
+                                    }
+                                },
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/rock-gibraltar-peaks-africa__1550824425566.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/rock-gibraltar-peaks-africa__1550824425566__thumb.jpg"
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Lo stretto di Gibilterra mette in comunicazione l'Oceano Atlantico e il Mar Mediterraneo. Rappresenta il limite simbolico delle terre conosciute nel mondo antico, sancito dalle colonne d'Ercole.&nbsp;</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "b39f481f60274a8aaa1107f7a38d6ab2",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Ripartito da Ogigia con la sua zattera, arrivato sull’isola di Scheria, Odisseo racconta alla corte del re Alcinoo (re dei Feaci) le sue avventure nel Mediterraneo, attraverso la tecnica del flashback. Il re, toccato dalle parole dell’eroe, decide di aiutarlo, concedendogli una nave per tornare ad Itaca.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 1920,
+                                                "height": 1370,
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Francesco_Hayez_028__1550831520085.jpg",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Francesco_Hayez_028__1550831520085__thumb.jpg",
+                                                "caption": ""
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Isola dei Feaci",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1080,
+                                "height": 720,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/47585779_1226168284196998_5254989167033067055_n__1550824654431.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/47585779_1226168284196998_5254989167033067055_n__1550824654431__thumb.jpg",
+                                "options": {
+                                    "size": "small",
+                                    "placement": {
+                                        "type": "fill",
+                                        "fill": {
+                                            "x": 0.3535625,
+                                            "y": 0.39184131736526945
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "left",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">L'isola dei Feaci corrisponde attualmente all'isola di Corfù, in Grecia. La bellezza dell'isola è data dalle sabbie dorate e dai ciottoli colorati delle sue spiagge. Nel 2007 l'UNESCO ha proclamato il centro storico di Corfù come Patrimonio dell'Umanità.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "webmap",
+                            "webmap": {
+                                "type": "webmap",
+                                "id": "a534ccec8d364c388a914bb3fb68f5f2",
+                                "options": {
+                                    "interaction": "enabled"
+                                },
+                                "extras": {
+                                    "locate": {
+                                        "enabled": false
+                                    },
+                                    "search": {
+                                        "enabled": false
+                                    },
+                                    "legend": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "right",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">&nbsp;Giunto sulla sua isola, Odisseo trova la sua corte occupata dai Proci, i quali, dopo alcuni colpi di mano studiati da Ulisse, vengono cacciati dalla reggia. L’eroe riesce finalmente a riconquistare il trono e a riabbracciare la moglie Penelope e il figlio Telemaco.</p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "image": {
+                                                "type": "image",
+                                                "width": 620,
+                                                "height": 464,
+                                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Ulisse_Penelope__1550832023119.jpg",
+                                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Ulisse_Penelope__1550832023119__thumb.jpg",
+                                                "options": {
+                                                    "fitHeight": false,
+                                                    "size": "small"
+                                                },
+                                                "caption": ""
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Itaca",
+                                "global": true,
+                                "style": {
+                                    "shadow": false,
+                                    "text": "light",
+                                    "background": "dark"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "image",
+                            "image": {
+                                "type": "image",
+                                "width": 1366,
+                                "height": 691,
+                                "url": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Itaca-1366x691__1550824818979.jpg",
+                                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/ecff7f9a8d7249329bec8ddfac5a2183/resources/Itaca-1366x691__1550824818979__thumb.jpg",
+                                "options": {
+                                    "size": "small"
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "right",
+                                        "size": "small",
+                                        "style": "background",
+                                        "theme": "white-over-black"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\">Itaca è una delle più piccole delle isole Ionie  e si trova a Est di Cefalonia.&nbsp;L’isola è la meta perfetta per chi ama fare escursioni, ma è anche un luogo ricco di cultura e storia, con spiagge mozzafiato e acque cristalline, perfette per le immersioni. Non è tra le isole greche più frequentate dai turisti ed è quindi ideale per chi vuole trascorrere una vacanza tranquilla e rilassante.</p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "immersive",
+                "options": {},
+                "views": [
+                    {
+                        "transition": "fade-fast",
+                        "background": {
+                            "type": "video",
+                            "video": {
+                                "type": "video",
+                                "id": "ZUQtW_WI0u0",
+                                "source": "youtube",
+                                "url": "//www.youtube.com/embed/ZUQtW_WI0u0",
+                                "options": {
+                                    "size": "small",
+                                    "audio": "on"
+                                }
+                            }
+                        },
+                        "foreground": {
+                            "panels": [
+                                {
+                                    "layout": "scroll-full",
+                                    "settings": {
+                                        "position-x": "center",
+                                        "size": "medium",
+                                        "style": "text-shadow",
+                                        "theme": "black-over-white"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>''Se cerchi la tua strada verso Itaca</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>spera in un viaggio lungo,</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>avventuroso e pieno di scoperte.</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>I Lestrigoni e i Ciclopi non temerli,</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>non temere l’ira di Poseidone.</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>Pensa a Itaca, sempre,</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>il tuo destino ti ci porterà.</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>Non hai bisogno di affrettare il corso,</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>fa’ che il tuo viaggio duri anni, bellissimi,</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>e che tu arrivi all’isola ormai vecchio,</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>ricco di insegnamenti appresi in via.</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>Non sperare ti giungano ricchezze:</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>il regalo di Itaca è il bel viaggio,</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>senza di lei non lo avresti intrapreso.</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>Di più non ha da darti.</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>E se ti appare povera all’arrivo,</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>non t’ha ingannato.</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>Carico di saggezza e di esperienza</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: center; \"><i>avrai capito Itaca cos'è.''</i></p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "value": "<p class=\"block\" style=\"text-align: right; \"><b>Costantino Kavafis</b></p>"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": {
+                                "value": "Itaca, Costantino Kavafis (1911)",
+                                "global": true,
+                                "style": {
+                                    "shadow": true,
+                                    "text": "dark",
+                                    "background": null
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

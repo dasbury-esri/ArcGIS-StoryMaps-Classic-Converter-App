@@ -1,0 +1,1105 @@
+{
+    "root": "n-5zTS5f",
+    "nodes": {
+        "n-in9uzp": {
+            "type": "storycover",
+            "data": {
+                "type": "minimal",
+                "title": "Studying Up on Higher Education (remake)",
+                "summary": "Exploring the cost and diversity of learning after high school in 9 maps.",
+                "byline": "David Asbury",
+                "titlePanelVerticalPosition": "top",
+                "titlePanelHorizontalPosition": "start",
+                "titlePanelStyle": "gradient"
+            }
+        },
+        "n-aD47uT": {
+            "type": "navigation",
+            "data": {
+                "links": []
+            },
+            "config": {
+                "isHidden": true
+            }
+        },
+        "n-I3qv8V": {
+            "type": "text",
+            "data": {
+                "text": "Studying Up on Higher Education",
+                "type": "h3"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-5smlNo": {
+            "type": "image",
+            "data": {
+                "image": "r-StjIT2"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-clpg4D": {
+            "type": "text",
+            "data": {
+                "type": "paragraph",
+                "text": "<strong>Exploring the cost and diversity of learning after high school in 9 maps.</strong>"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-jveyHn": {
+            "type": "text",
+            "data": {
+                "type": "paragraph",
+                "text": "Navigating the landscape of post-secondary learning can be daunting. Professional certificates, trade schools, cosmetology programs, and traditional two- and four-year degrees abound."
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-3IRvKz": {
+            "type": "text",
+            "data": {
+                "type": "paragraph",
+                "text": "<span>With the new school year in arrival, let's take stock of the price and diversity of the schools and the students populating the world of higher education.</span>"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-gL4yX1": {
+            "type": "button",
+            "data": {
+                "text": "What's out there?",
+                "link": "#ref-n-go3U14"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-cwrYfS": {
+            "type": "button",
+            "data": {
+                "text": "How much does it cost?",
+                "link": ""
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-Q5UhBf": {
+            "type": "button",
+            "data": {
+                "text": "Who are the students?",
+                "link": ""
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-WE5gBA": {
+            "type": "button",
+            "data": {
+                "text": "How about academics?",
+                "link": ""
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-Hejd71": {
+            "type": "button",
+            "data": {
+                "text": "What's the debt burden?",
+                "link": ""
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-SuoRUa": {
+            "type": "text",
+            "data": {
+                "text": "<em>This story is based upon the U.S. Department of Education&apos;s College Scorecard. The most recent data available at the time of writing was the 2015/16 academic year. Change over time data is referenced from the 2005/06 College Scorecard data. For links, see </em><a href=\"#ref-n-SBRJph\" target=\"_self\">Resources</a><em>.</em>",
+                "type": "paragraph",
+                "textSize": "small"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-jAfXxY": {
+            "type": "immersive-narrative-panel",
+            "data": {
+                "panelStyle": "themed"
+            },
+            "children": [
+                "n-I3qv8V",
+                "n-5smlNo",
+                "n-clpg4D",
+                "n-jveyHn",
+                "n-3IRvKz",
+                "n-gL4yX1",
+                "n-cwrYfS",
+                "n-Q5UhBf",
+                "n-WE5gBA",
+                "n-Hejd71",
+                "n-SuoRUa"
+            ]
+        },
+        "n-1TrAEk": {
+            "type": "image",
+            "data": {
+                "image": "r-etYeCo"
+            }
+        },
+        "n-yHDrmu": {
+            "type": "immersive-slide",
+            "data": {
+                "transition": "fade"
+            },
+            "children": [
+                "n-jAfXxY",
+                "n-1TrAEk"
+            ]
+        },
+        "n-go3U14": {
+            "type": "text",
+            "data": {
+                "text": "What&apos;s out there?",
+                "type": "h3"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-uyLFPR": {
+            "type": "image",
+            "data": {
+                "image": "r-b2Mntl"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-dZVTRQ": {
+            "type": "text",
+            "data": {
+                "type": "paragraph",
+                "text": "<strong>Four-year colleges and universities are just part of a rich ecosystem of post-secondary schools.</strong>"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-jF8ihJ": {
+            "type": "text",
+            "data": {
+                "type": "paragraph",
+                "text": "This map shows the most common type of post-secondary institution by area. Bigger icons represent clusters of schools. As you pan and zoom, you will see more granular views of the area. Click an icon for more information."
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-tcBhyB": {
+            "type": "image",
+            "data": {
+                "image": "r-p8CA84"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-llpsRH": {
+            "type": "image",
+            "data": {
+                "image": "r-3fgwl5",
+                "alt": "This chart shows the main types of post-secondary institutions in the United States and a count of their programs. Universities and professional schools account for over a third of all institutions, community colleges account for a quarter. The remaining school types including cosmetology and barber school, technical and trade schools, and other schools.",
+                "isExpandable": false
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-7smYTX": {
+            "type": "text",
+            "data": {
+                "type": "paragraph",
+                "text": "While four-year universities are the most common type of institution, community colleges make up fully a quarter of schools nationally."
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-vf4za0": {
+            "type": "text",
+            "data": {
+                "type": "paragraph",
+                "text": "Patterns of schools vary geographically. Explore the educational landscape of your region below."
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-dsqUVx": {
+            "type": "webmap",
+            "data": {
+                "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+                "caption": "Studying Upon on Higher Education: Master",
+                "timeSlider": false,
+                "viewPlacement": "extent",
+                "mapLayers": [
+                    {
+                        "id": "Colleges_1085",
+                        "title": "Type of Educational Institution",
+                        "visible": true
+                    },
+                    {
+                        "id": "Colleges_1085_1338",
+                        "title": "Type of Educational Institution | Unclustered",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Cost_of_Attendance_2015_16_1483",
+                        "title": "Price Tag: Cost of Attendance (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_In_State_Tuition_and_Fees_2015_16_8917",
+                        "title": "Price Tag: In-State Tuition and Fees (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_In_State_Tuition_and_Fees_2005_06_3741",
+                        "title": "Price Tag: In-State Tuition and Fees (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Out_of_State_Tuition_and_Fees_2015_16_2934",
+                        "title": "Price Tag: Out-of-State Tuition and Fees (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Out_of_State_Tuition_and_Fees_2005_06_3279",
+                        "title": "Price Tag: Out-of-State Tuition and Fees (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Grants_and_Loans_20015_16_4945",
+                        "title": "Price Tag: Students with Pell Grants & Federal Loans (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Grants_and_Loans_2005_06_5409",
+                        "title": "Price Tag: Students with Pell Grants & Federal Loans (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Enrollment_2015_16_3385",
+                        "title": "Student Body: Total Enrollment (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "College_Scorecard_2005_2006_3249_346_1415",
+                        "title": "(Ref) Student Body: Total Enrollment (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                        "title": "Student Body: Race & Ethnicity (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+                        "title": "Student Body: Race & Ethnicity (2015/16) | Unclustered",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Gender_2015_16_9702",
+                        "title": "Student Body: Gender (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Predominant_Education_of_Parents_2015_16_4658",
+                        "title": "Student Body: Predominant Education of Parents (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Predominant_Education_of_Parents_2005_06_5812",
+                        "title": "Student Body: Predominant Education of Parents (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Academics_Admission_Rate_2015_16_6721",
+                        "title": "Academics: Admission & Retention (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Academics_Predominant_Degree_2015_16_2144",
+                        "title": "Academics: Predominant Degree (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+                        "title": "Academics: Predominant Degree (2015/16) | Unclustered",
+                        "visible": false
+                    },
+                    {
+                        "id": "After_School_Student_Loans_2015_16_4331",
+                        "title": "After School: Median Amount Owed on Student Loans (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "After_School_Student_Loans_2005_06_7769",
+                        "title": "After School: Median Amount Owed on Student Loans (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "USA_States_Generalized_445",
+                        "title": "USA States (Generalized)",
+                        "visible": true
+                    }
+                ],
+                "extent": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "xmin": -9059601.289077451,
+                    "ymin": 4698731.277434112,
+                    "xmax": -6588919.434718307,
+                    "ymax": 6089158.295038826
+                },
+                "center": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "x": -7824260.361897879,
+                    "y": 5393944.786236469
+                },
+                "zoom": 5.750653142309953,
+                "viewpoint": {
+                    "rotation": 0,
+                    "scale": 5774886.507227875,
+                    "targetGeometry": {
+                        "spatialReference": {
+                            "latestWkid": 3857,
+                            "wkid": 102100
+                        },
+                        "x": -7824260.361897879,
+                        "y": 5393944.786236469
+                    }
+                }
+            }
+        },
+        "n-N4T6kd": {
+            "type": "action-button",
+            "data": {
+                "text": "Northeast"
+            },
+            "config": {
+                "size": "wide"
+            },
+            "dependents": {
+                "actionMedia": "n-dsqUVx"
+            }
+        },
+        "n-IBpdkf": {
+            "type": "webmap",
+            "data": {
+                "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+                "caption": "Studying Upon on Higher Education: Master",
+                "timeSlider": false,
+                "viewPlacement": "extent",
+                "mapLayers": [
+                    {
+                        "id": "Colleges_1085",
+                        "title": "Type of Educational Institution",
+                        "visible": true
+                    },
+                    {
+                        "id": "Colleges_1085_1338",
+                        "title": "Type of Educational Institution | Unclustered",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Cost_of_Attendance_2015_16_1483",
+                        "title": "Price Tag: Cost of Attendance (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_In_State_Tuition_and_Fees_2015_16_8917",
+                        "title": "Price Tag: In-State Tuition and Fees (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_In_State_Tuition_and_Fees_2005_06_3741",
+                        "title": "Price Tag: In-State Tuition and Fees (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Out_of_State_Tuition_and_Fees_2015_16_2934",
+                        "title": "Price Tag: Out-of-State Tuition and Fees (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Out_of_State_Tuition_and_Fees_2005_06_3279",
+                        "title": "Price Tag: Out-of-State Tuition and Fees (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Grants_and_Loans_20015_16_4945",
+                        "title": "Price Tag: Students with Pell Grants & Federal Loans (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Grants_and_Loans_2005_06_5409",
+                        "title": "Price Tag: Students with Pell Grants & Federal Loans (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Enrollment_2015_16_3385",
+                        "title": "Student Body: Total Enrollment (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "College_Scorecard_2005_2006_3249_346_1415",
+                        "title": "(Ref) Student Body: Total Enrollment (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                        "title": "Student Body: Race & Ethnicity (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+                        "title": "Student Body: Race & Ethnicity (2015/16) | Unclustered",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Gender_2015_16_9702",
+                        "title": "Student Body: Gender (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Predominant_Education_of_Parents_2015_16_4658",
+                        "title": "Student Body: Predominant Education of Parents (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Predominant_Education_of_Parents_2005_06_5812",
+                        "title": "Student Body: Predominant Education of Parents (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Academics_Admission_Rate_2015_16_6721",
+                        "title": "Academics: Admission & Retention (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Academics_Predominant_Degree_2015_16_2144",
+                        "title": "Academics: Predominant Degree (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+                        "title": "Academics: Predominant Degree (2015/16) | Unclustered",
+                        "visible": false
+                    },
+                    {
+                        "id": "After_School_Student_Loans_2015_16_4331",
+                        "title": "After School: Median Amount Owed on Student Loans (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "After_School_Student_Loans_2005_06_7769",
+                        "title": "After School: Median Amount Owed on Student Loans (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "USA_States_Generalized_445",
+                        "title": "USA States (Generalized)",
+                        "visible": true
+                    }
+                ],
+                "extent": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "xmin": -10749589.460904276,
+                    "ymin": 2793074.5513517633,
+                    "xmax": -7599376.08819914,
+                    "ymax": 4565921.903956385
+                },
+                "center": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "x": -9174482.774551708,
+                    "y": 3679498.2276540743
+                },
+                "zoom": 5.407035219326858,
+                "viewpoint": {
+                    "rotation": 0,
+                    "scale": 7363200.028699146,
+                    "targetGeometry": {
+                        "spatialReference": {
+                            "latestWkid": 3857,
+                            "wkid": 102100
+                        },
+                        "x": -9174482.774551708,
+                        "y": 3679498.2276540743
+                    }
+                }
+            }
+        },
+        "n-QsZyKH": {
+            "type": "action-button",
+            "data": {
+                "text": "South"
+            },
+            "config": {
+                "size": "wide"
+            },
+            "dependents": {
+                "actionMedia": "n-IBpdkf"
+            }
+        },
+        "n-X5GJOT": {
+            "type": "action-button",
+            "data": {
+                "text": "Midwest"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-2aPM6J": {
+            "type": "action-button",
+            "data": {
+                "text": "Intermountain West"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-mwBEeJ": {
+            "type": "action-button",
+            "data": {
+                "text": "West"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-gf20nb": {
+            "type": "immersive-narrative-panel",
+            "data": {
+                "panelStyle": "themed"
+            },
+            "children": [
+                "n-go3U14",
+                "n-uyLFPR",
+                "n-dZVTRQ",
+                "n-jF8ihJ",
+                "n-tcBhyB",
+                "n-llpsRH",
+                "n-7smYTX",
+                "n-vf4za0",
+                "n-N4T6kd",
+                "n-QsZyKH",
+                "n-X5GJOT",
+                "n-2aPM6J",
+                "n-mwBEeJ"
+            ]
+        },
+        "n-eoXN27": {
+            "type": "embed",
+            "data": {
+                "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=5fa8c224b8b648ea8e2d5633ddb837a5",
+                "embedType": "link",
+                "title": "Web Map with Insets",
+                "description": "Simple web map with insets for navigation.",
+                "providerUrl": "https://storymaps.esri.com",
+                "caption": "Web Map with Insets",
+                "isEmbedSupported": true,
+                "display": "inline",
+                "embedSrc": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=5fa8c224b8b648ea8e2d5633ddb837a5",
+                "alt": "",
+                "hasPlaceholderOpenButton": true,
+                "hasEmbedOpenButton": false,
+                "isLiveOnMobile": false
+            },
+            "config": {
+                "placeholder": {
+                    "resource": "r-oZy3zD",
+                    "placement": {
+                        "type": "fill",
+                        "fill": {
+                            "x": 0.5,
+                            "y": 0.5
+                        },
+                        "fit": {
+                            "color": "backgroundColor"
+                        }
+                    }
+                }
+            }
+        },
+        "n-toOJrI": {
+            "type": "immersive-slide",
+            "data": {
+                "transition": "fade"
+            },
+            "children": [
+                "n-gf20nb",
+                "n-eoXN27"
+            ]
+        },
+        "n-SBRJph": {
+            "type": "text",
+            "data": {
+                "text": "Resources",
+                "type": "h3"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-UWT9UU": {
+            "type": "image",
+            "data": {
+                "image": "r-aV5odq"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-6IlVtK": {
+            "type": "text",
+            "data": {
+                "type": "paragraph",
+                "text": "<strong>This story was created by the </strong><a href=\"https://bit.ly/2woyjId\" rel=\"noopener noreferrer\" target=\"_blank\">Esri Story Maps</a><strong> team using the </strong><a href=\"https://bit.ly/2MDTzny\" rel=\"noopener noreferrer\" target=\"_blank\">Map Journal</a><strong> template.</strong>"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-1g0z1g": {
+            "type": "text",
+            "data": {
+                "text": "Want to build your own Story Map? <a href=\"https://bit.ly/2oj5fgZ\" rel=\"noopener noreferrer\" target=\"_blank\">Get started</a>. Don&apos;t forget to keep up to date with our latest stories by signing up for the <a href=\"https://bit.ly/2GK9UiD\" rel=\"noopener noreferrer\" target=\"_blank\">Planet Story Maps</a> newsletter and by following us <a href=\"https://bit.ly/2IEJp4a\" rel=\"noopener noreferrer\" target=\"_blank\">@EsriStoryMaps</a>.",
+                "type": "paragraph"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-fixH2C": {
+            "type": "text",
+            "data": {
+                "text": "<strong>Credits</strong>",
+                "type": "paragraph"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-24yMP5": {
+            "type": "text",
+            "data": {
+                "text": "<li>Cover image: <a href=\"https://bit.ly/2NXh1J3\" rel=\"noopener noreferrer\" target=\"_blank\">University of Central Arkansas</a> (CC BY-NC-ND 2.0) </li><li>Resources image: <a href=\"https://bit.ly/2MXrqrx\" rel=\"noopener noreferrer\" target=\"_blank\">Massachusetts Office of Travel &amp; Tourism</a> (CC BY-ND 2.0) </li><li>Research and production | <a href=\"https://bit.ly/2wt2uND\" rel=\"noopener noreferrer\" target=\"_blank\">Greyson Harris</a> </li><li>Graphic design | <a href=\"https://bit.ly/2MWzGHx\" rel=\"noopener noreferrer\" target=\"_blank\">Allen Carroll</a> </li><li>Production support | <a href=\"https://bit.ly/2Nv6KU2\" rel=\"noopener noreferrer\" target=\"_blank\">Hannah Wilber</a>, <a href=\"https://bit.ly/2wuxNaW\" rel=\"noopener noreferrer\" target=\"_blank\">Cooper Thomas</a></li>",
+                "type": "bullet-list"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-523r0n": {
+            "type": "text",
+            "data": {
+                "type": "paragraph",
+                "text": "&nbsp;"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-5tdkBd": {
+            "type": "text",
+            "data": {
+                "type": "paragraph",
+                "text": "Questions or comments about this story?<span>&nbsp;</span><a class=\"credit\" href=\"https://bit.ly/2PbaKcI\" target=\"_blank\">We want to hear from you</a>."
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-tMSFDn": {
+            "type": "immersive-narrative-panel",
+            "data": {
+                "panelStyle": "themed"
+            },
+            "children": [
+                "n-SBRJph",
+                "n-UWT9UU",
+                "n-6IlVtK",
+                "n-1g0z1g",
+                "n-fixH2C",
+                "n-24yMP5",
+                "n-523r0n",
+                "n-5tdkBd"
+            ]
+        },
+        "n-rqco9Y": {
+            "type": "image",
+            "data": {
+                "image": "r-FpRcPJ"
+            }
+        },
+        "n-nDYita": {
+            "type": "immersive-slide",
+            "data": {
+                "transition": "fade"
+            },
+            "children": [
+                "n-tMSFDn",
+                "n-rqco9Y"
+            ]
+        },
+        "n-Xp49Go": {
+            "type": "immersive",
+            "data": {
+                "type": "sidecar",
+                "subtype": "docked-panel",
+                "narrativePanelPosition": "end",
+                "narrativePanelSize": "medium"
+            },
+            "children": [
+                "n-yHDrmu",
+                "n-toOJrI",
+                "n-nDYita"
+            ]
+        },
+        "n-xpBXOi": {
+            "type": "text",
+            "data": {
+                "text": "",
+                "type": "h4"
+            }
+        },
+        "n-Z0QaFV": {
+            "type": "text",
+            "data": {
+                "text": "",
+                "type": "paragraph"
+            }
+        },
+        "n-38J1YU": {
+            "type": "attribution",
+            "data": {
+                "content": "",
+                "attribution": ""
+            }
+        },
+        "n-dWUfFq": {
+            "type": "credits",
+            "children": [
+                "n-xpBXOi",
+                "n-Z0QaFV",
+                "n-38J1YU"
+            ]
+        },
+        "n-5zTS5f": {
+            "type": "story",
+            "data": {
+                "storyTheme": "r-4AlAdl",
+                "metaSettings": {
+                    "title": "Studying Up on Higher Education (remake)",
+                    "description": "Exploring the cost and diversity of learning after high school in 9 maps.",
+                    "imageResourceId": "r-TGuQTK"
+                }
+            },
+            "config": {
+                "coverDate": "first-published",
+                "shouldPushMetaToAGOItemDetails": true
+            },
+            "children": [
+                "n-in9uzp",
+                "n-aD47uT",
+                "n-Xp49Go",
+                "n-dWUfFq"
+            ]
+        }
+    },
+    "resources": {
+        "r-StjIT2": {
+            "type": "image",
+            "data": {
+                "resourceId": "9Tn71T7J-TqND-8gtxznt.png",
+                "provider": "item-resource",
+                "height": 274,
+                "width": 1500
+            }
+        },
+        "r-etYeCo": {
+            "type": "image",
+            "data": {
+                "resourceId": "PrAa4ycZ81Gx0YeIkH3-L.jpg",
+                "provider": "item-resource",
+                "height": 680,
+                "width": 1024
+            }
+        },
+        "r-b2Mntl": {
+            "type": "image",
+            "data": {
+                "resourceId": "yWsMXHsQfCmb7DBCbEet1.png",
+                "provider": "item-resource",
+                "height": 100,
+                "width": 100
+            }
+        },
+        "r-p8CA84": {
+            "type": "image",
+            "data": {
+                "resourceId": "y53wW0Wwag8Ws6SYSsAfx.png",
+                "provider": "item-resource",
+                "height": 67,
+                "width": 300
+            }
+        },
+        "r-3fgwl5": {
+            "type": "image",
+            "data": {
+                "resourceId": "ZKUU3XuPaUm4F-z35aqcv.png",
+                "provider": "item-resource",
+                "height": 301,
+                "width": 801
+            }
+        },
+        "r-6fe55fcc360c42dd815e210823bff5cd": {
+            "type": "webmap",
+            "data": {
+                "extent": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "xmin": -15783438.070066929,
+                    "ymin": 1437542.5960065792,
+                    "xmax": -5526106.9620676115,
+                    "ymax": 7210066.596179355
+                },
+                "center": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "x": -10654772.51606727,
+                    "y": 4323804.596092967
+                },
+                "zoom": 3.703296787741484,
+                "viewpoint": {
+                    "rotation": 0,
+                    "scale": 23975131.768278033,
+                    "targetGeometry": {
+                        "spatialReference": {
+                            "latestWkid": 3857,
+                            "wkid": 102100
+                        },
+                        "x": -10654772.51606727,
+                        "y": 4323804.596092967
+                    }
+                },
+                "mapLayers": [
+                    {
+                        "id": "Colleges_1085",
+                        "title": "Type of Educational Institution",
+                        "visible": false
+                    },
+                    {
+                        "id": "Colleges_1085_1338",
+                        "title": "Type of Educational Institution | Unclustered",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Cost_of_Attendance_2015_16_1483",
+                        "title": "Price Tag: Cost of Attendance (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_In_State_Tuition_and_Fees_2015_16_8917",
+                        "title": "Price Tag: In-State Tuition and Fees (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_In_State_Tuition_and_Fees_2005_06_3741",
+                        "title": "Price Tag: In-State Tuition and Fees (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Out_of_State_Tuition_and_Fees_2015_16_2934",
+                        "title": "Price Tag: Out-of-State Tuition and Fees (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Out_of_State_Tuition_and_Fees_2005_06_3279",
+                        "title": "Price Tag: Out-of-State Tuition and Fees (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Grants_and_Loans_20015_16_4945",
+                        "title": "Price Tag: Students with Pell Grants & Federal Loans (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Price_Tag_Grants_and_Loans_2005_06_5409",
+                        "title": "Price Tag: Students with Pell Grants & Federal Loans (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Enrollment_2015_16_3385",
+                        "title": "Student Body: Total Enrollment (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "College_Scorecard_2005_2006_3249_346_1415",
+                        "title": "(Ref) Student Body: Total Enrollment (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                        "title": "Student Body: Race & Ethnicity (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+                        "title": "Student Body: Race & Ethnicity (2015/16) | Unclustered",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Gender_2015_16_9702",
+                        "title": "Student Body: Gender (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Predominant_Education_of_Parents_2015_16_4658",
+                        "title": "Student Body: Predominant Education of Parents (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Student_Body_Predominant_Education_of_Parents_2005_06_5812",
+                        "title": "Student Body: Predominant Education of Parents (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Academics_Admission_Rate_2015_16_6721",
+                        "title": "Academics: Admission & Retention (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Academics_Predominant_Degree_2015_16_2144",
+                        "title": "Academics: Predominant Degree (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+                        "title": "Academics: Predominant Degree (2015/16) | Unclustered",
+                        "visible": false
+                    },
+                    {
+                        "id": "After_School_Student_Loans_2015_16_4331",
+                        "title": "After School: Median Amount Owed on Student Loans (2015/16)",
+                        "visible": false
+                    },
+                    {
+                        "id": "After_School_Student_Loans_2005_06_7769",
+                        "title": "After School: Median Amount Owed on Student Loans (2005/06)",
+                        "visible": false
+                    },
+                    {
+                        "id": "USA_States_Generalized_445",
+                        "title": "USA States (Generalized)",
+                        "visible": true
+                    }
+                ],
+                "itemId": "6fe55fcc360c42dd815e210823bff5cd",
+                "itemType": "Web Map",
+                "type": "default"
+            }
+        },
+        "r-oZy3zD": {
+            "type": "image",
+            "data": {
+                "resourceId": "iluKcgPOe4SMN2zjGC9Hd.png",
+                "provider": "item-resource",
+                "height": 1718,
+                "width": 1832
+            }
+        },
+        "r-aV5odq": {
+            "type": "image",
+            "data": {
+                "resourceId": "GOWZSNImTDQ2uOHgVPUxv.png",
+                "provider": "item-resource",
+                "height": 100,
+                "width": 100
+            }
+        },
+        "r-FpRcPJ": {
+            "type": "image",
+            "data": {
+                "resourceId": "0nf10RU6Qd6YBzsTSsIhD.jpg",
+                "provider": "item-resource",
+                "height": 1365,
+                "width": 2048
+            }
+        },
+        "r-4AlAdl": {
+            "type": "story-theme",
+            "data": {
+                "themeId": "summit",
+                "themeBaseVariableOverrides": {}
+            }
+        },
+        "r-TGuQTK": {
+            "type": "image",
+            "data": {
+                "resourceId": "cwbB8YUynQOB-_ani4_i2.jpeg",
+                "provider": "item-resource",
+                "height": 680,
+                "width": 1024
+            }
+        }
+    },
+    "actions": [
+        {
+            "origin": "n-N4T6kd",
+            "trigger": "ActionButton_Apply",
+            "target": "n-toOJrI",
+            "event": "ImmersiveSlide_ReplaceMedia",
+            "data": {
+                "media": "n-dsqUVx"
+            }
+        },
+        {
+            "origin": "n-QsZyKH",
+            "trigger": "ActionButton_Apply",
+            "target": "n-toOJrI",
+            "event": "ImmersiveSlide_ReplaceMedia",
+            "data": {
+                "media": "n-IBpdkf"
+            }
+        }
+    ]
+}

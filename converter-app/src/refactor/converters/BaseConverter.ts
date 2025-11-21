@@ -1,4 +1,4 @@
-import type { ConverterResult, ProgressCallback, StoryMapJSON } from '../types/core';
+import type { ConverterResult, ProgressCallback, StoryMapJSON } from '../types/core.ts';
 import type { ClassicStoryMapJSON } from '../types/classic';
 
 export interface BaseConverterOptions {

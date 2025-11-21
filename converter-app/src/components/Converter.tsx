@@ -21,6 +21,7 @@ import { transferImage } from "../api/image-transfer";
 // Refactor pipeline imports (feature-flagged)
 import { useRefactorFlag } from "../refactor/util/featureFlag";
 import { convertClassicToJsonRefactored } from "../refactor";
+import { detectClassicTemplate } from "../refactor/util/detectTemplate";
 
 type Status =
   | "idle"
@@ -32,8 +33,9 @@ type Status =
   | "error";
 
 export default function Converter() {
-    const [publishing, setPublishing] = useState(false);
-    const useRefactor = useRefactorFlag(); // Now only reflects current URL (or transient flag during redirect)
+  const [publishing, setPublishing] = useState(false);
+  const useRefactor = useRefactorFlag(); // Reflects current URL (?refactor=1)
+  const [detectedTemplate, setDetectedTemplate] = useState<string | null>(null);
     const handleConvert = async () => {
       // Reset state
       setStatus("idle");
@@ -57,6 +59,15 @@ export default function Converter() {
         setMessage("Fetching classic story data...");
         const classicData = await getItemData(classicItemId, token);
 
+        // 2.2 Detect template type early for messaging
+        try {
+          const template = detectClassicTemplate(classicData);
+          setDetectedTemplate(template);
+          setMessage(`Detected template: ${template}. Preparing resources...`);
+        } catch {
+          setDetectedTemplate(null);
+        }
+
         // 2.5 Fetch classic webmap data
         if (classicData.values.webmap) {
           setMessage("Fetching classic webmap data...");
@@ -72,10 +83,11 @@ export default function Converter() {
 
         // 3.5 Convert to new JSON (legacy or refactored pipeline)
         setStatus("converting");
+        const templateLabel = detectedTemplate ? detectedTemplate : "Classic";
         setMessage(
           useRefactor
-            ? "[Refactor] Converting classic story via new pipeline..."
-            : "Converting classic story to new format..."
+            ? `[Refactor][${templateLabel}] Converting ${templateLabel} story via new pipeline...`
+            : `Converting ${templateLabel} story to new format...`
         );
 
         let newStorymapJson: any;

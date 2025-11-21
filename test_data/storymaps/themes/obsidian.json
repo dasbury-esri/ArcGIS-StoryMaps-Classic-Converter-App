@@ -1,0 +1,32 @@
+{
+    "title": "Obsidian (copy)",
+    "baseThemeId": "obsidian",
+    "isFromOrgTheme": false,
+    "variables": {
+        "headerFooterBackgroundColor": "#000000",
+        "backgroundColor": "#0e1116",
+        "titleFontId": "charterBT",
+        "titleColor": "#f3f3f3",
+        "titleColorDark": "#0E1116",
+        "titleColorLight": "#f3f3f3",
+        "bodyFontId": "arial",
+        "bodyColor": "#e6f2f2",
+        "bodyColorDark": "#0E1116",
+        "bodyColorLight": "#E6F2F2",
+        "bodyMutedColor": "#809e9d",
+        "themeColor1": "#ea5b41",
+        "themeColor2": "#4d6aff",
+        "themeColor3": "#0ec2db",
+        "borderRadius": 9999,
+        "colorRamps": [
+            "seq-blue-bright-5",
+            "seq-yellow-bright-3",
+            "seq-green-bright-3",
+            "seq-red-bright-4"
+        ],
+        "basemapPrimary": "darkGrayCanvas",
+        "basemapAlt": "humanGeographyDark",
+        "basemapImagery": "worldImagery"
+    },
+    "resources": {}
+}

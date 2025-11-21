@@ -1,0 +1,2991 @@
+{
+    "values": {
+        "settings": {
+            "appGeocoders": [
+                {
+                    "singleLineFieldName": "SingleLine",
+                    "name": "ArcGIS World Geocoding Service",
+                    "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+                }
+            ],
+            "layout": {
+                "id": "side"
+            },
+            "layoutOptions": {
+                "layoutCfg": {
+                    "size": "medium",
+                    "position": "right"
+                },
+                "socialLinks": false
+            },
+            "theme": {
+                "colors": {
+                    "name": "side-default-1",
+                    "themeMajor": "white",
+                    "dotNav": "#777777",
+                    "panel": "#FFFFFF",
+                    "media": "#EEEEEE",
+                    "text": "#000000",
+                    "textLink": "#555",
+                    "softText": "#c0c0c0",
+                    "softBtn": "#444",
+                    "esriLogo": "black"
+                },
+                "fonts": {
+                    "sectionTitle": {
+                        "id": "default",
+                        "value": "font-family:'open_sansregular', sans-serif;"
+                    },
+                    "sectionContent": {
+                        "id": "default",
+                        "value": "font-family:'open_sansregular', sans-serif;"
+                    }
+                }
+            },
+            "header": {
+                "linkText": "A Story Map",
+                "linkURL": "https://storymaps.arcgis.com",
+                "logoURL": null,
+                "logoTarget": "",
+                "social": {
+                    "facebook": true,
+                    "twitter": true,
+                    "bitly": true
+                }
+            }
+        },
+        "title": "Studying Up on Higher Education",
+        "story": {
+            "storage": "WEBAPP",
+            "sections": [
+                {
+                    "title": "<strong><span style=\"color:#4D887E;\"><span style=\"font-size:40px;\">Studying Up on Higher Education</span></span></strong>",
+                    "content": "<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/HigherEd_Icons_all__1534949469872__w1500.png\"></div>\n\n<p><span style=\"color:#4D887E;\"><strong><span style=\"font-size:24px;\">Exploring the cost and diversity of learning after high school in 9 maps.</span></strong></span></p>\n\n<p><span style=\"font-size:16px;\">&nbsp;</span></p>\n\n<p><span style=\"font-size:16px;\">Navigating the landscape of post-secondary learning can be daunting. Professional certificates, trade schools, cosmetology programs, and traditional two- and four-year degrees abound.</span></p>\n\n<p><span style=\"font-size:16px;\">&nbsp;</span></p>\n\n<p><span style=\"font-size:16px;\">With the new school year in arrival, let's take stock of the price and diversity of the schools and the students populating the world of higher education.</span></p>\n\n<p><span style=\"font-size:16px;\">&nbsp;</span></p>\n\n<p style=\"text-align:center\"><span style=\"font-size:16px;\"><a class=\"btn-green\" data-storymaps=\"MJ-ACTION-1535032422665\" data-storymaps-type=\"navigate\">What's out there?</a></span></p>\n\n<p style=\"text-align:center\"><span style=\"font-size:16px;\"><a class=\"btn-green\" data-storymaps=\"MJ-ACTION-1535032432587\" data-storymaps-type=\"navigate\">How much does it cost?</a></span></p>\n\n<p style=\"text-align:center\"><span style=\"font-size:16px;\"><a class=\"btn-green\" data-storymaps=\"MJ-ACTION-1535032440017\" data-storymaps-type=\"navigate\">Who are the students?</a></span></p>\n\n<p style=\"text-align:center\"><span style=\"font-size:16px;\"><a class=\"btn-green\" data-storymaps=\"MJ-ACTION-1535032453952\" data-storymaps-type=\"navigate\">How about academics?</a></span></p>\n\n<p style=\"text-align:center\"><span style=\"font-size:16px;\"><a class=\"btn-green\" data-storymaps=\"MJ-ACTION-1535032468657\" data-storymaps-type=\"navigate\">What's the debt burden?</a></span></p>\n\n<p><span style=\"font-size:16px;\">&nbsp;</span></p>\n\n<p><span style=\"font-size:14px;\"><em><span style=\"color:#A9A9A9;\">This story is based upon the U.S. Department of Education's College Scorecard. The most recent data available at the time of writing was the 2015/16 academic year. Change over time data is referenced from the 2005/06 College Scorecard data. For links, see </span><a class=\"credit\" data-storymaps=\"MJ-ACTION-1535413422753\" data-storymaps-type=\"navigate\">Resources</a><span style=\"color:#A9A9A9;\">.</span></em></span></p>\n<style type=\"text/css\">.btn-green {\n     display: inline-block;\n     font-weight: normal !important;\n     background-color: #DBE7E5;\n     color: #3A665F !important;\n     border-bottom: 2px solid #B8CFCB !important;\n     width: 50%;\n     border-radius: 2px;\n     padding: 1px 2px;\n     margin: 2px;\n}\n\n.btn-green:hover {\n     background-color: #4D887E;\n     border-bottom: 2px solid #4D887E !important;\n     color: #FFFFFF !important;\n\t\t\t-webkit-transition: all .5s ease;\n\t\t\t-moz-transition: all .5s ease;\n\t\t\t-o-transition: all .5s ease;\n\t\t\ttransition: all .5s ease;\n}\n\n.btn-orange {\n     display: inline-block;\n     font-weight: normal !important;\n     background-color: #FCE6E0;\n     color: #B3634D !important;\n     border-bottom: 2px solid #F5B5A3 !important;\n     width: 50%;\n     border-radius: 2px;\n     padding: 1px 2px;\n     margin: 2px;\n}\n\n.btn-orange:hover {\n     background-color: #995541;\n     border-bottom: 2px solid #995541 !important;\n     color: #FFFFFF !important;\n\t\t\t-webkit-transition: all .5s ease;\n\t\t\t-moz-transition: all .5s ease;\n\t\t\t-o-transition: all .5s ease;\n\t\t\ttransition: all .5s ease;\n}\n\n.btn-purple{\n     display: inline-block;\n     font-weight: normal !important;\n     background-color: #E1DDE9;\n     color: #4F416D !important;\n     border-bottom: 2px solid #A59ABD !important;\n     width: 50%;\n     border-radius: 2px;\n     padding: 1px 2px;\n     margin: 2px;\n}\n\n.btn-purple:hover {\n     background-color: #695691;\n     border-bottom: 2px solid #695691 !important;\n     color: #FFFFFF !important;\n\t\t\t-webkit-transition: all .5s ease;\n\t\t\t-moz-transition: all .5s ease;\n\t\t\t-o-transition: all .5s ease;\n\t\t\ttransition: all .5s ease;\n}\n\n.btn-yellow {\n     display: inline-block;\n     font-weight: normal !important;\n     background-color: #F4EBD8;\n     color: #98762F !important;\n     border-bottom: 2px solid #DFC48B !important;\n     width: 50%;\n     border-radius: 2px;\n     padding: 1px 2px;\n     margin: 2px;\n}\n\n.btn-yellow:hover {\n     background-color: #CA9D3E;\n     border-bottom: 2px solid #CA9D3E !important;\n     color: #FFFFFF !important;\n\t\t\t-webkit-transition: all .5s ease;\n\t\t\t-moz-transition: all .5s ease;\n\t\t\t-o-transition: all .5s ease;\n\t\t\ttransition: all .5s ease;\n}\n\n.btn-red{\n     display: inline-block;\n     font-weight: normal !important;\n     background-color: #E7D9DA;\n     color: #643235 !important;\n     border-bottom: 2px solid #B68E90 !important;\n     width: 50%;\n     border-radius: 2px;\n     padding: 1px 2px;\n     margin: 2px;\n}\n\n.btn-red:hover {\n     background-color: #854346;\n     border-bottom: 2px solid #854346 !important;\n     color: #FFFFFF !important;\n\t\t\t-webkit-transition: all .5s ease;\n\t\t\t-moz-transition: all .5s ease;\n\t\t\t-o-transition: all .5s ease;\n\t\t\ttransition: all .5s ease;\n}\n\n.btn-inline {\n     display: inline-block;\n     text-decoration: none !important;\n     font-weight: bold !important;\n     background-color: transparent;\n     border: 0px solid transparent;\n     border-bottom: 0px solid transparent !important;\n     color: #00ccff !important;\n     border-radius: 2px;\n     padding: 0px 0px;\n     margin: 0px;\n}\n\n.btn-inline:hover {\n     background-color: transparent;\n     text-decoration: none !important;\n     font-weight: bold !important;\n     border: 0px solid transparent;\n     border-bottom: 0px solid transparent;\n     color: #ffffff !important;\n\t\t\t-webkit-transition: all .5s ease;\n\t\t\t-moz-transition: all .5s ease;\n\t\t\t-o-transition: all .5s ease;\n\t\t\ttransition: all .5s ease;\n}\n\n.credit {\n     border-bottom: 0px solid transparent !important;\n     color: #71A098 !important;\n     line-height: normal !important;\n     font-weight: bold !important;\n     text-decoration: none !important;\n}\n\n.credit:hover {\n     background-color: transparent;\n     color: #3A665F !important;\n\t\t\t-webkit-transition: all .5s ease;\n\t\t\t-moz-transition: all .5s ease;\n\t\t\t-o-transition: all .5s ease;\n\t\t\ttransition: all .5s ease;\n}\n\n.content {\n     line-height: normal !important;\n}\n\n.mainViewSideMap {\n     border-left: 1px solid #F2F2F2 !important;\n}\n\n.navDots.vertical {\n     background-color: #94B8B2 !important;\n     border: none !important;\n}\n\n.dot {\n     color: #3A665F !important;\n}\n</style>\n",
+                    "contentActions": [
+                        {
+                            "id": "MJ-ACTION-1535032422665",
+                            "type": "navigate",
+                            "index": 1
+                        },
+                        {
+                            "id": "MJ-ACTION-1535032432587",
+                            "type": "navigate",
+                            "index": 2
+                        },
+                        {
+                            "id": "MJ-ACTION-1535032440017",
+                            "type": "navigate",
+                            "index": 4
+                        },
+                        {
+                            "id": "MJ-ACTION-1535032453952",
+                            "type": "navigate",
+                            "index": 7
+                        },
+                        {
+                            "id": "MJ-ACTION-1535032468657",
+                            "type": "navigate",
+                            "index": 9
+                        },
+                        {
+                            "id": "MJ-ACTION-1535413422753",
+                            "type": "navigate",
+                            "index": 10
+                        }
+                    ],
+                    "creaDate": 1535570637160,
+                    "pubDate": 1535570637160,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "image",
+                        "image": {
+                            "url": "https://c1.staticflickr.com/5/4087/5084047746_de600244b7_b.jpg",
+                            "type": "image",
+                            "altText": "",
+                            "display": "fill"
+                        }
+                    }
+                },
+                {
+                    "title": "<span style=\"font-size:28px\"><span style=\"color:#4D887E\"><strong>What&#39;s out there?</strong></span></span>",
+                    "content": "<div class=\"image-container\"><img alt=\"\" height=\"100\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Icon_Type_Artboard%201__1534873186099__w400.png\" width=\"100pc\"></div>\n\n<p><span style=\"color:#4D887E\"><strong><span style=\"font-size:24px\">Four-year colleges and universities are just part of a rich ecosystem of post-secondary schools.</span></strong></span></p>\n\n<p>&nbsp;</p>\n\n<p>This map shows the most common type of&nbsp;post-secondary institution by area. Bigger icons represent clusters of schools. As you pan and zoom, you will see more granular views of the area. Click an icon for more information.</p>\n\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Legend_Diversity__1535484166076__w1201.png\"></div>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"This chart shows the main types of post-secondary institutions in the United States and a count of their programs. Universities and professional schools account for over a third of all institutions, community colleges account for a quarter. The remaining school types including cosmetology and barber school, technical and trade schools, and other schools.\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Chart_Institutions__1535550355942__w801.png\"></div>\n\n<p>&nbsp;</p>\n\n<p>While four-year universities are the most common&nbsp;type of institution,&nbsp;community colleges make up fully a quarter of schools nationally.</p>\n\n<p>&nbsp;</p>\n\n<p>Patterns of schools vary geographically. Explore the educational landscape of your region below.</p>\n\n<p>&nbsp;</p>\n\n<p style=\"text-align:center\"><a class=\"btn-green\" data-storymaps=\"MJ-ACTION-1535031514463\" data-storymaps-type=\"media\">Northeast</a></p>\n\n<p style=\"text-align:center\"><a class=\"btn-green\" data-storymaps=\"MJ-ACTION-1535031542040\" data-storymaps-type=\"media\">South</a></p>\n\n<p style=\"text-align:center\"><a class=\"btn-green\" data-storymaps=\"MJ-ACTION-1535031577161\" data-storymaps-type=\"media\">Midwest</a></p>\n\n<p style=\"text-align:center\"><a class=\"btn-green\" data-storymaps=\"MJ-ACTION-1535031615081\" data-storymaps-type=\"media\">Intermountain West</a></p>\n\n<p style=\"text-align:center\"><a class=\"btn-green\" data-storymaps=\"MJ-ACTION-1535031655786\" data-storymaps-type=\"media\">West</a></p>\n",
+                    "contentActions": [
+                        {
+                            "id": "MJ-ACTION-1534337922612",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -9354172.897783093,
+                                        "ymin": 3947125.4286092273,
+                                        "xmax": -7473210.505741976,
+                                        "ymax": 5475865.994312345,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Colleges_1085",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": true,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": false
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1534337958432",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -10725147.437105652,
+                                        "ymin": 3055563.9306911686,
+                                        "xmax": -8844185.045064533,
+                                        "ymax": 4584304.496394287,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Colleges_1085",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": true,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": false
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1534338128356",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14211898.919361323,
+                                        "ymin": 3805258.304111977,
+                                        "xmax": -12330936.527320204,
+                                        "ymax": 5333998.869815096,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Colleges_1085",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": true,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": false
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1534873354241",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -10760614.218229963,
+                                        "ymin": 4383733.734174037,
+                                        "xmax": -8879651.826188846,
+                                        "ymax": 5912474.299877156,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Colleges_1085",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": false
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535031514463",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -9159658.91599805,
+                                        "ymin": 4262654.201607253,
+                                        "xmax": -7278696.523956931,
+                                        "ymax": 5791394.767310372,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Colleges_1085_1338",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Colleges_1085",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535031542040",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -10704298.38358448,
+                                        "ymin": 3000525.9905627593,
+                                        "xmax": -8823335.991543362,
+                                        "ymax": 4529266.556265878,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Colleges_1085_1338",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Colleges_1085",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535031577161",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -10928106.002403418,
+                                        "ymin": 4475454.888353128,
+                                        "xmax": -9047143.610362299,
+                                        "ymax": 6004195.454056246,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Colleges_1085_1338",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Colleges_1085",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535031615081",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -12966834.420825096,
+                                        "ymin": 4130571.0167305036,
+                                        "xmax": -11085872.028783979,
+                                        "ymax": 5659311.582433622,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Colleges_1085_1338",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Colleges_1085",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535031655786",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14515142.865769217,
+                                        "ymin": 4140354.9563510045,
+                                        "xmax": -12634180.4737281,
+                                        "ymax": 5669095.522054123,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Colleges_1085_1338",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Colleges_1085",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        }
+                    ],
+                    "creaDate": 1761941265744,
+                    "pubDate": 1761941265744,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=5fa8c224b8b648ea8e2d5633ddb837a5",
+                            "type": "webpage",
+                            "altText": "This map shows all types of post-secondary educational institutions across the contiguous United States. The most numerous type is universities and professional schools with nearly 3,000 institutions. Community colleges, with about 2,000 institutions, follow second; cosmetology and barber schools follow third with about 1,400 programs.",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                },
+                {
+                    "title": "<span style=\"color:#995541\"><span style=\"font-size:28px\"><strong>How much does it cost?</strong></span></span>",
+                    "content": "<div class=\"image-container\"><img alt=\"\" height=\"100\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Icon_Story_Artboard%202__1534949594849__w400.png\" width=\"100\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"color:#995541\"><span style=\"font-size:24px\">Price can be steep. The average cost of attendance is&nbsp;more than $23,000 per year.</span></span></strong></p>\n\n<p style=\"text-align:center\">&nbsp;</p>\n\n<p>This map shows the total cost of attendance for every type of school.&nbsp;Cost of attendance includes&nbsp;tuition and fees, books and supplies, housing, and transportation.</p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Legend_Cost__1535483858385__w1200.png\"></div>\n\n<p>With the diversity of training programs, public and private institutions, and for-profit businesses, affordability ranges widely. Nowhere is the variety of schools&nbsp;more visible than in densely populated metro areas.</p>\n\n<p>&nbsp;</p>\n\n<p style=\"text-align:center\"><a class=\"btn-orange\" data-storymaps=\"MJ-ACTION-1535136021256\" data-storymaps-type=\"media\">New York City</a></p>\n\n<p style=\"text-align:center\"><a class=\"btn-orange\" data-storymaps=\"MJ-ACTION-1535136110870\" data-storymaps-type=\"media\">Los Angeles</a></p>\n",
+                    "contentActions": [
+                        {
+                            "id": "MJ-ACTION-1534338630018",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14539636.197636094,
+                                        "ymin": 1850946.3094777737,
+                                        "xmax": -7059814.357763875,
+                                        "ymax": 7877853.115705748,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "College_Scorecard_2015_2016_4864_788_9306",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Colleges_1085_2090_3717_1062",
+                                            "visibility": false
+                                        },
+                                        {
+                                            "id": "Colleges_1085_2090_3717",
+                                            "visibility": false
+                                        },
+                                        {
+                                            "id": "Colleges_1085",
+                                            "visibility": false
+                                        },
+                                        {
+                                            "id": "Colleges_1085_2090",
+                                            "visibility": false
+                                        }
+                                    ],
+                                    "popup": {
+                                        "layerId": "College_Scorecard_2015_2016_4864_788_9306_clusters",
+                                        "fieldName": "cluster_count",
+                                        "fieldValue": 125,
+                                        "anchorPoint": {
+                                            "x": -7945260.893419121,
+                                            "y": 5211729.569119509,
+                                            "spatialReference": {
+                                                "wkid": 102100
+                                            }
+                                        }
+                                    },
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": true,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": false
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1534338645605",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14539636.197636094,
+                                        "ymin": 1850946.3094777737,
+                                        "xmax": -7059814.357763875,
+                                        "ymax": 7877853.115705748,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "College_Scorecard_2005_2006_3249_346",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Colleges_1085_2090_3717_1062",
+                                            "visibility": false
+                                        },
+                                        {
+                                            "id": "Colleges_1085_2090_3717",
+                                            "visibility": false
+                                        },
+                                        {
+                                            "id": "Colleges_1085",
+                                            "visibility": false
+                                        },
+                                        {
+                                            "id": "Colleges_1085_2090",
+                                            "visibility": false
+                                        }
+                                    ],
+                                    "popup": {
+                                        "layerId": "College_Scorecard_2005_2006_3249_346_clusters",
+                                        "fieldName": "cluster_count",
+                                        "fieldValue": 124,
+                                        "anchorPoint": {
+                                            "x": -7906125.1349371215,
+                                            "y": 5197053.65968876,
+                                            "spatialReference": {
+                                                "wkid": 102100
+                                            }
+                                        }
+                                    },
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": true,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": false
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1534338678386",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14539636.197636094,
+                                        "ymin": 1850946.3094777735,
+                                        "xmax": -7059814.357763875,
+                                        "ymax": 7877853.115705748,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "College_Scorecard_2015_2016_4864_788_9306_5503",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Colleges_1085_2090_3717_1062",
+                                            "visibility": false
+                                        },
+                                        {
+                                            "id": "Colleges_1085_2090_3717",
+                                            "visibility": false
+                                        },
+                                        {
+                                            "id": "Colleges_1085",
+                                            "visibility": false
+                                        },
+                                        {
+                                            "id": "Colleges_1085_2090",
+                                            "visibility": false
+                                        }
+                                    ],
+                                    "popup": {
+                                        "layerId": "College_Scorecard_2015_2016_4864_788_9306_5503_clusters",
+                                        "fieldName": "cluster_count",
+                                        "fieldValue": 150,
+                                        "anchorPoint": {
+                                            "x": -13135640.86209435,
+                                            "y": 4106144.392003014,
+                                            "spatialReference": {
+                                                "wkid": 102100
+                                            }
+                                        }
+                                    },
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": true,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": false
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1534338703464",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14539636.197636094,
+                                        "ymin": 1850946.3094777735,
+                                        "xmax": -7059814.357763875,
+                                        "ymax": 7877853.115705748,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "College_Scorecard_2005_2006_3249_346_1099",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Colleges_1085_2090_3717_1062",
+                                            "visibility": false
+                                        },
+                                        {
+                                            "id": "Colleges_1085_2090_3717",
+                                            "visibility": false
+                                        },
+                                        {
+                                            "id": "Colleges_1085",
+                                            "visibility": false
+                                        },
+                                        {
+                                            "id": "Colleges_1085_2090",
+                                            "visibility": false
+                                        }
+                                    ],
+                                    "popup": {
+                                        "layerId": "College_Scorecard_2005_2006_3249_346_1099_clusters",
+                                        "fieldName": "cluster_count",
+                                        "fieldValue": 122,
+                                        "anchorPoint": {
+                                            "x": -13125856.92247385,
+                                            "y": 4022980.9052287643,
+                                            "spatialReference": {
+                                                "wkid": 102100
+                                            }
+                                        }
+                                    },
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": true,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": false
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535136021256",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -8292072.827566107,
+                                        "ymin": 4925203.533423752,
+                                        "xmax": -8174512.678063664,
+                                        "ymax": 5020749.8187800925,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Price_Tag_Cost_of_Attendance_2015_16_1483",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535136110870",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -13281882.034021221,
+                                        "ymin": 3932362.973027743,
+                                        "xmax": -13046761.735015929,
+                                        "ymax": 4123455.5437407563,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Price_Tag_Cost_of_Attendance_2015_16_1483",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        }
+                    ],
+                    "creaDate": 1761941687942,
+                    "pubDate": 1761941687942,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=7c2bfae1e3ac4a48b1602ac2331547d0",
+                            "type": "webpage",
+                            "altText": "This map shows all types of colleges and their reported cost of attendance as smaller or larger circles. Notable groups of many schools are clustered in the Bay Area and Los Angeles in California; in Florida; around Chicago and the Midwest; and most densely north and south across the Northeast.",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                },
+                {
+                    "title": "<span style=\"font-size:28px;\"><strong><span style=\"color:#995541;\">What about in-state versus out-of-state fees?</span></strong></span>",
+                    "content": "<div class=\"image-container\"><img alt=\"\" height=\"100\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Icon_Story_Artboard%202__1534949594849__w400.png\" width=\"100\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"color:#995541;\"><span style=\"font-size:24px;\">For the nation, out-of-state fees outstrip in-state fees by nearly $3,000.</span></span></strong></p>\n\n<p>&nbsp;</p>\n\n<p>This map shows a comparison of <span style=\"color:#DAA520;\"><strong>in-state</strong></span>&nbsp;(left) versus <span style=\"color:#A52A2A;\"><strong>out-of-state</strong></span>&nbsp;(right) tuition and fees.</p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Legend_State__1535567004733__w1200.png\"></div>\n\n<p>&nbsp;</p>\n\n<p>Across the board&nbsp;tuition and fees have increased by&nbsp;about $5,000 since 2006. But&nbsp;the growth of out-of-state fees has outstripped the growth of in-state fees by $500 on average. <a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495010840\" data-storymaps-type=\"navigate\">[1]</a></p>\n\n<p>&nbsp;</p>\n\n<p>The share of funding for higher education coming from states and the federal government has fallen. School officials are primarily accountable to their local residents, and they have&nbsp;increasingly turned to raising out-of-state fees—faster—to fill the funding gap. <a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495022083\" data-storymaps-type=\"navigate\">[2]</a></p>\n",
+                    "contentActions": [
+                        {
+                            "id": "MJ-ACTION-1534520215174",
+                            "type": "media",
+                            "media": {
+                                "type": "webpage",
+                                "webpage": {
+                                    "url": "https://story.maps.arcgis.com/apps/StorytellingSwipe/index.html?appid=910bb2afb673492faeffc4fc95f2e7c3&embed",
+                                    "type": "webpage",
+                                    "altText": "",
+                                    "display": "stretch",
+                                    "unload": true
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535377447347",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": null,
+                                    "layers": [
+                                        {
+                                            "id": "Price_Tag_In_State_Tuition_and_Fees_2015_16_8917",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535377467574",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": null,
+                                    "layers": [
+                                        {
+                                            "id": "Price_Tag_Out_of_State_Tuition_and_Fees_2015_16_2934",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535377533191",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14338738.167391004,
+                                        "ymin": 3710504.9366450966,
+                                        "xmax": -12457775.775349887,
+                                        "ymax": 5239245.502348215,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Price_Tag_In_State_Tuition_and_Fees_2015_16_8917",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535377570320",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14338738.167391004,
+                                        "ymin": 3710504.9366450966,
+                                        "xmax": -12457775.775349887,
+                                        "ymax": 5239245.502348215,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Price_Tag_Out_of_State_Tuition_and_Fees_2015_16_2934",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535377661389",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -9881657.267784026,
+                                        "ymin": 4654540.01626636,
+                                        "xmax": -8941176.071763262,
+                                        "ymax": 5418910.299118084,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Price_Tag_In_State_Tuition_and_Fees_2015_16_8917",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535377679944",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -9881657.267784026,
+                                        "ymin": 4654540.01626636,
+                                        "xmax": -8941176.071763262,
+                                        "ymax": 5418910.299118084,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Price_Tag_Out_of_State_Tuition_and_Fees_2015_16_2934",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535377750726",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -11058787.503375428,
+                                        "ymin": 3147201.8184830667,
+                                        "xmax": -9177825.11133431,
+                                        "ymax": 4675942.384186186,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Price_Tag_In_State_Tuition_and_Fees_2015_16_8917",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535377780600",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -11058787.503375428,
+                                        "ymin": 3147201.8184830667,
+                                        "xmax": -9177825.11133431,
+                                        "ymax": 4675942.384186186,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Price_Tag_Out_of_State_Tuition_and_Fees_2015_16_2934",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535495010840",
+                            "type": "navigate",
+                            "index": 10
+                        },
+                        {
+                            "id": "MJ-ACTION-1535495022083",
+                            "type": "navigate",
+                            "index": 10
+                        }
+                    ],
+                    "creaDate": 1535567009932,
+                    "pubDate": 1535567009932,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "https://story.maps.arcgis.com/apps/StorytellingSwipe/index.html?appid=6b58de911fa44d309431d8b3cf7bba6c&embed&classicEmbedMode",
+                            "type": "webpage",
+                            "altText": "This map shows a slider to compare schools' in-state tuition and fees on the left side with their out-of-state tuition and fees on the right side. Tuition and fees are drawn as smaller or larger circles. In general, the circle size of out-of-state tuition and fees are about a third larger than in-state tuition and fees.",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                },
+                {
+                    "title": "<span style=\"font-size:28px\"><font color=\"#695691\"><strong>How many students are there?</strong></font></span>",
+                    "content": "<div class=\"image-container\"><img alt=\"\" height=\"100\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Icon_Story_Artboard%203__1534950233923__w400.png\" width=\"100\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"color:#695691\"><span style=\"font-size:24px\">Over 16 million students enroll in U.S. institutions—up from 14 million in 2006.</span></span></strong></p>\n\n<p>&nbsp;</p>\n\n<p>This map shows the total number of students enrolled at schools of all types.</p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Legend_Enrollment__1535484304076__w1200.png\"></div>\n\n<p>While some&nbsp;colleges can top tens of thousands of students, the small classroom environment remains the more common.</p>\n",
+                    "contentActions": [
+                        {
+                            "id": "MJ-ACTION-1535136834041",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -11237344.40144965,
+                                        "ymin": 3246875.703366415,
+                                        "xmax": -10296863.205428887,
+                                        "ymax": 4011245.986218139,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Enrollment_2015_16_3385",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535136876617",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -8736324.835959194,
+                                        "ymin": 4597670.867221746,
+                                        "xmax": -7795843.639938432,
+                                        "ymax": 5362041.15007347,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Enrollment_2015_16_3385",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        }
+                    ],
+                    "creaDate": 1761941627332,
+                    "pubDate": 1761941627332,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=d4db7632cb8e410d87c1e77d8a06c0cb",
+                            "type": "webpage",
+                            "altText": "This map shows schools by their number of students enrolled represented as smaller or larger circles. Overall, there are some very large circles representing enrollments in the tens of thousands. But notably the vast majority of schools are much smaller, averaging around 2,300 students, and pepper the countryside in between the large schools.",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                },
+                {
+                    "title": "<p><span style=\"font-size:28px\"><strong><span style=\"color:#CA9D3E\">How diverse are student bodies?</span></strong></span></p>\n",
+                    "content": "<div class=\"image-container\"><img alt=\"\" height=\"100\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Legend_b_Artboard%203__1535474638518__w400.png\" width=\"100\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"color:#CA9D3E\"><span style=\"font-size:24px\">Half of all&nbsp;students in America identify as&nbsp;people of color.</span></span></strong></p>\n\n<p>&nbsp;</p>\n\n<p>This map shows schools by the race or ethnicity of a majority of their students. Bigger icons represent more schools in&nbsp;an area.</p>\n\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Legend_Diversity__1535484166076__w1201.png\"></div>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"This bar chart shows the number of students by the race or ethnicity with which they identify. White: 55%; Hispanic and Latino: 20%; African American: 15%, Asian: 6%; Two or more races: 4%; American Indian and Alaskan Native: 0.8%; Native Hawaiian and Pacific Islander: 0.4%.\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Chart_Diversity__1535550436993__w801.png\"></div>\n\n<p>&nbsp;</p>\n\n<p>The unique histories of race and identity play out in the geographic patterns of school diversity. Explore some of these patterns below.</p>\n\n<p>&nbsp;</p>\n\n<p style=\"text-align:center\"><a class=\"btn-yellow\" data-storymaps=\"MJ-ACTION-1535481350305\" data-storymaps-type=\"media\">African American South</a></p>\n\n<p style=\"text-align:center\"><a class=\"btn-yellow\" data-storymaps=\"MJ-ACTION-1535481972648\" data-storymaps-type=\"media\">Hispanics &amp; Latinos in the border region</a></p>\n\n<p style=\"text-align:center\"><a class=\"btn-yellow\" data-storymaps=\"MJ-ACTION-1535481998672\" data-storymaps-type=\"media\">Native American lands</a></p>\n\n<p style=\"text-align:center\"><a class=\"btn-yellow\" data-storymaps=\"MJ-ACTION-1535482058536\" data-storymaps-type=\"media\">Diversity in California &amp; the Southwest</a></p>\n\n<p>&nbsp;</p>\n\n<p>People of color make up about 39 percent&nbsp;of the American population <a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495169358\" data-storymaps-type=\"navigate\">[3]</a>, but account for 49 percent of student enrollment <a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495177583\" data-storymaps-type=\"navigate\">[4]</a>.&nbsp;This means that people of color participate disproportionately higher in post-secondary education than their white peers.</p>\n",
+                    "contentActions": [
+                        {
+                            "id": "MJ-ACTION-1535040863700",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -10218770.379917173,
+                                        "ymin": 3263469.367863696,
+                                        "xmax": -8337807.987876055,
+                                        "ymax": 4792209.933566813,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_2376_1741",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535040956204",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -12470299.485084726,
+                                        "ymin": 2966282.20189101,
+                                        "xmax": -10589337.093043609,
+                                        "ymax": 4495022.767594129,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_2376_1741",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535041035796",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -13738542.658392033,
+                                        "ymin": 3289152.209367509,
+                                        "xmax": -11857580.266350916,
+                                        "ymax": 4817892.775070628,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_2376_1741",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535041085217",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -12393250.960573288,
+                                        "ymin": 4916955.16372819,
+                                        "xmax": -10512288.56853217,
+                                        "ymax": 6445695.729431308,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_2376_1741",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535041206907-9629",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -10218770.37991717,
+                                        "ymin": 3294655.675404038,
+                                        "xmax": -8337807.987876055,
+                                        "ymax": 4763469.610931596,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535041206907-9822",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -12470299.485084726,
+                                        "ymin": 2966282.20189101,
+                                        "xmax": -10589337.093043609,
+                                        "ymax": 4495022.767594129,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_2376_1741",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535041206908-17750",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -13738542.658392033,
+                                        "ymin": 3289152.209367509,
+                                        "xmax": -11857580.266350916,
+                                        "ymax": 4817892.775070628,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_2376_1741",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535041206908-16381",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -12393250.960573288,
+                                        "ymin": 4916955.16372819,
+                                        "xmax": -10512288.56853217,
+                                        "ymax": 6445695.729431308,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_2376_1741",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535043396905-82819",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -12393250.960573288,
+                                        "ymin": 4916955.16372819,
+                                        "xmax": -10512288.56853217,
+                                        "ymax": 6445695.729431308,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_2376_1741",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535481350305",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -9521664.68195668,
+                                        "ymin": 3755112.333793757,
+                                        "xmax": -8581183.485935917,
+                                        "ymax": 4519482.616645481,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535481972648",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -12416487.817172425,
+                                        "ymin": 2860493.35474424,
+                                        "xmax": -10535525.425131308,
+                                        "ymax": 4389233.920447359,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535481998672",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -12686769.149188736,
+                                        "ymin": 4883322.871282605,
+                                        "xmax": -10805806.75714762,
+                                        "ymax": 6412063.436985725,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535482058536",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -13726312.7338669,
+                                        "ymin": 3451810.205558204,
+                                        "xmax": -11845350.341825783,
+                                        "ymax": 4980550.771261322,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535495169358",
+                            "type": "navigate",
+                            "index": 10
+                        },
+                        {
+                            "id": "MJ-ACTION-1535495177583",
+                            "type": "navigate",
+                            "index": 10
+                        }
+                    ],
+                    "creaDate": 1761941575255,
+                    "pubDate": 1761941575255,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=b9029170b7c040aabdd74fb6393c5f9a",
+                            "type": "webpage",
+                            "altText": "This map shows schools grouped by the most common race or ethnicity of their students. Most of the schools in the country are predominantly white. But there are notable groups of other demographics, including African Americans through Missouri, Alabama, Georgia, and the Carolinas; Hispanics and Latinos in Florida, throughout southern Texas and New Mexico, and across southern California; and dots of predominantly American Indian schools in New Mexico, the Dakotas, and Montana.",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                },
+                {
+                    "title": "<span style=\"font-size:28px\"><strong><span style=\"color:#695691\">How many women are in school?</span></strong></span>",
+                    "content": "<div class=\"image-container\"><img alt=\"\" height=\"100\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Icon_Story_Artboard%203__1534950233923__w400.png\" width=\"100\"></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container\"><strong><span style=\"color:#695691\"><span style=\"font-size:24px\">Women continue to make up the majority of students—about 56 percent.</span></span></strong></div>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container\">This map shows schools that have above-average enrollments of either <span style=\"color:#4B0082\"><strong>women </strong></span>or of <span style=\"color:#006400\"><strong>men</strong></span>. Bigger circles reflect schools with larger enrollments.</div>\n\n<div class=\"image-container\">&nbsp;</div>\n\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Legend_Women__1535484463094__w1200.png\"></div>\n\n<p>&nbsp;</p>\n\n<p>Large schools with tens of thousands of students tend to have greater parity between numbers of women and of men. But a number of small&nbsp;schools enroll numbers of women far in excess of the average.</p>\n",
+                    "contentActions": [
+                        {
+                            "id": "MJ-ACTION-1535137095695",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -9567348.207475388,
+                                        "ymin": 2824331.811006169,
+                                        "xmax": -8626867.011454625,
+                                        "ymax": 3588702.0938578937,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Gender_2015_16_9702",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535137183583",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -10675379.369496964,
+                                        "ymin": 4340842.452184096,
+                                        "xmax": -8794416.977455847,
+                                        "ymax": 5869583.017887214,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Student_Body_Gender_2015_16_9702",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        }
+                    ],
+                    "creaDate": 1761941431657,
+                    "pubDate": 1761941431657,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=a750452f3f1c44718502db4d93cbdc4a",
+                            "type": "webpage",
+                            "altText": "Women are a strong majority in college classrooms. This map reflects that majority, showing schools represented by their numbers of students as smaller or larger circles. Purple circles, representing above-average numbers of women students, are clearly the dominant pattern across the country. Nevertheless, a number of very large schools do tend to be more balanced in numbers of women and men, or may even appear as green, indicating an above-average number of men.",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                },
+                {
+                    "title": "<span style=\"font-size:28px\"><span style=\"color:#CA9D3E\"><strong>Do students stick with it?</strong></span></span>",
+                    "content": "<div class=\"image-container\"><img alt=\"\" height=\"100\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Icon_Story_Artboard%204__1534950701523__w400.png\" width=\"100\"></div>\n\n<p>&nbsp;</p>\n\n<p><span style=\"color:#CA9D3E\"><span style=\"font-size:24px\"><strong>Schools tend to retain about two-thirds of their students from one year to the next—one-third switch schools or drop out.</strong></span></span></p>\n\n<p>&nbsp;</p>\n\n<p>This map shows school rates of&nbsp;<em>admission </em>(color) compared to <em>retention </em>(size)—the share of students that return&nbsp;to a school from one year to the next.</p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Legened_Admission__1535484506585__w1200.png\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong>Large, green</strong> schools accept most students and tend to keep them happy. <strong>Small, green</strong> schools still accept most students, but students don't stick around. <strong>Large, yellow</strong> schools are more selective in admitting&nbsp;students, but those that get in stay. <strong>Small, yellow</strong> schools are both hard to get in to and are unlikely to keep students for very long.</p>\n",
+                    "contentActions": [
+                        {
+                            "id": "MJ-ACTION-1534347167457",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14466256.65048235,
+                                        "ymin": 1547643.6984464568,
+                                        "xmax": -6986434.81061013,
+                                        "ymax": 7574550.504674432,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "College_Scorecard_2015_2016_4864_788_173_486",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": true,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": false
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1534347522742-145",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14466256.65048235,
+                                        "ymin": 1547643.6984464568,
+                                        "xmax": -6986434.81061013,
+                                        "ymax": 7574550.504674432,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "College_Scorecard_2015_2016_4864_788_173_486",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": true,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": false
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535137539985",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -9555118.282949835,
+                                        "ymin": 3698771.4145886977,
+                                        "xmax": -8614637.086929072,
+                                        "ymax": 4463141.697440422,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Admission_Rate_2015_16_6721",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535137595814",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -13363160.994831054,
+                                        "ymin": 3802155.4115388757,
+                                        "xmax": -12892920.396820875,
+                                        "ymax": 4184340.5529645723,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Admission_Rate_2015_16_6721",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535137829770",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -12691126.642148098,
+                                        "ymin": 3751401.224757558,
+                                        "xmax": -12220886.04413792,
+                                        "ymax": 4133586.3661832553,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Admission_Rate_2015_16_6721",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535384950749",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -8974934.284019887,
+                                        "ymin": 4419499.448750722,
+                                        "xmax": -7093971.8919787705,
+                                        "ymax": 5948240.01445384,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Admission_Rate_2015_16_6721",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535384993661",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -10559932.502540868,
+                                        "ymin": 3061977.826406329,
+                                        "xmax": -8678970.11049975,
+                                        "ymax": 4590718.392109448,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Admission_Rate_2015_16_6721",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535385013449",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -10748273.340235492,
+                                        "ymin": 4337558.954429011,
+                                        "xmax": -8867310.948194375,
+                                        "ymax": 5866299.52013213,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Admission_Rate_2015_16_6721",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535385036991",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -12612113.837940738,
+                                        "ymin": 4007350.9922371376,
+                                        "xmax": -10731151.44589962,
+                                        "ymax": 5536091.557940256,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Admission_Rate_2015_16_6721",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535385059145",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14342648.158316668,
+                                        "ymin": 4544244.678912073,
+                                        "xmax": -12461685.766275551,
+                                        "ymax": 6072985.244615192,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Admission_Rate_2015_16_6721",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        }
+                    ],
+                    "creaDate": 1761941755030,
+                    "pubDate": 1761941755030,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=10d4c05ba8e64b40b7f63e09250d9fde",
+                            "type": "webpage",
+                            "altText": "This map shows the relationship between the admission rates and retention rates of schools across the country. There is no strong geographic pattern that emerges. Most areas have a mixture of rates of admission and retention in various combinations.",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                },
+                {
+                    "title": "<strong><span style=\"font-size:28px\"><span style=\"color:#854346\">What are people studying?</span></span></strong>",
+                    "content": "<div class=\"image-container\"><img alt=\"\" height=\"100\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Legend_b_Artboard%204__1535474683657__w400.png\" width=\"100\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"color:#854346\"><span style=\"font-size:24px\">Schools that predominantly award degrees in health and medicine are the most abundant.</span></span></strong></p>\n\n<p>&nbsp;</p>\n\n<p>This map shows schools by their most commonly awarded degree.</p>\n\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Legend_Diversity__1535484166076__w1201.png\"></div>\n\n<div class=\"image-container activate-fullscreen\"><img alt=\"This bar chart shows ten types of degree and the number of schools the predominantly award them. Health: 35%; Services: 22%; Humanities and social sciences: 18%. The remaining quarter of schools together commonly grant degrees in business and finance, professional fields such as architecture or law, science, research and technology, trades and vocations, education and public service, agriculture and natural resources, and last administration.\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Chart_Degrees__1535550732163__w801.png\"></div>\n\n<p>&nbsp;</p>\n\n<p>Roughly a quarter of schools focus on awarding degrees in <span style=\"color:#4B0082\"><strong>services</strong></span>, such as food preparation, personal care, leisure, and transportation. Meanwhile, a&nbsp;fifth of schools commonly award degrees in the <span style=\"color:#008080\"><strong>humanities and social sciences</strong></span>.</p>\n\n<p>&nbsp;</p>\n\n<p>Degrees granted vary geographically. Explore your region below.</p>\n\n<p>&nbsp;</p>\n\n<p style=\"text-align:center\"><a class=\"btn-red\" data-storymaps=\"MJ-ACTION-1535482521117\" data-storymaps-type=\"media\">Northeast</a></p>\n\n<p style=\"text-align:center\"><a class=\"btn-red\" data-storymaps=\"MJ-ACTION-1535482540509\" data-storymaps-type=\"media\">South</a><br>\n<a class=\"btn-red\" data-storymaps=\"MJ-ACTION-1535482560654\" data-storymaps-type=\"media\">Midwest</a></p>\n\n<p style=\"text-align:center\"><a class=\"btn-red\" data-storymaps=\"MJ-ACTION-1535482585482\" data-storymaps-type=\"media\">Intermountain West</a></p>\n\n<p style=\"text-align:center\"><a class=\"btn-red\" data-storymaps=\"MJ-ACTION-1535482608769\" data-storymaps-type=\"media\">West</a></p>\n",
+                    "contentActions": [
+                        {
+                            "id": "MJ-ACTION-1534350129047",
+                            "type": "media",
+                            "media": {
+                                "type": "webpage",
+                                "webpage": {
+                                    "url": "https://story.maps.arcgis.com/apps/StorytellingSwipe/index.html?appid=1ec6194f21744590aa7644e19b3be356",
+                                    "type": "webpage",
+                                    "altText": "",
+                                    "display": "stretch",
+                                    "unload": true
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535138139158",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -9891991.263789678,
+                                        "ymin": 5044052.463127757,
+                                        "xmax": -9656870.964784386,
+                                        "ymax": 5235145.033840771,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535378069554",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": null,
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535378105349",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": null,
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144_6560",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535378126073",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -10698004.729869569,
+                                        "ymin": 4408107.037074406,
+                                        "xmax": -8817042.337828452,
+                                        "ymax": 5936847.602777524,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144_6560",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535378168145",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -12796659.77846681,
+                                        "ymin": 4315159.610679656,
+                                        "xmax": -10915697.386425693,
+                                        "ymax": 5843900.1763827745,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144_6560",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535378200546",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14363313.110199366,
+                                        "ymin": 4537744.23704603,
+                                        "xmax": -12482350.718158249,
+                                        "ymax": 6066484.802749149,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144_6560",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535482521117",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -9118690.951756459,
+                                        "ymin": 4342760.794590954,
+                                        "xmax": -7237728.559715342,
+                                        "ymax": 5871501.360294072,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535482540509",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -10769730.762715826,
+                                        "ymin": 3067179.666568272,
+                                        "xmax": -8888768.370674709,
+                                        "ymax": 4595920.232271391,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535482560654",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -10713473.10989795,
+                                        "ymin": 4421032.311554953,
+                                        "xmax": -8832510.717856834,
+                                        "ymax": 5949772.877258073,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535482585482",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -12803567.211327255,
+                                        "ymin": 4083486.394647705,
+                                        "xmax": -10922604.819286138,
+                                        "ymax": 5612226.9603508245,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535482608769",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14470505.924169935,
+                                        "ymin": 4183771.77575783,
+                                        "xmax": -12589543.532128818,
+                                        "ymax": 5712512.341460949,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+                                            "visibility": true
+                                        },
+                                        {
+                                            "id": "Academics_Predominant_Degree_2015_16_2144",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": false,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": true
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        }
+                    ],
+                    "creaDate": 1761941810971,
+                    "pubDate": 1761941810971,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=59e59f2345634201ab07202e0682ca05",
+                            "type": "webpage",
+                            "altText": "This maps shows groups of schools by which degrees they are most commonly awarding. The emergent theme here is the dominance of health and medical related degrees across the country. But schools commonly award degrees in services industries are also a notable pattern. Particularly in a swathe extending from south Texas up through the Northeast, and in major urban areas such as Chicago and Los Angeles. The third most prevalent schools grant degrees in the humanities and social science, particularly in around the California Bay Area, Seattle, and around the Mid-Atlantic.",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                },
+                {
+                    "title": "<span style=\"font-size:28px\"><span style=\"color:#854346\"><strong>What&#39;s the debt burden after school?</strong></span></span>",
+                    "content": "<div class=\"image-container\"><img alt=\"\" height=\"100\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Icon_Story_Artboard%205__1534951448358__w400.png\" width=\"100\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"color:#854346\"><span style=\"font-size:24px\">People entering repayment owe over $11,000—nearly double what they&nbsp;would have&nbsp;owed in 2006.</span></span></strong></p>\n\n<p>&nbsp;</p>\n\n<p>This map shows the median amount people owe on student loans after ending school.&nbsp;Circle size represents the dollars owed, while&nbsp;circle color shows whether the amount is&nbsp;<span style=\"color:#854346\"><strong>above-average</strong></span> or&nbsp;<span style=\"color:#695691\"><strong>below-average</strong></span>.</p>\n\n<p>&nbsp;</p>\n\n<div class=\"image-container\"><img alt=\"\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Legend_Debt__1535487173376__w1200.png\"></div>\n\n<p>In the aftermath of the Great Recession and stretched public budgets, schools have increasingly embraced strategies from the business world <a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495249164\" data-storymaps-type=\"navigate\">[5]</a>. As a result, much of the cost of education has passed on to the consumer—students <a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495258796\" data-storymaps-type=\"navigate\">[6]</a>.</p>\n\n<p>&nbsp;</p>\n\n<p>Click below to explore how the increase in cost has resulted in swelling debt burdens from <span style=\"color:#DAA520\"><strong>2006 </strong></span>(left map) to <span style=\"color:#A52A2A\"><strong>2016 </strong></span>(right map).</p>\n\n<p>&nbsp;</p>\n\n<p style=\"text-align:center\"><a class=\"btn-red\" data-storymaps=\"MJ-ACTION-1534868821437\" data-storymaps-type=\"media\">Compare&nbsp;2006 to 2016</a></p>\n\n<p>&nbsp;</p>\n\n<p>The costs of higher education are intimidating—and the levels of debt eye popping. Yet amidst the wash of numbers thrives a varied landscape of thousands of institutions.</p>\n\n<p>&nbsp;</p>\n\n<p>While the stakes of higher education may be greater than ever, students can exercise their power to choose the right school that fits their needs and budget.</p>\n",
+                    "contentActions": [
+                        {
+                            "id": "MJ-ACTION-1534350558592",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14647259.533461597,
+                                        "ymin": 1787350.2191487045,
+                                        "xmax": -7167437.693589377,
+                                        "ymax": 7814257.025376679,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "College_Scorecard_2015_2016_4864",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": true,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": false
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1534350577772",
+                            "type": "media",
+                            "media": {
+                                "type": "webmap",
+                                "webmap": {
+                                    "id": "6fe55fcc360c42dd815e210823bff5cd",
+                                    "extent": {
+                                        "xmin": -14647259.533461597,
+                                        "ymin": 1787350.2191487045,
+                                        "xmax": -7167437.693589377,
+                                        "ymax": 7814257.025376679,
+                                        "spatialReference": {
+                                            "wkid": 102100
+                                        }
+                                    },
+                                    "layers": [
+                                        {
+                                            "id": "College_Scorecard_2005_2006_3249",
+                                            "visibility": true
+                                        }
+                                    ],
+                                    "popup": null,
+                                    "overview": {
+                                        "enable": false,
+                                        "openByDefault": true
+                                    },
+                                    "legend": {
+                                        "enable": true,
+                                        "openByDefault": false
+                                    },
+                                    "geocoder": {
+                                        "enable": false
+                                    },
+                                    "altText": ""
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1534868821437",
+                            "type": "media",
+                            "media": {
+                                "type": "webpage",
+                                "webpage": {
+                                    "url": "https://story.maps.arcgis.com/apps/StorytellingSwipe/index.html?appid=d96143b7a084446ebb0417a111c38016&embed&classicEmbedMode",
+                                    "type": "webpage",
+                                    "altText": "",
+                                    "display": "stretch",
+                                    "unload": true
+                                }
+                            }
+                        },
+                        {
+                            "id": "MJ-ACTION-1535495249164",
+                            "type": "navigate",
+                            "index": 10
+                        },
+                        {
+                            "id": "MJ-ACTION-1535495258796",
+                            "type": "navigate",
+                            "index": 10
+                        }
+                    ],
+                    "creaDate": 1761941859455,
+                    "pubDate": 1761941859455,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "webpage",
+                        "webpage": {
+                            "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=fcfae61962a9478f888a179d609a7b6c",
+                            "type": "webpage",
+                            "altText": "This map shows schools by the median loan debt of their students once students left the school and started to repay their loans. There is no strong geographic pattern here: student loan debt ranges above and below average, and from coast to coast. Although it is notable that there are a number schools with below-average amounts of debt densely in the South and in many rural areas.",
+                            "display": "stretch",
+                            "unload": true
+                        }
+                    }
+                },
+                {
+                    "title": "<span style=\"color:#808080\"><span style=\"font-size:28px\"><strong>Resources</strong></span></span>",
+                    "content": "<div class=\"image-container\"><img alt=\"\" height=\"100\" src=\"https://www.arcgis.com/sharing/rest/content/items/ccd648e8845847d2947cbc7e0c4ec616/resources/Icon_Major_Artboard%203__1534873451021__w400.png\" width=\"100\"></div>\n\n<p>&nbsp;</p>\n\n<p><strong><span style=\"font-size:24px\"><span style=\"color:#808080\">This story was created by the </span><a class=\"credit\" href=\"https://bit.ly/2woyjId\" target=\"_blank\">Esri Story Maps</a><span style=\"color:#808080\"> team using the <a class=\"credit\" href=\"https://bit.ly/2MDTzny\" target=\"_blank\">Map Journal</a> template.</span></span></strong></p>\n\n<p>&nbsp;</p>\n\n<p>Want to build your own Story Map? <a class=\"credit\" href=\"https://bit.ly/2oj5fgZ\" target=\"_blank\">Get started</a>. Don't forget to keep up to date with our latest stories by signing up for the&nbsp;<a class=\"credit\" href=\"https://bit.ly/2GK9UiD\" target=\"_blank\">Planet Story Maps</a>&nbsp;newsletter&nbsp;and by following us <a class=\"credit\" href=\"https://bit.ly/2IEJp4a\" target=\"_blank\">@EsriStoryMaps</a>.</p>\n\n<p>&nbsp;</p>\n\n<p><strong>Credits</strong></p>\n\n<p>Cover image: <a class=\"credit\" href=\"https://bit.ly/2NXh1J3\" target=\"_blank\">University of Central Arkansas</a> (CC BY-NC-ND 2.0)</p>\n\n<p>Resources image: <a class=\"credit\" href=\"https://bit.ly/2MXrqrx\" target=\"_blank\">Massachusetts Office of Travel &amp; Tourism</a> (CC BY-ND 2.0)</p>\n\n<p>Research and production | <a class=\"credit\" href=\"https://bit.ly/2wt2uND\" target=\"_blank\">Greyson Harris</a></p>\n\n<p>Graphic design | <a class=\"credit\" href=\"https://bit.ly/2MWzGHx\" target=\"_blank\">Allen Carroll</a></p>\n\n<p>Production support | <a class=\"credit\" href=\"https://bit.ly/2Nv6KU2\" target=\"_blank\">Hannah Wilber</a>, <a class=\"credit\" href=\"https://bit.ly/2wuxNaW\" target=\"_blank\">Cooper Thomas</a></p>\n\n<p>&nbsp;</p>\n\n<p>Questions or comments about this story? <a class=\"credit\" href=\"https://bit.ly/2PbaKcI\" target=\"_blank\">We want to hear from you</a>.</p>\n\n<p>&nbsp;</p>\n\n<p><strong>Data</strong></p>\n\n<p><a class=\"credit\" href=\"https://arcg.is/1zbjiP\" target=\"_blank\">Colleges and universities</a> | U.S. Department of Education</p>\n\n<p><a class=\"credit\" href=\"https://bit.ly/2MrYc2V\" target=\"_blank\">2015/16 and 2005/06 College Scorecard</a> | U.S. Department of Education</p>\n\n<p>&nbsp;</p>\n\n<p>Already have an ArcGIS Online account? Start working with these datasets right now&nbsp;by visiting the&nbsp;<a class=\"credit\" href=\"https://bit.ly/2PMkhbr\" target=\"_blank\">Studying Up on Higher Education group</a>. Not yet an ArcGIS Online user?&nbsp;Sign up for a free <a class=\"credit\" href=\"https://bit.ly/2PQ0qbA\" target=\"_blank\">public account</a>.</p>\n\n<p>&nbsp;</p>\n\n<p><strong>References</strong></p>\n\n<p><a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495339807\" data-storymaps-type=\"navigate\">[1]</a> U.S. Department of Education, College Scorecard&nbsp;(2006, 2016)</p>\n\n<p><a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495347901\" data-storymaps-type=\"navigate\">[2]</a> American Council on Education, \"An overview of higher education in the United States: Diversity, access, and the role of the marketplace\" by Peter D. Eckel and Jacqueline E. King (2004)</p>\n\n<p><a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495373663\" data-storymaps-type=\"navigate\">[3]</a> U.S. Census, American Fact Finder, <a class=\"credit\" href=\"https://bit.ly/2Lz0edn\" target=\"_blank\">Community Facts</a>&nbsp;(2018)</p>\n\n<p><a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495386019\" data-storymaps-type=\"navigate\">[4]</a> U.S. Department of Education</p>\n\n<p><a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495416206\" data-storymaps-type=\"navigate\">[5]</a> University of California, Berkeley Center for Studies in Higher Education, \"Liberalizing the academy: The transformation of higher education in the United States and Germany\" by Tobias Schulze-Cleven (2015)</p>\n\n<p><a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495427425\" data-storymaps-type=\"navigate\">[6]</a> American Council on Education</p>\n\n<p>&nbsp;</p>\n",
+                    "contentActions": [
+                        {
+                            "id": "MJ-ACTION-1535495339807",
+                            "type": "navigate",
+                            "index": 3
+                        },
+                        {
+                            "id": "MJ-ACTION-1535495347901",
+                            "type": "navigate",
+                            "index": 3
+                        },
+                        {
+                            "id": "MJ-ACTION-1535495373663",
+                            "type": "navigate",
+                            "index": 5
+                        },
+                        {
+                            "id": "MJ-ACTION-1535495386019",
+                            "type": "navigate",
+                            "index": 5
+                        },
+                        {
+                            "id": "MJ-ACTION-1535495416206",
+                            "type": "navigate",
+                            "index": 9
+                        },
+                        {
+                            "id": "MJ-ACTION-1535495427425",
+                            "type": "navigate",
+                            "index": 9
+                        }
+                    ],
+                    "creaDate": 1761946434498,
+                    "pubDate": 1761946434498,
+                    "status": "PUBLISHED",
+                    "media": {
+                        "type": "image",
+                        "image": {
+                            "url": "https://storymaps.esri.com/archives/stories/2018/higher-ed/resources/img/8530611259_de0a252986_k.jpg",
+                            "type": "image",
+                            "altText": "",
+                            "display": "fill"
+                        }
+                    }
+                }
+            ]
+        },
+        "template": {
+            "name": "Map Journal",
+            "createdWith": "1.15.1",
+            "editedWith": "1.33.0"
+        }
+    },
+    "_ssl": null
+}
