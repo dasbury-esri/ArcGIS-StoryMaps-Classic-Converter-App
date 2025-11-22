@@ -10,9 +10,17 @@ async function run(){
   const root = path.resolve(process.cwd(),'..');
   const sampleDir = path.join(root,'test_data','classics','MapJournal');
   const files = fs.readdirSync(sampleDir).filter(f=>f.endsWith('.json'));
-  // Prefer a sample with embedded <style> blocks to exercise custom CSS provenance
-  const cssSampleName = files.find(f => f.includes('ccd648')) || files[0];
-  const sample = path.join(sampleDir, cssSampleName);
+  const arg = process.argv[2];
+  let chosen = files[0];
+  if (arg) {
+    const byArg = files.find(f=>f.startsWith(arg) || f.includes(arg));
+    if (byArg) chosen = byArg;
+  } else {
+    // Prefer a sample with embedded <style> blocks to exercise custom CSS provenance
+    const cssSampleName = files.find(f => f.includes('ccd648'));
+    if (cssSampleName) chosen = cssSampleName;
+  }
+  const sample = path.join(sampleDir, chosen);
   const classic = load(sample);
   const uploader = async (url: string) => {
     const hash = crypto.createHash('md5').update(url).digest('hex').slice(0,8);
@@ -27,6 +35,7 @@ async function run(){
     token: 'FAKE',
     themeId: 'summit',
     progress,
+    enrichScenes: true,
     uploader: (u)=>uploader(u)
   });
   const outPath = path.join(root,'test_data','output','mapjournal_refactor_sample.json');

@@ -75,8 +75,17 @@ export interface StoryMapWebMapResource {
   data: {
     itemId: string;
     type: 'Web Map' | 'Web Scene';
-    extent?: number[]; // [xmin,ymin,xmax,ymax]
+    extent?: number[]; // (legacy simple array form)
     scale?: number;
+    // Extended per-slide initial state (optional)
+    initialState?: {
+      extent?: any; // classic extent object with spatialReference
+      mapLayers?: Array<{ id: string; title: string; visible: boolean }>;
+      overview?: { enable: boolean; openByDefault: boolean };
+      legend?: { enable: boolean; openByDefault: boolean };
+      geocoder?: { enable: boolean };
+      popup?: unknown;
+    };
   };
 }
 

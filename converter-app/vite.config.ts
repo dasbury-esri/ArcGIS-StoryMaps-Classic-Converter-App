@@ -8,4 +8,8 @@ export default defineConfig({
     port: 5173,
     open: true,
   },
+  define: {
+    // Provide global alias for libraries that still reference `global`
+    global: 'globalThis'
+  }
 })

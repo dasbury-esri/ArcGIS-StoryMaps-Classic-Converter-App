@@ -121,12 +121,22 @@ export class StoryMapJSONBuilder {
     return id;
   }
 
-  addWebMapResource(itemId: string, itemType: 'Web Map' | 'Web Scene' = 'Web Map'): string {
+  addWebMapResource(itemId: string, itemType: 'Web Map' | 'Web Scene' = 'Web Map', initialState?: {
+    extent?: any;
+    mapLayers?: Array<{ id: string; title: string; visible: boolean }>;
+    overview?: { enable: boolean; openByDefault: boolean };
+    legend?: { enable: boolean; openByDefault: boolean };
+    geocoder?: { enable: boolean };
+    popup?: unknown;
+  }): string {
     const id = this.generateResourceId();
-    this.json.resources[id] = {
-      type: 'webmap',
-      data: { type: 'minimal', itemId, itemType }
-    } as any;
+    const data: any = { type: 'minimal', itemId, itemType };
+    if (initialState && (
+      initialState.extent || initialState.mapLayers || initialState.overview || initialState.legend || initialState.geocoder || initialState.popup
+    )) {
+      data.initialState = { ...initialState };
+    }
+    this.json.resources[id] = { type: 'webmap', data } as any;
     return id;
   }
 
@@ -224,6 +234,14 @@ export class StoryMapJSONBuilder {
     const { root, resources, actions } = this.json;
     const ordered: StoryMapJSON = { root, nodes: nodesOrdered, resources, actions } as StoryMapJSON;
     return ordered;
+  }
+
+  /** Mutate an existing node's data object (real underlying JSON, not ordered copy) */
+  updateNodeData(nodeId: string, mutate: (data: Record<string, unknown>, node: any) => void): void {
+    const node = (this as any).json?.nodes?.[nodeId];
+    if (!node) return;
+    if (!node.data) node.data = {};
+    mutate(node.data as Record<string, unknown>, node);
   }
 
   /** Set top-level story metaSettings inside root story node */

@@ -111,7 +111,7 @@ export default function Converter() {
             const res = await transferImage(url, storyId, user, tk);
             return { originalUrl: url, resourceName: res.resourceName, transferred: !!res.isTransferred };
           };
-
+          // Progress callback will compute count suffix dynamically per event
           const pipelineResult = await convertClassicToJsonRefactored({
             classicJson: classicData,
             storyId: targetStoryId,
@@ -120,29 +120,33 @@ export default function Converter() {
             token,
             themeId: "summit",
             progress: (e) => {
+              const alreadyHasCount = /\(\s*\d+\s*\/\s*\d+\s*\)\s*$/.test(e.message);
+              const msg = e.total && !alreadyHasCount
+                ? `${e.message} (${e.current}/${e.total})`
+                : e.message;
               switch (e.stage) {
                 case 'media':
                   setStatus('transferring');
-                  setMessage(`${e.message}${e.total ? ` (${e.current}/${e.total})` : ''}`);
+                  setMessage(msg);
                   break;
                 case 'convert':
                   setStatus('converting');
-                  setMessage(e.message);
+                  setMessage(msg);
                   break;
                 case 'finalize':
                   setStatus('updating');
-                  setMessage(e.message);
+                  setMessage(msg);
                   break;
                 case 'error':
                   setStatus('error');
-                  setMessage(e.message);
+                  setMessage(msg);
                   break;
                 case 'done':
                   setStatus('success');
-                  setMessage(e.message);
+                  setMessage(msg);
                   break;
                 default:
-                  setMessage(e.message);
+                  setMessage(msg);
               }
             },
             uploader
@@ -251,7 +255,12 @@ export default function Converter() {
         setPublishing(true);
       } catch (error: any) {
         setStatus("error");
-        setMessage(`Error: ${error.message || "An unknown error occurred"}`);
+        // Avoid double "Error:" prefix (UI adds its own for error status)
+        setMessage(error?.message || "An unknown error occurred");
+        // Log stack for debugging if available
+        if (error?.stack) {
+          console.debug('[ConverterCatch]', error.stack);
+        }
         setPublishing(false);
       }
     };

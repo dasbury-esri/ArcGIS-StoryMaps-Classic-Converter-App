@@ -62,19 +62,10 @@ export class MapJournalConverter extends BaseConverter {
     const sidecar = json.nodes[sidecarId];
     sidecar.children = [];
 
-    // Optional intro slide
-    if (v.description || v.webmap) {
-      const introNarrative: string[] = [];
-      if (v.description) {
-        introNarrative.push(this.builder.createTextNode(String(v.description), 'paragraph'));
-      }
-      let introMedia: string | undefined;
-      if (v.webmap) {
-        const wmRes = this.builder.addWebMapResource(String(v.webmap), 'Web Map');
-        introMedia = this.builder.createWebMapNode(wmRes, v.title ? `Map for ${v.title}` : undefined);
-        this.media.add(String(v.webmap));
-      }
-      this.builder.addSlideToSidecar(sidecarId, introNarrative, introMedia);
+    // Optional intro slide (ignore root-level webmap per requirement; only use description)
+    if (v.description) {
+      const introNarrative: string[] = [this.builder.createTextNode(String(v.description), 'paragraph')];
+      this.builder.addSlideToSidecar(sidecarId, introNarrative, undefined);
     }
 
     const sectionHeadingIds: string[] = [];
@@ -118,9 +109,28 @@ export class MapJournalConverter extends BaseConverter {
         mediaNodeId = this.builder.createImageNode(rId, m.image.caption, m.image.altText, 'wide');
         this.media.add(m.image.url);
       } else if (m?.webmap?.id) {
-        const wId = this.builder.addWebMapResource(m.webmap.id, 'Web Map');
-        mediaNodeId = this.builder.createWebMapNode(wId, section.title ? `Map: ${section.title}` : undefined);
+        // Support Web Scene vs Web Map via optional itemType field in classic JSON media
+          const wmItemType: 'Web Map' | 'Web Scene' = m.webmap.itemType === 'Web Scene' ? 'Web Scene' : 'Web Map';
+          type ClassicLayer = { id: string; visibility: boolean; title?: string };
+          interface ClassicWebMapExtras { overview?: { enable?: boolean; openByDefault?: boolean }; legend?: { enable?: boolean; openByDefault?: boolean }; geocoder?: { enable?: boolean }; popup?: unknown; }
+          const extras = m.webmap as ClassicWebMapExtras;
+          const initialState = {
+            extent: m.webmap.extent,
+            mapLayers: Array.isArray(m.webmap.layers)
+              ? (m.webmap.layers as ClassicLayer[]).map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }))
+              : undefined,
+            overview: extras.overview ? { enable: !!extras.overview.enable, openByDefault: !!extras.overview.openByDefault } : undefined,
+            legend: extras.legend ? { enable: !!extras.legend.enable, openByDefault: !!extras.legend.openByDefault } : undefined,
+            geocoder: extras.geocoder ? { enable: !!extras.geocoder.enable } : undefined,
+            popup: extras.popup || undefined
+          };
+          const wId = this.builder.addWebMapResource(m.webmap.id, wmItemType, initialState);
+        mediaNodeId = this.builder.createWebMapNode(
+          wId,
+          section.title ? `${wmItemType === 'Web Scene' ? 'Scene' : 'Map'}: ${section.title}` : undefined
+        );
         this.media.add(m.webmap.id);
+          // Node-level augmentation removed; state now on resource.initialState
       } else if (m?.video?.url) {
         const providerInfo = this.detectVideoProvider(m.video.url);
         if (providerInfo.provider !== 'unknown') {
@@ -146,8 +156,12 @@ export class MapJournalConverter extends BaseConverter {
           let actMediaNode: string | undefined;
             const media = act.media;
             if (media.webmap?.id) {
-              const wmRes = this.builder.addWebMapResource(media.webmap.id, 'Web Map');
-              actMediaNode = this.builder.createWebMapNode(wmRes, stub.text.includes('Map') ? stub.text : undefined);
+              const wmItemType2: 'Web Map' | 'Web Scene' = media.webmap.itemType === 'Web Scene' ? 'Web Scene' : 'Web Map';
+              const wmRes = this.builder.addWebMapResource(media.webmap.id, wmItemType2);
+              actMediaNode = this.builder.createWebMapNode(
+                wmRes,
+                stub.text.includes('Map') || stub.text.includes('Scene') ? stub.text : undefined
+              );
               const currentJson = this.builder.getJson();
               if (actMediaNode && media.webmap.layers) {
                 const wmNode = currentJson.nodes[actMediaNode];
@@ -590,14 +604,39 @@ export class MapJournalConverter extends BaseConverter {
         } else {
           if (!this.isNonEmptyHtmlSegment(seg)) continue; // skip blank/whitespace-only segments
           const processedSeg = this.processHtmlColorsPreserveHtml(seg);
-          const richId = this.builder.createRichTextNode(processedSeg, 'paragraph');
-          // Assign richNodeId for any inline navigate anchors captured earlier without button class
-          if (seg.includes('data-storymaps')) {
-            for (const stub of navigateInlineStubs) {
-              if (!stub.richNodeId && seg.includes(`data-storymaps="${stub.actionId}"`)) stub.richNodeId = richId;
+          // If segment contains multiple top-level paragraph tags, split into separate rich text nodes.
+          const paraMatches = processedSeg.match(/<p[^>]*>[\s\S]*?<\/p>/gi);
+          const multipleParas = paraMatches && paraMatches.length > 1;
+          if (multipleParas) {
+            for (const pHtml of paraMatches) {
+              // Skip empty or &nbsp; only paragraphs
+              const inner = pHtml.replace(/^<p[^>]*>|<\/p>$/gi,'').trim();
+              const innerStripped = inner.replace(/&nbsp;|\s+/g,'').trim();
+              if (!innerStripped) continue;
+              // Strip outer <p> wrapper; viewer will wrap as paragraph automatically
+              const richId = this.builder.createRichTextNode(inner, 'paragraph');
+              if (pHtml.includes('data-storymaps')) {
+                for (const stub of navigateInlineStubs) {
+                  if (!stub.richNodeId && pHtml.includes(`data-storymaps="${stub.actionId}"`)) stub.richNodeId = richId;
+                }
+              }
+              narrativeIds.push(richId);
             }
+          } else {
+            // Single segment: if wrapped in <p> remove wrapper so we store only inner markup
+            let singleContent = processedSeg;
+            const singleMatch = /^<p[^>]*>[\s\S]*?<\/p>$/.exec(processedSeg.trim());
+            if (singleMatch) {
+              singleContent = processedSeg.trim().replace(/^<p[^>]*>|<\/p>$/gi,'').trim();
+            }
+            const richId = this.builder.createRichTextNode(singleContent, 'paragraph');
+            if (processedSeg.includes('data-storymaps')) {
+              for (const stub of navigateInlineStubs) {
+                if (!stub.richNodeId && processedSeg.includes(`data-storymaps="${stub.actionId}"`)) stub.richNodeId = richId;
+              }
+            }
+            narrativeIds.push(richId);
           }
-          narrativeIds.push(richId);
         }
       }
       return;
@@ -734,13 +773,33 @@ export class MapJournalConverter extends BaseConverter {
           } else {
             if (!this.isNonEmptyHtmlSegment(seg)) continue; // skip blank/whitespace-only segments
             const processedSeg = this.processHtmlColorsPreserveHtml(seg);
-            const richId = this.builder.createRichTextNode(processedSeg, 'paragraph');
-            if (seg.includes('data-storymaps')) {
-              for (const stub of navigateInlineStubs) {
-                if (!stub.richNodeId && seg.includes(`data-storymaps="${stub.actionId}"`)) stub.richNodeId = richId;
+            const paraMatches = processedSeg.match(/<p[^>]*>[\s\S]*?<\/p>/gi);
+            const multipleParas = paraMatches && paraMatches.length > 1;
+            if (multipleParas) {
+              for (const pHtml of paraMatches) {
+                const inner = pHtml.replace(/^<p[^>]*>|<\/p>$/gi,'').trim();
+                const innerStripped = inner.replace(/&nbsp;|\s+/g,'').trim();
+                if (!innerStripped) continue;
+                const richId = this.builder.createRichTextNode(inner, 'paragraph');
+                if (pHtml.includes('data-storymaps')) {
+                  for (const stub of navigateInlineStubs) {
+                    if (!stub.richNodeId && pHtml.includes(`data-storymaps="${stub.actionId}"`)) stub.richNodeId = richId;
+                  }
+                }
+                narrativeIds.push(richId);
               }
+            } else {
+              let singleContent = processedSeg;
+              const singleMatch = /^<p[^>]*>[\s\S]*?<\/p>$/.exec(processedSeg.trim());
+              if (singleMatch) singleContent = processedSeg.trim().replace(/^<p[^>]*>|<\/p>$/gi,'').trim();
+              const richId = this.builder.createRichTextNode(singleContent, 'paragraph');
+              if (processedSeg.includes('data-storymaps')) {
+                for (const stub of navigateInlineStubs) {
+                  if (!stub.richNodeId && processedSeg.includes(`data-storymaps="${stub.actionId}"`)) stub.richNodeId = richId;
+                }
+              }
+              narrativeIds.push(richId);
             }
-            narrativeIds.push(richId);
           }
         }
         continue;

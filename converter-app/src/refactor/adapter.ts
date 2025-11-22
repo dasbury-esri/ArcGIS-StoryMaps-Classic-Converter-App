@@ -12,6 +12,7 @@ export interface AdapterParams {
   token: string;
   themeId: string;
   progress: (e: { stage: string; message: string; current?: number; total?: number }) => void;
+  enrichScenes?: boolean; // toggle enrichment of web scenes
   uploader: (url: string, storyId: string, username: string, token: string) => Promise<{
     originalUrl: string; resourceName: string; transferred: boolean;
   }>;
@@ -34,10 +35,11 @@ export async function convertClassicToJsonRefactored(params: AdapterParams): Pro
   };
 
   params.progress({ stage: 'convert', message: '[Refactor] Starting converter factory...' });
-  const converterResult = ConverterFactory.create({
+  const converterResult = await ConverterFactory.create({
     classicJson: params.classicJson,
     themeId: params.themeId,
-    progress: (e) => params.progress(e)
+    progress: (e) => params.progress(e),
+    enrichScenes: params.enrichScenes
   });
 
   params.progress({ stage: 'media', message: '[Refactor] Transferring media...' });
