@@ -294,6 +294,36 @@ export class StoryMapJSONBuilder {
     return id;
   }
 
+  // Video embed (external provider) node factory
+  createVideoEmbedNode(url: string, provider: 'youtube' | 'vimeo' | 'unknown', videoId?: string, caption?: string, title?: string, description?: string, alt?: string, aspectRatio: string = '16:9'): string {
+    const id = this.generateNodeId();
+    // Derive embedSrc based on provider when possible
+    let embedSrc = url;
+    if (provider === 'youtube' && videoId) {
+      embedSrc = `https://www.youtube.com/embed/${videoId}`;
+    } else if (provider === 'vimeo' && videoId) {
+      embedSrc = `https://player.vimeo.com/video/${videoId}`;
+    }
+    this.json.nodes[id] = {
+      type: 'embed',
+      data: {
+        url,
+        embedSrc,
+        embedType: 'video',
+        provider,
+        videoId,
+        title: title || undefined,
+        description: description || undefined,
+        caption: caption || undefined,
+        alt: alt || '',
+        isEmbedSupported: true,
+        display: 'inline',
+        aspectRatio
+      }
+    } as any;
+    return id;
+  }
+
   createEmbedNode(url: string, caption?: string, title?: string, description?: string, alt?: string): string {
     const id = this.generateNodeId();
     this.json.nodes[id] = {

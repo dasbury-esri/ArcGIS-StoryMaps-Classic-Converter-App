@@ -12,6 +12,8 @@ export class MapJournalConverter extends BaseConverter {
   private media = new Set<string>();
   // Collected <style> blocks found in section HTML (not turned into narrative nodes)
   private styleBlocks: string[] = [];
+  // Count of external provider video embeds (YouTube/Vimeo) converted
+  private videoEmbedCount = 0;
 
   constructor(options: BaseConverterOptions) {
     super(options);
@@ -120,9 +122,15 @@ export class MapJournalConverter extends BaseConverter {
         mediaNodeId = this.builder.createWebMapNode(wId, section.title ? `Map: ${section.title}` : undefined);
         this.media.add(m.webmap.id);
       } else if (m?.video?.url) {
-        const vRes = this.builder.addVideoResource(m.video.url, 'uri');
-        mediaNodeId = this.builder.createVideoNode(vRes, m.video.caption, m.video.altText);
-        this.media.add(m.video.url);
+        const providerInfo = this.detectVideoProvider(m.video.url);
+        if (providerInfo.provider !== 'unknown') {
+          mediaNodeId = this.builder.createVideoEmbedNode(m.video.url, providerInfo.provider, providerInfo.id, m.video.caption, m.video.caption, undefined, m.video.altText);
+          this.videoEmbedCount++; // track converted embed
+        } else {
+          const vRes = this.builder.addVideoResource(m.video.url, 'uri');
+          mediaNodeId = this.builder.createVideoNode(vRes, m.video.caption, m.video.altText);
+          this.media.add(m.video.url);
+        }
       } else if (m?.webpage?.url) {
         mediaNodeId = this.builder.createEmbedNode(m.webpage.url, m.webpage.caption, m.webpage.title, m.webpage.description, m.webpage.altText);
       }
@@ -157,9 +165,15 @@ export class MapJournalConverter extends BaseConverter {
               actMediaNode = this.builder.createImageNode(rId, media.image.caption, media.image.altText, 'standard');
               this.media.add(media.image.url);
             } else if (media.video?.url) {
-              const vRes = this.builder.addVideoResource(media.video.url, 'uri');
-              actMediaNode = this.builder.createVideoNode(vRes, media.video.caption, media.video.altText);
-              this.media.add(media.video.url);
+              const providerInfo2 = this.detectVideoProvider(media.video.url);
+              if (providerInfo2.provider !== 'unknown') {
+                actMediaNode = this.builder.createVideoEmbedNode(media.video.url, providerInfo2.provider, providerInfo2.id, media.video.caption, media.video.caption, undefined, media.video.altText);
+                this.videoEmbedCount++;
+              } else {
+                const vRes = this.builder.addVideoResource(media.video.url, 'uri');
+                actMediaNode = this.builder.createVideoNode(vRes, media.video.caption, media.video.altText);
+                this.media.add(media.video.url);
+              }
             } else if (media.webpage?.url) {
               actMediaNode = this.builder.createEmbedNode(media.webpage.url, media.webpage.caption, media.webpage.title, media.webpage.description, media.webpage.altText);
             }
@@ -239,6 +253,7 @@ export class MapJournalConverter extends BaseConverter {
         }
       };
       this.builder.applyTheme({ themeId: 'obsidian', variableOverrides: {} });
+      decisions.videoEmbeds = this.videoEmbedCount;
       this.builder.addConverterMetadata('MapJournal', { classicMetadata: { theme: classicTheme, mappingDecisions: decisions } });
       this.emit('Applied fallback obsidian theme (no classic theme present; float layout)');
       return;
@@ -276,6 +291,7 @@ export class MapJournalConverter extends BaseConverter {
     }
     // Apply base theme and overrides to existing theme resource
     this.builder.applyTheme({ themeId: decisions.baseThemeId, variableOverrides: overrides });
+    (decisions as Record<string, unknown>).videoEmbeds = this.videoEmbedCount;
     // Add converter metadata resource
     this.builder.addConverterMetadata('MapJournal', { classicMetadata: { theme: classicTheme, mappingDecisions: decisions } });
     this.emit(`Built single sidecar with ${sidecar.children?.length || 0} slide(s); theme overrides applied (${Object.keys(overrides).length})`);
@@ -588,7 +604,15 @@ export class MapJournalConverter extends BaseConverter {
     }
     if (el.tagName === 'IFRAME') {
       const src = el.getAttribute('src');
-      if (src) narrativeIds.push(this.builder.createEmbedNode(src));
+      if (src) {
+        const providerInfo = this.detectVideoProvider(src);
+        if (providerInfo.provider !== 'unknown') {
+          narrativeIds.push(this.builder.createVideoEmbedNode(src, providerInfo.provider, providerInfo.id));
+          this.videoEmbedCount++;
+        } else {
+          narrativeIds.push(this.builder.createEmbedNode(src));
+        }
+      }
       return;
     }
     const fallback = el.textContent?.trim();
@@ -646,7 +670,15 @@ export class MapJournalConverter extends BaseConverter {
       }
       if (tagStart.startsWith('<iframe')) {
         const src = /src=["']([^"'>]+)["']/i.exec(fragment)?.[1];
-        if (src) narrativeIds.push(this.builder.createEmbedNode(src));
+        if (src) {
+          const providerInfo = this.detectVideoProvider(src);
+          if (providerInfo.provider !== 'unknown') {
+            narrativeIds.push(this.builder.createVideoEmbedNode(src, providerInfo.provider, providerInfo.id));
+            this.videoEmbedCount++;
+          } else {
+            narrativeIds.push(this.builder.createEmbedNode(src));
+          }
+        }
         continue;
       }
       if (tagStart.startsWith('<p') || tagStart.startsWith('<div')) {
@@ -717,5 +749,19 @@ export class MapJournalConverter extends BaseConverter {
       const text = this.stripHtml(fragment).trim();
       if (text) narrativeIds.push(this.builder.createTextNode(text, 'paragraph'));
     }
+  }
+
+  // Detect YouTube or Vimeo video provider and extract canonical video id
+  private detectVideoProvider(url: string): { provider: 'youtube' | 'vimeo' | 'unknown'; id?: string } {
+    if (!url) return { provider: 'unknown' };
+    const ytMatch = /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})(?:[&#?].*)?$/i.exec(url);
+    if (ytMatch) {
+      return { provider: 'youtube', id: ytMatch[1] };
+    }
+    const vimeoMatch = /(?:vimeo\.com\/(?:video\/)?)(\d+)(?:[&#?].*)?$/i.exec(url);
+    if (vimeoMatch) {
+      return { provider: 'vimeo', id: vimeoMatch[1] };
+    }
+    return { provider: 'unknown' };
   }
 }

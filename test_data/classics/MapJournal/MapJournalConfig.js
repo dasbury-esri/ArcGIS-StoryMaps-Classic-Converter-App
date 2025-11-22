@@ -110,12 +110,15 @@ app.cfg = {
 	},
 
 	// Online photo sharing services connection parameters
-	FLICKR_API_KEY: "750b36a2ac65a72e03cf9cef06d79f45",
+	// Sanitized: upstream sample Flickr API key removed to avoid secret scanning alerts.
+	FLICKR_API_KEY: "REDACTED_SAMPLE_FLICKR_KEY",
 	// This Youtube key is valid for application running on arcgis.com and esri.com domains
 	// If the application is deployed on Portal for ArcGIS or your own server, the Youtube api call
 	//  won't be perfomed until you set the following flag and provide your own key
 	YOUTUBE_DISABLE_ON_PORTAL: true,
-	YOUTUBE_API_KEY: "AIzaSyDevTFP16nz6sA-akiOVi6wWXiplJnQ4qw",
+	// Sanitized: upstream sample contained a public YouTube API key.
+	// Removed to avoid secret scanning alerts; provide your own key via environment configuration if needed.
+	YOUTUBE_API_KEY: "REDACTED_SAMPLE_KEY",
 
 	//
 	// Builder direct creation

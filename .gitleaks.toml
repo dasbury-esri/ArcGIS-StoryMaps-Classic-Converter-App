@@ -1,0 +1,8 @@
+title = "Gitleaks Config"
+
+[allowlist]
+  description = "Allowlist for sanitized sample keys"
+  regexes = [
+    "REDACTED_SAMPLE_KEY",
+    "REDACTED_SAMPLE_FLICKR_KEY"
+  ]
