@@ -9,6 +9,12 @@
     "node-fetch": "^2.7.0"
   },
   "scripts": {
-    "proxy": "node proxy-server/proxy-server.js"
+    "proxy": "node proxy-server/proxy-server.js",
+    "bump": "node scripts/bump-version.mjs",
+    "bump:beta": "node scripts/bump-version.mjs --beta",
+    "bump:alpha": "node scripts/bump-version.mjs --alpha",
+    "changelog:dry": "node scripts/generate-changelog.mjs --dry",
+    "release:notes": "node scripts/generate-release.mjs --notes-only",
+    "release": "node scripts/generate-release.mjs"
   }
 }

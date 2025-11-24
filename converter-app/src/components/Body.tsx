@@ -12,7 +12,7 @@ const Body = () => {
             <div id="splashContainer" className="splash-container">
                 <div className="jumbotron">
                     <h2>Classic StoryMap Converter</h2>
-                    <p className="lead">Convert Classic StoryMaps (Map Tour, Map Journal, Map Series, Cascade) to ArcGIS StoryMaps</p>
+                    <p className="lead">Convert Classic Esri Story Maps to ArcGIS StoryMaps</p>
                     <div className="loginButtons">
                         <p>
                             <button
@@ -35,37 +35,61 @@ const Body = () => {
                 <div className="row marketing marketing-row">
                     <div className="marketing-col">
                         <h4>Map Tour</h4>
-                        <p>View the underlying JSON for any item in ArcGIS Online or your Portal.</p>
+                        <div className="marketing-img-container">
+                            <img src="assets/storymap-map-tour.png" alt="Map Tour Thumbnail" className="marketing-img" />    
+                        </div>
+                        <p>Presented a sequential, place-based narrative with geotagged photos linked to an interactive map.</p>
                     </div>
                     <div className="marketing-col">
                         <h4>Map Journal</h4>
-                        <p>Modify the URLs for services in web maps and registered applications.</p>
+                        <div className="marketing-img-container">
+                            <img src="assets/storymap-map-journal.png" alt="Map Journal Thumbnail" className="marketing-img" />    
+                        </div>                        
+                        <p>A compelling map-based narrative presented as a set of journal entries.</p>
                     </div>
                     <div className="marketing-col">
                         <h4>Map Series</h4>
-                        <p>Search for and copy content to your account and other accounts.</p>
+                        <div className="marketing-img-container">
+                            <img src="assets/storymap-series-tabbed.png" alt="Map Series - Tabbed Thumbnail" className="marketing-img" />    
+                        </div> 
+                        <p>Presented a series of maps via a set of tabs, bullets or expanding side panel.</p>
                     </div>
                     <div className="marketing-col">
                         <h4>Cascade</h4>
-                        <p>Search for and copy content to your account and other accounts.</p>
+                        <div className="marketing-img-container">
+                            <img src="assets/storymap-cascade.png" alt="Cascade Thumbnail" className="marketing-img" />    
+                        </div>                         
+                        <p>Combined text with maps, images, and multimedia in an engaging, full-screen scrolling experience.</p>
                     </div>
                 </div>
                 <div className="row marketing marketing-row">
                     <div className="marketing-col">
                         <h4>Shortlist</h4>
-                        <p>View the underlying JSON for any item in ArcGIS Online or your Portal.</p>
+                        <div className="marketing-img-container">
+                            <img src="assets/storymap-shortlist.png" alt="Shortlist Thumbnail" className="marketing-img" />    
+                        </div> 
+                        <p>Presented a set of places organized into a set of tabs based on themes.</p>
                     </div>
                     <div className="marketing-col">
                         <h4>Crowdsource</h4>
-                        <p>Modify the URLs for services in web maps and registered applications.</p>
+                        <div className="marketing-img-container">
+                            <img src="assets/storymap-crowdsource.png" alt="Crowdsource Thumbnail" className="marketing-img" />    
+                        </div> 
+                        <p>Displayed crowdsourced photos with captions. The conversion will be view-only.</p>
                     </div>
                     <div className="marketing-col">
                         <h4>Swipe</h4>
-                        <p>Search for and copy content to your account and other accounts.</p>
+                        <div className="marketing-img-container">
+                            <img src="assets/storymap-swipe.png" alt="Swipe Thumbnail" className="marketing-img" />    
+                        </div> 
+                        <p>Displayed either two layers of a single web map (converted to an ArcGIS Instant App) or two separate web maps (convered to an ArcGIS Experience Builder).</p>
                     </div>
                     <div className="marketing-col">
                         <h4>Basic</h4>
-                        <p>Search for and copy content to your account and other accounts.</p>
+                        <div className="marketing-img-container">
+                            <img src="assets/storymap-basic.png" alt="Story Map Basic Thumbnail" className="marketing-img" />    
+                        </div> 
+                        <p>Presented a map via a very simple minimalist user interface. Converted to an ArcGIS Instant App</p>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@ import { useAuth } from "../auth/useAuth";
 import { APP_VERSION } from "../version";
 
 function Header() {
-  const { userInfo, token, signIn, signOut } = useAuth();
+  const { userInfo, portal, token, signIn, signOut, switchAccount } = useAuth();
 
   return (
     <header className="top-nav">
