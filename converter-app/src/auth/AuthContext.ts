@@ -5,6 +5,8 @@ export type UserInfo = {
   username: string;
   role: string;
   userType: string;
+  fullName?: string;
+  thumbnailUrl?: string;
 };
 
 export type AuthContextType = {
@@ -23,4 +25,6 @@ export const AuthContext = createContext<AuthContextType>({
   signIn: () => {},
   signOut: () => {},
   loading: false,
+  userInfo: null,
+  setUserInfo: () => {},
 });

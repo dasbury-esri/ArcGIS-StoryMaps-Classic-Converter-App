@@ -3,6 +3,7 @@ import { UserSession } from "@esri/arcgis-rest-auth";
 export const clientId = import.meta.env.VITE_CLIENT_ID;
 export const redirectUri = import.meta.env.VITE_REDIRECT_URI;
 export const SESSION_KEY = "arcgis_session";
+export const USER_INFO_KEY = "arcgis_user_info";
 
 export function saveSession(session: UserSession) {
   try {
@@ -23,6 +24,25 @@ export function restoreSession(): UserSession | null {
     }
   }
   return null;
+}
+
+export function saveUserInfo(info: unknown) {
+  try {
+    sessionStorage.setItem(USER_INFO_KEY, JSON.stringify(info));
+  } catch (error) {
+    console.warn("Could not persist userInfo", error);
+  }
+}
+
+export function restoreUserInfo<T = any>(): T | null {
+  const raw = sessionStorage.getItem(USER_INFO_KEY);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as T;
+  } catch {
+    sessionStorage.removeItem(USER_INFO_KEY);
+    return null;
+  }
 }
 
 export function getTokenFromHash(): { token: string | null; expires: number | null } {
