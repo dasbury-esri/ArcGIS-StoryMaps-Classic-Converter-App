@@ -210,6 +210,31 @@
   min-width: 200px;
 }
 
+/* Disabled (inactive) tile appearance */
+.marketing-col.disabled {
+  position: relative;
+  opacity: 0.55;
+  filter: grayscale(1);
+  pointer-events: none; /* prevent interaction */
+}
+.marketing-col.disabled .marketing-img {
+  filter: grayscale(1);
+}
+.disabled-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.65);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #1D3955;
+  mix-blend-mode: normal;
+}
+
 /* Responsive thumbnail container & image scaling */
 .marketing-img-container {
   width: 100%;

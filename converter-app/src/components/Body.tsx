@@ -1,7 +1,90 @@
 
 import React, { useState }  from "react";
 import { useAuth } from "../auth/useAuth";
+import mapTourImg from "../assets/classic-apps/images/storymap-map-tour.png";
+import mapJournalImg from "../assets/classic-apps/images/storymap-map-journal.png";
+import mapSeriesTabbedImg from "../assets/classic-apps/images/storymap-series-tabbed.png";
+import cascadeImg from "../assets/classic-apps/images/storymap-cascade.png";
+import shortlistImg from "../assets/classic-apps/images/storymap-shortlist.png";
+import crowdsourceImg from "../assets/classic-apps/images/storymap-crowdsource.png";
+import swipeImg from "../assets/classic-apps/images/storymap-swipe.png";
+import basicImg from "../assets/classic-apps/images/storymap-basic.png";
 
+interface TileConfig {
+    key: string;
+    title: string;
+    description: string;
+    image: string;
+    status: 'active' | 'disabled';
+    alt: string;
+}
+
+const tiles: TileConfig[] = [
+    {
+        key: 'mapTour',
+        title: 'Map Tour',
+        description: 'Presented a sequential, place-based narrative with geotagged photos linked to an interactive map.',
+        image: mapTourImg,
+        status: 'disabled',
+        alt: 'Map Tour Thumbnail'
+    },
+    {
+        key: 'mapJournal',
+        title: 'Map Journal',
+        description: 'A compelling map-based narrative presented as a set of journal entries.',
+        image: mapJournalImg,
+        status: 'active',
+        alt: 'Map Journal Thumbnail'
+    },
+    {
+        key: 'mapSeries',
+        title: 'Map Series',
+        description: 'Presented a series of maps via a set of tabs, bullets or expanding side panel.',
+        image: mapSeriesTabbedImg,
+        status: 'disabled',
+        alt: 'Map Series - Tabbed Thumbnail'
+    },
+    {
+        key: 'cascade',
+        title: 'Cascade',
+        description: 'Combined text with maps, images, and multimedia in an engaging, full-screen scrolling experience.',
+        image: cascadeImg,
+        status: 'disabled',
+        alt: 'Cascade Thumbnail'
+    },
+    {
+        key: 'shortlist',
+        title: 'Shortlist',
+        description: 'Presented a set of places organized into a set of tabs based on themes.',
+        image: shortlistImg,
+        status: 'disabled',
+        alt: 'Shortlist Thumbnail'
+    },
+    {
+        key: 'crowdsource',
+        title: 'Crowdsource',
+        description: 'Displayed crowdsourced photos with captions. The conversion will be view-only.',
+        image: crowdsourceImg,
+        status: 'disabled',
+        alt: 'Crowdsource Thumbnail'
+    },
+    {
+        key: 'swipe',
+        title: 'Swipe',
+        description: 'Displayed two layers or two maps side by side for comparison.',
+        image: swipeImg,
+        status: 'disabled',
+        alt: 'Swipe Thumbnail'
+    },
+    {
+        key: 'basic',
+        title: 'Basic',
+        description: 'Presented a map via a minimalist interface. Converted to an ArcGIS Instant App.',
+        image: basicImg,
+        status: 'disabled',
+        alt: 'Story Map Basic Thumbnail'
+    }
+];
 
 const Body = () => {
     const { signIn } = useAuth();
@@ -33,64 +116,23 @@ const Body = () => {
                     </div>
                 </div>
                 <div className="row marketing marketing-row">
-                    <div className="marketing-col">
-                        <h4>Map Tour</h4>
-                        <div className="marketing-img-container">
-                            <img src="assets/storymap-map-tour.png" alt="Map Tour Thumbnail" className="marketing-img" />    
-                        </div>
-                        <p>Presented a sequential, place-based narrative with geotagged photos linked to an interactive map.</p>
-                    </div>
-                    <div className="marketing-col">
-                        <h4>Map Journal</h4>
-                        <div className="marketing-img-container">
-                            <img src="assets/storymap-map-journal.png" alt="Map Journal Thumbnail" className="marketing-img" />    
-                        </div>                        
-                        <p>A compelling map-based narrative presented as a set of journal entries.</p>
-                    </div>
-                    <div className="marketing-col">
-                        <h4>Map Series</h4>
-                        <div className="marketing-img-container">
-                            <img src="assets/storymap-series-tabbed.png" alt="Map Series - Tabbed Thumbnail" className="marketing-img" />    
-                        </div> 
-                        <p>Presented a series of maps via a set of tabs, bullets or expanding side panel.</p>
-                    </div>
-                    <div className="marketing-col">
-                        <h4>Cascade</h4>
-                        <div className="marketing-img-container">
-                            <img src="assets/storymap-cascade.png" alt="Cascade Thumbnail" className="marketing-img" />    
-                        </div>                         
-                        <p>Combined text with maps, images, and multimedia in an engaging, full-screen scrolling experience.</p>
-                    </div>
-                </div>
-                <div className="row marketing marketing-row">
-                    <div className="marketing-col">
-                        <h4>Shortlist</h4>
-                        <div className="marketing-img-container">
-                            <img src="assets/storymap-shortlist.png" alt="Shortlist Thumbnail" className="marketing-img" />    
-                        </div> 
-                        <p>Presented a set of places organized into a set of tabs based on themes.</p>
-                    </div>
-                    <div className="marketing-col">
-                        <h4>Crowdsource</h4>
-                        <div className="marketing-img-container">
-                            <img src="assets/storymap-crowdsource.png" alt="Crowdsource Thumbnail" className="marketing-img" />    
-                        </div> 
-                        <p>Displayed crowdsourced photos with captions. The conversion will be view-only.</p>
-                    </div>
-                    <div className="marketing-col">
-                        <h4>Swipe</h4>
-                        <div className="marketing-img-container">
-                            <img src="assets/storymap-swipe.png" alt="Swipe Thumbnail" className="marketing-img" />    
-                        </div> 
-                        <p>Displayed either two layers of a single web map (converted to an ArcGIS Instant App) or two separate web maps (convered to an ArcGIS Experience Builder).</p>
-                    </div>
-                    <div className="marketing-col">
-                        <h4>Basic</h4>
-                        <div className="marketing-img-container">
-                            <img src="assets/storymap-basic.png" alt="Story Map Basic Thumbnail" className="marketing-img" />    
-                        </div> 
-                        <p>Presented a map via a very simple minimalist user interface. Converted to an ArcGIS Instant App</p>
-                    </div>
+                    {tiles.map(tile => {
+                        const disabled = tile.status !== 'active';
+                        return (
+                            <div
+                                key={tile.key}
+                                className={`marketing-col${disabled ? ' disabled' : ''}`}
+                                aria-disabled={disabled ? 'true' : 'false'}
+                            >
+                                <h4>{tile.title}</h4>
+                                <div className="marketing-img-container">
+                                    <img src={tile.image} alt={tile.alt} className="marketing-img" />
+                                    {disabled && <div className="disabled-overlay">Coming Soon</div>}
+                                </div>
+                                <p>{tile.description}</p>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
             {showPortalModal && (
@@ -207,7 +249,7 @@ const Body = () => {
                 </div>
             )}
         </>
-    );
+  );
 };
 
 export default Body
