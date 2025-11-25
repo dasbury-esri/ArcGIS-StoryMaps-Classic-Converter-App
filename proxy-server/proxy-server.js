@@ -3,6 +3,9 @@
 import express from 'express'; // npm install express
 import fetch from 'node-fetch'; // npm install node-fetch@2
 import sizeOf from 'image-size' // npm install image-size
+import { execFile } from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 const app = express();
 
 // Add this middleware before your routes
@@ -63,6 +66,37 @@ app.get('/proxy-feature', async (req, res) => {
     response.body.pipe(res);
   } catch (err) {
     res.status(500).send('Error fetching feature service');
+  }
+});
+
+// Convert a classic Map Journal to native StoryMaps JSON
+// GET /convert/mapjournal?itemId=...&token=...
+app.get('/convert/mapjournal', async (req, res) => {
+  const itemId = req.query.itemId;
+  const token = req.query.token;
+  if (!itemId || typeof itemId !== 'string') {
+    return res.status(400).json({ error: 'Missing itemId parameter' });
+  }
+  try {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const rootDir = path.resolve(__dirname, '..');
+    const tsxBin = path.resolve(rootDir, 'converter-app/node_modules/.bin/tsx');
+    const scriptPath = path.resolve(rootDir, 'converter-app/scripts/convert-mapjournal.ts');
+    const args = [scriptPath, itemId];
+    if (typeof token === 'string' && token) args.push(token);
+    execFile(tsxBin, args, { cwd: rootDir }, (err, stdout, stderr) => {
+      if (err) {
+        console.error('Conversion error:', err, stderr);
+        return res.status(500).json({ error: 'Conversion failed' });
+      }
+      res.set('Access-Control-Allow-Origin', '*');
+      res.set('Content-Type', 'application/json');
+      res.send(stdout);
+    });
+  } catch (e) {
+    console.error('Unhandled conversion error:', e);
+    res.status(500).json({ error: 'Unhandled conversion error' });
   }
 });
 

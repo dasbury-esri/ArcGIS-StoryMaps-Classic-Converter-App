@@ -421,6 +421,19 @@ export class StoryMapJSONBuilder {
     return id;
   }
 
+  /** Create swipe node referencing two content node IDs (usually webmap nodes). */
+  createSwipeNode(contentAId: string, contentBId: string, viewPlacement: 'extent' | 'center' = 'extent'): string {
+    const id = this.generateNodeId();
+    this.json.nodes[id] = {
+      type: 'swipe',
+      data: {
+        contents: { '0': contentAId, '1': contentBId },
+        viewPlacement
+      }
+    } as unknown as StoryMapNode;
+    return id;
+  }
+
   /** Add a new slide (immersive-slide) to an existing sidecar immersive node. */
   addSlideToSidecar(sidecarId: string, narrativeContentNodeIds: string[], mediaNodeId?: string): { slideId: string; narrativeId: string } {
     const sidecar = this.json.nodes[sidecarId];

@@ -1,0 +1,45 @@
+{
+    "source": "7dca95087c8941ce9feef3776a1354a6",
+    "folderId": "dd4b47a3e0534b59ad1d8045368c1164",
+    "values": {
+        "webmap": "60a6d8d2ab754250918e7fc21d7ac999",
+        "layout": "spyglass",
+        "webmaps": [
+            "60a6d8d2ab754250918e7fc21d7ac999"
+        ],
+        "dataModel": "TWO_LAYERS",
+        "layers": [
+            "New_York_City_1836_6636"
+        ],
+        "legend": false,
+        "description": false,
+        "popupColors": [
+            "6cb7ff",
+            "ff5858"
+        ],
+        "popupTitles": [
+            "",
+            ""
+        ],
+        "template": "Swipe",
+        "templateVersion": "1.0.1",
+        "subtitle": "New York City in 1836, as depicted on a map from the David Rumsey collection, compared to a modern satellite image of the city.",
+        "title": "Spyglass on the Past: New York City 1836 and Today",
+        "series": false,
+        "popup": false,
+        "colors": "#444;#FFF",
+        "headerLinkText": "A Story Map",
+        "headerLinkURL": "https://storymaps.arcgis.com",
+        "logoURL": null,
+        "logoTarget": "",
+        "social": {
+            "facebook": true,
+            "twitter": true,
+            "bitly": true
+        },
+        "templateCreation": "1.1-beta7",
+        "templateLastEdit": "1.14.0",
+        "locationSearch": false,
+        "geolocator": false
+    }
+}

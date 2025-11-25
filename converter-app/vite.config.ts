@@ -8,6 +8,12 @@ export default defineConfig({
     port: 5173,
     open: true,
   },
+  resolve: {
+    alias: {
+      // Prevent client bundle from importing Node APIs; map to browser shim
+      'node:child_process': '/src/shims/child_process.ts'
+    }
+  },
   define: {
     // Provide global alias for libraries that still reference `global`
     global: 'globalThis'

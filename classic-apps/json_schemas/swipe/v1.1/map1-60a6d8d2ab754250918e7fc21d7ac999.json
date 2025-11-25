@@ -1,0 +1,24 @@
+{
+    "operationalLayers": [
+        {
+            "url": "http://tiles.arcgis.com/tiles/IEuSomXfi6iB7a25/arcgis/rest/services/New_York_City_1836/MapServer",
+            "id": "New_York_City_1836_6636",
+            "visibility": true,
+            "opacity": 1,
+            "title": "New York City 1836",
+            "itemId": "0fcf0bd879b84a01bd596aee72111e49"
+        }
+    ],
+    "baseMap": {
+        "baseMapLayers": [
+            {
+                "id": "World_Imagery_6537",
+                "opacity": 1,
+                "visibility": true,
+                "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"
+            }
+        ],
+        "title": "Imagery"
+    },
+    "version": "1.9"
+}

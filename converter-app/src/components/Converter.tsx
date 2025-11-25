@@ -7,6 +7,9 @@ import { useState, useEffect, useRef, useCallback } from "react";
 // Refactor pipeline imports (feature-flagged)
 import { useRefactorFlagReactive } from "../refactor/util/featureFlag";
 import { convertClassicToJsonRefactored } from "../refactor";
+import { convertClassicViaBackend } from "../api/conversion-service";
+import { MediaTransferService } from "../refactor/media/MediaTransferService";
+import { ResourceMapper } from "../refactor/media/ResourceMapper";
 import { detectClassicTemplate } from "../refactor/util/detectTemplate";
 import { useAuth } from "../auth/useAuth";
 import {
@@ -182,54 +185,132 @@ export default function Converter() {
 
         let newStorymapJson: unknown;
         if (useRefactor) {
-          const uploader = async (url: string, storyId: string, user: string, tk: string) => {
-            if (cancelRequestedRef.current) throw new Error("Conversion cancelled by user intervention");
-            const res = await transferImage(url, storyId, user, tk);
-            return { originalUrl: url, resourceName: res.resourceName, transferred: !!res.isTransferred };
-          };
-          // Progress callback will compute count suffix dynamically per event
-          const pipelineResult = await convertClassicToJsonRefactored({
-            classicJson: classicData,
-            storyId: targetStoryId,
-            classicItemId,
-            username,
-            token,
-            themeId: "summit",
-            progress: (e) => {
-              if (cancelRequestedRef.current) return; // suppress updates post-cancel
-              const alreadyHasCount = /\(\s*\d+\s*\/\s*\d+\s*\)\s*$/.test(e.message);
-              const msg = e.total && !alreadyHasCount
-                ? `${e.message} (${e.current}/${e.total})`
-                : e.message;
-              switch (e.stage) {
-                case 'media':
+          // First, attempt server-side conversion so swipe embeds are inlined
+          try {
+            setMessage("Requesting server-side conversion...");
+            const serverResult = await convertClassicViaBackend(classicItemId, token);
+            const serverJson = serverResult?.storymapJson as unknown as Record<string, unknown>;
+            if (serverJson && serverJson.nodes) {
+              // Transfer media (images) client-side, then rewrite resources in returned JSON
+              const uploader = async (url: string, storyId: string, user: string, tk: string) => {
+                if (cancelRequestedRef.current) throw new Error("Conversion cancelled by user intervention");
+                const res = await transferImage(url, storyId, user, tk);
+                return { originalUrl: url, resourceName: res.resourceName, transferred: !!res.isTransferred };
+              };
+              const mapping = await MediaTransferService.transferBatch({
+                urls: serverResult.mediaUrls || [],
+                storyId: targetStoryId,
+                username,
+                token,
+                progress: (e) => {
+                  if (cancelRequestedRef.current) return;
                   setStatus('transferring');
-                  setMessage(msg);
-                  break;
-                case 'convert':
-                  setStatus('converting');
-                  setMessage(msg);
-                  break;
-                case 'finalize':
-                  setStatus('updating');
-                  setMessage(msg);
-                  break;
-                case 'error':
-                  setStatus('error');
-                  setMessage(msg);
-                  break;
-                case 'done':
-                  setStatus('success');
-                  setMessage(msg);
-                  break;
-                default:
-                  setMessage(msg);
-              }
-            },
-            isCancelled: () => cancelRequestedRef.current,
-            uploader
-          });
-          newStorymapJson = pipelineResult.storymapJson;
+                  setMessage(e.message);
+                },
+                uploader,
+                isCancelled: () => cancelRequestedRef.current
+              });
+              newStorymapJson = ResourceMapper.apply(serverJson, mapping);
+            } else {
+              // Fallback: run client-side refactor pipeline
+              const uploader = async (url: string, storyId: string, user: string, tk: string) => {
+                if (cancelRequestedRef.current) throw new Error("Conversion cancelled by user intervention");
+                const res = await transferImage(url, storyId, user, tk);
+                return { originalUrl: url, resourceName: res.resourceName, transferred: !!res.isTransferred };
+              };
+              const pipelineResult = await convertClassicToJsonRefactored({
+                classicJson: classicData,
+                storyId: targetStoryId,
+                classicItemId,
+                username,
+                token,
+                themeId: "summit",
+                progress: (e) => {
+                  if (cancelRequestedRef.current) return; // suppress updates post-cancel
+                  const alreadyHasCount = /\(\s*\d+\s*\/\s*\d+\s*\)\s*$/.test(e.message);
+                  const msg = e.total && !alreadyHasCount
+                    ? `${e.message} (${e.current}/${e.total})`
+                    : e.message;
+                  switch (e.stage) {
+                    case 'media':
+                      setStatus('transferring');
+                      setMessage(msg);
+                      break;
+                    case 'convert':
+                      setStatus('converting');
+                      setMessage(msg);
+                      break;
+                    case 'finalize':
+                      setStatus('updating');
+                      setMessage(msg);
+                      break;
+                    case 'error':
+                      setStatus('error');
+                      setMessage(msg);
+                      break;
+                    case 'done':
+                      setStatus('success');
+                      setMessage(msg);
+                      break;
+                    default:
+                      setMessage(msg);
+                  }
+                },
+                isCancelled: () => cancelRequestedRef.current,
+                uploader
+              });
+              newStorymapJson = pipelineResult.storymapJson;
+            }
+          } catch {
+            // On error, fallback to client-side refactor pipeline
+            const uploader = async (url: string, storyId: string, user: string, tk: string) => {
+              if (cancelRequestedRef.current) throw new Error("Conversion cancelled by user intervention");
+              const res = await transferImage(url, storyId, user, tk);
+              return { originalUrl: url, resourceName: res.resourceName, transferred: !!res.isTransferred };
+            };
+            const pipelineResult = await convertClassicToJsonRefactored({
+              classicJson: classicData,
+              storyId: targetStoryId,
+              classicItemId,
+              username,
+              token,
+              themeId: "summit",
+              progress: (e) => {
+                if (cancelRequestedRef.current) return;
+                const alreadyHasCount = /\(\s*\d+\s*\/\s*\d+\s*\)\s*$/.test(e.message);
+                const msg = e.total && !alreadyHasCount
+                  ? `${e.message} (${e.current}/${e.total})`
+                  : e.message;
+                switch (e.stage) {
+                  case 'media':
+                    setStatus('transferring');
+                    setMessage(msg);
+                    break;
+                  case 'convert':
+                    setStatus('converting');
+                    setMessage(msg);
+                    break;
+                  case 'finalize':
+                    setStatus('updating');
+                    setMessage(msg);
+                    break;
+                  case 'error':
+                    setStatus('error');
+                    setMessage(msg);
+                    break;
+                  case 'done':
+                    setStatus('success');
+                    setMessage(msg);
+                    break;
+                  default:
+                    setMessage(msg);
+                }
+              },
+              isCancelled: () => cancelRequestedRef.current,
+              uploader
+            });
+            newStorymapJson = pipelineResult.storymapJson;
+          }
         } else {
           newStorymapJson = await convertClassicToJson(
             classicData,

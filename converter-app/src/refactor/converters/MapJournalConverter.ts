@@ -3,6 +3,8 @@ import { determineScaleZoomLevel } from '../../converter/utils.ts';
 import type { ClassicValues, ClassicSection } from '../types/classic.ts';
 import type { ConverterResult, StoryMapJSON } from '../types/core.ts';
 import { createThemeWithDecisions } from '../theme/themeMapper.ts';
+import { SwipeConverter } from './SwipeConverter.ts';
+import { execSync } from 'node:child_process';
 import { StoryMapJSONBuilder } from '../schema/StoryMapJSONBuilder.ts';
 import type { BaseConverterOptions } from './BaseConverter.ts';
 
@@ -115,26 +117,7 @@ export class MapJournalConverter extends BaseConverter {
         type ClassicExtent = { xmin: number; ymin: number; xmax: number; ymax: number; spatialReference?: { wkid?: number; latestWkid?: number; wkt?: string } };
         interface ClassicWebMapExtras { overview?: { enable?: boolean; openByDefault?: boolean }; legend?: { enable?: boolean; openByDefault?: boolean }; geocoder?: { enable?: boolean }; popup?: unknown; }
         const extras = m.webmap as ClassicWebMapExtras;
-        // Normalize extent/center SR to Web Mercator if provided in WGS84
-        const normalizeExtent = (ex: ClassicExtent | undefined): ClassicExtent | undefined => {
-          if (!ex) return ex;
-          const sr = ex.spatialReference?.wkid || ex.spatialReference?.wkt || ex.spatialReference?.latestWkid;
-          const is4326 = sr === 4326 || sr === 'WGS84' || sr === 'WGS 84';
-          const toWebMercatorX = (lon: number) => lon * 20037508.34 / 180;
-          const toWebMercatorY = (lat: number) => {
-            const y = Math.log(Math.tan((90 + lat) * Math.PI / 360)) / (Math.PI / 180);
-            return y * 20037508.34 / 180;
-          };
-          if (is4326 && typeof ex.xmin === 'number') {
-            const xmin = toWebMercatorX(ex.xmin);
-            const xmax = toWebMercatorX(ex.xmax);
-            const ymin = toWebMercatorY(ex.ymin);
-            const ymax = toWebMercatorY(ex.ymax);
-            return { xmin, ymin, xmax, ymax, spatialReference: { wkid: 102100 } };
-          }
-          return ex;
-        };
-        const normalizedExtent = m.webmap.extent ? normalizeExtent(m.webmap.extent as ClassicExtent) : undefined;
+        const normalizedExtent = m.webmap.extent ? this.normalizeExtent(m.webmap.extent as ClassicExtent) : undefined;
         // Compute viewpoint/zoom/scale from extent
         interface Viewpoint { targetGeometry?: unknown; scale?: number }
         let viewpoint: Viewpoint | undefined;
@@ -196,7 +179,12 @@ export class MapJournalConverter extends BaseConverter {
           this.media.add(m.video.url);
         }
       } else if (m?.webpage?.url) {
-        mediaNodeId = this.builder.createEmbedNode(m.webpage.url, m.webpage.caption, m.webpage.title, m.webpage.description, m.webpage.altText);
+        const swipeNodeId = this.tryBuildSwipeNodeFromUrl(m.webpage.url);
+        if (swipeNodeId) {
+          mediaNodeId = swipeNodeId;
+        } else {
+          mediaNodeId = this.builder.createEmbedNode(m.webpage.url, m.webpage.caption, m.webpage.title, m.webpage.description, m.webpage.altText);
+        }
       }
 
       const { slideId } = this.builder.addSlideToSidecar(sidecarId, narrativeIds, mediaNodeId);
@@ -216,7 +204,7 @@ export class MapJournalConverter extends BaseConverter {
               let viewpoint2: Viewpoint2 | undefined;
               let zoom2: number | undefined;
               // Normalize extent SR for action media as well
-              const normalizedExtent2 = media.webmap.extent ? normalizeExtent(media.webmap.extent as ClassicExtent) : undefined;
+              const normalizedExtent2 = media.webmap.extent ? this.normalizeExtent(media.webmap.extent as ClassicExtent) : undefined;
               // Extract extras for action media
               interface ClassicWebMapExtras2 { overview?: { enable?: boolean; openByDefault?: boolean }; legend?: { enable?: boolean; openByDefault?: boolean } }
               const extras2 = media.webmap as ClassicWebMapExtras2;
@@ -287,7 +275,12 @@ export class MapJournalConverter extends BaseConverter {
                 this.media.add(media.video.url);
               }
             } else if (media.webpage?.url) {
-              actMediaNode = this.builder.createEmbedNode(media.webpage.url, media.webpage.caption, media.webpage.title, media.webpage.description, media.webpage.altText);
+              const swipeNodeId2 = this.tryBuildSwipeNodeFromUrl(media.webpage.url);
+              if (swipeNodeId2) {
+                actMediaNode = swipeNodeId2;
+              } else {
+                actMediaNode = this.builder.createEmbedNode(media.webpage.url, media.webpage.caption, media.webpage.title, media.webpage.description, media.webpage.altText);
+              }
             }
           if (actMediaNode) {
             // Attach dependents reference via builder mutator (extend StoryMapNode with dependents bag)
@@ -430,6 +423,29 @@ export class MapJournalConverter extends BaseConverter {
   static convert(opts: BaseConverterOptions): ConverterResult {
     const converter = new MapJournalConverter(opts);
     return converter.convert();
+  }
+
+  // Normalizes an extent to Web Mercator (wkid 102100) if provided in WGS84 (4326).
+  // Returns original extent if already projected or if required fields are missing.
+  private normalizeExtent(ex: { xmin: number; ymin: number; xmax: number; ymax: number; spatialReference?: { wkid?: number; latestWkid?: number; wkt?: string } } | undefined) {
+    if (!ex) return ex;
+    const srVal = ex.spatialReference?.wkid || ex.spatialReference?.latestWkid || ex.spatialReference?.wkt;
+    const isWgs84 = srVal === 4326 || srVal === 'WGS84' || srVal === 'WGS 84';
+    if (!isWgs84) return ex;
+    // Guard numeric
+    if ([ex.xmin, ex.ymin, ex.xmax, ex.ymax].some(v => typeof v !== 'number' || !isFinite(v))) return ex;
+    const toX = (lon: number) => lon * 20037508.34 / 180;
+    const toY = (lat: number) => {
+      const y = Math.log(Math.tan((90 + lat) * Math.PI / 360)) / (Math.PI / 180);
+      return y * 20037508.34 / 180;
+    };
+    return {
+      xmin: toX(ex.xmin),
+      ymin: toY(ex.ymin),
+      xmax: toX(ex.xmax),
+      ymax: toY(ex.ymax),
+      spatialReference: { wkid: 102100 }
+    };
   }
 
   private extractImageEntries(html: string): Array<{ src: string; alt?: string; caption?: string }> {
@@ -746,6 +762,20 @@ export class MapJournalConverter extends BaseConverter {
     if (el.tagName === 'IFRAME') {
       const src = el.getAttribute('src');
       if (src) {
+        const appId = this.parseSwipeAppId(src);
+        if (appId && typeof window === 'undefined') {
+          const classic = this.fetchClassicSwipeDataSync(appId);
+          if (classic && classic.values) {
+            const layout = this.parseSwipeLayoutFromUrl(src) || (String(classic.values.layout || '').toLowerCase().includes('spyglass') ? 'spyglass' : 'swipe');
+            try {
+              const swipeNodeId = SwipeConverter.buildInlineSwipeBlock(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
+              narrativeIds.push(swipeNodeId);
+              return;
+            } catch {
+              // fall through to embed on failure
+            }
+          }
+        }
         const providerInfo = this.detectVideoProvider(src);
         if (providerInfo.provider !== 'unknown') {
           narrativeIds.push(this.builder.createVideoEmbedNode(src, providerInfo.provider, providerInfo.id));
@@ -799,19 +829,23 @@ export class MapJournalConverter extends BaseConverter {
         }
         continue;
       }
-      if (tagStart.startsWith('<img')) {
-        const src = /src=["']([^"'>]+)["']/i.exec(fragment)?.[1];
-        if (src) {
-          const alt = /alt=["']([^"'>]*)["']/i.exec(fragment)?.[1];
-          const resId = this.builder.addImageResource(src);
-          narrativeIds.push(this.builder.createImageNode(resId, undefined, alt, 'standard'));
-          this.media.add(src);
-        }
-        continue;
-      }
       if (tagStart.startsWith('<iframe')) {
-        const src = /src=["']([^"'>]+)["']/i.exec(fragment)?.[1];
+        const src = /src=["']([^"'>]+)["'][^>]*>/i.exec(fragment)?.[1];
         if (src) {
+          const appId = this.parseSwipeAppId(src);
+          if (appId && typeof window === 'undefined') {
+            const classic = this.fetchClassicSwipeDataSync(appId);
+            if (classic && classic.values) {
+              const layout = this.parseSwipeLayoutFromUrl(src) || (String(classic.values.layout || '').toLowerCase().includes('spyglass') ? 'spyglass' : 'swipe');
+              try {
+                const swipeNodeId = SwipeConverter.buildInlineSwipeBlock(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
+                narrativeIds.push(swipeNodeId);
+                continue;
+              } catch {
+                // fall through
+              }
+            }
+          }
           const providerInfo = this.detectVideoProvider(src);
           if (providerInfo.provider !== 'unknown') {
             narrativeIds.push(this.builder.createVideoEmbedNode(src, providerInfo.provider, providerInfo.id));
@@ -863,7 +897,37 @@ export class MapJournalConverter extends BaseConverter {
             }
           }
         }
-        const segments = working.split(/(%%IMG:[^%]+%%|%%ACTION_BTN:[^%]+%%|%%NAV_BTN:[^%]+%%)/);
+        // Iframes (detect embedded classic Swipe and replace with swipe block when possible)
+        const iframeRegex = /<iframe[^>]*src=["']([^"'>]+)["'][^>]*>[\s\S]*?<\/iframe>/gi;
+        let ifm: RegExpExecArray | null;
+        while ((ifm = iframeRegex.exec(inner)) !== null) {
+          const full = ifm[0];
+          const src = ifm[1];
+          let replacementId: string | undefined;
+          const appId = this.parseSwipeAppId(src);
+          if (appId && typeof window === 'undefined') {
+            const classic = this.fetchClassicSwipeDataSync(appId);
+            if (classic && classic.values) {
+              const layout = this.parseSwipeLayoutFromUrl(src) || (String(classic.values.layout || '').toLowerCase().includes('spyglass') ? 'spyglass' : 'swipe');
+              try {
+                replacementId = SwipeConverter.buildInlineSwipeBlock(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
+              } catch {
+                // fall through
+              }
+            }
+          }
+          if (!replacementId) {
+            const providerInfo = this.detectVideoProvider(src);
+            if (providerInfo.provider !== 'unknown') {
+              replacementId = this.builder.createVideoEmbedNode(src, providerInfo.provider, providerInfo.id);
+              this.videoEmbedCount++;
+            } else {
+              replacementId = this.builder.createEmbedNode(src);
+            }
+          }
+          working = working.replace(full, `%%IFRAME_NODE:${replacementId}%%`);
+        }
+        const segments = working.split(/(%%IMG:[^%]+%%|%%ACTION_BTN:[^%]+%%|%%NAV_BTN:[^%]+%%|%%IFRAME_NODE:[^%]+%%)/);
         for (const seg of segments) {
           if (!seg) continue;
           if (/^%%IMG:/.test(seg)) {
@@ -872,6 +936,8 @@ export class MapJournalConverter extends BaseConverter {
             narrativeIds.push(seg.replace(/^%%ACTION_BTN:/,'').replace(/%%$/,''));
           } else if (/^%%NAV_BTN:/.test(seg)) {
             narrativeIds.push(seg.replace(/^%%NAV_BTN:/,'').replace(/%%$/,''));
+          } else if (/^%%IFRAME_NODE:/.test(seg)) {
+            narrativeIds.push(seg.replace(/^%%IFRAME_NODE:/,'').replace(/%%$/,''));
           } else {
             if (!this.isNonEmptyHtmlSegment(seg)) continue; // skip blank/whitespace-only segments
             const processedSeg = this.processHtmlColorsPreserveHtml(seg);
@@ -924,5 +990,59 @@ export class MapJournalConverter extends BaseConverter {
       return { provider: 'vimeo', id: vimeoMatch[1] };
     }
     return { provider: 'unknown' };
+  }
+
+  // --- Swipe embed helpers ---
+  private parseSwipeAppId(url: string): string | undefined {
+    try {
+      const u = new URL(url, 'https://example.com');
+      const appid = u.searchParams.get('appid') || u.searchParams.get('appId');
+      return appid || undefined;
+    } catch {
+      const m = /[?&#](?:appid|appId)=([a-f0-9]{32})/i.exec(url);
+      return m?.[1];
+    }
+  }
+
+  private parseSwipeLayoutFromUrl(url: string): 'swipe' | 'spyglass' | undefined {
+    try {
+      const u = new URL(url, 'https://example.com');
+      const layout = (u.searchParams.get('layout') || '').toLowerCase();
+      if (layout.includes('spyglass')) return 'spyglass';
+      if (layout.includes('swipe')) return 'swipe';
+      return undefined;
+    } catch {
+      return undefined;
+    }
+  }
+
+  private fetchClassicSwipeDataSync(itemId: string): { values?: import('../types/classic.ts').ClassicValues } | undefined {
+    try {
+      const base = `https://www.arcgis.com/sharing/rest/content/items/${itemId}/data?f=json`;
+      const url = this.token ? `${base}&token=${encodeURIComponent(this.token)}` : base;
+      const out = execSync(`curl -sL '${url}'`, { encoding: 'utf-8' });
+      const json = JSON.parse(out);
+      return json;
+    } catch {
+      return undefined;
+    }
+  }
+
+  // Attempts to build a native swipe node from a classic swipe embed URL.
+  // Returns the created node id on success; otherwise undefined to allow fallback to embed.
+  private tryBuildSwipeNodeFromUrl(url: string): string | undefined {
+    const appId = this.parseSwipeAppId(url);
+    if (!appId) return undefined;
+    // Only perform sync fetch/inlining in Node
+    if (typeof window !== 'undefined') return undefined;
+    const classic = this.fetchClassicSwipeDataSync(appId);
+    if (!classic || !classic.values) return undefined;
+    const layoutHint = this.parseSwipeLayoutFromUrl(url);
+    const layout = layoutHint || (String(classic.values.layout || '').toLowerCase().includes('spyglass') ? 'spyglass' : 'swipe');
+    try {
+      return SwipeConverter.buildInlineSwipeBlock(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
+    } catch {
+      return undefined;
+    }
   }
 }

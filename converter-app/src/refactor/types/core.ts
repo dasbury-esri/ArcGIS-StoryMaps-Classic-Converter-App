@@ -323,6 +323,15 @@ export interface StoryMapTourNode {
   };
 }
 
+// Swipe block node (ArcGIS StoryMaps)
+export interface StoryMapSwipeNode {
+  type: 'swipe';
+  data: {
+    contents: { '0': string; '1': string };
+    viewPlacement: 'extent' | 'center';
+  };
+}
+
 export type StoryMapNode =
   | StoryMapTextNode
   | StoryMapImageNode
@@ -344,7 +353,8 @@ export type StoryMapNode =
   | StoryMapImmersiveNarrativePanelNode
   | StoryMapTourMapNode
   | StoryMapCarouselNode
-  | StoryMapTourNode;
+  | StoryMapTourNode
+  | StoryMapSwipeNode;
 
 export interface StoryMapAction {
   origin: string; // action-button node id

@@ -1,0 +1,47 @@
+{
+    "source": "7dca95087c8941ce9feef3776a1354a6",
+    "folderId": "dd4b47a3e0534b59ad1d8045368c1164",
+    "values": {
+        "webmap": "8ea34ba9a4f843e08a468595d8d91188",
+        "layout": "spyglass",
+        "webmaps": [
+            "8ea34ba9a4f843e08a468595d8d91188",
+            "ef5920f160bd4239bdeb1348de3a3156"
+        ],
+        "dataModel": "TWO_WEBMAPS",
+        "layers": [
+            null
+        ],
+        "legend": false,
+        "description": true,
+        "series": false,
+        "popupColors": [
+            "6cb7ff",
+            "ff5858"
+        ],
+        "popupTitles": [
+            "",
+            ""
+        ],
+        "sidePanelDescription": "Within the spyglass is a world map drawn in the Mercator projection and published in 1812 by John Pinkerton.&nbsp;<div><br></div><div>The map was engraved on two sheets and colored by hand. It was part of a \"modern atlas, from the latest and best authorities, exhibiting the various divisions of the world, with its chief empires, kingdoms and states\".&nbsp;<span style=\"font-size: inherit; line-height: inherit;\">Zoom in to view detail including explorers' routes. Lack of detail in Africa and Australia reflects the poor state of knowledge by Europeans of the time.</span></div><div><span style=\"font-size: inherit; line-height: inherit;\"><br></span></div><div><span style=\"font-size: inherit; line-height: inherit;\">The modern map was jointly produced by National Geographic and Esri; this version exists only in digital form.</span></div><div><br></div><div>The 1812 map is from the collection of David Rumsey.</div><div><br></div>",
+        "template": "Swipe",
+        "templateCreation": "1.1-beta7",
+        "templateLastEdit": "1.16.0",
+        "title": "The World in 1812 and 2013",
+        "subtitle": "Compare the modern world, as depicted on this National Geographic map, with the world as it was perceived two centuries earlier.",
+        "popup": false,
+        "colors": "#444;#FFF",
+        "headerLinkText": "A Story Map",
+        "headerLinkURL": "https://storymaps.arcgis.com",
+        "logoURL": null,
+        "logoTarget": "",
+        "social": {
+            "facebook": true,
+            "twitter": true,
+            "bitly": true
+        },
+        "locationSearch": false,
+        "geolocator": false,
+        "labels": false
+    }
+}

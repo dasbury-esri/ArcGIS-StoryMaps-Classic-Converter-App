@@ -1,0 +1,1932 @@
+{
+    "operationalLayers": [
+        {
+            "id": "USA_States_Generalized_445",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_State_Boundaries/FeatureServer/0",
+            "visibility": true,
+            "opacity": 1,
+            "title": "USA States (Generalized)",
+            "itemId": "8c2d6d7df8fa4142b0a1211c8dd66903",
+            "layerDefinition": {
+                "drawingInfo": {
+                    "renderer": {
+                        "type": "simple",
+                        "symbol": {
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "outline": {
+                                "color": null,
+                                "width": 0.75,
+                                "type": "esriSLS",
+                                "style": "esriSLSNull"
+                            },
+                            "type": "esriSFS",
+                            "style": "esriSFSSolid"
+                        }
+                    },
+                    "labelingInfo": [
+                        {
+                            "labelExpression": null,
+                            "labelExpressionInfo": {
+                                "expression": "$feature[\"STATE_ABBR\"]",
+                                "value": "{STATE_ABBR}"
+                            },
+                            "useCodedValues": true,
+                            "maxScale": 3569161,
+                            "minScale": 26318395,
+                            "where": null,
+                            "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                            "symbol": {
+                                "color": [
+                                    211,
+                                    211,
+                                    211,
+                                    255
+                                ],
+                                "type": "esriTS",
+                                "backgroundColor": null,
+                                "borderLineColor": null,
+                                "haloSize": 0,
+                                "haloColor": null,
+                                "horizontalAlignment": "center",
+                                "rightToLeft": false,
+                                "angle": 0,
+                                "xoffset": 0,
+                                "yoffset": 0,
+                                "text": "",
+                                "rotated": false,
+                                "kerning": true,
+                                "font": {
+                                    "size": 18,
+                                    "style": "normal",
+                                    "decoration": "none",
+                                    "weight": "normal",
+                                    "family": "Arial Unicode MS"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "showLabels": true,
+            "disablePopup": true,
+            "showLegend": false
+        },
+        {
+            "id": "Education_and_Occupation_2018_Tract_Level_8975",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/Education_and_Occupation_2018_Tract_Level/FeatureServer/1",
+            "visibility": false,
+            "opacity": 0.63,
+            "title": "Education_and_Occupation_2018_Tract_Level",
+            "itemId": "c7e7b5e532d4400786f24955a1e431fc"
+        },
+        {
+            "id": "Education_and_Occupations_2018_County_5490",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/Education_and_Occupations_2018_County/FeatureServer/1",
+            "visibility": false,
+            "opacity": 0.37,
+            "title": "Education_and_Occupations_2018_County",
+            "itemId": "9d756d813b6643849178325d7737ed28"
+        },
+        {
+            "id": "Academics_Predominant_Degree_2015_16_6340_7549",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/Academics_Predominant_Degree_2015_16/FeatureServer/0",
+            "visibility": true,
+            "opacity": 1,
+            "title": "Academics: Predominant Degree (2015/16) - copy",
+            "layerDefinition": {
+                "drawingInfo": {
+                    "renderer": {
+                        "visualVariables": [
+                            {
+                                "type": "transparencyInfo",
+                                "valueExpression": "$feature[\"KSadmin\"];\n$feature[\"KSagnatresc\"];\n$feature[\"KSbusfin\"];\n$feature[\"KSedpubserv\"];\n$feature[\"KShealth\"];\n$feature[\"KShumsoc\"];\n$feature[\"KSprofessional\"];\n$feature[\"KSscitechres\"];\n$feature[\"KSservices\"];\n$feature[\"KStradvoc\"];\nvar fieldNames = [ \"KSadmin\", \"KSagnatresc\", \"KSbusfin\", \"KSedpubserv\", \"KShealth\", \"KShumsoc\", \"KSprofessional\", \"KSscitechres\", \"KSservices\", \"KStradvoc\" ];\nvar numFields = 10;\nvar maxValueField = null;\nvar maxValue = -Infinity;\nvar value, i, totalValue = null;\nfor(i = 0; i < numFields; i++) {\nvalue = $feature[fieldNames[i]];\nif(value > 0) {\nif(value > maxValue) {\nmaxValue = value;\nmaxValueField = fieldNames[i];\n}\nelse if (value == maxValue) {\nmaxValueField = null;\n}\n}\nif(value != null && value >= 0) {\nif (totalValue == null) { totalValue = 0; }\ntotalValue = totalValue + value;\n}\n}\nvar strength = null;\nif (maxValueField != null && totalValue > 0) {\nstrength = (maxValue / totalValue) * 100;\n}\nreturn strength;",
+                                "stops": [
+                                    {
+                                        "value": 10,
+                                        "transparency": 85
+                                    },
+                                    {
+                                        "value": 100,
+                                        "transparency": 0
+                                    }
+                                ],
+                                "legendOptions": {
+                                    "title": "Strength of predominance"
+                                }
+                            }
+                        ],
+                        "authoringInfo": {
+                            "type": "predominance",
+                            "fields": [
+                                "KSadmin",
+                                "KSagnatresc",
+                                "KSbusfin",
+                                "KSedpubserv",
+                                "KShealth",
+                                "KShumsoc",
+                                "KSprofessional",
+                                "KSscitechres",
+                                "KSservices",
+                                "KStradvoc"
+                            ],
+                            "visualVariables": [
+                                {
+                                    "type": "transparencyInfo",
+                                    "minSliderValue": 0,
+                                    "maxSliderValue": 100
+                                }
+                            ]
+                        },
+                        "type": "uniqueValue",
+                        "valueExpression": "$feature[\"KSadmin\"];\n$feature[\"KSagnatresc\"];\n$feature[\"KSbusfin\"];\n$feature[\"KSedpubserv\"];\n$feature[\"KShealth\"];\n$feature[\"KShumsoc\"];\n$feature[\"KSprofessional\"];\n$feature[\"KSscitechres\"];\n$feature[\"KSservices\"];\n$feature[\"KStradvoc\"];\nvar fieldNames = [ \"KSadmin\", \"KSagnatresc\", \"KSbusfin\", \"KSedpubserv\", \"KShealth\", \"KShumsoc\", \"KSprofessional\", \"KSscitechres\", \"KSservices\", \"KStradvoc\" ];\nvar numFields = 10;\nvar maxValueField = null;\nvar maxValue = -Infinity;\nvar value, i, totalValue = null;\nfor(i = 0; i < numFields; i++) {\nvalue = $feature[fieldNames[i]];\nif(value > 0) {\nif(value > maxValue) {\nmaxValue = value;\nmaxValueField = fieldNames[i];\n}\nelse if (value == maxValue) {\nmaxValueField = null;\n}\n}\n}\nreturn maxValueField;",
+                        "valueExpressionTitle": "Predominant category",
+                        "uniqueValueInfos": [
+                            {
+                                "value": "KShealth",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%204.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Health"
+                            },
+                            {
+                                "value": "KSservices",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%206.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Services"
+                            },
+                            {
+                                "value": "KShumsoc",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%203.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Humanities & Social Sciences"
+                            },
+                            {
+                                "value": "KSbusfin",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%205.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Business & Finance"
+                            },
+                            {
+                                "value": "KSprofessional",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%201.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Professional"
+                            },
+                            {
+                                "value": "KSscitechres",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%2010.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Science, Technology, & Research"
+                            },
+                            {
+                                "value": "KStradvoc",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%202.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Trades & Vocational"
+                            },
+                            {
+                                "value": "KSedpubserv",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%208.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Education & Public Service"
+                            },
+                            {
+                                "value": "KSagnatresc",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%209.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Agriculture & Natural Resources"
+                            },
+                            {
+                                "value": "KSadmin",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard 7.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Administrative"
+                            }
+                        ]
+                    }
+                },
+                "minScale": 453736,
+                "maxScale": 0,
+                "definitionExpression": "(KSadmin <= 1) AND (KSagnatresc <= 1) AND (KSbusfin <= 1) AND (KSedpubserv <= 1) AND (KShumsoc <= 1) AND (KSprofessional <= 1) AND (KSscitechres <= 1) AND (KStradvoc <= 1)"
+            },
+            "popupInfo": {
+                "title": "{Institution_Name}",
+                "fieldInfos": [
+                    {
+                        "fieldName": "OBJECTID",
+                        "visible": true,
+                        "isEditable": false,
+                        "label": "OBJECTID"
+                    },
+                    {
+                        "fieldName": "ID2",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "ID2",
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "UNITID",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "UNITID",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "OPEID",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "OPEID",
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "OPEID6",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "OPEID6",
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "State_FIPS",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "State FIPS",
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "State",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "State"
+                    },
+                    {
+                        "fieldName": "Zip",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Zip"
+                    },
+                    {
+                        "fieldName": "City",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "City"
+                    },
+                    {
+                        "fieldName": "Institution_Name",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Institution Name"
+                    },
+                    {
+                        "fieldName": "Institution_Type",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Institution Type",
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Institution_Level",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Institution Level",
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "In_Operation",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "In Operation",
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Main_Campus",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Main Campus",
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Branches",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Branches",
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Popular_Degree",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Popular Degree",
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Highest_Degree",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Highest Degree",
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP01",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP01",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP03",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP03",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP04",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP04",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP05",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP05",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP09",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP09",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP10",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP10",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP11",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP11",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP12",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP12",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP13",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP13",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP14",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP14",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP15",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP15",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP16",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP16",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP19",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP19",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP22",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP22",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP23",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP23",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP24",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP24",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP25",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP25",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP26",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP26",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP27",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP27",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP29",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP29",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP30",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP30",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP31",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP31",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP38",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP38",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP39",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP39",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP40",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP40",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP41",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP41",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP42",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP42",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP43",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP43",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP44",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP44",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP45",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP45",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP46",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP46",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP47",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP47",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP48",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP48",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP49",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP49",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP50",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP50",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP51",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP51",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP52",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP52",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PCIP54",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "PCIP54",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Admission_Rate",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Admission Rate",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Average_Retention",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Average Retention",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Retention__Full_Time_Students",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Retention, Full-Time Students",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Retention__Part_Time_Students",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Retention, Part-Time Students",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Completion_Rate",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Completion Rate",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Enrollment",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Enrollment"
+                    },
+                    {
+                        "fieldName": "Male_Students",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Male Students",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Female_Students",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Female Students",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "White",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "White",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Black",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Black",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Hispanic",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Hispanic",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Asian",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Asian",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "American_Indian_and_Alaskan_Nat",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "American Indian and Alaskan Native",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Native_Hawaiian_and_Pacific_Isl",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Native Hawaiian and Pacific Islander",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "TwoorMoreRaces",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Two or More Races",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Non_Resident_Aliens",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Non-Resident Aliens",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Race_Unknown",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Race Unknown",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Percent_Parents_no_HS_Diploma",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Percent Parents no HS Diploma",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Percent_Parents_HS_Diploma",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Percent Parents HS Diploma",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Percent_Parents_Post_Secondary_",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Percent Parents Post-Secondary Ed.",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "TitleIVStudents",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Title IV Students",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "HCM2_Cash_Monitoring",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "HCM2 Cash Monitoring",
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "NetPrice",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Net Price",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "CostofAttendance",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Cost of Attendance",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "In_StateTuitionandFees",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "In-State Tuition and Fees",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Out_of_StateTuitionandFees",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Out-of-State Tuition and Fees",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Tuition_and_Fees__Program_",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Tuition and Fees (Program)",
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "TutionRevenueperFull_TimeStuden",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Tuition Revenue per Full-Time Student",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "ExpendituresperFull_TimeStudent",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Expenditures per Full-Time Student",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "AverageFacultySalary",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Average Faculty Salary",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Percent_of_Students_with_Federa",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Percent of Students with Federal Loan",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Share_of_Students_with_Federal_",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Share of Students with Federal Loan",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Share_of_Students_with_Pell_Gra",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Share of Students with Pell Grant",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "MedianLoanPrincipalAmountuponEn",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Median Loan Principal Amount upon Entering Repayment",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "MedianDebtforCompletedStudents",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Median Debt for Completed Students",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "MedianDebtforIncompletedStudent",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Median Debt for Incompleted Students",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "MedianDebtforFamilyIncome_0K__3",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Median Debt for Family Income $0K-$30K",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "MedianDebtforFamilyIncome_30K__",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Median Debt for Family Income $30K-$75K",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "MedianDebtforFamilyIncomeover_7",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Median Debt for Family Income over $75K",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "MedianDebtFemaleStudents",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Median Debt Female Students",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "MedianDebtMaleStudents",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Median Debt Male Students",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Median_Debt_1st_Gen__Students",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Median Debt 1st Gen. Students",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "MedianDebtNot1stGen_Students",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Median Debt Not 1st Gen. Students",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "CumulativeLoanDebtGreaterthan90",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Cumulative Loan Debt Greater than 90% of Students (90th Percentile)",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "CumulativeLoanDebtGreaterthan75",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Cumulative Loan Debt Greater than 75% of Students (75th Percentile)",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "CumulativeLoanDebtGreaterthan25",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Cumulative Loan Debt Greater than 25% of Students (25th Percentile)",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Cumulative_Loan_Debt_Greater_th",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Cumulative Loan Debt Greater than 10% of Students (10th Percentile)",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Accrediting_Agency",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Accrediting Agency"
+                    },
+                    {
+                        "fieldName": "Website",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Website"
+                    },
+                    {
+                        "fieldName": "Price_Calculator",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Price Calculator"
+                    },
+                    {
+                        "fieldName": "Latitude",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Latitude",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Longitude",
+                        "visible": true,
+                        "isEditable": true,
+                        "label": "Longitude",
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "Enrollment2",
+                        "label": "Enrolled Students",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 0,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "KSprofessional",
+                        "label": "Professional",
+                        "isEditable": true,
+                        "tooltip": "",
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        },
+                        "stringFieldOption": "textbox"
+                    },
+                    {
+                        "fieldName": "KSbusfin",
+                        "label": "Business & Finance",
+                        "isEditable": true,
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "KSscitechres",
+                        "label": "Science, Technology, & Research",
+                        "isEditable": true,
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "KSagnatresc",
+                        "label": "Agriculture & Natural Resources",
+                        "isEditable": true,
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "PercParentsHSorLess",
+                        "label": "Percent Parents HS Diploma or Less",
+                        "isEditable": true,
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "KSedpubserv",
+                        "label": "Education & Public Service",
+                        "isEditable": true,
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "KStradvoc",
+                        "label": "Trades & Vocational",
+                        "isEditable": true,
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "KSservices",
+                        "label": "Services",
+                        "isEditable": true,
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "KSadmin",
+                        "label": "Administrative",
+                        "isEditable": true,
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "KShumsoc",
+                        "label": "Humanities & Social Sciences",
+                        "isEditable": true,
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "KShealth",
+                        "label": "Health",
+                        "isEditable": true,
+                        "visible": true,
+                        "format": {
+                            "places": 2,
+                            "digitSeparator": true
+                        }
+                    },
+                    {
+                        "fieldName": "expression/expr0",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "expression/expr1",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "expression/expr2",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "expression/expr3",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "expression/expr4",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "expression/expr5",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "expression/expr6",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "expression/expr7",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "expression/expr8",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "expression/expr9",
+                        "visible": true
+                    }
+                ],
+                "description": "<b>{expression/expr0}</b> Administrative<br /><b>{expression/expr1}</b> Agriculture. &amp; natural resources<br /><b>{expression/expr2}</b> Business &amp; finance<br /><b>{expression/expr3}</b> Education &amp; public service<br /><b>{expression/expr4}</b> Health<br /><b>{expression/expr5}</b> Humanities &amp; Social Sciences<br /><b>{expression/expr6}</b> Professional fields<br /><b>{expression/expr7}</b> Science, Research &amp; Technology<br /><b>{expression/expr8}</b> Service industries<br /><b>{expression/expr9}</b> Trades &amp; vocations",
+                "showAttachments": false,
+                "expressionInfos": [
+                    {
+                        "name": "expr0",
+                        "title": "Admin%",
+                        "expression": "round(($feature.KSadmin*100),1)+\"%\"",
+                        "returnType": "string"
+                    },
+                    {
+                        "name": "expr1",
+                        "title": "Ag%",
+                        "expression": "round(($feature.KSagnatresc*100),1)+\"%\"",
+                        "returnType": "string"
+                    },
+                    {
+                        "name": "expr2",
+                        "title": "Biz%",
+                        "expression": "Round(($feature.KSbusfin*100),1)+\"%\"",
+                        "returnType": "string"
+                    },
+                    {
+                        "name": "expr3",
+                        "title": "Ed%",
+                        "expression": "round(($feature.KSedpubserv*100),1)+\"%\"",
+                        "returnType": "string"
+                    },
+                    {
+                        "name": "expr4",
+                        "title": "Health%",
+                        "expression": "round(($feature.KShealth*100),1)+\"%\"",
+                        "returnType": "string"
+                    },
+                    {
+                        "name": "expr5",
+                        "title": "Human%",
+                        "expression": "round(($feature.KShumsoc*100),1)+\"%\"",
+                        "returnType": "string"
+                    },
+                    {
+                        "name": "expr6",
+                        "title": "Profesh%",
+                        "expression": "round(($feature.KSprofessional*100),1)+\"%\"",
+                        "returnType": "string"
+                    },
+                    {
+                        "name": "expr7",
+                        "title": "Sci%",
+                        "expression": "round(($feature.KSscitechres*100),1)+\"%\"",
+                        "returnType": "string"
+                    },
+                    {
+                        "name": "expr8",
+                        "title": "Services%",
+                        "expression": "round(($feature.KSservices*100),1)+\"%\"",
+                        "returnType": "string"
+                    },
+                    {
+                        "name": "expr9",
+                        "title": "Trades%",
+                        "expression": "round(($feature.KStradvoc*100),1)+\"%\"",
+                        "returnType": "string"
+                    }
+                ],
+                "mediaInfos": []
+            }
+        },
+        {
+            "id": "Academics_Predominant_Degree_2015_16_6340",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/Academics_Predominant_Degree_2015_16/FeatureServer/0",
+            "visibility": true,
+            "opacity": 1,
+            "title": "Academics: Predominant Degree (2015/16)",
+            "itemId": "fa7a27b192434302bc57b9e4c4c56c44",
+            "layerDefinition": {
+                "drawingInfo": {
+                    "renderer": {
+                        "visualVariables": [
+                            {
+                                "type": "transparencyInfo",
+                                "valueExpression": "$feature[\"KSadmin\"];\n$feature[\"KSagnatresc\"];\n$feature[\"KSbusfin\"];\n$feature[\"KSedpubserv\"];\n$feature[\"KShealth\"];\n$feature[\"KShumsoc\"];\n$feature[\"KSprofessional\"];\n$feature[\"KSscitechres\"];\n$feature[\"KSservices\"];\n$feature[\"KStradvoc\"];\nvar fieldNames = [ \"KSadmin\", \"KSagnatresc\", \"KSbusfin\", \"KSedpubserv\", \"KShealth\", \"KShumsoc\", \"KSprofessional\", \"KSscitechres\", \"KSservices\", \"KStradvoc\" ];\nvar numFields = 10;\nvar maxValueField = null;\nvar maxValue = -Infinity;\nvar value, i, totalValue = null;\nfor(i = 0; i < numFields; i++) {\nvalue = $feature[fieldNames[i]];\nif(value > 0) {\nif(value > maxValue) {\nmaxValue = value;\nmaxValueField = fieldNames[i];\n}\nelse if (value == maxValue) {\nmaxValueField = null;\n}\n}\nif(value != null && value >= 0) {\nif (totalValue == null) { totalValue = 0; }\ntotalValue = totalValue + value;\n}\n}\nvar strength = null;\nif (maxValueField != null && totalValue > 0) {\nstrength = (maxValue / totalValue) * 100;\n}\nreturn strength;",
+                                "stops": [
+                                    {
+                                        "value": 10,
+                                        "transparency": 85
+                                    },
+                                    {
+                                        "value": 100,
+                                        "transparency": 0
+                                    }
+                                ],
+                                "legendOptions": {
+                                    "title": "Strength of predominance"
+                                }
+                            }
+                        ],
+                        "authoringInfo": {
+                            "type": "predominance",
+                            "fields": [
+                                "KSadmin",
+                                "KSagnatresc",
+                                "KSbusfin",
+                                "KSedpubserv",
+                                "KShealth",
+                                "KShumsoc",
+                                "KSprofessional",
+                                "KSscitechres",
+                                "KSservices",
+                                "KStradvoc"
+                            ],
+                            "visualVariables": [
+                                {
+                                    "type": "transparencyInfo",
+                                    "minSliderValue": 0,
+                                    "maxSliderValue": 100
+                                }
+                            ]
+                        },
+                        "type": "uniqueValue",
+                        "valueExpression": "$feature[\"KSadmin\"];\n$feature[\"KSagnatresc\"];\n$feature[\"KSbusfin\"];\n$feature[\"KSedpubserv\"];\n$feature[\"KShealth\"];\n$feature[\"KShumsoc\"];\n$feature[\"KSprofessional\"];\n$feature[\"KSscitechres\"];\n$feature[\"KSservices\"];\n$feature[\"KStradvoc\"];\nvar fieldNames = [ \"KSadmin\", \"KSagnatresc\", \"KSbusfin\", \"KSedpubserv\", \"KShealth\", \"KShumsoc\", \"KSprofessional\", \"KSscitechres\", \"KSservices\", \"KStradvoc\" ];\nvar numFields = 10;\nvar maxValueField = null;\nvar maxValue = -Infinity;\nvar value, i, totalValue = null;\nfor(i = 0; i < numFields; i++) {\nvalue = $feature[fieldNames[i]];\nif(value > 0) {\nif(value > maxValue) {\nmaxValue = value;\nmaxValueField = fieldNames[i];\n}\nelse if (value == maxValue) {\nmaxValueField = null;\n}\n}\n}\nreturn maxValueField;",
+                        "valueExpressionTitle": "Predominant category",
+                        "uniqueValueInfos": [
+                            {
+                                "value": "KShealth",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%204.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Health"
+                            },
+                            {
+                                "value": "KSservices",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%206.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Services"
+                            },
+                            {
+                                "value": "KShumsoc",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%203.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Humanities & Social Sciences"
+                            },
+                            {
+                                "value": "KSbusfin",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%205.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Business & Finance"
+                            },
+                            {
+                                "value": "KSprofessional",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%201.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Professional"
+                            },
+                            {
+                                "value": "KSscitechres",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%2010.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Science, Technology, & Research"
+                            },
+                            {
+                                "value": "KStradvoc",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%202.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Trades & Vocational"
+                            },
+                            {
+                                "value": "KSedpubserv",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%208.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Education & Public Service"
+                            },
+                            {
+                                "value": "KSagnatresc",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard%209.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Agriculture & Natural Resources"
+                            },
+                            {
+                                "value": "KSadmin",
+                                "symbol": {
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriPMS",
+                                    "url": "https://storymaps.esri.com/stories/gh/icons/Icon_Major_Artboard 7.png",
+                                    "width": 15,
+                                    "height": 15
+                                },
+                                "label": "Administrative"
+                            }
+                        ]
+                    }
+                },
+                "featureReduction": {
+                    "type": "cluster",
+                    "clusterRadius": 33.94736842105264,
+                    "popupInfo": {
+                        "title": "{cluster_count} Institutions",
+                        "fieldInfos": [
+                            {
+                                "fieldName": "cluster_count",
+                                "label": "Number of features",
+                                "visible": true,
+                                "format": {
+                                    "digitSeparator": true,
+                                    "places": 0
+                                }
+                            },
+                            {
+                                "fieldName": "expression/cluster_type_9023e0c8f735cc14da390e1e10975cba",
+                                "visible": true
+                            },
+                            {
+                                "fieldName": "cluster_avg_8d46dd85c216423ed453794b8d4c41fc",
+                                "label": "Average Strength of predominance",
+                                "visible": true,
+                                "format": {
+                                    "digitSeparator": true,
+                                    "places": 1
+                                }
+                            }
+                        ],
+                        "description": "Schools in this area predominantly award degrees in <b>{expression/cluster_type_9023e0c8f735cc14da390e1e10975cba}</b>.<br /><br />The average <b>strength of predominance</b> within this cluster is <b>{cluster_avg_8d46dd85c216423ed453794b8d4c41fc}</b>.",
+                        "showAttachments": false,
+                        "expressionInfos": [
+                            {
+                                "name": "cluster_type_9023e0c8f735cc14da390e1e10975cba",
+                                "title": "Predominant Predominant category",
+                                "expression": "var uvInfos = [{\"value\": \"KShealth\",\"label\": \"Health\"}, {\"value\": \"KSservices\",\"label\": \"Services\"}, {\"value\": \"KShumsoc\",\"label\": \"Humanities & Social Sciences\"}, {\"value\": \"KSbusfin\",\"label\": \"Business & Finance\"}, {\"value\": \"KSprofessional\",\"label\": \"Professional\"}, {\"value\": \"KSscitechres\",\"label\": \"Science, Technology, & Research\"}, {\"value\": \"KStradvoc\",\"label\": \"Trades & Vocational\"}, {\"value\": \"KSedpubserv\",\"label\": \"Education & Public Service\"}, {\"value\": \"KSagnatresc\",\"label\": \"Agriculture & Natural Resources\"}, {\"value\": \"KSadmin\",\"label\": \"Administrative\"}];\nvar predominantType = Text($feature[\"cluster_type_9023e0c8f735cc14da390e1e10975cba\"]);\nvar label = \"None\";\nfor (var i = 0; i < Count(uvInfos); i++) {\nif (uvInfos[i].value == predominantType) {\nlabel = uvInfos[i].label;\nbreak;\n}\n}\nreturn label;",
+                                "returnType": "string"
+                            }
+                        ]
+                    }
+                },
+                "minScale": 0,
+                "maxScale": 514232
+            }
+        }
+    ],
+    "baseMap": {
+        "baseMapLayers": [
+            {
+                "id": "VectorTile_8900",
+                "type": "VectorTileLayer",
+                "layerType": "VectorTileLayer",
+                "title": "Human Geography Base",
+                "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/2afe5b807fa74006be6363fd243ffb30/resources/styles/root.json",
+                "itemId": "2afe5b807fa74006be6363fd243ffb30",
+                "visibility": true,
+                "opacity": 1
+            },
+            {
+                "id": "VectorTile_9702",
+                "type": "VectorTileLayer",
+                "layerType": "VectorTileLayer",
+                "title": "Human Geography Detail",
+                "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/97fa1365da1e43eabb90d0364326bc2d/resources/styles/root.json",
+                "itemId": "97fa1365da1e43eabb90d0364326bc2d",
+                "isReference": true,
+                "visibility": true,
+                "opacity": 0.12
+            },
+            {
+                "id": "VectorTile_7804",
+                "type": "VectorTileLayer",
+                "layerType": "VectorTileLayer",
+                "title": "Human Geography Label",
+                "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/ba52238d338745b1a355407ec9df6768/resources/styles/root.json",
+                "itemId": "ba52238d338745b1a355407ec9df6768",
+                "isReference": true,
+                "visibility": true,
+                "opacity": 0.24,
+                "minScale": 2754441,
+                "maxScale": 71
+            }
+        ],
+        "title": "Human Geography"
+    },
+    "spatialReference": {
+        "wkid": 102100
+    },
+    "authoringApp": "WebMapViewer",
+    "authoringAppVersion": "6.2",
+    "version": "2.12",
+    "bookmarks": [
+        {
+            "extent": {
+                "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                },
+                "xmax": -5927328.390855432,
+                "xmin": -15598752.705719642,
+                "ymax": 7513416.2035556855,
+                "ymin": 1647944.4010659596
+            },
+            "name": "Continental USA"
+        },
+        {
+            "extent": {
+                "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                },
+                "xmax": -2953010.746223445,
+                "xmin": -20037508.342788905,
+                "ymax": 12160787.523293167,
+                "ymin": 429843.9183137156
+            },
+            "name": "All USA"
+        },
+        {
+            "extent": {
+                "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                },
+                "xmax": -7050646.958534067,
+                "xmin": -9468503.03725012,
+                "ymax": 5708279.343573467,
+                "ymin": 4241911.392951035
+            },
+            "name": "Northeast"
+        },
+        {
+            "extent": {
+                "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                },
+                "xmax": -8784850.256267684,
+                "xmin": -11202706.334983736,
+                "ymax": 5932086.962392403,
+                "ymin": 4465719.011769971
+            },
+            "name": "Midwest"
+        },
+        {
+            "extent": {
+                "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                },
+                "xmax": -8528633.337455738,
+                "xmin": -9737561.376814026,
+                "ymax": 5162824.70973066,
+                "ymin": 4429640.734419285
+            },
+            "name": "Appalachia"
+        },
+        {
+            "extent": {
+                "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                },
+                "xmax": -9213509.110890694,
+                "xmin": -10422437.150248982,
+                "ymax": 3923933.355284891,
+                "ymin": 3190749.379973517
+            },
+            "name": "South"
+        }
+    ],
+    "applicationProperties": {
+        "viewing": {
+            "routing": {
+                "enabled": true
+            },
+            "basemapGallery": {
+                "enabled": true
+            },
+            "measure": {
+                "enabled": true
+            }
+        }
+    }
+}

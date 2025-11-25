@@ -1,0 +1,193 @@
+{
+  "root": "n-cnbdff",
+  "nodes": {
+    "n-of7q7w": {
+      "type": "storycover",
+      "data": {
+        "type": "minimal",
+        "title": "Antrojo pasaulinio karo metų aerofotonuotraukos",
+        "summary": "<font size=\"3\">Priartinkite dominančio skrydžio teritoriją ir norėdami palyginti, vilkite žemėlapio slankiklį.</font>",
+        "byline": "",
+        "titlePanelVerticalPosition": "top",
+        "titlePanelHorizontalPosition": "start",
+        "titlePanelStyle": "gradient"
+      }
+    },
+    "n-d6wgpk": {
+      "type": "navigation",
+      "data": {
+        "links": []
+      },
+      "config": {
+        "isHidden": true
+      }
+    },
+    "n-4gh3t4": {
+      "type": "attribution",
+      "data": {
+        "content": "",
+        "attribution": ""
+      }
+    },
+    "n-w6c52x": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-emgaga": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-g37yyr": {
+      "type": "credits",
+      "children": [
+        "n-w6c52x",
+        "n-emgaga",
+        "n-4gh3t4"
+      ]
+    },
+    "n-03e9o0": {
+      "type": "immersive",
+      "data": {
+        "type": "sidecar",
+        "subtype": "docked-panel",
+        "narrativePanelPosition": "end",
+        "narrativePanelSize": "medium"
+      },
+      "children": [
+        "n-buk8yk"
+      ]
+    },
+    "n-3yhj54": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": []
+    },
+    "n-vilguk": {
+      "type": "webmap",
+      "data": {
+        "map": "r-jyxl23"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-d90ewf": {
+      "type": "webmap",
+      "data": {
+        "map": "r-jtt6tk"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-i4zi4y": {
+      "type": "swipe",
+      "data": {
+        "contents": {
+          "0": "n-vilguk",
+          "1": "n-d90ewf"
+        },
+        "viewPlacement": "extent"
+      }
+    },
+    "n-wcl65l": {
+      "type": "text",
+      "data": {
+        "text": "Antrojo pasaulinio karo metų aerofotonuotraukos",
+        "type": "h3",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-j1zfwd": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": [
+        "n-wcl65l"
+      ]
+    },
+    "n-buk8yk": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": [
+        "n-j1zfwd",
+        "n-i4zi4y"
+      ]
+    },
+    "n-cnbdff": {
+      "type": "story",
+      "data": {
+        "storyTheme": "r-t7qv5x"
+      },
+      "config": {
+        "coverDate": ""
+      },
+      "children": [
+        "n-of7q7w",
+        "n-d6wgpk",
+        "n-03e9o0",
+        "n-g37yyr"
+      ]
+    }
+  },
+  "resources": {
+    "r-t7qv5x": {
+      "type": "story-theme",
+      "data": {
+        "themeId": "summit",
+        "themeBaseVariableOverrides": {}
+      }
+    },
+    "r-jyxl23": {
+      "type": "webmap",
+      "data": {
+        "type": "default",
+        "itemId": "faee54e3666e4b0fbf145ca713061041",
+        "itemType": "Web Map"
+      }
+    },
+    "r-jtt6tk": {
+      "type": "webmap",
+      "data": {
+        "type": "default",
+        "itemId": "063f2a970e3943e6a197fa4ee2c8c5db",
+        "itemType": "Web Map"
+      }
+    },
+    "r-dqa08m": {
+      "type": "converter-metadata",
+      "data": {
+        "type": "storymap",
+        "version": "1.0.0",
+        "classicType": "Swipe",
+        "classicMetadata": {
+          "layout": "swipe",
+          "model": "TWO_WEBMAPS"
+        }
+      }
+    }
+  },
+  "actions": []
+}

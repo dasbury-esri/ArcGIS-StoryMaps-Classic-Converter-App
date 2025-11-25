@@ -1,0 +1,15 @@
+{
+    "operationalLayers": [],
+    "baseMap": {
+        "baseMapLayers": [
+            {
+                "id": "NatGeo_World_Map_8388",
+                "opacity": 1,
+                "visibility": true,
+                "url": "http://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer"
+            }
+        ],
+        "title": "National Geographic"
+    },
+    "version": "1.9"
+}

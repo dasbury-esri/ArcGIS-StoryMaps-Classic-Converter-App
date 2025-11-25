@@ -1,0 +1,44 @@
+{
+    "values": {
+        "webmaps": [
+            "59e59f2345634201ab07202e0682ca05",
+            "0bd5e9fc478c43e6986a4abab33909c3"
+        ],
+        "webmap": "59e59f2345634201ab07202e0682ca05",
+        "layout": "spyglass",
+        "dataModel": "TWO_WEBMAPS",
+        "layers": [
+            "Academics_Predominant_Degree_2015_16_6340"
+        ],
+        "legend": false,
+        "description": false,
+        "popup": true,
+        "series": false,
+        "locationSearch": true,
+        "geolocator": false,
+        "popupColors": [
+            "6cb7ff",
+            "ff5858"
+        ],
+        "popupTitles": [
+            "Occupation",
+            "Degree"
+        ],
+        "labels": false,
+        "title": "Higher Education: Spy—Occupation & Degrees",
+        "colors": "#444;#FFF",
+        "headerLinkText": "A Story Map",
+        "headerLinkURL": "https://storymaps.arcgis.com/",
+        "logoURL": null,
+        "logoTarget": "",
+        "social": {
+            "facebook": true,
+            "twitter": true,
+            "bitly": true
+        },
+        "template": "Swipe",
+        "templateCreation": "1.15.0",
+        "templateLastEdit": "1.18.0"
+    },
+    "_ssl": null
+}

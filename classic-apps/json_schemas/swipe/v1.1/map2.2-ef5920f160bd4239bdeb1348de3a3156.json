@@ -1,0 +1,24 @@
+{
+    "operationalLayers": [],
+    "baseMap": {
+        "baseMapLayers": [
+            {
+                "id": "World_Globe_1812_283",
+                "layerType": "ArcGISTiledMapServiceLayer",
+                "url": "http://tiles.arcgis.com/tiles/IEuSomXfi6iB7a25/arcgis/rest/services/World_Globe_1812/MapServer",
+                "visibility": true,
+                "opacity": 1,
+                "title": "World_Globe_1812",
+                "itemId": "02138edc9c0841999d498c7753345685"
+            }
+        ],
+        "title": "World_Globe_1812"
+    },
+    "spatialReference": {
+        "wkid": 102100,
+        "latestWkid": 3857
+    },
+    "authoringApp": "WebMapViewer",
+    "authoringAppVersion": "5.4",
+    "version": "2.11"
+}

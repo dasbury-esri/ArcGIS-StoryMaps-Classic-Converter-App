@@ -1,0 +1,279 @@
+{
+    "operationalLayers": [
+        {
+            "id": "World_Countries__Generalized__8441",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Countries_(Generalized)/FeatureServer/0",
+            "visibility": true,
+            "opacity": 0.75,
+            "title": "World Countries (Generalized)",
+            "itemId": "2b93b06dc0dc4e809d3c8db5cb96ba69",
+            "layerDefinition": {
+                "drawingInfo": {
+                    "renderer": {
+                        "type": "simple",
+                        "symbol": {
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "outline": {
+                                "color": null,
+                                "width": 3.75,
+                                "type": "esriSLS",
+                                "style": "esriSLSNull"
+                            },
+                            "type": "esriSFS",
+                            "style": "esriSFSSolid"
+                        }
+                    }
+                },
+                "definitionExpression": "Country <> 'United States'"
+            },
+            "disablePopup": true,
+            "showLegend": false
+        },
+        {
+            "id": "USA_States_Generalized_445",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",
+            "visibility": true,
+            "opacity": 1,
+            "title": "USA States (Generalized)",
+            "itemId": "99fd67933e754a1181cc755146be21ca",
+            "layerDefinition": {
+                "drawingInfo": {
+                    "renderer": {
+                        "type": "simple",
+                        "symbol": {
+                            "color": null,
+                            "outline": {
+                                "color": [
+                                    214,
+                                    214,
+                                    214,
+                                    193
+                                ],
+                                "width": 0.75,
+                                "type": "esriSLS",
+                                "style": "esriSLSSolid"
+                            },
+                            "type": "esriSFS",
+                            "style": "esriSFSSolid"
+                        }
+                    },
+                    "labelingInfo": [
+                        {
+                            "labelExpression": null,
+                            "labelExpressionInfo": {
+                                "expression": "$feature[\"STATE_ABBR\"]",
+                                "value": "{STATE_ABBR}"
+                            },
+                            "useCodedValues": true,
+                            "maxScale": 243935,
+                            "minScale": 26318395,
+                            "where": null,
+                            "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                            "symbol": {
+                                "color": [
+                                    211,
+                                    211,
+                                    211,
+                                    255
+                                ],
+                                "type": "esriTS",
+                                "backgroundColor": null,
+                                "borderLineColor": null,
+                                "haloSize": 0,
+                                "haloColor": null,
+                                "horizontalAlignment": "center",
+                                "rightToLeft": false,
+                                "angle": 0,
+                                "xoffset": 0,
+                                "yoffset": 0,
+                                "text": "",
+                                "rotated": false,
+                                "kerning": true,
+                                "font": {
+                                    "size": 18,
+                                    "style": "normal",
+                                    "decoration": "none",
+                                    "weight": "normal",
+                                    "family": "Arial Unicode MS"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "showLabels": true,
+            "disablePopup": true,
+            "showLegend": false
+        },
+        {
+            "id": "Education_and_Occupation_2018_Tract_Level_8975",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/Education_and_Occupation_2018_Tract_Level/FeatureServer/1",
+            "visibility": true,
+            "opacity": 0.63,
+            "title": "Education_and_Occupation_2018_Tract_Level",
+            "itemId": "c7e7b5e532d4400786f24955a1e431fc"
+        },
+        {
+            "id": "Education_and_Occupations_2018_County_5490",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/Education_and_Occupations_2018_County/FeatureServer/1",
+            "visibility": true,
+            "opacity": 0.37,
+            "title": "Education_and_Occupations_2018_County",
+            "itemId": "9d756d813b6643849178325d7737ed28"
+        },
+        {
+            "id": "Academics_Predominant_Degree_2015_16_6340",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/Academics_Predominant_Degree_2015_16/FeatureServer/0",
+            "visibility": false,
+            "opacity": 1,
+            "title": "Academics Predominant Degree 2015 16",
+            "itemId": "fa7a27b192434302bc57b9e4c4c56c44"
+        }
+    ],
+    "baseMap": {
+        "baseMapLayers": [
+            {
+                "id": "VectorTile_8900",
+                "type": "VectorTileLayer",
+                "layerType": "VectorTileLayer",
+                "title": "Human Geography Base",
+                "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/2afe5b807fa74006be6363fd243ffb30/resources/styles/root.json",
+                "itemId": "2afe5b807fa74006be6363fd243ffb30",
+                "visibility": true,
+                "opacity": 1
+            },
+            {
+                "id": "VectorTile_9702",
+                "type": "VectorTileLayer",
+                "layerType": "VectorTileLayer",
+                "title": "Human Geography Detail",
+                "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/97fa1365da1e43eabb90d0364326bc2d/resources/styles/root.json",
+                "itemId": "97fa1365da1e43eabb90d0364326bc2d",
+                "isReference": true,
+                "visibility": true,
+                "opacity": 0.12
+            },
+            {
+                "id": "VectorTile_7804",
+                "type": "VectorTileLayer",
+                "layerType": "VectorTileLayer",
+                "title": "Human Geography Label",
+                "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/ba52238d338745b1a355407ec9df6768/resources/styles/root.json",
+                "itemId": "ba52238d338745b1a355407ec9df6768",
+                "isReference": true,
+                "visibility": true,
+                "opacity": 0
+            }
+        ],
+        "title": "Human Geography"
+    },
+    "spatialReference": {
+        "wkid": 102100
+    },
+    "authoringApp": "WebMapViewer",
+    "authoringAppVersion": "7.2",
+    "version": "2.15",
+    "bookmarks": [
+        {
+            "extent": {
+                "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                },
+                "xmax": -5927328.390855432,
+                "xmin": -15598752.705719642,
+                "ymax": 7513416.2035556855,
+                "ymin": 1647944.4010659596
+            },
+            "name": "Continental USA"
+        },
+        {
+            "extent": {
+                "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                },
+                "xmax": -2953010.746223445,
+                "xmin": -20037508.342788905,
+                "ymax": 12160787.523293167,
+                "ymin": 429843.9183137156
+            },
+            "name": "All USA"
+        },
+        {
+            "extent": {
+                "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                },
+                "xmax": -7050646.958534067,
+                "xmin": -9468503.03725012,
+                "ymax": 5708279.343573467,
+                "ymin": 4241911.392951035
+            },
+            "name": "Northeast"
+        },
+        {
+            "extent": {
+                "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                },
+                "xmax": -8784850.256267684,
+                "xmin": -11202706.334983736,
+                "ymax": 5932086.962392403,
+                "ymin": 4465719.011769971
+            },
+            "name": "Midwest"
+        },
+        {
+            "extent": {
+                "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                },
+                "xmax": -8528633.337455738,
+                "xmin": -9737561.376814026,
+                "ymax": 5162824.70973066,
+                "ymin": 4429640.734419285
+            },
+            "name": "Appalachia"
+        },
+        {
+            "extent": {
+                "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                },
+                "xmax": -9213509.110890694,
+                "xmin": -10422437.150248982,
+                "ymax": 3923933.355284891,
+                "ymin": 3190749.379973517
+            },
+            "name": "South"
+        }
+    ],
+    "applicationProperties": {
+        "viewing": {
+            "routing": {
+                "enabled": true
+            },
+            "basemapGallery": {
+                "enabled": true
+            },
+            "measure": {
+                "enabled": true
+            }
+        }
+    }
+}

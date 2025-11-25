@@ -1,0 +1,193 @@
+{
+  "root": "n-zt7igm",
+  "nodes": {
+    "n-qndome": {
+      "type": "storycover",
+      "data": {
+        "type": "minimal",
+        "title": "The World in 1812 and 2013",
+        "summary": "Compare the modern world, as depicted on this National Geographic map, with the world as it was perceived two centuries earlier.",
+        "byline": "",
+        "titlePanelVerticalPosition": "top",
+        "titlePanelHorizontalPosition": "start",
+        "titlePanelStyle": "gradient"
+      }
+    },
+    "n-fg1nfa": {
+      "type": "navigation",
+      "data": {
+        "links": []
+      },
+      "config": {
+        "isHidden": true
+      }
+    },
+    "n-dey7cl": {
+      "type": "attribution",
+      "data": {
+        "content": "",
+        "attribution": ""
+      }
+    },
+    "n-vtdjbz": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-0spy4j": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-8087w5": {
+      "type": "credits",
+      "children": [
+        "n-vtdjbz",
+        "n-0spy4j",
+        "n-dey7cl"
+      ]
+    },
+    "n-2gi3cy": {
+      "type": "immersive",
+      "data": {
+        "type": "sidecar",
+        "subtype": "docked-panel",
+        "narrativePanelPosition": "end",
+        "narrativePanelSize": "medium"
+      },
+      "children": [
+        "n-98h02l"
+      ]
+    },
+    "n-dsiakj": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": []
+    },
+    "n-y7m2hm": {
+      "type": "webmap",
+      "data": {
+        "map": "r-c786hl"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-x55k7o": {
+      "type": "webmap",
+      "data": {
+        "map": "r-murjz6"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-hhi3n2": {
+      "type": "swipe",
+      "data": {
+        "contents": {
+          "0": "n-y7m2hm",
+          "1": "n-x55k7o"
+        },
+        "viewPlacement": "center"
+      }
+    },
+    "n-0d1b67": {
+      "type": "text",
+      "data": {
+        "text": "The World in 1812 and 2013",
+        "type": "h3",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-79g8tx": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": [
+        "n-0d1b67"
+      ]
+    },
+    "n-98h02l": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": [
+        "n-79g8tx",
+        "n-hhi3n2"
+      ]
+    },
+    "n-zt7igm": {
+      "type": "story",
+      "data": {
+        "storyTheme": "r-3wms2i"
+      },
+      "config": {
+        "coverDate": ""
+      },
+      "children": [
+        "n-qndome",
+        "n-fg1nfa",
+        "n-2gi3cy",
+        "n-8087w5"
+      ]
+    }
+  },
+  "resources": {
+    "r-3wms2i": {
+      "type": "story-theme",
+      "data": {
+        "themeId": "summit",
+        "themeBaseVariableOverrides": {}
+      }
+    },
+    "r-c786hl": {
+      "type": "webmap",
+      "data": {
+        "type": "default",
+        "itemId": "8ea34ba9a4f843e08a468595d8d91188",
+        "itemType": "Web Map"
+      }
+    },
+    "r-murjz6": {
+      "type": "webmap",
+      "data": {
+        "type": "default",
+        "itemId": "ef5920f160bd4239bdeb1348de3a3156",
+        "itemType": "Web Map"
+      }
+    },
+    "r-0gj2nf": {
+      "type": "converter-metadata",
+      "data": {
+        "type": "storymap",
+        "version": "1.0.0",
+        "classicType": "Swipe",
+        "classicMetadata": {
+          "layout": "spyglass",
+          "model": "TWO_WEBMAPS"
+        }
+      }
+    }
+  },
+  "actions": []
+}
