@@ -396,3 +396,8 @@
 .read-the-docs {
   color: #888;
 }
+
+/* EnterpriseSignInModal details section */
+.enterprise-details { margin-top: 1rem; }
+.enterprise-details-text { margin-top: 0.5rem; }
+.enterprise-details-code { margin-left: 0.25rem; }

@@ -1,10 +1,13 @@
-import '@esri/calcite-components';
 import '@esri/calcite-components/dist/calcite/calcite.css';
+import { defineCustomElements } from '@esri/calcite-components/dist/loader';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { AuthProvider } from './auth/AuthProvider'
 import App from './App.tsx'
 import './index.css'
+
+// Register Calcite web components via Stencil loader
+defineCustomElements(window);
 
 // Global error instrumentation (dev only) to diagnose "e is not defined" ReferenceError
 if (import.meta.env.DEV) {
