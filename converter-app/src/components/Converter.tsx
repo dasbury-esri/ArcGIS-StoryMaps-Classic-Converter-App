@@ -1,11 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 /**
  * Classic StoryMap to ArcGIS StoryMaps Converter UI
  * Minimal form interface for conversion
  */
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+// Refactor pipeline imports (feature-flagged)
+import { useRefactorFlagReactive } from "../refactor/util/featureFlag";
+import { convertClassicToJsonRefactored } from "../refactor";
+import { detectClassicTemplate } from "../refactor/util/detectTemplate";
 import { useAuth } from "../auth/useAuth";
 import {
   getItemData,
@@ -18,10 +20,7 @@ import {
 import { convertClassicToJson } from "../converter/converter-factory";
 import { createDraftStoryMap } from "../converter/storymap-draft-creator";
 import { transferImage } from "../api/image-transfer";
-// Refactor pipeline imports (feature-flagged)
-import { useRefactorFlag } from "../refactor/util/featureFlag";
-import { convertClassicToJsonRefactored } from "../refactor";
-import { detectClassicTemplate } from "../refactor/util/detectTemplate";
+
 
 type Status =
   | "idle"
@@ -34,16 +33,86 @@ type Status =
 
 export default function Converter() {
   const [publishing, setPublishing] = useState(false);
-  const useRefactor = useRefactorFlag(); // Reflects current URL (?refactor=1)
+  // retain state only for UI style and tooltip logic; reading ref for actual cancellation
+  const [cancelRequested, setCancelRequested] = useState(false); // track user-originated cancellation (used for disabling mobile button)
+  const cancelRequestedRef = useRef(false);
+  const [hoverCancel, setHoverCancel] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const useRefactor = useRefactorFlagReactive(); // Reactively reflects current URL (?refactor=1)
+  // Declare core status-related state early to avoid TDZ access in effects
+  const { token, userInfo } = useAuth();
+  const [classicItemId, setClassicItemId] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
+  const [message, setMessage] = useState("");
+  const [convertedUrl, setConvertedUrl] = useState("");
+  const [copiedUrl, setCopiedUrl] = useState(false);
+  // buttonLabel retained for future extended messaging but currently unused
+  const [buttonLabel, setButtonLabel] = useState("Convert");
+  // Cancellation helper + handler declared early to avoid TDZ in effects
+  const checkCancelled = () => {
+    if (cancelRequestedRef.current) {
+      throw new Error("Conversion cancelled by user intervention");
+    }
+  };
+  const handleCancel = useCallback(() => {
+    if (cancelRequestedRef.current) return;
+    const confirmed = window.confirm('Cancel conversion in progress? This will stop further processing.');
+    if (!confirmed) return;
+    cancelRequestedRef.current = true;
+    setCancelRequested(true);
+    setStatus("error");
+    setMessage("Conversion cancelled by user intervention");
+    setPublishing(false);
+    setButtonLabel("Convert");
+  }, [setButtonLabel, setMessage, setStatus, setPublishing, setCancelRequested]);
+  useEffect(() => {
+    console.info(`[Converter] Pipeline selected: ${useRefactor ? 'refactor' : 'legacy'}`);
+  }, [useRefactor]);
+
+  // Ephemeral copied notice timeout
+  useEffect(() => {
+    if (!copiedUrl) return;
+    const t = setTimeout(() => setCopiedUrl(false), 2000);
+    return () => clearTimeout(t);
+  }, [copiedUrl]);
+
+  // Mobile detection (simplistic: width threshold + touch capability)
+  useEffect(() => {
+    const detect = () => {
+      const w = window.innerWidth;
+      const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      setIsMobile(w < 768 || touch);
+    };
+    detect();
+    window.addEventListener('resize', detect);
+    return () => window.removeEventListener('resize', detect);
+  }, []);
+
+  // Keyboard accessible cancel via Escape
+  useEffect(() => {
+    const active = !cancelRequestedRef.current && ['fetching','converting','transferring','updating'].includes(status);
+    if (!active) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleCancel();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [status, handleCancel]);
   const [detectedTemplate, setDetectedTemplate] = useState<string | null>(null);
   const [customCssInfo, setCustomCssInfo] = useState<{ css: string; url: string } | null>(null);
   // Classic item id must be 32 hex characters
   const isValidClassicId = (id: string): boolean => /^[a-f0-9]{32}$/i.test(id.trim());
     const handleConvert = async () => {
+      console.debug('[Converter] useRefactor?', useRefactor);
       // Reset state
       setStatus("idle");
       setMessage("");
       setConvertedUrl("");
+      setButtonLabel("Convert");
+      cancelRequestedRef.current = false;
+      setCancelRequested(false);
       if (customCssInfo?.url) URL.revokeObjectURL(customCssInfo.url);
       setCustomCssInfo(null);
 
@@ -62,52 +131,59 @@ export default function Converter() {
       }
 
       try {
-        // 1. Get username
+        // Get username
         setStatus("fetching");
         setMessage("Getting user information...");
         const username = userInfo?.username || "";
 
-        // 2. Fetch classic item data
+        // Fetch classic item data
         setMessage("Fetching classic story data...");
         const classicData = await getItemData(classicItemId, token);
+        checkCancelled();
 
-        // 2.2 Detect template type early for messaging
+        // Detect template type early for messaging (store in local runtime variable to avoid stale state)
+        let runtimeTemplate: string | null = null;
         try {
-          const template = detectClassicTemplate(classicData);
-          setDetectedTemplate(template);
-          setMessage(`Detected template: ${template}. Preparing resources...`);
+          runtimeTemplate = detectClassicTemplate(classicData);
+          setDetectedTemplate(runtimeTemplate);
+          setMessage(`Detected template: ${runtimeTemplate}. Preparing resources...`);
         } catch {
+          runtimeTemplate = null;
           setDetectedTemplate(null);
         }
 
-        // 2.5 Fetch classic webmap data
+        // Fetch classic webmap data
         if (classicData.values.webmap) {
           setMessage("Fetching classic webmap data...");
           const webmapId = classicData.values.webmap;
           classicData.webmapJson = await getItemData(webmapId, token);
+          checkCancelled();
         }
 
-        // 3. Create an empty draft StoryMap
+        // Create an empty draft StoryMap
         setMessage("Creating new StoryMap draft...");
         const coverTitle = classicData.values?.title || "Untitled Story";
         const itemTitle = `(Converted) ${coverTitle}`;
         const targetStoryId = await createDraftStoryMap(username, token, itemTitle);
+        checkCancelled();
 
-        // 3.a Determine base theme (summit/obsidian) will be applied inline with overrides during conversion
+        // Determine base theme (summit/obsidian) will be applied inline with overrides during conversion
         setMessage("Mapping theme overrides (inline resource)...");
 
-        // 3.5 Convert to new JSON (legacy or refactored pipeline)
+        // Convert to new JSON (legacy or refactored pipeline)
         setStatus("converting");
-        const templateLabel = detectedTemplate ? detectedTemplate : "Classic";
+        const templateLabel = runtimeTemplate || detectedTemplate || "story";
+        setButtonLabel(`Converting ${templateLabel}: ${coverTitle}...`);
         setMessage(
           useRefactor
-            ? `[Refactor][${templateLabel}] Converting ${templateLabel} story via new pipeline...`
+            ? `[Refactor][${templateLabel}] Converting ${templateLabel}: "${coverTitle}" via new pipeline...`
             : `Converting ${templateLabel} story to new format...`
         );
 
-        let newStorymapJson: any;
+        let newStorymapJson: unknown;
         if (useRefactor) {
           const uploader = async (url: string, storyId: string, user: string, tk: string) => {
+            if (cancelRequestedRef.current) throw new Error("Conversion cancelled by user intervention");
             const res = await transferImage(url, storyId, user, tk);
             return { originalUrl: url, resourceName: res.resourceName, transferred: !!res.isTransferred };
           };
@@ -120,6 +196,7 @@ export default function Converter() {
             token,
             themeId: "summit",
             progress: (e) => {
+              if (cancelRequestedRef.current) return; // suppress updates post-cancel
               const alreadyHasCount = /\(\s*\d+\s*\/\s*\d+\s*\)\s*$/.test(e.message);
               const msg = e.total && !alreadyHasCount
                 ? `${e.message} (${e.current}/${e.total})`
@@ -149,6 +226,7 @@ export default function Converter() {
                   setMessage(msg);
               }
             },
+            isCancelled: () => cancelRequestedRef.current,
             uploader
           });
           newStorymapJson = pipelineResult.storymapJson;
@@ -161,10 +239,11 @@ export default function Converter() {
             targetStoryId
           );
         }
+        checkCancelled();
 
         // Extract custom CSS (if any) from converter-metadata decisions
         try {
-          const metadataRes = newStorymapJson?.resources && Object.values<any>(newStorymapJson.resources).find((r: any) => r.type === 'converter-metadata');
+          const metadataRes = newStorymapJson?.resources && Object.values<unknown>(newStorymapJson.resources).find((r: unknown) => r.type === 'converter-metadata');
           const cssCombined = metadataRes?.data?.classicMetadata?.mappingDecisions?.customCss?.combined;
           if (cssCombined) {
             const blob = new Blob([cssCombined], { type: 'text/css' });
@@ -175,59 +254,24 @@ export default function Converter() {
           // ignore
         }
 
-        // Theme resource already constructed during conversion with base theme + overrides.
-
-        // // Skip image transfer if resources already have item-resource references
-        // const needsTransfer = Object.values<any>(newStorymapJson.resources || {})
-        //   .some(r => r.type === "image" && r.data?.src);
-
-        // // 4. Transfer images from classic to target story
-        // if (needsTransfer) {
-        //   const imageUrls = collectImageUrls(newStorymapJson);
-        //   if (imageUrls.length > 0) {
-        //     setStatus("transferring");
-        //     setMessage(`Transferring ${imageUrls.length} image(s) from classic story...`);
-
-        //     const transferResultsArray = await transferImages(
-        //       imageUrls,
-        //       targetStoryId,
-        //       username,
-        //       token,
-        //       (current, total, msg) => {
-        //         setMessage(`Transferring images (${current}/${total}): ${msg}`);
-        //       }
-        //     );
-
-        //     // Convert array to mapping
-        //     const transferResults: Record<string, string> = {};
-        //     for (const result of transferResultsArray) {
-        //       transferResults[result.originalUrl] = result.resourceName;
-        //     }
-
-        //     // Update JSON to use proper resource structure
-        //     newStorymapJson = updateImageUrlsInJson(
-        //       newStorymapJson,
-        //       transferResults
-        //     );
-        //   }
-        // }
-
-        // 5. Fetch target draft details
+        // Fetch target draft details
         setStatus("updating");
         setMessage("Fetching target storymap details...");
         const targetDetails = await getItemDetails(targetStoryId, token);
+        checkCancelled();
 
-        // 6. Find draft resource name
+        // Find draft resource name
         const draftResourceName = findDraftResourceName(targetDetails);
         if (!draftResourceName) {
           throw new Error("Could not find draft resource in target storymap. Make sure it is a draft storymap.");
         }
 
-        // 7. Remove old draft resource
+        // Remove old draft resource
         setMessage(`Removing old draft resource (${draftResourceName})...`);
         await removeResource(targetStoryId, username, draftResourceName, token);
+        checkCancelled();
 
-        // 8. Upload new draft resource (same name)
+        // Upload new draft resource (same name)
         setMessage(`Uploading new draft resource (${draftResourceName})...`);
         const jsonBlob = new Blob([JSON.stringify(newStorymapJson)], {
           type: "application/json",
@@ -239,24 +283,32 @@ export default function Converter() {
           draftResourceName,
           token
         );
+        checkCancelled();
 
-        // 9. Update keywords to add smconverter:online-app
+        // Update keywords to add smconverter:online-app
         setMessage("Updating keywords...");
         const currentKeywords = targetDetails.typeKeywords || [];
         if (!currentKeywords.includes("smconverter:online-app")) {
           const newKeywords = [...currentKeywords, "smconverter:online-app"];
           await updateItemKeywords(targetStoryId, username, newKeywords, token);
+          checkCancelled();
         }
 
         // Success!
+        checkCancelled();
         setStatus("success");
-        setMessage("Conversion complete!");
+        setMessage("Classic " + templateLabel + ":  " + coverTitle);
         setConvertedUrl(`https://storymaps.arcgis.com/stories/${targetStoryId}/edit`);
         setPublishing(true);
-      } catch (error: any) {
-        setStatus("error");
-        // Avoid double "Error:" prefix (UI adds its own for error status)
-        setMessage(error?.message || "An unknown error occurred");
+      } catch (error: unknown) {
+        if (error?.message === "Conversion cancelled by user intervention") {
+          // Already set via handleCancel; ensure status stays error
+          setStatus("error");
+          setMessage(error.message);
+        } else {
+          setStatus("error");
+          setMessage(error?.message || "An unknown error occurred");
+        }
         // Log stack for debugging if available
         if (error?.stack) {
           console.debug('[ConverterCatch]', error.stack);
@@ -264,11 +316,6 @@ export default function Converter() {
         setPublishing(false);
       }
     };
-  const { token, userInfo } = useAuth();
-  const [classicItemId, setClassicItemId] = useState("");
-  const [status, setStatus] = useState<Status>("idle");
-  const [message, setMessage] = useState("");
-  const [convertedUrl, setConvertedUrl] = useState("");
   return (
     <div className="converter-container">
       <h2>Classic StoryMap Converter</h2>
@@ -292,21 +339,43 @@ export default function Converter() {
           className="converter-input"
         />
       </div>
-      <button
-        className="converter-btn"
-        onClick={handleConvert}
-        disabled={publishing || (status !== "idle" && status !== "error" && status !== "success")}
-      >
-        {status === "idle" || status === "error" || status === "success" ? "Convert" : "Converting..."}
-      </button>
-      {message && (
+      {status !== "success" ? (
+        <button
+          className={`converter-btn ${hoverCancel && ['fetching','converting','transferring','updating'].includes(status) ? 'cancel-hover' : ''}`}
+          title={status === 'idle' || status === 'error' ? 'Start conversion' : (hoverCancel ? 'Cancel conversion (Esc)' : 'Conversion in progress')}
+          onClick={status === 'idle' || status === 'error' ? handleConvert : handleCancel}
+          onMouseEnter={() => { if (!isMobile && ['fetching','converting','transferring','updating'].includes(status)) setHoverCancel(true); }}
+          onMouseLeave={() => setHoverCancel(false)}
+          disabled={publishing}
+        >
+          {(() => {
+            if (status === 'idle' || status === 'error') return 'Convert';
+            if (status === 'success') return 'Success';
+            if (hoverCancel && ['fetching','converting','transferring','updating'].includes(status)) return 'Cancel';
+            // Restore buttonLabel behavior
+            return buttonLabel;
+          })()}
+        </button>
+      ) : (
+        <div className="converter-message converter-message-success">
+          <strong>Converted </strong> {message || "Conversion complete!"}
+        </div>
+      )}
+      {isMobile && status !== 'idle' && status !== 'error' && status !== 'success' && !cancelRequestedRef.current && !cancelRequested && (
+        <div className="cancel-mobile-wrapper">
+          <button
+            className="converter-btn cancel-mobile"
+            onClick={handleCancel}
+            title="Cancel conversion"
+          >
+            Cancel
+          </button>
+        </div>
+      )}
+      {status !== "success" && message && (
         <div className={`converter-message converter-message-${status}`}>
           <strong>
-            {status === "error"
-              ? "Error:"
-              : status === "success"
-              ? "Success:"
-              : "Status:"}
+            {status === "error" ? "Error:" : "Status:"}
           </strong> {message}
         </div>
       )}
@@ -326,10 +395,31 @@ export default function Converter() {
               setPublishing(false);
               setConvertedUrl("");
             }}
+            onContextMenu={(e) => {
+              e.preventDefault();
+              if (!convertedUrl) return;
+              navigator.clipboard.writeText(convertedUrl).then(() => setCopiedUrl(true)).catch(() => {});
+            }}
             disabled={!publishing}
           >
             Click to Finish Publishing →
           </button>
+          <div className="converter-url-row">
+            <span className="converter-url-label">Converted URL:</span>{' '}
+            <a href={convertedUrl} target="_blank" rel="noopener noreferrer" className="converter-url-link">{convertedUrl}</a>
+            <button
+              className="converter-copy-btn"
+              onClick={() => {
+                if (!convertedUrl) return;
+                navigator.clipboard.writeText(convertedUrl).then(() => setCopiedUrl(true)).catch(() => {});
+              }}
+            >
+              Copy URL
+            </button>
+            {copiedUrl && (
+              <span className="converter-copy-hint">Copied!</span>
+            )}
+          </div>
         </div>
       )}
     </div>

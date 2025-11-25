@@ -25,9 +25,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return new URLSearchParams(window.location.search).get("refactor") === "1";
   }); 
 
+  // Handle new OAuth redirect with token in hash
   useEffect(() => {
     const { token, expires } = getTokenFromHash();
     if (!token) {
+      // No new token in hash; just mark loading false (restored session handled separately)
       setTimeout(() => setLoading(false), 0);
       return;
     }
@@ -39,14 +41,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       tokenExpires: expires ? new Date(expires) : new Date(Date.now() + 1000 * 60 * 60 * 24 * 14),
       portal: "https://www.arcgis.com/sharing/rest",
     });
-    setTimeout(() => setSession(s), 0);
+    setSession(s);
     saveSession(s);
-    // Basic user info first
+    // Clean up OAuth hash fragment (remove access_token from URL after parsing)
+    try {
+      if (window.location.hash && /access_token=/.test(window.location.hash)) {
+        const cleanUrl = window.location.pathname + window.location.search;
+        window.history.replaceState({}, "", cleanUrl);
+      }
+    } catch {/* ignore history errors */}
     getUserDetails(token)
       .then(details => {
         const base = s.portal.replace(/\/$/, "");
         const extendedUrl = `${base}/community/users/${details.username}?f=json&token=${token}`;
-        fetch(extendedUrl)
+        return fetch(extendedUrl)
           .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
           .then(ext => {
             const thumbUrl = ext?.thumbnail
@@ -74,50 +82,50 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       })
       .catch(() => setUserInfo(null))
       .finally(() => {
-          // If we restored a session (no hash token) and lack cached userInfo, fetch it once.
-          useEffect(() => {
-            if (session && !userInfo) {
-              const token = session.token;
-              getUserDetails(token)
-                .then(details => {
-                  const base = session.portal.replace(/\/$/, "");
-                  const extendedUrl = `${base}/community/users/${details.username}?f=json&token=${token}`;
-                  return fetch(extendedUrl)
-                    .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
-                    .then(ext => {
-                      const thumbUrl = ext?.thumbnail
-                        ? `${base}/community/users/${details.username}/info/${ext.thumbnail}?token=${token}`
-                        : undefined;
-                      const info: UserInfo = {
-                        username: details.username,
-                        role: details.role,
-                        userType: details.userLicenseTypeId,
-                        fullName: ext?.fullName || details.username,
-                        thumbnailUrl: thumbUrl,
-                      };
-                      setUserInfo(info);
-                      saveUserInfo(info);
-                    });
-                })
-                .catch(() => {/* ignore */});
-            }
-          }, [session, userInfo]);
         if (refactorFlag) {
           restoreRefactorFlagToUrl();
         } else {
           sessionStorage.removeItem("refactorFlag");
         }
-        setTimeout(() => setLoading(false), 0);
-        sessionStorage.removeItem("refactorFlag");
+        setLoading(false);
       });
   }, [initialRefactor]);
 
-  // Display the updated token
+  // When a session was restored (no new token in hash) and userInfo wasn't cached, fetch details once.
   useEffect(() => {
-    if (session) {
-      console.log("Session token (updated):", session.token);
+    if (session && !userInfo && !loading) {
+      const token = session.token;
+      getUserDetails(token)
+        .then(details => {
+          const base = session.portal.replace(/\/$/, "");
+          const extendedUrl = `${base}/community/users/${details.username}?f=json&token=${token}`;
+          return fetch(extendedUrl)
+            .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
+            .then(ext => {
+              const thumbUrl = ext?.thumbnail
+                ? `${base}/community/users/${details.username}/info/${ext.thumbnail}?token=${token}`
+                : undefined;
+              const info: UserInfo = {
+                username: details.username,
+                role: details.role,
+                userType: details.userLicenseTypeId,
+                fullName: ext?.fullName || details.username,
+                thumbnailUrl: thumbUrl,
+              };
+              setUserInfo(info);
+              saveUserInfo(info);
+            });
+        })
+        .catch(() => { /* ignore fetch errors on restore */ });
     }
-  }, [session]);
+  }, [session, userInfo, loading]);
+
+  // // Display the updated token
+  // useEffect(() => {
+  //   if (session) {
+  //     console.log("Session token (updated):", session.token);
+  //   }
+  // }, [session]);
 
 
   const signIn = () => {

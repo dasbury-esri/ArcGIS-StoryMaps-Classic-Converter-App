@@ -1,14 +1,14 @@
 
 import React, { useState }  from "react";
 import { useAuth } from "../auth/useAuth";
-import mapTourImg from "../assets/classic-apps/images/storymap-map-tour.png";
-import mapJournalImg from "../assets/classic-apps/images/storymap-map-journal.png";
-import mapSeriesTabbedImg from "../assets/classic-apps/images/storymap-series-tabbed.png";
-import cascadeImg from "../assets/classic-apps/images/storymap-cascade.png";
-import shortlistImg from "../assets/classic-apps/images/storymap-shortlist.png";
-import crowdsourceImg from "../assets/classic-apps/images/storymap-crowdsource.png";
-import swipeImg from "../assets/classic-apps/images/storymap-swipe.png";
-import basicImg from "../assets/classic-apps/images/storymap-basic.png";
+import mapTourImg from "../assets/storymap-map-tour.png";
+import mapJournalImg from "../assets/storymap-map-journal.png";
+import mapSeriesTabbedImg from "../assets/storymap-series-tabbed.png";
+import cascadeImg from "../assets/storymap-cascade.png";
+import shortlistImg from "../assets/storymap-shortlist.png";
+import crowdsourceImg from "../assets/storymap-crowdsource.png";
+import swipeImg from "../assets/storymap-swipe.png";
+import basicImg from "../assets/storymap-basic.png";
 
 interface TileConfig {
     key: string;
@@ -31,7 +31,7 @@ const tiles: TileConfig[] = [
     {
         key: 'mapJournal',
         title: 'Map Journal',
-        description: 'A compelling map-based narrative presented as a set of journal entries.',
+        description: 'Presented a compelling map-based narrative presented as a set of journal entries.',
         image: mapJournalImg,
         status: 'active',
         alt: 'Map Journal Thumbnail'
@@ -71,7 +71,7 @@ const tiles: TileConfig[] = [
     {
         key: 'swipe',
         title: 'Swipe',
-        description: 'Displayed two layers or two maps side by side for comparison.',
+        description: 'Displayed two layers (converted to Instant App) or two maps side by side (converted to Experience Builder) for comparison.',
         image: swipeImg,
         status: 'disabled',
         alt: 'Swipe Thumbnail'

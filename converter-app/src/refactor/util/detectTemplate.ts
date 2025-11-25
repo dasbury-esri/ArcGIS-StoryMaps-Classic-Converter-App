@@ -3,8 +3,8 @@ import type { ClassicStoryMapJSON } from '../types/classic.ts';
 // ...existing code...
 export function detectClassicTemplate(classic: ClassicStoryMapJSON): string {
   // (no change; retained for dynamic status messaging)
-  const v: any = classic.values || {};
-  const settings: any = v.settings || {};
+  const v: unknown = classic.values || {};
+  const settings: unknown = v.settings || {};
   let templateName: string | undefined;
   if (typeof v.templateName === 'string' && v.templateName.trim()) templateName = v.templateName;
   if (typeof v.template === 'string' && v.template.trim()) templateName = v.template;
@@ -18,7 +18,7 @@ export function detectClassicTemplate(classic: ClassicStoryMapJSON): string {
   if (v.components && v.components.contribute) return 'Crowdsource';
   if (v.story && Array.isArray(v.story.sections)) {
     const sections = v.story.sections;
-    if (sections.some((s: any) => s.type === 'sequence')) return 'Cascade';
+    if (sections.some((s: unknown) => s.type === 'sequence')) return 'Cascade';
     return 'Map Journal';
   }
   return 'Basic';

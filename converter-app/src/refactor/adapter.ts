@@ -3,6 +3,7 @@ import type { ConversionContext, StoryMapJSON } from './types/core.ts';
 import { ConverterFactory } from './ConverterFactory.ts';
 import { MediaTransferService } from './media/MediaTransferService.ts';
 import { ResourceMapper } from './media/ResourceMapper.ts';
+import { assertStoryMapJson, formatAssertionReport } from './util/assertions.ts';
 
 export interface AdapterParams {
   classicJson: ClassicStoryMapJSON;
@@ -16,6 +17,7 @@ export interface AdapterParams {
   uploader: (url: string, storyId: string, username: string, token: string) => Promise<{
     originalUrl: string; resourceName: string; transferred: boolean;
   }>;
+  isCancelled?: () => boolean; // optional cancellation callback
 }
 
 export interface RefactorConversionOutput {
@@ -25,6 +27,12 @@ export interface RefactorConversionOutput {
 
 // Unified orchestration for refactored flow
 export async function convertClassicToJsonRefactored(params: AdapterParams): Promise<RefactorConversionOutput> {
+  const checkCancelled = () => {
+    if (params.isCancelled && params.isCancelled()) {
+      params.progress({ stage: 'error', message: 'Cancellation requested – aborting.' });
+      throw new Error('Conversion cancelled by user intervention');
+    }
+  };
   const ctx: ConversionContext = {
     classicItemId: params.classicItemId,
     storyId: params.storyId,
@@ -35,25 +43,42 @@ export async function convertClassicToJsonRefactored(params: AdapterParams): Pro
   };
 
   params.progress({ stage: 'convert', message: '[Refactor] Starting converter factory...' });
+  checkCancelled();
   const converterResult = await ConverterFactory.create({
     classicJson: params.classicJson,
     themeId: params.themeId,
     progress: (e) => params.progress(e),
-    enrichScenes: params.enrichScenes
+    enrichScenes: params.enrichScenes,
+    isCancelled: params.isCancelled
   });
+  checkCancelled();
 
   params.progress({ stage: 'media', message: '[Refactor] Transferring media...' });
+  checkCancelled();
   const mediaMapping = await MediaTransferService.transferBatch({
     urls: converterResult.mediaUrls,
     storyId: ctx.storyId,
     username: ctx.username,
     token: ctx.token,
     progress: ctx.progress,
-    uploader: params.uploader
+    uploader: params.uploader,
+    isCancelled: params.isCancelled
   });
+  checkCancelled();
 
   params.progress({ stage: 'finalize', message: '[Refactor] Applying media mapping...' });
+  checkCancelled();
   const updated = ResourceMapper.apply(converterResult.storymapJson, mediaMapping);
+
+  // Post-mapping assertions to guard schema correctness
+  const assertion = assertStoryMapJson(updated);
+  if (assertion.errors.length) {
+    params.progress({ stage: 'error', message: '[Refactor] Assertion errors detected. Aborting.' });
+    throw new Error(formatAssertionReport(assertion));
+  }
+  if (assertion.warnings.length) {
+    params.progress({ stage: 'warn', message: `[Refactor] Assertions warnings: ${assertion.warnings.length}` });
+  }
 
   params.progress({ stage: 'done', message: '[Refactor] Conversion pipeline complete.' });
   return { storymapJson: updated, mediaMapping };

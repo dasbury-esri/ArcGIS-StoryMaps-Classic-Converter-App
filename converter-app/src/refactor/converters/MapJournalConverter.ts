@@ -1,4 +1,5 @@
 import { BaseConverter } from './BaseConverter.ts';
+import { determineScaleZoomLevel } from '../../converter/utils.ts';
 import type { ClassicValues, ClassicSection } from '../types/classic.ts';
 import type { ConverterResult, StoryMapJSON } from '../types/core.ts';
 import { createThemeWithDecisions } from '../theme/themeMapper.ts';
@@ -56,11 +57,10 @@ export class MapJournalConverter extends BaseConverter {
     const narrativePanelPosition: 'start' | 'end' = classicPosition === 'left' ? 'start' : classicPosition === 'right' ? 'end' : 'end';
     const { immersiveId: sidecarId, slideId: placeholderSlideId, narrativeId: placeholderNarrativeId } =
       this.builder.addSidecar(subtype, narrativePanelPosition, narrativePanelSize);
-    const json = this.builder.getJson();
-    delete json.nodes[placeholderSlideId];
-    delete json.nodes[placeholderNarrativeId];
-    const sidecar = json.nodes[sidecarId];
-    sidecar.children = [];
+    // Remove placeholder slide + narrative panel created by sidecar scaffold; we will add real slides below.
+    this.builder.removeNode(placeholderSlideId);
+    this.builder.removeNode(placeholderNarrativeId);
+    this.builder.updateNode(sidecarId, node => { node.children = []; });
 
     // Optional intro slide (ignore root-level webmap per requirement; only use description)
     if (v.description) {
@@ -110,27 +110,81 @@ export class MapJournalConverter extends BaseConverter {
         this.media.add(m.image.url);
       } else if (m?.webmap?.id) {
         // Support Web Scene vs Web Map via optional itemType field in classic JSON media
-          const wmItemType: 'Web Map' | 'Web Scene' = m.webmap.itemType === 'Web Scene' ? 'Web Scene' : 'Web Map';
-          type ClassicLayer = { id: string; visibility: boolean; title?: string };
-          interface ClassicWebMapExtras { overview?: { enable?: boolean; openByDefault?: boolean }; legend?: { enable?: boolean; openByDefault?: boolean }; geocoder?: { enable?: boolean }; popup?: unknown; }
-          const extras = m.webmap as ClassicWebMapExtras;
-          const initialState = {
-            extent: m.webmap.extent,
-            mapLayers: Array.isArray(m.webmap.layers)
-              ? (m.webmap.layers as ClassicLayer[]).map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }))
-              : undefined,
-            overview: extras.overview ? { enable: !!extras.overview.enable, openByDefault: !!extras.overview.openByDefault } : undefined,
-            legend: extras.legend ? { enable: !!extras.legend.enable, openByDefault: !!extras.legend.openByDefault } : undefined,
-            geocoder: extras.geocoder ? { enable: !!extras.geocoder.enable } : undefined,
-            popup: extras.popup || undefined
+        const wmItemType: 'Web Map' | 'Web Scene' = m.webmap.itemType === 'Web Scene' ? 'Web Scene' : 'Web Map';
+        type ClassicLayer = { id: string; visibility: boolean; title?: string };
+        type ClassicExtent = { xmin: number; ymin: number; xmax: number; ymax: number; spatialReference?: { wkid?: number; latestWkid?: number; wkt?: string } };
+        interface ClassicWebMapExtras { overview?: { enable?: boolean; openByDefault?: boolean }; legend?: { enable?: boolean; openByDefault?: boolean }; geocoder?: { enable?: boolean }; popup?: unknown; }
+        const extras = m.webmap as ClassicWebMapExtras;
+        // Normalize extent/center SR to Web Mercator if provided in WGS84
+        const normalizeExtent = (ex: ClassicExtent | undefined): ClassicExtent | undefined => {
+          if (!ex) return ex;
+          const sr = ex.spatialReference?.wkid || ex.spatialReference?.wkt || ex.spatialReference?.latestWkid;
+          const is4326 = sr === 4326 || sr === 'WGS84' || sr === 'WGS 84';
+          const toWebMercatorX = (lon: number) => lon * 20037508.34 / 180;
+          const toWebMercatorY = (lat: number) => {
+            const y = Math.log(Math.tan((90 + lat) * Math.PI / 360)) / (Math.PI / 180);
+            return y * 20037508.34 / 180;
           };
-          const wId = this.builder.addWebMapResource(m.webmap.id, wmItemType, initialState);
+          if (is4326 && typeof ex.xmin === 'number') {
+            const xmin = toWebMercatorX(ex.xmin);
+            const xmax = toWebMercatorX(ex.xmax);
+            const ymin = toWebMercatorY(ex.ymin);
+            const ymax = toWebMercatorY(ex.ymax);
+            return { xmin, ymin, xmax, ymax, spatialReference: { wkid: 102100 } };
+          }
+          return ex;
+        };
+        const normalizedExtent = m.webmap.extent ? normalizeExtent(m.webmap.extent as ClassicExtent) : undefined;
+        // Compute viewpoint/zoom/scale from extent
+        interface Viewpoint { targetGeometry?: unknown; scale?: number }
+        let viewpoint: Viewpoint | undefined;
+        let zoom: number | undefined;
+        if (normalizedExtent) {
+          const scaleZoom = determineScaleZoomLevel(normalizedExtent as unknown as { ymax: number; ymin: number });
+          if (scaleZoom) {
+            viewpoint = { targetGeometry: normalizedExtent, scale: scaleZoom.scale };
+            zoom = scaleZoom.zoom;
+          }
+        }
+        const initialState = {
+          extent: normalizedExtent,
+          mapLayers: Array.isArray(m.webmap.layers)
+            ? (m.webmap.layers as ClassicLayer[]).map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }))
+            : undefined,
+          overview: extras.overview ? { enable: !!extras.overview.enable, openByDefault: !!extras.overview.openByDefault } : undefined,
+          legend: extras.legend ? { enable: !!extras.legend.enable, openByDefault: !!extras.legend.openByDefault } : undefined,
+          geocoder: extras.geocoder ? { enable: !!extras.geocoder.enable } : undefined,
+          popup: extras.popup || undefined,
+          viewpoint,
+          zoom
+        };
+        // Create webmap resource as 'default' type (experiment: skip later enrichment step)
+        const wId = this.builder.addWebMapResource(m.webmap.id, wmItemType, initialState, 'default');
+        // Attach scale to top-level resource data (parity with legacy)
+        // Removed attaching top-level scale to resource (rely on viewpoint.scale)
         mediaNodeId = this.builder.createWebMapNode(
           wId,
           section.title ? `${wmItemType === 'Web Scene' ? 'Scene' : 'Map'}: ${section.title}` : undefined
         );
         this.media.add(m.webmap.id);
-          // Node-level augmentation removed; state now on resource.initialState
+        // Ensure slide-level extent/layers/viewpoint present on node for downstream consumers
+        if (mediaNodeId) {
+          this.builder.updateNodeData(mediaNodeId, (data) => {
+            if (normalizedExtent) data.extent = normalizedExtent;
+            if (Array.isArray(m.webmap.layers)) {
+              (data as Record<string, unknown>).mapLayers = (m.webmap.layers as ClassicLayer[]).map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }));
+            }
+            if (viewpoint) (data as Record<string, unknown>).viewpoint = viewpoint;
+            if (typeof zoom === 'number') (data as Record<string, unknown>).zoom = zoom;
+            // Removed data.scale assignment (use viewpoint.scale)
+            if (extras.overview && extras.overview.enable) {
+              (data as Record<string, unknown>).overview = { openByDefault: !!extras.overview.openByDefault };
+            }
+            if (extras.legend && extras.legend.enable) {
+              (data as Record<string, unknown>).legend = { openByDefault: !!extras.legend.openByDefault };
+            }
+          });
+        }
       } else if (m?.video?.url) {
         const providerInfo = this.detectVideoProvider(m.video.url);
         if (providerInfo.provider !== 'unknown') {
@@ -157,21 +211,65 @@ export class MapJournalConverter extends BaseConverter {
             const media = act.media;
             if (media.webmap?.id) {
               const wmItemType2: 'Web Map' | 'Web Scene' = media.webmap.itemType === 'Web Scene' ? 'Web Scene' : 'Web Map';
-              const wmRes = this.builder.addWebMapResource(media.webmap.id, wmItemType2);
+              // Compute viewpoint/zoom/scale from extent if present
+              interface Viewpoint2 { targetGeometry?: unknown; scale?: number }
+              let viewpoint2: Viewpoint2 | undefined;
+              let zoom2: number | undefined;
+              // Normalize extent SR for action media as well
+              const normalizedExtent2 = media.webmap.extent ? normalizeExtent(media.webmap.extent as ClassicExtent) : undefined;
+              // Extract extras for action media
+              interface ClassicWebMapExtras2 { overview?: { enable?: boolean; openByDefault?: boolean }; legend?: { enable?: boolean; openByDefault?: boolean } }
+              const extras2 = media.webmap as ClassicWebMapExtras2;
+              if (normalizedExtent2) {
+                const scaleZoom2 = determineScaleZoomLevel(normalizedExtent2 as unknown as { ymax: number; ymin: number });
+                if (scaleZoom2) {
+                  viewpoint2 = { targetGeometry: normalizedExtent2, scale: scaleZoom2.scale };
+                  zoom2 = scaleZoom2.zoom;
+                }
+              }
+              const initialState2 = {
+                extent: normalizedExtent2,
+                mapLayers: Array.isArray(media.webmap.layers)
+                  ? media.webmap.layers.map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }))
+                  : undefined,
+                overview: extras2.overview ? { enable: !!extras2.overview.enable, openByDefault: !!extras2.overview.openByDefault } : undefined,
+                legend: extras2.legend ? { enable: !!extras2.legend.enable, openByDefault: !!extras2.legend.openByDefault } : undefined,
+                viewpoint: viewpoint2,
+                zoom: zoom2
+              };
+              // Action replace-media webmap also created as 'default'
+              const wmRes = this.builder.addWebMapResource(media.webmap.id, wmItemType2, initialState2, 'default');
+              // Attach scale to top-level resource data (parity with legacy)
+              // Removed attaching scale to action webmap resource
               actMediaNode = this.builder.createWebMapNode(
                 wmRes,
                 stub.text.includes('Map') || stub.text.includes('Scene') ? stub.text : undefined
               );
               const currentJson = this.builder.getJson();
-              if (actMediaNode && media.webmap.layers) {
+              if (actMediaNode) {
                 const wmNode = currentJson.nodes[actMediaNode];
                 if (wmNode && wmNode.data) {
-                  wmNode.data.mapLayers = media.webmap.layers.map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }));
+                  if (Array.isArray(media.webmap.layers)) {
+                    (wmNode.data as Record<string, unknown>).mapLayers = media.webmap.layers.map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }));
+                  }
+                  if (normalizedExtent2) {
+                    (wmNode.data as Record<string, unknown>).extent = normalizedExtent2;
+                  }
+                  if (viewpoint2) {
+                    (wmNode.data as Record<string, unknown>).viewpoint = viewpoint2;
+                  }
+                  if (typeof zoom2 === 'number') {
+                    (wmNode.data as Record<string, unknown>).zoom = zoom2;
+                  }
+                  // Removed data.scale assignment for action media node
+                  // Propagate overview/legend open state to node-level for action media
+                  if (extras2.overview && extras2.overview.enable) {
+                    (wmNode.data as Record<string, unknown>).overview = { openByDefault: !!extras2.overview.openByDefault };
+                  }
+                  if (extras2.legend && extras2.legend.enable) {
+                    (wmNode.data as Record<string, unknown>).legend = { openByDefault: !!extras2.legend.openByDefault };
+                  }
                 }
-              }
-              if (actMediaNode && media.webmap.extent) {
-                const wmNode = currentJson.nodes[actMediaNode];
-                if (wmNode && wmNode.data) wmNode.data.extent = media.webmap.extent;
               }
               this.media.add(media.webmap.id);
             } else if (media.image?.url) {
@@ -192,12 +290,12 @@ export class MapJournalConverter extends BaseConverter {
               actMediaNode = this.builder.createEmbedNode(media.webpage.url, media.webpage.caption, media.webpage.title, media.webpage.description, media.webpage.altText);
             }
           if (actMediaNode) {
-            const currentJson2 = this.builder.getJson();
-            const btnNode = currentJson2.nodes[stub.buttonNodeId];
-            if (btnNode) {
-              if (!btnNode.dependents) btnNode.dependents = {};
-              btnNode.dependents.actionMedia = actMediaNode;
-            }
+            // Attach dependents reference via builder mutator (extend StoryMapNode with dependents bag)
+            this.builder.updateNode(stub.buttonNodeId, (btnNode) => {
+              const b = btnNode as unknown as { dependents?: Record<string, string> };
+              if (!b.dependents) b.dependents = {};
+              b.dependents.actionMedia = actMediaNode;
+            });
             this.builder.registerReplaceMediaAction(stub.buttonNodeId, slideId, actMediaNode);
           }
         }
@@ -219,6 +317,8 @@ export class MapJournalConverter extends BaseConverter {
       }
     }
     // Inline anchors: inject hrefs inside preserved HTML
+    // Refresh live JSON snapshot for inline anchor resolution
+    const json = this.builder.getJson();
     for (const stub of navigateInlineStubs) {
       const targetIdx = navigateIndexLookup.get(stub.actionId);
       if (typeof targetIdx !== 'number') continue;
@@ -308,7 +408,9 @@ export class MapJournalConverter extends BaseConverter {
     (decisions as Record<string, unknown>).videoEmbeds = this.videoEmbedCount;
     // Add converter metadata resource
     this.builder.addConverterMetadata('MapJournal', { classicMetadata: { theme: classicTheme, mappingDecisions: decisions } });
-    this.emit(`Built single sidecar with ${sidecar.children?.length || 0} slide(s); theme overrides applied (${Object.keys(overrides).length})`);
+    const sidecarNode = this.builder.getJson().nodes[sidecarId];
+    const slideCount = sidecarNode?.children?.length || 0;
+    this.emit(`Built single sidecar with ${slideCount} slide(s); theme overrides applied (${Object.keys(overrides).length})`);
   }
 
   protected applyTheme(): void {

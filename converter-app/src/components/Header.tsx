@@ -1,5 +1,6 @@
 // src/components/Header.tsx
 import { useState, useRef, useEffect } from "react";
+import { useRefactorFlagReactive } from "../refactor/util/featureFlag";
 import { useAuth } from "../auth/useAuth";
 import { APP_VERSION } from "../version";
 
@@ -38,12 +39,13 @@ function Header() {
   const thumbnailUrl = userInfo?.thumbnailUrl || null;
   const fullName = userInfo?.fullName || userInfo?.username || '';
 
+  const refactorMode = useRefactorFlagReactive();
   return (
     <header className="top-nav">
       <div className="top-nav-inner">
         <div className="top-nav-titles">
           <div className="top-nav-title">Classic StoryMap Converter</div>
-          <div className="top-nav-subtitle">Alpha | v{APP_VERSION}</div>
+          <div className="top-nav-subtitle">Alpha | v{APP_VERSION}{refactorMode && (<span className="refactor-badge" role="status" aria-label="Refactor mode active" title="Refactor pipeline active">Refactor</span>)}</div>
         </div>
         <nav className="top-nav-list" aria-label="Main navigation" />
         <div className="top-nav-actions">
@@ -57,7 +59,6 @@ function Header() {
                 className="account-trigger"
                 aria-haspopup="true"
                 aria-label="Account menu"
-                aria-expanded={open}
                 onClick={() => setOpen(o => !o)}
               >
                 <svg className="account-trigger-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/></svg>

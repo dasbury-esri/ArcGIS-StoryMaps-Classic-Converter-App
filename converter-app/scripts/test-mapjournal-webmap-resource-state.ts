@@ -40,6 +40,36 @@ async function run(){
     console.log('Resource snippet', id, { extent: extentObj, layers });
   }
   console.log('Differing sequential extent count among first 10 resources:', differing);
+  // Validate action-created replace-media webmap nodes carry viewpoint/zoom/scale and resources mirror these
+  const actions: any[] = Array.isArray(result.storymapJson.actions) ? result.storymapJson.actions : [];
+  const replaceMediaActions = actions.filter(a => a.event === 'ImmersiveSlide_ReplaceMedia' && a.data?.media);
+  let missingNodeState = 0;
+  let missingResourceState = 0;
+  for (const act of replaceMediaActions) {
+    const mediaId: string = act.data.media;
+    const node = (result.storymapJson.nodes as any)[mediaId];
+    if (!node || node.type !== 'webmap') continue;
+    const d = node.data || {};
+    const nodeViewpoint = (d as any).viewpoint;
+    const nodeZoom = (d as any).zoom;
+    const nodeScale = (d as any).scale;
+    if (!nodeViewpoint || typeof nodeZoom !== 'number' || typeof nodeScale !== 'number') {
+      missingNodeState++;
+      console.warn('Missing node state for action media', mediaId, { viewpoint: nodeViewpoint, zoom: nodeZoom, scale: nodeScale });
+    }
+    const resId = (d as any).map;
+    const res = (result.storymapJson.resources as any)[resId];
+    const rs = res?.data?.initialState || {};
+    if (!rs.viewpoint || typeof rs.zoom !== 'number' || typeof rs.scale !== 'number') {
+      missingResourceState++;
+      console.warn('Missing resource initialState for action media', resId, { viewpoint: rs.viewpoint, zoom: rs.zoom, scale: rs.scale });
+    }
+  }
+  console.log('Action media nodes without full state:', missingNodeState);
+  console.log('Action media resources without full state:', missingResourceState);
+  if (missingNodeState || missingResourceState) {
+    throw new Error(`State parity check failed (nodes: ${missingNodeState}, resources: ${missingResourceState})`);
+  }
   console.log('Wrote output JSON to', outPath);
 }
 run().catch(e=>{console.error(e);process.exit(1);});

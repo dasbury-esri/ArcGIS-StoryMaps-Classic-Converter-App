@@ -34,7 +34,7 @@ export function saveUserInfo(info: unknown) {
   }
 }
 
-export function restoreUserInfo<T = any>(): T | null {
+export function restoreUserInfo<T = unknown>(): T | null {
   const raw = sessionStorage.getItem(USER_INFO_KEY);
   if (!raw) return null;
   try {
@@ -47,7 +47,6 @@ export function restoreUserInfo<T = any>(): T | null {
 
 export function getTokenFromHash(): { token: string | null; expires: number | null } {
   const hash = window.location.hash.substring(1);
-  console.log("[AuthUtils.ts]Hash: ", hash)
   const params = new URLSearchParams(hash);
   const token = params.get("access_token") || params.get("token");
   const expiresIn = params.get("expires_in");

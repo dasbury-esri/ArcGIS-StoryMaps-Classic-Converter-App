@@ -85,6 +85,9 @@ export interface StoryMapWebMapResource {
       legend?: { enable: boolean; openByDefault: boolean };
       geocoder?: { enable: boolean };
       popup?: unknown;
+      viewpoint?: { targetGeometry?: any; scale?: number };
+      zoom?: number;
+      scale?: number;
     };
   };
 }

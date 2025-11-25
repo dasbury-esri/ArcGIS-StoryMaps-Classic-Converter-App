@@ -15,12 +15,16 @@ export interface ConverterFactoryOptions {
   themeId: string;
   progress: (e: { stage: 'convert'; message: string }) => void;
   enrichScenes?: boolean; // toggle for web scene enrichment
+  enrichMaps?: boolean; // toggle for web map enrichment
+  isCancelled?: () => boolean; // optional cancellation callback
 }
 
 export class ConverterFactory {
   static async create(opts: ConverterFactoryOptions): Promise<ConverterResult> {
+    const checkCancelled = () => { if (opts.isCancelled && opts.isCancelled()) throw new Error('Conversion cancelled by user intervention'); };
     const template = detectClassicTemplate(opts.classicJson);
     opts.progress({ stage: 'convert', message: `ConverterFactory detected template: ${template}` });
+    checkCancelled();
     // Only Map Journal supported currently; extend switch as more converters added
     switch (template.toLowerCase()) {
       case 'map journal':
@@ -31,9 +35,17 @@ export class ConverterFactory {
           themeId: opts.themeId,
           progress: opts.progress
         });
-        // Enrich any Web Scene resources if enabled
+        // Enrich any Web Map resources if enabled (default true)
+        if (opts.enrichMaps !== false) {
+          checkCancelled();
+          await ConverterFactory.enrichWebMaps(result.storymapJson, opts.progress, opts.isCancelled);
+        } else {
+          opts.progress({ stage: 'convert', message: 'Web map enrichment disabled (enrichMaps=false).' });
+        }
+        // Enrich any Web Scene resources if enabled (default true)
         if (opts.enrichScenes !== false) {
-          await ConverterFactory.enrichWebScenes(result.storymapJson, opts.progress);
+          checkCancelled();
+          await ConverterFactory.enrichWebScenes(result.storymapJson, opts.progress, opts.isCancelled);
         } else {
           opts.progress({ stage: 'convert', message: 'Web scene enrichment disabled (enrichScenes=false).' });
         }
@@ -41,7 +53,8 @@ export class ConverterFactory {
     }
   }
 
-  private static async enrichWebScenes(json: StoryMapJSON, progress: (e: { stage: 'convert'; message: string }) => void): Promise<void> {
+  private static async enrichWebScenes(json: StoryMapJSON, progress: (e: { stage: 'convert'; message: string }) => void, isCancelled?: () => boolean): Promise<void> {
+    const checkCancelled = () => { if (isCancelled && isCancelled()) throw new Error('Conversion cancelled by user intervention'); };
     const sceneResources: Array<{ id: string; itemId: string; data: any }> = [];
     for (const [resId, res] of Object.entries(json.resources)) {
       const data: any = res.data || {};
@@ -53,11 +66,14 @@ export class ConverterFactory {
     progress({ stage: 'convert', message: `Enriching ${sceneResources.length} Web Scene resource(s)...` });
     await Promise.all(sceneResources.map(async (scene) => {
       try {
+        checkCancelled();
         const url = `https://www.arcgis.com/sharing/rest/content/items/${scene.itemId}/data?f=json`;
         const f = await getFetch();
+        checkCancelled();
         const resp = await f(url);
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const data = await resp.json();
+        checkCancelled();
         // Derive simple viewpoint & basemap layer summaries if present
         const vp = (data.view?.camera) ? {
           camera: data.view.camera,
@@ -109,9 +125,98 @@ export class ConverterFactory {
             raw: { summary: { hasCamera: !!vp, baseMapLayerCount: baseMapLayers.length, operationalLayerCount: operationalLayers.length } }
           } as any;
         }
+        checkCancelled();
         progress({ stage: 'convert', message: `Enriched Web Scene ${scene.itemId}` });
       } catch (err: any) {
         progress({ stage: 'convert', message: `Web Scene enrichment failed for ${scene.itemId}: ${err.message}` });
+      }
+    }));
+  }
+
+  private static async enrichWebMaps(json: StoryMapJSON, progress: (e: { stage: 'convert'; message: string }) => void, isCancelled?: () => boolean): Promise<void> {
+    const checkCancelled = () => { if (isCancelled && isCancelled()) throw new Error('Conversion cancelled by user intervention'); };
+    const mapResources: Array<{ id: string; itemId: string; data: any }> = [];
+    for (const [resId, res] of Object.entries(json.resources)) {
+      const data: any = res.data || {};
+      if (res.type === 'webmap' && data.itemType === 'Web Map' && data.type === 'minimal' && typeof data.itemId === 'string') {
+        mapResources.push({ id: resId, itemId: data.itemId, data });
+      }
+    }
+    if (!mapResources.length) return;
+    progress({ stage: 'convert', message: `Enriching ${mapResources.length} Web Map resource(s)...` });
+    await Promise.all(mapResources.map(async (map) => {
+      try {
+        checkCancelled();
+        const url = `https://www.arcgis.com/sharing/rest/content/items/${map.itemId}/data?f=json`;
+        const f = await getFetch();
+        checkCancelled();
+        const resp = await f(url);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
+        checkCancelled();
+        const baseMapLayers = data.baseMap?.baseMapLayers?.map((l: any) => ({
+          id: l.id,
+          title: l.title,
+          url: l.url,
+          opacity: l.opacity,
+          visibility: l.visibility,
+          layerType: l.layerType,
+          isReference: !!l.isReference
+        })) || [];
+        const operationalLayers = data.operationalLayers?.map((l: any) => ({ id: l.id, title: l.title, visible: l.visibility })) || [];
+        // Attempt to derive extent/center from common locations
+        const pickExtent = (d: any): any => d?.initialState?.view?.extent || d?.mapOptions?.extent || d?.extent || d?.mapOptions?.mapExtent || undefined;
+        const pickCenter = (d: any): any => d?.initialState?.view?.center || d?.mapOptions?.center || d?.center || undefined;
+        let extent = pickExtent(data);
+        let center = pickCenter(data);
+        // Normalize center if array [lon,lat]
+        const normalizeCenter = (c: any): any => {
+          if (!c) return c;
+          if (Array.isArray(c) && c.length >= 2) {
+            const [lon, lat] = c;
+            return { x: lon, y: lat, spatialReference: { wkid: 4326 } };
+          }
+          return c;
+        };
+        center = normalizeCenter(center);
+        // Fallback: fetch item details for item-level extent if not found in data
+        if (!extent || (typeof extent !== 'object' && !Array.isArray(extent))) {
+          const itemUrl = `https://www.arcgis.com/sharing/rest/content/items/${map.itemId}?f=json`;
+          const itemResp = await f(itemUrl);
+          if (itemResp.ok) {
+            const item = await itemResp.json();
+            // item.extent is [[xmin,ymin],[xmax,ymax]] in WGS84
+            if (Array.isArray(item.extent) && item.extent.length === 2 && Array.isArray(item.extent[0]) && Array.isArray(item.extent[1])) {
+              const [[xmin,ymin],[xmax,ymax]] = item.extent as [number[], number[]];
+              extent = { xmin, ymin, xmax, ymax, spatialReference: { wkid: 4326 } };
+            }
+            // item.center may exist in some schemas
+            if (!center && item.center && Array.isArray(item.center)) {
+              center = normalizeCenter(item.center);
+            }
+          }
+        }
+        const resource = json.resources[map.id];
+        if (resource) {
+          const existing: any = resource.data || {};
+          const prevRaw: any = existing.raw || {};
+          resource.data = {
+            ...existing,
+            itemId: map.itemId,
+            itemType: 'Web Map',
+            type: 'default',
+            // Preserve existing initialState (extent/viewpoint/zoom/scale) while adding top-level summaries
+            extent: extent ?? existing.extent,
+            center: center ?? existing.center,
+            baseMap: { baseMapLayers },
+            mapLayers: operationalLayers,
+            raw: { ...prevRaw, summary: { baseMapLayerCount: baseMapLayers.length, operationalLayerCount: operationalLayers.length } }
+          } as any;
+        }
+        checkCancelled();
+        progress({ stage: 'convert', message: `Enriched Web Map ${map.itemId}` });
+      } catch (err: any) {
+        progress({ stage: 'convert', message: `Web Map enrichment failed for ${map.itemId}: ${err.message}` });
       }
     }));
   }
