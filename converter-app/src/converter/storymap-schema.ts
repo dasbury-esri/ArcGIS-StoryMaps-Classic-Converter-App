@@ -14,7 +14,7 @@ import type {
   Viewpoint,
   MapLayer
 } from '../types/storymap';
-import { generateNodeId, generateResourceId } from './utils';
+import { generateNodeId, generateResourceId } from './utils.ts';
 
 // Standard themes
 export const STANDARD_THEMES = [
@@ -128,15 +128,19 @@ export function createCreditsNode(
       type: 'text',
       data: {
         text: heading,
-        type: 'h4'
-      }
+        type: 'h4',
+        textAlignment: 'start'
+      },
+      config: { size: 'wide' }
     },
     [paragraphId]: {
       type: 'text',
       data: {
         text: paragraph,
-        type: 'paragraph'
-      }
+        type: 'paragraph',
+        textAlignment: 'start'
+      },
+      config: { size: 'wide' }
     },
     [attributionId]: {
       type: 'attribution',

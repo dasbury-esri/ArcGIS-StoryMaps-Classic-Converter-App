@@ -1,0 +1,661 @@
+{
+  "root": "n-u0ymfe",
+  "nodes": {
+    "n-tzwgmt": {
+      "type": "storycover",
+      "data": {
+        "type": "full",
+        "title": "(CONVERSION) Seven Wonders: Natural World",
+        "summary": "The Seven Natural Wonders, a conservation effort initiated in 2008, seeks to raise awareness of the most remarkable natural places and phenomena of Planet Earth—and beyond.",
+        "byline": "",
+        "titlePanelVerticalPosition": "top",
+        "titlePanelHorizontalPosition": "start",
+        "titlePanelStyle": "gradient",
+        "image": "r-quu8m0"
+      }
+    },
+    "n-7rs5t4": {
+      "type": "navigation",
+      "data": {
+        "links": []
+      },
+      "config": {
+        "isHidden": true
+      }
+    },
+    "n-93k7mb": {
+      "type": "image",
+      "data": {
+        "image": "r-quu8m0"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-49ekcv": {
+      "type": "carousel",
+      "children": [
+        "n-93k7mb"
+      ]
+    },
+    "n-avx3ht": {
+      "type": "text",
+      "data": {
+        "type": "h3",
+        "text": "Seven Wonders: Natural World",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-9swno6": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "The Seven Natural Wonders, a conservation effort initiated in 2008, seeks to raise awareness of the most remarkable natural places and phenomena of Planet Earth—and beyond.",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-gpvave": {
+      "type": "image",
+      "data": {
+        "image": "r-p6hego"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-4gp19g": {
+      "type": "carousel",
+      "children": [
+        "n-gpvave"
+      ]
+    },
+    "n-pntwd3": {
+      "type": "text",
+      "data": {
+        "type": "h3",
+        "text": "Sugarloaf Mountain",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-zgv23d": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "<div style='font-size:90%'><p style='outline: none;'>Rio de Janeiro, Brazil | 1,299 ft (396 m ) high| 500 million years ago</p></div>\n\n&nbsp;\n\n<p>The quartz and granite Sugarloaf Mountain (Pão de Açúcar in Portuguese) towers more than a thousand feet above the seaside sprawl of Rio de Janeiro. Incorporated into Rio's UNESCO World Heritage Site (along with the Christ the Redeemer statue) in 2012, this ancient formation is emblematic of a unique geology dating from around 500 million years ago. Since 1912, a dedicated cable car has ferried visitors from nearby Praia Vermelha (Red Beach) up the mountain to take in the sweeping views of the city below.</p>\n\n&nbsp;\n\n<div style='font-size:90%; color: #a9a9a9'><p>Image: Adapted from <a style='color:#b3c7df' href='https://bit.ly/2HerXP7' target='_blank'>Helder Ribeiro</a> (CC BY-SA 2.0).</p></div>",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-nvk2rq": {
+      "type": "image",
+      "data": {
+        "image": "r-czfvqg"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-nec8gw": {
+      "type": "carousel",
+      "children": [
+        "n-nvk2rq"
+      ]
+    },
+    "n-z5xs1s": {
+      "type": "text",
+      "data": {
+        "type": "h3",
+        "text": "Parícutin Volcano",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-e1ee08": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "<div style='font-size:90%'><p>Michoacán, Mexico | 9,200 ft (2,800 m) high | 75 years ago</p></div>\n\n&nbsp;\n\n<p style='outline: none;'>While this cinder cone may at first seem unremarkable, it is the product of an extraordinary transformation: On February 20, 1943, magma spontaneously began to pour forth from a cornfield. Over the next nine years, molten rock piled to a height of 1,391 feet (424 m) above the surrounding plains, forming the Volcán de Parícutin. The event destroyed two towns, killed at least three people, and displaced hundreds. It also gave volcanologists the first chance to witness a volcano's complete cycle from birth to extinction. The site continues to attract visitors that climb to the volcano rim and look across the 660 feet (200 m) wide crater.</p>\n\n&nbsp;\n\n<div style='font-size:90%; color: #a9a9a9'><p>Image: Adapted from <a style='color:#b3c7df' href='https://s.si.edu/2HATcHa' target='_blank'>Carl Fries / USGS</a> (Public Domain).</p></div>",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-i7jaxu": {
+      "type": "image",
+      "data": {
+        "image": "r-g9ob19"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-fuqi65": {
+      "type": "carousel",
+      "children": [
+        "n-i7jaxu"
+      ]
+    },
+    "n-6a1uzy": {
+      "type": "text",
+      "data": {
+        "type": "h3",
+        "text": "Grand Canyon",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-p3hkfu": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "<div style='font-size:90%'><p>Arizona, USA | 6,093 ft (1,857 m) deep  | 5-6 million years ago</p></div>\n\n&nbsp;\n\n<p>This natural formation needs no introduction. Measuring 277 miles (446 km) long and 18 miles (29 km) wide, with maximum depths exceeding a mile, the Grand Canyon was designated a National Park in 1919, and a UNESCO World Heritage site in 1979. While geologists debate the precise age of the canyon, its massive walls reveal over 2 billion years of geological history. The canyon is a priceless public good: In addition to scientific opportunities, it provides all types of enjoyment, from casual sightseeing to multiday rafting, and even a 78-mile (126-km) ultra-marathon.</p>\n\n&nbsp;\n\n<div style='font-size:90%; color: #a9a9a9'><p>Image: Adapted from <a style='color:#b3c7df' href='https://bit.ly/2Hx8yMv' target='_blank'>Jason Thompson</a> (Unsplash).</p></div>",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-0vho9f": {
+      "type": "image",
+      "data": {
+        "image": "r-55t8r6"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-hz33ui": {
+      "type": "carousel",
+      "children": [
+        "n-0vho9f"
+      ]
+    },
+    "n-gti53d": {
+      "type": "text",
+      "data": {
+        "type": "h3",
+        "text": "Victoria Falls",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-zrjn8f": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "<div style='font-size:90%'><p>Zambia &amp; Zimbabwe | 354 ft (108 m) deep | 100,000 years ago</p></div>\n\n&nbsp;\n\n<p style='outline: none;'>Mosi-oa-Tunya, Lozi for \"the smoke that thunders,\" is an apt descriptor for this force of nature. Over the last 100,000 years, water flowing over the hard basalt plateau eroded chasms through weak deposits of sandstone, forming what is commonly known as Victoria Falls. The falls are the largest sheet of cascading water in the world, extending more than a mile in breadth and plummeting hundreds of feet into a gorge. When the water level is just right, a submerged formation called \"Devil's Pool\" creates an eddy where daring swimmers can bathe—and gaze over the lip into the depths below.</p>\n\n&nbsp;\n\n<div style='font-size:90%; color: #a9a9a9'><p>Image: Adapted from <a style='color:#b3c7df' href='https://bit.ly/2qH9nJ4' target='_blank'>Jorge Láscar</a> (CC BY 2.0).</p></div>",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-i81ink": {
+      "type": "image",
+      "data": {
+        "image": "r-e4nhq9"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-vj57y6": {
+      "type": "carousel",
+      "children": [
+        "n-i81ink"
+      ]
+    },
+    "n-huhf5t": {
+      "type": "text",
+      "data": {
+        "type": "h3",
+        "text": "Mount Everest",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-jgwmr1": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "<div style='font-size:90%'><p>Nepal &amp; Tibet | 29,029 ft (8,848 m) high | 60 million years ago</p></div>\n\n&nbsp;\n\n<p style='outline: none;'>Mount Everest is perhaps the most famous mountain in the world. Its peak—the highest point on the planet—has captured the imaginations of explorers for over a century. First successfully ascended in 1953 by Nepali Sherpa Tenzing Norgay and New Zealander Edmund Hillary, the mountain has also claimed the lives of some 300 climbers. To prepare themselves for an expedition where one misstep can be disastrous, modern-day adventurers must train for an unforgiving environment of ice, avalanches, and elevation sickness—but these hazards didn’t dissuade the 371 mountaineers who purchased permits to climb in 2017.</p>\n\n&nbsp;\n\n<div style='font-size:90%; color: #a9a9a9'><p>Image: Adapted from <a style='color:#b3c7df' href='https://bit.ly/2H8KvEd' target='_blank'>shrimpo1967</a> (CC BY-SA 2.0).</p></div>",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-8e9u30": {
+      "type": "image",
+      "data": {
+        "image": "r-3m5js0"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-iff0l6": {
+      "type": "carousel",
+      "children": [
+        "n-8e9u30"
+      ]
+    },
+    "n-sx85h2": {
+      "type": "text",
+      "data": {
+        "type": "h3",
+        "text": "The Great Barrier Reef",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-8cfmuf": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "<div style='font-size:90%'><p>Coral Sea, Australia | 133,000 mi2 (344,400 km2) area | 6,000-8,000 years ago</p></div>\n\n&nbsp;\n\n<p>This submarine structure isn’t just the vastest of all the world’s reefs—it’s also the most immense formation created by life on Earth. The Great Barrier Reef comprises 2,900 individual reefs, hundreds of islands, and billions of living creatures known as coral polyps. Sadly, this organism is in critical danger. Bleaching, invasive species, and fishing have killed off more than half of the reef system’s corals over the last 30 years.</p>\n\n&nbsp;\n\n<div style='font-size:90%; color: #a9a9a9'><p>Image: Adapted from <a style='color:#b3c7df' href='https://bit.ly/2EY2I1r' target='_blank'>Kyle Taylor</a> (CC BY 2.0).</p></div>",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-2tk6lw": {
+      "type": "image",
+      "data": {
+        "image": "r-rq53nn"
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-g010ib": {
+      "type": "carousel",
+      "children": [
+        "n-2tk6lw"
+      ]
+    },
+    "n-o39kgv": {
+      "type": "text",
+      "data": {
+        "type": "h3",
+        "text": "The Auroras",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-i79k3b": {
+      "type": "text",
+      "data": {
+        "type": "paragraph",
+        "text": "<div style='font-size:90%'><p>Polar Regions | Above 50 mi (80 km ) high | Forever</p></div>\n&nbsp;\n<p style='outline: none;'>The natural light show of the Auroras—Borealis (north) and Australis (south)—has mesmerized Earthlings forever. Particles emitted from the sun strike the the magnetic field generated from Earth's rotating core and are channeled by the north and south magnetic poles. In the upper atmosphere, the charged particles shear away photons from oxygen and nitrogen, releasing a kaleidoscope of colors. Aspiring Aurora-gazers should aim for a) high latitudes, b) clear skies, and c) lots of solar activity.</p>\n&nbsp;\n<div style='text-align:center; font-size:125%'>Discover the <a href='https://bit.ly/2KejP31' style='color:#617998' target='_blank'>Seven Engineering Wonders of the World</a><p></p></div>\n&nbsp;\n<div style='font-size:90%; color: #a9a9a9'><p>Image: Adapted from <a style='color:#b3c7df' href='https://bit.ly/2J7uiMg' target='_blank'>NASA</a> (Public Domain)</div></p>",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-3wpnvj": {
+      "type": "tour-map",
+      "data": {
+        "geometries": {
+          "f88099e6-a858-4bf7-bb07-557f19b08789": {
+            "id": "f88099e6-a858-4bf7-bb07-557f19b08789",
+            "type": "POINT_NUMBERED_TOUR",
+            "nodes": [
+              {
+                "long": -37.30364799998609,
+                "lat": 25.071411561042748
+              }
+            ],
+            "scale": 4514,
+            "viewpoint": {}
+          },
+          "2d8206b9-50b5-4562-93cf-1bcf9bb5f9eb": {
+            "id": "2d8206b9-50b5-4562-93cf-1bcf9bb5f9eb",
+            "type": "POINT_NUMBERED_TOUR",
+            "nodes": [
+              {
+                "long": -43.157214999999276,
+                "lat": -22.948582999999598
+              }
+            ],
+            "scale": 4514,
+            "viewpoint": {}
+          },
+          "c5a3cb3e-911f-4916-b5f2-670ca88152ef": {
+            "id": "c5a3cb3e-911f-4916-b5f2-670ca88152ef",
+            "type": "POINT_NUMBERED_TOUR",
+            "nodes": [
+              {
+                "long": -102.25137499999828,
+                "lat": 19.493314999999683
+              }
+            ],
+            "scale": 4514,
+            "viewpoint": {}
+          },
+          "d6722e01-03ae-4e04-9b75-658fc1500451": {
+            "id": "d6722e01-03ae-4e04-9b75-658fc1500451",
+            "type": "POINT_NUMBERED_TOUR",
+            "nodes": [
+              {
+                "long": -112.08440699999811,
+                "lat": 36.059298999999385
+              }
+            ],
+            "scale": 4514,
+            "viewpoint": {}
+          },
+          "fa60f260-c6e8-44c4-b446-5af37eadc939": {
+            "id": "fa60f260-c6e8-44c4-b446-5af37eadc939",
+            "type": "POINT_NUMBERED_TOUR",
+            "nodes": [
+              {
+                "long": 25.85347715554907,
+                "lat": -17.93059465768816
+              }
+            ],
+            "scale": 4514,
+            "viewpoint": {}
+          },
+          "3798d9d1-cbf5-490f-bb51-b93d6b8ae0dd": {
+            "id": "3798d9d1-cbf5-490f-bb51-b93d6b8ae0dd",
+            "type": "POINT_NUMBERED_TOUR",
+            "nodes": [
+              {
+                "long": 86.92523299999853,
+                "lat": 27.98809099999954
+              }
+            ],
+            "scale": 4514,
+            "viewpoint": {}
+          },
+          "90abb4bc-4e93-420c-aa0d-090c4a17d3b2": {
+            "id": "90abb4bc-4e93-420c-aa0d-090c4a17d3b2",
+            "type": "POINT_NUMBERED_TOUR",
+            "nodes": [
+              {
+                "long": 145.75836099999756,
+                "lat": -16.21994899999973
+              }
+            ],
+            "scale": 4514,
+            "viewpoint": {}
+          },
+          "964dabb5-7967-45d7-a3ce-d5a872afb25f": {
+            "id": "964dabb5-7967-45d7-a3ce-d5a872afb25f",
+            "type": "POINT_NUMBERED_TOUR",
+            "nodes": [
+              {
+                "long": -15.584111132803365,
+                "lat": -66.55807273957214
+              }
+            ],
+            "scale": 4514,
+            "viewpoint": {}
+          }
+        },
+        "mode": "2d",
+        "basemap": {
+          "type": "resource",
+          "value": "r-opa165"
+        }
+      }
+    },
+    "n-obnolc": {
+      "type": "tour",
+      "data": {
+        "type": "guided-tour",
+        "subtype": "media-focused",
+        "narrativePanelPosition": "start",
+        "map": "n-3wpnvj",
+        "places": [
+          {
+            "id": "n-osroqa",
+            "featureId": "f88099e6-a858-4bf7-bb07-557f19b08789",
+            "contents": [
+              "n-9swno6"
+            ],
+            "media": "n-49ekcv",
+            "title": "n-avx3ht",
+            "config": {
+              "isHidden": true
+            }
+          },
+          {
+            "id": "n-y67ql2",
+            "featureId": "2d8206b9-50b5-4562-93cf-1bcf9bb5f9eb",
+            "contents": [
+              "n-zgv23d"
+            ],
+            "media": "n-4gp19g",
+            "title": "n-pntwd3"
+          },
+          {
+            "id": "n-hndu4y",
+            "featureId": "c5a3cb3e-911f-4916-b5f2-670ca88152ef",
+            "contents": [
+              "n-e1ee08"
+            ],
+            "media": "n-nec8gw",
+            "title": "n-z5xs1s"
+          },
+          {
+            "id": "n-kpl0ng",
+            "featureId": "d6722e01-03ae-4e04-9b75-658fc1500451",
+            "contents": [
+              "n-p3hkfu"
+            ],
+            "media": "n-fuqi65",
+            "title": "n-6a1uzy"
+          },
+          {
+            "id": "n-04twkg",
+            "featureId": "fa60f260-c6e8-44c4-b446-5af37eadc939",
+            "contents": [
+              "n-zrjn8f"
+            ],
+            "media": "n-hz33ui",
+            "title": "n-gti53d"
+          },
+          {
+            "id": "n-il2ehc",
+            "featureId": "3798d9d1-cbf5-490f-bb51-b93d6b8ae0dd",
+            "contents": [
+              "n-jgwmr1"
+            ],
+            "media": "n-vj57y6",
+            "title": "n-huhf5t"
+          },
+          {
+            "id": "n-wzfsxo",
+            "featureId": "90abb4bc-4e93-420c-aa0d-090c4a17d3b2",
+            "contents": [
+              "n-8cfmuf"
+            ],
+            "media": "n-iff0l6",
+            "title": "n-sx85h2"
+          },
+          {
+            "id": "n-9955nd",
+            "featureId": "964dabb5-7967-45d7-a3ce-d5a872afb25f",
+            "contents": [
+              "n-i79k3b"
+            ],
+            "media": "n-g010ib",
+            "title": "n-o39kgv"
+          }
+        ],
+        "narrativePanelSize": "large",
+        "accentColor": "#f9f794"
+      }
+    },
+    "n-pkkpva": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "h4",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-9036fh": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-fi4uyo": {
+      "type": "attribution",
+      "data": {
+        "content": "",
+        "attribution": ""
+      }
+    },
+    "n-gfpj21": {
+      "type": "credits",
+      "children": [
+        "n-pkkpva",
+        "n-9036fh",
+        "n-fi4uyo"
+      ]
+    },
+    "n-u0ymfe": {
+      "type": "story",
+      "data": {
+        "storyTheme": "r-xz2isa"
+      },
+      "config": {
+        "coverDate": ""
+      },
+      "children": [
+        "n-tzwgmt",
+        "n-7rs5t4",
+        "n-obnolc",
+        "n-3wpnvj",
+        "n-gfpj21"
+      ]
+    }
+  },
+  "resources": {
+    "r-xz2isa": {
+      "type": "story-theme",
+      "data": {
+        "themeId": "summit",
+        "themeBaseVariableOverrides": {}
+      }
+    },
+    "r-quu8m0": {
+      "type": "image",
+      "data": {
+        "src": "https://farm1.static.flickr.com/815/40522926735_1ed5920f3b_b.jpg",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-p6hego": {
+      "type": "image",
+      "data": {
+        "src": "https://farm1.static.flickr.com/877/40522927785_3639daacc2_b.jpg",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-czfvqg": {
+      "type": "image",
+      "data": {
+        "src": "https://farm1.static.flickr.com/893/40522928285_4c2f75e970_b.jpg",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-g9ob19": {
+      "type": "image",
+      "data": {
+        "src": "https://farm1.static.flickr.com/895/27547085878_6189e8cb61_b.jpg",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-55t8r6": {
+      "type": "image",
+      "data": {
+        "src": "https://farm1.static.flickr.com/801/40522927535_60b5924cb8_b.jpg",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-e4nhq9": {
+      "type": "image",
+      "data": {
+        "src": "https://farm1.static.flickr.com/893/40522928605_de42b16596_b.jpg",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-3m5js0": {
+      "type": "image",
+      "data": {
+        "src": "https://farm1.static.flickr.com/810/41418446631_325d3b0a53_b.jpg",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-rq53nn": {
+      "type": "image",
+      "data": {
+        "src": "https://farm1.static.flickr.com/874/40522927215_46a0e06a50_b.jpg",
+        "provider": "uri",
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "r-opa165": {
+      "type": "webmap",
+      "data": {
+        "type": "minimal",
+        "itemId": "15696787bf8347af9574b2f2738f3c33",
+        "itemType": "Web Map"
+      }
+    }
+  }
+}

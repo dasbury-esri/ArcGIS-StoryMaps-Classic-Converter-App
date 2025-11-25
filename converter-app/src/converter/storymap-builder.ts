@@ -29,8 +29,8 @@ import {
   insertNodeBeforeCredits,
   setCoverData,
   setTheme
-} from './storymap-schema';
-import { generateNodeId, generateResourceId, getImageDimensions } from './utils';
+} from './storymap-schema.ts';
+import { generateNodeId, generateResourceId, getImageDimensions } from './utils.ts';
 
 export class StoryMapJSONBuilder {
   private storymap: any;

@@ -72,6 +72,23 @@ export function assertStoryMapJson(json: StoryMapJSON): AssertionResult {
       // Basic sanity: url or embedSrc should exist
       const dt = node.data as Record<string, unknown> | undefined;
       if (!dt || (!dt.url && !dt.embedSrc)) warnings.push(`Embed node '${id}' missing url/embedSrc`);
+    } else if (node.type === 'tour') {
+      const dt = node.data as Record<string, unknown> | undefined;
+      if (!dt) {
+        errors.push(`Tour node '${id}' missing data object`);
+      } else {
+        ['type','subtype','map','places','accentColor'].forEach(k => { if (!(k in dt)) errors.push(`Tour node '${id}' missing data.${k}`); });
+        if (Array.isArray((dt as any).places) && !(dt as any).places.length) warnings.push(`Tour node '${id}' has empty places array`);
+        const mapNodeId = dt.map as string | undefined;
+        if (mapNodeId && !nodeIds.has(mapNodeId)) errors.push(`Tour node '${id}' references missing map node '${mapNodeId}'`);
+      }
+    } else if (node.type === 'tour-map') {
+      const dt = node.data as Record<string, unknown> | undefined;
+      if (!dt) errors.push(`Tour-map node '${id}' missing data`);
+      else {
+        if (!('geometries' in dt)) warnings.push(`Tour-map node '${id}' missing data.geometries`);
+        if (!('mode' in dt)) warnings.push(`Tour-map node '${id}' missing data.mode`);
+      }
     }
   }
 

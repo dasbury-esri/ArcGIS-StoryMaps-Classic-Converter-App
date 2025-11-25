@@ -26,7 +26,7 @@ const tiles: TileConfig[] = [
         title: 'Map Tour',
         description: 'Presented a sequential, place-based narrative with geotagged photos linked to an interactive map.',
         image: mapTourImg,
-        status: 'disabled',
+        status: 'active',
         alt: 'Map Tour Thumbnail'
     },
     {

@@ -1,0 +1,119 @@
+{
+  "root": "n-h62q1c",
+  "nodes": {
+    "n-ftv4r4": {
+      "type": "storycover",
+      "data": {
+        "type": "minimal",
+        "title": "(CONVERSION) Esri Campus Tour",
+        "summary": "An early morning walking tour of the Esri campus in Redlands, California",
+        "byline": "",
+        "titlePanelVerticalPosition": "top",
+        "titlePanelHorizontalPosition": "start",
+        "titlePanelStyle": "gradient"
+      }
+    },
+    "n-p2t3ek": {
+      "type": "navigation",
+      "data": {
+        "links": []
+      },
+      "config": {
+        "isHidden": true
+      }
+    },
+    "n-lb6jpq": {
+      "type": "tour-map",
+      "data": {
+        "geometries": {},
+        "mode": "2d",
+        "basemap": {
+          "type": "resource",
+          "value": "r-s4d529"
+        }
+      }
+    },
+    "n-1eofck": {
+      "type": "tour",
+      "data": {
+        "type": "guided-tour",
+        "subtype": "map-focused",
+        "narrativePanelPosition": "start",
+        "map": "n-lb6jpq",
+        "places": [],
+        "narrativePanelSize": "large",
+        "accentColor": "#f9f794"
+      }
+    },
+    "n-duiz8t": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "h4",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-cg9c0x": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-tqxllg": {
+      "type": "attribution",
+      "data": {
+        "content": "",
+        "attribution": ""
+      }
+    },
+    "n-spdonx": {
+      "type": "credits",
+      "children": [
+        "n-duiz8t",
+        "n-cg9c0x",
+        "n-tqxllg"
+      ]
+    },
+    "n-h62q1c": {
+      "type": "story",
+      "data": {
+        "storyTheme": "r-0oit03"
+      },
+      "config": {
+        "coverDate": ""
+      },
+      "children": [
+        "n-ftv4r4",
+        "n-p2t3ek",
+        "n-1eofck",
+        "n-lb6jpq",
+        "n-spdonx"
+      ]
+    }
+  },
+  "resources": {
+    "r-0oit03": {
+      "type": "story-theme",
+      "data": {
+        "themeId": "summit",
+        "themeBaseVariableOverrides": {}
+      }
+    },
+    "r-s4d529": {
+      "type": "webmap",
+      "data": {
+        "type": "minimal",
+        "itemId": "680415c1370949f28bf03879cce97831",
+        "itemType": "Web Map"
+      }
+    }
+  }
+}

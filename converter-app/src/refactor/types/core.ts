@@ -117,7 +117,7 @@ export interface StoryMapTextNode {
   data: {
     text: string;
     type: 'paragraph' | 'h2' | 'h3' | 'h4' | 'quote';
-    alignment?: 'start' | 'center' | 'end';
+    textAlignment?: 'start' | 'center' | 'end';
   };
   config?: { isWide?: boolean };
 }
@@ -165,12 +165,17 @@ export interface StoryMapEmbedNode {
   type: 'embed';
   data: {
     url: string;
-    display: 'inline' | 'card';
     embedType: 'video' | 'link' | 'rich';
-    isEmbedSupported?: boolean;
-    providerUrl?: string;
+    display: 'inline' | 'card';
+    embedSrc?: string; // resolved embed source (iframe src)
+    provider?: 'youtube' | 'vimeo' | 'unknown';
+    videoId?: string;
+    title?: string;
+    description?: string;
     caption?: string;
     alt?: string;
+    isEmbedSupported?: boolean;
+    aspectRatio?: string; // e.g. '16:9'
   };
 }
 
@@ -232,6 +237,92 @@ export interface StoryMapNavigationNode {
   config?: { isHidden?: boolean };
 }
 
+// Additional node interfaces introduced by refactor
+
+export interface StoryMapAttributionNode {
+  type: 'attribution';
+  data: { content: string; attribution: string };
+}
+
+export interface StoryMapActionButtonNode {
+  type: 'action-button';
+  data: { text: string };
+  config?: { size?: 'wide' | 'standard' };
+}
+
+export interface StoryMapButtonNode {
+  type: 'button';
+  data: { text: string; link?: string };
+  config?: { size?: 'wide' | 'standard' };
+}
+
+export interface StoryMapImmersiveNode {
+  type: 'immersive';
+  data: {
+    type: 'sidecar';
+    subtype: 'docked-panel' | 'floating-panel';
+    narrativePanelPosition: 'start' | 'end';
+    narrativePanelSize: 'small' | 'medium' | 'large';
+  };
+  children: string[]; // immersive-slide ids
+}
+
+export interface StoryMapImmersiveSlideNode {
+  type: 'immersive-slide';
+  data: { transition: 'fade' | 'swipe' | 'none' };
+  children: string[]; // includes immersive-narrative-panel and optional media node
+}
+
+export interface StoryMapImmersiveNarrativePanelNode {
+  type: 'immersive-narrative-panel';
+  data: { panelStyle: 'themed' | 'custom' };
+  children: string[]; // narrative content nodes
+}
+
+export interface TourGeometry {
+  id: string;
+  type: 'POINT_NUMBERED_TOUR';
+  nodes: Array<{ long: number; lat: number }>;
+  viewpoint: Record<string, unknown>;
+  scale?: number;
+}
+
+export interface TourPlace {
+  id: string;
+  featureId: string;
+  contents: string[];
+  media?: string;
+  title: string;
+  config?: { isHidden?: boolean };
+}
+
+export interface StoryMapTourMapNode {
+  type: 'tour-map';
+  data: {
+    geometries: Record<string, TourGeometry>;
+    mode: '2d' | '3d';
+    basemap: { type: 'name' | 'resource'; value: string };
+  };
+}
+
+export interface StoryMapCarouselNode {
+  type: 'carousel';
+  children: string[]; // image node ids
+}
+
+export interface StoryMapTourNode {
+  type: 'tour';
+  data: {
+    type: 'guided-tour' | 'explorer';
+    subtype: 'media-focused' | 'map-focused' | 'grid';
+    narrativePanelPosition: 'start' | 'end';
+    map: string; // tour-map node id
+    places: TourPlace[];
+    narrativePanelSize: 'small' | 'medium' | 'large';
+    accentColor: string;
+  };
+}
+
 export type StoryMapNode =
   | StoryMapTextNode
   | StoryMapImageNode
@@ -244,7 +335,16 @@ export type StoryMapNode =
   | StoryMapStoryNode
   | StoryMapCreditsNode
   | StoryMapCoverNode
-  | StoryMapNavigationNode;
+  | StoryMapNavigationNode
+  | StoryMapAttributionNode
+  | StoryMapActionButtonNode
+  | StoryMapButtonNode
+  | StoryMapImmersiveNode
+  | StoryMapImmersiveSlideNode
+  | StoryMapImmersiveNarrativePanelNode
+  | StoryMapTourMapNode
+  | StoryMapCarouselNode
+  | StoryMapTourNode;
 
 export interface StoryMapAction {
   origin: string; // action-button node id

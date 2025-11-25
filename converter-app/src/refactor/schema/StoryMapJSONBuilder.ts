@@ -1,4 +1,17 @@
-import type { StoryMapJSON, StoryMapNode, StoryMapImageNode, StoryMapVideoNode, StoryMapWebMapNode } from '../types/core.ts';
+import type { StoryMapJSON, StoryMapNode, StoryMapImageNode, StoryMapVideoNode, StoryMapWebMapNode, StoryMapResource, ConverterMetadataPayload, TourGeometry, TourPlace } from '../types/core.ts';
+
+// Extended story node to allow metaSettings without using any
+interface ExtendedStoryMapStoryNode {
+  type: 'story';
+  data: {
+    storyTheme: string;
+    coverDate?: string;
+    metaSettings?: { title: string; description: string; imageResourceId?: string };
+  };
+  children?: string[];
+  config?: { coverDate?: string };
+}
+
 
 interface ThemeConfigInput {
   themeId: string;
@@ -49,9 +62,11 @@ export class StoryMapJSONBuilder {
   applyTheme(input: ThemeConfigInput): void {
     const theme = this.json.resources[this.themeResourceId];
     if (theme) {
-      (theme.data as any).themeId = input.themeId;
-      if (input.variableOverrides && Object.keys(input.variableOverrides).length) {
-        (theme.data as any).themeBaseVariableOverrides = input.variableOverrides;
+      if (theme.type === 'story-theme') {
+        theme.data.themeId = input.themeId;
+        if (input.variableOverrides && Object.keys(input.variableOverrides).length) {
+          theme.data.themeBaseVariableOverrides = input.variableOverrides;
+        }
       }
     }
   }
@@ -61,18 +76,18 @@ export class StoryMapJSONBuilder {
     this.json.resources[id] = {
       type: 'image',
       data: { src: originalUrl, provider: 'uri', width, height }
-    } as any;
+    } as unknown as StoryMapResource;
     return id;
   }
 
   finalizeImageResourceAsItem(resourceId: string, itemFilename: string, width?: number, height?: number): void {
     const res = this.json.resources[resourceId];
     if (!res || res.type !== 'image') return;
-    delete (res.data as any).src;
-    (res.data as any).resourceId = itemFilename;
-    (res.data as any).provider = 'item-resource';
-    if (width) (res.data as any).width = width;
-    if (height) (res.data as any).height = height;
+    delete res.data.src;
+    res.data.resourceId = itemFilename;
+    res.data.provider = 'item-resource';
+    if (width) res.data.width = width;
+    if (height) res.data.height = height;
   }
 
   addVideoResource(originalUrl: string, provider: 'uri' | 'youtube' | 'vimeo' = 'uri', resourceId?: string): string {
@@ -80,7 +95,7 @@ export class StoryMapJSONBuilder {
     this.json.resources[id] = {
       type: 'video',
       data: { src: originalUrl, provider }
-    } as any;
+    } as unknown as StoryMapResource;
     return id;
   }
 
@@ -98,7 +113,7 @@ export class StoryMapJSONBuilder {
       type: 'image',
       data: { image: imageResourceId, caption, alt },
       config: { size }
-    } as any;
+    } as unknown as StoryMapResource;
     this.json.nodes[id] = node;
     this.appendChild(parentId, id);
     return id;
@@ -122,7 +137,7 @@ export class StoryMapJSONBuilder {
   }
 
   addWebMapResource(itemId: string, itemType: 'Web Map' | 'Web Scene' = 'Web Map', initialState?: {
-    extent?: any;
+    extent?: { xmin: number; ymin: number; xmax: number; ymax: number; spatialReference?: Record<string, unknown> };
     mapLayers?: Array<{ id: string; title: string; visible: boolean }>;
     overview?: { enable: boolean; openByDefault: boolean };
     legend?: { enable: boolean; openByDefault: boolean };
@@ -130,13 +145,13 @@ export class StoryMapJSONBuilder {
     popup?: unknown;
   }, variant: 'minimal' | 'default' = 'minimal'): string {
     const id = this.generateResourceId();
-    const data: any = { type: variant, itemId, itemType };
+    const data: { type: typeof variant; itemId: string; itemType: 'Web Map' | 'Web Scene'; initialState?: { extent?: unknown; mapLayers?: Array<{ id: string; title: string; visible: boolean }>; overview?: { enable: boolean; openByDefault: boolean }; legend?: { enable: boolean; openByDefault: boolean }; geocoder?: { enable: boolean }; popup?: unknown } } = { type: variant, itemId, itemType };
     if (initialState && (
       initialState.extent || initialState.mapLayers || initialState.overview || initialState.legend || initialState.geocoder || initialState.popup
     )) {
       data.initialState = { ...initialState };
     }
-    this.json.resources[id] = { type: 'webmap', data } as any;
+    this.json.resources[id] = { type: 'webmap', data } as unknown as StoryMapResource;
     return id;
   }
 
@@ -145,7 +160,7 @@ export class StoryMapJSONBuilder {
     const node: StoryMapWebMapNode = {
       type: 'webmap',
       data: { map: webMapResourceId, caption }
-    } as any;
+    } as unknown as StoryMapNode;
     this.json.nodes[id] = node;
     this.appendChild(parentId, id);
     return id;
@@ -171,7 +186,7 @@ export class StoryMapJSONBuilder {
 
   addNavigationHidden(): string {
     const id = this.generateNodeId();
-    this.json.nodes[id] = { type: 'navigation', data: { links: [] }, config: { isHidden: true } } as any;
+    this.json.nodes[id] = { type: 'navigation', data: { links: [] }, config: { isHidden: true } } as unknown as StoryMapNode;
     if (this.json.root) this.appendChild(this.json.root, id);
     return id;
   }
@@ -180,13 +195,13 @@ export class StoryMapJSONBuilder {
     const creditsId = this.generateNodeId();
     // Create minimal attribution + optional placeholder text blocks to mirror working sample shape.
     const attributionId = this.generateNodeId();
-    this.json.nodes[attributionId] = { type: 'attribution', data: { content: '', attribution: '' } } as any;
+    this.json.nodes[attributionId] = { type: 'attribution', data: { content: '', attribution: '' } } as unknown as StoryMapNode;
     // Two optional empty paragraph text nodes (builder tolerates empty content; include alignment)
     const emptyText1 = this.generateNodeId();
-    this.json.nodes[emptyText1] = { type: 'text', data: { text: '', type: 'paragraph', textAlignment: 'start' }, config: { size: 'wide' } } as any;
+    this.json.nodes[emptyText1] = { type: 'text', data: { text: '', type: 'paragraph', textAlignment: 'start' }, config: { size: 'wide' } } as StoryMapNode;
     const emptyText2 = this.generateNodeId();
-    this.json.nodes[emptyText2] = { type: 'text', data: { text: '', type: 'paragraph', textAlignment: 'start' }, config: { size: 'wide' } } as any;
-    this.json.nodes[creditsId] = { type: 'credits', children: [emptyText1, emptyText2, attributionId] } as any;
+    this.json.nodes[emptyText2] = { type: 'text', data: { text: '', type: 'paragraph', textAlignment: 'start' }, config: { size: 'wide' } } as StoryMapNode;
+    this.json.nodes[creditsId] = { type: 'credits', children: [emptyText1, emptyText2, attributionId] } as unknown as StoryMapNode;
     if (this.json.root) this.appendChild(this.json.root, creditsId);
     return creditsId;
   }
@@ -199,9 +214,9 @@ export class StoryMapJSONBuilder {
       type: 'immersive',
       data: { type: 'sidecar', subtype, narrativePanelPosition, narrativePanelSize },
       children: [slideId]
-    } as any;
-    this.json.nodes[slideId] = { type: 'immersive-slide', data: { transition: 'fade' }, children: [narrativeId] } as any;
-    this.json.nodes[narrativeId] = { type: 'immersive-narrative-panel', data: { panelStyle: 'themed' }, children: [] } as any;
+    } as unknown as StoryMapNode;
+    this.json.nodes[slideId] = { type: 'immersive-slide', data: { transition: 'fade' }, children: [narrativeId] } as unknown as StoryMapNode;
+    this.json.nodes[narrativeId] = { type: 'immersive-narrative-panel', data: { panelStyle: 'themed' }, children: [] } as unknown as StoryMapNode;
     // Insert before credits if credits exists
     const root = this.json.nodes[this.json.root];
     if (root?.children) {
@@ -236,28 +251,26 @@ export class StoryMapJSONBuilder {
     for (const node of Object.values(this.json.nodes)) {
       if (!node) continue;
       if (node.type === 'webmap') {
-        // Ensure config.size present
-        if (!node.config) node.config = {} as any;
-        if (!(node.config as any).size) (node.config as any).size = 'standard';
-        // Remove deprecated data.scale if present
-        if (node.data && Object.prototype.hasOwnProperty.call(node.data, 'scale')) {
-          delete (node.data as any).scale;
+        if (!node.config) node.config = { size: 'standard' };
+        else if (!('size' in node.config)) (node.config as { size?: string }).size = 'standard';
+        if (node.data && 'scale' in node.data) {
+          delete (node.data as { scale?: unknown }).scale;
         }
       } else if (node.type === 'text') {
-        if (node.data && !Object.prototype.hasOwnProperty.call(node.data, 'textAlignment')) {
-          (node.data as any).textAlignment = 'start';
+        if (node.data && !('textAlignment' in node.data)) {
+          (node.data as { textAlignment?: string }).textAlignment = 'start';
         }
       }
     }
     // Remove metaSettings from root story node (handled later in reporting)
     if (this.json.root) {
       const rootNode = this.json.nodes[this.json.root];
-      if (rootNode?.type === 'story' && rootNode.data && (rootNode.data as any).metaSettings) {
-        delete (rootNode.data as any).metaSettings;
+      if (rootNode?.type === 'story' && rootNode.data && 'metaSettings' in (rootNode.data as Record<string, unknown>)) {
+        delete (rootNode.data as ExtendedStoryMapStoryNode['data']).metaSettings;
       }
     }
     // Reorder nodes so root story node is last for downstream consumers expecting that ordering
-    const nodesOrdered: Record<string, any> = {};
+    const nodesOrdered: Record<string, StoryMapNode> = {};
     for (const [id, node] of Object.entries(this.json.nodes)) {
       if (id === this.json.root) continue;
       nodesOrdered[id] = node;
@@ -268,8 +281,8 @@ export class StoryMapJSONBuilder {
   }
 
   /** Mutate an existing node's data object (real underlying JSON, not ordered copy) */
-  updateNodeData(nodeId: string, mutate: (data: Record<string, unknown>, node: any) => void): void {
-    const node = (this as any).json?.nodes?.[nodeId];
+  updateNodeData(nodeId: string, mutate: (data: Record<string, unknown>, node: StoryMapNode) => void): void {
+    const node = this.json.nodes[nodeId];
     if (!node) return;
     if (!node.data) node.data = {};
     mutate(node.data as Record<string, unknown>, node);
@@ -277,14 +290,14 @@ export class StoryMapJSONBuilder {
 
   /** Generic node mutator (full node object) */
   updateNode(nodeId: string, mutate: (node: StoryMapNode) => void): void {
-    const node = (this as any).json?.nodes?.[nodeId];
+    const node = this.json.nodes[nodeId];
     if (!node) return;
     mutate(node as StoryMapNode);
   }
 
   /** Remove a node and detach it from any parent children arrays */
   removeNode(nodeId: string): void {
-    const nodes = (this as any).json?.nodes;
+    const nodes = this.json.nodes;
     if (!nodes || !nodes[nodeId]) return;
     for (const n of Object.values(nodes)) {
       if (n?.children && Array.isArray(n.children)) {
@@ -300,8 +313,8 @@ export class StoryMapJSONBuilder {
     if (!this.json.root) return;
     const rootNode = this.json.nodes[this.json.root];
     if (!rootNode || rootNode.type !== 'story') return;
-    if (!rootNode.data) rootNode.data = {} as any;
-    (rootNode.data as any).metaSettings = {
+    if (!rootNode.data) rootNode.data = {};
+    (rootNode as ExtendedStoryMapStoryNode).data.metaSettings = {
       title: title,
       description: description || '',
       imageResourceId: imageResourceId
@@ -311,15 +324,11 @@ export class StoryMapJSONBuilder {
   /** Add converter metadata resource */
   addConverterMetadata(classicType: string, payload: Omit<import('../types/core.ts').ConverterMetadataPayload,'type'|'version'|'classicType'>): void {
     const id = this.generateResourceId();
-    (this.json.resources as any)[id] = {
+    const resource: { type: 'converter-metadata'; data: ConverterMetadataPayload } = {
       type: 'converter-metadata',
-      data: {
-        type: 'storymap',
-        version: '1.0.0',
-        classicType,
-        ...payload
-      }
+      data: { type: 'storymap', version: '1.0.0', classicType, ...payload }
     };
+    this.json.resources[id] = resource as unknown as StoryMapResource;
   }
 
   private generateNodeId(): string {
@@ -341,25 +350,25 @@ export class StoryMapJSONBuilder {
   createRichTextNode(html: string, blockType: 'paragraph' | 'h2' | 'h3' | 'h4' | 'quote' | 'bullet-list', size: 'wide' | 'standard' = 'wide'): string {
     const id = this.generateNodeId();
     // Flag preserveHtml so downstream renderer can differentiate
-    this.json.nodes[id] = { type: 'text', data: { text: html, type: blockType, preserveHtml: true, textAlignment: 'start' }, config: { size } } as any;
+    this.json.nodes[id] = { type: 'text', data: { text: html, type: blockType, preserveHtml: true, textAlignment: 'start' }, config: { size } } as unknown as StoryMapNode;
     return id;
   }
 
   createImageNode(imageResourceId: string, caption?: string, alt?: string, size: 'wide' | 'standard' = 'wide'): string {
     const id = this.generateNodeId();
-    this.json.nodes[id] = { type: 'image', data: { image: imageResourceId, caption, alt }, config: { size } } as any;
+    this.json.nodes[id] = { type: 'image', data: { image: imageResourceId, caption, alt }, config: { size } } as unknown as StoryMapNode;
     return id;
   }
 
   createWebMapNode(webMapResourceId: string, caption?: string): string {
     const id = this.generateNodeId();
-    this.json.nodes[id] = { type: 'webmap', data: { map: webMapResourceId, caption }, config: { size: 'standard' } } as any;
+    this.json.nodes[id] = { type: 'webmap', data: { map: webMapResourceId, caption }, config: { size: 'standard' } } as unknown as StoryMapNode;
     return id;
   }
 
   createVideoNode(videoResourceId: string, caption?: string, alt?: string): string {
     const id = this.generateNodeId();
-    this.json.nodes[id] = { type: 'video', data: { video: videoResourceId, caption, alt } } as any;
+    this.json.nodes[id] = { type: 'video', data: { video: videoResourceId, caption, alt } } as unknown as StoryMapNode;
     return id;
   }
 
@@ -389,7 +398,7 @@ export class StoryMapJSONBuilder {
         display: 'inline',
         aspectRatio
       }
-    } as any;
+    } as unknown as StoryMapNode;
     return id;
   }
 
@@ -408,7 +417,7 @@ export class StoryMapJSONBuilder {
         display: 'inline',
         embedSrc: url
       }
-    } as any;
+    } as unknown as StoryMapNode;
     return id;
   }
 
@@ -421,10 +430,10 @@ export class StoryMapJSONBuilder {
       type: 'immersive-narrative-panel',
       data: { panelStyle: 'themed' },
       children: [...narrativeContentNodeIds]
-    } as any;
+    } as unknown as StoryMapNode;
     const slideId = this.generateNodeId();
     const children = mediaNodeId ? [narrativeId, mediaNodeId] : [narrativeId];
-    this.json.nodes[slideId] = { type: 'immersive-slide', data: { transition: 'fade' }, children } as any;
+    this.json.nodes[slideId] = { type: 'immersive-slide', data: { transition: 'fade' }, children } as unknown as StoryMapNode;
     if (!sidecar.children) sidecar.children = [];
     sidecar.children.push(slideId);
     return { slideId, narrativeId };
@@ -433,13 +442,13 @@ export class StoryMapJSONBuilder {
   // Detached action button factory (no parent append)
   createActionButtonNode(text: string, size: 'wide' | 'standard' = 'wide'): string {
     const id = this.generateNodeId();
-    this.json.nodes[id] = { type: 'action-button', data: { text }, config: { size } } as any;
+    this.json.nodes[id] = { type: 'action-button', data: { text }, config: { size } } as unknown as StoryMapNode;
     return id;
   }
 
   addActionButton(parentId: string, text: string, size: 'wide' | 'standard' = 'wide'): string {
     const id = this.generateNodeId();
-    this.json.nodes[id] = { type: 'action-button', data: { text }, config: { size } } as any;
+    this.json.nodes[id] = { type: 'action-button', data: { text }, config: { size } } as unknown as StoryMapNode;
     this.appendChild(parentId, id);
     return id;
   }
@@ -447,7 +456,7 @@ export class StoryMapJSONBuilder {
   // Generic button (for navigate actions) detached factory
   createButtonNode(text: string, size: 'wide' | 'standard' = 'wide', link?: string): string {
     const id = this.generateNodeId();
-    this.json.nodes[id] = { type: 'button', data: { text, link }, config: { size } } as any;
+    this.json.nodes[id] = { type: 'button', data: { text, link }, config: { size } } as unknown as StoryMapNode;
     return id;
   }
 
@@ -455,8 +464,76 @@ export class StoryMapJSONBuilder {
     const node = this.json.nodes[buttonNodeId];
     if (node && node.type === 'button') {
       if (!node.data) node.data = {};
-      (node.data as any).link = link;
+      (node.data as { link?: string }).link = link;
     }
+  }
+
+  /** Public child append helper (exposes internal appendChild for converters) */
+  addChild(parentId: string, childId: string): void {
+    this.appendChild(parentId, childId);
+  }
+
+  /** Convenience getter for story root id */
+  getStoryRootId(): string {
+    return this.json.root;
+  }
+
+  /** Public ID factory for converters that need standalone ids */
+  newNodeId(): string {
+    return this.generateNodeId();
+  }
+
+  /** Create tour-map node (optionally referencing a webmap resource) */
+  createTourMapNode(
+    geometries: Record<string, TourGeometry>,
+    webmapId?: string,
+    mode: '2d' | '3d' = '2d'
+  ): string {
+    const id = this.generateNodeId();
+    const basemap: Record<string, unknown> = { type: 'name', value: 'worldImagery' };
+    if (webmapId) {
+      const resId = this.addWebMapResource(webmapId, 'Web Map', {}, 'minimal');
+      basemap.type = 'resource';
+      basemap.value = resId;
+    }
+    this.json.nodes[id] = {
+      type: 'tour-map',
+      data: { geometries, mode, basemap }
+    } as StoryMapNode;
+    return id;
+  }
+
+  /** Create carousel node (limits to first 5 images to avoid overflow) */
+  createCarouselNode(imageNodeIds: string[]): string {
+    const id = this.generateNodeId();
+    this.json.nodes[id] = { type: 'carousel', children: imageNodeIds.slice(0, 5) } as StoryMapNode;
+    return id;
+  }
+
+  /** Create tour node (Map Tour refactor) */
+  createTourNode(
+    places: TourPlace[],
+    tourMapNodeId: string,
+    accentColor: string,
+    placardPosition: 'start' | 'end' = 'start',
+    narrativePanelSize: 'small' | 'medium' | 'large' = 'large',
+    tourType: 'guided-tour' | 'explorer' = 'guided-tour',
+    subtype: 'media-focused' | 'map-focused' | 'grid' = 'map-focused'
+  ): string {
+    const id = this.generateNodeId();
+    this.json.nodes[id] = {
+      type: 'tour',
+      data: {
+        type: tourType,
+        subtype,
+        narrativePanelPosition: placardPosition,
+        map: tourMapNodeId,
+        places,
+        narrativePanelSize,
+        accentColor
+      }
+    } as StoryMapNode;
+    return id;
   }
 
   registerReplaceMediaAction(originActionButtonId: string, targetSlideId: string, mediaNodeId: string): void {

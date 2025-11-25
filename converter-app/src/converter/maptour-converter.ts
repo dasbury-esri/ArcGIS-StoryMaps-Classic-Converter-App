@@ -7,7 +7,7 @@ import type {
   MapTourPlace 
 } from '../types/storymap';
 
-import { StoryMapJSONBuilder } from './storymap-builder';
+import { StoryMapJSONBuilder } from './storymap-builder.ts';
 import {
   createTourMapNode,
   createMapResource,
@@ -16,16 +16,16 @@ import {
   createCarouselNode,
   createTourNode,
   createCreditsNode
-} from './storymap-schema';
-import { transferImage } from '../api/image-transfer';
+} from './storymap-schema.ts';
+import { transferImage } from '../api/image-transfer.ts';
 import { 
   generateNodeId, 
   generateUUID,
   getAttrFromList,
   ensureHttpsProtocol 
-} from './utils';
+} from './utils.ts';
 
-const proxyBaseUrl = import.meta.env.VITE_PROXY_BASE_URL;
+const proxyBaseUrl = (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_PROXY_BASE_URL) || process.env.VITE_PROXY_BASE_URL || '';
 
 // Attribute key lists (update here as needed)
 const IMAGE_URL_KEYS = ['pic_url', 'Pic_url', 'PIC_URL', 'url', 'Url', 'URL'] as const;
@@ -102,6 +102,16 @@ export class MapTourConverter {
     return this.targetStoryId;
   }
 
+  private stripHtml(text: string): string {
+    return text.replace(/<[^>]*>/g, '');
+  }
+
+  private summarize(text: string, max: number = 240): string {
+    const plain = this.stripHtml(text).replace(/\s+/g, ' ').trim();
+    if (!plain) return '';
+    return plain.length > max ? plain.slice(0, max).trim() + '…' : plain;
+  }
+
   async convert(): Promise<StoryMapJSON> {
     const values = this.classicJson.values || {};
     const mtValues = values as MapTourValues;
@@ -122,7 +132,7 @@ export class MapTourConverter {
     // const socialButtonFacebook = mtValues.social.facebook || ''; // boolean
     // const socialButtonTwitter = mtValues.social.twitter || ''; // boolean
     // const socialButtonBitly = mtValues.social.bitly || ''; // boolean
-    // const firstRecordAsIntro = mtValues.firstRecordAsIntro || ''; // option to make the first feature/point a splash page. During conversion we can make this data the cover.
+    const firstRecordAsIntro = mtValues.firstRecordAsIntro === true; // option to promote first place media to cover
     const accentColor = '#f9f794'; // in classic Map Tour, each point could have one of four marker colors (red, blue, green, purple). AGSM doesn't have this option. AGSM color is derived from Theme "accentColor1" 
     const features = await this.extractFeatures();
 
@@ -208,19 +218,32 @@ export class MapTourConverter {
       // Upload image
       let imageResourceId: string | undefined;
       if (imageUrl) {
-        console.log('[MapTourConverter] Preparing to transfer image:', { imageUrl, imageFilename });
-        const imageTransferResult = await this.transferSingleImage(imageUrl, imageFilename);
-        console.log('[MapTourConverter] Image transfer result:', imageTransferResult);
-        imageResourceId = this.builder.addResource({
-          type: "image",
-          data: {
-            resourceId: imageTransferResult.resourceName,            
-            provider: "item-resource",
-            height: 1024,
-            width: 1024
-          }
-        });
-        console.log('[MapTourConverter] Added image resource:', { imageResourceId, resourceName: imageTransferResult.resourceName });
+        if (!this.targetStoryId || !this.token) {
+          // Offline/local conversion fallback: reference original URL directly
+          imageResourceId = this.builder.addResource({
+            type: 'image',
+            data: {
+              src: ensureHttpsProtocol(imageUrl),
+              provider: 'uri',
+              height: 1024,
+              width: 1024
+            }
+          });
+        } else {
+          console.log('[MapTourConverter] Preparing to transfer image:', { imageUrl, imageFilename });
+          const imageTransferResult = await this.transferSingleImage(imageUrl, imageFilename);
+          console.log('[MapTourConverter] Image transfer result:', imageTransferResult);
+          imageResourceId = this.builder.addResource({
+            type: 'image',
+            data: {
+              resourceId: imageTransferResult.resourceName,
+              provider: 'item-resource',
+              height: 1024,
+              width: 1024
+            }
+          });
+          console.log('[MapTourConverter] Added image resource:', { imageResourceId, resourceName: imageTransferResult.resourceName });
+        }
       }
       // Upload thumbnail
       let thumbResourceId: string | undefined;
@@ -250,6 +273,9 @@ export class MapTourConverter {
     const places: any[] = [];
     // Build geometries for tour-map
     const geometries: Record<string, any> = {};   
+    let firstPlaceImageResourceId: string | undefined;
+    let firstPlaceTitle: string | undefined;
+    let firstPlaceDesc: string | undefined;
     
     for (let i = 0; i < filteredFeatures.length; i++) {
       const feature = filteredFeatures[i];
@@ -283,6 +309,9 @@ export class MapTourConverter {
       const imageNodeIds: string[] = [];
       if (imageNodeId) imageNodeIds.push(imageNodeId);
       if (thumbNodeId) imageNodeIds.push(thumbNodeId);
+      if (i === 0 && resourceInfo?.imageResourceId) {
+        firstPlaceImageResourceId = resourceInfo.imageResourceId;
+      }
 
       const mediaNodeId = this.builder.createDetachedNode(
         createCarouselNode(imageNodeIds)
@@ -294,6 +323,11 @@ export class MapTourConverter {
         createTextNode(descText, 'paragraph', 'start')
       );
       const contents = [contentNodeId];
+
+      if (i === 0) {
+        firstPlaceTitle = titleText;
+        firstPlaceDesc = descText;
+      }
 
       // Geometry
       const geomId = generateUUID();
@@ -404,7 +438,18 @@ export class MapTourConverter {
   this.setRootChildren([coverId, navId, tourNodeId, tourMapNodeId, creditsId].filter(Boolean) as string[]);
 
     // Set cover and theme
-    this.builder.setCover(`(CONVERSION) ${title}`, subtitle);
+    const coverTitleBase = firstRecordAsIntro && firstPlaceTitle ? firstPlaceTitle : title;
+    const coverSummaryBase = firstRecordAsIntro && firstPlaceDesc ? this.summarize(firstPlaceDesc) : subtitle;
+    this.builder.setCover(`(CONVERSION) ${coverTitleBase}`, coverSummaryBase);
+    if (firstRecordAsIntro && firstPlaceImageResourceId && coverId) {
+      try {
+        const coverNode = storymapNodes[coverId];
+        if (coverNode?.data) {
+          coverNode.data.image = firstPlaceImageResourceId;
+          coverNode.data.type = 'full';
+        }
+      } catch {/* ignore */}
+    }
     this.builder.setTheme(this.themeId);
 
     const storymapJson = this.builder.getJson();
@@ -491,7 +536,30 @@ export class MapTourConverter {
       }
     }
 
-    // 3. No features found
+    // 3. Attempt live fetch of webmap data if webmapId present (public maps only)
+    const webmapIdFallback = (values as any).webmap || (this.classicJson as any).webmap;
+    if (webmapIdFallback) {
+      try {
+        const url = `https://www.arcgis.com/sharing/rest/content/items/${webmapIdFallback}/data?f=json`;
+        const resp = await fetch(url);
+        if (resp.ok) {
+          const wm = await resp.json();
+          const layers2 = wm.operationalLayers || [];
+          for (const layer of layers2) {
+            if (layer.featureCollection) {
+              for (const fcLayer of layer.featureCollection.layers || []) {
+                if (fcLayer.featureSet && Array.isArray(fcLayer.featureSet.features)) {
+                  return fcLayer.featureSet.features;
+                }
+              }
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('[MapTourConverter] Live webmap fetch failed:', (e as Error).message);
+      }
+    }
+    // 4. No features found
     return [];
 }
 

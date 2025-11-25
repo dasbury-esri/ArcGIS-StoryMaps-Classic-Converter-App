@@ -1,5 +1,6 @@
 import type { ClassicStoryMapJSON } from './types/classic.ts';
 import { MapJournalConverter } from './converters/MapJournalConverter.ts';
+import { MapTourConverter } from './converters/MapTourConverter';
 import type { ConverterResult, StoryMapJSON } from './types/core.ts';
 // Use global fetch in browser/Node 18+; lazy import node-fetch only if needed in older Node environments.
 type FetchFn = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -25,24 +26,44 @@ export class ConverterFactory {
     const template = detectClassicTemplate(opts.classicJson);
     opts.progress({ stage: 'convert', message: `ConverterFactory detected template: ${template}` });
     checkCancelled();
-    // Only Map Journal supported currently; extend switch as more converters added
     switch (template.toLowerCase()) {
+      case 'map tour':
+      case 'tour': {
+        const result = MapTourConverter.convert({
+          classicJson: opts.classicJson,
+          themeId: opts.themeId,
+          progress: opts.progress
+        });
+        // Determine if tour-map references a minimal webmap resource; enrich only then
+        const hasWebMapResource = Object.values(result.storymapJson.resources).some(r => r.type === 'webmap');
+        if (hasWebMapResource && opts.enrichMaps !== false) {
+          checkCancelled();
+          await ConverterFactory.enrichWebMaps(result.storymapJson, opts.progress, opts.isCancelled);
+        } else if (hasWebMapResource) {
+          opts.progress({ stage: 'convert', message: 'Map Tour web map enrichment skipped (enrichMaps=false).' });
+        }
+        if (opts.enrichScenes !== false) {
+          checkCancelled();
+          await ConverterFactory.enrichWebScenes(result.storymapJson, opts.progress, opts.isCancelled);
+        } else {
+          opts.progress({ stage: 'convert', message: 'Map Tour web scene enrichment disabled (enrichScenes=false).' });
+        }
+        return result;
+      }
       case 'map journal':
       case 'journal':
-      default:
+      default: {
         const result = MapJournalConverter.convert({
           classicJson: opts.classicJson,
           themeId: opts.themeId,
           progress: opts.progress
         });
-        // Enrich any Web Map resources if enabled (default true)
         if (opts.enrichMaps !== false) {
           checkCancelled();
           await ConverterFactory.enrichWebMaps(result.storymapJson, opts.progress, opts.isCancelled);
         } else {
           opts.progress({ stage: 'convert', message: 'Web map enrichment disabled (enrichMaps=false).' });
         }
-        // Enrich any Web Scene resources if enabled (default true)
         if (opts.enrichScenes !== false) {
           checkCancelled();
           await ConverterFactory.enrichWebScenes(result.storymapJson, opts.progress, opts.isCancelled);
@@ -50,6 +71,7 @@ export class ConverterFactory {
           opts.progress({ stage: 'convert', message: 'Web scene enrichment disabled (enrichScenes=false).' });
         }
         return result;
+      }
     }
   }
 
