@@ -7,3 +7,6 @@
   functions = "netlify/functions"
   targetPort = 5173
   autoLaunch = false
+
+[functions]
+  directory = "netlify/functions"

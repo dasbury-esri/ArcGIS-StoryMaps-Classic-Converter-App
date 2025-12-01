@@ -26,9 +26,10 @@ export const handler: Handler = async (event) => {
     const storymapJson = await convertClassicToJson(classicJson as any, themeId, username, token || '', targetStoryId);
     return {
       statusCode: 200,
-      body: JSON.stringify({ storymapJson })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ok: true, storymapJson })
     };
   } catch (err: any) {
-    return { statusCode: 500, body: JSON.stringify({ error: err?.message || String(err) }) };
+    return { statusCode: 500, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ok: false, error: err?.message || String(err) }) };
   }
 };

@@ -4,10 +4,10 @@ import { MapTourConverter } from './converters/MapTourConverter';
 import type { ConverterResult, StoryMapJSON } from './types/core.ts';
 // Use global fetch in browser/Node 18+; lazy import node-fetch only if needed in older Node environments.
 type FetchFn = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+// Simplified fetch resolver: in browser and modern Node (>18) global fetch exists; avoid bundling node-fetch.
 async function getFetch(): Promise<FetchFn> {
-  if (typeof fetch !== 'undefined') return fetch as FetchFn;
-  const mod = await import('node-fetch');
-  return (mod.default as unknown as FetchFn);
+  if (typeof fetch === 'undefined') throw new Error('Global fetch unavailable in this environment');
+  return fetch as FetchFn;
 }
 import { detectClassicTemplate } from './util/detectTemplate.ts';
 
