@@ -1,6 +1,7 @@
 import type { ClassicStoryMapJSON } from './types/classic.ts';
 import { MapJournalConverter } from './converters/MapJournalConverter.ts';
 import { MapTourConverter } from './converters/MapTourConverter';
+import { SwipeConverter } from './converters/SwipeConverter.ts';
 import type { ConverterResult, StoryMapJSON } from './types/core.ts';
 // Use global fetch in browser/Node 18+; lazy import node-fetch only if needed in older Node environments.
 type FetchFn = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -47,6 +48,29 @@ export class ConverterFactory {
           await ConverterFactory.enrichWebScenes(result.storymapJson, opts.progress, opts.isCancelled);
         } else {
           opts.progress({ stage: 'convert', message: 'Map Tour web scene enrichment disabled (enrichScenes=false).' });
+        }
+        return result;
+      }
+      case 'swipe': {
+        const result = SwipeConverter.convert({
+          classicJson: opts.classicJson,
+          themeId: opts.themeId,
+          progress: opts.progress
+        });
+        // Enrich web maps if present (swipe commonly references Web Maps)
+        const hasWebMapResource = Object.values(result.storymapJson.resources).some(r => r.type === 'webmap');
+        if (hasWebMapResource && opts.enrichMaps !== false) {
+          checkCancelled();
+          await ConverterFactory.enrichWebMaps(result.storymapJson, opts.progress, opts.isCancelled);
+        } else if (hasWebMapResource) {
+          opts.progress({ stage: 'convert', message: 'Swipe web map enrichment skipped (enrichMaps=false).' });
+        }
+        // Scenes enrichment is generally not applicable to Swipe, but keep consistent behavior
+        if (opts.enrichScenes !== false) {
+          checkCancelled();
+          await ConverterFactory.enrichWebScenes(result.storymapJson, opts.progress, opts.isCancelled);
+        } else {
+          opts.progress({ stage: 'convert', message: 'Web scene enrichment disabled (enrichScenes=false).' });
         }
         return result;
       }
@@ -166,6 +190,8 @@ export class ConverterFactory {
     }
     if (!mapResources.length) return;
     progress({ stage: 'convert', message: `Enriching ${mapResources.length} Web Map resource(s)...` });
+    const versionWarnings: Array<{ itemId: string; version: string }> = [];
+    const protocolWarnings: Array<{ itemId: string; httpLayerCount: number }> = [];
     await Promise.all(mapResources.map(async (map) => {
       try {
         checkCancelled();
@@ -176,6 +202,25 @@ export class ConverterFactory {
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const data = await resp.json();
         checkCancelled();
+        // Version check (<2.0 requires user to update in Classic Map Viewer)
+        const rawVersion: unknown = (data.version || data.mapVersion || data.webMapVersion);
+        let versionStr: string | undefined;
+        if (typeof rawVersion === 'string') versionStr = rawVersion.trim();
+        else if (typeof rawVersion === 'number') versionStr = String(rawVersion);
+        if (versionStr) {
+          const numeric = parseFloat(versionStr);
+          if (!isNaN(numeric) && numeric < 2.0) {
+            versionWarnings.push({ itemId: map.itemId, version: versionStr });
+          }
+        }
+        // Detect http (non-https) layer URLs in operationalLayers & baseMapLayers
+        try {
+          const layerDefs: any[] = [];
+          if (Array.isArray(data.operationalLayers)) layerDefs.push(...data.operationalLayers);
+          if (Array.isArray(data.baseMap?.baseMapLayers)) layerDefs.push(...data.baseMap.baseMapLayers);
+          const httpCount = layerDefs.filter(l => typeof l?.url === 'string' && /^http:/i.test(l.url)).length;
+          if (httpCount > 0) protocolWarnings.push({ itemId: map.itemId, httpLayerCount: httpCount });
+        } catch { /* ignore protocol scan errors */ }
         const baseMapLayers = data.baseMap?.baseMapLayers?.map((l: any) => ({
           id: l.id,
           title: l.title,
@@ -241,5 +286,33 @@ export class ConverterFactory {
         progress({ stage: 'convert', message: `Web Map enrichment failed for ${map.itemId}: ${err.message}` });
       }
     }));
+    // Persist version warnings into converter-metadata resource so UI can surface them.
+    if (versionWarnings.length || protocolWarnings.length) {
+      const metaEntry = Object.entries(json.resources).find(([, r]) => r.type === 'converter-metadata');
+      if (metaEntry) {
+        const [metaId, metaRes] = metaEntry as [string, { type: string; data: any }];
+        const metaData = (metaRes.data || {}) as any;
+        const classicMetadata = (metaData.classicMetadata || (metaData.classicMetadata = {}));
+        if (versionWarnings.length) {
+          classicMetadata.webmapVersionWarnings = versionWarnings.map(vw => ({
+            itemId: vw.itemId,
+            message: `Unsupported web map version: You must update the web map to the latest version. You can do this by opening the map in <a href="https://<org_url>.arcgis.com/home/webmap/viewer.html?webmap=${vw.itemId}">Map Viewer Classic</a> and save it. No other changes are necessary.`,
+            version: vw.version,
+            type: 'version'
+          }));
+        }
+        if (protocolWarnings.length) {
+          classicMetadata.webmapProtocolWarnings = protocolWarnings.map(pw => ({
+            itemId: pw.itemId,
+            message: `Unsupported protocol: You must update the web map to use https service urls. You can do this by opening the web map item's <a href="https://<org_url>.arcgis.com/home/item.html?id=${pw.itemId}#settings">settings page</a> scrolling down to the Web map section and clicking the "Update layers to HTTPS" button`,
+            httpLayerCount: pw.httpLayerCount,
+            type: 'protocol'
+          }));
+        }
+        json.resources[metaId] = metaRes;
+        if (versionWarnings.length) progress({ stage: 'convert', message: `Detected ${versionWarnings.length} web map(s) requiring version update (<2.0).` });
+        if (protocolWarnings.length) progress({ stage: 'convert', message: `Detected ${protocolWarnings.length} web map(s) with http layer(s) requiring HTTPS update.` });
+      }
+    }
   }
 }

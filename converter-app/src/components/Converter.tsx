@@ -111,12 +111,18 @@ export default function Converter() {
   const [detectedTemplate, setDetectedTemplate] = useState<string | null>(null);
   const [customCssInfo, setCustomCssInfo] = useState<{ css: string; url: string } | null>(null);
   const [webmapWarnings, setWebmapWarnings] = useState<Array<{ itemId: string; level: string; message: string; details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } }>>([]);
+  // Cached organization base URL for building dynamic help links (resolved once per conversion)
+  const DEFAULT_ORG_BASE = 'https://www.arcgis.com';
+  const [orgBase, setOrgBase] = useState(DEFAULT_ORG_BASE);
+  const prevTokenRef = useRef<string | null>(null);
+  const portalResolvedRef = useRef<boolean>(false);
   // Indicates full validation cycle (client + optional backend diagnostics) is complete
   const [webmapChecksFinalized, setWebmapChecksFinalized] = useState(false);
   const [endpointChecks, setEndpointChecks] = useState<EndpointCheck[]>([]);
   const [endpointCategorySummary, setEndpointCategorySummary] = useState<Record<string, number> | null>(null);
   const [expandedWarnings, setExpandedWarnings] = useState<Record<string, boolean>>({});
-  const getOrgHostname = () => {
+  type WebmapWarning = { itemId: string; level: string; message: string; details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } };
+  const getOrgHostname = useCallback(() => {
     const ui = (typeof userInfo === 'object' && userInfo) ? (userInfo as unknown as { orgUrl?: string; org?: { url?: string } }) : {};
     const orgUrl = ui.orgUrl || ui.org?.url || '';
     // orgUrl may look like https://<org>.maps.arcgis.com
@@ -130,15 +136,150 @@ export default function Converter() {
       }
     } catch { /* ignore */ }
     return 'www.arcgis.com';
-  };
+  }, [userInfo]);
+  const normalizeWebmapWarnings = useCallback((
+    warnings: Array<WebmapWarning>,
+    base: string
+  ): Array<WebmapWarning> => {
+    // Prefer a resolved org base; fall back to hostname from userInfo
+    const fallbackHost = getOrgHostname();
+    const baseUsed = (base && base !== DEFAULT_ORG_BASE) ? base : `https://${fallbackHost}`;
+    return warnings.map(w => {
+      const id = w.itemId;
+      const msg = w.message || '';
+      // Version <2.0 pattern
+      if (/version\s*([0-9]+(?:\.[0-9]+)?)\s*<\s*2\.0/i.test(msg)) {
+        const formatted = `ERROR: Item [${id}] Unsupported web map version: You must update the web map to the latest version. You can do this by opening the map in <a href="${baseUsed}/home/webmap/viewer.html?webmap=${id}" target="_blank" rel="noopener noreferrer">Map Viewer Classic</a> and save it. No other changes are necessary to resolve this error.`;
+        return { ...w, level: 'error', message: formatted };
+      }
+      // HTTP endpoints present
+      if (/HTTP URL|http:\/\//i.test(msg)) {
+        const formatted = `Unsupported protocol: You must update the web map to use https service urls. You can do this by opening the web map item's <a href="${baseUsed}/home/item.html?id=${id}#settings" target="_blank" rel="noopener noreferrer">settings page</a> scrolling down to the Web map section and clicking the "Update layers to HTTPS" button`;
+        return { ...w, message: formatted };
+      }
+      // Generic pattern: replace 'Map Viewer Classic <link = URL>' with anchor
+      const linkMatch = /Map Viewer Classic\s*<\s*link\s*=\s*(https?:[^\s>]+)\s*>/i.exec(msg);
+      if (linkMatch) {
+        const url = linkMatch[1];
+        const replaced = msg.replace(linkMatch[0], `<a href="${url}" target="_blank" rel="noopener noreferrer">Map Viewer Classic</a>`);
+        return { ...w, message: replaced };
+      }
+      // Replace org placeholder if present
+      if (/https:\/\/<org_url>\.arcgis\.com/i.test(msg)) {
+        const replaced = msg.replace(/https:\/\/<org_url>\.arcgis\.com/gi, baseUsed);
+        return { ...w, message: replaced };
+      }
+      // Replace default base with org base if still present
+      if (/https:\/\/www\.arcgis\.com/i.test(msg) && baseUsed && baseUsed !== DEFAULT_ORG_BASE) {
+        const replaced = msg.replace(/https:\/\/www\.arcgis\.com/gi, baseUsed);
+        return { ...w, message: replaced };
+      }
+      return w;
+    });
+  }, [getOrgHostname]);
   const makeItemUrl = (itemId?: string) => {
     if (!itemId) return '';
     const host = getOrgHostname();
     if (/^[a-f0-9]{32}$/i.test(itemId)) return `https://${host}/home/item.html?id=${itemId}`;
     return '';
   };
+  // Invalidate orgBase cache when token is removed or changes to force re-resolution on next conversion
+  useEffect(() => {
+    if (!token) {
+      setOrgBase(DEFAULT_ORG_BASE);
+      prevTokenRef.current = null;
+      portalResolvedRef.current = false;
+      return;
+    }
+    if (prevTokenRef.current && prevTokenRef.current !== token) {
+      setOrgBase(DEFAULT_ORG_BASE);
+      portalResolvedRef.current = false;
+    }
+    prevTokenRef.current = token;
+  }, [token]);
+
+  // Resolve organization base URL from userInfo immediately when available (prevents default base in warnings)
+  useEffect(() => {
+    try {
+      // Compute host from userInfo (e.g., story.maps.arcgis.com or <org>.maps.arcgis.com)
+      const host = getOrgHostname();
+      const resolved = `https://${host}`;
+      // Only update if we have a token (signed-in) and the base differs
+      if (token && resolved && orgBase !== resolved) {
+        setOrgBase(resolved);
+      }
+    } catch {
+      // ignore resolution errors
+    }
+    // Re-run when auth changes or org info updates
+  }, [token, userInfo, orgBase, getOrgHostname]);
+
+  // Prefer portal-derived base (urlKey.customBaseUrl) when available; resolve once per auth session
+  useEffect(() => {
+    if (!token || portalResolvedRef.current) return;
+    (async () => {
+      try {
+        const resp = await fetch(`https://www.arcgis.com/sharing/rest/portals/self?f=json&token=${encodeURIComponent(token)}`);
+        if (!resp.ok) return;
+        const portalJson = await resp.json();
+        const urlKey = portalJson?.urlKey;
+        const customBaseUrl = portalJson?.customBaseUrl;
+        let resolvedOrg = '';
+        if (urlKey && customBaseUrl) {
+          resolvedOrg = `https://${urlKey}.${customBaseUrl}`;
+        } else if (portalJson?.portalHostname) {
+          const ph = portalJson.portalHostname as string;
+          resolvedOrg = /^https?:/i.test(ph) ? ph : `https://${ph}`;
+        }
+        if (resolvedOrg && orgBase !== resolvedOrg) {
+          setOrgBase(resolvedOrg);
+        }
+      } catch { /* ignore */ }
+      finally {
+        portalResolvedRef.current = true;
+      }
+    })();
+  }, [token, orgBase]);
+
+  // Re-normalize existing warnings once orgBase resolves to an org domain
+  useEffect(() => {
+    if (!webmapWarnings.length) return;
+    if (orgBase && orgBase !== DEFAULT_ORG_BASE) {
+      setWebmapWarnings(prev => prev.map(w => ({
+        ...w,
+        message: (w.message || '').replace(/https:\/\/www\.arcgis\.com/gi, orgBase)
+      })));
+    }
+  }, [orgBase, webmapWarnings.length]);
   // Classic item id must be 32 hex characters
   const isValidClassicId = (id: string): boolean => /^[a-f0-9]{32}$/i.test(id.trim());
+  // Ensure org base is resolved before producing warnings (synchronous guard)
+  const ensureOrgBaseResolved = useCallback(async (): Promise<string> => {
+    // If already resolved away from default, use it
+    if (orgBase && orgBase !== DEFAULT_ORG_BASE) return orgBase;
+    // Try userInfo-derived host immediately
+    const host = getOrgHostname();
+    let candidate = `https://${host}`;
+    // If still default and we have a token, resolve via portals/self
+    if (token && /www\.arcgis\.com$/i.test(host)) {
+      try {
+        const resp = await fetch(`https://www.arcgis.com/sharing/rest/portals/self?f=json&token=${encodeURIComponent(token)}`);
+        if (resp.ok) {
+          const portalJson = await resp.json();
+          const urlKey = portalJson?.urlKey;
+          const customBaseUrl = portalJson?.customBaseUrl;
+          if (urlKey && customBaseUrl) {
+            candidate = `https://${urlKey}.${customBaseUrl}`;
+          } else if (portalJson?.portalHostname) {
+            const ph = portalJson.portalHostname as string;
+            candidate = /^https?:/i.test(ph) ? ph : `https://${ph}`;
+          }
+        }
+      } catch { /* ignore */ }
+    }
+    if (candidate && candidate !== orgBase) setOrgBase(candidate);
+    return candidate;
+  }, [orgBase, token, getOrgHostname]);
     const handleConvert = async () => {
       console.debug('[Converter] refactorActive?', refactorActive, 'override?', refactorOverride, 'urlFlag?', useRefactor);
       // Reset state
@@ -238,8 +379,12 @@ export default function Converter() {
         // Validate webmaps client-side first (may be limited by CORS)
         let localWarnings: typeof webmapWarnings = [];
         try {
+          // Resolve org base synchronously for this run
+          const baseForRun = await ensureOrgBaseResolved();
           const { warnings, endpointChecks, endpointCategorySummary } = await validateWebMaps(webmapIds, token);
           localWarnings = warnings.map(w => ({ itemId: w.itemId, level: w.level as string, message: w.message, details: (w && typeof w === 'object' && 'details' in w ? (w as unknown as { details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } }).details : undefined) }));
+          // Apply formatting for version/protocol warnings using cached org base
+          localWarnings = normalizeWebmapWarnings(localWarnings, baseForRun);
           setWebmapWarnings(localWarnings);
           setEndpointChecks(endpointChecks);
           setEndpointCategorySummary(endpointCategorySummary || null);
@@ -262,7 +407,12 @@ export default function Converter() {
               const backendEndpointChecks: EndpointCheck[] = Array.isArray(v.endpointChecks) ? v.endpointChecks : [];
               const backendSummary: Record<string, number> | null = v.endpointCategorySummary || null;
               if (backendWarnings.length || backendEndpointChecks.some(ec => !ec.ok)) {
-                setWebmapWarnings(backendWarnings.map((w: { itemId: string; level: string; message: string; details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } }) => ({ itemId: w.itemId, level: w.level, message: w.message, details: w.details })));
+                  const baseForRun = await ensureOrgBaseResolved();
+                const formattedWarnings = normalizeWebmapWarnings(
+                  backendWarnings.map((w: { itemId: string; level: string; message: string; details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } }) => ({ itemId: w.itemId, level: w.level, message: w.message, details: w.details })),
+                    baseForRun
+                );
+                setWebmapWarnings(formattedWarnings);
                 setEndpointChecks(backendEndpointChecks);
                 setEndpointCategorySummary(backendSummary);
               }
@@ -290,6 +440,45 @@ export default function Converter() {
 
         let newStorymapJson: unknown;
         if (refactorActive) {
+          // Skip server-side path for Swipe to ensure new converter (SwipeConverter) + enrichment & warnings execute client-side
+          const isSwipeTemplate = templateLabel.toLowerCase() === 'swipe';
+          if (isSwipeTemplate) {
+            try {
+              const uploader = async (url: string, storyId: string, user: string, tk: string) => {
+                if (cancelRequestedRef.current) throw new Error("Conversion cancelled by user intervention");
+                const res = await transferImage(url, storyId, user, tk);
+                return { originalUrl: url, resourceName: res.resourceName, transferred: !!res.isTransferred };
+              };
+              const pipelineResult = await convertClassicToJsonRefactored({
+                classicJson: classicData,
+                storyId: targetStoryId,
+                classicItemId,
+                username,
+                token,
+                themeId: "summit",
+                progress: (e) => {
+                  if (cancelRequestedRef.current) return;
+                  const alreadyHasCount = /\(\s*\d+\s*\/\s*\d+\s*\)\s*$/.test(e.message);
+                  const msg = e.total && !alreadyHasCount ? `${e.message} (${e.current}/${e.total})` : e.message;
+                  switch (e.stage) {
+                    case 'media': setStatus('transferring'); setMessage(msg); break;
+                    case 'convert': setStatus('converting'); setMessage(msg); break;
+                    case 'finalize': setStatus('updating'); setMessage(msg); break;
+                    case 'error': setStatus('error'); setMessage(msg); break;
+                    case 'done': setStatus('success'); setMessage(msg); break;
+                    default: setMessage(msg);
+                  }
+                },
+                isCancelled: () => cancelRequestedRef.current,
+                uploader
+              });
+              newStorymapJson = pipelineResult.storymapJson;
+            } catch (swipeErr) {
+              setStatus('error');
+              setMessage(`Swipe conversion failed: ${(swipeErr as Error)?.message || 'Unknown error'}`);
+              return;
+            }
+          } else {
           // First, attempt server-side conversion so swipe embeds are inlined
           try {
             setMessage("Requesting server-side conversion...");
@@ -524,6 +713,7 @@ export default function Converter() {
             });
             newStorymapJson = pipelineResult.storymapJson;
           }
+          }
         } else {
           newStorymapJson = await convertClassicToJson(
             classicData,
@@ -543,6 +733,30 @@ export default function Converter() {
             const blob = new Blob([cssCombined], { type: 'text/css' });
             const url = URL.createObjectURL(blob);
             setCustomCssInfo({ css: cssCombined, url });
+          }
+          // Surface webmap version warnings (added during enrichment) if present.
+          const versionWarnings = metadataRes?.data?.classicMetadata?.webmapVersionWarnings as Array<{ itemId: string; message: string }> | undefined;
+          const protocolWarnings = metadataRes?.data?.classicMetadata?.webmapProtocolWarnings as Array<{ itemId: string; message: string }> | undefined;
+          const allWarnings: Array<{ itemId: string; message: string }> = [];
+          // Use cached orgBase resolved earlier (portal-derived when available)
+          const resolvedOrgBase = orgBase;
+          if (Array.isArray(versionWarnings)) allWarnings.push(...versionWarnings);
+          if (Array.isArray(protocolWarnings)) allWarnings.push(...protocolWarnings);
+          if (allWarnings.length) {
+            // Replace placeholder base in messages
+            const replaced = allWarnings.map(w => ({
+              itemId: w.itemId,
+              message: w.message.replace(/https:\/\/<org_url>\.arcgis\.com/gi, resolvedOrgBase)
+            }));
+            setWebmapWarnings(prev => {
+              const merged = [...prev];
+              for (const w of replaced) {
+                if (!merged.some(existing => existing.itemId === w.itemId && existing.message === w.message)) {
+                  merged.push({ itemId: w.itemId, level: 'warning', message: w.message });
+                }
+              }
+              return merged;
+            });
           }
         } catch {
           // ignore
@@ -771,7 +985,11 @@ export default function Converter() {
               <ul>
                 {webmapWarnings.map((w, i) => (
                   <li key={`${w.itemId}-${i}`}>
-                    {w.level.toUpperCase()}: [{w.itemId}] {w.message}
+                    {/^\s*(ERROR|WARNING|INFO):/i.test(w.message)
+                      ? (<span dangerouslySetInnerHTML={{ __html: w.message }} />)
+                      : (<>
+                          {w.level.toUpperCase()}: [{w.itemId}] <span dangerouslySetInnerHTML={{ __html: w.message }} />
+                        </>)}
                     {w.details?.webmapTitle && (
                       <div>Title: {w.details.webmapTitle}</div>
                     )}

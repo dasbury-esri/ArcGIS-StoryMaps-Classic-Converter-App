@@ -56,6 +56,18 @@ export async function validateWebMaps(webmapIds: string[], token?: string): Prom
       const toCheck: Array<{ url: string; title?: string; layerItemId?: string; layerTitle?: string }> = [];
       for (const l of layers) if (l?.url) toCheck.push({ url: l.url, title: l.title, layerItemId: l.itemId, layerTitle: l.title });
       for (const bl of basemapLayers) if (bl?.url) toCheck.push({ url: bl.url, title: bl.title });
+      const isArcgisOnlineBasemap = (u: string) => {
+        try {
+          const nu = new URL(u);
+          const host = nu.hostname.toLowerCase();
+          const path = nu.pathname.toLowerCase();
+          // Treat services.arcgisonline.com basemap services as healthy even if HTML or 404 on JSON endpoints
+          if (host.endsWith('services.arcgisonline.com')) {
+            return /(mapserver|featureserver)/i.test(path);
+          }
+        } catch { /* ignore */ }
+        return false;
+      };
       for (const { url, title, layerItemId, layerTitle } of toCheck) {
         if (/^http:\/\//i.test(url)) {
           failures.push({ url, error: 'HTTP URL (use HTTPS)', title, layerItemId, layerTitle });
@@ -69,11 +81,12 @@ export async function validateWebMaps(webmapIds: string[], token?: string): Prom
           ? /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname)
           : false;
         const cleanUrl = url.split('?')[0];
-        const layerJsonUrl = `${cleanUrl}${cleanUrl.includes('?') ? '' : '?'}${cleanUrl.includes('?') ? '&' : ''}f=json`;
+        // Prefer pjson to maximize compatibility across ArcGIS REST services
+        const layerJsonUrl = `${cleanUrl}${cleanUrl.includes('?') ? '' : '?'}${cleanUrl.includes('?') ? '&' : ''}f=pjson`;
         const parentServiceUrl = /(FeatureServer|MapServer)\/\d+$/i.test(cleanUrl)
           ? cleanUrl.replace(/\/(FeatureServer|MapServer)\/\d+$/i, '/$1')
           : cleanUrl;
-        const parentJsonUrl = `${parentServiceUrl}${parentServiceUrl.includes('?') ? '' : '?'}${parentServiceUrl.includes('?') ? '&' : ''}f=json`;
+        const parentJsonUrl = `${parentServiceUrl}${parentServiceUrl.includes('?') ? '' : '?'}${parentServiceUrl.includes('?') ? '&' : ''}f=pjson`;
         // Use Netlify function proxy for local development to avoid CORS; direct URL otherwise
         const netlifyProxy = (u: string) => `/.netlify/functions/proxy-feature?url=${encodeURIComponent(u)}`;
         const probeUrl = isLocal ? netlifyProxy(layerJsonUrl) : layerJsonUrl;
@@ -126,7 +139,7 @@ export async function validateWebMaps(webmapIds: string[], token?: string): Prom
           }
         }
         // If layer endpoint is not OK, flag it even if parent is OK
-        if (!layerOk) {
+        if (!layerOk && !isArcgisOnlineBasemap(cleanUrl)) {
           const status = layerRes.resp?.status;
           const explicitErr = layerRes.json?.error ? (layerRes.json.error.message || 'Layer error JSON') : undefined;
           failures.push({ url, status, error: explicitErr || 'Layer endpoint not healthy', title, layerItemId, layerTitle });
@@ -139,11 +152,11 @@ export async function validateWebMaps(webmapIds: string[], token?: string): Prom
           endpointChecks.push({ webmapId: id, webmapTitle, layerTitle, layerItemId, url: parentServiceUrl, status: parentRes.resp?.status, ok: false, errorCategory: pPermissionDenied ? 'permission-denied' : 'json-error', errorMessage: pPermissionDenied ? 'Service permissions denied or item private' : 'Service error JSON' });
         }
         // Explicitly flag HTTP failures (4xx/5xx)
-        if (!layerHttpOk) {
+        if (!layerHttpOk && !isArcgisOnlineBasemap(cleanUrl)) {
           failures.push({ url, status: layerRes.resp?.status, error: 'Layer HTTP failure', title, layerItemId, layerTitle });
           endpointChecks.push({ webmapId: id, webmapTitle, layerTitle, layerItemId, url, status: layerRes.resp?.status, ok: false, errorCategory: 'http-failure', errorMessage: 'Layer HTTP failure' });
         }
-        if (!parentHttpOk) {
+        if (!parentHttpOk && !isArcgisOnlineBasemap(parentServiceUrl)) {
           failures.push({ url: parentServiceUrl, status: parentRes.resp?.status, error: 'Service HTTP failure', title, layerItemId, layerTitle });
           endpointChecks.push({ webmapId: id, webmapTitle, layerTitle, layerItemId, url: parentServiceUrl, status: parentRes.resp?.status, ok: false, errorCategory: 'http-failure', errorMessage: 'Service HTTP failure' });
         }

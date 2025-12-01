@@ -1,0 +1,258 @@
+{
+    "root": "n-PeC0iO",
+    "nodes": {
+        "n-pwsk89": {
+            "type": "storycover",
+            "data": {
+                "type": "minimal",
+                "title": "Higher Education: Spy—Occupation & Degrees",
+                "summary": "",
+                "byline": "David Asbury",
+                "titlePanelVerticalPosition": "top",
+                "titlePanelHorizontalPosition": "start",
+                "titlePanelStyle": "gradient"
+            }
+        },
+        "n-0qU2IM": {
+            "type": "navigation",
+            "data": {
+                "links": []
+            },
+            "config": {
+                "isHidden": true
+            }
+        },
+        "n-YZet3H": {
+            "type": "webmap",
+            "data": {
+                "map": "r-59e59f2345634201ab07202e0682ca05",
+                "caption": "Higher Education: Map—Predominant Degree",
+                "timeSlider": false,
+                "extent": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "xmin": -15627852.987625673,
+                    "ymin": 917807.794347907,
+                    "xmax": -4677668.161197112,
+                    "ymax": 7076792.617299423
+                },
+                "viewpoint": {
+                    "rotation": 0,
+                    "scale": 29881907.982081786,
+                    "targetGeometry": {
+                        "spatialReference": {
+                            "latestWkid": 3857,
+                            "wkid": 102100
+                        },
+                        "x": -10152760.574411392,
+                        "y": 3997300.2058236646
+                    }
+                }
+            }
+        },
+        "n-of6rUG": {
+            "type": "webmap",
+            "data": {
+                "map": "r-0bd5e9fc478c43e6986a4abab33909c3",
+                "caption": "Higher Education: Map—Predominant Occupation",
+                "timeSlider": false
+            }
+        },
+        "n-d3Ndmb": {
+            "type": "swipe",
+            "data": {
+                "contents": {
+                    "0": "n-YZet3H",
+                    "1": "n-of6rUG"
+                },
+                "viewPlacement": "extent",
+                "caption": "Higher Education: Spy—Occupation &amp; Degrees"
+            },
+            "config": {
+                "size": "full"
+            }
+        },
+        "n-guGIKT": {
+            "type": "text",
+            "data": {
+                "text": "",
+                "type": "h4"
+            }
+        },
+        "n-gcsek8": {
+            "type": "text",
+            "data": {
+                "text": "",
+                "type": "paragraph"
+            }
+        },
+        "n-rlt8Fj": {
+            "type": "attribution",
+            "data": {
+                "content": "",
+                "attribution": ""
+            }
+        },
+        "n-LRmnz3": {
+            "type": "credits",
+            "children": [
+                "n-guGIKT",
+                "n-gcsek8",
+                "n-rlt8Fj"
+            ]
+        },
+        "n-PeC0iO": {
+            "type": "story",
+            "data": {
+                "storyTheme": "r-ZjkAJe"
+            },
+            "config": {
+                "coverDate": "first-published"
+            },
+            "children": [
+                "n-pwsk89",
+                "n-0qU2IM",
+                "n-d3Ndmb",
+                "n-LRmnz3"
+            ]
+        }
+    },
+    "resources": {
+        "r-59e59f2345634201ab07202e0682ca05": {
+            "type": "webmap",
+            "data": {
+                "extent": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "xmin": -15631765.695568401,
+                    "ymin": 1513400.0536770076,
+                    "xmax": -5664387.601823706,
+                    "ymax": 7119600.439978175
+                },
+                "center": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "x": -10648076.648696054,
+                    "y": 4316500.246827591
+                },
+                "zoom": 3.5288824006045068,
+                "viewpoint": {
+                    "rotation": 0,
+                    "scale": 27199931.301711153,
+                    "targetGeometry": {
+                        "spatialReference": {
+                            "latestWkid": 3857,
+                            "wkid": 102100
+                        },
+                        "x": -10648076.648696054,
+                        "y": 4316500.246827591
+                    }
+                },
+                "mapLayers": [
+                    {
+                        "id": "Academics_Predominant_Degree_2015_16_6340",
+                        "title": "Academics: Predominant Degree (2015/16)",
+                        "visible": true
+                    },
+                    {
+                        "id": "Academics_Predominant_Degree_2015_16_6340_7549",
+                        "title": "Academics: Predominant Degree (2015/16) - copy",
+                        "visible": true
+                    },
+                    {
+                        "id": "Education_and_Occupations_2018_County_5490",
+                        "title": "Education_and_Occupations_2018_County",
+                        "visible": false
+                    },
+                    {
+                        "id": "Education_and_Occupation_2018_Tract_Level_8975",
+                        "title": "Education_and_Occupation_2018_Tract_Level",
+                        "visible": false
+                    },
+                    {
+                        "id": "USA_States_Generalized_445",
+                        "title": "USA States (Generalized)",
+                        "visible": true
+                    }
+                ],
+                "itemId": "59e59f2345634201ab07202e0682ca05",
+                "itemType": "Web Map",
+                "type": "default"
+            }
+        },
+        "r-0bd5e9fc478c43e6986a4abab33909c3": {
+            "type": "webmap",
+            "data": {
+                "extent": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "xmin": -15627852.987625673,
+                    "ymin": 917807.794347907,
+                    "xmax": -4677668.161197112,
+                    "ymax": 7076792.617299423
+                },
+                "center": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "x": -10152760.574411392,
+                    "y": 3997300.2058236646
+                },
+                "zoom": 3.383826773371605,
+                "viewpoint": {
+                    "rotation": 0,
+                    "scale": 29881907.982081786,
+                    "targetGeometry": {
+                        "spatialReference": {
+                            "latestWkid": 3857,
+                            "wkid": 102100
+                        },
+                        "x": -10152760.574411392,
+                        "y": 3997300.2058236646
+                    }
+                },
+                "mapLayers": [
+                    {
+                        "id": "Academics_Predominant_Degree_2015_16_6340",
+                        "title": "Academics Predominant Degree 2015 16",
+                        "visible": false
+                    },
+                    {
+                        "id": "Education_and_Occupations_2018_County_5490",
+                        "title": "Education_and_Occupations_2018_County",
+                        "visible": true
+                    },
+                    {
+                        "id": "Education_and_Occupation_2018_Tract_Level_8975",
+                        "title": "Education_and_Occupation_2018_Tract_Level",
+                        "visible": true
+                    },
+                    {
+                        "id": "World_Countries__Generalized__8441",
+                        "title": "World Countries (Generalized)",
+                        "visible": true
+                    }
+                ],
+                "itemId": "0bd5e9fc478c43e6986a4abab33909c3",
+                "itemType": "Web Map",
+                "type": "default"
+            }
+        },
+        "r-ZjkAJe": {
+            "type": "story-theme",
+            "data": {
+                "themeId": "summit",
+                "themeBaseVariableOverrides": {}
+            }
+        }
+    }
+}
