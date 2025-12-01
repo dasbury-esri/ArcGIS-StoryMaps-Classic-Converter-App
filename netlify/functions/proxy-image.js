@@ -1,38 +1,41 @@
-const fetch = require('node-fetch'); // Netlify supports node-fetch v2
+// Netlify supports node-fetch v2
 
-exports.handler = async function(event, context) {
-  const imageUrl = event.queryStringParameters.url;
-  if (!imageUrl) {
-    return {
-      statusCode: 400,
-      body: 'Missing url parameter'
-    };
+function normalizeUrl(u) {
+  if (!u) return u;
+  if (u.startsWith('//')) return 'https:' + u;
+  if (!/^https?:\/\//i.test(u)) return 'https://' + u;
+  return u;
+}
+
+export async function handler(event) {
+  const raw = event.queryStringParameters?.url;
+  if (!raw) {
+    return { statusCode: 400, body: 'Missing url parameter' };
   }
-
+  const imageUrl = normalizeUrl(raw);
   try {
     const response = await fetch(imageUrl);
     if (!response.ok) {
-      return {
-        statusCode: response.status,
-        body: 'Failed to fetch image'
-      };
+      return { statusCode: response.status, body: 'Failed to fetch image' };
     }
     const contentType = response.headers.get('content-type') || 'image/jpeg';
-    const buffer = await response.buffer();
-
+    const arrayBuf = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuf);
+    // Optional guard: reject overly large images (10MB)
+    if (buffer.length > 10 * 1024 * 1024) {
+      return { statusCode: 413, body: 'Image too large' };
+    }
     return {
       statusCode: 200,
       headers: {
         'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
         'Content-Type': contentType
       },
       body: buffer.toString('base64'),
       isBase64Encoded: true
     };
-  } catch (err) {
-    return {
-      statusCode: 500,
-      body: 'Error fetching image'
-    };
+  } catch {
+    return { statusCode: 500, body: 'Error fetching image' };
   }
-};
+}

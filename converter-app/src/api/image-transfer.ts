@@ -304,9 +304,12 @@ export async function transferImages(
  * Fetch an image using a local proxy server to avoid CORS errors
  */
 async function fetchImageWithProxy(imageUrl: string): Promise<Blob> {
-  const proxyUrl = `http://localhost:3001/proxy-image?url=${encodeURIComponent(imageUrl)}`;
+  const isLocal = /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
+  const proxyUrl = isLocal
+    ? `/.netlify/functions/proxy-image?url=${encodeURIComponent(imageUrl)}`
+    : imageUrl; // In production fetch directly
   const response = await fetch(proxyUrl);
-  if (!response.ok) throw new Error('Failed to fetch image via proxy');
+  if (!response.ok) throw new Error('Failed to fetch image (proxy/direct)');
   return await response.blob();
 }
 

@@ -4,12 +4,13 @@
   "type": "module",
   "dependencies": {
     "@esri/arcgis-rest-auth": "^3.8.0",
+    "@netlify/functions": "^5.1.0",
     "express": "^5.1.0",
     "image-size": "^2.0.2",
-    "node-fetch": "^2.7.0"
+    "node-fetch": "^3.3.2"
   },
   "scripts": {
-    "proxy": "node proxy-server/proxy-server.js",
+    "proxy": "echo 'Deprecated: use netlify dev' && exit 1",
     "bump": "node scripts/bump-version.mjs",
     "bump:beta": "node scripts/bump-version.mjs --beta",
     "bump:alpha": "node scripts/bump-version.mjs --alpha",

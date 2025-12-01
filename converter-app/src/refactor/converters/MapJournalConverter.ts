@@ -288,7 +288,26 @@ export class MapJournalConverter extends BaseConverter {
               const b = btnNode as unknown as { dependents?: Record<string, string> };
               if (!b.dependents) b.dependents = {};
               b.dependents.actionMedia = actMediaNode;
+              // If action media is a swipe, also record its content node ids to prevent loss
+              const jsonSnap = this.builder.getJson();
+              const swipeNode = jsonSnap.nodes[actMediaNode];
+              if (swipeNode?.type === 'swipe' && swipeNode.data && (swipeNode.data as Record<string, unknown>).contents) {
+                const contents = (swipeNode.data as Record<string, unknown>).contents as Record<string, string>;
+                const aId = contents['0'];
+                const bId = contents['1'];
+                if (aId) b.dependents[`actionMedia_content_0`] = aId;
+                if (bId) b.dependents[`actionMedia_content_1`] = bId;
+              }
             });
+            // Ensure target slide has the media node present so runtime can load resources on action
+            const snap = this.builder.getJson();
+            const slideNode = snap.nodes[slideId];
+            if (slideNode && Array.isArray(slideNode.children)) {
+              const hasChild = slideNode.children.includes(actMediaNode);
+              if (!hasChild) {
+                this.builder.addChild(slideId, actMediaNode);
+              }
+            }
             this.builder.registerReplaceMediaAction(stub.buttonNodeId, slideId, actMediaNode);
           }
         }
@@ -386,11 +405,22 @@ export class MapJournalConverter extends BaseConverter {
     // Attach extracted custom CSS (style blocks) provenance if present
     if (this.styleBlocks.length) {
       try {
-        const combined = this.styleBlocks.join('\n\n');
+        const combinedRaw = this.styleBlocks.join('\n\n');
+        // Sanitize control chars and collapse excessive whitespace
+        // Replace control characters manually (avoid regex with direct control chars triggering linter)
+        let sanitized = combinedRaw.split('').map(ch => {
+          const code = ch.charCodeAt(0);
+          return code < 32 ? ' ' : ch;
+        }).join('');
+        sanitized = sanitized.replace(/\r/g,'').replace(/\t/g,' ');
+        // Normalize multi-blank lines
+        sanitized = sanitized.replace(/\n{3,}/g,'\n\n');
+        const approxBytes = combinedRaw.length;
+        const truncated = sanitized.length > 6000 ? sanitized.slice(0,6000) + '\n/*__CSS_TRUNCATED__*/' : sanitized;
         (decisions as Record<string, unknown>)["customCss"] = {
           blockCount: this.styleBlocks.length,
-          combined,
-          approxBytes: combined.length
+            approxBytes,
+          combined: truncated
         } as Record<string, unknown>;
       } catch {
         // swallow
@@ -1040,7 +1070,77 @@ export class MapJournalConverter extends BaseConverter {
     const layoutHint = this.parseSwipeLayoutFromUrl(url);
     const layout = layoutHint || (String(classic.values.layout || '').toLowerCase().includes('spyglass') ? 'spyglass' : 'swipe');
     try {
-      return SwipeConverter.buildInlineSwipeBlock(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
+      const swipeNodeId = SwipeConverter.buildInlineSwipeBlock(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
+      // Integrity check: ensure referenced content nodes exist; recreate if missing.
+      try {
+        const liveJson = this.builder.getJson();
+        const swipeNode = liveJson.nodes[swipeNodeId];
+        if (swipeNode && swipeNode.type === 'swipe') {
+          const contents = (swipeNode.data as { contents?: Record<string,string> } | undefined)?.contents || {};
+          const missingKeys: string[] = [];
+          for (const key of ['0','1']) {
+            const cid = contents[key];
+            if (!cid || !liveJson.nodes[cid]) missingKeys.push(key);
+          }
+          if (missingKeys.length) {
+            const vals = classic.values as import('../types/classic.ts').ClassicValues;
+            const dataModel = String(vals.dataModel || '').toUpperCase();
+            // Build replacement content nodes
+            const rebuilt: Record<string,string> = { ...contents };
+            if (dataModel === 'TWO_LAYERS') {
+              const baseId = String(vals.webmap || '');
+              if (baseId) {
+                const resId = this.builder.addWebMapResource(baseId, 'Web Map', {}, 'default');
+                // Create two distinct node ids (same resource) with layer visibility adjustments
+                const layers: Array<{ id: string; title?: string }> = Array.isArray(vals.layers) ? (vals.layers as Array<{ id: string; title?: string }>) : [];
+                const nodeA = this.builder.createWebMapNode(resId, undefined);
+                const nodeB = this.builder.createWebMapNode(resId, undefined);
+                if (layers.length >= 2) {
+                  const l0 = layers[0];
+                  const l1 = layers[1];
+                  this.builder.updateNodeData(nodeA, d => {
+                    (d as Record<string, unknown>).mapLayers = [
+                      { id: l0.id, title: l0.title || l0.id, visible: true },
+                      { id: l1.id, title: l1.title || l1.id, visible: false }
+                    ];
+                  });
+                  this.builder.updateNodeData(nodeB, d => {
+                    (d as Record<string, unknown>).mapLayers = [
+                      { id: l0.id, title: l0.title || l0.id, visible: false },
+                      { id: l1.id, title: l1.title || l1.id, visible: true }
+                    ];
+                  });
+                }
+                rebuilt['0'] = nodeA;
+                rebuilt['1'] = nodeB;
+              }
+            } else { // TWO_WEBMAPS fallback
+              const wmIds: string[] = [];
+              if (Array.isArray(vals.webmaps)) {
+                for (const entry of vals.webmaps) {
+                  if (typeof entry === 'string') wmIds.push(entry);
+                  else if (entry && typeof entry === 'object' && 'id' in (entry as Record<string, unknown>)) wmIds.push(String((entry as Record<string, unknown>).id));
+                }
+              } else if (vals.webmap) wmIds.push(String(vals.webmap));
+              const [wmA, wmB] = wmIds;
+              if (wmA) {
+                const rA = this.builder.addWebMapResource(wmA, 'Web Map', {}, 'default');
+                rebuilt['0'] = this.builder.createWebMapNode(rA, undefined);
+              }
+              if (wmB) {
+                const rB = this.builder.addWebMapResource(wmB, 'Web Map', {}, 'default');
+                rebuilt['1'] = this.builder.createWebMapNode(rB, undefined);
+              }
+            }
+            // Patch swipe node data with rebuilt contents
+            this.builder.updateNode(swipeNodeId, node => {
+              if (!node.data) node.data = {} as Record<string, unknown>;
+              (node.data as Record<string, unknown>).contents = rebuilt;
+            });
+          }
+        }
+      } catch { /* ignore integrity rebuild errors */ }
+      return swipeNodeId;
     } catch {
       return undefined;
     }

@@ -127,9 +127,8 @@
 .converter-url-row { margin-top: 8px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
 .converter-url-label { font-size: 0.9em; color: #fff; }
 .converter-url-link { word-break: break-all; color: #cde3ff; text-decoration: underline; }
-.converter-copy-btn { padding: 6px 10px; font-size: 0.85rem; font-weight: 600; color: #1d3955; background: #fff; border: 1px solid #d0d8df; border-radius: 4px; cursor: pointer; }
-.converter-copy-btn:hover, .converter-copy-btn:focus { background: #eaf2fb; }
-.converter-copy-hint { margin-left: 8px; color: #10a010; font-weight: 600; font-size: 0.85rem; }
+.converter-details-toggle-btn { padding: 6px 10px; font-size: 0.85rem; font-weight: 600; color: #1d3955; background: #fff; border: 1px solid #d0d8df; border-radius: 4px; cursor: pointer; }
+.converter-details-toggle-btn:hover, .converter-details-toggle-btn:focus { background: #eaf2fb; }
 /* Header persistent top nav styles */
 .top-nav {
   position: fixed;
@@ -401,3 +400,35 @@
 .enterprise-details { margin-top: 1rem; }
 .enterprise-details-text { margin-top: 0.5rem; }
 .enterprise-details-code { margin-left: 0.25rem; }
+
+/* Refactor pipeline toggle styles */
+.converter-toggle-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  margin-top: 4px;
+}
+.converter-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.converter-toggle-label input[type='checkbox'] {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.converter-toggle-label:hover,
+.converter-toggle-label:focus-within {
+  color: #cde3ff;
+}
+.converter-hint {
+  font-size: 11px;
+  color: #cde3ff;
+  opacity: 0.85;
+}

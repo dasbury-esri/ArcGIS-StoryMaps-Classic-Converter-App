@@ -64,3 +64,6 @@ dist-ssr
 classic_json.json
 converted_storymap_json.json
 webmap_json.json
+
+# Local Netlify folder
+.netlify

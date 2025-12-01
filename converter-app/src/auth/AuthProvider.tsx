@@ -120,12 +120,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [session, userInfo, loading]);
 
-  // // Display the updated token
-  // useEffect(() => {
-  //   if (session) {
-  //     console.log("Session token (updated):", session.token);
-  //   }
-  // }, [session]);
+  // Display the updated token
+  useEffect(() => {
+    if (session) {
+      console.log("Session token (updated):", session.token);
+    }
+  }, [session]);
 
 
   const signIn = () => {

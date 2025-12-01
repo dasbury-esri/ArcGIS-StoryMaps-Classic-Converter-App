@@ -1,10 +1,18 @@
 // netlify/functions/image-dimensions.js
-const fetch = require('node-fetch');
-const sizeOf = require('image-size');
+import sizeOf from 'image-size';
+import fetch from 'node-fetch'; // Explicit import for Node < 18 or Netlify compatibility
 
-exports.handler = async function(event) {
-  const imageUrl = event.queryStringParameters.url;
-  if (!imageUrl) return { statusCode: 400, body: 'Missing url parameter' };
+function normalizeUrl(u) {
+  if (!u) return u;
+  if (u.startsWith('//')) return 'https:' + u;
+  if (!/^https?:\/\//i.test(u)) return 'https://' + u;
+  return u;
+}
+
+export async function handler(event) {
+  const raw = event.queryStringParameters?.url;
+  if (!raw) return { statusCode: 400, body: 'Missing url parameter' };
+  const imageUrl = normalizeUrl(raw);
   try {
     const response = await fetch(imageUrl);
     if (!response.ok) return { statusCode: response.status, body: 'Failed to fetch image' };
@@ -13,9 +21,13 @@ exports.handler = async function(event) {
     return {
       statusCode: 200,
       body: JSON.stringify(dimensions),
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type'
+      }
     };
-  } catch (err) {
+  } catch {
     return { statusCode: 500, body: 'Error fetching image or reading dimensions' };
   }
-};
+}

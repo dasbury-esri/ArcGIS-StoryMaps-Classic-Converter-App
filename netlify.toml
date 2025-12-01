@@ -1,0 +1,9 @@
+[dev]
+  command = "npm run dev --prefix converter-app"
+  port = 8888
+  publish = "converter-app/dist"
+  framework = "#custom"
+
+  functions = "netlify/functions"
+  targetPort = 5173
+  autoLaunch = false

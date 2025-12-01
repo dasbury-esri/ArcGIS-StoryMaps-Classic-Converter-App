@@ -173,10 +173,12 @@ export async function getImageDimensions(url: string): Promise<{ width: number; 
   } else if (!url.startsWith('http')) {
     fullUrl = 'https://' + url;
   }
-  const base =
-    import.meta.env.MODE === 'production'
-      ? '/.netlify/functions/image-dimensions'
-      : `${import.meta.env.VITE_PROXY_BASE_URL}/image-dimensions`;
+  // Avoid import.meta entirely to prevent CJS warnings; rely on process.env
+  const isProd = process.env.NODE_ENV === 'production' || process.env.NETLIFY === 'true';
+  const proxyBaseUrl = process.env.VITE_PROXY_BASE_URL || '';
+  const base = isProd
+    ? '/.netlify/functions/image-dimensions'
+    : `${proxyBaseUrl}/image-dimensions`;
   const resp = await fetch(`${base}?url=${encodeURIComponent(fullUrl)}`);
   if (!resp.ok) throw new Error('Failed to get image dimensions');
   return await resp.json();

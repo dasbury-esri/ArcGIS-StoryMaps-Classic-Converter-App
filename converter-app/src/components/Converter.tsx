@@ -10,6 +10,7 @@ import { convertClassicToJsonRefactored } from "../refactor";
 import { convertClassicViaBackend } from "../api/conversion-service";
 import { MediaTransferService } from "../refactor/media/MediaTransferService";
 import { ResourceMapper } from "../refactor/media/ResourceMapper";
+import { validateWebMaps, type EndpointCheck } from "../refactor/services/WebMapValidator";
 import { detectClassicTemplate } from "../refactor/util/detectTemplate";
 import { useAuth } from "../auth/useAuth";
 import {
@@ -48,9 +49,14 @@ export default function Converter() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [convertedUrl, setConvertedUrl] = useState("");
-  const [copiedUrl, setCopiedUrl] = useState(false);
   // buttonLabel retained for future extended messaging but currently unused
   const [buttonLabel, setButtonLabel] = useState("Convert");
+  // Manual refactor pipeline override (UI toggle) persisted across auth redirects
+  const [refactorOverride, setRefactorOverride] = useState<boolean>(() => {
+    try { return localStorage.getItem('converter-refactor-pref') === '1'; } catch { return false; }
+  });
+  // Final flag: either URL param (?refactor=1) or manual override checkbox
+  const refactorActive = refactorOverride || useRefactor;
   // Cancellation helper + handler declared early to avoid TDZ in effects
   const checkCancelled = () => {
     if (cancelRequestedRef.current) {
@@ -69,15 +75,14 @@ export default function Converter() {
     setButtonLabel("Convert");
   }, [setButtonLabel, setMessage, setStatus, setPublishing, setCancelRequested]);
   useEffect(() => {
-    console.info(`[Converter] Pipeline selected: ${useRefactor ? 'refactor' : 'legacy'}`);
-  }, [useRefactor]);
+    console.info(`[Converter] Pipeline selected: ${refactorActive ? 'refactor' : 'legacy'} (override=${refactorOverride})`);
+  }, [refactorActive, refactorOverride]);
 
-  // Ephemeral copied notice timeout
+  // Persist override changes
   useEffect(() => {
-    if (!copiedUrl) return;
-    const t = setTimeout(() => setCopiedUrl(false), 2000);
-    return () => clearTimeout(t);
-  }, [copiedUrl]);
+    try { localStorage.setItem('converter-refactor-pref', refactorOverride ? '1' : '0'); } catch {/* ignore */}
+  }, [refactorOverride]);
+
 
   // Mobile detection (simplistic: width threshold + touch capability)
   useEffect(() => {
@@ -105,10 +110,37 @@ export default function Converter() {
   }, [status, handleCancel]);
   const [detectedTemplate, setDetectedTemplate] = useState<string | null>(null);
   const [customCssInfo, setCustomCssInfo] = useState<{ css: string; url: string } | null>(null);
+  const [webmapWarnings, setWebmapWarnings] = useState<Array<{ itemId: string; level: string; message: string; details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } }>>([]);
+  // Indicates full validation cycle (client + optional backend diagnostics) is complete
+  const [webmapChecksFinalized, setWebmapChecksFinalized] = useState(false);
+  const [endpointChecks, setEndpointChecks] = useState<EndpointCheck[]>([]);
+  const [endpointCategorySummary, setEndpointCategorySummary] = useState<Record<string, number> | null>(null);
+  const [expandedWarnings, setExpandedWarnings] = useState<Record<string, boolean>>({});
+  const getOrgHostname = () => {
+    const ui = (typeof userInfo === 'object' && userInfo) ? (userInfo as unknown as { orgUrl?: string; org?: { url?: string } }) : {};
+    const orgUrl = ui.orgUrl || ui.org?.url || '';
+    // orgUrl may look like https://<org>.maps.arcgis.com
+    try {
+      if (typeof orgUrl === 'string' && orgUrl.length) {
+        const u = new URL(orgUrl);
+        const host = u.hostname;
+        const m = /^(.*)\.maps\.arcgis\.com$/i.exec(host);
+        if (m && m[1]) return `${m[1]}.maps.arcgis.com`;
+        return host;
+      }
+    } catch { /* ignore */ }
+    return 'www.arcgis.com';
+  };
+  const makeItemUrl = (itemId?: string) => {
+    if (!itemId) return '';
+    const host = getOrgHostname();
+    if (/^[a-f0-9]{32}$/i.test(itemId)) return `https://${host}/home/item.html?id=${itemId}`;
+    return '';
+  };
   // Classic item id must be 32 hex characters
   const isValidClassicId = (id: string): boolean => /^[a-f0-9]{32}$/i.test(id.trim());
     const handleConvert = async () => {
-      console.debug('[Converter] useRefactor?', useRefactor);
+      console.debug('[Converter] refactorActive?', refactorActive, 'override?', refactorOverride, 'urlFlag?', useRefactor);
       // Reset state
       setStatus("idle");
       setMessage("");
@@ -144,6 +176,8 @@ export default function Converter() {
         const classicData = await getItemData(classicItemId, token);
         checkCancelled();
 
+        // Soft guard: proceed even if shape varies; downstream checks use optional chaining
+
         // Detect template type early for messaging (store in local runtime variable to avoid stale state)
         let runtimeTemplate: string | null = null;
         try {
@@ -156,9 +190,9 @@ export default function Converter() {
         }
 
         // Fetch classic webmap data
-        if (classicData.values.webmap) {
+        if (classicData.values?.webmap) {
           setMessage("Fetching classic webmap data...");
-          const webmapId = classicData.values.webmap;
+          const webmapId = classicData.values?.webmap;
           classicData.webmapJson = await getItemData(webmapId, token);
           checkCancelled();
         }
@@ -173,18 +207,89 @@ export default function Converter() {
         // Determine base theme (summit/obsidian) will be applied inline with overrides during conversion
         setMessage("Mapping theme overrides (inline resource)...");
 
+        // Gather webmap ids for validation (from classic JSON and embedded swipes)
+        const webmapIds: string[] = [];
+        if (classicData.values?.webmap) webmapIds.push(classicData.values.webmap);
+        try {
+          const sections = (classicData.values?.story?.sections || classicData.sections || []) as unknown as Array<Record<string, unknown>>;
+          for (const s of sections) {
+            if (s?.media?.webmap?.id) webmapIds.push(s.media.webmap.id);
+            const url = s?.media?.webpage?.url || '';
+            // Parse appid from embedded classic swipe
+            const m = /[?&#](?:appid|appId)=([a-f0-9]{32})/i.exec(String(url));
+            const appId = m?.[1];
+            if (appId) {
+              try {
+                const base = `https://www.arcgis.com/sharing/rest/content/items/${appId}/data?f=json`;
+                const swipeUrl = token ? `${base}&token=${encodeURIComponent(token)}` : base;
+                const resp = await fetch(swipeUrl);
+                if (resp.ok) {
+                  const swipeJson = await resp.json();
+                  const wm = Array.isArray(swipeJson?.values?.webmaps) ? swipeJson.values.webmaps : [];
+                  for (const wid of wm) if (typeof wid === 'string') webmapIds.push(wid);
+                }
+              } catch {
+                // ignore
+              }
+            }
+          }
+        } catch { /* ignore */ }
+
+        // Validate webmaps client-side first (may be limited by CORS)
+        let localWarnings: typeof webmapWarnings = [];
+        try {
+          const { warnings, endpointChecks, endpointCategorySummary } = await validateWebMaps(webmapIds, token);
+          localWarnings = warnings.map(w => ({ itemId: w.itemId, level: w.level as string, message: w.message, details: (w && typeof w === 'object' && 'details' in w ? (w as unknown as { details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } }).details : undefined) }));
+          setWebmapWarnings(localWarnings);
+          setEndpointChecks(endpointChecks);
+          setEndpointCategorySummary(endpointCategorySummary || null);
+          if (localWarnings.length > 0) {
+            // If we already have warnings, no need for backend diagnostics phase gating
+            setWebmapChecksFinalized(true);
+          }
+        } catch { /* ignore */ }
+
+        // If no failures detected locally, attempt backend diagnostics (serverless avoids CORS and gathers full layer info)
+        if (!cancelRequestedRef.current && localWarnings.length === 0) {
+          try {
+            setMessage("Running backend diagnostics...");
+            const diagUrl = `/.netlify/functions/convert-mapjournal?itemId=${classicItemId}&diagnostics=1${token ? `&token=${encodeURIComponent(token)}` : ''}`;
+            const resp = await fetch(diagUrl);
+            if (resp.ok) {
+              const json = await resp.json();
+              const v = json?.validation || {};
+              const backendWarnings = Array.isArray(v.warnings) ? v.warnings : [];
+              const backendEndpointChecks: EndpointCheck[] = Array.isArray(v.endpointChecks) ? v.endpointChecks : [];
+              const backendSummary: Record<string, number> | null = v.endpointCategorySummary || null;
+              if (backendWarnings.length || backendEndpointChecks.some(ec => !ec.ok)) {
+                setWebmapWarnings(backendWarnings.map((w: { itemId: string; level: string; message: string; details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } }) => ({ itemId: w.itemId, level: w.level, message: w.message, details: w.details })));
+                setEndpointChecks(backendEndpointChecks);
+                setEndpointCategorySummary(backendSummary);
+              }
+            }
+          } catch {
+            // ignore backend diagnostics failure
+          } finally {
+            setWebmapChecksFinalized(true);
+          }
+        }
+        if (localWarnings.length > 0) {
+          // Ensure finalized if we skipped backend diagnostics due to existing warnings
+          setWebmapChecksFinalized(true);
+        }
+
         // Convert to new JSON (legacy or refactored pipeline)
         setStatus("converting");
         const templateLabel = runtimeTemplate || detectedTemplate || "story";
         setButtonLabel(`Converting ${templateLabel}: ${coverTitle}...`);
         setMessage(
-          useRefactor
+          refactorActive
             ? `[Refactor][${templateLabel}] Converting ${templateLabel}: "${coverTitle}" via new pipeline...`
             : `Converting ${templateLabel} story to new format...`
         );
 
         let newStorymapJson: unknown;
-        if (useRefactor) {
+        if (refactorActive) {
           // First, attempt server-side conversion so swipe embeds are inlined
           try {
             setMessage("Requesting server-side conversion...");
@@ -211,6 +316,60 @@ export default function Converter() {
                 isCancelled: () => cancelRequestedRef.current
               });
               newStorymapJson = ResourceMapper.apply(serverJson, mapping);
+              // Client-side image dimensions enrichment (parallelized with timeout)
+              try {
+                const storyJson = newStorymapJson as unknown as { resources?: Record<string, { type?: string; data?: Record<string, unknown> }> };
+                const resources = storyJson.resources || {};
+                const imageEntries = Object.entries(resources).filter(([, r]) => r?.type === 'image');
+                const limiter = (limit: number) => {
+                  const pool: Promise<unknown>[] = [];
+                  return async (fn: () => Promise<unknown>) => {
+                    if (pool.length >= limit) await Promise.race(pool);
+                    const p = fn().finally(() => {
+                      const idx = pool.indexOf(p);
+                      if (idx > -1) pool.splice(idx, 1);
+                    });
+                    pool.push(p);
+                    return p;
+                  };
+                };
+                const runLimited = limiter(6);
+                const fetchWithTimeout = (u: string, ms = 2500): Promise<Response> => {
+                  const controller = new AbortController();
+                  const id = setTimeout(() => controller.abort(), ms);
+                  return fetch(u, { signal: controller.signal }).finally(() => clearTimeout(id));
+                };
+                const origin = window.location.origin;
+                const tasks = imageEntries.map(([rid, res]) => runLimited(async () => {
+                  const data = (res.data || {}) as Record<string, unknown>;
+                  const src = (data.src as string | undefined) || '';
+                  const hasDims = typeof (data as { width?: number }).width === 'number' && typeof (data as { height?: number }).height === 'number';
+                  if (!src || hasDims) return;
+                  let targetUrl = src;
+                  try {
+                    const u = new URL(src);
+                    const isArcgis = /arcgis\.com$/i.test(u.hostname) && /\/sharing\/rest\/content\/items\//.test(u.pathname);
+                    if (isArcgis && token) {
+                      const sp = new URLSearchParams(u.search);
+                      if (!sp.has('token')) { sp.set('token', token); u.search = sp.toString(); targetUrl = u.toString(); }
+                    }
+                  } catch { /* ignore */ }
+                  const fnUrl = `${origin}/.netlify/functions/image-dimensions?url=${encodeURIComponent(targetUrl)}`;
+                  try {
+                    const r = await fetchWithTimeout(fnUrl, 2500);
+                    if (!r.ok) return;
+                    const dim = await r.json() as { width?: number; height?: number };
+                    if (dim && (dim.width || dim.height)) {
+                      if (dim.width) (data as { width?: number }).width = dim.width;
+                      if (dim.height) (data as { height?: number }).height = dim.height;
+                      res.data = data;
+                      resources[rid] = res as { type?: string; data?: Record<string, unknown> };
+                    }
+                  } catch { /* ignore individual failures */ }
+                }));
+                await Promise.all(tasks);
+                storyJson.resources = resources;
+              } catch { /* ignore enrichment failures */ }
             } else {
               // Fallback: run client-side refactor pipeline
               const uploader = async (url: string, storyId: string, user: string, tk: string) => {
@@ -260,6 +419,60 @@ export default function Converter() {
                 uploader
               });
               newStorymapJson = pipelineResult.storymapJson;
+              // Enrich dimensions for client-side pipeline as well
+              try {
+                const storyJson = newStorymapJson as unknown as { resources?: Record<string, { type?: string; data?: Record<string, unknown> }> };
+                const resources = storyJson.resources || {};
+                const imageEntries = Object.entries(resources).filter(([, r]) => r?.type === 'image');
+                const limiter = (limit: number) => {
+                  const pool: Promise<unknown>[] = [];
+                  return async (fn: () => Promise<unknown>) => {
+                    if (pool.length >= limit) await Promise.race(pool);
+                    const p = fn().finally(() => {
+                      const idx = pool.indexOf(p);
+                      if (idx > -1) pool.splice(idx, 1);
+                    });
+                    pool.push(p);
+                    return p;
+                  };
+                };
+                const runLimited = limiter(6);
+                const fetchWithTimeout = (u: string, ms = 2500): Promise<Response> => {
+                  const controller = new AbortController();
+                  const id = setTimeout(() => controller.abort(), ms);
+                  return fetch(u, { signal: controller.signal }).finally(() => clearTimeout(id));
+                };
+                const origin = window.location.origin;
+                const tasks = imageEntries.map(([rid, res]) => runLimited(async () => {
+                  const data = (res.data || {}) as Record<string, unknown>;
+                  const src = (data.src as string | undefined) || '';
+                  const hasDims = typeof (data as { width?: number }).width === 'number' && typeof (data as { height?: number }).height === 'number';
+                  if (!src || hasDims) return;
+                  let targetUrl = src;
+                  try {
+                    const u = new URL(src);
+                    const isArcgis = /arcgis\.com$/i.test(u.hostname) && /\/sharing\/rest\/content\/items\//.test(u.pathname);
+                    if (isArcgis && token) {
+                      const sp = new URLSearchParams(u.search);
+                      if (!sp.has('token')) { sp.set('token', token); u.search = sp.toString(); targetUrl = u.toString(); }
+                    }
+                  } catch { /* ignore */ }
+                  const fnUrl = `${origin}/.netlify/functions/image-dimensions?url=${encodeURIComponent(targetUrl)}`;
+                  try {
+                    const r = await fetchWithTimeout(fnUrl, 2500);
+                    if (!r.ok) return;
+                    const dim = await r.json() as { width?: number; height?: number };
+                    if (dim && (dim.width || dim.height)) {
+                      if (dim.width) (data as { width?: number }).width = dim.width;
+                      if (dim.height) (data as { height?: number }).height = dim.height;
+                      res.data = data;
+                      resources[rid] = res as { type?: string; data?: Record<string, unknown> };
+                    }
+                  } catch { /* ignore */ }
+                }));
+                await Promise.all(tasks);
+                storyJson.resources = resources;
+              } catch { /* ignore enrichment failures */ }
             }
           } catch {
             // On error, fallback to client-side refactor pipeline
@@ -335,6 +548,39 @@ export default function Converter() {
           // ignore
         }
 
+        // Persist webmap warnings into converter-metadata resource for later visibility
+        try {
+          if (Array.isArray(webmapWarnings) && webmapWarnings.length) {
+            const storyJson = newStorymapJson as unknown as { resources?: Record<string, { type?: string; data?: Record<string, unknown> }> };
+            const resources = storyJson.resources || {};
+            const foundEntry = Object.entries(resources).find(([, r]) => r && r.type === 'converter-metadata');
+            if (foundEntry) {
+              const [resId, resObj] = foundEntry as [string, { type?: string; data?: Record<string, unknown> }];
+              const data = (resObj.data || {}) as Record<string, unknown>;
+              const classicMeta = ((data.classicMetadata || {}) as Record<string, unknown>);
+              classicMeta.webmapChecks = webmapWarnings.map(w => ({ itemId: w.itemId, level: w.level, message: w.message, refactor: refactorActive }));
+              data.classicMetadata = classicMeta;
+              resObj.data = data;
+              resources[resId] = resObj;
+              storyJson.resources = resources;
+            } else {
+              const resId = `r-converter-metadata-${Date.now()}`;
+              const resource: { type: string; data: Record<string, unknown> } = {
+                type: 'converter-metadata',
+                data: {
+                  classicMetadata: {
+                    webmapChecks: webmapWarnings.map(w => ({ itemId: w.itemId, level: w.level, message: w.message, refactor: refactorActive }))
+                  }
+                }
+              };
+              resources[resId] = resource;
+              storyJson.resources = resources;
+            }
+          }
+        } catch {
+          // ignore
+        }
+
         // Fetch target draft details
         setStatus("updating");
         setMessage("Fetching target storymap details...");
@@ -354,6 +600,21 @@ export default function Converter() {
 
         // Upload new draft resource (same name)
         setMessage(`Uploading new draft resource (${draftResourceName})...`);
+        // Schema cleanup: strip temporary dependents added for swipe content retention
+        try {
+          const storyJson = newStorymapJson as unknown as { nodes?: Record<string, { type?: string; data?: Record<string, unknown>; config?: Record<string, unknown>; dependents?: Record<string, string> }> };
+          const nodes = storyJson.nodes || {};
+          for (const [, node] of Object.entries(nodes)) {
+            if (node?.type === 'action-button' && node.dependents) {
+              for (const k of Object.keys(node.dependents)) {
+                if (/^actionMedia_content_/.test(k)) {
+                  delete node.dependents[k];
+                }
+              }
+              if (Object.keys(node.dependents).length === 0) delete (node as { dependents?: Record<string, string> }).dependents;
+            }
+          }
+        } catch { /* ignore cleanup failures */ }
         const jsonBlob = new Blob([JSON.stringify(newStorymapJson)], {
           type: "application/json",
         });
@@ -420,6 +681,20 @@ export default function Converter() {
           className="converter-input"
         />
       </div>
+      <div className="converter-input-group">
+        <label className="converter-label">Pipeline Mode:</label>
+        <div className="converter-toggle-row">
+          <label className="converter-toggle-label">
+            <input
+              type="checkbox"
+              checked={refactorOverride}
+              onChange={(e) => setRefactorOverride(e.target.checked)}
+            />{' '}
+            Use refactor pipeline (server-first, inline swipe)
+          </label>
+          <span className="converter-hint">URL flag ?refactor=1 also enables it. This setting persists locally.</span>
+        </div>
+      </div>
       {status !== "success" ? (
         <button
           className={`converter-btn ${hoverCancel && ['fetching','converting','transferring','updating'].includes(status) ? 'cancel-hover' : ''}`}
@@ -476,31 +751,107 @@ export default function Converter() {
               setPublishing(false);
               setConvertedUrl("");
             }}
-            onContextMenu={(e) => {
-              e.preventDefault();
-              if (!convertedUrl) return;
-              navigator.clipboard.writeText(convertedUrl).then(() => setCopiedUrl(true)).catch(() => {});
-            }}
             disabled={!publishing}
           >
             Click to Finish Publishing →
           </button>
           <div className="converter-url-row">
-            <span className="converter-url-label">Converted URL:</span>{' '}
+            <span className="converter-url-label">Publishing URL:</span>{' '}
             <a href={convertedUrl} target="_blank" rel="noopener noreferrer" className="converter-url-link">{convertedUrl}</a>
-            <button
-              className="converter-copy-btn"
-              onClick={() => {
-                if (!convertedUrl) return;
-                navigator.clipboard.writeText(convertedUrl).then(() => setCopiedUrl(true)).catch(() => {});
-              }}
-            >
-              Copy URL
-            </button>
-            {copiedUrl && (
-              <span className="converter-copy-hint">Copied!</span>
-            )}
           </div>
+        </div>
+      )}
+      {(webmapWarnings.length > 0 || webmapChecksFinalized) && (
+        <div className="converter-warning">
+          <strong>Webmap Checks:</strong>
+          {webmapWarnings.length === 0 ? (
+            <div>No issues detected for referenced webmaps.</div>
+          ) : (
+            <>
+              <ul>
+                {webmapWarnings.map((w, i) => (
+                  <li key={`${w.itemId}-${i}`}>
+                    {w.level.toUpperCase()}: [{w.itemId}] {w.message}
+                    {w.details?.webmapTitle && (
+                      <div>Title: {w.details.webmapTitle}</div>
+                    )}
+                    {Array.isArray(w.details?.failures) && w.details!.failures!.length > 0 && (
+                      <div>
+                        <button
+                          className="converter-details-toggle-btn"
+                          onClick={() => setExpandedWarnings(prev => ({ ...prev, [w.itemId]: !prev[w.itemId] }))}
+                        >
+                          {expandedWarnings[w.itemId] ? 'Hide details' : `Show details (${w.details!.failures!.length})`}
+                        </button>
+                        {expandedWarnings[w.itemId] && (
+                          <ul>
+                            {w.details!.failures!.map((f, j) => (
+                              <li key={`${w.itemId}-fail-${j}`}>
+                                {f.layerTitle ? `${f.layerTitle}` : ''}
+                                {f.layerItemId ? (
+                                  <>
+                                    {' '}
+                                    [<a href={makeItemUrl(f.layerItemId)} target="_blank" rel="noopener noreferrer">{f.layerItemId}</a>]
+                                    {' '}
+                                  </>
+                                ) : ''}
+                                {f.error ? ` — ${f.error}` : ''}
+                                {typeof f.status === 'number' ? ` (status ${f.status})` : ''}
+                                {f.url ? (
+                                  <>
+                                    {' '}
+                                    — <a href={f.url} target="_blank" rel="noopener noreferrer">URL</a>
+                                    {' '}
+                                  </>
+                                ) : ''}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              <span>These issues won’t stop conversion, but may prevent maps from loading. Please fix with <a href="https://assistant.esri-ps.com/">ArcGIS Assistant</a> or in ArcGIS Online.</span>
+              {endpointChecks.length > 0 && (
+                <div className="converter-endpoint-checks">
+                  <hr />
+                  <strong>Endpoint Health Summary:</strong>
+                  {endpointCategorySummary && (
+                    <div className="endpoint-summary-row">
+                      {Object.entries(endpointCategorySummary).map(([k,v]) => (
+                        <span key={k} className="endpoint-summary-chip">{k}: {v}</span>
+                      ))}
+                    </div>
+                  )}
+                  <details>
+                    <summary>Failing endpoints ({endpointChecks.filter(ec => !ec.ok).length})</summary>
+                    <ul>
+                      {endpointChecks.filter(ec => !ec.ok).map((ec,i) => (
+                        <li key={`ep-${i}`}>
+                          {ec.webmapTitle ? <span className="ep-webmap">{ec.webmapTitle}:</span> : ''}{' '}
+                          {ec.layerTitle ? <span className="ep-layer">{ec.layerTitle}</span> : ''}{ec.layerItemId ? (
+                            <>
+                              {' '}[<a href={makeItemUrl(ec.layerItemId)} target="_blank" rel="noopener noreferrer">{ec.layerItemId}</a>]
+                            </>
+                          ) : ''}
+                          {ec.errorCategory ? ` — ${ec.errorCategory}` : ''}
+                          {ec.status ? ` (status ${ec.status})` : ''}
+                          {ec.url ? (
+                            <>
+                              {' '}<a href={ec.url} target="_blank" rel="noopener noreferrer">endpoint</a>
+                            </>
+                          ) : ''}
+                          {ec.errorMessage ? ` – ${ec.errorMessage}` : ''}
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                </div>
+              )}
+            </>
+          )}
         </div>
       )}
     </div>

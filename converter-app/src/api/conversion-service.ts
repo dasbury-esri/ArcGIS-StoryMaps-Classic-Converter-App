@@ -17,34 +17,21 @@ function buildQuery(params: Record<string, string | undefined>): string {
 }
 
 export async function convertClassicViaBackend(itemId: string, token?: string): Promise<BackendConversionResult> {
-  const isLocal = /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
   const query = buildQuery({ itemId, token });
-  const proxyUrl = `http://localhost:3001/convert/mapjournal?${query}`;
   const netlifyUrl = `/.netlify/functions/convert-mapjournal?${query}`;
-
-  // Try local proxy first when developing locally; otherwise prefer Netlify function
-  const candidates = isLocal ? [proxyUrl, netlifyUrl] : [netlifyUrl, proxyUrl];
-
-  let lastErr: unknown = null;
-  for (const url of candidates) {
-    try {
-      const resp = await fetch(url, { method: 'GET' });
-      if (!resp.ok) throw new Error(`Backend conversion failed: ${resp.status} ${resp.statusText}`);
-      const json = await resp.json();
-      // Netlify fallback may return classic JSON directly if tsx is unavailable; detect shape
-      if (json && json.storymapJson && Array.isArray(json.mediaUrls)) {
-        return json as BackendConversionResult;
-      }
-      // If we got classic JSON fallback, return minimal result for caller to handle embeds
-      if (json && json.values) {
-        return { storymapJson: json, mediaUrls: [] };
-      }
-      // Unknown shape, throw to try next candidate
-      throw new Error('Unexpected backend response shape');
-    } catch (err) {
-      lastErr = err;
-      // continue to next candidate
+  // Attempt Netlify function only; if unavailable, throw for caller to fallback to client pipeline.
+  try {
+    const resp = await fetch(netlifyUrl, { method: 'GET' });
+    if (!resp.ok) throw new Error(`Backend conversion not available: ${resp.status}`);
+    const json = await resp.json();
+    if (json && json.storymapJson && Array.isArray(json.mediaUrls)) {
+      return json as BackendConversionResult;
     }
+    if (json && json.values) {
+      return { storymapJson: json, mediaUrls: [] };
+    }
+    throw new Error('Unexpected backend response shape');
+  } catch (err) {
+    throw err;
   }
-  throw lastErr || new Error('Backend conversion failed');
 }
