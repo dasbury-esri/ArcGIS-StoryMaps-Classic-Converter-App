@@ -7,6 +7,8 @@
  */
 
 import type { ClassicStoryMapJSON } from '../types/storymap';
+// Prefer refactor pipeline when available
+import { convertClassicToJsonRefactored } from '../refactor/adapter.ts';
 import { BasicConverter} from './basic-converter';
 import { CascadeConverter } from './cascade-converter';
 import { CrowdsourceConverter } from './crowdsource-converter';
@@ -67,6 +69,23 @@ export async function convertClassicToJson(
   token: string,
   targetStoryId: string
 ): Promise<any> {
+  // Detect classic app type to route to refactor when implemented
+  const appType = detectClassicAppType(classicJson);
+  const refactorSupported = ['mapjournal','map tour','tour','swipe'].includes(appType);
+  if (refactorSupported) {
+    const result = await convertClassicToJsonRefactored({
+      classicJson,
+      storyId: targetStoryId,
+      classicItemId: '',
+      username,
+      token,
+      themeId,
+      progress: (e) => { /* legacy path: minimal progress */ },
+      isCancelled: () => false,
+      uploader: async () => ({ originalUrl: '', resourceName: '', transferred: false })
+    });
+    return result.storymapJson;
+  }
   const converter = ConverterFactory.getConverter(classicJson, themeId, username, token, targetStoryId);
   const storymapJson = await converter.convert(username, token, targetStoryId);
 
