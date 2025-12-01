@@ -26,7 +26,7 @@ const tiles: TileConfig[] = [
         title: 'Map Tour',
         description: 'Presented a sequential, place-based narrative with geotagged photos linked to an interactive map.',
         image: mapTourImg,
-        status: 'active',
+        status: 'disabled',
         alt: 'Map Tour Thumbnail'
     },
     {
@@ -72,9 +72,9 @@ const tiles: TileConfig[] = [
     {
         key: 'swipe',
         title: 'Swipe',
-        description: 'Displayed two layers (converted to Instant App) or two maps side by side (converted to Experience Builder) for comparison.',
+        description: 'Displayed two layers or two maps side by side for comparison.',
         image: swipeImg,
-        status: 'disabled',
+        status: 'active',
         alt: 'Swipe Thumbnail'
     },
     {
