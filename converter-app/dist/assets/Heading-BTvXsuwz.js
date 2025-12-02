@@ -1,0 +1,1 @@
+import{i as t}from"./keyed-BoKhxUVy.js";import{s,i as n,u as l}from"./static-BITvQWyu.js";import{s as m}from"./index-CU2XrwSA.js";function $(e){return Math.min(Math.max(Math.ceil(e),1),6)}const f=({children:e,...a})=>{const i=a.level?s(`h${a.level}`):n`div`;return t(a.key,l`<${i} class=${m(a.class)}>${e}</${i}>`)};export{f as H,$ as c};

@@ -1,0 +1,1 @@
+const o={menu:"menu",defaultTrigger:"default-trigger"},e="calcite-action-menu",i={button:t=>`${e}-${t}-menu-button`,menu:t=>`${e}-${t}-menu`,action:(t,n)=>`${e}-${t}-action-${n}`},a={tooltip:"tooltip",trigger:"trigger"},s={menu:"ellipsis"};export{o as C,i as I,a as S,s as a};

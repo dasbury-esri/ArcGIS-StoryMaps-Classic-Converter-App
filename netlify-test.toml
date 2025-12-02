@@ -1,9 +1,0 @@
-[dev]
-command = "netlify-serve-test"
-functions = "netlify/functions"
-publish = "converter-app/dist"
-port = 4999
-
-[functions]
-directory = "netlify/functions"
-node_bundler = "esbuild"
