@@ -2,7 +2,7 @@ import type { Context } from "@netlify/functions";
 import fs from 'fs';
 import path from 'path';
 
-export default async function handler(event) {
+export async function handler(event) {
   try {
     if (event.httpMethod !== 'POST') {
       return { statusCode: 405, body: 'Method Not Allowed' };
