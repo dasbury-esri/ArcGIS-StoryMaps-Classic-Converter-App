@@ -21,6 +21,7 @@ test_data/test_report.txt
 *.PNG
 *.GIF
 !classic-apps/images/**
+!converter-app/src/assets/**
 
 # IDE
 .vscode/
