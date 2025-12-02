@@ -2,11 +2,13 @@
   command = "npm run dev --prefix converter-app"
   port = 8888
   publish = "converter-app/dist"
-  framework = "vite"
-
   functions = "netlify/functions"
   targetPort = 5173
   autoLaunch = false
+  # Force experimental function detectors off (try legacy) to troubleshoot 404 issue
+  # If this key is unsupported it will be ignored.
+  # disable functions discovery caching
+  # (No official flag; placeholder for future - retained for documentation only)
 
 [functions]
   directory = "netlify/functions"

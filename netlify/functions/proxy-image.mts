@@ -1,5 +1,3 @@
-// Netlify supports node-fetch v2
-
 function normalizeUrl(u) {
   if (!u) return u;
   if (u.startsWith('//')) return 'https:' + u;
@@ -9,19 +7,14 @@ function normalizeUrl(u) {
 
 export async function handler(event) {
   const raw = event.queryStringParameters?.url;
-  if (!raw) {
-    return { statusCode: 400, body: 'Missing url parameter' };
-  }
+  if (!raw) return { statusCode: 400, body: 'Missing url parameter' };
   const imageUrl = normalizeUrl(raw);
   try {
     const response = await fetch(imageUrl);
-    if (!response.ok) {
-      return { statusCode: response.status, body: 'Failed to fetch image' };
-    }
+    if (!response.ok) return { statusCode: response.status, body: 'Failed to fetch image' };
     const contentType = response.headers.get('content-type') || 'image/jpeg';
     const arrayBuf = await response.arrayBuffer();
     const buffer = Buffer.from(arrayBuf);
-    // Optional guard: reject overly large images (10MB)
     if (buffer.length > 10 * 1024 * 1024) {
       return { statusCode: 413, body: 'Image too large' };
     }
@@ -39,3 +32,5 @@ export async function handler(event) {
     return { statusCode: 500, body: 'Error fetching image' };
   }
 }
+
+export default handler;

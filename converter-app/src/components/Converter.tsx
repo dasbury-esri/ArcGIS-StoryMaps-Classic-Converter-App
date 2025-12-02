@@ -856,6 +856,28 @@ export default function Converter() {
         setMessage("Classic " + templateLabel + ":  " + coverTitle);
         setConvertedUrl(`https://storymaps.arcgis.com/stories/${targetStoryId}/edit`);
         setPublishing(true);
+
+        // Save a local copy of converted JSON to tmp-converted via Netlify function (during netlify dev)
+        try {
+          const res = await fetch('/.netlify/functions/save-converted', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+              filename: `converted-app`,
+              storyId: targetStoryId,
+              classicItemId,
+              json: newStorymapJson
+            })
+          });
+          if (res.ok) {
+            const info = await res.json();
+            console.info('[LocalSave] Converted JSON saved:', info?.path || info?.fileName || 'ok');
+          } else {
+            console.warn('[LocalSave] Failed to save converted JSON locally:', res.status);
+          }
+        } catch (e) {
+          console.warn('[LocalSave] Error saving converted JSON locally:', (e as Error)?.message);
+        }
       } catch (error: unknown) {
         if (error?.message === "Conversion cancelled by user intervention") {
           // Already set via handleCancel; ensure status stays error

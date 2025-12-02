@@ -1,5 +1,3 @@
-// filepath: netlify/functions/proxy-feature.js
-
 function normalizeUrl(u) {
   if (!u) return u;
   if (u.startsWith('//')) return 'https:' + u;
@@ -9,9 +7,7 @@ function normalizeUrl(u) {
 
 export async function handler(event) {
   const raw = event.queryStringParameters?.url;
-  if (!raw) {
-    return { statusCode: 400, body: 'Missing url parameter' };
-  }
+  if (!raw) return { statusCode: 400, body: 'Missing url parameter' };
   const targetUrl = normalizeUrl(raw);
   try {
     const response = await fetch(targetUrl);
@@ -29,3 +25,5 @@ export async function handler(event) {
     return { statusCode: 500, body: 'Proxy request failed' };
   }
 }
+
+export default handler;

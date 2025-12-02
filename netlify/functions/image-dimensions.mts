@@ -1,6 +1,5 @@
-// netlify/functions/image-dimensions.js
 import sizeOf from 'image-size';
-import fetch from 'node-fetch'; // Explicit import for Node < 18 or Netlify compatibility
+import fetch from 'node-fetch';
 
 function normalizeUrl(u) {
   if (!u) return u;
@@ -31,3 +30,5 @@ export async function handler(event) {
     return { statusCode: 500, body: 'Error fetching image or reading dimensions' };
   }
 }
+
+export default handler;
