@@ -1,7 +1,7 @@
 // Map Journal refactor converter (folder-based function)
 // Import from TypeScript sources (remove incorrect .js extensions so esbuild can resolve .ts)
-import { MapJournalConverter } from '../../../converter-app/src/refactor/converters/MapJournalConverter';
-import { validateWebMaps } from '../../../converter-app/src/refactor/services/WebMapValidator';
+import { MapJournalConverter } from 'converter-app/src/refactor/converters/MapJournalConverter';
+import { validateWebMaps } from 'converter-app/src/refactor/services/WebMapValidator';
 
 async function fetchClassicItemData(itemId, token) {
   const base = `https://www.arcgis.com/sharing/rest/content/items/${itemId}/data?f=json`;
