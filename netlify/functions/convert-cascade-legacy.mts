@@ -1,7 +1,7 @@
 // Cascade legacy converter (folder-based function)
 // ESM handler; converts classic Cascade story to StoryMap JSON via legacy factory
 // Import from TS source without .js extension so esbuild resolves .ts
-import { convertClassicToJson } from '../../../converter-app/src/converter/converter-factory';
+import { convertClassicToJson } from '../converter-app/src/converter/converter-factory';
 
 async function fetchClassicJson(itemId, token) {
   const base = `https://www.arcgis.com/sharing/rest/content/items/${itemId}/data?f=json`;
