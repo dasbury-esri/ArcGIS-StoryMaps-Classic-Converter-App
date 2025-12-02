@@ -2,18 +2,15 @@ import type { Context } from "@netlify/functions";
 import fs from 'fs';
 import path from 'path';
 
-export async function handler(event) {
+export default async (req: Request, _context: Context) => {
   try {
-    if (event.httpMethod !== 'POST') {
-      return { statusCode: 405, body: 'Method Not Allowed' };
+    if (req.method !== 'POST') {
+      return new Response('Method Not Allowed', { status: 405 });
     }
-    if (!event.body) {
-      return { statusCode: 400, body: 'Missing body' };
-    }
-    const payload = JSON.parse(event.body || '{}');
-    const { classicItemId, json } = payload || {};
+    const payload = await req.json().catch(() => ({}));
+    const { classicItemId, json } = (payload as { classicItemId?: string; json?: unknown });
     if (!json) {
-      return { statusCode: 400, body: 'Missing json in payload' };
+      return new Response('Missing json in payload', { status: 400 });
     }
 
     const workspaceRoot = process.cwd();
@@ -28,14 +25,11 @@ export async function handler(event) {
 
     fs.writeFileSync(filePath, JSON.stringify(json, null, 2), 'utf-8');
 
-    return {
-      statusCode: 200,
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ ok: true, path: filePath, fileName })
-    };
-  } catch (err) {
-    return { statusCode: 500, body: (err && err.message) || 'Server error' };
+    return new Response(JSON.stringify({ ok: true, path: filePath, fileName }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  } catch (err: any) {
+    return new Response(err?.message || 'Server error', { status: 500 });
   }
-}
-
-export default handler;
+};

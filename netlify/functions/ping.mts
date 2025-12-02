@@ -1,8 +1,8 @@
-export async function handler() {
-  return {
-    statusCode: 200,
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ok: true, ts: Date.now() })
-  };
-}
-export default handler;
+import type { Context } from "@netlify/functions";
+
+export default async (_req: Request, _context: Context) => {
+  return new Response(JSON.stringify({ ok: true, ts: Date.now() }), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' }
+  });
+};

@@ -1,34 +1,33 @@
+import type { Context } from "@netlify/functions";
 import sizeOf from 'image-size';
-import fetch from 'node-fetch';
 
-function normalizeUrl(u) {
+function normalizeUrl(u: string) {
   if (!u) return u;
   if (u.startsWith('//')) return 'https:' + u;
   if (!/^https?:\/\//i.test(u)) return 'https://' + u;
   return u;
 }
 
-export async function handler(event) {
-  const raw = event.queryStringParameters?.url;
-  if (!raw) return { statusCode: 400, body: 'Missing url parameter' };
-  const imageUrl = normalizeUrl(raw);
+export default async (req: Request, _context: Context) => {
   try {
+    const url = new URL(req.url);
+    const raw = url.searchParams.get('url');
+    if (!raw) return new Response('Missing url parameter', { status: 400 });
+    const imageUrl = normalizeUrl(raw);
     const response = await fetch(imageUrl);
-    if (!response.ok) return { statusCode: response.status, body: 'Failed to fetch image' };
-    const buffer = await response.buffer();
+    if (!response.ok) return new Response('Failed to fetch image', { status: response.status });
+    const arrayBuf = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuf);
     const dimensions = sizeOf(buffer);
-    return {
-      statusCode: 200,
-      body: JSON.stringify(dimensions),
+    return new Response(JSON.stringify(dimensions), {
+      status: 200,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type'
       }
-    };
+    });
   } catch {
-    return { statusCode: 500, body: 'Error fetching image or reading dimensions' };
+    return new Response('Error fetching image or reading dimensions', { status: 500 });
   }
-}
-
-export default handler;
+};

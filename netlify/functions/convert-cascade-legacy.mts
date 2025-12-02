@@ -1,9 +1,7 @@
-// Cascade legacy converter (folder-based function)
-// ESM handler; converts classic Cascade story to StoryMap JSON via legacy factory
-// Import from TS source without .js extension so esbuild resolves .ts
+import type { Context } from "@netlify/functions";
 import { convertClassicToJson } from 'converter-app/src/converter/converter-factory';
 
-async function fetchClassicJson(itemId, token) {
+async function fetchClassicJson(itemId: string, token?: string) {
   const base = `https://www.arcgis.com/sharing/rest/content/items/${itemId}/data?f=json`;
   const url = token ? `${base}&token=${encodeURIComponent(token)}` : base;
   const resp = await fetch(url);
@@ -11,23 +9,30 @@ async function fetchClassicJson(itemId, token) {
   return await resp.json();
 }
 
-export async function handler(event) {
+export default async (req: Request, _context: Context) => {
   try {
-    const params = event.queryStringParameters || {};
-    const itemId = String(params.itemId || '').trim();
-    const token = params.token ? String(params.token) : undefined;
+    const u = new URL(req.url);
+    const itemId = String(u.searchParams.get('itemId') || '').trim();
+    const token = u.searchParams.get('token') || undefined;
     if (!itemId || !/^[a-f0-9]{32}$/i.test(itemId)) {
-      return { statusCode: 400, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'Missing or invalid itemId (expected 32-char hex)' }) };
+      return new Response(JSON.stringify({ error: 'Missing or invalid itemId (expected 32-char hex)' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
-    const classicJson = await fetchClassicJson(itemId, token);
+    const classicJson = await fetchClassicJson(itemId, token || undefined);
     const username = '';
     const targetStoryId = '';
     const themeId = 'summit';
     const storymapJson = await convertClassicToJson(classicJson, themeId, username, token || '', targetStoryId);
-    return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ok: true, storymapJson }) };
-  } catch (err) {
-    return { statusCode: 500, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ok: false, error: err?.message || String(err) }) };
+    return new Response(JSON.stringify({ ok: true, storymapJson }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  } catch (err: any) {
+    return new Response(JSON.stringify({ ok: false, error: err?.message || String(err) }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
-}
-
-export default handler;
+};

@@ -1,5 +1,4 @@
-// Map Journal refactor converter (folder-based function)
-// Import from TypeScript sources (remove incorrect .js extensions so esbuild can resolve .ts)
+import type { Context } from "@netlify/functions";
 import { MapJournalConverter } from 'converter-app/src/refactor/converters/MapJournalConverter';
 import { validateWebMaps } from 'converter-app/src/refactor/services/WebMapValidator';
 
@@ -58,15 +57,16 @@ async function collectSwipeWebmaps(appId, token, ids) {
   } catch {}
 }
 
-export async function handler(event) {
+export default async (req: Request, _context: Context) => {
   try {
-    const itemId = (event.queryStringParameters?.itemId || '').trim();
-    const token = ((event.queryStringParameters?.token || '').trim() || process.env.TOKEN || '').trim() || undefined;
-    const themeId = (event.queryStringParameters?.themeId || '').trim() || 'obsidian';
-    const diagParam = event.queryStringParameters?.diagnostics;
+    const u = new URL(req.url);
+    const itemId = (u.searchParams.get('itemId') || '').trim();
+    const token = ((u.searchParams.get('token') || '').trim() || process.env.TOKEN || '').trim() || undefined;
+    const themeId = (u.searchParams.get('themeId') || '').trim() || 'obsidian';
+    const diagParam = u.searchParams.get('diagnostics');
     const diagnostics = typeof diagParam === 'string' ? ['true','1','yes','y'].includes(diagParam.toLowerCase()) : !!diagParam;
     if (!itemId) {
-      return { statusCode: 400, headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'Missing itemId parameter' }) };
+      return new Response(JSON.stringify({ error: 'Missing itemId parameter' }), { status: 400, headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' } });
     }
     const classicJson = await fetchClassicItemData(itemId, token);
 
@@ -129,11 +129,8 @@ export async function handler(event) {
       }
     } catch {}
 
-    return { statusCode: 200, headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' }, body: JSON.stringify(response) };
+    return new Response(JSON.stringify(response), { status: 200, headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' } });
   } catch (err) {
-    return { statusCode: 500, headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' }, body: JSON.stringify({ error: err?.message || 'Unhandled conversion error' }) };
+    return new Response(JSON.stringify({ error: (err as any)?.message || 'Unhandled conversion error' }), { status: 500, headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' } });
   }
-}
-
-// Provide default export for Netlify function compatibility
-export default handler;
+};
