@@ -20,5 +20,8 @@
     "changelog:dry": "node scripts/generate-changelog.mjs --dry",
     "release:notes": "node scripts/generate-release.mjs --notes-only",
     "release": "node scripts/generate-release.mjs"
+  },
+  "devDependencies": {
+    "@netlify/vite-plugin": "^2.7.14"
   }
 }
