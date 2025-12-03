@@ -43,7 +43,7 @@ function Header() {
       <div className="top-nav-inner">
         <div className="top-nav-titles">
           <div className="top-nav-title">Classic StoryMap Converter</div>
-          <div className="top-nav-subtitle">Alpha | v{APP_VERSION}{(<span className="refactor-badge" role="status" aria-label="Refactor mode active" title="Refactor pipeline active">Refactor</span>)}</div>
+          <div className="top-nav-subtitle">Alpha | v{APP_VERSION}</div>
         </div>
         <nav className="top-nav-list" aria-label="Main navigation" />
         <div className="top-nav-actions">

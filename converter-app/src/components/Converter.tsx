@@ -404,7 +404,9 @@ export default function Converter() {
         } catch { /* ignore */ }
 
         // If no failures detected locally, attempt backend diagnostics (serverless avoids CORS and gathers full layer info)
-        if (!cancelRequestedRef.current && localWarnings.length === 0) {
+        // Temporarily disabled when Netlify function responds 501 locally; continue conversion without backend diagnostics
+        const enableBackendDiagnostics = false;
+        if (!cancelRequestedRef.current && localWarnings.length === 0 && enableBackendDiagnostics) {
           try {
             setMessage("Running backend diagnostics...");
             const diagUrl = `/.netlify/functions/convert-mapjournal?itemId=${classicItemId}&diagnostics=1${token ? `&token=${encodeURIComponent(token)}` : ''}`;
@@ -458,7 +460,8 @@ export default function Converter() {
             default: setMessage(msg);
           }
         };
-        if (detectedTemplate === 'MAPJOURNAL') {
+        const tmpl = (detectedTemplate || '').toLowerCase();
+        if (tmpl === 'map journal' || tmpl === 'mapjournal') {
           const conv = new MapJournalConverter({
             classicJson: classicData,
             themeId: 'summit',
@@ -467,7 +470,7 @@ export default function Converter() {
           });
           const result = conv.convert();
           newStorymapJson = result.storymapJson;
-        } else if (detectedTemplate === 'SWIPE') {
+        } else if (tmpl === 'swipe') {
           const conv = new SwipeConverter({
             classicJson: classicData,
             themeId: 'summit',
