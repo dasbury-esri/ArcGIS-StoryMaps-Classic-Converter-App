@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { detectClassicTemplate } from '../src/refactor/util/detectTemplate.ts';
+import { detectClassicTemplate } from '../src/util/detectTemplate.ts';
 
 interface ClassicStats {
   file: string;

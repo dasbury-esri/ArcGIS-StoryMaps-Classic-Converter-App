@@ -6,9 +6,9 @@
 */
 import fs from 'fs';
 import path from 'path';
-import { MapTourConverter } from '../src/refactor/converters/MapTourConverter.ts';
-import type { ClassicStoryMapJSON } from '../src/refactor/types/classic';
-import { assertStoryMapJson, formatAssertionReport } from '../src/refactor/util/assertions.ts';
+import { MapTourConverter } from '../src/converters/MapTourConverter.ts';
+import type { ClassicStoryMapJSON } from '../src/types/classic';
+import { assertStoryMapJson, formatAssertionReport } from '../src/util/assertions.ts';
 import { transferImage } from '../src/api/image-transfer.ts';
 
 interface Args { file: string; storyId?: string; username?: string; token?: string; }

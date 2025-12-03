@@ -3,7 +3,7 @@ import { defineCustomElements } from '@esri/calcite-components/dist/loader';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { AuthProvider } from './auth/AuthProvider'
-import App from './App.tsx'
+import App from './App'
 import './index.css'
 
 // Register Calcite web components via Stencil loader

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { convertClassicToJsonRefactored } from '../src/refactor/index.ts';
-import { createThemeFromClassic } from '../src/refactor/theme/themeMapper.ts';
+import { convertClassicToJsonRefactored } from '../src/index.ts';
+import { createThemeFromClassic } from '../src/theme/themeMapper.ts';
 import crypto from 'node:crypto';
 
 function load(p:string){return JSON.parse(fs.readFileSync(p,'utf-8'));}

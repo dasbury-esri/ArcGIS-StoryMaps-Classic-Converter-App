@@ -12,10 +12,40 @@
     "packageJson": {
       "dependencies": [
         "npm:@esri/arcgis-rest-auth@^3.8.0",
+        "npm:@netlify/functions@^5.1.0",
+        "npm:@netlify/vite-plugin@^2.7.14",
         "npm:express@^5.1.0",
         "npm:image-size@^2.0.2",
         "npm:node-fetch@^3.3.2"
       ]
+    },
+    "members": {
+      "converter-app": {
+        "packageJson": {
+          "dependencies": [
+            "npm:@eslint/js@^9.39.1",
+            "npm:@esri/arcgis-rest-auth@^3.8.0",
+            "npm:@esri/calcite-components-react@^3.3.3",
+            "npm:@esri/calcite-components@^3.3.3",
+            "npm:@types/node@^24.10.0",
+            "npm:@types/react-dom@^19.2.2",
+            "npm:@types/react@^19.2.2",
+            "npm:@vitejs/plugin-react@^5.1.0",
+            "npm:eslint-plugin-react-hooks@^7.0.1",
+            "npm:eslint-plugin-react-refresh@~0.4.24",
+            "npm:eslint@^9.39.1",
+            "npm:globals@^16.5.0",
+            "npm:image-size@^2.0.2",
+            "npm:react-dom@^19.2.0",
+            "npm:react@^19.2.0",
+            "npm:ts-node@^10.9.2",
+            "npm:tsx@^4.20.6",
+            "npm:typescript-eslint@^8.46.3",
+            "npm:typescript@~5.9.3",
+            "npm:vite@^7.2.2"
+          ]
+        }
+      }
     }
   }
 }

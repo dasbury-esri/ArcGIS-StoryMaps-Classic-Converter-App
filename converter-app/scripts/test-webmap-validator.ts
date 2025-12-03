@@ -1,5 +1,5 @@
 import { execSync } from 'node:child_process';
-import { validateWebMaps } from '../src/refactor/services/WebMapValidator.ts';
+import { validateWebMaps } from '../src/services/WebMapValidator.ts';
 
 function curlJson(url: string): any {
   const out = execSync(`curl -sL '${url}'`, { encoding: 'utf-8' });

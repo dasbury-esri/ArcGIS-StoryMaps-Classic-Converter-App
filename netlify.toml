@@ -1,18 +1,19 @@
 [dev]
-  command = "npm run dev --prefix converter-app"
+  command = "npm run -w converter-app dev"
   port = 8888
   publish = "converter-app/dist"
   framework = "vite"
-
-  functions = "netlify/functions"
   targetPort = 5173
   autoLaunch = false
 
 [functions]
-  directory = "netlify/functions"
+  directory = "converter-app/netlify/functions"
   node_bundler = "esbuild"
+  included_files = [
+    "converter-app/src/**"
+  ]
 
 [build]
-  command = "npm run build --prefix converter-app"
+  command = "npm run -w converter-app build"
   publish = "converter-app/dist"
-  functions = "netlify/functions"
+  functions = "converter-app/netlify/functions"

@@ -7,6 +7,16 @@
   width: 100%;
   margin: 40px auto 0 auto;
   padding: 24px;
+
+.refactor-banner {
+  background: #0f172a;
+  color: #93c5fd;
+  padding: 6px 10px;
+  font-size: 12px;
+  border: 1px solid #1e293b;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
   background: #1D3955;
   border-radius: 8px;
 }

@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { createThemeFromClassic } from '../src/refactor/theme/themeMapper.ts';
+import { createThemeFromClassic } from '../src/theme/themeMapper.ts';
 
 interface ThemeSummaryEntry {
   file: string;

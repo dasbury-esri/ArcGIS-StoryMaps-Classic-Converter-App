@@ -1,4 +1,4 @@
-import { validateWebMaps } from '../src/refactor/services/WebMapValidator';
+import { validateWebMaps } from '../src/services/WebMapValidator';
 
 async function main() {
   const token = process.argv[2] || undefined;

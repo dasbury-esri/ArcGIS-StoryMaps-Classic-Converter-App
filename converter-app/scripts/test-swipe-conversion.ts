@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SwipeConverter } from '../src/refactor/converters/SwipeConverter.ts';
+import { SwipeConverter } from '../src/converters/SwipeConverter.ts';
 
 async function run() {
   const __filename = fileURLToPath(import.meta.url);

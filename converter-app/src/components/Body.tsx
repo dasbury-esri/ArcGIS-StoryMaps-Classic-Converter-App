@@ -20,13 +20,25 @@ interface TileConfig {
     alt: string;
 }
 
+// Feature gating for new converters; enable as they stabilize
+const ENABLED: Record<string, boolean> = {
+    mapTour: false,
+    mapJournal: true,
+    mapSeries: false,
+    cascade: false,
+    shortlist: false,
+    crowdsource: false,
+    swipe: true,
+    basic: false,
+};
+
 const tiles: TileConfig[] = [
     {
         key: 'mapTour',
         title: 'Map Tour',
         description: 'Presented a sequential, place-based narrative with geotagged photos linked to an interactive map.',
         image: mapTourImg,
-        status: 'disabled',
+        status: ENABLED.mapTour ? 'active' : 'disabled',
         alt: 'Map Tour Thumbnail'
     },
     {
@@ -34,7 +46,7 @@ const tiles: TileConfig[] = [
         title: 'Map Journal',
         description: 'Presented a compelling map-based narrative presented as a set of journal entries.',
         image: mapJournalImg,
-        status: 'active',
+        status: ENABLED.mapJournal ? 'active' : 'disabled',
         alt: 'Map Journal Thumbnail'
     },
     {
@@ -42,7 +54,7 @@ const tiles: TileConfig[] = [
         title: 'Map Series',
         description: 'Presented a series of maps via a set of tabs, bullets or expanding side panel.',
         image: mapSeriesTabbedImg,
-        status: 'disabled',
+        status: ENABLED.mapSeries ? 'active' : 'disabled',
         alt: 'Map Series - Tabbed Thumbnail'
     },
     {
@@ -50,7 +62,7 @@ const tiles: TileConfig[] = [
         title: 'Cascade',
         description: 'Combined text with maps, images, and multimedia in an engaging, full-screen scrolling experience.',
         image: cascadeImg,
-        status: 'disabled',
+        status: ENABLED.cascade ? 'active' : 'disabled',
         alt: 'Cascade Thumbnail'
     },
     {
@@ -58,7 +70,7 @@ const tiles: TileConfig[] = [
         title: 'Shortlist',
         description: 'Presented a set of places organized into a set of tabs based on themes.',
         image: shortlistImg,
-        status: 'disabled',
+        status: ENABLED.shortlist ? 'active' : 'disabled',
         alt: 'Shortlist Thumbnail'
     },
     {
@@ -66,7 +78,7 @@ const tiles: TileConfig[] = [
         title: 'Crowdsource',
         description: 'Displayed crowdsourced photos with captions. The conversion will be view-only.',
         image: crowdsourceImg,
-        status: 'disabled',
+        status: ENABLED.crowdsource ? 'active' : 'disabled',
         alt: 'Crowdsource Thumbnail'
     },
     {
@@ -74,7 +86,7 @@ const tiles: TileConfig[] = [
         title: 'Swipe',
         description: 'Displayed two layers or two maps side by side for comparison.',
         image: swipeImg,
-        status: 'active',
+        status: ENABLED.swipe ? 'active' : 'disabled',
         alt: 'Swipe Thumbnail'
     },
     {
@@ -82,7 +94,7 @@ const tiles: TileConfig[] = [
         title: 'Basic',
         description: 'Presented a map via a minimalist interface. Converted to an ArcGIS Instant App.',
         image: basicImg,
-        status: 'disabled',
+        status: ENABLED.basic ? 'active' : 'disabled',
         alt: 'Story Map Basic Thumbnail'
     }
 ];

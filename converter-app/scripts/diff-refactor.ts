@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { convertClassicToJsonRefactored } from '../src/refactor/index.ts';
-import type { ClassicStoryMapJSON } from '../src/refactor/types/classic';
+import { convertClassicToJsonRefactored } from '../src/index.ts';
+import type { ClassicStoryMapJSON } from '../src/types/classic';
 
 interface DiffResult {
   addedPaths: string[];

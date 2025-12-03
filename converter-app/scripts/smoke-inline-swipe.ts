@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process';
-import { StoryMapJSONBuilder } from '../src/refactor/schema/StoryMapJSONBuilder.ts';
-import { SwipeConverter } from '../src/refactor/converters/SwipeConverter.ts';
+import { StoryMapJSONBuilder } from '../src/schema/StoryMapJSONBuilder.ts';
+import { SwipeConverter } from '../src/converters/SwipeConverter.ts';
 
 function fetchClassicSwipe(appid: string): any {
   const url = `https://www.arcgis.com/sharing/rest/content/items/${appid}/data?f=json`;

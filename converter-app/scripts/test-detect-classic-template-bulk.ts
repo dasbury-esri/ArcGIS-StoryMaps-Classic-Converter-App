@@ -5,7 +5,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { detectClassicTemplate } from '../src/refactor/util/detectTemplate.ts';
+import { detectClassicTemplate } from '../src/util/detectTemplate.ts';
 
 interface ClassicStoryMapJSON { // minimal typing needed for detection
   values?: any;

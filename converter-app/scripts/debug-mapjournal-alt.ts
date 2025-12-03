@@ -7,8 +7,8 @@
 */
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
-import { detectClassicTemplate } from '../src/refactor/util/detectTemplate.ts';
-import { MapJournalConverter } from '../src/refactor/converters/MapJournalConverter.ts';
+import { detectClassicTemplate } from '../src/util/detectTemplate.ts';
+import { MapJournalConverter } from '../src/converters/MapJournalConverter.ts';
 
 function run() {
   const argPath = process.argv[2];

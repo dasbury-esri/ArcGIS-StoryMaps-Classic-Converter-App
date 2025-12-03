@@ -1,6 +1,5 @@
 // src/components/Header.tsx
 import { useState, useRef, useEffect } from "react";
-import { useRefactorFlagReactive } from "../refactor/util/featureFlag";
 import { useAuth } from "../auth/useAuth";
 import { APP_VERSION } from "../version";
 
@@ -39,13 +38,12 @@ function Header() {
   const thumbnailUrl = userInfo?.thumbnailUrl || null;
   const fullName = userInfo?.fullName || userInfo?.username || '';
 
-  const refactorMode = useRefactorFlagReactive();
   return (
     <header className="top-nav">
       <div className="top-nav-inner">
         <div className="top-nav-titles">
           <div className="top-nav-title">Classic StoryMap Converter</div>
-          <div className="top-nav-subtitle">Alpha | v{APP_VERSION}{refactorMode && (<span className="refactor-badge" role="status" aria-label="Refactor mode active" title="Refactor pipeline active">Refactor</span>)}</div>
+          <div className="top-nav-subtitle">Alpha | v{APP_VERSION}{(<span className="refactor-badge" role="status" aria-label="Refactor mode active" title="Refactor pipeline active">Refactor</span>)}</div>
         </div>
         <nav className="top-nav-list" aria-label="Main navigation" />
         <div className="top-nav-actions">
@@ -73,7 +71,7 @@ function Header() {
                       <span className="account-menu-avatar fallback" aria-hidden="true">{avatarText}</span>
                     )}
                     <div className="account-menu-names">
-                      <div className="account-full-name">{fullName || (profileLoading ? 'Loading…' : userInfo?.username)}</div>
+                      <div className="account-full-name">{fullName || userInfo?.username || 'Loading…'}</div>
                       <div className="account-username-sub">{userInfo?.username}</div>
                     </div>
                   </div>

@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as crypto from 'node:crypto';
-import { convertClassicToJsonRefactored } from '../src/refactor/index.ts';
+import { convertClassicToJsonRefactored } from '../src/index.ts';
 
 function load(p:string){return JSON.parse(fs.readFileSync(p,'utf-8'));}
 

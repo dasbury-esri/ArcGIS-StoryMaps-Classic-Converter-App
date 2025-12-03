@@ -1,0 +1,27 @@
+{
+  "name": "arcgis-storymaps-classic-converter",
+  "version": "0.4.0-alpha.3",
+  "type": "module",
+  "workspaces": [
+    "converter-app"
+  ],
+  "dependencies": {
+    "@esri/arcgis-rest-auth": "^3.8.0",
+    "@netlify/functions": "^5.1.0",
+    "express": "^5.1.0",
+    "image-size": "^2.0.2",
+    "node-fetch": "^3.3.2"
+  },
+  "scripts": {
+    "proxy": "echo 'Deprecated: use netlify dev' && exit 1",
+    "bump": "node scripts/bump-version.mjs",
+    "bump:beta": "node scripts/bump-version.mjs --beta",
+    "bump:alpha": "node scripts/bump-version.mjs --alpha",
+    "changelog:dry": "node scripts/generate-changelog.mjs --dry",
+    "release:notes": "node scripts/generate-release.mjs --notes-only",
+    "release": "node scripts/generate-release.mjs"
+  },
+  "devDependencies": {
+    "@netlify/vite-plugin": "^2.7.14"
+  }
+}

@@ -5,14 +5,14 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 // Refactor pipeline imports (feature-flagged)
-import { useRefactorFlagReactive } from "../refactor/util/featureFlag";
-import { convertClassicToJsonRefactored } from "../refactor";
-import { convertClassicViaBackend } from "../api/conversion-service";
-import { MediaTransferService } from "../refactor/media/MediaTransferService";
-import { ResourceMapper } from "../refactor/media/ResourceMapper";
-import { validateWebMaps, type EndpointCheck } from "../refactor/services/WebMapValidator";
-import { detectClassicTemplate } from "../refactor/util/detectTemplate";
+// import { useRefactorFlagReactive } from "../util/featureFlag";
+// import { convertClassicToJsonRefactored } from "../index";
+// Backend/refactor legacy pipeline no longer used
+import { validateWebMaps, type EndpointCheck } from "../services/WebMapValidator";
+import { detectClassicTemplate } from "../util/detectTemplate";
 import { useAuth } from "../auth/useAuth";
+import { MapJournalConverter } from "../converters/MapJournalConverter";
+import { SwipeConverter } from "../converters/SwipeConverter";
 import {
   getItemData,
   getItemDetails,
@@ -21,9 +21,9 @@ import {
   addResource,
   updateItemKeywords,
 } from "../api/arcgis-client";
-import { convertClassicToJson } from "../converter/converter-factory";
-import { createDraftStoryMap } from "../converter/storymap-draft-creator";
-import { transferImage } from "../api/image-transfer";
+import { createDraftStoryMap } from "../legacy-converter/storymap-draft-creator";
+// Legacy pipeline disabled
+// Legacy image transfer no longer used
 
 
 type Status =
@@ -42,21 +42,23 @@ export default function Converter() {
   const cancelRequestedRef = useRef(false);
   const [hoverCancel, setHoverCancel] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const useRefactor = useRefactorFlagReactive(); // Reactively reflects current URL (?refactor=1)
+  // Reactively reflects current URL (?refactor=1)
+  // const useRefactor = useRefactorFlagReactive();
   // Declare core status-related state early to avoid TDZ access in effects
   const { token, userInfo } = useAuth();
   const [classicItemId, setClassicItemId] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [convertedUrl, setConvertedUrl] = useState("");
+  // Refactor debug banner removed; no longer used
   // buttonLabel retained for future extended messaging but currently unused
   const [buttonLabel, setButtonLabel] = useState("Convert");
-  // Manual refactor pipeline override (UI toggle) persisted across auth redirects
-  const [refactorOverride, setRefactorOverride] = useState<boolean>(() => {
-    try { return localStorage.getItem('converter-refactor-pref') === '1'; } catch { return false; }
-  });
+  // // Manual refactor pipeline override (UI toggle) persisted across auth redirects
+  // const [refactorOverride, setRefactorOverride] = useState<boolean>(() => {
+  //   try { return localStorage.getItem('converter-refactor-pref') === '1'; } catch { return false; }
+  // });
   // Final flag: either URL param (?refactor=1) or manual override checkbox
-  const refactorActive = refactorOverride || useRefactor;
+  // Legacy/refactor pipeline disabled entirely (flag removed)
   // Cancellation helper + handler declared early to avoid TDZ in effects
   const checkCancelled = () => {
     if (cancelRequestedRef.current) {
@@ -74,14 +76,14 @@ export default function Converter() {
     setPublishing(false);
     setButtonLabel("Convert");
   }, [setButtonLabel, setMessage, setStatus, setPublishing, setCancelRequested]);
-  useEffect(() => {
-    console.info(`[Converter] Pipeline selected: ${refactorActive ? 'refactor' : 'legacy'} (override=${refactorOverride})`);
-  }, [refactorActive, refactorOverride]);
+  // useEffect(() => {
+  //   console.info(`[Converter] Pipeline selected: ${refactorActive ? 'refactor' : 'legacy'} (override=${refactorOverride})`);
+  // }, [refactorActive, refactorOverride]);
 
   // Persist override changes
-  useEffect(() => {
-    try { localStorage.setItem('converter-refactor-pref', refactorOverride ? '1' : '0'); } catch {/* ignore */}
-  }, [refactorOverride]);
+  // useEffect(() => {
+  //   try { localStorage.setItem('converter-refactor-pref', refactorOverride ? '1' : '0'); } catch {/* ignore */}
+  // }, [refactorOverride]);
 
 
   // Mobile detection (simplistic: width threshold + touch capability)
@@ -121,6 +123,13 @@ export default function Converter() {
   const [endpointChecks, setEndpointChecks] = useState<EndpointCheck[]>([]);
   const [endpointCategorySummary, setEndpointCategorySummary] = useState<Record<string, number> | null>(null);
   const [expandedWarnings, setExpandedWarnings] = useState<Record<string, boolean>>({});
+  // Minimal type for converter-metadata resource access to avoid any casts
+  type MinimalClassicMetadata = {
+    mappingDecisions?: { customCss?: { combined?: string } };
+    webmapVersionWarnings?: Array<{ itemId: string; message: string }>;
+    webmapProtocolWarnings?: Array<{ itemId: string; message: string }>;
+  };
+  type MinimalConverterMetadataResource = { type: 'converter-metadata'; data: { classicMetadata?: MinimalClassicMetadata } };
   type WebmapWarning = { itemId: string; level: string; message: string; details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } };
   const getOrgHostname = useCallback(() => {
     const ui = (typeof userInfo === 'object' && userInfo) ? (userInfo as unknown as { orgUrl?: string; org?: { url?: string } }) : {};
@@ -281,7 +290,7 @@ export default function Converter() {
     return candidate;
   }, [orgBase, token, getOrgHostname]);
     const handleConvert = async () => {
-      console.debug('[Converter] refactorActive?', refactorActive, 'override?', refactorOverride, 'urlFlag?', useRefactor);
+      //console.debug('[Converter] refactorActive?', refactorActive, 'override?', refactorOverride, 'urlFlag?', useRefactor);
       // Reset state
       setStatus("idle");
       setMessage("");
@@ -352,9 +361,9 @@ export default function Converter() {
         const webmapIds: string[] = [];
         if (classicData.values?.webmap) webmapIds.push(classicData.values.webmap);
         try {
-          const sections = (classicData.values?.story?.sections || classicData.sections || []) as unknown as Array<Record<string, unknown>>;
+          const sections = (classicData.values?.story?.sections || classicData.sections || []) as Array<{ media?: { webmap?: { id?: string }, webpage?: { url?: string } } }>;
           for (const s of sections) {
-            if (s?.media?.webmap?.id) webmapIds.push(s.media.webmap.id);
+            if (s?.media?.webmap?.id) webmapIds.push(s.media!.webmap!.id as string);
             const url = s?.media?.webpage?.url || '';
             // Parse appid from embedded classic swipe
             const m = /[?&#](?:appid|appId)=([a-f0-9]{32})/i.exec(String(url));
@@ -428,306 +437,54 @@ export default function Converter() {
           setWebmapChecksFinalized(true);
         }
 
-        // Convert to new JSON (legacy or refactored pipeline)
+        // Convert to new JSON via new converters
         setStatus("converting");
         const templateLabel = runtimeTemplate || detectedTemplate || "story";
         setButtonLabel(`Converting ${templateLabel}: ${coverTitle}...`);
-        setMessage(
-          refactorActive
-            ? `[Refactor][${templateLabel}] Converting ${templateLabel}: "${coverTitle}" via new pipeline...`
-            : `Converting ${templateLabel} story to new format...`
-        );
+        setMessage(`Converting ${templateLabel} story to new format...`);
 
         let newStorymapJson: unknown;
-        if (refactorActive) {
-          // Skip server-side path for Swipe to ensure new converter (SwipeConverter) + enrichment & warnings execute client-side
-          const isSwipeTemplate = templateLabel.toLowerCase() === 'swipe';
-          if (isSwipeTemplate) {
-            try {
-              const uploader = async (url: string, storyId: string, user: string, tk: string) => {
-                if (cancelRequestedRef.current) throw new Error("Conversion cancelled by user intervention");
-                const res = await transferImage(url, storyId, user, tk);
-                return { originalUrl: url, resourceName: res.resourceName, transferred: !!res.isTransferred };
-              };
-              const pipelineResult = await convertClassicToJsonRefactored({
-                classicJson: classicData,
-                storyId: targetStoryId,
-                classicItemId,
-                username,
-                token,
-                themeId: "summit",
-                progress: (e) => {
-                  if (cancelRequestedRef.current) return;
-                  const alreadyHasCount = /\(\s*\d+\s*\/\s*\d+\s*\)\s*$/.test(e.message);
-                  const msg = e.total && !alreadyHasCount ? `${e.message} (${e.current}/${e.total})` : e.message;
-                  switch (e.stage) {
-                    case 'media': setStatus('transferring'); setMessage(msg); break;
-                    case 'convert': setStatus('converting'); setMessage(msg); break;
-                    case 'finalize': setStatus('updating'); setMessage(msg); break;
-                    case 'error': setStatus('error'); setMessage(msg); break;
-                    case 'done': setStatus('success'); setMessage(msg); break;
-                    default: setMessage(msg);
-                  }
-                },
-                isCancelled: () => cancelRequestedRef.current,
-                uploader
-              });
-              newStorymapJson = pipelineResult.storymapJson;
-            } catch (swipeErr) {
-              setStatus('error');
-              setMessage(`Swipe conversion failed: ${(swipeErr as Error)?.message || 'Unknown error'}`);
-              return;
-            }
-          } else {
-          // First, attempt server-side conversion so swipe embeds are inlined
-          try {
-            setMessage("Requesting server-side conversion...");
-            const serverResult = await convertClassicViaBackend(classicItemId, token);
-            const serverJson = serverResult?.storymapJson as unknown as Record<string, unknown>;
-            if (serverJson && serverJson.nodes) {
-              // Transfer media (images) client-side, then rewrite resources in returned JSON
-              const uploader = async (url: string, storyId: string, user: string, tk: string) => {
-                if (cancelRequestedRef.current) throw new Error("Conversion cancelled by user intervention");
-                const res = await transferImage(url, storyId, user, tk);
-                return { originalUrl: url, resourceName: res.resourceName, transferred: !!res.isTransferred };
-              };
-              const mapping = await MediaTransferService.transferBatch({
-                urls: serverResult.mediaUrls || [],
-                storyId: targetStoryId,
-                username,
-                token,
-                progress: (e) => {
-                  if (cancelRequestedRef.current) return;
-                  setStatus('transferring');
-                  setMessage(e.message);
-                },
-                uploader,
-                isCancelled: () => cancelRequestedRef.current
-              });
-              newStorymapJson = ResourceMapper.apply(serverJson, mapping);
-              // Client-side image dimensions enrichment (parallelized with timeout)
-              try {
-                const storyJson = newStorymapJson as unknown as { resources?: Record<string, { type?: string; data?: Record<string, unknown> }> };
-                const resources = storyJson.resources || {};
-                const imageEntries = Object.entries(resources).filter(([, r]) => r?.type === 'image');
-                const limiter = (limit: number) => {
-                  const pool: Promise<unknown>[] = [];
-                  return async (fn: () => Promise<unknown>) => {
-                    if (pool.length >= limit) await Promise.race(pool);
-                    const p = fn().finally(() => {
-                      const idx = pool.indexOf(p);
-                      if (idx > -1) pool.splice(idx, 1);
-                    });
-                    pool.push(p);
-                    return p;
-                  };
-                };
-                const runLimited = limiter(6);
-                const fetchWithTimeout = (u: string, ms = 2500): Promise<Response> => {
-                  const controller = new AbortController();
-                  const id = setTimeout(() => controller.abort(), ms);
-                  return fetch(u, { signal: controller.signal }).finally(() => clearTimeout(id));
-                };
-                const origin = window.location.origin;
-                const tasks = imageEntries.map(([rid, res]) => runLimited(async () => {
-                  const data = (res.data || {}) as Record<string, unknown>;
-                  const src = (data.src as string | undefined) || '';
-                  const hasDims = typeof (data as { width?: number }).width === 'number' && typeof (data as { height?: number }).height === 'number';
-                  if (!src || hasDims) return;
-                  let targetUrl = src;
-                  try {
-                    const u = new URL(src);
-                    const isArcgis = /arcgis\.com$/i.test(u.hostname) && /\/sharing\/rest\/content\/items\//.test(u.pathname);
-                    if (isArcgis && token) {
-                      const sp = new URLSearchParams(u.search);
-                      if (!sp.has('token')) { sp.set('token', token); u.search = sp.toString(); targetUrl = u.toString(); }
-                    }
-                  } catch { /* ignore */ }
-                  const fnUrl = `${origin}/.netlify/functions/image-dimensions?url=${encodeURIComponent(targetUrl)}`;
-                  try {
-                    const r = await fetchWithTimeout(fnUrl, 2500);
-                    if (!r.ok) return;
-                    const dim = await r.json() as { width?: number; height?: number };
-                    if (dim && (dim.width || dim.height)) {
-                      if (dim.width) (data as { width?: number }).width = dim.width;
-                      if (dim.height) (data as { height?: number }).height = dim.height;
-                      res.data = data;
-                      resources[rid] = res as { type?: string; data?: Record<string, unknown> };
-                    }
-                  } catch { /* ignore individual failures */ }
-                }));
-                await Promise.all(tasks);
-                storyJson.resources = resources;
-              } catch { /* ignore enrichment failures */ }
-            } else {
-              // Fallback: run client-side refactor pipeline
-              const uploader = async (url: string, storyId: string, user: string, tk: string) => {
-                if (cancelRequestedRef.current) throw new Error("Conversion cancelled by user intervention");
-                const res = await transferImage(url, storyId, user, tk);
-                return { originalUrl: url, resourceName: res.resourceName, transferred: !!res.isTransferred };
-              };
-              const pipelineResult = await convertClassicToJsonRefactored({
-                classicJson: classicData,
-                storyId: targetStoryId,
-                classicItemId,
-                username,
-                token,
-                themeId: "summit",
-                progress: (e) => {
-                  if (cancelRequestedRef.current) return; // suppress updates post-cancel
-                  const alreadyHasCount = /\(\s*\d+\s*\/\s*\d+\s*\)\s*$/.test(e.message);
-                  const msg = e.total && !alreadyHasCount
-                    ? `${e.message} (${e.current}/${e.total})`
-                    : e.message;
-                  switch (e.stage) {
-                    case 'media':
-                      setStatus('transferring');
-                      setMessage(msg);
-                      break;
-                    case 'convert':
-                      setStatus('converting');
-                      setMessage(msg);
-                      break;
-                    case 'finalize':
-                      setStatus('updating');
-                      setMessage(msg);
-                      break;
-                    case 'error':
-                      setStatus('error');
-                      setMessage(msg);
-                      break;
-                    case 'done':
-                      setStatus('success');
-                      setMessage(msg);
-                      break;
-                    default:
-                      setMessage(msg);
-                  }
-                },
-                isCancelled: () => cancelRequestedRef.current,
-                uploader
-              });
-              newStorymapJson = pipelineResult.storymapJson;
-              // Enrich dimensions for client-side pipeline as well
-              try {
-                const storyJson = newStorymapJson as unknown as { resources?: Record<string, { type?: string; data?: Record<string, unknown> }> };
-                const resources = storyJson.resources || {};
-                const imageEntries = Object.entries(resources).filter(([, r]) => r?.type === 'image');
-                const limiter = (limit: number) => {
-                  const pool: Promise<unknown>[] = [];
-                  return async (fn: () => Promise<unknown>) => {
-                    if (pool.length >= limit) await Promise.race(pool);
-                    const p = fn().finally(() => {
-                      const idx = pool.indexOf(p);
-                      if (idx > -1) pool.splice(idx, 1);
-                    });
-                    pool.push(p);
-                    return p;
-                  };
-                };
-                const runLimited = limiter(6);
-                const fetchWithTimeout = (u: string, ms = 2500): Promise<Response> => {
-                  const controller = new AbortController();
-                  const id = setTimeout(() => controller.abort(), ms);
-                  return fetch(u, { signal: controller.signal }).finally(() => clearTimeout(id));
-                };
-                const origin = window.location.origin;
-                const tasks = imageEntries.map(([rid, res]) => runLimited(async () => {
-                  const data = (res.data || {}) as Record<string, unknown>;
-                  const src = (data.src as string | undefined) || '';
-                  const hasDims = typeof (data as { width?: number }).width === 'number' && typeof (data as { height?: number }).height === 'number';
-                  if (!src || hasDims) return;
-                  let targetUrl = src;
-                  try {
-                    const u = new URL(src);
-                    const isArcgis = /arcgis\.com$/i.test(u.hostname) && /\/sharing\/rest\/content\/items\//.test(u.pathname);
-                    if (isArcgis && token) {
-                      const sp = new URLSearchParams(u.search);
-                      if (!sp.has('token')) { sp.set('token', token); u.search = sp.toString(); targetUrl = u.toString(); }
-                    }
-                  } catch { /* ignore */ }
-                  const fnUrl = `${origin}/.netlify/functions/image-dimensions?url=${encodeURIComponent(targetUrl)}`;
-                  try {
-                    const r = await fetchWithTimeout(fnUrl, 2500);
-                    if (!r.ok) return;
-                    const dim = await r.json() as { width?: number; height?: number };
-                    if (dim && (dim.width || dim.height)) {
-                      if (dim.width) (data as { width?: number }).width = dim.width;
-                      if (dim.height) (data as { height?: number }).height = dim.height;
-                      res.data = data;
-                      resources[rid] = res as { type?: string; data?: Record<string, unknown> };
-                    }
-                  } catch { /* ignore */ }
-                }));
-                await Promise.all(tasks);
-                storyJson.resources = resources;
-              } catch { /* ignore enrichment failures */ }
-            }
-          } catch {
-            // On error, fallback to client-side refactor pipeline
-            const uploader = async (url: string, storyId: string, user: string, tk: string) => {
-              if (cancelRequestedRef.current) throw new Error("Conversion cancelled by user intervention");
-              const res = await transferImage(url, storyId, user, tk);
-              return { originalUrl: url, resourceName: res.resourceName, transferred: !!res.isTransferred };
-            };
-            const pipelineResult = await convertClassicToJsonRefactored({
-              classicJson: classicData,
-              storyId: targetStoryId,
-              classicItemId,
-              username,
-              token,
-              themeId: "summit",
-              progress: (e) => {
-                if (cancelRequestedRef.current) return;
-                const alreadyHasCount = /\(\s*\d+\s*\/\s*\d+\s*\)\s*$/.test(e.message);
-                const msg = e.total && !alreadyHasCount
-                  ? `${e.message} (${e.current}/${e.total})`
-                  : e.message;
-                switch (e.stage) {
-                  case 'media':
-                    setStatus('transferring');
-                    setMessage(msg);
-                    break;
-                  case 'convert':
-                    setStatus('converting');
-                    setMessage(msg);
-                    break;
-                  case 'finalize':
-                    setStatus('updating');
-                    setMessage(msg);
-                    break;
-                  case 'error':
-                    setStatus('error');
-                    setMessage(msg);
-                    break;
-                  case 'done':
-                    setStatus('success');
-                    setMessage(msg);
-                    break;
-                  default:
-                    setMessage(msg);
-                }
-              },
-              isCancelled: () => cancelRequestedRef.current,
-              uploader
-            });
-            newStorymapJson = pipelineResult.storymapJson;
+        const progress = (e: { stage: 'fetch' | 'detect' | 'draft' | 'convert' | 'media' | 'finalize' | 'done' | 'error'; message: string; current?: number; total?: number }) => {
+          const alreadyHasCount = /\(\s*\d+\s*\/\s*\d+\s*\)\s*$/.test(e.message);
+          const msg = (typeof e.total === 'number' && typeof e.current === 'number' && !alreadyHasCount)
+            ? `${e.message} (${e.current}/${e.total})`
+            : e.message;
+          switch (e.stage) {
+            case 'media': setStatus('transferring'); setMessage(msg); break;
+            case 'convert': setStatus('converting'); setMessage(msg); break;
+            case 'finalize': setStatus('updating'); setMessage(msg); break;
+            case 'error': setStatus('error'); setMessage(msg); break;
+            case 'done': setStatus('success'); setMessage(msg); break;
+            default: setMessage(msg);
           }
-          }
+        };
+        if (detectedTemplate === 'MAPJOURNAL') {
+          const conv = new MapJournalConverter({
+            classicJson: classicData,
+            themeId: 'summit',
+            progress,
+            token
+          });
+          const result = conv.convert();
+          newStorymapJson = result.storymapJson;
+        } else if (detectedTemplate === 'SWIPE') {
+          const conv = new SwipeConverter({
+            classicJson: classicData,
+            themeId: 'summit',
+            progress,
+            token
+          });
+          const result = conv.convert();
+          newStorymapJson = result.storymapJson;
         } else {
-          newStorymapJson = await convertClassicToJson(
-            classicData,
-            "summit",
-            username,
-            token,
-            targetStoryId
-          );
+          throw new Error(`Unsupported template for new converters: ${detectedTemplate ?? 'unknown'}`);
         }
         checkCancelled();
 
         // Extract custom CSS (if any) from converter-metadata decisions
         try {
-          const metadataRes = newStorymapJson?.resources && Object.values<unknown>(newStorymapJson.resources).find((r: unknown) => r.type === 'converter-metadata');
+          const storyJson = newStorymapJson as unknown as { resources?: Record<string, MinimalConverterMetadataResource | { type?: string }> };
+          const metadataRes = storyJson.resources && (Object.values(storyJson.resources).find((r) => r.type === 'converter-metadata') as MinimalConverterMetadataResource | undefined);
           const cssCombined = metadataRes?.data?.classicMetadata?.mappingDecisions?.customCss?.combined;
           if (cssCombined) {
             const blob = new Blob([cssCombined], { type: 'text/css' });
@@ -735,8 +492,8 @@ export default function Converter() {
             setCustomCssInfo({ css: cssCombined, url });
           }
           // Surface webmap version warnings (added during enrichment) if present.
-          const versionWarnings = metadataRes?.data?.classicMetadata?.webmapVersionWarnings as Array<{ itemId: string; message: string }> | undefined;
-          const protocolWarnings = metadataRes?.data?.classicMetadata?.webmapProtocolWarnings as Array<{ itemId: string; message: string }> | undefined;
+          const versionWarnings = metadataRes?.data?.classicMetadata?.webmapVersionWarnings;
+          const protocolWarnings = metadataRes?.data?.classicMetadata?.webmapProtocolWarnings;
           const allWarnings: Array<{ itemId: string; message: string }> = [];
           // Use cached orgBase resolved earlier (portal-derived when available)
           const resolvedOrgBase = orgBase;
@@ -772,7 +529,7 @@ export default function Converter() {
               const [resId, resObj] = foundEntry as [string, { type?: string; data?: Record<string, unknown> }];
               const data = (resObj.data || {}) as Record<string, unknown>;
               const classicMeta = ((data.classicMetadata || {}) as Record<string, unknown>);
-              classicMeta.webmapChecks = webmapWarnings.map(w => ({ itemId: w.itemId, level: w.level, message: w.message, refactor: refactorActive }));
+              classicMeta.webmapChecks = webmapWarnings.map(w => ({ itemId: w.itemId, level: w.level, message: w.message }));
               data.classicMetadata = classicMeta;
               resObj.data = data;
               resources[resId] = resObj;
@@ -783,7 +540,7 @@ export default function Converter() {
                 type: 'converter-metadata',
                 data: {
                   classicMetadata: {
-                    webmapChecks: webmapWarnings.map(w => ({ itemId: w.itemId, level: w.level, message: w.message, refactor: refactorActive }))
+                    webmapChecks: webmapWarnings.map(w => ({ itemId: w.itemId, level: w.level, message: w.message }))
                   }
                 }
               };
@@ -857,6 +614,29 @@ export default function Converter() {
         setConvertedUrl(`https://storymaps.arcgis.com/stories/${targetStoryId}/edit`);
         setPublishing(true);
 
+        // Promote enrichment to top-level resource data if present in initialState (defensive guard)
+        try {
+          const sj = newStorymapJson as unknown as { resources?: Record<string, { type?: string; data?: Record<string, unknown> }> };
+          const resources = sj.resources || {};
+          for (const [rid, res] of Object.entries(resources)) {
+            if (res?.type === 'webmap') {
+              const d = (res.data || {}) as Record<string, unknown>;
+              const ist = (d.initialState || {}) as Record<string, unknown>;
+              // Copy known fields to top-level if missing
+              for (const k of ['extent','center','viewpoint','mapLayers'] as const) {
+                if (ist && k in ist && !(k in d)) {
+                  (d as Record<string, unknown>)[k as string] = ist[k as string];
+                }
+              }
+              res.data = d;
+              resources[rid] = res;
+            }
+          }
+          sj.resources = resources;
+          newStorymapJson = sj as unknown as typeof newStorymapJson;
+          console.debug('[SaveGuard] Promoted initialState fields to resource data keys');
+        } catch {/* ignore */}
+
         // Save a local copy of converted JSON to tmp-converted via Netlify function (during netlify dev)
         try {
           const res = await fetch('/.netlify/functions/save-converted', {
@@ -879,16 +659,16 @@ export default function Converter() {
           console.warn('[LocalSave] Error saving converted JSON locally:', (e as Error)?.message);
         }
       } catch (error: unknown) {
-        if (error?.message === "Conversion cancelled by user intervention") {
+        if (error instanceof Error && error.message === "Conversion cancelled by user intervention") {
           // Already set via handleCancel; ensure status stays error
           setStatus("error");
           setMessage(error.message);
         } else {
           setStatus("error");
-          setMessage(error?.message || "An unknown error occurred");
+          setMessage(error instanceof Error ? error.message : "An unknown error occurred");
         }
         // Log stack for debugging if available
-        if (error?.stack) {
+        if (error instanceof Error && error.stack) {
           console.debug('[ConverterCatch]', error.stack);
         }
         setPublishing(false);
@@ -896,6 +676,7 @@ export default function Converter() {
     };
   return (
     <div className="converter-container">
+      {/* refactor debug banner removed */}
       <h2>Classic StoryMap Converter</h2>
       <p>Convert Classic StoryMaps to ArcGIS StoryMaps</p>
       <div className="converter-instructions">
@@ -917,20 +698,6 @@ export default function Converter() {
           className="converter-input"
         />
       </div>
-      <div className="converter-input-group">
-        <label className="converter-label">Pipeline Mode:</label>
-        <div className="converter-toggle-row">
-          <label className="converter-toggle-label">
-            <input
-              type="checkbox"
-              checked={refactorOverride}
-              onChange={(e) => setRefactorOverride(e.target.checked)}
-            />{' '}
-            Use refactor pipeline (server-first, inline swipe)
-          </label>
-          <span className="converter-hint">URL flag ?refactor=1 also enables it. This setting persists locally.</span>
-        </div>
-      </div>
       {status !== "success" ? (
         <button
           className={`converter-btn ${hoverCancel && ['fetching','converting','transferring','updating'].includes(status) ? 'cancel-hover' : ''}`}
@@ -942,7 +709,6 @@ export default function Converter() {
         >
           {(() => {
             if (status === 'idle' || status === 'error') return 'Convert';
-            if (status === 'success') return 'Success';
             if (hoverCancel && ['fetching','converting','transferring','updating'].includes(status)) return 'Cancel';
             // Restore buttonLabel behavior
             return buttonLabel;

@@ -1,5 +1,5 @@
 import { execSync } from 'node:child_process';
-import { MapJournalConverter } from '../src/refactor/converters/MapJournalConverter.ts';
+import { MapJournalConverter } from '../src/converters/MapJournalConverter.ts';
 
 function fetchClassic(itemId: string, token?: string): any {
   const base = `https://www.arcgis.com/sharing/rest/content/items/${itemId}/data?f=json`;

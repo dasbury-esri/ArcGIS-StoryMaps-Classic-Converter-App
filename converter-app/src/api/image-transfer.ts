@@ -5,7 +5,7 @@
  * Handle downloading images from classic story and uploading to new story
  */
 
-import { addResource } from './arcgis-client.ts';
+import { addResource } from './arcgis-client';
 
 /**
  * Check if URL is an ArcGIS Online resource

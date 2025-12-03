@@ -31,7 +31,7 @@ export default function EnterpriseSignInModal({ open, onCancel, onContinue }: Pr
         inputRef.current?.focus();
       }, 0);
     }
-  }, [open]);
+  }, [open, setInvalidUrl]);
 
   const validateUrl = (value: string): boolean => {
     if (!value) return false;
@@ -51,34 +51,34 @@ export default function EnterpriseSignInModal({ open, onCancel, onContinue }: Pr
   };
 
   return (
-    <CalciteDialog
-      open={open}
-      heading="Sign in with ArcGIS Enterprise"
-      label="Enterprise sign-in dialog"
-      onCalciteDialogClose={onCancel}
-    >
+     
+      <CalciteDialog
+        open={open}
+        heading="Sign in to ArcGIS Enterprise"
+        onCalciteDialogClose={onCancel}
+      >
       <div>
         <CalciteLabel>URL
           <CalciteInput
-            ref={inputRef as unknown as React.RefObject<HTMLInputElement>}
+            ref={inputRef as unknown as React.RefObject<HTMLCalciteInputElement>}
             required
             id="enterprise_portal_url"
             name="enterprise_portal_url"
             placeholder="e.g. https://myportal.mydomain.com/portal"
             type="text"
             value={portalUrl}
-            onCalciteInputChange={(e: CustomEvent) => {
-              const target = e.target as HTMLInputElement;
-              setPortalUrl(target.value);
+            onCalciteInputChange={(e: any) => {
+              const v = (e?.target as any)?.value ?? '';
+              setPortalUrl(v);
             }}
           />
-          <CalciteInputMessage status="invalid" active={invalidUrl}>Enter a valid organization url</CalciteInputMessage>
+          <CalciteInputMessage status={invalidUrl ? 'invalid' : undefined}>Enter a valid organization url</CalciteInputMessage>
         </CalciteLabel>
-        <CalciteTabs layout="inline" position="above">
-          <CalciteTabNav slot="tab-nav">
-            <CalciteTabTitle active>OAuth Login</CalciteTabTitle>
+        <CalciteTabs layout="inline">
+            <CalciteTabNav slot="tab-nav">
+              <CalciteTabTitle>OAuth Login</CalciteTabTitle>
           </CalciteTabNav>
-          <CalciteTab active style={{ width: '100%', marginTop: '1rem' }}>
+            <CalciteTab style={{ width: '100%', marginTop: '1rem' }}>
             <CalciteLabel>App ID
               <CalciteInput
                 id="enterprise_client_id"
@@ -86,12 +86,12 @@ export default function EnterpriseSignInModal({ open, onCancel, onContinue }: Pr
                 placeholder="e.g. aBcDeFgHi1j2K3L4"
                 type="text"
                 value={clientId}
-                onCalciteInputChange={(e: CustomEvent) => {
-                  const target = e.target as HTMLInputElement;
-                  setClientId(target.value);
+                onCalciteInputChange={(e: any) => {
+                  const v = (e?.target as any)?.value ?? '';
+                  setClientId(v);
                 }}
               />
-              <CalciteInputMessage status="invalid" active={false}>Enter a valid registered App ID</CalciteInputMessage>
+                <CalciteInputMessage status="invalid">Enter a valid registered App ID</CalciteInputMessage>
             </CalciteLabel>
           </CalciteTab>
         </CalciteTabs>

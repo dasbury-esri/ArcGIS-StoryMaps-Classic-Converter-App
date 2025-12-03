@@ -1,10 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { convertClassicToJsonRefactored } from '../src/refactor/index.ts';
-import { detectClassicTemplate } from '../src/refactor/util/detectTemplate.ts';
-import type { ClassicStoryMapJSON } from '../src/refactor/types/classic.ts';
-import type { StoryMapJSON, StoryMapNode, StoryMapImageNode, StoryMapResource } from '../src/refactor/types/core.ts';
+import { convertClassicToJsonRefactored } from '../src/index.ts';
+import { detectClassicTemplate } from '../src/util/detectTemplate.ts';
+import type { ClassicStoryMapJSON } from '../src/types/classic.ts';
+import type { StoryMapJSON, StoryMapNode, StoryMapImageNode, StoryMapResource } from '../src/types/core.ts';
 
 interface FileResultSummary {
   file: string;

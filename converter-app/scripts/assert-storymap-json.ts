@@ -9,7 +9,7 @@
 */
 import fs from 'fs';
 import path from 'path';
-import { assertStoryMapJson, formatAssertionReport } from '../src/refactor/util/assertions.ts';
+import { assertStoryMapJson, formatAssertionReport } from '../src/util/assertions.ts';
 
 interface Args { file: string; failOnWarning: boolean; quiet: boolean }
 

@@ -10,8 +10,8 @@
 */
 import fs from 'fs';
 import path from 'path';
-import { MapTourConverter } from '../src/converter/maptour-converter.ts';
-import { assertStoryMapJson, formatAssertionReport } from '../src/refactor/util/assertions.ts';
+import { MapTourConverter } from '../src/legacy-converter/maptour-converter.ts';
+import { assertStoryMapJson, formatAssertionReport } from '../src/util/assertions.ts';
 import type { ClassicStoryMapJSON } from '../src/types/storymap';
 
 interface Args { files: string[]; outDir: string; doAssert: boolean; }

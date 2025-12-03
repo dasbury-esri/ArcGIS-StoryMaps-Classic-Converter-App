@@ -11,7 +11,6 @@ import {
   saveUserInfo,
   restoreUserInfo
 } from "./AuthUtils";
-import { captureRefactorFlagIfPresent, restoreRefactorFlagToUrl } from "../refactor/util/featureFlag";
 import { AuthContext } from "./AuthContext";
 import type { UserInfo } from "./AuthContext";
 
@@ -33,7 +32,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setTimeout(() => setLoading(false), 0);
       return;
     }
-    const refactorFlag = sessionStorage.getItem("refactorFlag") === "1" || initialRefactor;
     const s = new UserSession({
       clientId,
       redirectUri,
@@ -81,14 +79,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           });
       })
       .catch(() => setUserInfo(null))
-      .finally(() => {
-        if (refactorFlag) {
-          restoreRefactorFlagToUrl();
-        } else {
-          sessionStorage.removeItem("refactorFlag");
-        }
-        setLoading(false);
-      });
   }, [initialRefactor]);
 
   // When a session was restored (no new token in hash) and userInfo wasn't cached, fetch details once.
@@ -129,7 +119,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 
   const signIn = () => {
-    captureRefactorFlagIfPresent();
     UserSession.beginOAuth2({
       clientId,
       redirectUri,
