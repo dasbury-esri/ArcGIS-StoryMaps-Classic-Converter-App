@@ -3,6 +3,7 @@
  * Client-side functions that make direct fetch() calls to ArcGIS REST API
  * All calls go directly from browser to https://www.arcgis.com/sharing/rest/
  */
+import type { StoryMapJSON } from '../types/core';
 
 const BASE_URL = 'https://www.arcgis.com/sharing/rest';
 
@@ -178,6 +179,78 @@ export async function getUsername(token: string): Promise<string> {
 }
 
 /**
+ * Create base StoryMap JSON structure
+ * Matches Python storymap_json_schema.py output exactly
+ */
+export function createBaseStorymapJson(): StoryMapJSON {
+  const rootId = generateNodeId();
+  const coverId = generateNodeId();
+  const navId = generateNodeId();
+  const creditsId = generateNodeId();
+  const themeId = generateResourceId();
+
+    const json = {
+    root: rootId,
+    nodes: {
+      [coverId]: {
+        type: 'storycover',  // NOT 'cover'
+        data: {
+          type: 'minimal',
+          title: '',
+          summary: '',
+          byline: '',
+          titlePanelVerticalPosition: 'top',
+          titlePanelHorizontalPosition: 'start',
+          titlePanelStyle: 'gradient'
+        }
+      },
+      [navId]: {
+        type: 'navigation',
+        data: {
+          links: []
+        },
+        config: {
+          isHidden: true
+        }
+      },
+      [creditsId]: {
+        type: 'credits',
+        children: []
+      },
+      [rootId]: {
+        type: 'story',
+        data: {
+          storyTheme: themeId
+        },
+        config: {
+          coverDate: '',
+          shouldPushMetaToAGOItemDetails: false 
+        },
+        children: [coverId, navId, creditsId]
+      }
+    },
+    resources: {
+      [themeId]: {
+        type: 'story-theme',
+        data: {
+          themeId: 'summit',
+          themeBaseVariableOverrides: {}
+        }
+      }
+    }
+    } as unknown as StoryMapJSON;
+    return json;
+}
+
+// Local helpers to generate ids consistent with builder conventions
+function generateNodeId(): string {
+    return `n-${Math.random().toString(36).slice(2, 8)}`;
+}
+function generateResourceId(): string {
+    return `r-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+/**
  * Create a new StoryMaps draft item and return its item id.
  * Uses ArcGIS REST addItem on the user's content with type 'StoryMap'.
  */
@@ -193,7 +266,12 @@ export async function createDraftStory(
     formData.append('title', title);
     formData.append('type', 'StoryMap');
     // Minimal description and tags; keywords will be updated later
-    formData.append('typeKeywords', JSON.stringify(['StoryMaps']));
+    formData.append('typeKeywords', JSON.stringify(['StoryMaps', 'smdraftresourceid:draft.json']));
+
+    // Provide a complete base StoryMap JSON via the 'text' field so the item has data immediately
+    // Matches our schema and ensures publish checkbox (shouldPushMetaToAGOItemDetails) defaults to false
+    const baseJson = createBaseStorymapJson();
+    formData.append('text', JSON.stringify(baseJson));
 
     const response = await fetch(url, {
         method: 'POST',

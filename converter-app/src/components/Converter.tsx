@@ -31,7 +31,7 @@ export default function Converter() {
   // retain state only for UI style and tooltip logic; reading ref for actual cancellation
   const cancelRequestedRef = useRef(false);
   const [hoverCancel, setHoverCancel] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile] = useState(false);
   // Declare core status-related state early to avoid TDZ access in effects
   const { token, userInfo } = useAuth();
   const [classicItemId, setClassicItemId] = useState("");
@@ -335,7 +335,7 @@ export default function Converter() {
         checkCancelled();
 
         // Determine base theme (summit/obsidian) will be applied inline with overrides during conversion
-        setMessage("Mapping theme...");
+        setMessage("Converting theme...");
 
         // Gather webmap ids for validation (from classic JSON and embedded swipes)
         const webmapIds: string[] = [];

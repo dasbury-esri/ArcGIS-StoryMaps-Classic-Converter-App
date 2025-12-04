@@ -43,7 +43,7 @@ export class StoryMapJSONBuilder {
     this.json.nodes[id] = {
       type: 'story',
       data: { storyTheme: this.themeResourceId },
-      config: { coverDate: '' },
+      config: { coverDate: '', shouldPushMetaToAGOItemDetails: false },
       children: []
     } as StoryMapNode;
     return id;
