@@ -9,7 +9,7 @@ const BASE_URL = 'https://www.arcgis.com/sharing/rest';
 /**
  * Get item data (classic story JSON)
  */
-export async function getItemData(itemId: string, token: string): Promise<any> {
+export async function getItemData(itemId: string, token: string): Promise<unknown> {
     const url = `${BASE_URL}/content/items/${itemId}/data?f=json&token=${token}`;
 
     const response = await fetch(url);
@@ -17,13 +17,13 @@ export async function getItemData(itemId: string, token: string): Promise<any> {
         throw new Error(`Failed to fetch item data: ${response.statusText}`);
     }
 
-    return response.json();
+    return response.json() as Promise<unknown>;
 }
 
 /**
  * Get item details (metadata, keywords, etc.)
  */
-export async function getItemDetails(itemId: string, token: string): Promise<any> {
+export async function getItemDetails(itemId: string, token: string): Promise<unknown> {
     const url = `${BASE_URL}/content/items/${itemId}?f=json&token=${token}`;
 
     const response = await fetch(url);
@@ -31,13 +31,13 @@ export async function getItemDetails(itemId: string, token: string): Promise<any
         throw new Error(`Failed to fetch item details: ${response.statusText}`);
     }
 
-    return response.json();
+    return response.json() as Promise<unknown>;
 }
 
 /**
  * Get item resources list
  */
-export async function getItemResources(itemId: string, token: string): Promise<any> {
+export async function getItemResources(itemId: string, token: string): Promise<unknown> {
     const url = `${BASE_URL}/content/items/${itemId}/resources?f=json&token=${token}`;
 
     const response = await fetch(url);
@@ -45,7 +45,7 @@ export async function getItemResources(itemId: string, token: string): Promise<a
         throw new Error(`Failed to fetch item resources: ${response.statusText}`);
     }
 
-    return response.json();
+    return response.json() as Promise<unknown>;
 }
 
 /**
@@ -56,7 +56,7 @@ export async function removeResource(
     username: string,
     resourcePath: string,
     token: string
-): Promise<any> {
+): Promise<unknown> {
     const url = `${BASE_URL}/content/users/${username}/items/${itemId}/removeResources`;
 
     const formData = new URLSearchParams();
@@ -76,7 +76,7 @@ export async function removeResource(
         throw new Error(`Failed to remove resource: ${response.statusText}`);
     }
 
-    return response.json();
+    return response.json() as Promise<unknown>;
 }
 
 /**
@@ -88,7 +88,7 @@ export async function addResource(
     file: Blob,
     resourcePath: string,
     token: string
-): Promise<any> {
+): Promise<{ success?: boolean } | unknown> {
     const url = `${BASE_URL}/content/users/${username}/items/${itemId}/addResources`;
 
     const formData = new FormData();
@@ -102,10 +102,13 @@ export async function addResource(
         body: formData
     });
     // Add this log right after receiving the response:
-    const result = await response.json()
+    const result: unknown = await response.json();
     console.log("[addResource] Upload API response:", result);
-    if (!response.ok || !result.success) {
-        throw new Error(`Failed to add resource: ${result.error?.message || response.statusText}`);
+    const ok = response.ok;
+    const success = (result as { success?: boolean } | null)?.success === true;
+    const errorMsg = (result as { error?: { message?: string } } | null)?.error?.message;
+    if (!ok || !success) {
+        throw new Error(`Failed to add resource: ${errorMsg || response.statusText}`);
     }
     return result;
 }
@@ -118,7 +121,7 @@ export async function updateItemKeywords(
     username: string,
     keywords: string[],
     token: string
-): Promise<any> {
+): Promise<unknown> {
     const url = `${BASE_URL}/content/users/${username}/items/${itemId}/update`;
 
     const formData = new URLSearchParams();
@@ -138,15 +141,16 @@ export async function updateItemKeywords(
         throw new Error(`Failed to update item keywords: ${response.statusText}`);
     }
 
-    return response.json();
+    return response.json() as Promise<unknown>;
 }
 
 /**
  * Find draft resource name from item details
  * Looks for "smdraftresourceid:draft_*.json" in typeKeywords
  */
-export function findDraftResourceName(itemDetails: any): string | null {
-    const typeKeywords = itemDetails.typeKeywords || [];
+export function findDraftResourceName(itemDetails: unknown): string | null {
+    const tk = (itemDetails && typeof itemDetails === 'object') ? (itemDetails as { typeKeywords?: unknown }).typeKeywords : undefined;
+    const typeKeywords: string[] = Array.isArray(tk) ? tk.filter((s): s is string => typeof s === 'string') : [];
 
     for (const keyword of typeKeywords) {
         if (keyword.startsWith('smdraftresourceid:')) {
@@ -171,5 +175,36 @@ export async function getUsername(token: string): Promise<string> {
 
     const data = await response.json();
     return data.username;
+}
+
+/**
+ * Create a new StoryMaps draft item and return its item id.
+ * Uses ArcGIS REST addItem on the user's content with type 'StoryMap'.
+ */
+export async function createDraftStory(
+    username: string,
+    token: string,
+    title: string
+): Promise<string> {
+    const url = `${BASE_URL}/content/users/${encodeURIComponent(username)}/addItem`;
+    const formData = new URLSearchParams();
+    formData.append('f', 'json');
+    formData.append('token', token);
+    formData.append('title', title);
+    formData.append('type', 'StoryMap');
+    // Minimal description and tags; keywords will be updated later
+    formData.append('typeKeywords', JSON.stringify(['StoryMaps']));
+
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+    });
+    const result = await response.json();
+    if (!response.ok || !result || !result.success || !result.id) {
+        const msg = (result && result.error && result.error.message) || response.statusText || 'addItem failed';
+        throw new Error(`Failed to create draft story: ${msg}`);
+    }
+    return String(result.id);
 }
 

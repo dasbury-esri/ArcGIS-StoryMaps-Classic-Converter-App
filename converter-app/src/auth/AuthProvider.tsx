@@ -52,18 +52,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       .then(details => {
         const base = s.portal.replace(/\/$/, "");
         const extendedUrl = `${base}/community/users/${details.username}?f=json&token=${token}`;
-        return fetch(extendedUrl)
-          .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
-          .then(ext => {
+        // Also fetch portal self to resolve org hostname
+        const portalSelfUrl = `https://www.arcgis.com/sharing/rest/portals/self?f=json&token=${token}`;
+        return Promise.all([
+          fetch(extendedUrl).then(r => (r.ok ? r.json() : Promise.reject(r.status))).catch(() => null),
+          fetch(portalSelfUrl).then(r => (r.ok ? r.json() : Promise.reject(r.status))).catch(() => null)
+        ])
+          .then(([ext, portalJson]) => {
             const thumbUrl = ext?.thumbnail
               ? `${base}/community/users/${details.username}/info/${ext.thumbnail}?token=${token}`
               : undefined;
+            let orgUrl: string | undefined = undefined;
+            const urlKey = portalJson?.urlKey;
+            const customBaseUrl = portalJson?.customBaseUrl;
+            if (urlKey && customBaseUrl) {
+              orgUrl = `https://${urlKey}.${customBaseUrl}`;
+            } else if (portalJson?.portalHostname) {
+              const ph = String(portalJson.portalHostname);
+              orgUrl = /^https?:/i.test(ph) ? ph : `https://${ph}`;
+            }
             const info: UserInfo = {
               username: details.username,
               role: details.role,
               userType: details.userLicenseTypeId,
               fullName: ext?.fullName || details.username,
               thumbnailUrl: thumbUrl,
+              // Save org base if available to help downstream link generation
+              orgUrl,
             };
             setUserInfo(info);
             saveUserInfo(info);
@@ -73,6 +88,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
               username: details.username,
               role: details.role,
               userType: details.userLicenseTypeId,
+              // no orgUrl available on failure
             };
             setUserInfo(info);
             saveUserInfo(info);
@@ -89,18 +105,31 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         .then(details => {
           const base = session.portal.replace(/\/$/, "");
           const extendedUrl = `${base}/community/users/${details.username}?f=json&token=${token}`;
-          return fetch(extendedUrl)
-            .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
-            .then(ext => {
+          const portalSelfUrl = `https://www.arcgis.com/sharing/rest/portals/self?f=json&token=${token}`;
+          return Promise.all([
+            fetch(extendedUrl).then(r => (r.ok ? r.json() : Promise.reject(r.status))).catch(() => null),
+            fetch(portalSelfUrl).then(r => (r.ok ? r.json() : Promise.reject(r.status))).catch(() => null)
+          ])
+            .then(([ext, portalJson]) => {
               const thumbUrl = ext?.thumbnail
                 ? `${base}/community/users/${details.username}/info/${ext.thumbnail}?token=${token}`
                 : undefined;
+              let orgUrl: string | undefined = undefined;
+              const urlKey = portalJson?.urlKey;
+              const customBaseUrl = portalJson?.customBaseUrl;
+              if (urlKey && customBaseUrl) {
+                orgUrl = `https://${urlKey}.${customBaseUrl}`;
+              } else if (portalJson?.portalHostname) {
+                const ph = String(portalJson.portalHostname);
+                orgUrl = /^https?:/i.test(ph) ? ph : `https://${ph}`;
+              }
               const info: UserInfo = {
                 username: details.username,
                 role: details.role,
                 userType: details.userLicenseTypeId,
                 fullName: ext?.fullName || details.username,
                 thumbnailUrl: thumbUrl,
+                orgUrl,
               };
               setUserInfo(info);
               saveUserInfo(info);

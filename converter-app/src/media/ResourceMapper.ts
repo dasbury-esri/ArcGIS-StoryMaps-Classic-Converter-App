@@ -10,11 +10,13 @@ export class ResourceMapper {
     for (const [resId, res] of Object.entries(storymap.resources)) {
       if (res.type === 'image') {
         const imgRes = res as StoryMapImageResource;
-        const src = (imgRes.data as any).src;
+        const src = (imgRes.data && typeof imgRes.data === 'object' ? (imgRes.data as { src?: unknown }).src : undefined);
         if (src && mapping[src]) {
-          (imgRes.data as any).resourceId = mapping[src];
-          delete (imgRes.data as any).src;
-          (imgRes.data as any).provider = 'item-resource';
+          const d = (imgRes.data || {}) as Record<string, unknown>;
+          d.resourceId = mapping[String(src)];
+          delete (d as { src?: unknown }).src;
+          (d as Record<string, unknown>).provider = 'item-resource';
+          imgRes.data = d as typeof imgRes.data;
         }
       }
     }
@@ -22,15 +24,18 @@ export class ResourceMapper {
     for (const node of Object.values(storymap.nodes)) {
       if (node.type === 'image') {
         const imgNode = node as StoryMapImageNode;
-        if ((imgNode.data as any).src) {
-          const src = (imgNode.data as any).src as string;
-          const resId = Object.entries(storymap.resources).find(([rid, r]) => r.type === 'image' && (r.data as any).src === src)?.[0];
+        const srcVal = (imgNode.data && typeof imgNode.data === 'object') ? (imgNode.data as { src?: unknown }).src : undefined;
+        if (typeof srcVal === 'string') {
+          const src = srcVal;
+          const resId = Object.entries(storymap.resources).find(([rid, r]) => r.type === 'image' && typeof (r.data as { src?: unknown }).src === 'string' && (r.data as { src?: string }).src === src)?.[0];
           if (resId) {
             // ensure resource transformation happened above
-            imgNode.data = { ...(imgNode.data as any), image: resId } as any;
-            delete (imgNode.data as any).src;
-            delete (imgNode.data as any).resourceId;
-            delete (imgNode.data as any).provider;
+            const d = (imgNode.data || {}) as Record<string, unknown>;
+            d.image = resId;
+            delete (d as { src?: unknown }).src;
+            delete (d as { resourceId?: unknown }).resourceId;
+            delete (d as { provider?: unknown }).provider;
+            imgNode.data = d as typeof imgNode.data;
           }
         }
       }
@@ -42,18 +47,22 @@ export class ResourceMapper {
     for (const res of Object.values(storymap.resources)) {
       if (res.type === 'image') {
         const imgRes = res as StoryMapImageResource;
-        const src = (imgRes.data as any).src;
-        const resourceId = (imgRes.data as any).resourceId;
-        if (src && !resourceId) (imgRes.data as any).src = `${proxyBaseUrl}?url=${encodeURIComponent(src)}`;
+        const d = (imgRes.data || {}) as Record<string, unknown>;
+        const src = (d as { src?: unknown }).src;
+        const resourceId = (d as { resourceId?: unknown }).resourceId;
+        if (typeof src === 'string' && !resourceId) d.src = `${proxyBaseUrl}?url=${encodeURIComponent(src)}`;
+        imgRes.data = d as typeof imgRes.data;
       }
     }
     // Node-level rewrite only for legacy structure
     for (const node of Object.values(storymap.nodes)) {
       if (node.type === 'image') {
         const imgNode = node as StoryMapImageNode;
-        const src = (imgNode.data as any).src;
-        const imageRes = (imgNode.data as any).image;
-        if (src && !imageRes) (imgNode.data as any).src = `${proxyBaseUrl}?url=${encodeURIComponent(src)}`;
+        const d = (imgNode.data || {}) as Record<string, unknown>;
+        const src = (d as { src?: unknown }).src;
+        const imageRes = (d as { image?: unknown }).image;
+        if (typeof src === 'string' && !imageRes) d.src = `${proxyBaseUrl}?url=${encodeURIComponent(src)}`;
+        imgNode.data = d as typeof imgNode.data;
       }
     }
     return storymap;

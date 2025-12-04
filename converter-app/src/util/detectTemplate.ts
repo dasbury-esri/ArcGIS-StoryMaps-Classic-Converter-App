@@ -1,25 +1,39 @@
-import type { ClassicStoryMapJSON } from '../types/classic.ts';
+import type { ClassicStoryMapJSON } from '../types/classic';
 
-// ...existing code...
-export function detectClassicTemplate(classic: ClassicStoryMapJSON): string {
-  // (no change; retained for dynamic status messaging)
-  const v: unknown = classic.values || {};
+// Accept unknown and guard to avoid runtime exceptions when shape varies in UI
+export function detectClassicTemplate(classic: ClassicStoryMapJSON | unknown): string {
   const isObj = (x: unknown): x is Record<string, unknown> => !!x && typeof x === 'object';
-  const settings = isObj(v) && isObj((v as any).settings) ? ((v as any).settings as Record<string, unknown>) : {};
+  if (!isObj(classic)) return 'unknown';
+  const v: unknown = (classic as Record<string, unknown>).values || {};
+  const get = <T = unknown>(obj: unknown, key: string): T | undefined => {
+    if (!isObj(obj)) return undefined;
+    const val = obj[key as keyof typeof obj];
+    return (val as T) ?? undefined;
+  };
+  const settings = get<Record<string, unknown>>(v, 'settings') ?? {};
   let templateName: string | undefined;
-  if (isObj(v) && typeof (v as any).templateName === 'string' && ((v as any).templateName as string).trim()) templateName = (v as any).templateName as string;
-  if (isObj(v) && typeof (v as any).template === 'string' && ((v as any).template as string).trim()) templateName = (v as any).template as string;
-  if (isObj(v) && isObj((v as any).template) && typeof (v as any).template.name === 'string') templateName = (v as any).template.name as string;
+  const templateNameStr = get<string>(v, 'templateName');
+  if (typeof templateNameStr === 'string' && templateNameStr.trim()) templateName = templateNameStr;
+  const templateStr = get<string>(v, 'template');
+  if (typeof templateStr === 'string' && templateStr.trim()) templateName = templateStr;
+  const templateObj = get<Record<string, unknown>>(v, 'template');
+  const templateObjName = templateObj && typeof templateObj['name'] === 'string' ? (templateObj['name'] as string) : undefined;
+  if (templateObjName) templateName = templateObjName;
   if (templateName) return normalize(templateName);
-  if (!templateName && settings && (settings as any).components) return 'Crowdsource';
-  if (isObj(v) && Array.isArray((v as any).series)) return 'Map Series';
-  if (isObj(v) && (((v as any).tabs) || Array.isArray((v as any).tabs))) return 'Shortlist';
-  if (isObj(v) && (v as any).order && Array.isArray((v as any).order)) return 'Map Tour';
-  if (isObj(v) && (((v as any).dataModel) || (v as any).layers || (v as any).webmaps)) return 'Swipe';
-  if (isObj(v) && (v as any).components && (v as any).components.contribute) return 'Crowdsource';
-  if (isObj(v) && (v as any).story && Array.isArray((v as any).story.sections)) {
-    const sections = (v as any).story.sections as unknown[];
-    if (sections.some((s: unknown) => (s as any)?.type === 'sequence')) return 'Cascade';
+  if (!templateName && settings && isObj(settings) && isObj(settings['components'])) return 'Crowdsource';
+  const series = get<unknown[]>(v, 'series');
+  if (Array.isArray(series)) return 'Map Series';
+  const tabs = get<unknown[]>(v, 'tabs') ?? get<unknown>(v, 'tabs');
+  if (Array.isArray(tabs) || !!tabs) return 'Shortlist';
+  const order = get<unknown[]>(v, 'order');
+  if (Array.isArray(order)) return 'Map Tour';
+  if (get<unknown>(v, 'dataModel') || get<unknown>(v, 'layers') || get<unknown>(v, 'webmaps')) return 'Swipe';
+  const components = get<Record<string, unknown>>(v, 'components');
+  if (components && isObj(components) && !!components['contribute']) return 'Crowdsource';
+  const story = get<Record<string, unknown>>(v, 'story');
+  const storySections = story && Array.isArray(story['sections']) ? (story['sections'] as unknown[]) : undefined;
+  if (storySections) {
+    if (storySections.some((s: unknown) => isObj(s) && (s['type'] as unknown) === 'sequence')) return 'Cascade';
     return 'Map Journal';
   }
   return 'Basic';

@@ -120,9 +120,9 @@ export class ConverterFactory {
 
   private static async enrichWebScenes(json: StoryMapJSON, progress: (e: { stage: 'convert'; message: string }) => void, isCancelled?: () => boolean): Promise<void> {
     const checkCancelled = () => { if (isCancelled && isCancelled()) throw new Error('Conversion cancelled by user intervention'); };
-    const sceneResources: Array<{ id: string; itemId: string; data: any }> = [];
+    const sceneResources: Array<{ id: string; itemId: string; data: Record<string, unknown> }> = [];
     for (const [resId, res] of Object.entries(json.resources)) {
-      const data: any = res.data || {};
+      const data: Record<string, unknown> = (res.data || {}) as Record<string, unknown>;
       if (res.type === 'webmap' && data.itemType === 'Web Scene' && data.type === 'minimal' && typeof data.itemId === 'string') {
         sceneResources.push({ id: resId, itemId: data.itemId, data });
       }
@@ -146,7 +146,7 @@ export class ConverterFactory {
           scale: data.view.scale,
           targetGeometry: data.view.targetGeometry
         } : undefined;
-        const baseMapLayers = data.baseMap?.baseMapLayers?.map((l: any) => ({
+        const baseMapLayers = (data as any).baseMap?.baseMapLayers?.map((l: any) => ({
           id: l.id,
           title: l.title,
           url: l.url,
@@ -155,9 +155,9 @@ export class ConverterFactory {
           layerType: l.layerType,
           isReference: !!l.isReference
         })) || [];
-        const operationalLayers = data.operationalLayers?.map((l: any) => ({ id: l.id, title: l.title, visible: l.visibility })) || [];
+        const operationalLayers = (data as any).operationalLayers?.map((l: any) => ({ id: l.id, title: l.title, visible: l.visibility })) || [];
         // Capture slides (Web Scene presentations) if available
-        const slidesSrc = (data.presentation?.slides || data.slides || []) as any[];
+        const slidesSrc = (((data as any).presentation?.slides) || (data as any).slides || []) as any[];
         const slides = slidesSrc.map(s => ({
           id: s.id,
           title: s.title || s.name || '',
@@ -166,11 +166,11 @@ export class ConverterFactory {
           camera: s.viewpoint?.camera || s.camera,
           viewpoint: s.viewpoint ? { camera: s.viewpoint.camera, rotation: s.viewpoint.rotation, scale: s.viewpoint.scale } : undefined
         }));
-        const extent = data.initialState?.view?.extent || data.view?.extent;
-        const center = data.initialState?.view?.center || data.view?.center;
-        const lightingDate = data.environment?.lighting?.date || undefined;
-        const weather = data.environment?.weather ? { type: data.environment.weather.type, cloudCover: data.environment.weather.cloudCover } : undefined;
-        const groundOpacity = data.environment?.ground?.opacity;
+        const extent = (data as any).initialState?.view?.extent || (data as any).view?.extent;
+        const center = (data as any).initialState?.view?.center || (data as any).view?.center;
+        const lightingDate = (data as any).environment?.lighting?.date || undefined;
+        const weather = (data as any).environment?.weather ? { type: (data as any).environment.weather.type, cloudCover: (data as any).environment.weather.cloudCover } : undefined;
+        const groundOpacity = (data as any).environment?.ground?.opacity;
         const resource = json.resources[scene.id];
         if (resource) {
           resource.data = {
@@ -188,21 +188,22 @@ export class ConverterFactory {
             environment: data.environment || undefined,
             slides,
             raw: { summary: { hasCamera: !!vp, baseMapLayerCount: baseMapLayers.length, operationalLayerCount: operationalLayers.length } }
-          } as any;
+          } as Record<string, unknown>;
         }
         checkCancelled();
         progress({ stage: 'convert', message: `Enriched Web Scene ${scene.itemId}` });
-      } catch (err: any) {
-        progress({ stage: 'convert', message: `Web Scene enrichment failed for ${scene.itemId}: ${err.message}` });
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : String(err);
+        progress({ stage: 'convert', message: `Web Scene enrichment failed for ${scene.itemId}: ${msg}` });
       }
     }));
   }
 
   private static async enrichWebMaps(json: StoryMapJSON, progress: (e: { stage: 'convert'; message: string }) => void, isCancelled?: () => boolean): Promise<void> {
     const checkCancelled = () => { if (isCancelled && isCancelled()) throw new Error('Conversion cancelled by user intervention'); };
-    const mapResources: Array<{ id: string; itemId: string; data: any }> = [];
+    const mapResources: Array<{ id: string; itemId: string; data: Record<string, unknown> }> = [];
     for (const [resId, res] of Object.entries(json.resources)) {
-      const data: any = res.data || {};
+      const data: Record<string, unknown> = (res.data || {}) as Record<string, unknown>;
       if (res.type === 'webmap' && data.itemType === 'Web Map' && data.type === 'minimal' && typeof data.itemId === 'string') {
         mapResources.push({ id: resId, itemId: data.itemId, data });
       }
@@ -301,17 +302,18 @@ export class ConverterFactory {
         }
         checkCancelled();
         progress({ stage: 'convert', message: `Enriched Web Map ${map.itemId}` });
-      } catch (err: any) {
-        progress({ stage: 'convert', message: `Web Map enrichment failed for ${map.itemId}: ${err.message}` });
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : String(err);
+        progress({ stage: 'convert', message: `Web Map enrichment failed for ${map.itemId}: ${msg}` });
       }
     }));
     // Persist version warnings into converter-metadata resource so UI can surface them.
     if (versionWarnings.length || protocolWarnings.length) {
-      const metaEntry = Object.entries(json.resources).find(([, r]) => (r as any)?.type === 'converter-metadata');
+      const metaEntry = Object.entries(json.resources).find(([, r]) => (r as { type?: string })?.type === 'converter-metadata');
       if (metaEntry) {
-        const [metaId, metaRes] = metaEntry as [string, { type: string; data: any }];
-        const metaData = (metaRes.data || {}) as any;
-        const classicMetadata = (metaData.classicMetadata || (metaData.classicMetadata = {}));
+        const [metaId, metaRes] = metaEntry as [string, { type: string; data: Record<string, unknown> }];
+        const metaData = (metaRes.data || {}) as Record<string, unknown>;
+        const classicMetadata = ((metaData.classicMetadata as Record<string, unknown>) || (metaData.classicMetadata = {} as Record<string, unknown>)) as Record<string, unknown>;
         if (versionWarnings.length) {
           classicMetadata.webmapVersionWarnings = versionWarnings.map(vw => ({
             itemId: vw.itemId,

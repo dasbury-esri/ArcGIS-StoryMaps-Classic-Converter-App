@@ -2,12 +2,7 @@
  * Classic StoryMap to ArcGIS StoryMaps Converter UI
  * Minimal form interface for conversion
  */
-
 import { useState, useEffect, useRef, useCallback } from "react";
-// Refactor pipeline imports (feature-flagged)
-// import { useRefactorFlagReactive } from "../util/featureFlag";
-// import { convertClassicToJsonRefactored } from "../index";
-// Backend/refactor legacy pipeline no longer used
 import { validateWebMaps, type EndpointCheck } from "../services/WebMapValidator";
 import { detectClassicTemplate } from "../util/detectTemplate";
 import { useAuth } from "../auth/useAuth";
@@ -20,11 +15,8 @@ import {
   removeResource,
   addResource,
   updateItemKeywords,
+  createDraftStory,
 } from "../api/arcgis-client";
-import { createDraftStoryMap } from "../legacy-converter/storymap-draft-creator";
-// Legacy pipeline disabled
-// Legacy image transfer no longer used
-
 
 type Status =
   | "idle"
@@ -32,84 +24,40 @@ type Status =
   | "converting"
   | "transferring"
   | "updating"
-  | "success"
   | "error";
 
 export default function Converter() {
   const [publishing, setPublishing] = useState(false);
   // retain state only for UI style and tooltip logic; reading ref for actual cancellation
-  const [cancelRequested, setCancelRequested] = useState(false); // track user-originated cancellation (used for disabling mobile button)
   const cancelRequestedRef = useRef(false);
   const [hoverCancel, setHoverCancel] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  // Reactively reflects current URL (?refactor=1)
-  // const useRefactor = useRefactorFlagReactive();
   // Declare core status-related state early to avoid TDZ access in effects
   const { token, userInfo } = useAuth();
   const [classicItemId, setClassicItemId] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [convertedUrl, setConvertedUrl] = useState("");
-  // Refactor debug banner removed; no longer used
   // buttonLabel retained for future extended messaging but currently unused
   const [buttonLabel, setButtonLabel] = useState("Convert");
-  // // Manual refactor pipeline override (UI toggle) persisted across auth redirects
-  // const [refactorOverride, setRefactorOverride] = useState<boolean>(() => {
-  //   try { return localStorage.getItem('converter-refactor-pref') === '1'; } catch { return false; }
-  // });
-  // Final flag: either URL param (?refactor=1) or manual override checkbox
-  // Legacy/refactor pipeline disabled entirely (flag removed)
   // Cancellation helper + handler declared early to avoid TDZ in effects
   const checkCancelled = () => {
     if (cancelRequestedRef.current) {
       throw new Error("Conversion cancelled by user intervention");
     }
   };
+  const [cancelRequested, setCancelRequested] = useState(false);
   const handleCancel = useCallback(() => {
     if (cancelRequestedRef.current) return;
     const confirmed = window.confirm('Cancel conversion in progress? This will stop further processing.');
-    if (!confirmed) return;
-    cancelRequestedRef.current = true;
-    setCancelRequested(true);
-    setStatus("error");
-    setMessage("Conversion cancelled by user intervention");
-    setPublishing(false);
-    setButtonLabel("Convert");
-  }, [setButtonLabel, setMessage, setStatus, setPublishing, setCancelRequested]);
-  // useEffect(() => {
-  //   console.info(`[Converter] Pipeline selected: ${refactorActive ? 'refactor' : 'legacy'} (override=${refactorOverride})`);
-  // }, [refactorActive, refactorOverride]);
-
-  // Persist override changes
-  // useEffect(() => {
-  //   try { localStorage.setItem('converter-refactor-pref', refactorOverride ? '1' : '0'); } catch {/* ignore */}
-  // }, [refactorOverride]);
-
-
-  // Mobile detection (simplistic: width threshold + touch capability)
-  useEffect(() => {
-    const detect = () => {
-      const w = window.innerWidth;
-      const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      setIsMobile(w < 768 || touch);
-    };
-    detect();
-    window.addEventListener('resize', detect);
-    return () => window.removeEventListener('resize', detect);
+    // If user confirms, mark cancellation; otherwise do nothing
+    if (confirmed) {
+      cancelRequestedRef.current = true;
+      setCancelRequested(true);
+      setHoverCancel(false);
+    }
   }, []);
-
-  // Keyboard accessible cancel via Escape
-  useEffect(() => {
-    const active = !cancelRequestedRef.current && ['fetching','converting','transferring','updating'].includes(status);
-    if (!active) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        handleCancel();
-      }
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [status, handleCancel]);
+  // Use real draft creation from API
   const [detectedTemplate, setDetectedTemplate] = useState<string | null>(null);
   const [customCssInfo, setCustomCssInfo] = useState<{ css: string; url: string } | null>(null);
   const [webmapWarnings, setWebmapWarnings] = useState<Array<{ itemId: string; level: string; message: string; details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } }>>([]);
@@ -120,8 +68,7 @@ export default function Converter() {
   const portalResolvedRef = useRef<boolean>(false);
   // Indicates full validation cycle (client + optional backend diagnostics) is complete
   const [webmapChecksFinalized, setWebmapChecksFinalized] = useState(false);
-  const [endpointChecks, setEndpointChecks] = useState<EndpointCheck[]>([]);
-  const [endpointCategorySummary, setEndpointCategorySummary] = useState<Record<string, number> | null>(null);
+  // Endpoint diagnostics are gathered but not displayed; omit state to avoid lint noise
   const [expandedWarnings, setExpandedWarnings] = useState<Record<string, boolean>>({});
   // Minimal type for converter-metadata resource access to avoid any casts
   type MinimalClassicMetadata = {
@@ -143,7 +90,9 @@ export default function Converter() {
         if (m && m[1]) return `${m[1]}.maps.arcgis.com`;
         return host;
       }
-    } catch { /* ignore */ }
+    } catch {
+      // ignore parse errors
+    }
     return 'www.arcgis.com';
   }, [userInfo]);
   const normalizeWebmapWarnings = useCallback((
@@ -161,10 +110,12 @@ export default function Converter() {
         const formatted = `ERROR: Item [${id}] Unsupported web map version: You must update the web map to the latest version. You can do this by opening the map in <a href="${baseUsed}/home/webmap/viewer.html?webmap=${id}" target="_blank" rel="noopener noreferrer">Map Viewer Classic</a> and save it. No other changes are necessary to resolve this error.`;
         return { ...w, level: 'error', message: formatted };
       }
-      // HTTP endpoints present
+      // HTTP endpoints present → add actionable guidance
       if (/HTTP URL|http:\/\//i.test(msg)) {
-        const formatted = `Unsupported protocol: You must update the web map to use https service urls. You can do this by opening the web map item's <a href="${baseUsed}/home/item.html?id=${id}#settings" target="_blank" rel="noopener noreferrer">settings page</a> scrolling down to the Web map section and clicking the "Update layers to HTTPS" button`;
-        return { ...w, message: formatted };
+        const guidance = `You must update the web map to use https service urls. You can do this by opening the web map item's <a href="${baseUsed}/home/item.html?id=${id}#settings" target="_blank" rel="noopener noreferrer">settings page</a> scrolling down to the Web map section and clicking the "Update layers to HTTPS" button`;
+        const formatted = `WARNING: Webmap [${id}] uses http services.`;
+        // Return combined message block with guidance below
+        return { ...w, message: `${formatted}\n${guidance}` };
       }
       // Generic pattern: replace 'Map Viewer Classic <link = URL>' with anchor
       const linkMatch = /Map Viewer Classic\s*<\s*link\s*=\s*(https?:[^\s>]+)\s*>/i.exec(msg);
@@ -213,7 +164,7 @@ export default function Converter() {
       // Compute host from userInfo (e.g., story.maps.arcgis.com or <org>.maps.arcgis.com)
       const host = getOrgHostname();
       const resolved = `https://${host}`;
-      // Only update if we have a token (signed-in) and the base differs
+      // Respect explicit override first
       if (token && resolved && orgBase !== resolved) {
         setOrgBase(resolved);
       }
@@ -228,6 +179,7 @@ export default function Converter() {
     if (!token || portalResolvedRef.current) return;
     (async () => {
       try {
+        // Respect explicit override; skip portal resolution if provided
         const resp = await fetch(`https://www.arcgis.com/sharing/rest/portals/self?f=json&token=${encodeURIComponent(token)}`);
         if (!resp.ok) return;
         const portalJson = await resp.json();
@@ -243,7 +195,9 @@ export default function Converter() {
         if (resolvedOrg && orgBase !== resolvedOrg) {
           setOrgBase(resolvedOrg);
         }
-      } catch { /* ignore */ }
+      } catch {
+        // ignore portal self fetch errors
+      }
       finally {
         portalResolvedRef.current = true;
       }
@@ -284,13 +238,14 @@ export default function Converter() {
             candidate = /^https?:/i.test(ph) ? ph : `https://${ph}`;
           }
         }
-      } catch { /* ignore */ }
+      } catch {
+        // ignore portal self fetch errors
+      }
     }
     if (candidate && candidate !== orgBase) setOrgBase(candidate);
     return candidate;
   }, [orgBase, token, getOrgHostname]);
     const handleConvert = async () => {
-      //console.debug('[Converter] refactorActive?', refactorActive, 'override?', refactorOverride, 'urlFlag?', useRefactor);
       // Reset state
       setStatus("idle");
       setMessage("");
@@ -332,11 +287,36 @@ export default function Converter() {
         let runtimeTemplate: string | null = null;
         try {
           runtimeTemplate = detectClassicTemplate(classicData);
-          setDetectedTemplate(runtimeTemplate);
-          setMessage(`Detected template: ${runtimeTemplate}. Preparing resources...`);
         } catch {
           runtimeTemplate = null;
-          setDetectedTemplate(null);
+        }
+        // Fallback: if detector returns 'unknown', try item details keywords
+        if (!runtimeTemplate || runtimeTemplate.toLowerCase() === 'unknown') {
+          try {
+            const details = await getItemDetails(classicItemId, token);
+            const kws: string[] = Array.isArray(details?.typeKeywords) ? details.typeKeywords : [];
+            const typeStr = String(details?.type || '').toLowerCase();
+            const text = [typeStr, ...(kws.map(k => String(k).toLowerCase()))].join(' ');
+            const mapName = () => {
+              if (/journal/.test(text)) return 'Map Journal';
+              if (/swipe/.test(text)) return 'Swipe';
+              if (/tour/.test(text)) return 'Map Tour';
+              if (/series/.test(text)) return 'Map Series';
+              if (/cascade/.test(text)) return 'Cascade';
+              if (/shortlist/.test(text)) return 'Shortlist';
+              if (/crowdsource/.test(text)) return 'Crowdsource';
+              if (/basic/.test(text)) return 'Basic';
+              return null;
+            };
+            const mapped = mapName();
+            if (mapped) runtimeTemplate = mapped;
+          } catch {
+            // ignore fallback errors
+          }
+        }
+        setDetectedTemplate(runtimeTemplate);
+        if (runtimeTemplate) {
+          setMessage(`Detected template: ${runtimeTemplate}. Preparing resources...`);
         }
 
         // Fetch classic webmap data
@@ -351,7 +331,7 @@ export default function Converter() {
         setMessage("Creating new StoryMap draft...");
         const coverTitle = classicData.values?.title || "Untitled Story";
         const itemTitle = `(Converted) ${coverTitle}`;
-        const targetStoryId = await createDraftStoryMap(username, token, itemTitle);
+        const targetStoryId = await createDraftStory(username, token, itemTitle);
         checkCancelled();
 
         // Determine base theme (summit/obsidian) will be applied inline with overrides during conversion
@@ -383,25 +363,28 @@ export default function Converter() {
               }
             }
           }
-        } catch { /* ignore */ }
+        } catch {
+          // ignore section parse errors
+        }
 
         // Validate webmaps client-side first (may be limited by CORS)
         let localWarnings: typeof webmapWarnings = [];
         try {
           // Resolve org base synchronously for this run
           const baseForRun = await ensureOrgBaseResolved();
-          const { warnings, endpointChecks, endpointCategorySummary } = await validateWebMaps(webmapIds, token);
+          const { warnings } = await validateWebMaps(webmapIds, token);
           localWarnings = warnings.map(w => ({ itemId: w.itemId, level: w.level as string, message: w.message, details: (w && typeof w === 'object' && 'details' in w ? (w as unknown as { details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } }).details : undefined) }));
           // Apply formatting for version/protocol warnings using cached org base
           localWarnings = normalizeWebmapWarnings(localWarnings, baseForRun);
           setWebmapWarnings(localWarnings);
-          setEndpointChecks(endpointChecks);
-          setEndpointCategorySummary(endpointCategorySummary || null);
+          // Endpoint diagnostics are not rendered in UI
           if (localWarnings.length > 0) {
             // If we already have warnings, no need for backend diagnostics phase gating
             setWebmapChecksFinalized(true);
           }
-        } catch { /* ignore */ }
+        } catch {
+          // ignore local validation errors
+        }
 
         // If no failures detected locally, attempt backend diagnostics (serverless avoids CORS and gathers full layer info)
         // Temporarily disabled when Netlify function responds 501 locally; continue conversion without backend diagnostics
@@ -416,7 +399,7 @@ export default function Converter() {
               const v = json?.validation || {};
               const backendWarnings = Array.isArray(v.warnings) ? v.warnings : [];
               const backendEndpointChecks: EndpointCheck[] = Array.isArray(v.endpointChecks) ? v.endpointChecks : [];
-              const backendSummary: Record<string, number> | null = v.endpointCategorySummary || null;
+              // const backendSummary: Record<string, number> | null = v.endpointCategorySummary || null;
               if (backendWarnings.length || backendEndpointChecks.some(ec => !ec.ok)) {
                   const baseForRun = await ensureOrgBaseResolved();
                 const formattedWarnings = normalizeWebmapWarnings(
@@ -424,8 +407,7 @@ export default function Converter() {
                     baseForRun
                 );
                 setWebmapWarnings(formattedWarnings);
-                setEndpointChecks(backendEndpointChecks);
-                setEndpointCategorySummary(backendSummary);
+                // Endpoint diagnostics are not rendered in UI
               }
             }
           } catch {
@@ -460,7 +442,7 @@ export default function Converter() {
             default: setMessage(msg);
           }
         };
-        const tmpl = (detectedTemplate || '').toLowerCase();
+        const tmpl = (detectedTemplate || runtimeTemplate || '').toLowerCase();
         if (tmpl === 'map journal' || tmpl === 'mapjournal') {
           const conv = new MapJournalConverter({
             classicJson: classicData,
@@ -562,14 +544,31 @@ export default function Converter() {
         checkCancelled();
 
         // Find draft resource name
-        const draftResourceName = findDraftResourceName(targetDetails);
+        let draftResourceName = findDraftResourceName(targetDetails);
         if (!draftResourceName) {
-          throw new Error("Could not find draft resource in target storymap. Make sure it is a draft storymap.");
+          // Initialize a draft resource name and attach keyword for first-time items created via addItem
+          draftResourceName = 'draft.json';
+          try {
+            const currentKeywords = Array.isArray((targetDetails as { typeKeywords?: string[] }).typeKeywords)
+              ? (targetDetails as { typeKeywords?: string[] }).typeKeywords!
+              : [];
+            const withDraft = currentKeywords.some(k => /^smdraftresourceid:/.test(String(k)))
+              ? currentKeywords
+              : [...currentKeywords, `smdraftresourceid:${draftResourceName}`];
+            await updateItemKeywords(targetStoryId, username, withDraft, token);
+          } catch {
+            // ignore keyword update failure; upload will still proceed
+          }
         }
 
         // Remove old draft resource
+        // Attempt removal; if resource doesn't exist yet, ignore errors
         setMessage(`Removing old draft resource (${draftResourceName})...`);
-        await removeResource(targetStoryId, username, draftResourceName, token);
+        try {
+          await removeResource(targetStoryId, username, draftResourceName, token);
+        } catch {
+          // Ignore missing resource errors on first draft initialization
+        }
         checkCancelled();
 
         // Upload new draft resource (same name)
@@ -588,7 +587,9 @@ export default function Converter() {
               if (Object.keys(node.dependents).length === 0) delete (node as { dependents?: Record<string, string> }).dependents;
             }
           }
-        } catch { /* ignore cleanup failures */ }
+        } catch {
+          // ignore cleanup failures
+        }
         const jsonBlob = new Blob([JSON.stringify(newStorymapJson)], {
           type: "application/json",
         });
@@ -638,7 +639,9 @@ export default function Converter() {
           sj.resources = resources;
           newStorymapJson = sj as unknown as typeof newStorymapJson;
           console.debug('[SaveGuard] Promoted initialState fields to resource data keys');
-        } catch {/* ignore */}
+        } catch {
+          // ignore promotion failures
+        }
 
         // Save a local copy of converted JSON to tmp-converted via Netlify function (during netlify dev)
         try {
@@ -658,7 +661,7 @@ export default function Converter() {
           } else {
             console.warn('[LocalSave] Failed to save converted JSON locally:', res.status);
           }
-        } catch (e) {
+        } catch {
           console.warn('[LocalSave] Error saving converted JSON locally:', (e as Error)?.message);
         }
       } catch (error: unknown) {
@@ -679,7 +682,7 @@ export default function Converter() {
     };
   return (
     <div className="converter-container">
-      {/* refactor debug banner removed */}
+      
       <h2>Classic StoryMap Converter</h2>
       <p>Convert Classic StoryMaps to ArcGIS StoryMaps</p>
       <div className="converter-instructions">
@@ -774,29 +777,96 @@ export default function Converter() {
           ) : (
             <>
               <ul>
-                {webmapWarnings.map((w, i) => (
+                {webmapWarnings.map((w, i) => {
+                  const failures = Array.isArray(w.details?.failures) ? w.details!.failures! : [];
+                  const dedupMap = new Map<string, { layerTitle?: string; layerItemId?: string; url?: string; status?: number; error?: string }>();
+                  for (const f of failures) {
+                    const key = `${f.url ?? ''}::${f.layerTitle ?? ''}`;
+                    if (!dedupMap.has(key)) dedupMap.set(key, {
+                      layerTitle: f.layerTitle,
+                      layerItemId: f.layerItemId,
+                      url: f.url,
+                      status: typeof f.status === 'number' ? f.status : undefined,
+                      error: typeof f.error === 'string' ? f.error : undefined,
+                    });
+                  }
+                  const consolidatedFailures = Array.from(dedupMap.values());
+                  const hasHttpIssues = consolidatedFailures.some(f => /HTTP URL/i.test(String(f.error || '')) || /^http:\/\//i.test(String(f.url || '')));
+                  const hasTimeouts = consolidatedFailures.some(f => /timeout/i.test(String(f.error || '')) || (typeof f.status === 'number' && f.status === 504));
+                  const hasNotFound = consolidatedFailures.some(f => /not\s*found|404/i.test(String(f.error || '')) || (typeof f.status === 'number' && f.status === 404));
+                  // Derive best org base: prefer resolved orgBase; else parse from userInfo.orgUrl; else hostname; else www
+                  let hostBase = orgBase;
+                  if (!hostBase || hostBase === DEFAULT_ORG_BASE) {
+                    const rawOrg = (typeof userInfo === 'object' && userInfo)
+                      ? ((userInfo as unknown as { orgUrl?: string; org?: { url?: string } }).orgUrl || (userInfo as unknown as { orgUrl?: string; org?: { url?: string } }).org?.url || '')
+                      : '';
+                    if (rawOrg) {
+                      try {
+                        const u = new URL(rawOrg);
+                        hostBase = `${u.protocol}//${u.hostname}`;
+                      } catch {
+                        // fallback to hostname util
+                        hostBase = `https://${getOrgHostname()}`;
+                      }
+                    } else {
+                      hostBase = `https://${getOrgHostname()}`;
+                    }
+                  }
+                  const guidanceHtml = `You must update the web map to use https service urls. You can do this by opening the web map item's <a href="${hostBase}/home/item.html?id=${w.itemId}#settings" target="_blank" rel="noopener noreferrer">settings page</a> scrolling down to the Web map section and clicking the "Update layers to HTTPS" button`;
+                  const timeoutGuidanceHtml = `Some services did not respond (timeout). This may be temporary. Try opening the <a href="${hostBase}/home/item.html?id=${w.itemId}" target="_blank" rel="noopener noreferrer">web map</a> and checking that the layers load, or reload later. If timeouts persist, consider replacing the layer or contacting the service owner.`;
+                  const notFoundGuidanceHtml = `Some services returned 404 (Not Found). Open the <a href="${hostBase}/home/item.html?id=${w.itemId}" target="_blank" rel="noopener noreferrer">web map</a> to remove broken layers, or replace with an available service.`;
+                  return (
                   <li key={`${w.itemId}-${i}`}>
-                    {/^\s*(ERROR|WARNING|INFO):/i.test(w.message)
-                      ? (<span dangerouslySetInnerHTML={{ __html: w.message }} />)
-                      : (<>
-                          {w.level.toUpperCase()}: [{w.itemId}] <span dangerouslySetInnerHTML={{ __html: w.message }} />
-                        </>)}
+                    {hasHttpIssues ? (
+                      <>
+                        {`WARNING: Webmap [${w.itemId}] uses http services.`}
+                        {w.details?.webmapTitle && (
+                          <div>Title: {w.details.webmapTitle}</div>
+                        )}
+                        <div dangerouslySetInnerHTML={{ __html: guidanceHtml }} />
+                      </>
+                    ) : hasTimeouts ? (
+                      <>
+                        {`WARNING: Webmap [${w.itemId}] has timeout failures.`}
+                        {w.details?.webmapTitle && (
+                          <div>Title: {w.details.webmapTitle}</div>
+                        )}
+                        <div dangerouslySetInnerHTML={{ __html: timeoutGuidanceHtml }} />
+                      </>
+                    ) : hasNotFound ? (
+                      <>
+                        {`WARNING: Webmap [${w.itemId}] has missing layer(s).`}
+                        {w.details?.webmapTitle && (
+                          <div>Title: {w.details.webmapTitle}</div>
+                        )}
+                        <div dangerouslySetInnerHTML={{ __html: notFoundGuidanceHtml }} />
+                      </>
+                    ) : (
+                      (/^\s*(ERROR|WARNING|INFO):/i.test(w.message)
+                        ? (<span dangerouslySetInnerHTML={{ __html: w.message }} />)
+                        : (<>
+                            {w.level.toUpperCase()}: [{w.itemId}] <span dangerouslySetInnerHTML={{ __html: w.message }} />
+                          </>))
+                    )}
+                    {consolidatedFailures.length > 0 && (
+                      <div>{`WARNING: Webmap [${w.itemId}] has ${consolidatedFailures.length} failing layer(s).`}</div>
+                    )}
                     {w.details?.webmapTitle && (
                       <div>Title: {w.details.webmapTitle}</div>
                     )}
-                    {Array.isArray(w.details?.failures) && w.details!.failures!.length > 0 && (
+                    {consolidatedFailures.length > 0 && (
                       <div>
                         <button
                           className="converter-details-toggle-btn"
                           onClick={() => setExpandedWarnings(prev => ({ ...prev, [w.itemId]: !prev[w.itemId] }))}
                         >
-                          {expandedWarnings[w.itemId] ? 'Hide details' : `Show details (${w.details!.failures!.length})`}
+                          {expandedWarnings[w.itemId] ? 'Hide details' : `Show details (${consolidatedFailures.length})`}
                         </button>
                         {expandedWarnings[w.itemId] && (
                           <ul>
-                            {w.details!.failures!.map((f, j) => (
+                            {consolidatedFailures.map((f, j) => (
                               <li key={`${w.itemId}-fail-${j}`}>
-                                {f.layerTitle ? `${f.layerTitle}` : ''}
+                                {f.layerTitle ? `Layer name: ${f.layerTitle}` : ''}
                                 {f.layerItemId ? (
                                   <>
                                     {' '}
@@ -804,12 +874,12 @@ export default function Converter() {
                                     {' '}
                                   </>
                                 ) : ''}
-                                {f.error ? ` — ${f.error}` : ''}
+                                {f.error ? ` — Error: ${f.error}` : ''}
                                 {typeof f.status === 'number' ? ` (status ${f.status})` : ''}
                                 {f.url ? (
                                   <>
                                     {' '}
-                                    — <a href={f.url} target="_blank" rel="noopener noreferrer">URL</a>
+                                    — <a href={f.url} target="_blank" rel="noopener noreferrer">Link to endpoint</a>
                                     {' '}
                                   </>
                                 ) : ''}
@@ -820,45 +890,10 @@ export default function Converter() {
                       </div>
                     )}
                   </li>
-                ))}
+                );})}
               </ul>
               <span>These issues won’t stop conversion, but may prevent maps from loading. Please fix with <a href="https://assistant.esri-ps.com/">ArcGIS Assistant</a> or in ArcGIS Online.</span>
-              {endpointChecks.length > 0 && (
-                <div className="converter-endpoint-checks">
-                  <hr />
-                  <strong>Endpoint Health Summary:</strong>
-                  {endpointCategorySummary && (
-                    <div className="endpoint-summary-row">
-                      {Object.entries(endpointCategorySummary).map(([k,v]) => (
-                        <span key={k} className="endpoint-summary-chip">{k}: {v}</span>
-                      ))}
-                    </div>
-                  )}
-                  <details>
-                    <summary>Failing endpoints ({endpointChecks.filter(ec => !ec.ok).length})</summary>
-                    <ul>
-                      {endpointChecks.filter(ec => !ec.ok).map((ec,i) => (
-                        <li key={`ep-${i}`}>
-                          {ec.webmapTitle ? <span className="ep-webmap">{ec.webmapTitle}:</span> : ''}{' '}
-                          {ec.layerTitle ? <span className="ep-layer">{ec.layerTitle}</span> : ''}{ec.layerItemId ? (
-                            <>
-                              {' '}[<a href={makeItemUrl(ec.layerItemId)} target="_blank" rel="noopener noreferrer">{ec.layerItemId}</a>]
-                            </>
-                          ) : ''}
-                          {ec.errorCategory ? ` — ${ec.errorCategory}` : ''}
-                          {ec.status ? ` (status ${ec.status})` : ''}
-                          {ec.url ? (
-                            <>
-                              {' '}<a href={ec.url} target="_blank" rel="noopener noreferrer">endpoint</a>
-                            </>
-                          ) : ''}
-                          {ec.errorMessage ? ` – ${ec.errorMessage}` : ''}
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-                </div>
-              )}
+              
             </>
           )}
         </div>

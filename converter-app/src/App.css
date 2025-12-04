@@ -356,7 +356,8 @@
 }
 
 .bg-image {
-  background-image: url('/assets/background.png');
+  /* In Vite, CSS URLs are relative to this file; src/App.css -> src/assets */
+  background-image: url('./assets/background.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

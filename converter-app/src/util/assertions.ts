@@ -21,15 +21,17 @@ export function assertStoryMapJson(json: StoryMapJSON): AssertionResult {
   const resourceIds = new Set(Object.keys(json.resources || {}));
 
   // Helper narrowers
-  const hasData = (n: unknown): n is { data: Record<string, unknown> } => !!(n as any)?.data;
-  const hasChildren = (n: unknown): n is { children: string[] } => Array.isArray((n as any)?.children);
+  const isObj = (x: unknown): x is Record<string, unknown> => !!x && typeof x === 'object';
+  const hasData = (n: unknown): n is { data: Record<string, unknown> } => isObj(n) && 'data' in n && isObj((n as Record<string, unknown>).data);
+  const hasChildren = (n: unknown): n is { children: string[] } => isObj(n) && Array.isArray((n as Record<string, unknown>).children);
+  // helper reserved for future safe access patterns
 
   // Validate root
   if (json.root) {
     const rootNode = json.nodes[json.root];
     if (!rootNode) errors.push('Root node id does not resolve to a node object');
     else if (rootNode.type !== 'story') errors.push(`Root node type expected 'story' but found '${rootNode.type}'`);
-    if (hasData(rootNode) && (rootNode.data as Record<string, unknown>).metaSettings) {
+    if (hasData(rootNode) && 'metaSettings' in (rootNode.data as Record<string, unknown>)) {
       errors.push('metaSettings should have been stripped from root story node');
     }
   }
@@ -41,7 +43,7 @@ export function assertStoryMapJson(json: StoryMapJSON): AssertionResult {
 
     // Child references must exist
     if (hasChildren(node)) {
-      for (const childId of ((node as any).children as string[])) {
+      for (const childId of (node.children as string[])) {
         if (!nodeIds.has(childId)) errors.push(`Node '${id}' references missing child '${childId}'`);
       }
     }
@@ -49,40 +51,43 @@ export function assertStoryMapJson(json: StoryMapJSON): AssertionResult {
     // Type-specific checks
     if (node.type === 'webmap') {
       // config.size must exist and be valid
-      const size = ((node as any).config as Record<string, unknown> | undefined)?.['size'] as string | undefined;
+      const size = (isObj(node.config) ? (node.config as Record<string, unknown>)['size'] : undefined) as string | undefined;
       if (!size) errors.push(`WebMap node '${id}' missing config.size`);
       else if (!['standard','wide'].includes(size)) warnings.push(`WebMap node '${id}' has unexpected size '${size}'`);
-      if (node.data && Object.prototype.hasOwnProperty.call(node.data, 'scale')) {
+      if (node.data && Object.prototype.hasOwnProperty.call(node.data as Record<string, unknown>, 'scale')) {
         errors.push(`WebMap node '${id}' still has deprecated data.scale`);
       }
       // referenced resource must exist
-      const mapRes = (node.data as Record<string, unknown> | undefined)?.['map'] as string | undefined;
+      const mapRes = (node.data ? (node.data as Record<string, unknown>)['map'] : undefined) as string | undefined;
       if (mapRes && !resourceIds.has(mapRes)) errors.push(`WebMap node '${id}' references missing resource '${mapRes}'`);
     } else if (node.type === 'text') {
       // textAlignment expected
-      if (node.data && !Object.prototype.hasOwnProperty.call(node.data, 'textAlignment')) {
+      if (node.data && !Object.prototype.hasOwnProperty.call(node.data as Record<string, unknown>, 'textAlignment')) {
         errors.push(`Text node '${id}' missing data.textAlignment`);
       }
-      const dataText = (node.data as Record<string, unknown> | undefined)?.['text'] as string | undefined;
+      const dataText = (node.data ? (node.data as Record<string, unknown>)['text'] : undefined) as string | undefined;
       if (typeof dataText !== 'string' || !dataText.length) warnings.push(`Text node '${id}' has empty/missing text content`);
     } else if (node.type === 'image') {
-      const imgRes = (node.data as Record<string, unknown> | undefined)?.['image'] as string | undefined;
+      const imgRes = (node.data ? (node.data as Record<string, unknown>)['image'] : undefined) as string | undefined;
       if (!imgRes) errors.push(`Image node '${id}' missing data.image resource reference`);
       else if (!resourceIds.has(imgRes)) errors.push(`Image node '${id}' references missing resource '${imgRes}'`);
     } else if (node.type === 'video') {
-      const videoRes = (node.data as Record<string, unknown> | undefined)?.['video'] as string | undefined;
+      const videoRes = (node.data ? (node.data as Record<string, unknown>)['video'] : undefined) as string | undefined;
       if (videoRes && !resourceIds.has(videoRes)) warnings.push(`Video node '${id}' references missing resource '${videoRes}'`); // may be external/embed
     } else if (node.type === 'embed') {
       // Basic sanity: url or embedSrc should exist
       const dt = node.data as Record<string, unknown> | undefined;
-      if (!dt || (!dt.url && !dt.embedSrc)) warnings.push(`Embed node '${id}' missing url/embedSrc`);
+      const url = dt ? (dt['url'] as unknown) : undefined;
+      const embedSrc = dt ? (dt['embedSrc'] as unknown) : undefined;
+      if (!dt || (!url && !embedSrc)) warnings.push(`Embed node '${id}' missing url/embedSrc`);
     } else if (node.type === 'tour') {
       const dt = node.data as Record<string, unknown> | undefined;
       if (!dt) {
         errors.push(`Tour node '${id}' missing data object`);
       } else {
         ['type','subtype','map','places','accentColor'].forEach(k => { if (!(k in dt)) errors.push(`Tour node '${id}' missing data.${k}`); });
-        if (Array.isArray((dt as any).places) && !(dt as any).places.length) warnings.push(`Tour node '${id}' has empty places array`);
+        const places = dt['places'] as unknown;
+        if (Array.isArray(places) && !(places as unknown[]).length) warnings.push(`Tour node '${id}' has empty places array`);
         const mapNodeId = dt.map as string | undefined;
         if (mapNodeId && !nodeIds.has(mapNodeId)) errors.push(`Tour node '${id}' references missing map node '${mapNodeId}'`);
       }
@@ -103,21 +108,24 @@ export function assertStoryMapJson(json: StoryMapJSON): AssertionResult {
     if (res.type === 'webmap') {
       const data = res.data as Record<string, unknown> | undefined;
       if (!data?.itemId) errors.push(`WebMap resource '${resId}' missing data.itemId`);
-      const itemType = (data as any)?.itemType as string | undefined;
+      const itemType = data ? (data['itemType'] as string | undefined) : undefined;
       if (!['Web Map','Web Scene'].includes(itemType ?? '')) warnings.push(`WebMap resource '${resId}' unexpected itemType '${itemType}'`);
-      if ((data as any)?.initialState && (data as any).initialState.scale) errors.push(`WebMap resource '${resId}' initialState still contains scale`);
+      const initialState = data ? (data['initialState'] as Record<string, unknown> | undefined) : undefined;
+      if (initialState && 'scale' in initialState) errors.push(`WebMap resource '${resId}' initialState still contains scale`);
     }
     if (res.type === 'image') {
       const data = res.data as Record<string, unknown> | undefined;
-      if (!(data as any)?.src && !(data as any)?.resourceId) warnings.push(`Image resource '${resId}' missing src/resourceId`);
+      const src = data ? (data['src'] as unknown) : undefined;
+      const resourceIdField = data ? (data['resourceId'] as unknown) : undefined;
+      if (!src && !resourceIdField) warnings.push(`Image resource '${resId}' missing src/resourceId`);
     }
   }
 
   // Actions validation
   if (Array.isArray(json.actions)) {
     for (const act of json.actions) {
-      const origin = (act as any)?.origin as string | undefined;
-      const target = (act as any)?.target as string | undefined;
+      const origin = isObj(act) ? (act['origin'] as string | undefined) : undefined;
+      const target = isObj(act) ? (act['target'] as string | undefined) : undefined;
       if (origin && !nodeIds.has(origin)) errors.push(`Action references missing origin node '${origin}'`);
       if (target && !nodeIds.has(target)) errors.push(`Action references missing target node '${target}'`);
     }
