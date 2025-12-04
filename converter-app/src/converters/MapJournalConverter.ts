@@ -1071,14 +1071,27 @@ export class MapJournalConverter extends BaseConverter {
     }
   }
 
+  private fetchClassicSwipeDataProvided(appId: string): { values?: import('../types/classic.ts').ClassicValues } | undefined {
+    try {
+      const root = this.classicJson as unknown as { __embeddedSwipes?: Record<string, unknown> };
+      const valuesRoot = (this.classicJson as unknown as { values?: unknown }).values as unknown as { __embeddedSwipes?: Record<string, unknown> } | undefined;
+      const store = root.__embeddedSwipes || valuesRoot?.__embeddedSwipes || undefined;
+      const found = store ? store[appId] : undefined;
+      if (found && typeof found === 'object') {
+        return found as { values?: import('../types/classic.ts').ClassicValues };
+      }
+    } catch { /* ignore */ }
+    return undefined;
+  }
+
   // Attempts to build a native swipe node from a classic swipe embed URL.
   // Returns the created node id on success; otherwise undefined to allow fallback to embed.
   private tryBuildSwipeNodeFromUrl(url: string): string | undefined {
     const appId = this.parseSwipeAppId(url);
     if (!appId) return undefined;
-    // Only perform sync fetch/inlining in Node
-    if (typeof window !== 'undefined') return undefined;
-    const classic = this.fetchClassicSwipeDataSync(appId);
+    // Browser path: use pre-fetched swipe JSON when available
+    const isBrowser = typeof window !== 'undefined';
+    const classic = isBrowser ? this.fetchClassicSwipeDataProvided(appId) : this.fetchClassicSwipeDataSync(appId);
     if (!classic || !classic.values) return undefined;
     const layoutHint = this.parseSwipeLayoutFromUrl(url);
     const layout = layoutHint || (String(classic.values.layout || '').toLowerCase().includes('spyglass') ? 'spyglass' : 'swipe');

@@ -335,13 +335,13 @@ export default function Converter() {
         checkCancelled();
 
         // Determine base theme (summit/obsidian) will be applied inline with overrides during conversion
-        setMessage("Mapping theme overrides (inline resource)...");
+        setMessage("Mapping theme...");
 
         // Gather webmap ids for validation (from classic JSON and embedded swipes)
         const webmapIds: string[] = [];
         if (classicData.values?.webmap) webmapIds.push(classicData.values.webmap);
         try {
-          const sections = (classicData.values?.story?.sections || classicData.sections || []) as Array<{ media?: { webmap?: { id?: string }, webpage?: { url?: string } } }>;
+          const sections = (classicData.values?.story?.sections || classicData.sections || []) as Array<{ media?: { webmap?: { id?: string }, webpage?: { url?: string } }, contentActions?: Array<{ id: string; type: string; media?: { webpage?: { url?: string } } }> }>;
           for (const s of sections) {
             if (s?.media?.webmap?.id) webmapIds.push(s.media!.webmap!.id as string);
             const url = s?.media?.webpage?.url || '';
@@ -357,9 +357,46 @@ export default function Converter() {
                   const swipeJson = await resp.json();
                   const wm = Array.isArray(swipeJson?.values?.webmaps) ? swipeJson.values.webmaps : [];
                   for (const wid of wm) if (typeof wid === 'string') webmapIds.push(wid);
+                  // Cache embedded swipe JSON for converter to build inline swipe in browser
+                  try {
+                    const key = String(appId);
+                    const container = classicData as unknown as { __embeddedSwipes?: Record<string, unknown> };
+                    if (!container.__embeddedSwipes) container.__embeddedSwipes = {} as Record<string, unknown>;
+                    container.__embeddedSwipes[key] = swipeJson as unknown as object;
+                  } catch { /* ignore cache errors */ }
                 }
               } catch {
                 // ignore
+              }
+            }
+
+            // Also prefetch classic Swipe JSON referenced in contentActions (media actions)
+            const acts = Array.isArray(s?.contentActions) ? s.contentActions : [];
+            for (const act of acts) {
+              if (act && act.type === 'media' && act.media && act.media.webpage && act.media.webpage.url) {
+                const aUrl = String(act.media.webpage.url || '');
+                const ma = /[?&#](?:appid|appId)=([a-f0-9]{32})/i.exec(aUrl);
+                const aAppId = ma?.[1];
+                if (aAppId) {
+                  try {
+                    const base = `https://www.arcgis.com/sharing/rest/content/items/${aAppId}/data?f=json`;
+                    const swipeUrl = token ? `${base}&token=${encodeURIComponent(token)}` : base;
+                    const resp = await fetch(swipeUrl);
+                    if (resp.ok) {
+                      const swipeJson = await resp.json();
+                      const wm = Array.isArray(swipeJson?.values?.webmaps) ? swipeJson.values.webmaps : [];
+                      for (const wid of wm) if (typeof wid === 'string') webmapIds.push(wid);
+                      try {
+                        const key = String(aAppId);
+                        const container = classicData as unknown as { __embeddedSwipes?: Record<string, unknown> };
+                        if (!container.__embeddedSwipes) container.__embeddedSwipes = {} as Record<string, unknown>;
+                        container.__embeddedSwipes[key] = swipeJson as unknown as object;
+                      } catch { /* ignore cache errors */ }
+                    }
+                  } catch {
+                    // ignore
+                  }
+                }
               }
             }
           }
