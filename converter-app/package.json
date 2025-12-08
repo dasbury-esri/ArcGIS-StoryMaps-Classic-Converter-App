@@ -8,12 +8,14 @@
     "build": "vite build",
     "typecheck": "tsc -b",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "netlify:dev": "netlify dev"
   },
   "dependencies": {
     "@esri/arcgis-rest-auth": "^3.8.0",
     "@esri/calcite-components": "^3.3.3",
     "@esri/calcite-components-react": "^3.3.3",
+    "@arcgis/core": "^4.30.6",
     "@netlify/functions": "^5.1.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

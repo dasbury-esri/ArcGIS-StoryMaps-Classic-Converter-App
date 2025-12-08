@@ -355,6 +355,18 @@
     margin-right: auto;
 }
 
+.page {
+  padding: 16px;
+}
+
+.error {
+  color: red;
+}
+
+.error-details {
+  white-space: pre-wrap;
+}
+
 .bg-image {
   /* In Vite, CSS URLs are relative to this file; src/App.css -> src/assets */
   background-image: url('./assets/background.png');

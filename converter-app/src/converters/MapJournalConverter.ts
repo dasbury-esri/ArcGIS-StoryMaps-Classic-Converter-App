@@ -1,3 +1,6 @@
+// In Node, Vite resolves node:child_process to a shim in browser. We guard usage.
+import { execFileSync } from 'node:child_process';
+import path from 'node:path';
 /**
  * MapJournalConverter
  *
@@ -45,6 +48,82 @@ export class MapJournalConverter extends BaseConverter {
   }
 
   protected convertContent(): void {
+    // Pre-step: If a webmap ID is detected, trigger Map Notes → CSV conversion and persist the CSV layer
+    try {
+      const values = this.classicJson.values as ClassicValues;
+      const webmapId: string | undefined = (values?.story?.map?.itemId) || (values?.map?.itemId) || (values?.webmap) || process.env.WEBMAP_ID;
+      const token: string | undefined = this.token || process.env.ARCGIS_TOKEN;
+      if (webmapId && token) {
+        // Fetch webmap JSON and detect Map Notes layer before running conversion
+        const fetchUrl = `https://www.arcgis.com/sharing/rest/content/items/${webmapId}/data?f=json&token=${encodeURIComponent(token)}`;
+        // Use global fetch (Node 18+) instead of curl; run non-blocking to keep conversion resilient
+        interface WebMapData { operationalLayers?: OperationalLayer[] }
+        interface FeatureSet { features?: Feature[] }
+        interface FeatureCollectionLayer { featureSet?: FeatureSet }
+        interface FeatureCollection { layers?: FeatureCollectionLayer[] }
+        interface OperationalLayer { layerType?: string; type?: string; title?: string; featureCollection?: FeatureCollection }
+        interface Feature { symbol?: { type?: string } }
+        fetch(fetchUrl)
+          .then(res => res.ok ? res.json() : Promise.reject(new Error(`HTTP ${res.status}`)))
+          .then((data: WebMapData) => {
+            const layers: OperationalLayer[] = Array.isArray(data?.operationalLayers) ? data.operationalLayers! : [];
+            const hasMapNotes = layers.some((l: OperationalLayer) => {
+              const type = String(l?.layerType || l?.type || '').toLowerCase();
+              if (type === 'mapnotes') return true;
+              const fc = l?.featureCollection;
+              const feats: Feature[] = fc?.layers?.[0]?.featureSet?.features || [];
+              const esriPMSFound = Array.isArray(feats) && feats.some((f: Feature) => String(f?.symbol?.type).toLowerCase() === 'esripms');
+              const title = String(l?.title || '').toLowerCase();
+              return !!fc && (esriPMSFound || title.includes('map notes'));
+            });
+            if (hasMapNotes) {
+              this.emit(`Webmap ${webmapId} contains Map Notes. Converting to CSV and saving to webmap...`);
+              const isBrowser = typeof window !== 'undefined';
+              if (isBrowser) {
+                // Call Netlify function to perform CSV conversion server-side
+                const fnUrl = `/.netlify/functions/convert-mapnotes-to-csv`;
+                fetch(fnUrl, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ webmapId, token })
+                })
+                  .then(r => r.ok ? r.json() : r.text().then(t => Promise.reject(new Error(t))))
+                  .then(resp => {
+                    if (resp.changed) {
+                      this.emit('CSV item created and minimal layer appended via Netlify function.');
+                    } else {
+                      this.emit('Netlify function reported no changes (no Map Notes found).');
+                    }
+                  })
+                  .catch(err => {
+                    const msg = typeof err === 'object' && err && 'message' in err ? String((err as { message: unknown }).message) : String(err);
+                    this.emit(`CSV conversion function failed: ${msg}. Continuing conversion.`);
+                  });
+              } else {
+                const scriptPath = path.resolve('converter-app/scripts/mapnotes-to-csv-item-and-add-to-webmap.ts');
+                try {
+                  execFileSync('npx', ['tsx', scriptPath], {
+                    stdio: 'inherit',
+                    env: { ...process.env, WEBMAP_ID: webmapId, ARCGIS_TOKEN: token }
+                  });
+                  this.emit('Map Notes → CSV conversion completed. Proceeding with content conversion.');
+                } catch (err) {
+                  const msg = typeof err === 'object' && err && 'message' in err ? String((err as { message: unknown }).message) : String(err);
+                  this.emit(`CSV conversion execution failed: ${msg}. Continuing conversion.`);
+                }
+              }
+            } else {
+              this.emit(`Webmap ${webmapId} has no Map Notes; skipping CSV conversion.`);
+            }
+          })
+          .catch(() => {
+            this.emit(`Failed to fetch webmap ${webmapId} for Map Notes detection; skipping CSV conversion.`);
+          });
+      }
+    } catch (e: unknown) {
+      const msg = typeof e === 'object' && e && 'message' in e ? String((e as { message: unknown }).message) : String(e);
+      this.emit(`Map Notes → CSV pre-step failed: ${msg}. Continuing conversion.`);
+    }
     this.builder.createStoryRoot();
     const v = this.classicJson.values as ClassicValues;
     this.emit('Created story root node');
@@ -216,7 +295,8 @@ export class MapJournalConverter extends BaseConverter {
               let viewpoint2: Viewpoint2 | undefined;
               let zoom2: number | undefined;
               // Normalize extent SR for action media as well
-              type ClassicExtent = { xmin: number; ymin: number; xmax: number; ymax: number; spatialReference?: any };
+              type SpatialRef = { wkid?: number; latestWkid?: number; wkt?: string };
+              type ClassicExtent = { xmin: number; ymin: number; xmax: number; ymax: number; spatialReference?: SpatialRef };
               const normalizedExtent2 = media.webmap.extent ? this.normalizeExtent(media.webmap.extent as ClassicExtent) : undefined;
               // Extract extras for action media
               interface ClassicWebMapExtras2 { overview?: { enable?: boolean; openByDefault?: boolean }; legend?: { enable?: boolean; openByDefault?: boolean } }
@@ -249,26 +329,27 @@ export class MapJournalConverter extends BaseConverter {
               const currentJson = this.builder.getJson();
               if (actMediaNode) {
                 const wmNode = currentJson.nodes[actMediaNode];
-                if (wmNode && (wmNode as any).data) {
+                const nodeData: Record<string, unknown> | undefined = wmNode && 'data' in wmNode ? (wmNode.data as Record<string, unknown>) : undefined;
+                if (wmNode && nodeData) {
                   if (Array.isArray(media.webmap.layers)) {
-                    ((wmNode as any).data as Record<string, unknown>).mapLayers = media.webmap.layers.map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }));
+                    nodeData.mapLayers = media.webmap.layers.map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }));
                   }
                   if (normalizedExtent2) {
-                    ((wmNode as any).data as Record<string, unknown>).extent = normalizedExtent2;
+                    nodeData.extent = normalizedExtent2 as unknown as Record<string, unknown>;
                   }
                   if (viewpoint2) {
-                    ((wmNode as any).data as Record<string, unknown>).viewpoint = viewpoint2;
+                    nodeData.viewpoint = viewpoint2 as unknown as Record<string, unknown>;
                   }
                   if (typeof zoom2 === 'number') {
-                    ((wmNode as any).data as Record<string, unknown>).zoom = zoom2;
+                    nodeData.zoom = zoom2 as unknown as Record<string, unknown>;
                   }
                   // Removed data.scale assignment for action media node
                   // Propagate overview/legend open state to node-level for action media
                   if (extras2.overview && extras2.overview.enable) {
-                    ((wmNode as any).data as Record<string, unknown>).overview = { openByDefault: !!extras2.overview.openByDefault };
+                    nodeData.overview = { openByDefault: !!extras2.overview.openByDefault } as unknown as Record<string, unknown>;
                   }
                   if (extras2.legend && extras2.legend.enable) {
-                    ((wmNode as any).data as Record<string, unknown>).legend = { openByDefault: !!extras2.legend.openByDefault };
+                    nodeData.legend = { openByDefault: !!extras2.legend.openByDefault } as unknown as Record<string, unknown>;
                   }
                 }
               }
@@ -315,8 +396,9 @@ export class MapJournalConverter extends BaseConverter {
             // Ensure target slide has the media node present so runtime can load resources on action
             const snap = this.builder.getJson();
             const slideNode = snap.nodes[slideId];
-            if (slideNode && Array.isArray((slideNode as any).children)) {
-              const hasChild = ((slideNode as any).children as string[]).includes(actMediaNode);
+            const slideChildren: unknown = slideNode && 'children' in slideNode ? (slideNode as unknown as { children?: unknown }).children : undefined;
+            if (Array.isArray(slideChildren)) {
+              const hasChild = (slideChildren as string[]).includes(actMediaNode);
               if (!hasChild) {
                 this.builder.addChild(slideId, actMediaNode);
               }
@@ -373,9 +455,10 @@ export class MapJournalConverter extends BaseConverter {
       const currentJson = this.builder.getJson();
       for (const node of Object.values(currentJson.nodes)) {
         if (node && node.type === 'immersive-narrative-panel') {
-          if (!(node as any).data) (node as any).data = {};
-          (node.data as Record<string, unknown>).position = 'end';
-          (node.data as Record<string, unknown>).size = 'medium';
+          const dataObj: Record<string, unknown> = (node.data as Record<string, unknown>) || {};
+          dataObj.position = 'end';
+          dataObj.size = 'medium';
+          (node as unknown as { data?: Record<string, unknown> }).data = dataObj;
         }
       }
       const decisions: Record<string, unknown> = {
@@ -393,7 +476,7 @@ export class MapJournalConverter extends BaseConverter {
       };
       this.builder.applyTheme({ themeId: 'obsidian', variableOverrides: {} });
       decisions.videoEmbeds = this.videoEmbedCount;
-      this.builder.addConverterMetadata('MapJournal', { classicMetadata: { theme: classicTheme as any, mappingDecisions: decisions as any } });
+      this.builder.addConverterMetadata('MapJournal', { classicMetadata: { theme: classicTheme as unknown, mappingDecisions: decisions as unknown } });
       this.emit('Applied fallback obsidian theme (no classic theme present; float layout)');
       return;
     }
@@ -445,7 +528,8 @@ export class MapJournalConverter extends BaseConverter {
     // Add converter metadata resource
     this.builder.addConverterMetadata('MapJournal', { classicMetadata: { theme: classicTheme, mappingDecisions: decisions } });
     const sidecarNode = this.builder.getJson().nodes[sidecarId];
-    const slideCount = (((sidecarNode as any)?.children as any[] | undefined)?.length as number) || 0;
+    const childrenUnknown: unknown = sidecarNode && 'children' in sidecarNode ? (sidecarNode as unknown as { children?: unknown }).children : undefined;
+    const slideCount = Array.isArray(childrenUnknown) ? (childrenUnknown as unknown[]).length : 0;
     this.emit(`Built single sidecar with ${slideCount} slide(s); theme overrides applied (${Object.keys(overrides).length})`);
   }
 
@@ -487,10 +571,9 @@ export class MapJournalConverter extends BaseConverter {
       ymin: toY(ex.ymin),
       xmax: toX(ex.xmax),
       ymax: toY(ex.ymax),
-      spatialReference: { wkid: 102100 }
+      spatialReference: { wkid: 102100, latestWkid: 3857 }
     };
   }
-
   private extractImageEntries(html: string): Array<{ src: string; alt?: string; caption?: string }> {
     const found: Array<{ src: string; alt?: string; caption?: string }> = [];
     const figureRegex = /<figure[^>]*>([\s\S]*?)<\/figure>/gi;
@@ -1158,10 +1241,11 @@ export class MapJournalConverter extends BaseConverter {
                 rebuilt['1'] = this.builder.createWebMapNode(rB, undefined);
               }
             }
-            // Patch swipe node data with rebuilt contents
+            // Patch swipe node data with rebuilt contents (typed)
             this.builder.updateNode(swipeNodeId, node => {
-              if (!(node as any).data) (node as any).data = {} as Record<string, unknown>;
-              ((node as any).data as Record<string, unknown>).contents = rebuilt;
+              const dataObj: Record<string, unknown> = (node as unknown as { data?: Record<string, unknown> }).data || {};
+              dataObj.contents = rebuilt as unknown as Record<string, unknown>;
+              (node as unknown as { data?: Record<string, unknown> }).data = dataObj;
             });
           }
         }
