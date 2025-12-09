@@ -1,7 +1,7 @@
 {
   "name": "arcgis-storymaps-classic-converter",
   "private": true,
-  "version": "0.4.0-alpha.3",
+    "version": "0.4.1-alpha",
   "type": "module",
   "workspaces": [
     "converter-app"
