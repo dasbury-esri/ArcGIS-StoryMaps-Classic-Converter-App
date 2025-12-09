@@ -17,6 +17,7 @@ import type { ConverterResult, StoryMapJSON } from '../types/core';
 import type { ClassicValues, ClassicExtent, ClassicLayer } from '../types/classic';
 // duplicate imports removed
 import { determineScaleZoomLevel } from '../util/scale';
+import { fetchJsonWithCache } from '../utils/fetchCache';
 import { execSync } from 'node:child_process';
 
 type SwipeModel = 'TWO_WEBMAPS' | 'TWO_LAYERS';
@@ -89,6 +90,17 @@ export class SwipeConverter extends BaseConverter {
       }
       if (Array.isArray(infoA?.operationalLayers)) {
         (initialA as { mapLayers?: Array<{ id: string; title: string; visible: boolean }> }).mapLayers = infoA!.operationalLayers!.map(l => ({ id: l.id, title: l.title || l.id, visible: !!l.visibility }));
+      } else if (idA) {
+        const base = `https://www.arcgis.com/sharing/rest/content/items/${idA}/data?f=json`;
+        const url = this.token ? `${base}&token=${encodeURIComponent(this.token)}` : base;
+        fetchJsonWithCache<{ operationalLayers?: Array<Record<string, unknown>> }>(url, undefined, 10 * 60 * 1000)
+          .then(wm => {
+            const ops: Array<Record<string, unknown>> = Array.isArray(wm?.operationalLayers) ? wm!.operationalLayers! : [];
+            if (ops.length) {
+              (initialA as { mapLayers?: Array<Record<string, unknown>> }).mapLayers = ops.map(layer => ({ ...layer }));
+            }
+          })
+          .catch(() => {/* ignore */});
       }
       if (infoB?.extent) {
         (initialB as { extent?: unknown }).extent = infoB.extent;
@@ -99,6 +111,17 @@ export class SwipeConverter extends BaseConverter {
       }
       if (Array.isArray(infoB?.operationalLayers)) {
         (initialB as { mapLayers?: Array<{ id: string; title: string; visible: boolean }> }).mapLayers = infoB!.operationalLayers!.map(l => ({ id: l.id, title: l.title || l.id, visible: !!l.visibility }));
+      } else if (idB) {
+        const base = `https://www.arcgis.com/sharing/rest/content/items/${idB}/data?f=json`;
+        const url = this.token ? `${base}&token=${encodeURIComponent(this.token)}` : base;
+        fetchJsonWithCache<{ operationalLayers?: Array<Record<string, unknown>> }>(url, undefined, 10 * 60 * 1000)
+          .then(wm => {
+            const ops: Array<Record<string, unknown>> = Array.isArray(wm?.operationalLayers) ? wm!.operationalLayers! : [];
+            if (ops.length) {
+              (initialB as { mapLayers?: Array<Record<string, unknown>> }).mapLayers = ops.map(layer => ({ ...layer }));
+            }
+          })
+          .catch(() => {/* ignore */});
       }
       const resA = wmA ? this.builder.addWebMapResource(wmA, 'Web Map', initialA as any, 'default') : undefined;
       const resB = wmB ? this.builder.addWebMapResource(wmB, 'Web Map', initialB as any, 'default') : undefined;
@@ -124,6 +147,12 @@ export class SwipeConverter extends BaseConverter {
         if (sz) (data as Record<string, unknown>).viewpoint = { targetGeometry: infoA.center ?? infoA.extent, scale: sz.scale };
         const hasTime = Array.isArray(infoA.operationalLayers) && infoA.operationalLayers.some(l => (l as any).timeAnimation === true);
         (data as Record<string, unknown>).timeSlider = !!hasTime;
+        // Consistency: default all layers to visible=false unless explicitly overridden elsewhere
+        if (Array.isArray(infoA.operationalLayers) && infoA.operationalLayers.length) {
+          (data as Record<string, unknown>).mapLayers = infoA.operationalLayers.map(l => ({ id: l.id, title: l.title || l.id, visible: false }));
+          // viewPlacement aligns with extent usage
+          (data as Record<string, unknown>).viewPlacement = 'extent';
+        }
       });
       if (contentB && infoB?.extent) this.builder.updateNodeData(contentB, (data) => {
         (data as Record<string, unknown>).extent = infoB.extent;
@@ -131,6 +160,10 @@ export class SwipeConverter extends BaseConverter {
         if (sz) (data as Record<string, unknown>).viewpoint = { targetGeometry: infoB.center ?? infoB.extent, scale: sz.scale };
         const hasTime = Array.isArray(infoB.operationalLayers) && infoB.operationalLayers.some(l => (l as any).timeAnimation === true);
         (data as Record<string, unknown>).timeSlider = !!hasTime;
+        if (Array.isArray(infoB.operationalLayers) && infoB.operationalLayers.length) {
+          (data as Record<string, unknown>).mapLayers = infoB.operationalLayers.map(l => ({ id: l.id, title: l.title || l.id, visible: false }));
+          (data as Record<string, unknown>).viewPlacement = 'extent';
+        }
       });
     } else {
       // TWO_LAYERS: duplicate base webmap as two distinct resources; preserve original layer visibilities, override classic layer list
@@ -326,6 +359,10 @@ export class SwipeConverter extends BaseConverter {
         if (sz) (data as Record<string, unknown>).viewpoint = { targetGeometry: infoA.center ?? infoA.extent, scale: sz.scale };
         const hasTime = Array.isArray(infoA.operationalLayers) && infoA.operationalLayers.some(l => (l as any).timeAnimation === true);
         (data as Record<string, unknown>).timeSlider = !!hasTime;
+        if (Array.isArray(infoA.operationalLayers) && infoA.operationalLayers.length) {
+          (data as Record<string, unknown>).mapLayers = infoA.operationalLayers.map(l => ({ id: l.id, title: l.title || l.id, visible: false }));
+          (data as Record<string, unknown>).viewPlacement = 'extent';
+        }
       });
       if (contentB && infoB?.extent) builder.updateNodeData(contentB, (data) => {
         (data as Record<string, unknown>).extent = infoB.extent;
@@ -333,6 +370,10 @@ export class SwipeConverter extends BaseConverter {
         if (sz) (data as Record<string, unknown>).viewpoint = { targetGeometry: infoB.center ?? infoB.extent, scale: sz.scale };
         const hasTime = Array.isArray(infoB.operationalLayers) && infoB.operationalLayers.some(l => (l as any).timeAnimation === true);
         (data as Record<string, unknown>).timeSlider = !!hasTime;
+        if (Array.isArray(infoB.operationalLayers) && infoB.operationalLayers.length) {
+          (data as Record<string, unknown>).mapLayers = infoB.operationalLayers.map(l => ({ id: l.id, title: l.title || l.id, visible: false }));
+          (data as Record<string, unknown>).viewPlacement = 'extent';
+        }
       });
     } else {
       const baseId = String(values.webmap || '');

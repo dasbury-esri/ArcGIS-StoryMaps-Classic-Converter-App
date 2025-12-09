@@ -146,12 +146,7 @@ export class StoryMapJSONBuilder {
     popup?: unknown;
   }, variant: 'minimal' | 'default' = 'minimal'): string {
     const id = `r-${itemId}`;
-    const data: { type: typeof variant; itemId: string; itemType: 'Web Map' | 'Web Scene'; initialState?: { extent?: unknown; mapLayers?: Array<{ id: string; title: string; visible: boolean }>; overview?: { enable: boolean; openByDefault: boolean }; legend?: { enable: boolean; openByDefault: boolean }; geocoder?: { enable: boolean }; popup?: unknown } } = { type: variant, itemId, itemType };
-    if (initialState && (
-      initialState.extent || initialState.mapLayers || initialState.overview || initialState.legend || initialState.geocoder || initialState.popup
-    )) {
-      data.initialState = { ...initialState };
-    }
+    const data: { type: typeof variant; itemId: string; itemType: 'Web Map' | 'Web Scene' } = { type: variant, itemId, itemType };
     // If already created, do not overwrite; otherwise create with deterministic id
     if (!this.json.resources[id]) {
       this.json.resources[id] = { type: 'webmap', data } as unknown as StoryMapResource;
@@ -163,9 +158,8 @@ export class StoryMapJSONBuilder {
         existing.data.type = variant;
         existing.data.itemId = itemId;
         existing.data.itemType = itemType;
-        if (data.initialState) {
-          existing.data.initialState = { ...(existing.data.initialState || {}), ...data.initialState };
-        }
+        // Remove any lingering initialState to honor canonical shape
+        if (existing.data.initialState) delete existing.data.initialState;
         this.json.resources[id] = existing as unknown as StoryMapResource;
       }
     }
@@ -183,7 +177,7 @@ export class StoryMapJSONBuilder {
     return id;
   }
 
-  /** Merge initialState into an existing webmap resource */
+  /** Merge webmap overrides into resource-level data (no initialState) */
   updateWebMapInitialState(resourceId: string, initialState: {
     extent?: { xmin: number; ymin: number; xmax: number; ymax: number; spatialReference?: Record<string, unknown> };
     mapLayers?: Array<{ id: string; title: string; visible: boolean }>;
@@ -197,8 +191,10 @@ export class StoryMapJSONBuilder {
     const res = this.json.resources[resourceId] as unknown as { type: 'webmap'; data: any } | undefined;
     if (!res || res.type !== 'webmap') return;
     res.data = res.data || {};
-    const current = res.data.initialState || {};
-    res.data.initialState = { ...current, ...initialState };
+    // Merge directly into resource data and remove any legacy initialState
+    const merged = { ...res.data, ...initialState };
+    delete merged.initialState;
+    res.data = merged;
     this.json.resources[resourceId] = res as unknown as StoryMapResource;
   }
 
@@ -208,12 +204,14 @@ export class StoryMapJSONBuilder {
     center?: { x: number; y: number; spatialReference?: Record<string, unknown> };
     zoom?: number;
     viewpoint?: unknown;
-    mapLayers?: Array<{ id: string; title: string; visible: boolean }>;
+    mapLayers?: Array<Record<string, unknown>>;
   }): void {
     const res = this.json.resources[resourceId] as unknown as { type: 'webmap'; data: any } | undefined;
     if (!res || res.type !== 'webmap') return;
     res.data = res.data || {};
     res.data = { ...res.data, ...fields };
+    // Ensure canonical keys present; strip any initialState leftovers
+    if (res.data.initialState) delete res.data.initialState;
     this.json.resources[resourceId] = res as unknown as StoryMapResource;
   }
 

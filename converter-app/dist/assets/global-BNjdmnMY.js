@@ -1,1 +1,0 @@
-const c={max:"320px"},a={max:"476px"},i={max:"768px"},t={max:"1152px"},e="8px",n="12px",s="16px",x="2px",o="0.25rem",p="0.5rem";export{n as a,e as b,s as c,c as d,a as e,i as f,t as g,o as h,x as i,p as j};

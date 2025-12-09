@@ -1,0 +1,266 @@
+        "r-c4e88ca535a248bf8507f1d127fa01cd": {
+            "type": "webmap",
+            "data": {
+                "extent": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "xmin": -6107685.203986829,
+                    "ymin": -1164264.0768649755,
+                    "xmax": 15793785.428281834,
+                    "ymax": 11153715.905344471
+                },
+                "center": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "x": 4843050.112147503,
+                    "y": 4994725.914239748
+                },
+                "zoom": 2.6939834024896308,
+                "viewpoint": {
+                    "rotation": 0,
+                    "scale": 48294659.442282416,
+                    "targetGeometry": {
+                        "spatialReference": {
+                            "latestWkid": 3857,
+                            "wkid": 102100
+                        },
+                        "x": 4843050.112147503,
+                        "y": 4994725.914239748
+                    }
+                },
+                "mapLayers": [
+                    {
+                        "id": "MongolRallyPoints_1306",
+                        "title": "MongolRallyPoints - __Night__00",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_6156",
+                        "title": "MongolRallyPoints - __Night__01",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_1328",
+                        "title": "MongolRallyPoints - __Night__02",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_7389",
+                        "title": "MongolRallyPoints - __Night__03",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_9611",
+                        "title": "MongolRallyPoints - __Night__04",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_9790",
+                        "title": "MongolRallyPoints - __Night__05",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_8271",
+                        "title": "MongolRallyPoints - __Night__06",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_89",
+                        "title": "MongolRallyPoints - __Night__07",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_792",
+                        "title": "MongolRallyPoints - __Night__08",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_7514",
+                        "title": "MongolRallyPoints - __Night__11",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_3990",
+                        "title": "MongolRallyPoints - __Night__12",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_1029",
+                        "title": "MongolRallyPoints - __Night__13",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_3571",
+                        "title": "MongolRallyPoints - __Night__14",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_9129",
+                        "title": "MongolRallyPoints - __Night__15",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_2528",
+                        "title": "MongolRallyPoints - __Night__16",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_4346",
+                        "title": "MongolRallyPoints - __Night__19",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_2273",
+                        "title": "MongolRallyPoints - __Night__20",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_5033",
+                        "title": "MongolRallyPoints - __Night__21",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_7910",
+                        "title": "MongolRallyPoints - __Night__22",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_2195",
+                        "title": "MongolRallyPoints - __Night__23",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_476",
+                        "title": "MongolRallyPoints - __Night__24",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_3579",
+                        "title": "MongolRallyPoints - __Night__25",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_8397",
+                        "title": "MongolRallyPoints - __Night__26",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_1080",
+                        "title": "MongolRallyPoints - __Night__27",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_4981",
+                        "title": "MongolRallyPoints - __Night__28",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_2531",
+                        "title": "MongolRallyPoints - __Night__29",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_6109",
+                        "title": "MongolRallyPoints - __Night__30",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_1274",
+                        "title": "MongolRallyPoints - __Night__31",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_6434",
+                        "title": "MongolRallyPoints - __Night__32",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_2171",
+                        "title": "MongolRallyPoints - __Night__33",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_7132",
+                        "title": "MongolRallyPoints - __Night__34",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_2160",
+                        "title": "MongolRallyPoints - __Night__35",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_105",
+                        "title": "MongolRallyPoints - __Night__36",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_2779",
+                        "title": "MongolRallyPoints - __Night__37",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_1181",
+                        "title": "MongolRallyPoints - __Night__38",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_7358",
+                        "title": "MongolRallyPoints - __Night__39",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPoints_8669",
+                        "title": "MongolRallyPoints - __Night__40",
+                        "visible": false
+                    },
+                    {
+                        "id": "MongolRallyPointsStartFinish_593",
+                        "title": "MongolRallyPointsStartFinish - __Night__00",
+                        "visible": true
+                    },
+                    {
+                        "id": "MongolRallyPointsStartFinish_2630",
+                        "title": "MongolRallyPointsStartFinish - __Night__40",
+                        "visible": true
+                    },
+                    {
+                        "id": "MongolRally_PointsAll_3412",
+                        "title": "MongolRally_PointsAll",
+                        "visible": true
+                    },
+                    {
+                        "id": "PointsALL_832",
+                        "title": "PointsALL",
+                        "visible": false
+                    },
+                    {
+                        "id": "POIs_8463",
+                        "title": "POIs",
+                        "visible": false
+                    },
+                    {
+                        "id": "POIsSmallScale_7761",
+                        "title": "POIsSmallScale",
+                        "visible": true
+                    },
+                    {
+                        "id": "Mongol_Rally_Route_4945_9693",
+                        "title": "Mongol Rally Route - Copy",
+                        "visible": true
+                    },
+                    {
+                        "id": "Mongol_Rally_Route_4945",
+                        "title": "Mongol Rally Route: Casing",
+                        "visible": true
+                    }
+                ],
+                "itemId": "c4e88ca535a248bf8507f1d127fa01cd",
+                "itemType": "Web Map",
+                "type": "default"
+            }
+        },

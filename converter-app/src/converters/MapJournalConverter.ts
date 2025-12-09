@@ -15,6 +15,7 @@ import path from 'node:path';
  */
 import { BaseConverter } from './BaseConverter';
 import { determineScaleZoomLevel } from '../util/scale';
+import { fetchJsonWithCache } from '../utils/fetchCache';
 import type { ClassicValues, ClassicSection } from '../types/classic';
 import type { ConverterResult, StoryMapJSON } from '../types/core';
 import { createThemeWithDecisions } from '../theme/themeMapper';
@@ -234,6 +235,75 @@ export class MapJournalConverter extends BaseConverter {
         };
         // Create webmap resource as 'default' type (experiment: skip later enrichment step)
         const wId = this.builder.addWebMapResource(m.webmap.id, wmItemType, initialState, 'default');
+        // Promote key initial state fields to resource-level data for canonical webmap resource
+        const center = normalizedExtent ? {
+          x: (normalizedExtent.xmin + normalizedExtent.xmax) / 2,
+          y: (normalizedExtent.ymin + normalizedExtent.ymax) / 2,
+          spatialReference: normalizedExtent.spatialReference
+        } : undefined;
+        // Prefer full operationalLayers from fetched webmap JSON to preserve original attributes
+        let fullLayers: Array<Record<string, unknown>> | undefined;
+        try {
+          const rootValues: ClassicValues | undefined = (this.classicJson?.values as ClassicValues | undefined);
+          const baseWebmapId: string | undefined = rootValues?.webmap;
+          const webmapJson = (this.classicJson as unknown as { webmapJson?: { operationalLayers?: Array<Record<string, unknown>> } }).webmapJson;
+          type OpLayer = { id: string; title?: string; visibility?: boolean };
+          const ops: Array<OpLayer> = (webmapJson && Array.isArray(webmapJson.operationalLayers)) ? webmapJson.operationalLayers as Array<OpLayer> : [];
+          if (ops.length && (baseWebmapId === m.webmap.id || baseWebmapId == null)) {
+            fullLayers = ops.map((layer: OpLayer) => ({ id: layer.id, title: layer.title || layer.id, visible: !!layer.visibility }));
+          } else {
+            // Fallback: in Node (smoke tests), perform a blocking fetch to ensure parity before returning
+            try {
+              const base = `https://www.arcgis.com/sharing/rest/content/items/${m.webmap.id}/data?f=json`;
+              const url = this.token ? `${base}&token=${encodeURIComponent(this.token)}` : base;
+              const isBrowser = typeof window !== 'undefined';
+              if (!isBrowser) {
+                try {
+                  const out = execFileSync('curl', ['-sL', url], { encoding: 'utf-8' });
+                  const wm: { operationalLayers?: Array<Record<string, unknown>> } = JSON.parse(out);
+                  const ops2: Array<Record<string, unknown>> = Array.isArray(wm?.operationalLayers) ? wm!.operationalLayers! : [];
+                  if (ops2.length) fullLayers = ops2.map((layer) => ({ ...layer }));
+                } catch { /* ignore curl failures */ }
+              }
+              // Also schedule an async cached fetch for browser runtime enrichment
+              fetchJsonWithCache<{ operationalLayers?: Array<Record<string, unknown>> }>(url, undefined, 10 * 60 * 1000)
+                .then(wm => {
+                  type OpLayer2 = { id: string; title?: string; visibility?: boolean };
+                  const ops2: Array<OpLayer2> = Array.isArray(wm?.operationalLayers) ? wm!.operationalLayers as Array<OpLayer2> : [];
+                  if (ops2.length) {
+                    // Update resource with simplified layers
+                    this.builder.updateWebMapData(wId, { mapLayers: ops2.map((layer) => ({ id: layer.id, title: layer.title || layer.id, visible: !!layer.visibility })) });
+                    // Also update node-level layers merging overrides when overrides exist
+                    const overrideVis = new Map<string, boolean>();
+                    if (m.webmap && Array.isArray(m.webmap.layers)) {
+                      for (const l of m.webmap.layers as { id: string; visibility: boolean }[]) overrideVis.set(l.id, !!l.visibility);
+                    }
+                    if (mediaNodeId) {
+                      if (overrideVis.size > 0) {
+                        this.builder.updateNodeData(mediaNodeId, (data) => {
+                          (data as Record<string, unknown>).mapLayers = ops2.map((layer: OpLayer2) => {
+                            const id = String(layer.id || '');
+                            const visible = overrideVis.has(id) ? overrideVis.get(id)! : !!layer.visibility;
+                            return { id, title: layer.title || id, visible } as Record<string, unknown>;
+                          });
+                        });
+                      }
+                    }
+                  }
+                })
+                .catch(() => {/* ignore */});
+            } catch { /* ignore fetch/json errors */ }
+          }
+        } catch { /* ignore extraction errors */ }
+        this.builder.updateWebMapData(wId, {
+          extent: normalizedExtent,
+          center,
+          mapLayers: fullLayers ?? (Array.isArray(m.webmap.layers)
+            ? (m.webmap.layers as ClassicLayer[]).map(l => ({ id: l.id, title: l.title || l.id, visible: !!l.visibility }))
+            : undefined),
+          viewpoint,
+          zoom
+        });
         // Attach scale to top-level resource data (parity with legacy)
         // Removed attaching top-level scale to resource (rely on viewpoint.scale)
         mediaNodeId = this.builder.createWebMapNode(
@@ -245,8 +315,21 @@ export class MapJournalConverter extends BaseConverter {
         if (mediaNodeId) {
           this.builder.updateNodeData(mediaNodeId, (data) => {
             if (normalizedExtent) data.extent = normalizedExtent;
-            if (m.webmap && Array.isArray(m.webmap.layers)) {
-              (data as Record<string, unknown>).mapLayers = (m.webmap.layers as ClassicLayer[]).map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }));
+            // Merge overrides onto full operationalLayers when available, otherwise fall back to override subset
+            if (Array.isArray(fullLayers) && fullLayers.length) {
+              const overrideVis = new Map<string, boolean>();
+              if (m.webmap && Array.isArray(m.webmap.layers)) {
+                for (const l of m.webmap.layers as ClassicLayer[]) overrideVis.set(l.id, !!l.visibility);
+              }
+              if (overrideVis.size > 0) {
+                (data as Record<string, unknown>).mapLayers = fullLayers.map((layer: { id: string; title?: string; visible?: boolean }) => {
+                  const id = String(layer.id || '');
+                  const visible = overrideVis.has(id) ? overrideVis.get(id)! : !!layer.visible;
+                  return { id, title: layer.title || id, visible } as Record<string, unknown>;
+                });
+              }
+            } else if (m.webmap && Array.isArray(m.webmap.layers)) {
+              (data as Record<string, unknown>).mapLayers = (m.webmap.layers as ClassicLayer[]).map(l => ({ id: l.id, title: l.title || l.id, visible: !!l.visibility }));
             }
             if (viewpoint) (data as Record<string, unknown>).viewpoint = viewpoint;
             if (typeof zoom === 'number') (data as Record<string, unknown>).zoom = zoom;
@@ -320,6 +403,78 @@ export class MapJournalConverter extends BaseConverter {
               };
               // Action replace-media webmap also created as 'default'
               const wmRes = this.builder.addWebMapResource(media.webmap.id, wmItemType2, initialState2, 'default');
+              // Promote action media webmap fields to resource-level data as well
+              const center2 = normalizedExtent2 ? {
+                x: (normalizedExtent2.xmin + normalizedExtent2.xmax) / 2,
+                y: (normalizedExtent2.ymin + normalizedExtent2.ymax) / 2,
+                spatialReference: normalizedExtent2.spatialReference
+              } : undefined;
+              // Attempt to load full operationalLayers for this action webmap id
+              let fullLayers2: Array<Record<string, unknown>> | undefined;
+              try {
+                const webmapJson2 = (this.classicJson as unknown as { webmapJson?: { operationalLayers?: Array<Record<string, unknown>> } }).webmapJson;
+                const opsA: Array<Record<string, unknown>> = (webmapJson2 && Array.isArray(webmapJson2.operationalLayers)) ? webmapJson2.operationalLayers : [];
+                const baseValues: ClassicValues | undefined = (this.classicJson?.values as ClassicValues | undefined);
+                const baseId: string | undefined = baseValues?.webmap;
+                if (opsA.length && (baseId === media.webmap.id || baseId == null)) {
+                  fullLayers2 = opsA.map((layer: Record<string, unknown>) => ({ ...layer }));
+                } else {
+                  const base = `https://www.arcgis.com/sharing/rest/content/items/${media.webmap.id}/data?f=json`;
+                  const url = this.token ? `${base}&token=${encodeURIComponent(this.token)}` : base;
+                  const isBrowser = typeof window !== 'undefined';
+                  if (!isBrowser) {
+                    try {
+                      const out = execFileSync('curl', ['-sL', url], { encoding: 'utf-8' });
+                      const wm: { operationalLayers?: Array<Record<string, unknown>> } = JSON.parse(out);
+                      const opsB: Array<Record<string, unknown>> = Array.isArray(wm?.operationalLayers) ? wm!.operationalLayers! : [];
+                      if (opsB.length) fullLayers2 = opsB.map((layer: Record<string, unknown>) => ({ ...layer }));
+                    } catch { /* ignore */ }
+                  }
+                  fetchJsonWithCache<{ operationalLayers?: Array<Record<string, unknown>> }>(url, undefined, 10 * 60 * 1000)
+                    .then(wm => {
+                      const opsB: Array<Record<string, unknown>> = Array.isArray(wm?.operationalLayers) ? wm!.operationalLayers! : [];
+                      if (opsB.length) fullLayers2 = opsB.map((layer: Record<string, unknown>) => ({ ...layer }));
+                    })
+                    .catch(() => {/* ignore */});
+                }
+              } catch { /* ignore action webmap layer enrichment errors */ }
+              this.builder.updateWebMapData(wmRes, {
+                extent: normalizedExtent2,
+                center: center2,
+                mapLayers: fullLayers2 ?? (Array.isArray(media.webmap.layers)
+                  ? media.webmap.layers.map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }))
+                  : undefined),
+                viewpoint: viewpoint2,
+                zoom: zoom2
+              });
+              // Async enrichment: fetch and cache full operationalLayers for this action webmap id
+              try {
+                const base = `https://www.arcgis.com/sharing/rest/content/items/${media.webmap.id}/data?f=json`;
+                const url = this.token ? `${base}&token=${encodeURIComponent(this.token)}` : base;
+                  fetchJsonWithCache<{ operationalLayers?: Array<Record<string, unknown>> }>(url, undefined, 10 * 60 * 1000)
+                    .then(wm => {
+                      const opsB: Array<Record<string, unknown>> = Array.isArray(wm?.operationalLayers) ? wm!.operationalLayers! : [];
+                      if (opsB.length) {
+                        // Update resource
+                        this.builder.updateWebMapData(wmRes, { mapLayers: opsB.map((layer) => ({ ...layer })) });
+                        // Update node-level mapLayers merging overrides, default false
+                        const overrideVis = new Map<string, boolean>();
+                        if (media.webmap && Array.isArray(media.webmap.layers)) {
+                          for (const l of media.webmap.layers as { id: string; visibility: boolean }[]) overrideVis.set(l.id, !!l.visibility);
+                        }
+                        if (actMediaNode) {
+                          this.builder.updateNodeData(actMediaNode, (data) => {
+                            (data as Record<string, unknown>).mapLayers = opsB.map((layer: Record<string, unknown>) => {
+                              const id = String(layer.id || '');
+                              const visible = overrideVis.has(id) ? overrideVis.get(id)! : false;
+                              return { ...layer, visible } as Record<string, unknown>;
+                            });
+                          });
+                        }
+                      }
+                    })
+                  .catch(() => {/* ignore */});
+              } catch { /* ignore */ }
               // Attach scale to top-level resource data (parity with legacy)
               // Removed attaching scale to action webmap resource
               actMediaNode = this.builder.createWebMapNode(
@@ -332,7 +487,17 @@ export class MapJournalConverter extends BaseConverter {
                 const nodeData: Record<string, unknown> | undefined = wmNode && 'data' in wmNode ? (wmNode.data as Record<string, unknown>) : undefined;
                 if (wmNode && nodeData) {
                   if (Array.isArray(media.webmap.layers)) {
-                    nodeData.mapLayers = media.webmap.layers.map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }));
+                    const overrideVis = new Map<string, boolean>();
+                    for (const l of media.webmap.layers) overrideVis.set(l.id, !!l.visibility);
+                    if (Array.isArray(fullLayers2) && fullLayers2.length) {
+                      nodeData.mapLayers = fullLayers2.map((layer: Record<string, unknown>) => {
+                        const id = String(layer.id || '');
+                        const visible = overrideVis.has(id) ? overrideVis.get(id)! : false;
+                        return { ...layer, visible } as Record<string, unknown>;
+                      });
+                    } else {
+                      nodeData.mapLayers = media.webmap.layers.map(l => ({ id: l.id, title: l.title || l.id, visible: l.visibility }));
+                    }
                   }
                   if (normalizedExtent2) {
                     nodeData.extent = normalizedExtent2 as unknown as Record<string, unknown>;

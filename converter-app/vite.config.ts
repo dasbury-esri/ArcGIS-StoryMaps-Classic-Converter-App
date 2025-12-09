@@ -9,6 +9,25 @@ export default defineConfig({
     port: 5173,
     open: false,
   },
+  build: {
+    rollupOptions: {
+      // Do not bundle ArcGIS JS API (@arcgis/core); keep it external.
+      external: [
+        '@arcgis/core',
+        /^@arcgis\/core\//,
+      ],
+      output: {
+        // Keep vendor libs grouped; avoid creating thousands of small chunks
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('@arcgis/core')) return 'arcgis-core';
+            return 'vendor';
+          }
+        }
+      }
+    },
+    chunkSizeWarningLimit: 2000
+  },
   resolve: {
     alias: {
       // Prevent client bundle from importing Node APIs; map to browser shim

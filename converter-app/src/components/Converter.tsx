@@ -3,11 +3,16 @@
  * Minimal form interface for conversion
  */
 import { useState, useEffect, useRef, useCallback } from "react";
+import { clearFetchCache, getFetchCacheSize, onFetchCacheChange, offFetchCacheChange } from "../utils/fetchCache";
+import type { StoryMapJSON } from "../types/core";
 import { validateWebMaps, type EndpointCheck } from "../services/WebMapValidator";
 import { detectClassicTemplate } from "../util/detectTemplate";
 import { useAuth } from "../auth/useAuth";
 import { MapJournalConverter } from "../converters/MapJournalConverter";
 import { SwipeConverter } from "../converters/SwipeConverter";
+import { MediaTransferService } from "../media/MediaTransferService";
+import { ResourceMapper } from "../media/ResourceMapper";
+import { collectImageUrls, transferImage } from "../api/image-transfer";
 import {
   getItemData,
   getItemDetails,
@@ -37,9 +42,19 @@ export default function Converter() {
   const [classicItemId, setClassicItemId] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
+  const [toast, setToast] = useState<string>("");
   const [convertedUrl, setConvertedUrl] = useState("");
   // buttonLabel retained for future extended messaging but currently unused
   const [buttonLabel, setButtonLabel] = useState("Convert");
+  // Track cache presence reactively via fetchCache event emitter
+  const [cacheSize, setCacheSize] = useState<number>(getFetchCacheSize());
+  useEffect(() => {
+    const listener = (size: number) => setCacheSize(size);
+    onFetchCacheChange(listener);
+    // Set initial in case of stale state
+    setCacheSize(getFetchCacheSize());
+    return () => offFetchCacheChange(listener);
+  }, []);
   // Cancellation helper + handler declared early to avoid TDZ in effects
   const checkCancelled = () => {
     if (cancelRequestedRef.current) {
@@ -253,6 +268,10 @@ export default function Converter() {
       setButtonLabel("Convert");
       cancelRequestedRef.current = false;
       setCancelRequested(false);
+      // Clear previous webmap checks UI state so it doesn't persist into new run
+      setWebmapWarnings([]);
+      setWebmapChecksFinalized(false);
+      setExpandedWarnings({});
       if (customCssInfo?.url) URL.revokeObjectURL(customCssInfo.url);
       setCustomCssInfo(null);
 
@@ -338,12 +357,16 @@ export default function Converter() {
         setMessage("Converting theme...");
 
         // Gather webmap ids for validation (from classic JSON and embedded swipes)
-        const webmapIds: string[] = [];
-        if (classicData.values?.webmap) webmapIds.push(classicData.values.webmap);
+        const webmapIdsUnfiltered: string[] = [];
+        if (classicData.values?.webmap) webmapIdsUnfiltered.push(classicData.values.webmap);
+        // Initialize progress UI for webmap fetching/validation
+        const webmapLabel = runtimeTemplate || detectedTemplate || "webmap";
+        setStatus("fetching");
+        setButtonLabel(`Fetching ${webmapLabel}...`);
         try {
           const sections = (classicData.values?.story?.sections || classicData.sections || []) as Array<{ media?: { webmap?: { id?: string }, webpage?: { url?: string } }, contentActions?: Array<{ id: string; type: string; media?: { webpage?: { url?: string } } }> }>;
           for (const s of sections) {
-            if (s?.media?.webmap?.id) webmapIds.push(s.media!.webmap!.id as string);
+            if (s?.media?.webmap?.id) webmapIdsUnfiltered.push(s.media!.webmap!.id as string);
             const url = s?.media?.webpage?.url || '';
             // Parse appid from embedded classic swipe
             const m = /[?&#](?:appid|appId)=([a-f0-9]{32})/i.exec(String(url));
@@ -356,7 +379,7 @@ export default function Converter() {
                 if (resp.ok) {
                   const swipeJson = await resp.json();
                   const wm = Array.isArray(swipeJson?.values?.webmaps) ? swipeJson.values.webmaps : [];
-                  for (const wid of wm) if (typeof wid === 'string') webmapIds.push(wid);
+                  for (const wid of wm) if (typeof wid === 'string') webmapIdsUnfiltered.push(wid);
                   // Cache embedded swipe JSON for converter to build inline swipe in browser
                   try {
                     const key = String(appId);
@@ -385,7 +408,7 @@ export default function Converter() {
                     if (resp.ok) {
                       const swipeJson = await resp.json();
                       const wm = Array.isArray(swipeJson?.values?.webmaps) ? swipeJson.values.webmaps : [];
-                      for (const wid of wm) if (typeof wid === 'string') webmapIds.push(wid);
+                      for (const wid of wm) if (typeof wid === 'string') webmapIdsUnfiltered.push(wid);
                       try {
                         const key = String(aAppId);
                         const container = classicData as unknown as { __embeddedSwipes?: Record<string, unknown> };
@@ -404,21 +427,35 @@ export default function Converter() {
           // ignore section parse errors
         }
 
-        // Validate webmaps client-side first (may be limited by CORS)
+        // Dedupe webmap IDs while preserving first-seen order
+        const seen = new Set<string>();
+        const webmapIds: string[] = [];
+        for (const wid of webmapIdsUnfiltered) {
+          const id = String(wid);
+          if (!seen.has(id)) { seen.add(id); webmapIds.push(id); }
+        }
+
+        // Validate webmaps client-side with per-item progress updates
         let localWarnings: typeof webmapWarnings = [];
         try {
-          // Resolve org base synchronously for this run
           const baseForRun = await ensureOrgBaseResolved();
-          const { warnings } = await validateWebMaps(webmapIds, token);
-          localWarnings = warnings.map(w => ({ itemId: w.itemId, level: w.level as string, message: w.message, details: (w && typeof w === 'object' && 'details' in w ? (w as unknown as { details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } }).details : undefined) }));
-          // Apply formatting for version/protocol warnings using cached org base
-          localWarnings = normalizeWebmapWarnings(localWarnings, baseForRun);
-          setWebmapWarnings(localWarnings);
-          // Endpoint diagnostics are not rendered in UI
-          if (localWarnings.length > 0) {
-            // If we already have warnings, no need for backend diagnostics phase gating
-            setWebmapChecksFinalized(true);
+          if (webmapIds.length > 0) {
+            for (let i = 0; i < webmapIds.length; i++) {
+              // Respect user cancellation promptly
+              if (cancelRequestedRef.current) throw new Error('Conversion cancelled by user intervention');
+              const wid = webmapIds[i];
+              setMessage(`Fetching webmap ${wid} ${i + 1} of ${webmapIds.length}...`);
+              const { warnings } = await validateWebMaps([wid], token);
+              const formatted = warnings.map(w => ({ itemId: w.itemId, level: w.level as string, message: w.message, details: (w && typeof w === 'object' && 'details' in w ? (w as unknown as { details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } }).details : undefined) }));
+              const normalized = normalizeWebmapWarnings(formatted, baseForRun);
+              if (normalized.length) {
+                localWarnings = [...localWarnings, ...normalized];
+                setWebmapWarnings([...localWarnings]);
+              }
+            }
           }
+          // Mark checks finalized if any warnings were found or if we processed all items
+          setWebmapChecksFinalized(true);
         } catch {
           // ignore local validation errors
         }
@@ -464,7 +501,7 @@ export default function Converter() {
         setButtonLabel(`Converting ${templateLabel}: ${coverTitle}...`);
         setMessage(`Converting ${templateLabel} story to new format...`);
 
-        let newStorymapJson: unknown;
+        let newStorymapJson: StoryMapJSON;
         const progress = (e: { stage: 'fetch' | 'detect' | 'draft' | 'convert' | 'media' | 'finalize' | 'done' | 'error'; message: string; current?: number; total?: number }) => {
           const alreadyHasCount = /\(\s*\d+\s*\/\s*\d+\s*\)\s*$/.test(e.message);
           const msg = (typeof e.total === 'number' && typeof e.current === 'number' && !alreadyHasCount)
@@ -487,8 +524,8 @@ export default function Converter() {
             progress,
             token
           });
-          const result = conv.convert();
-          newStorymapJson = result.storymapJson;
+            const result = conv.convert();
+            newStorymapJson = result.storymapJson;
         } else if (tmpl === 'swipe') {
           const conv = new SwipeConverter({
             classicJson: classicData,
@@ -496,12 +533,36 @@ export default function Converter() {
             progress,
             token
           });
-          const result = conv.convert();
-          newStorymapJson = result.storymapJson;
+            const result = conv.convert();
+            newStorymapJson = result.storymapJson;
         } else {
           throw new Error(`Unsupported template for new converters: ${detectedTemplate ?? 'unknown'}`);
         }
         checkCancelled();
+
+        // Transfer images to target story resources and rewrite resource entries
+        try {
+          setStatus('transferring');
+          setMessage('Transferring images to story resources...');
+          const imageUrls = collectImageUrls(newStorymapJson);
+          if (imageUrls.length) {
+            const uploader = async (url: string, storyId: string, username: string, token: string) => {
+              const r = await transferImage(url, storyId, username, token);
+              return { originalUrl: r.originalUrl, resourceName: r.resourceName, transferred: r.isTransferred };
+            };
+            const mediaMapping = await MediaTransferService.transferBatch({
+              urls: imageUrls,
+              storyId: targetStoryId,
+              username,
+              token,
+              progress,
+              uploader
+            });
+            newStorymapJson = ResourceMapper.apply(newStorymapJson, mediaMapping);
+          }
+        } catch (err) {
+          console.warn('[Converter] Image transfer step failed or skipped:', err);
+        }
 
         // Extract custom CSS (if any) from converter-metadata decisions
         try {
@@ -720,8 +781,8 @@ export default function Converter() {
   return (
     <div className="converter-container">
       
-      <h2>Classic StoryMap Converter</h2>
-      <p>Convert Classic StoryMaps to ArcGIS StoryMaps</p>
+      <h2>Classic Story Map Converter</h2>
+      <p>Convert Classic Esri Story Maps to <a href="https://storymaps.arcgis.com" target="_blank" rel="noopener noreferrer">ArcGIS StoryMaps</a></p>
       <div className="converter-instructions">
         <h3>Instructions:</h3>
         <ol>
@@ -740,6 +801,16 @@ export default function Converter() {
           placeholder="e.g., 858c4126f0604d1a86dea06ffbdc23a3"
           className="converter-input"
         />
+      </div>
+      <div className="converter-controls-row">
+        <button
+          className={`converter-btn ${cacheSize > 0 ? 'secondary' : 'disabled'}`}
+          onClick={() => { if (cacheSize > 0) { clearFetchCache(); setToast('Cache cleared'); setTimeout(() => setToast(''), 2000); } }}
+          title={cacheSize > 0 ? 'Clear in-memory fetch cache' : 'Cache is empty'}
+          disabled={cacheSize === 0}
+        >
+          Clear cached webmap/story data
+        </button>
       </div>
       {status !== "success" ? (
         <button
@@ -779,6 +850,9 @@ export default function Converter() {
             {status === "error" ? "Error:" : "Status:"}
           </strong> {message}
         </div>
+      )}
+      {!!toast && (
+        <div className="converter-toast" role="status" aria-live="polite">{toast}</div>
       )}
       {customCssInfo && (
         <div className="converter-warning">
