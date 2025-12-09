@@ -1,24 +1,8 @@
 # Classic StoryMap to ArcGIS StoryMaps Converter
 
-Convert Classic ArcGIS StoryMaps (MapJournal, MapSeries, Cascade) to the new ArcGIS StoryMaps format.
+Convert Classic Esri Story Maps (Map Tour, Map Journal, Map Series, Cascade, Shortlist, Crowdsource, Swipe, Basic) to the new ArcGIS StoryMaps format.
 
 ## How to Use
-
-**API-Based Conversion:**
-Edit config in `converter_v2.py` and run:
-
-```powershell
-python converter_v2.py
-```
-
-**JSON-to-JSON Conversion:**
-Import and use `convert_classic_to_json` and `save_json_to_file` in Python.
-
-**Testing:**
-
-```powershell
-python test_converter.py
-```
 
 **Web App:**
 
@@ -44,10 +28,7 @@ To further reduce secret scanning noise, consider adding a `.gitleaks.toml` allo
 
 ## Requirements
 
-- Python 3.11
-- arcgis >= 2.1.0.2 (for API-based conversion)
 - beautifulsoup4
-- python-dotenv (optional)
 
 ## License
 
