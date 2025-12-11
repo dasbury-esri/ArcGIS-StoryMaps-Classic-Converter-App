@@ -36,6 +36,8 @@ export interface ConverterFactoryOptions {
   enrichScenes?: boolean; // toggle for web scene enrichment
   enrichMaps?: boolean; // toggle for web map enrichment
   isCancelled?: () => boolean; // optional cancellation callback
+  /** Optional AGO item id for the classic app. Enables converters to fetch item info (title fallback, etc.). */
+  classicItemId?: string;
 }
 
 export class ConverterFactory {
@@ -71,10 +73,12 @@ export class ConverterFactory {
         return result;
       }
       case 'swipe': {
-        const result = SwipeConverter.convert({
+        const result = await SwipeConverter.convert({
           classicJson: opts.classicJson,
           themeId: opts.themeId,
-          progress: opts.progress as ProgressCallback
+          progress: opts.progress as ProgressCallback,
+          // Pass through classicItemId so SwipeConverter can prefer item info title fallback
+          classicItemId: opts.classicItemId
         });
         // Enrich web maps if present (swipe commonly references Web Maps)
         const hasWebMapResource = Object.values(result.storymapJson.resources).some(r => r.type === 'webmap');
@@ -299,6 +303,13 @@ export class ConverterFactory {
             mapLayers: operationalLayers,
             raw: { ...prevRaw, summary: { baseMapLayerCount: baseMapLayers.length, operationalLayerCount: operationalLayers.length } }
           } as any;
+          // Instrumentation: log resource placement
+          try {
+            const rdata: any = json.resources[map.id].data || {};
+            const zoom = (rdata.zoom !== undefined) ? rdata.zoom : undefined;
+            // eslint-disable-next-line no-console
+            console.info('[ConverterFactory.enrichWebMaps] resource', map.id, 'itemId', map.itemId, 'extent', rdata.extent, 'viewpoint', rdata.viewpoint, 'center', rdata.center, 'zoom', zoom);
+          } catch {}
         }
         checkCancelled();
         progress({ stage: 'convert', message: `Enriched Web Map ${map.itemId}` });
@@ -307,6 +318,21 @@ export class ConverterFactory {
         progress({ stage: 'convert', message: `Web Map enrichment failed for ${map.itemId}: ${msg}` });
       }
     }));
+    // Propagate resource placement to webmap nodes (if missing) and log
+    try {
+      for (const [nid, node] of Object.entries(json.nodes)) {
+        if (node.type !== 'webmap') continue;
+        const nd: any = node.data || {};
+        const resId: string | undefined = nd.map;
+        if (resId && json.resources[resId]?.type === 'webmap') {
+          const rdata: any = json.resources[resId].data || {};
+          if (rdata.extent && !nd.extent) nd.extent = rdata.extent;
+          if (rdata.viewpoint && !nd.viewpoint) nd.viewpoint = rdata.viewpoint;
+          // eslint-disable-next-line no-console
+          console.info('[ConverterFactory.enrichWebMaps] node', nid, 'map', resId, 'extent', nd.extent, 'viewpoint', nd.viewpoint);
+        }
+      }
+    } catch {}
     // Persist version warnings into converter-metadata resource so UI can surface them.
     if (versionWarnings.length || protocolWarnings.length) {
       const metaEntry = Object.entries(json.resources).find(([, r]) => (r as { type?: string })?.type === 'converter-metadata');
@@ -317,7 +343,7 @@ export class ConverterFactory {
         if (versionWarnings.length) {
           classicMetadata.webmapVersionWarnings = versionWarnings.map(vw => ({
             itemId: vw.itemId,
-            message: `Unsupported web map version: You must update the web map to the latest version. You can do this by opening the map in <a href="https://<org_url>.arcgis.com/home/webmap/viewer.html?webmap=${vw.itemId}">Map Viewer Classic</a> and save it. No other changes are necessary.`,
+            message: `Unsupported web map version: You must update the web map to the latest version. Open in <a href="https://www.arcgis.com/home/webmap/viewer.html?webmap=${vw.itemId}" target="_blank" rel="noopener">Map Viewer Classic</a> and save it.`,
             version: vw.version,
             type: 'version'
           }));
@@ -325,7 +351,7 @@ export class ConverterFactory {
         if (protocolWarnings.length) {
           classicMetadata.webmapProtocolWarnings = protocolWarnings.map(pw => ({
             itemId: pw.itemId,
-            message: `Unsupported protocol: You must update the web map to use https service urls. You can do this by opening the web map item's <a href="https://<org_url>.arcgis.com/home/item.html?id=${pw.itemId}#settings">settings page</a> scrolling down to the Web map section and clicking the "Update layers to HTTPS" button`,
+            message: `Unsupported protocol: Update layer URLs to HTTPS. Open the web map <a href="https://www.arcgis.com/home/item.html?id=${pw.itemId}#settings" target="_blank" rel="noopener">settings page</a> and click "Update layers to HTTPS" in the Web map section.`,
             httpLayerCount: pw.httpLayerCount,
             type: 'protocol'
           }));

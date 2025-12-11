@@ -8,7 +8,7 @@ function fetchClassic(itemId: string, token?: string): any {
   return JSON.parse(out);
 }
 
-function run() {
+export async function run() {
   const itemId = process.argv[2];
   const token = process.env.ARCGIS_TOKEN || process.argv[3];
   if (!itemId) {
@@ -23,8 +23,11 @@ function run() {
       progress: () => {},
       token
     });
-    // Print wrapper object to stdout (storymapJson + mediaUrls) for API callers
-    process.stdout.write(JSON.stringify({ storymapJson, mediaUrls }));
+    // Emit only the StoryMap JSON to stdout; write media URLs to stderr for diagnostics
+    process.stdout.write(JSON.stringify(storymapJson, null, 2));
+    if (Array.isArray(mediaUrls) && mediaUrls.length) {
+      console.error(JSON.stringify({ mediaUrls }));
+    }
   } catch (err) {
     const msg = (err && typeof err === 'object' && 'message' in err) ? (err as Error).message : String(err);
     console.error(JSON.stringify({ error: 'Conversion failed', message: msg }));

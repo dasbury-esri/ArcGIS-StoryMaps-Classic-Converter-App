@@ -1,0 +1,219 @@
+{
+    "root": "n-lDx1Mc",
+    "nodes": {
+        "n-m7DV6x": {
+            "type": "storycover",
+            "data": {
+                "type": "minimal",
+                "title": "",
+                "summary": "",
+                "byline": "David Asbury",
+                "titlePanelVerticalPosition": "top",
+                "titlePanelHorizontalPosition": "start",
+                "titlePanelStyle": "gradient"
+            }
+        },
+        "n-TkGB6U": {
+            "type": "navigation",
+            "data": {
+                "links": []
+            },
+            "config": {
+                "isHidden": true
+            }
+        },
+        "n-bHNfdt": {
+            "type": "text",
+            "data": {
+                "type": "paragraph",
+                "text": "On the right is a world map drawn in the Mercator projection and published in 1812 by John Pinkerton. \nThe map was engraved on two sheets and colored by hand. It was part of a &quot;modern atlas, from the latest and best authorities, exhibiting the various divisions of the world, with its chief empires, kingdoms and states&quot;. Zoom in to view detail including explorers&apos; routes. Lack of detail in Africa and Australia reflects the poor state of knowledge by Europeans of the time.\nThe modern map on the left was jointly produced by National Geographic and Esri; this version exists only in digital form.\nThe 1812 map is from the collection of David Rumsey."
+            }
+        },
+        "n-zATaWJ": {
+            "type": "webmap",
+            "data": {
+                "map": "r-8ea34ba9a4f843e08a468595d8d91188",
+                "caption": "The World In 1812 and 2013",
+                "timeSlider": false,
+                "extent": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "xmin": -14595168.951284328,
+                    "ymin": -5096798.46412698,
+                    "xmax": 14595168.951284328,
+                    "ymax": 11320637.789126338
+                },
+                "viewpoint": {
+                    "rotation": 0,
+                    "scale": 64367249.65549374,
+                    "targetGeometry": {
+                        "spatialReference": {
+                            "latestWkid": 3857,
+                            "wkid": 102100
+                        },
+                        "x": 0,
+                        "y": 3111919.6624996797
+                    }
+                }
+            }
+        },
+        "n-GZxV2Q": {
+            "type": "webmap",
+            "data": {
+                "map": "r-ef5920f160bd4239bdeb1348de3a3156",
+                "caption": "World Globe 1812",
+                "timeSlider": false
+            }
+        },
+        "n-istC85": {
+            "type": "swipe",
+            "data": {
+                "contents": {
+                    "0": "n-zATaWJ",
+                    "1": "n-GZxV2Q"
+                },
+                "viewPlacement": "extent",
+                "caption": "Left: The World In 1812 and 2013 — Right: World Globe 1812"
+            },
+            "config": {
+                "size": "full"
+            }
+        },
+        "n-QqynN6": {
+            "type": "text",
+            "data": {
+                "text": "",
+                "type": "h4"
+            }
+        },
+        "n-qCanAo": {
+            "type": "text",
+            "data": {
+                "text": "",
+                "type": "paragraph"
+            }
+        },
+        "n-XxhDcM": {
+            "type": "attribution",
+            "data": {
+                "content": "",
+                "attribution": ""
+            }
+        },
+        "n-2l4Cgc": {
+            "type": "credits",
+            "children": [
+                "n-QqynN6",
+                "n-qCanAo",
+                "n-XxhDcM"
+            ]
+        },
+        "n-lDx1Mc": {
+            "type": "story",
+            "data": {
+                "storyTheme": "r-I5zlTO"
+            },
+            "config": {
+                "coverDate": "first-published"
+            },
+            "children": [
+                "n-m7DV6x",
+                "n-TkGB6U",
+                "n-bHNfdt",
+                "n-istC85",
+                "n-2l4Cgc"
+            ]
+        }
+    },
+    "resources": {
+        "r-8ea34ba9a4f843e08a468595d8d91188": {
+            "type": "webmap",
+            "data": {
+                "extent": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "xmin": -6795530.729096852,
+                    "ymin": 2710148.3342441535,
+                    "xmax": 2285132.1289313864,
+                    "ymax": 7817358.949844633
+                },
+                "center": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "x": -2255199.300082733,
+                    "y": 5263753.642044393
+                },
+                "zoom": 4.917013692084439,
+                "viewpoint": {
+                    "rotation": 0,
+                    "scale": 20023656.29240075,
+                    "targetGeometry": {
+                        "spatialReference": {
+                            "latestWkid": 3857,
+                            "wkid": 102100
+                        },
+                        "x": -2255199.300082733,
+                        "y": 5263753.642044393
+                    }
+                },
+                "mapLayers": [],
+                "itemId": "8ea34ba9a4f843e08a468595d8d91188",
+                "itemType": "Web Map",
+                "type": "default"
+            }
+        },
+        "r-ef5920f160bd4239bdeb1348de3a3156": {
+            "type": "webmap",
+            "data": {
+                "extent": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "xmin": -14595168.951284328,
+                    "ymin": -5096798.46412698,
+                    "xmax": 14595168.951284328,
+                    "ymax": 11320637.789126338
+                },
+                "center": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "x": 0,
+                    "y": 3111919.6624996797
+                },
+                "zoom": 3.2593376295232908,
+                "viewpoint": {
+                    "rotation": 0,
+                    "scale": 64367249.65549374,
+                    "targetGeometry": {
+                        "spatialReference": {
+                            "latestWkid": 3857,
+                            "wkid": 102100
+                        },
+                        "x": 0,
+                        "y": 3111919.6624996797
+                    }
+                },
+                "mapLayers": [],
+                "itemId": "ef5920f160bd4239bdeb1348de3a3156",
+                "itemType": "Web Map",
+                "type": "default"
+            }
+        },
+        "r-I5zlTO": {
+            "type": "story-theme",
+            "data": {
+                "themeId": "summit",
+                "themeBaseVariableOverrides": {}
+            }
+        }
+    }
+}

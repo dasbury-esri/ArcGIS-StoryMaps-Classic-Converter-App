@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Expressmap Block",
+  "description": "A block that renders an Expressmap",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "expressmap"
+    },
+    "config": {
+      "title": "Config",
+      "description": "Config object for the Expressmap block",
+      "type": "object",
+      "properties": {
+        "size": {
+          "title": "Block Size",
+          "description": "Size of the Expressmap block layout",
+          "type": "string",
+          "default": "standard",
+          "enum": ["standard", "wide", "full", "float"]
+        },
+        "floatAlignment": {
+          "title": "Float Alignment",
+          "description": "Alignment of the  Expressmap block when the size is 'float'",
+          "default": "start",
+          "type": "string",
+          "enum": ["start", "end"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "data": {
+      "title": "Data",
+      "description": "Data object for the Expressmap block",
+      "type": "object",
+      "properties": {
+        "map": {
+          "title": "Map",
+          "description": "Expressmap Block resource ID",
+          "type": "string"
+        },
+        "basemap": {
+          "title": "Basemap",
+          "description": "Basemap resource ID for the Expressmap block",
+          "type": "string"
+        },
+        "images": {
+          "title": "Images",
+          "description": "Images resource IDs for the Expressmap block",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "customSymbolImages": {
+          "title": "Custom Symbol Images",
+          "description": "Deprecated: custom symbol images are now stored in the images property, along with popups",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "alt": {
+          "title": "Alt Text",
+          "description": "Alternative text for the Expressmap block",
+          "type": "string"
+        },
+        "caption": {
+          "title": "Caption",
+          "description": "Caption for the Expressmap block",
+          "type": "string"
+        },
+        "customCaptionColors": {
+          "title": "Custom Caption Colors",
+          "description": "Deprecated: This was only needed for Quill; it is no longer being used in Slate.",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "drawingCategoryVisibilities": {
+          "title": "Drawing Category Visibilities",
+          "description": "Visibility settings for drawing categories",
+          "type": "object"
+        },
+        "screenshots": {
+          "type": "object",
+          "properties": {
+            "PRINT": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "center": {
+          "title": "Center Point",
+          "description": "The center of the map (desktop only)",
+          "type": "object",
+          "properties": {
+            "spatialReference": { "$ref": "#/definitions/SpatialReference" },
+            "x": { "type": "number" },
+            "y": { "type": "number" },
+            "z": { "type": "number" }
+          },
+          "additionalProperties": true
+        },
+        "zoom": {
+          "title": "Zoom Level",
+          "description": "Zoom level for the map",
+          "type": "number"
+        },
+        "extent": {
+          "title": "Extent",
+          "description": "The extent of the map",
+          "type": "object",
+          "properties": {
+            "spatialReference": { "$ref": "#/definitions/SpatialReference" },
+            "xmin": { "type": "number" },
+            "ymin": { "type": "number" },
+            "xmax": { "type": "number" },
+            "ymax": { "type": "number" }
+          },
+          "additionalProperties": true
+        },
+        "viewpoint": {
+          "title": "Viewpoint",
+          "description": "Viewpoint for the map",
+          "type": "object",
+          "properties": {
+            "rotation": { "type": "number" },
+            "scale": { "type": "number" },
+            "targetGeometry": {
+              "type": "object",
+              "properties": {
+                "spatialReference": { "$ref": "#/definitions/SpatialReference" },
+                "x": { "type": "number" },
+                "y": { "type": "number" },
+                "z": { "type": "number" }
+              }
+            },
+            "camera": {
+              "type": "object",
+              "properties": {
+                "position": {
+                  "type": "object",
+                  "properties": {
+                    "spatialReference": { "$ref": "#/definitions/SpatialReference" },
+                    "x": { "type": "number" },
+                    "y": { "type": "number" },
+                    "z": { "type": "number" }
+                  }
+                },
+                "heading": { "type": "number" },
+                "tilt": { "type": "number" }
+              }
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": ["map"],
+      "additionalProperties": false
+    },
+    "dependents": {
+      "title": "Dependent Blocks Definitions",
+      "description": "Dependent blocks definitions for the Expressmap block",
+      "type": "object",
+      "properties": {
+        "media": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "definitions": {
+    "SpatialReference": {
+      "type": "object",
+      "properties": {
+        "latestWkid": { "type": "number" },
+        "wkid": { "type": "number" }
+      },
+      "required": ["wkid"]
+    }
+  },
+  "required": ["type", "data"],
+  "additionalProperties": false
+}

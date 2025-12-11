@@ -128,6 +128,16 @@ export function assertStoryMapJson(json: StoryMapJSON): AssertionResult {
       const target = isObj(act) ? (act['target'] as string | undefined) : undefined;
       if (origin && !nodeIds.has(origin)) errors.push(`Action references missing origin node '${origin}'`);
       if (target && !nodeIds.has(target)) errors.push(`Action references missing target node '${target}'`);
+      const event = isObj(act) ? (act['event'] as string | undefined) : undefined;
+      if (event === 'ImmersiveSlide_ReplaceMedia') {
+        const data = isObj(act) ? (act['data'] as Record<string, unknown> | undefined) : undefined;
+        const media = data ? (data['media'] as string | undefined) : undefined;
+        if (!media) {
+          errors.push('ReplaceMedia action missing data.media');
+        } else if (!nodeIds.has(media)) {
+          errors.push(`ReplaceMedia action references missing media node '${media}'`);
+        }
+      }
     }
   }
 

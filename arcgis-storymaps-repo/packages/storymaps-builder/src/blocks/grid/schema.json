@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Grid Block",
+  "description": "A block that defines a grid and manages children elements",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "grid"
+    },
+    "config": {
+      "title": "Config",
+      "description": "Config object for the Grid Block",
+      "type": "object",
+      "properties": {
+        "isHidden": {
+          "title": "Is Hidden",
+          "description": "If true the block will not be rendered",
+          "type": "boolean"
+        },
+        "size": {
+          "title": "Block Size",
+          "description": "Size of the block layout",
+          "type": "string",
+          "default": "standard",
+          "enum": ["standard", "wide", "full", "float"]
+        },
+        "floatAlignment": {
+          "title": "Float Alignment",
+          "description": "Alignment of the block when the block size is 'float'",
+          "default": "start",
+          "type": "string",
+          "enum": ["start", "end"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "data": {
+      "title": "Data",
+      "description": "Data object for the Grid block",
+      "type": "object",
+      "properties": {
+        "rows": {
+          "description": "The number of rows in the grid",
+          "type": "integer"
+        },
+        "cols": {
+          "description": "The number of columns in the grid",
+          "type": "integer"
+        },
+        "caption": {
+          "description": "The caption for the items in the grid",
+          "type": "string"
+        },
+        "items": {
+          "description": "Grid item definitions",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rowStart": {
+                "description": "The index of the vertical grid line where the content starts",
+                "type": "integer"
+              },
+              "rowEnd": {
+                "description": "The index of the vertical grid line where the content ends",
+                "type": "integer"
+              },
+              "colStart": {
+                "description": "The index of the horizontal grid line where the content starts",
+                "type": "integer"
+              },
+              "colEnd": {
+                "description": "The index of the horizontal grid line where the content ends",
+                "type": "integer"
+              }
+            },
+            "required": ["rowStart", "rowEnd", "colStart", "colEnd"]
+          },
+          "minItems": 2
+        }
+      },
+      "required": ["rows", "cols", "items"],
+      "additionalProperties": false
+    },
+    "children": {
+      "title": "Children",
+      "description": "An array of children rendered within the Grid block",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["type", "data", "children"],
+  "additionalProperties": false
+}

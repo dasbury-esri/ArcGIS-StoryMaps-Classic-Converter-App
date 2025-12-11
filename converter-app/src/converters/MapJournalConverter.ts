@@ -1340,6 +1340,15 @@ export class MapJournalConverter extends BaseConverter {
     // Browser path: use pre-fetched swipe JSON when available
     const isBrowser = typeof window !== 'undefined';
     const classic = isBrowser ? this.fetchClassicSwipeDataProvided(appId) : this.fetchClassicSwipeDataSync(appId);
+    // Fallback for browser: fetch swipe JSON directly if not pre-provided
+    if (isBrowser && (!classic || !classic.values)) {
+      try {
+        const base = `https://www.arcgis.com/sharing/rest/content/items/${appId}/data?f=json`;
+        const url2 = this.token ? `${base}&token=${encodeURIComponent(this.token)}` : base;
+        fetchJsonWithCache<{ values?: import('../types/classic.ts').ClassicValues }>(url2, undefined, 10 * 60 * 1000);
+        // Note: fetchJsonWithCache returns a Promise; we cannot await here. Defer to embed when not available.
+      } catch { /* ignore */ }
+    }
     if (!classic || !classic.values) return undefined;
     const layoutHint = this.parseSwipeLayoutFromUrl(url);
     const layout = layoutHint || (String(classic.values.layout || '').toLowerCase().includes('spyglass') ? 'spyglass' : 'swipe');

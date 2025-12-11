@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Expressmap Resource",
+  "description": "A resource that...",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "expressmap"
+    },
+    "data": {
+      "title": "Data",
+      "description": "The data for the Expressmap block",
+      "type": "object",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "itemId": {
+              "title": "Item ID",
+              "description": "The item ID of the Expressmap",
+              "type": "string"
+            }
+          },
+          "required": ["itemId"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "src": {
+              "title": "Source URI",
+              "description": "URI to the resource file",
+              "type": "string"
+            },
+            "provider": {
+              "title": "Provider",
+              "description": "Resource provider type",
+              "type": "string",
+              "enum": ["uri"]
+            }
+          },
+          "required": ["src", "provider"],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": ["type", "data"],
+  "additionalProperties": false
+}

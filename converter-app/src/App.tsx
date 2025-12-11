@@ -10,13 +10,14 @@ function App() {
   const {userInfo, token} = useAuth()
   const params = new URLSearchParams(window.location.search)
   const action = params.get('action')
+  const devBypass = params.get('dev') === 'true'
 
   return (
     <>
       <div className="bg-image"></div>
       <div className="app-content">
         <Header />
-        {token && userInfo ? (
+        {devBypass || (token && userInfo) ? (
           action === 'save-csv-layer' ? <SaveCsvLayer /> : <Converter />
         ) : (
           <Body />

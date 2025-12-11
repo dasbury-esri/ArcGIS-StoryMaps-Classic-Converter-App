@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Video Resource",
+  "description": "JSON schema for the video resource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "video"
+    },
+    "data": {
+      "title": "Data",
+      "description": "Data object for the Video resource",
+      "type": "object",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "provider": {
+              "title": "provider",
+              "description": "The type of resource provider",
+              "type": "string",
+              "enum": ["uri"]
+            },
+            "src": {
+              "title": "Source",
+              "description": "The source of the URI",
+              "type": "string"
+            },
+            "name": {
+              "title": "File name",
+              "description": "The name of the uploaded file",
+              "type": "string"
+            },
+            "file": {
+              "title": "File details",
+              "description": "The File object associated with the uploaded file. Typically contains name, lastModified, lastModifiedDate, size, type.",
+              "type": "object"
+            }
+          },
+          "required": ["src", "provider"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "resourceId": {
+              "title": "Resource ID",
+              "description": "The resource ID of the item resource",
+              "type": "string"
+            },
+            "provider": {
+              "title": "Provider",
+              "description": "Resource provider type",
+              "type": "string",
+              "enum": ["item-resource"]
+            },
+            "src": {
+              "title": "Source",
+              "description": "The source of the item-resource",
+              "type": "string"
+            }
+          },
+          "required": ["resourceId", "provider"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "title": "ID",
+              "description": "The ID of the Coverr video",
+              "type": "string"
+            },
+            "provider": {
+              "title": "Provider",
+              "description": "Resource provider type",
+              "type": "string",
+              "enum": ["coverr"]
+            },
+            "videoSrc": {
+              "title": "Source",
+              "description": "The source of the video/mp4",
+              "type": "string"
+            },
+            "thumbnail": {
+              "title": "Thumbnail",
+              "description": "The URL for the video thumbnail image",
+              "type": "string"
+            },
+            "poster": {
+              "title": "Poster",
+              "description": "The poster image for the video",
+              "type": "string"
+            },
+            "previewSrc": {
+              "title": "Video preview",
+              "description": "The URL for the video preview mp4",
+              "type": "string"
+            },
+            "height": {
+              "title": "Height",
+              "description": "The height of the video",
+              "type": "number"
+            },
+            "width": {
+              "title": "Width",
+              "description": "The width of the video",
+              "type": "number"
+            }
+          },
+          "required": [
+            "id",
+            "provider",
+            "videoSrc",
+            "thumbnail",
+            "poster",
+            "previewSrc",
+            "height",
+            "width"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": ["type", "data"],
+  "additionalProperties": false
+}

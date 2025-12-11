@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Frame panel Block",
+  "description": "panels rendered in a frame slide, holds a single block",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "frame-panel"
+    },
+    "children": {
+      "title": "Children",
+      "description": "A single block rendered within the Frame panel block",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}

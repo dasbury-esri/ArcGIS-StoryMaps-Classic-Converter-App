@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Timeline-Event Block",
+  "description": "A block that renders a single timeline event",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "timeline-event"
+    },
+    "config": {},
+    "data": {},
+    "children": {
+      "title": "Children",
+      "description": "An array of children rendered within the Timeline-Event block",
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}

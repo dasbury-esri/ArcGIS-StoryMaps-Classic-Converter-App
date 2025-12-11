@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Audio Resource",
+  "description": "JSON schema for the audio resource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "audio"
+    },
+    "data": {
+      "title": "Data",
+      "description": "Data object for the Audio resource",
+      "type": "object",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "provider": {
+              "title": "provider",
+              "description": "The type of resource provider",
+              "type": "string",
+              "enum": ["uri"]
+            },
+            "src": {
+              "title": "Source",
+              "description": "The source of the URI",
+              "type": "string"
+            },
+            "name": {
+              "title": "File name",
+              "description": "The name of the uploaded file",
+              "type": "string"
+            },
+            "file": {
+              "title": "File details",
+              "description": "The File object associated with the uploaded file. Typically contains name, lastModified, lastModifiedDate, size, type.",
+              "type": "object"
+            }
+          },
+          "required": ["src", "provider"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "resourceId": {
+              "title": "Resource ID",
+              "description": "The resource ID of the item resource",
+              "type": "string"
+            },
+            "provider": {
+              "title": "Provider",
+              "description": "Resource provider type",
+              "type": "string",
+              "enum": ["item-resource"]
+            },
+            "src": {
+              "title": "Source",
+              "description": "The source of the item-resource",
+              "type": "string"
+            }
+          },
+          "required": ["resourceId", "provider"],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": ["type", "data"],
+  "additionalProperties": false
+}

@@ -1,0 +1,164 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Video Block",
+  "description": "A block that renders a video player",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "video"
+    },
+    "config": {
+      "title": "Config",
+      "description": "Config object for the Video block",
+      "type": "object",
+      "properties": {
+        "size": {
+          "title": "Block Size",
+          "description": "Size of the block layout",
+          "type": "string",
+          "default": "standard",
+          "enum": ["standard", "wide", "full", "float"]
+        },
+        "floatAlignment": {
+          "title": "Float Alignment",
+          "description": "Alignment of the video when the block size is 'float'",
+          "default": "start",
+          "type": "string",
+          "enum": ["start", "end"]
+        },
+        "placement": {
+          "title": "Media Placement",
+          "description": "Placement of the video when the block is set to 'fillParent' state (e.g. fit vs fill)",
+          "type": "object",
+          "properties": {
+            "type": {
+              "title": "Type",
+              "description": "Type of placement",
+              "type": "string",
+              "enum": ["fit", "fill"]
+            },
+            "fill": {
+              "title": "Fill",
+              "description": "Fill properties for the video block",
+              "type": "object",
+              "properties": {
+                "x": {
+                  "title": "X Position",
+                  "description": "The horizontal focal point of the video when the placement type is 'fill'",
+                  "type": "number",
+                  "minimum": 0
+                },
+                "y": {
+                  "title": "Y Position",
+                  "description": "The horizontal focal point of the video when the placement type is 'fill'",
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "required": ["x", "y"],
+              "additionalProperties": false
+            },
+            "fit": {
+              "title": "Fit",
+              "description": "Fit properties for the video block",
+              "type": "object",
+              "properties": {
+                "color": {
+                  "title": "Background Color",
+                  "description": "A hex value for the color, or a known theme color value (e.g. backgroundColor)",
+                  "type": "string"
+                },
+                "backgroundType": {
+                  "title": "Background Type",
+                  "description": "Type of background to display behind media",
+                  "type": "string",
+                  "enum": ["color", "blurredMedia"]
+                }
+              },
+              "required": ["color"],
+              "additionalProperties": false
+            }
+          },
+          "required": ["type", "fill"],
+          "additionalProperties": false
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "data": {
+      "title": "Data",
+      "description": "Data object for the Video block",
+      "type": "object",
+      "properties": {
+        "video": {
+          "title": "Video resource ID",
+          "description": "The ID associated with the video resource",
+          "type": "string"
+        },
+        "alt": {
+          "title": "Alt Text",
+          "description": "The alternative text for the video",
+          "type": "string"
+        },
+        "caption": {
+          "title": "Caption Text",
+          "description": "The caption text for the video",
+          "type": "string"
+        },
+        "customCaptionColors": {
+          "title": "Custom Caption Colors",
+          "description": "DEPRECATED: This was only needed for Quill; it is no longer being used in Slate. An array of color strings",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "thumbnail": {
+          "title": "Thumbnail image",
+          "description": "The resource ID of the video 'item-resource' provider thumbnail image",
+          "type": "string"
+        },
+        "closedCaption": {
+          "title": "Closed caption",
+          "description": "The resource ID of the user-uploaded closed caption .vtt file",
+          "type": "string"
+        },
+        "transcript": {
+          "title": "Transcript",
+          "description": "The resource ID of the JSON that holds the user-written transcript text",
+          "type": "string"
+        },
+        "attribution": {
+          "title": "Attribution",
+          "description": "The attribution for the video",
+          "type": "string"
+        },
+        "loop": {
+          "title": "Loop",
+          "description": "Playback options: Whether the video should be looped or not",
+          "type": "boolean"
+        },
+        "autoplay": {
+          "title": "Autoplay",
+          "description": "Playback options: Whether the video should be autoplayed or not",
+          "type": "boolean"
+        },
+        "hasControls": {
+          "title": "Has video controls",
+          "description": "Playback options: Whether the video should have visible controls, or if they should be hidden",
+          "type": "boolean"
+        },
+        "title": {
+          "title": "Title",
+          "description": "The title of the video item when used in Collections",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  },
+  "required": ["type", "data"],
+  "additionalProperties": false
+}

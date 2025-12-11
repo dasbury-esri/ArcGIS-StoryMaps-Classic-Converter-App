@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Timeline Block",
+  "description": "A block that renders a timeline",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "timeline"
+    },
+    "data": {
+      "title": "Data",
+      "description": "Data object for the Timeline block",
+      "type": "object",
+      "properties": {
+        "type": {
+          "title": "Type",
+          "description": "The type of the timeline layout",
+          "type": "string",
+          "enum": ["waterfall", "single-side", "condensed"]
+        }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "config": {
+      "title": "Config",
+      "description": "Config object for the Timeline block",
+      "type": "object",
+      "properties": {
+        "size": {
+          "title": "Block Size",
+          "description": "Size of the Timeline block layout",
+          "type": "string",
+          "default": "standard",
+          "enum": ["wide"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "children": {
+      "title": "Children",
+      "description": "An array of children rendered within the Timeline block",
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["type", "data"],
+  "additionalProperties": false
+}

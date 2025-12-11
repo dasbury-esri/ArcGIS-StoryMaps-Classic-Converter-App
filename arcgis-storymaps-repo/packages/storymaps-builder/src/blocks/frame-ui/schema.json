@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Frame UI Block",
+  "description": "Wrapper block for Frame slides/panels",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "frame-ui"
+    },
+    "children": {
+      "title": "Children",
+      "description": "An array of frame-slide's rendered within the Frame UI block",
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["type", "children"],
+  "additionalProperties": false
+}

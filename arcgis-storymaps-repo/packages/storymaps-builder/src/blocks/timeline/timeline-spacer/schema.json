@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Timeline-Spacer Block",
+  "description": "A block that renders a spacer block within the Timeline",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "timeline-spacer"
+    },
+    "config": {},
+    "data": {}
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}

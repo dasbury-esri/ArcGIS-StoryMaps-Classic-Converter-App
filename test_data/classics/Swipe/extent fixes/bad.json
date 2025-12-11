@@ -1,0 +1,165 @@
+{
+    "root": "n-5fss95",
+    "nodes": {
+        "n-sbzpnn": {
+            "type": "storycover",
+            "data": {
+                "type": "minimal",
+                "title": "The World in 1812 and 2013",
+                "summary": "Compare the modern world, as depicted on this National Geographic map, with the world as it was perceived two centuries earlier.",
+                "byline": "",
+                "titlePanelVerticalPosition": "top",
+                "titlePanelHorizontalPosition": "start",
+                "titlePanelStyle": "gradient"
+            }
+        },
+        "n-uk6sf3": {
+            "type": "navigation",
+            "data": {
+                "links": []
+            },
+            "config": {
+                "isHidden": true
+            }
+        },
+        "n-u643ay": {
+            "type": "text",
+            "data": {
+                "text": "",
+                "type": "paragraph",
+                "textAlignment": "start"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-w3ympw": {
+            "type": "text",
+            "data": {
+                "text": "",
+                "type": "paragraph",
+                "textAlignment": "start"
+            },
+            "config": {
+                "size": "wide"
+            }
+        },
+        "n-575avb": {
+            "type": "attribution",
+            "data": {
+                "content": "",
+                "attribution": ""
+            }
+        },
+        "n-g7x57l": {
+            "type": "credits",
+            "children": [
+                "n-u643ay",
+                "n-w3ympw",
+                "n-575avb"
+            ]
+        },
+        "n-44n6pp": {
+            "type": "webmap",
+            "data": {
+                "map": "r-8ea34ba9a4f843e08a468595d8d91188"
+            },
+            "config": {
+                "size": "standard"
+            }
+        },
+        "n-spjb6v": {
+            "type": "webmap",
+            "data": {
+                "map": "r-ef5920f160bd4239bdeb1348de3a3156"
+            },
+            "config": {
+                "size": "standard"
+            }
+        },
+        "n-xg7t32": {
+            "type": "swipe",
+            "data": {
+                "contents": {
+                    "0": "n-44n6pp",
+                    "1": "n-spjb6v"
+                },
+                "viewPlacement": "extent"
+            },
+            "config": {
+                "size": "full"
+            }
+        },
+        "n-GxNHaC": {
+            "type": "text",
+            "data": {
+                "text": "",
+                "type": "h4"
+            }
+        },
+        "n-STpDmB": {
+            "type": "text",
+            "data": {
+                "text": "",
+                "type": "paragraph"
+            }
+        },
+        "n-OIX3gb": {
+            "type": "attribution",
+            "data": {
+                "content": "",
+                "attribution": ""
+            }
+        },
+        "n-MxJiRX": {
+            "type": "credits",
+            "children": [
+                "n-GxNHaC",
+                "n-STpDmB",
+                "n-OIX3gb"
+            ]
+        },
+        "n-5fss95": {
+            "type": "story",
+            "data": {
+                "storyTheme": "r-epg7ig"
+            },
+            "config": {
+                "coverDate": "",
+                "shouldPushMetaToAGOItemDetails": false
+            },
+            "children": [
+                "n-sbzpnn",
+                "n-uk6sf3",
+                "n-g7x57l",
+                "n-xg7t32",
+                "n-MxJiRX"
+            ]
+        }
+    },
+    "resources": {
+        "r-8ea34ba9a4f843e08a468595d8d91188": {
+            "type": "webmap",
+            "data": {
+                "type": "default",
+                "itemId": "8ea34ba9a4f843e08a468595d8d91188",
+                "itemType": "Web Map"
+            }
+        },
+        "r-ef5920f160bd4239bdeb1348de3a3156": {
+            "type": "webmap",
+            "data": {
+                "type": "default",
+                "itemId": "ef5920f160bd4239bdeb1348de3a3156",
+                "itemType": "Web Map"
+            }
+        },
+        "r-epg7ig": {
+            "type": "story-theme",
+            "data": {
+                "themeId": "summit",
+                "themeBaseVariableOverrides": {}
+            }
+        }
+    }
+}

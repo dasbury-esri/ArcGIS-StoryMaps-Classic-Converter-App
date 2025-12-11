@@ -8,6 +8,7 @@ import mapSeriesTabbedImg from "../assets/storymap-series-tabbed.png";
 import cascadeImg from "../assets/storymap-cascade.png";
 import shortlistImg from "../assets/storymap-shortlist.png";
 import crowdsourceImg from "../assets/storymap-crowdsource.png";
+import { ENABLED } from "./enabledTemplates";
 import swipeImg from "../assets/storymap-swipe.png";
 import basicImg from "../assets/storymap-basic.png";
 
@@ -20,17 +21,7 @@ interface TileConfig {
     alt: string;
 }
 
-// Feature gating for new converters; enable as they stabilize
-const ENABLED: Record<string, boolean> = {
-    mapTour: false,
-    mapJournal: true,
-    mapSeries: false,
-    cascade: false,
-    shortlist: false,
-    crowdsource: false,
-    swipe: true,
-    basic: false,
-};
+// Feature gating imported from shared module
 
 const tiles: TileConfig[] = [
     {

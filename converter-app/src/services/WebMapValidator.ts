@@ -47,7 +47,8 @@ export async function validateWebMaps(webmapIds: string[], token?: string): Prom
       if (version && typeof version === 'string') {
         const vNum = parseFloat(version);
         if (!Number.isNaN(vNum) && vNum < 2.0) {
-          warnings.push({ itemId: id, level: 'warning', message: `Webmap version ${version} < 2.0. Open in Classic Map Viewer and save to upgrade.` });
+          const classicUrl = `https://www.arcgis.com/home/webmap/viewer.html?webmap=${id}`;
+          warnings.push({ itemId: id, level: 'warning', message: `Webmap version ${version} < 2.0. Open in <a href="${classicUrl}" target="_blank" rel="noopener noreferrer">Classic Map Viewer</a> and save to upgrade.` });
         }
       }
       // Layer URL scheme + availability check

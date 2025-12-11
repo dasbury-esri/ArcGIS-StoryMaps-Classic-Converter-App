@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Resource (Generic)",
+  "description": "A fallback JSON schema for a gemini resource that doesn't define its own schema",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The type of resource"
+    },
+    "data": {
+      "title": "Data",
+      "description": "Data object for the resource",
+      "type": "object",
+      "properties": {}
+    }
+  },
+  "required": ["type", "data"],
+  "additionalProperties": false
+}

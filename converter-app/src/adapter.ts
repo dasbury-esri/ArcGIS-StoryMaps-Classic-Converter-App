@@ -49,7 +49,8 @@ export async function convertClassicToJsonRefactored(params: AdapterParams): Pro
     themeId: params.themeId,
     progress: (e) => params.progress(e),
     enrichScenes: params.enrichScenes,
-    isCancelled: params.isCancelled
+    isCancelled: params.isCancelled,
+    classicItemId: params.classicItemId
   });
   checkCancelled();
 

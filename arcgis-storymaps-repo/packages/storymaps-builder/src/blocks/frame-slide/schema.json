@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Frame Slide Block",
+  "description": "Slide block for frames",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "frame-slide"
+    },
+    "data": {
+      "title": "Data",
+      "description": "Data object for the Frame Slide block",
+      "type": "object",
+      "properties": {
+        "layout": {
+          "title": "Layout",
+          "description": "The layout of the Frame slide",
+          "type": "string",
+          "enum": ["cover", "flexible"]
+        },
+        "subLayout": {
+          "title": "Sub Layout",
+          "description": "The sub layout of the Frame slide",
+          "type": "object",
+          "properties": {
+            "cols": {
+              "title": "Number of columns",
+              "description": "The number of columns in the Frame slide",
+              "type": "integer"
+            },
+            "rows": {
+              "title": "Number of rows",
+              "description": "The number of rows in the Frame slide",
+              "type": "integer"
+            },
+            "items": {
+              "title": "Items",
+              "description": "The items in the Frame slide layout",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "colStart": {
+                    "title": "Column Start",
+                    "description": "The starting column position of the item",
+                    "type": "integer"
+                  },
+                  "colEnd": {
+                    "title": "Column End",
+                    "description": "The ending column position of the item",
+                    "type": "integer"
+                  },
+                  "rowStart": {
+                    "title": "Row Start",
+                    "description": "The starting row position of the item",
+                    "type": "integer"
+                  },
+                  "rowEnd": {
+                    "title": "Row End",
+                    "description": "The ending row position of the item",
+                    "type": "integer"
+                  }
+                },
+                "required": ["colStart", "colEnd", "rowStart", "rowEnd"]
+              }
+            }
+          },
+          "required": ["cols", "rows"]
+        }
+      },
+      "required": ["layout"]
+    },
+    "children": {
+      "title": "Children",
+      "description": "An array of frame-panel blocks rendered within the Frame Slide block",
+      "type": "array",
+      "maxItems": 2,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["type", "data"],
+  "additionalProperties": false
+}

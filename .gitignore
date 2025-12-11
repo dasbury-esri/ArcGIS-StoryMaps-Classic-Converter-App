@@ -11,6 +11,7 @@ env/
 test_data/output/
 test_data/test_report.txt
 tmp-converted/
+test-results/
 
 # Downloaded images (temporary) except classic-apps/images
 *.jpg

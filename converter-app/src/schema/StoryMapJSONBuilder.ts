@@ -120,6 +120,15 @@ export class StoryMapJSONBuilder {
     return id;
   }
 
+  /** Add a rich HTML text block to the story root (preserves inline HTML markup) */
+  addRichTextToRoot(html: string, blockType: 'paragraph' | 'h2' | 'h3' | 'h4' | 'quote' | 'bullet-list' = 'paragraph', size: 'wide' | 'standard' = 'wide'): string {
+    if (!this.json.root) return this.createRichTextNode(html, blockType, size);
+    const id = this.generateNodeId();
+    this.json.nodes[id] = { type: 'text', data: { text: html, type: blockType, preserveHtml: true, textAlignment: 'start' }, config: { size } } as unknown as StoryMapNode;
+    this.appendChild(this.json.root, id);
+    return id;
+  }
+
   addVideoNode(parentId: string, vid: { src?: string; resourceId?: string; provider: 'item-resource' | 'uri' | 'youtube' | 'vimeo'; caption?: string; alt?: string }): string {
     const id = this.generateNodeId();
     const node: StoryMapVideoNode = {
@@ -601,6 +610,9 @@ export class StoryMapJSONBuilder {
   }
 
   registerReplaceMediaAction(originActionButtonId: string, targetSlideId: string, mediaNodeId: string): void {
+    // Guard against malformed media references; only record valid node ids
+    if (typeof mediaNodeId !== 'string') return;
+    if (!this.json.nodes[mediaNodeId]) return;
     if (!this.json.actions) this.json.actions = [];
     this.json.actions.push({ origin: originActionButtonId, trigger: 'ActionButton_Apply', target: targetSlideId, event: 'ImmersiveSlide_ReplaceMedia', data: { media: mediaNodeId } });
   }

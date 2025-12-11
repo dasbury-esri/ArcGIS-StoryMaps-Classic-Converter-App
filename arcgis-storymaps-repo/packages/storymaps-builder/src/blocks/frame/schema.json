@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Frame Block",
+  "description": "Root block for frames",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "frame"
+    },
+    "data": {
+      "title": "Data",
+      "description": "Data object for the Frame block",
+      "type": "object",
+      "properties": {
+        "viewerBackground": {
+          "title": "Viewer background type",
+          "description": "The background color of the Frame viewer",
+          "type": "string",
+          "enum": ["themed", "blurred"]
+        },
+        "storyTheme": {
+          "title": "Theme Resource",
+          "description": "The Frame's theme resource ID",
+          "type": "string"
+        },
+        "storyLogoResource": {
+          "title": "Logo resource",
+          "description": "The Frame's logo resource ID",
+          "type": "string"
+        },
+        "storyLogoLink": {
+          "title": "Logo link",
+          "description": "The logo link of the Frame",
+          "type": "string"
+        },
+        "storyLogoAlt": {
+          "title": "Logo alt text",
+          "description": "The logo alt text of the Frame",
+          "type": "string"
+        },
+        "metaSettings": {
+          "title": "Meta settings for the frame",
+          "description": "The meta settings for the Frame",
+          "type": "object",
+          "properties": {
+            "title": {
+              "title": "Alternative Title",
+              "description": "The title of the Frame when sharing on social media or in item cards",
+              "type": "string"
+            },
+            "description": {
+              "title": "Alternative Description",
+              "description": "The description of the Frame when sharing on social media or in item cards",
+              "type": "string"
+            },
+            "imageResourceId": {
+              "title": "Alternative Image resource",
+              "description": "The image resource ID of the Frame when sharing on social media or in item cards",
+              "type": "string"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "config": {
+      "title": "Configuration",
+      "description": "The configuration settings for the Frame",
+      "type": "object",
+      "properties": {
+        "shouldPushMetaToAGOItemDetails": {
+          "title": "Push meta to AGO item details",
+          "description": "Whether to push the meta settings to the AGO item details",
+          "type": "boolean"
+        }
+      },
+      "required": []
+    },
+    "children": {
+      "title": "Children",
+      "description": "An array of children rendered within the Frame block",
+      "type": "array",
+      "maxItems": 1,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["type", "data"],
+  "additionalProperties": false
+}

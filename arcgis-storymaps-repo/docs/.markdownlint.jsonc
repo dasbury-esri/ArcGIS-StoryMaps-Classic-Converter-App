@@ -1,0 +1,7 @@
+{
+  "MD013": false, // allow line length > 80
+  "MD028": false, // allow individual quotes separated by blank lines
+  "MD033": false, // allow inline HTML
+  "MD034": false, // allow bare URLs
+  "MD051": false // can link anchor e.g. [...](#anchor-id)
+}

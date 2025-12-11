@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/schemas/draft-story.json",
+  "title": "StoryMaps Draft",
+  "type": "object",
+  "required": ["root", "nodes", "resources"],
+  "properties": {
+    "root": { "type": "string", "minLength": 1 },
+    "nodes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": { "type": "string", "minLength": 1 },
+          "data": {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "viewpoint": { "$ref": "#/$defs/viewpoint" },
+              "extent": { "$ref": "#/$defs/extent" },
+              "center": { "$ref": "#/$defs/center" },
+              "mapLayers": { "$ref": "#/$defs/mapLayers" }
+            },
+            "additionalProperties": true
+          },
+          "config": { "type": "object" },
+          "children": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                { "type": "string" },
+                { "type": "number" },
+                { "type": "object", "additionalProperties": true }
+              ]
+            }
+          },
+          "dependents": { "type": "object" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": { "type": "string", "minLength": 1 },
+          "data": {
+            "type": "object",
+            "properties": {
+              "initialState": {
+                "type": "object",
+                "properties": {
+                  "extent": { "$ref": "#/$defs/extent" },
+                  "center": { "$ref": "#/$defs/center" },
+                  "viewpoint": { "$ref": "#/$defs/viewpoint" },
+                  "mapLayers": { "$ref": "#/$defs/mapLayers" }
+                },
+                "additionalProperties": true
+              },
+              "extent": { "$ref": "#/$defs/extent" },
+              "center": { "$ref": "#/$defs/center" },
+              "viewpoint": { "$ref": "#/$defs/viewpoint" },
+              "mapLayers": { "$ref": "#/$defs/mapLayers" }
+            },
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": { "type": "object" }
+    }
+  },
+  "$defs": {
+    "spatialReference": {
+      "type": "object",
+      "properties": { "wkid": { "type": "integer" } },
+      "required": ["wkid"],
+      "additionalProperties": true
+    },
+    "center": {
+      "type": "object",
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "spatialReference": { "$ref": "#/$defs/spatialReference" }
+      },
+      "required": ["x", "y", "spatialReference"],
+      "additionalProperties": true
+    },
+    "extent": {
+      "type": "object",
+      "properties": {
+        "xmin": { "type": "number" },
+        "ymin": { "type": "number" },
+        "xmax": { "type": "number" },
+        "ymax": { "type": "number" },
+        "spatialReference": { "$ref": "#/$defs/spatialReference" }
+      },
+      "required": ["xmin", "ymin", "xmax", "ymax", "spatialReference"],
+      "additionalProperties": true
+    },
+    "viewpoint": {
+      "oneOf": [
+        { "$ref": "#/$defs/extent" },
+        { "$ref": "#/$defs/center" },
+        {
+          "type": "object",
+          "properties": {
+            "targetGeometry": { "type": ["object", "array", "string"], "additionalProperties": true },
+            "scale": { "type": "number" },
+            "rotation": { "type": "number" },
+            "camera": { "type": "object", "additionalProperties": true }
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "mapLayer": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "visible": { "type": "boolean" }
+      },
+      "required": ["id"],
+      "additionalProperties": true
+    },
+    "mapLayers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/mapLayer" }
+    }
+  },
+  "additionalProperties": false
+}

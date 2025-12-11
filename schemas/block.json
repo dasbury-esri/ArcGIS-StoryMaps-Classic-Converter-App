@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Block (Generic)",
+  "description": "A fallback JSON schema for a gemini block that doesn't define its own schema",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The type of block"
+    },
+    "config": {
+      "title": "Config",
+      "description": "Config object for the block",
+      "type": "object",
+      "properties": {
+        "isHidden": {
+          "title": "Is Hidden",
+          "description": "If true the block will not be rendered",
+          "type": "boolean"
+        },
+        "size": {
+          "title": "Block Size",
+          "description": "Size of the block layout",
+          "type": "string",
+          "default": "standard",
+          "enum": ["standard", "wide", "full", "float"]
+        },
+        "floatAlignment": {
+          "title": "Float Alignment",
+          "description": "Alignment of the block when the block size is 'float'",
+          "default": "start",
+          "type": "string",
+          "enum": ["start", "end"]
+        },
+        "placeholder": {
+          "title": "Placeholder",
+          "description": "An alternative block to show on mobile devices",
+          "type": "object",
+          "properties": {
+            "resource": {
+              "title": "Resource ID",
+              "description": "Resource id for placeholder resource",
+              "type": "string"
+            },
+            "placement": {
+              "title": "Media Placement",
+              "description": "Placement of the image when the block is set to 'fillParent' state (e.g. fit vs fill)",
+              "type": "object",
+              "properties": {
+                "type": {
+                  "title": "Type",
+                  "description": "Type of placement",
+                  "type": "string",
+                  "enum": ["fit", "fill"]
+                },
+                "fill": {
+                  "title": "Fill",
+                  "description": "Fill properties for the image block",
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "title": "X Position",
+                      "description": "The horizontal focal point of the image the placement type is 'fill'",
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "y": {
+                      "title": "Y Position",
+                      "description": "The horizontal focal point of the image the placement type is 'fill'",
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  },
+                  "required": ["x", "y"],
+                  "additionalProperties": false
+                },
+                "fit": {
+                  "title": "Fit",
+                  "description": "Fit properties for the image block. NOTE: This property is required except on early versions of the image block in AGSM.",
+                  "type": "object",
+                  "properties": {
+                    "color": {
+                      "title": "Background Color",
+                      "description": "A hex value for the color, or a known theme color value (e.g. backgroundColor)",
+                      "type": "string"
+                    },
+                    "backgroundType": {
+                      "title": "Background Type",
+                      "description": "Type of background to display behind media",
+                      "type": "string",
+                      "enum": ["color", "blurredMedia"]
+                    }
+                  },
+                  "required": ["color"],
+                  "additionalProperties": false
+                }
+              },
+              "required": ["type", "fill"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false,
+          "required": ["resource", "placement"]
+        }
+      }
+    },
+    "data": {
+      "title": "Data",
+      "description": "Data object for the block",
+      "type": "object",
+      "properties": {}
+    },
+    "children": {
+      "title": "Children",
+      "description": "An array of children rendered within the block",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dependents": {
+      "title": "Dependent Blocks Entries",
+      "description": "An object dependent blocks definitions",
+      "type": "object",
+      "properties": {},
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "title": "Dependent Block",
+            "description": "A child rendered as a dependent block of the block",
+            "type": "string"
+          },
+          {
+            "title": "Dependent Blocks",
+            "description": "An array of children rendered as dependent blocks of the block",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}

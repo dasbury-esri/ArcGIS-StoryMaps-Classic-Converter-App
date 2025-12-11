@@ -2,7 +2,7 @@
  * Classic StoryMap to ArcGIS StoryMaps Converter UI
  * Minimal form interface for conversion
  */
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { clearFetchCache, getFetchCacheSize, onFetchCacheChange, offFetchCacheChange } from "../utils/fetchCache";
 import type { StoryMapJSON } from "../types/core";
 import { validateWebMaps, type EndpointCheck } from "../services/WebMapValidator";
@@ -13,6 +13,10 @@ import { SwipeConverter } from "../converters/SwipeConverter";
 import { MediaTransferService } from "../media/MediaTransferService";
 import { ResourceMapper } from "../media/ResourceMapper";
 import { collectImageUrls, transferImage } from "../api/image-transfer";
+import { jsonSchemaToValidator } from "../utils/jsonSchemaValidation";
+import "./Converter.css";
+import draftSchema from "../../../schemas/draft-story.json";
+import { isClassicTemplateEnabled } from "./enabledTemplates";
 import {
   getItemData,
   getItemDetails,
@@ -33,6 +37,8 @@ type Status =
 
 export default function Converter() {
   const [publishing, setPublishing] = useState(false);
+  const [useLocalJson, setUseLocalJson] = useState<boolean>(Boolean(import.meta.env.DEV));
+  const [localJsonPath, setLocalJsonPath] = useState<string>('');
   // retain state only for UI style and tooltip logic; reading ref for actual cancellation
   const cancelRequestedRef = useRef(false);
   const [hoverCancel, setHoverCancel] = useState(false);
@@ -158,6 +164,9 @@ export default function Converter() {
     if (/^[a-f0-9]{32}$/i.test(itemId)) return `https://${host}/home/item.html?id=${itemId}`;
     return '';
   };
+
+  // Compile draft schema validator once for client-side pre-upload validation
+  const validateDraft = useMemo(() => jsonSchemaToValidator(draftSchema as Record<string, unknown>), []);
   // Invalidate orgBase cache when token is removed or changes to force re-resolution on next conversion
   useEffect(() => {
     if (!token) {
@@ -338,6 +347,28 @@ export default function Converter() {
           setMessage(`Detected template: ${runtimeTemplate}. Preparing resources...`);
         }
 
+        // Early error messaging for non-classic items or disabled classic types
+        try {
+          const details = await getItemDetails(classicItemId, token);
+          const itemType = String(details?.type || '').trim();
+          const classicType = (runtimeTemplate || '').toLowerCase();
+          // If detector returned unknown, treat as non-classic
+          if (!classicType || classicType === 'unknown') {
+            setStatus('error');
+            setMessage(`Error: The item id you entered is not for a Classic Esri Story Map. It is a ${itemType || 'non-classic ArcGIS item'}`);
+            return;
+          }
+          // If classic type is recognized but currently disabled in UI feature gating
+          if (!isClassicTemplateEnabled(runtimeTemplate)) {
+            const label = runtimeTemplate || 'unknown';
+            setStatus('error');
+            setMessage(`Error: The item id you entered is not yet available for conversion. It is a ${label}`);
+            return;
+          }
+        } catch {
+          // If item details fail, continue and let downstream errors surface
+        }
+
         // Fetch classic webmap data
         if (classicData.values?.webmap) {
           setMessage("Fetching classic webmap data...");
@@ -359,6 +390,18 @@ export default function Converter() {
         // Gather webmap ids for validation (from classic JSON and embedded swipes)
         const webmapIdsUnfiltered: string[] = [];
         if (classicData.values?.webmap) webmapIdsUnfiltered.push(classicData.values.webmap);
+        // Collect TWO_WEBMAPS ids from top-level classic JSON if present
+        try {
+          const topWm = Array.isArray(classicData.values?.webmaps) ? classicData.values.webmaps : [];
+          for (const wid of topWm) {
+            if (typeof wid === 'string') {
+              webmapIdsUnfiltered.push(wid);
+            } else {
+              const obj = wid as unknown as { id?: unknown };
+              if (obj && typeof obj.id === 'string') webmapIdsUnfiltered.push(obj.id);
+            }
+          }
+        } catch { /* ignore parse errors */ }
         // Initialize progress UI for webmap fetching/validation
         const webmapLabel = runtimeTemplate || detectedTemplate || "webmap";
         setStatus("fetching");
@@ -379,7 +422,14 @@ export default function Converter() {
                 if (resp.ok) {
                   const swipeJson = await resp.json();
                   const wm = Array.isArray(swipeJson?.values?.webmaps) ? swipeJson.values.webmaps : [];
-                  for (const wid of wm) if (typeof wid === 'string') webmapIdsUnfiltered.push(wid);
+                  for (const wid of wm) {
+                    if (typeof wid === 'string') {
+                      webmapIdsUnfiltered.push(wid);
+                    } else {
+                      const obj = wid as unknown as { id?: unknown };
+                      if (obj && typeof obj.id === 'string') webmapIdsUnfiltered.push(obj.id);
+                    }
+                  }
                   // Cache embedded swipe JSON for converter to build inline swipe in browser
                   try {
                     const key = String(appId);
@@ -408,7 +458,14 @@ export default function Converter() {
                     if (resp.ok) {
                       const swipeJson = await resp.json();
                       const wm = Array.isArray(swipeJson?.values?.webmaps) ? swipeJson.values.webmaps : [];
-                      for (const wid of wm) if (typeof wid === 'string') webmapIdsUnfiltered.push(wid);
+                      for (const wid of wm) {
+                        if (typeof wid === 'string') {
+                          webmapIdsUnfiltered.push(wid);
+                        } else {
+                          const obj = wid as unknown as { id?: unknown };
+                          if (obj && typeof obj.id === 'string') webmapIdsUnfiltered.push(obj.id);
+                        }
+                      }
                       try {
                         const key = String(aAppId);
                         const container = classicData as unknown as { __embeddedSwipes?: Record<string, unknown> };
@@ -533,12 +590,40 @@ export default function Converter() {
             progress,
             token
           });
-            const result = conv.convert();
+            const result = await conv.convert();
             newStorymapJson = result.storymapJson;
         } else {
           throw new Error(`Unsupported template for new converters: ${detectedTemplate ?? 'unknown'}`);
         }
         checkCancelled();
+
+        // UI-side safeguard: if cover title is generic ("Swipe"/"Spyglass"), replace with AGO item title
+        try {
+          const story = newStorymapJson as unknown as { nodes?: Record<string, { type?: string; data?: { title?: string } }> };
+          const nodes = story.nodes || {};
+          const coverEntry = Object.entries(nodes).find(([, n]) => n && n.type === 'storycover');
+          if (coverEntry) {
+            const [coverId, coverNode] = coverEntry as [string, { type?: string; data?: { title?: string } }];
+            const currentTitle = (coverNode.data?.title || '').trim();
+            const isGeneric = !currentTitle || /^(swipe|spyglass)$/i.test(currentTitle);
+            if (isGeneric && classicItemId) {
+              try {
+                const detailsClassic = await getItemDetails(classicItemId, token);
+                const agoTitle = String(detailsClassic?.title || '').trim();
+                if (agoTitle) {
+                  coverNode.data = { ...(coverNode.data || {}), title: agoTitle };
+                  nodes[coverId] = coverNode;
+                  (newStorymapJson as StoryMapJSON).nodes = nodes as unknown as StoryMapJSON['nodes'];
+                  console.debug('[CoverTitle][UI] Replaced generic cover title with AGO item title:', agoTitle);
+                }
+              } catch {
+                // ignore title replacement failures
+              }
+            }
+          }
+        } catch {
+          // ignore UI-side title safeguard errors
+        }
 
         // Transfer images to target story resources and rewrite resource entries
         try {
@@ -566,13 +651,28 @@ export default function Converter() {
 
         // Extract custom CSS (if any) from converter-metadata decisions
         try {
-          const storyJson = newStorymapJson as unknown as { resources?: Record<string, MinimalConverterMetadataResource | { type?: string }> };
+          const storyJson = newStorymapJson as unknown as { nodes?: Record<string, { type?: string; data?: { title?: string } }>; resources?: Record<string, MinimalConverterMetadataResource | { type?: string }> };
           const metadataRes = storyJson.resources && (Object.values(storyJson.resources).find((r) => r.type === 'converter-metadata') as MinimalConverterMetadataResource | undefined);
           const cssCombined = metadataRes?.data?.classicMetadata?.mappingDecisions?.customCss?.combined;
           if (cssCombined) {
             const blob = new Blob([cssCombined], { type: 'text/css' });
             const url = URL.createObjectURL(blob);
-            setCustomCssInfo({ css: cssCombined, url });
+            // Derive filename from story cover title if present: <storytitle-custom>.css
+            let fileName = 'custom-css.css';
+            try {
+              const coverEntry = storyJson.nodes && Object.values(storyJson.nodes).find(n => n && n.type === 'storycover');
+              const title = (coverEntry?.data?.title || '').trim();
+              if (title) {
+                const safe = title
+                  .toLowerCase()
+                  .replace(/[^a-z0-9\s-_]/g, '')
+                  .replace(/\s+/g, '-')
+                  .replace(/-+/g, '-')
+                  .replace(/^-|-$/g, '');
+                if (safe) fileName = `${safe}-custom.css`;
+              }
+            } catch { /* ignore filename derivation errors */ }
+            setCustomCssInfo({ css: cssCombined, url, fileName });
           }
           // Surface webmap version warnings (added during enrichment) if present.
           const versionWarnings = metadataRes?.data?.classicMetadata?.webmapVersionWarnings;
@@ -668,6 +768,38 @@ export default function Converter() {
           // Ignore missing resource errors on first draft initialization
         }
         checkCancelled();
+
+        // Client-side schema validation before upload (fast feedback)
+        try {
+          const ok = validateDraft(newStorymapJson as unknown as Record<string, unknown>);
+          if (!ok) {
+            const errs = Array.isArray((validateDraft as unknown as { errors?: unknown[] }).errors)
+              ? ((validateDraft as unknown as { errors?: unknown[] }).errors as Array<Record<string, unknown>>)
+              : [];
+            const firstMsg = errs.length ? (String(errs[0]?.message ?? JSON.stringify(errs[0]))) : 'Schema validation failed';
+            throw new Error(`Draft JSON failed client-side schema validation: ${firstMsg}`);
+          }
+        } catch (e) {
+          throw e instanceof Error ? e : new Error(String(e));
+        }
+
+        // Validate JSON against schema via Netlify Function before upload (server-side gate)
+        try {
+          setMessage('Validating draft JSON schema...');
+          const vRes = await fetch('/.netlify/functions/validate-draft', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newStorymapJson)
+          });
+          if (!vRes.ok) {
+            const details = await vRes.json().catch(() => ({}));
+            const errs = Array.isArray(details?.errors) ? details.errors : [];
+            const firstMsg = errs.length ? (errs[0]?.message || JSON.stringify(errs[0])) : `HTTP ${vRes.status}`;
+            throw new Error(`Draft JSON failed schema validation: ${firstMsg}`);
+          }
+        } catch (e) {
+          throw e instanceof Error ? e : new Error(String(e));
+        }
 
         // Upload new draft resource (same name)
         setMessage(`Uploading new draft resource (${draftResourceName})...`);
@@ -856,7 +988,49 @@ export default function Converter() {
       )}
       {customCssInfo && (
         <div className="converter-warning">
-          <strong>Custom CSS Detected!</strong> Your classic story used custom CSS settings. To recreate your custom styles you should create a new ArcGIS StoryMaps Theme <a href="https://storymaps.arcgis.com/themes/new" target="_blank" rel="noopener noreferrer">here</a> with your custom colors and styles, then apply the new Theme within the ArcGIS StoryMaps Builder (under the Design tab). <a href={customCssInfo.url} download="custom-css.css">Click this link</a> to download a copy of your custom CSS.
+          <strong>Custom CSS Detected!</strong> Your classic story used custom CSS settings. To recreate your custom styles you should create a new ArcGIS StoryMaps Theme <a href="https://storymaps.arcgis.com/themes/new" target="_blank" rel="noopener noreferrer">here</a> with your custom colors and styles, then apply the new Theme within the ArcGIS StoryMaps Builder (under the Design tab). <a href={customCssInfo.url} download={customCssInfo.fileName || 'custom-css.css'}>Click this link</a> to download a copy of your custom CSS.
+        </div>
+      )}
+      {import.meta.env.DEV && (
+        <div className="converter-input-group dev-extra-margin">
+          <label className="converter-label">
+            <input type="checkbox" checked={useLocalJson} onChange={e => setUseLocalJson(e.target.checked)} /> Use local JSON (dev)
+          </label>
+          {useLocalJson && (
+            <input
+              type="text"
+              value={localJsonPath}
+              onChange={e => setLocalJsonPath(e.target.value)}
+              placeholder="tmp-converted/converted-app-...-stdout.json"
+              className="converter-input"
+            />
+          )}
+          <div className="converter-controls-row">
+            <button
+              className="converter-btn"
+              onClick={async () => {
+                if (!localJsonPath) return;
+                try {
+                  const url = `/.netlify/functions/publish-draft-from-file?file=${encodeURIComponent(localJsonPath)}`;
+                  const res = await fetch(url, { headers: token ? { Authorization: `Bearer ${token}` } : undefined });
+                  const j = await res.json();
+                  if (!j.ok) throw new Error(j.error || 'Publish from file failed');
+                  const editUrl = j.editUrl as string | undefined;
+                  if (editUrl) {
+                    setConvertedUrl(editUrl);
+                    window.open(editUrl, '_blank');
+                    setToast(`Published draft. Edit: ${editUrl}`);
+                  } else {
+                    setToast('Published draft (no edit URL returned)');
+                  }
+                  setTimeout(() => setToast(''), 5000);
+                } catch (e) {
+                  setToast((e as Error)?.message || 'Publish from file failed');
+                  setTimeout(() => setToast(''), 3000);
+                }
+              }}
+            >Publish from local JSON</button>
+          </div>
         </div>
       )}
       {convertedUrl && (

@@ -79,7 +79,6 @@ Gallery children are image **node IDs** (not resource IDs):
 ```
 
 ### Map Nodes
-
 Map nodes use type `webmap` with minimal resource configuration:
 
 ```json
@@ -87,31 +86,25 @@ Map nodes use type `webmap` with minimal resource configuration:
   "type": "webmap",
   "config": {"size": "wide"},
   "data": {
-    "map": "r-abc123",
     "extent": {...},
     "viewpoint": {...}
   }
-}
 ```
 
 Map resources use `type: "minimal"` with only `itemId` and `itemType` to avoid duplication between resource-level and node-level configurations (per consultation with Kuan).
 
-### Conversion Logic Insights
 
 1. **Sidecar Structure**
 
    ```text
    sidecar (immersive)
    └── slide (immersive-slide)
-     └── narrative (immersive-narrative-panel)
        └── content nodes (text, images, etc.)
    ```
 
 2. **Node ID Generation**
 
    - Format: `n-{uuid.uuid4().hex[:6]}` (e.g., `n-a1b2c3`)
-   - Resource IDs: `r-{uuid.uuid4().hex[:6]}`
-
 3. **Map Processing**
 
    - Scale calculated from extent using coefficient 4.4 (Web Mercator approximation)

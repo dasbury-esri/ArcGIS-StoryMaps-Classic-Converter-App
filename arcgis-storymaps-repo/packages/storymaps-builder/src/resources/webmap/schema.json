@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Webmap Resource",
+  "description": "The JSON schema for the webmap resource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "webmap"
+    },
+    "data": {
+      "title": "Webmap resource data",
+      "description": "Data object for the resource",
+      "type": "object",
+      "properties": {
+        "itemId": {
+          "title": "Item ID",
+          "description": "The ID of ArcGIS Web Map / Web Scene item",
+          "type": "string"
+        },
+        "itemType": {
+          "title": "ArcGIS map item Type",
+          "description": "The type of ArcGIS map item",
+          "type": "string",
+          "enum": ["Web Map", "Web Scene"]
+        },
+        "type": {
+          "title": "Resource data type",
+          "description": "The type of the resource",
+          "type": "string",
+          "enum": ["default", "minimal"]
+        }
+      }
+    }
+  },
+  "required": ["type", "data"],
+  "additionalProperties": false
+}
