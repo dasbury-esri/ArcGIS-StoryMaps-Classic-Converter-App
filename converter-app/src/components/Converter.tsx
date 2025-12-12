@@ -787,6 +787,30 @@ export default function Converter() {
           // ignore
         }
 
+        // Ensure converter-metadata always contains classicItemId and classicType
+        try {
+          const storyJson = newStorymapJson as unknown as { resources?: Record<string, { type?: string; data?: Record<string, unknown> }> };
+          const resources = storyJson.resources || (storyJson.resources = {} as Record<string, { type?: string; data?: Record<string, unknown> }>);
+          const itemIdTrimmed = (classicItemId || '').trim();
+          const typeDetected = (detectedTemplate || '').trim();
+          let metaEntry = Object.entries(resources).find(([, r]) => r && r.type === 'converter-metadata');
+          if (!metaEntry) {
+            const rid = `r-${Date.now()}`;
+            resources[rid] = { type: 'converter-metadata', data: {} };
+            metaEntry = [rid, resources[rid]] as [string, { type?: string; data?: Record<string, unknown> }];
+          }
+          const [metaId, metaRes] = metaEntry as [string, { type?: string; data?: Record<string, unknown> }];
+          const data = (metaRes.data || (metaRes.data = {}));
+          if (itemIdTrimmed) data.classicItemId = itemIdTrimmed;
+          if (typeDetected) data.classicType = typeDetected;
+          // Force converter-metadata to the end
+          delete resources[metaId];
+          resources[metaId] = metaRes;
+          storyJson.resources = resources;
+        } catch {
+          // ignore metadata injection errors
+        }
+
         // Persist webmap warnings into converter-metadata resource for later visibility
         try {
           if (!suppressMetadata && Array.isArray(webmapWarnings) && webmapWarnings.length) {

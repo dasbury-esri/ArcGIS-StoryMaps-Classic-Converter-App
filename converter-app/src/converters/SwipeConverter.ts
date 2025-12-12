@@ -964,12 +964,37 @@ export class SwipeConverter extends BaseConverter {
   static buildInlineSwipeBlockBrowserSync(
     builder: StoryMapJSONBuilder,
     values: ClassicValues,
-    layout: SwipeLayout = 'swipe'
+    layout: SwipeLayout = 'swipe',
+    token?: string
   ): string {
     try { builder.addConverterMetadata('Swipe', { path: 'buildInlineSwipeBlockBrowserSync' } as any); } catch { /* ignore */ }
     const dm = String(values.dataModel || '').toUpperCase() as SwipeModel;
     let contentA: string | undefined;
     let contentB: string | undefined;
+    const fetchInfoSync = (itemId: string): { extent?: ClassicExtent; center?: { x: number; y: number; spatialReference: { wkid: number } }; zoom?: number; viewpoint?: { targetGeometry?: unknown; scale?: number } } | undefined => {
+      try {
+        if (typeof window === 'undefined') return undefined;
+        const base = `https://www.arcgis.com/sharing/rest/content/items/${itemId}/data?f=json${token ? `&token=${encodeURIComponent(token)}` : ''}`;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', base, false);
+        xhr.send(null);
+        if (xhr.status >= 200 && xhr.status < 300 && xhr.responseText) {
+          const data = JSON.parse(xhr.responseText);
+          const pickExtent = (d: any): any => d?.initialState?.view?.extent || d?.mapOptions?.extent || d?.extent || d?.mapOptions?.mapExtent || undefined;
+          const pickCenter = (d: any): any => d?.initialState?.view?.center || d?.mapOptions?.center || d?.center || undefined;
+          const extent = pickExtent(data);
+          const center = pickCenter(data);
+          let viewpoint: { targetGeometry?: unknown; scale?: number } | undefined;
+          let zoom: number | undefined;
+          if (extent) {
+            const sz = determineScaleZoomLevel(extent as unknown as { ymax: number; ymin: number });
+            if (sz) { viewpoint = { targetGeometry: center ?? extent, scale: sz.scale }; zoom = sz.zoom; }
+          }
+          return { extent, center, zoom, viewpoint } as any;
+        }
+      } catch { /* ignore */ }
+      return undefined;
+    };
     if (dm === 'TWO_WEBMAPS') {
       const ids: string[] = [];
       if (Array.isArray(values.webmaps)) {
@@ -981,14 +1006,35 @@ export class SwipeConverter extends BaseConverter {
         ids.push(String(values.webmap));
       }
       const [wmA, wmB] = ids;
-      const resA = wmA ? builder.addWebMapResource(wmA, 'Web Map', {}, 'default') : undefined;
-      const resB = wmB ? builder.addWebMapResource(wmB, 'Web Map', {}, 'default') : undefined;
+      // Create resources and enrich with synchronous browser fetch when possible
+      const infoA = wmA ? fetchInfoSync(wmA) : undefined;
+      const infoB = wmB ? fetchInfoSync(wmB) : undefined;
+      const resA = wmA ? builder.addWebMapResource(wmA, 'Web Map', (infoA ? { extent: infoA.extent, center: infoA.center, viewpoint: infoA.viewpoint, zoom: infoA.zoom, itemId: wmA, itemType: 'Web Map', type: 'default' } : {} as any), 'default') : undefined;
+      const resB = wmB ? builder.addWebMapResource(wmB, 'Web Map', (infoB ? { extent: infoB.extent, center: infoB.center, viewpoint: infoB.viewpoint, zoom: infoB.zoom, itemId: wmB, itemType: 'Web Map', type: 'default' } : {} as any), 'default') : undefined;
+      if (resA && infoA) builder.updateWebMapData(resA, { extent: infoA.extent, center: infoA.center, viewpoint: infoA.viewpoint, zoom: infoA.zoom, itemId: wmA, itemType: 'Web Map', type: 'default' } as any);
+      if (resB && infoB) builder.updateWebMapData(resB, { extent: infoB.extent, center: infoB.center, viewpoint: infoB.viewpoint, zoom: infoB.zoom, itemId: wmB, itemType: 'Web Map', type: 'default' } as any);
       if (resA) contentA = builder.createWebMapNode(resA, undefined);
       if (resB) contentB = builder.createWebMapNode(resB, undefined);
+      // Initialize node-level alignment from RIGHT webmap when available
+      const initFromRight = (nodeId?: string) => {
+        if (!nodeId || !infoB) return;
+        builder.updateNodeData(nodeId, (data) => {
+          const hasExtent = !!(data as any).extent;
+          const hasVp = !!(data as any).viewpoint;
+          if (!hasExtent && infoB.extent) (data as Record<string, unknown>).extent = infoB.extent as unknown as Record<string, unknown>;
+          if (!hasVp && infoB.viewpoint) (data as Record<string, unknown>).viewpoint = infoB.viewpoint as unknown as Record<string, unknown>;
+          if (!(data as any).viewPlacement) (data as Record<string, unknown>).viewPlacement = 'extent' as unknown as Record<string, unknown>;
+        });
+      };
+      initFromRight(contentA);
+      initFromRight(contentB);
     } else {
       const baseId = String(values.webmap || '');
-      const resA = baseId ? builder.addWebMapResource(baseId, 'Web Map', {}, 'default') : undefined;
-      const resB = baseId ? builder.addWebMapResource(baseId, 'Web Map', {}, 'default') : undefined;
+      const info = baseId ? fetchInfoSync(baseId) : undefined;
+      const resA = baseId ? builder.addWebMapResource(baseId, 'Web Map', (info ? { extent: info.extent, center: info.center, viewpoint: info.viewpoint, zoom: info.zoom, itemId: baseId, itemType: 'Web Map', type: 'default' } : {} as any), 'default') : undefined;
+      const resB = baseId ? builder.addWebMapResource(baseId, 'Web Map', (info ? { extent: info.extent, center: info.center, viewpoint: info.viewpoint, zoom: info.zoom, itemId: baseId, itemType: 'Web Map', type: 'default' } : {} as any), 'default') : undefined;
+      if (resA && info) builder.updateWebMapData(resA, { extent: info.extent, center: info.center, viewpoint: info.viewpoint, zoom: info.zoom, itemId: baseId, itemType: 'Web Map', type: 'default' } as any);
+      if (resB && info) builder.updateWebMapData(resB, { extent: info.extent, center: info.center, viewpoint: info.viewpoint, zoom: info.zoom, itemId: baseId, itemType: 'Web Map', type: 'default' } as any);
       if (resA && resB) {
         contentA = builder.createWebMapNode(resA, undefined);
         contentB = builder.createWebMapNode(resB, undefined);
@@ -1005,6 +1051,21 @@ export class SwipeConverter extends BaseConverter {
         const rightLayers = classicLayers.map(cl => ({ id: cl.id, title: cl.title || cl.id, visible: true }));
         builder.updateNodeData(contentA, (data) => { (data as Record<string, unknown>).mapLayers = leftLayers; });
         builder.updateNodeData(contentB, (data) => { (data as Record<string, unknown>).mapLayers = rightLayers; });
+        // Initialize node-level alignment from base webmap info when available
+        if (info) {
+          const apply = (nodeId?: string) => {
+            if (!nodeId) return;
+            builder.updateNodeData(nodeId, (data) => {
+              const hasExtent = !!(data as any).extent;
+              const hasVp = !!(data as any).viewpoint;
+              if (!hasExtent && info.extent) (data as Record<string, unknown>).extent = info.extent as unknown as Record<string, unknown>;
+              if (!hasVp && info.viewpoint) (data as Record<string, unknown>).viewpoint = info.viewpoint as unknown as Record<string, unknown>;
+              if (!(data as any).viewPlacement) (data as Record<string, unknown>).viewPlacement = 'extent' as unknown as Record<string, unknown>;
+            });
+          };
+          apply(contentA);
+          apply(contentB);
+        }
       }
     }
     const viewPlacement = layout === 'spyglass' ? 'extent' : 'extent';

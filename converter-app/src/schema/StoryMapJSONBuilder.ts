@@ -176,6 +176,9 @@ export class StoryMapJSONBuilder {
     legend?: { enable: boolean; openByDefault: boolean };
     geocoder?: { enable: boolean };
     popup?: unknown;
+    center?: { x: number; y: number; spatialReference?: Record<string, unknown> };
+    viewpoint?: unknown;
+    zoom?: number;
   }, variant: 'minimal' | 'default' = 'minimal'): string {
     const id = `r-${itemId}`;
     const data: { type: typeof variant; itemId: string; itemType: 'Web Map' | 'Web Scene' } = { type: variant, itemId, itemType };
@@ -194,6 +197,10 @@ export class StoryMapJSONBuilder {
         if (existing.data.initialState) delete existing.data.initialState;
         this.json.resources[id] = existing as unknown as StoryMapResource;
       }
+    }
+    // Apply initialState enrichment if provided
+    if (initialState) {
+      this.updateWebMapInitialState(id, initialState);
     }
     return id;
   }
@@ -433,7 +440,8 @@ export class StoryMapJSONBuilder {
       // Ensure base fields
       if (!existingData.typeConvertedTo) existingData.typeConvertedTo = 'storymap';
       if (!existingData.converterVersion) existingData.converterVersion = getConverterVersion();
-      if (!existingData.classicType) existingData.classicType = classicType;
+      // Always prefer the latest caller-provided classicType when supplied by a higher-level converter (e.g., MapJournal)
+      if (classicType) existingData.classicType = classicType;
       // Merge classicMetadata deeply: combine theme and mappingDecisions under a single classicMetadata node
       const incomingClassic = (payload as unknown as { classicMetadata?: Record<string, unknown> }).classicMetadata || {};
       const existingClassic = (existingData.classicMetadata = (existingData.classicMetadata || {}));

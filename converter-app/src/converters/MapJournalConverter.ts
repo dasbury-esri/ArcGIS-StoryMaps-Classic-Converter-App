@@ -624,6 +624,42 @@ export class MapJournalConverter extends BaseConverter {
                 this.builder.addChild(slideId, actMediaNode);
               }
             }
+            // If action media is an inline swipe, and its content nodes lack alignment,
+            // initialize them using the slide's current stage media viewpoint/extent.
+            try {
+              const json = this.builder.getJson();
+              const swipeNode = json.nodes[actMediaNode];
+              const stageNode = json.nodes[mediaNodeId];
+              if (swipeNode?.type === 'swipe' && stageNode && stageNode.data) {
+                const contents = (swipeNode.data as unknown as { contents?: Record<string,string> })?.contents || {};
+                const leftId = contents['0'];
+                const rightId = contents['1'];
+                const leftNode = leftId ? json.nodes[leftId] : undefined;
+                const rightNode = rightId ? json.nodes[rightId] : undefined;
+                const stageData = (stageNode.data as Record<string, unknown>) || {};
+                const stageExtent = (stageData as unknown as { extent?: unknown }).extent as unknown;
+                const stageViewpoint = (stageData as unknown as { viewpoint?: { targetGeometry?: unknown; scale?: number } }).viewpoint;
+                // Derive a viewpoint from extent if none is present
+                let derivedVp: { targetGeometry?: unknown; scale?: number } | undefined = stageViewpoint;
+                if (!derivedVp && stageExtent) {
+                  const sz = determineScaleZoomLevel(stageExtent as unknown as { ymax: number; ymin: number });
+                  if (sz) derivedVp = { targetGeometry: stageExtent, scale: sz.scale };
+                }
+                const applyAlignment = (nodeId?: string) => {
+                  if (!nodeId) return;
+                  this.builder.updateNodeData(nodeId, (data) => {
+                    const hasExtent = !!(data as unknown as { extent?: unknown }).extent;
+                    const hasVp = !!(data as unknown as { viewpoint?: unknown }).viewpoint;
+                    if (!hasExtent && stageExtent) (data as Record<string, unknown>).extent = stageExtent as unknown as Record<string, unknown>;
+                    if (!hasVp && derivedVp) (data as Record<string, unknown>).viewpoint = derivedVp as unknown as Record<string, unknown>;
+                    // Hint runtime to use extent-based placement for consistent alignment
+                    if (!(data as unknown as { viewPlacement?: unknown }).viewPlacement) (data as Record<string, unknown>).viewPlacement = 'extent' as unknown as Record<string, unknown>;
+                  });
+                };
+                applyAlignment(leftId);
+                applyAlignment(rightId);
+              }
+            } catch { /* ignore alignment initialization errors */ }
             this.builder.registerReplaceMediaAction(stub.buttonNodeId, slideId, actMediaNode);
           }
         }
@@ -1460,8 +1496,77 @@ export class MapJournalConverter extends BaseConverter {
     try {
       this.logDebug('tryBuildSwipeNodeFromUrl: attempting inline swipe build from', { url });
       const swipeNodeId = (typeof window !== 'undefined')
-        ? SwipeConverter.buildInlineSwipeBlockBrowserSync(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout)
+        ? SwipeConverter.buildInlineSwipeBlockBrowserSync(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token)
         : SwipeConverter.buildInlineSwipeBlockSync(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
+      // DEV-only: log alignment snapshot for inline swipe contents (extent/center/viewpoint)
+      try {
+        if (import.meta && (import.meta as unknown as { env?: { DEV?: boolean } }).env?.DEV) {
+          const liveJson = this.builder.getJson();
+          const swipeNode = liveJson.nodes[swipeNodeId];
+          const contents = (swipeNode?.data as unknown as { contents?: Record<string,string> })?.contents || {};
+          const leftId = contents['0'];
+          const rightId = contents['1'];
+          const leftNode = leftId ? liveJson.nodes[leftId] : undefined;
+          const rightNode = rightId ? liveJson.nodes[rightId] : undefined;
+          const leftData = (leftNode?.data || {}) as Record<string, unknown>;
+          const rightData = (rightNode?.data || {}) as Record<string, unknown>;
+          // Print concise snapshot focusing on alignment-related fields
+          console.info('[InlineSwipe][AlignmentSnapshot]', {
+            layout,
+            swipeNodeId,
+            left: {
+              nodeId: leftId,
+              extent: leftData.extent,
+              center: (leftData as unknown as { center?: unknown })?.center,
+              viewpoint: (leftData as unknown as { viewpoint?: unknown })?.viewpoint,
+              viewPlacement: (leftData as unknown as { viewPlacement?: unknown })?.viewPlacement,
+            },
+            right: {
+              nodeId: rightId,
+              extent: rightData.extent,
+              center: (rightData as unknown as { center?: unknown })?.center,
+              viewpoint: (rightData as unknown as { viewpoint?: unknown })?.viewpoint,
+              viewPlacement: (rightData as unknown as { viewPlacement?: unknown })?.viewPlacement,
+            }
+          });
+          // Also log resource-level alignment data for referenced webmaps
+          const leftResId: string | undefined = (leftNode?.data as unknown as { map?: string })?.map;
+          const rightResId: string | undefined = (rightNode?.data as unknown as { map?: string })?.map;
+          const leftResData = leftResId ? (liveJson.resources[leftResId]?.data as Record<string, unknown> | undefined) : undefined;
+          const rightResData = rightResId ? (liveJson.resources[rightResId]?.data as Record<string, unknown> | undefined) : undefined;
+          console.info('[InlineSwipe][ResourceSnapshot]', {
+            swipeNodeId,
+            left: { resourceId: leftResId, extent: leftResData?.extent, center: (leftResData as any)?.center, viewpoint: (leftResData as any)?.viewpoint },
+            right: { resourceId: rightResId, extent: rightResData?.extent, center: (rightResData as any)?.center, viewpoint: (rightResData as any)?.viewpoint }
+          });
+          // For TWO_WEBMAPS, if node-level alignment is missing, initialize from RIGHT webmap resource
+          try {
+            const vals = classic.values as import('../types/classic.ts').ClassicValues;
+            const dm = String(vals.dataModel || '').toUpperCase();
+            if (dm === 'TWO_WEBMAPS' && rightResData && (leftId || rightId)) {
+              const resExtent = (rightResData as any)?.extent;
+              const resCenter = (rightResData as any)?.center;
+              let resViewpoint = (rightResData as any)?.viewpoint as { targetGeometry?: unknown; scale?: number } | undefined;
+              if (!resViewpoint && resExtent) {
+                const sz = determineScaleZoomLevel(resExtent as unknown as { ymax: number; ymin: number });
+                if (sz) resViewpoint = { targetGeometry: resCenter ?? resExtent, scale: sz.scale };
+              }
+              const applyFromRight = (nodeId?: string) => {
+                if (!nodeId) return;
+                this.builder.updateNodeData(nodeId, (data) => {
+                  const hasExtent = !!(data as any).extent;
+                  const hasVp = !!(data as any).viewpoint;
+                  if (!hasExtent && resExtent) (data as Record<string, unknown>).extent = resExtent as unknown as Record<string, unknown>;
+                  if (!hasVp && resViewpoint) (data as Record<string, unknown>).viewpoint = resViewpoint as unknown as Record<string, unknown>;
+                  if (!(data as any).viewPlacement) (data as Record<string, unknown>).viewPlacement = 'extent' as unknown as Record<string, unknown>;
+                });
+              };
+              applyFromRight(leftId);
+              applyFromRight(rightId);
+            }
+          } catch { /* ignore alignment init errors */ }
+        }
+      } catch { /* ignore logging errors */ }
       // Integrity check: ensure referenced content nodes exist; recreate if missing.
       try {
         const liveJson = this.builder.getJson();
@@ -1544,6 +1649,13 @@ export class MapJournalConverter extends BaseConverter {
           this.logDebug('inline swipe built successfully', { swipeNodeId, contents });
         }
       } catch { /* ignore integrity rebuild errors */ }
+      // Ensure converter-metadata reflects Map Journal at story level and records classic item id
+      try {
+        const classicId = (this.options as any)?.classicItemId as string | undefined;
+        const payload: Record<string, unknown> = {};
+        if (classicId) payload.classicItemId = classicId;
+        this.builder.addConverterMetadata('MapJournal', { classicMetadata: {}, ...(payload as any) });
+      } catch { /* ignore metadata update errors */ }
       this.flushDebugLogs('embedded-swipe');
       return swipeNodeId;
     } catch (e) {
