@@ -21,6 +21,7 @@ import { determineScaleZoomLevel } from '../util/scale';
 import { fetchJsonWithCache } from '../utils/fetchCache.ts';
 import { sanitizeBasicHtml } from '../utils/htmlSanitizer.ts';
 import { execSync } from 'node:child_process';
+import { detectClassicTemplate } from '../util/detectTemplate';
 
 type SwipeModel = 'TWO_WEBMAPS' | 'TWO_LAYERS';
 type SwipeLayout = 'swipe' | 'spyglass';
@@ -497,8 +498,19 @@ export class SwipeConverter extends BaseConverter {
       if (rootId) this.builder.addChild(rootId, swipeId);
     }
 
-    // Converter metadata
-    this.builder.addConverterMetadata('Swipe', { classicMetadata: { theme: { layout: this.layout, model: this.model } } });
+    // Converter metadata (derive classicType from detectTemplate and include template version)
+    const classicType = detectClassicTemplate(this.classicJson);
+    const vAny = v as unknown as { templateCreation?: string; templateLastEdit?: string };
+    const templateVersion = ((this.classicJson as unknown as { version?: string }).version
+      || (v as unknown as { version?: string }).version
+      || (v as unknown as { templateVersion?: string }).templateVersion);
+    const templateCreation = vAny.templateCreation;
+    const templateLastEdit = vAny.templateLastEdit;
+    this.builder.addConverterMetadata(classicType || 'Swipe', {
+      classicMetadata: { classicTheme: { layout: this.layout, model: this.model }, templateVersion },
+      classicTemplateCreation: templateCreation,
+      classicTemplateLastEdit: templateLastEdit
+    } as any);
     this.emit('Built swipe block');
   }
 
@@ -783,6 +795,220 @@ export class SwipeConverter extends BaseConverter {
     }
     const viewPlacement = layout === 'spyglass' ? 'extent' : 'extent';
     if (!contentA || !contentB) throw new Error('SwipeConverter.buildInlineSwipeBlock: missing content nodes');
+    return builder.createSwipeNode(contentA, contentB, viewPlacement);
+  }
+
+  // Synchronous wrapper for inline swipe block (Node-only contexts)
+  static buildInlineSwipeBlockSync(
+    builder: StoryMapJSONBuilder,
+    values: ClassicValues,
+    layout: SwipeLayout = 'swipe',
+    token?: string
+  ): string {
+    // Node contexts only; avoid browser-only async fetches
+    try { builder.addConverterMetadata('Swipe', { path: 'buildInlineSwipeBlockSync' } as any); } catch { /* ignore */ }
+    const dm = String(values.dataModel || '').toUpperCase() as SwipeModel;
+    let contentA: string | undefined;
+    let contentB: string | undefined;
+    if (dm === 'TWO_WEBMAPS') {
+      const ids: string[] = [];
+      if (Array.isArray(values.webmaps)) {
+        for (const entry of values.webmaps) {
+          if (typeof entry === 'string') ids.push(entry);
+          else if (entry && typeof entry === 'object' && 'id' in (entry as Record<string, unknown>)) ids.push(String((entry as Record<string, unknown>).id));
+        }
+      } else if (values.webmap) {
+        ids.push(String(values.webmap));
+      }
+      const [wmA, wmB] = ids;
+      const initialA: Record<string, unknown> = {};
+      const initialB: Record<string, unknown> = {};
+      const infoA = wmA ? SwipeConverter.fetchWebMapInfoSync(wmA, token) : undefined;
+      const infoB = wmB ? SwipeConverter.fetchWebMapInfoSync(wmB, token) : undefined;
+      if (infoA?.extent) {
+        (initialA as { extent?: unknown }).extent = infoA.extent;
+        const sz = determineScaleZoomLevel(infoA.extent as unknown as { ymax: number; ymin: number });
+        if (sz) (initialA as { viewpoint?: unknown }).viewpoint = { targetGeometry: infoA.center ?? infoA.extent, scale: sz.scale };
+      }
+      if (Array.isArray(infoA?.operationalLayers)) {
+        (initialA as { mapLayers?: Array<{ id: string; title: string; visible: boolean }> }).mapLayers = infoA!.operationalLayers!.map(l => ({ id: l.id, title: l.title || l.id, visible: !!l.visibility }));
+      }
+      if (infoB?.extent) {
+        (initialB as { extent?: unknown }).extent = infoB.extent;
+        const sz = determineScaleZoomLevel(infoB.extent as unknown as { ymax: number; ymin: number });
+        if (sz) (initialB as { viewpoint?: unknown }).viewpoint = { targetGeometry: infoB.center ?? infoB.extent, scale: sz.scale };
+      }
+      if (Array.isArray(infoB?.operationalLayers)) {
+        (initialB as { mapLayers?: Array<{ id: string; title: string; visible: boolean }> }).mapLayers = infoB!.operationalLayers!.map(l => ({ id: l.id, title: l.title || l.id, visible: !!l.visibility }));
+      }
+      const resA = wmA ? builder.addWebMapResource(wmA, 'Web Map', initialA as any, 'default') : undefined;
+      const resB = wmB ? builder.addWebMapResource(wmB, 'Web Map', initialB as any, 'default') : undefined;
+      if (resA && initialA) builder.updateWebMapInitialState(resA, initialA as any);
+      if (resB && initialB) builder.updateWebMapInitialState(resB, initialB as any);
+      if (resA) {
+        const useExtentA = infoA?.extent || infoB?.extent;
+        const szA = useExtentA ? determineScaleZoomLevel(useExtentA as unknown as { ymax: number; ymin: number }) : undefined;
+        const centerFromB = (infoB?.center || (infoB?.extent ? { x: ((infoB.extent as any).xmin + (infoB.extent as any).xmax) / 2, y: ((infoB.extent as any).ymin + (infoB.extent as any).ymax) / 2, spatialReference: (infoB.extent as any).spatialReference || { wkid: 102100 } } : undefined));
+        builder.updateWebMapData(resA, { extent: useExtentA, center: centerFromB, zoom: szA?.zoom, viewpoint: (initialA as any).viewpoint, mapLayers: (initialA as any).mapLayers ?? [], itemId: wmA, itemType: 'Web Map', type: 'default' } as any);
+      }
+      if (resB) {
+        const szB = infoB?.extent ? determineScaleZoomLevel(infoB.extent as unknown as { ymax: number; ymin: number }) : undefined;
+        const centerFromB = (infoB?.center || (infoB?.extent ? { x: ((infoB.extent as any).xmin + (infoB.extent as any).xmax) / 2, y: ((infoB.extent as any).ymin + (infoB.extent as any).ymax) / 2, spatialReference: (infoB.extent as any).spatialReference || { wkid: 102100 } } : undefined));
+        builder.updateWebMapData(resB, { extent: infoB?.extent, center: centerFromB, zoom: szB?.zoom, viewpoint: (initialB as any).viewpoint, mapLayers: (initialB as any).mapLayers ?? [], itemId: wmB, itemType: 'Web Map', type: 'default' } as any);
+      }
+      if (resA) contentA = builder.createWebMapNode(resA, undefined);
+      if (resB) contentB = builder.createWebMapNode(resB, undefined);
+      if (resA) {
+        const useExtentA2 = infoA?.extent || infoB?.extent;
+        const centerFromB2 = (infoB?.center || (infoB?.extent ? { x: ((infoB.extent as any).xmin + (infoB.extent as any).xmax) / 2, y: ((infoB.extent as any).ymin + (infoB.extent as any).ymax) / 2, spatialReference: (infoB.extent as any).spatialReference || { wkid: 102100 } } : undefined));
+        builder.updateWebMapData(resA, { extent: useExtentA2, center: centerFromB2 } as any);
+      }
+      if (contentA && (infoB?.extent || infoA?.extent)) builder.updateNodeData(contentA, (data) => {
+        const useExtent = (infoB?.extent || infoA?.extent);
+        (data as Record<string, unknown>).extent = useExtent;
+        const sz = determineScaleZoomLevel((useExtent as unknown as { ymax: number; ymin: number }));
+        const rightCenter = infoB?.center || (infoB?.extent ? { x: ((infoB.extent as any).xmin + (infoB.extent as any).xmax) / 2, y: ((infoB.extent as any).ymin + (infoB.extent as any).ymax) / 2, spatialReference: (infoB.extent as any).spatialReference || { wkid: 102100 } } : undefined);
+        const vpGeom = rightCenter ?? useExtent;
+        if (sz) (data as Record<string, unknown>).viewpoint = { targetGeometry: vpGeom, scale: sz.scale };
+        const hasTime = Array.isArray(infoA?.operationalLayers) && infoA!.operationalLayers!.some(l => (l as any).timeAnimation === true);
+        (data as Record<string, unknown>).timeSlider = !!hasTime;
+        if (Array.isArray(infoA?.operationalLayers) && infoA!.operationalLayers!.length) {
+          (data as Record<string, unknown>).mapLayers = infoA!.operationalLayers!.map(l => ({ id: l.id, title: l.title || l.id, visible: !!l.visibility }));
+          (data as Record<string, unknown>).viewPlacement = 'extent';
+        }
+      });
+      if (contentB && infoB?.extent) builder.updateNodeData(contentB, (data) => {
+        (data as Record<string, unknown>).extent = infoB.extent as any;
+        const sz = determineScaleZoomLevel(infoB.extent as unknown as { ymax: number; ymin: number });
+        const centerB = infoB.center || { x: ((infoB.extent as any).xmin + (infoB.extent as any).xmax) / 2, y: ((infoB.extent as any).ymin + (infoB.extent as any).ymax) / 2, spatialReference: (infoB.extent as any).spatialReference || { wkid: 102100 } };
+        if (sz) (data as Record<string, unknown>).viewpoint = { targetGeometry: centerB ?? (infoB.extent as any), scale: sz.scale };
+        const hasTime = Array.isArray(infoB.operationalLayers) && infoB.operationalLayers!.some(l => (l as any).timeAnimation === true);
+        (data as Record<string, unknown>).timeSlider = !!hasTime;
+        if (Array.isArray(infoB.operationalLayers) && infoB.operationalLayers!.length) {
+          (data as Record<string, unknown>).mapLayers = infoB.operationalLayers!.map(l => ({ id: l.id, title: l.title || l.id, visible: !!l.visibility }));
+          (data as Record<string, unknown>).viewPlacement = 'extent';
+        }
+      });
+    } else {
+      const baseId = String(values.webmap || '');
+      const baseInfo = baseId ? SwipeConverter.fetchWebMapInfoSync(baseId, token) : undefined;
+      const initialBase: Record<string, unknown> = {};
+      const useExtent2 = baseInfo?.extent;
+      const useCenter2 = baseInfo?.center;
+      if (useExtent2) {
+        (initialBase as { extent?: unknown }).extent = useExtent2;
+        const sz = determineScaleZoomLevel(useExtent2 as unknown as { ymax: number; ymin: number });
+        if (sz) {
+          (initialBase as { viewpoint?: unknown }).viewpoint = { targetGeometry: useCenter2 ?? useExtent2, scale: sz.scale };
+          (initialBase as { zoom?: number }).zoom = sz.zoom;
+        }
+      }
+      const resA = baseId ? builder.addWebMapResource(baseId, 'Web Map', initialBase as any, 'default') : undefined;
+      const resB = baseId ? builder.addWebMapResource(baseId, 'Web Map', initialBase as any, 'default') : undefined;
+      if (resA && initialBase) builder.updateWebMapInitialState(resA, initialBase as any);
+      if (resB && initialBase) builder.updateWebMapInitialState(resB, initialBase as any);
+      if (resA) builder.updateWebMapData(resA, { extent: (initialBase as any).extent, center: baseInfo?.center, viewpoint: (initialBase as any).viewpoint, zoom: (initialBase as any).zoom, itemId: baseId, itemType: 'Web Map', type: 'default' } as any);
+      if (resB) builder.updateWebMapData(resB, { extent: (initialBase as any).extent, center: baseInfo?.center, viewpoint: (initialBase as any).viewpoint, zoom: (initialBase as any).zoom, itemId: baseId, itemType: 'Web Map', type: 'default' } as any);
+      if (resA && resB) {
+        contentA = builder.createWebMapNode(resA, undefined);
+        contentB = builder.createWebMapNode(resB, undefined);
+        const rawLayers = Array.isArray(values.layers) ? values.layers : [];
+        const classicLayers: Array<{ id: string; title?: string }> = rawLayers.map((entry: unknown) => {
+          if (entry && typeof entry === 'object' && 'id' in (entry as Record<string, unknown>)) {
+            const obj = entry as ClassicLayer;
+            return { id: obj.id, title: obj.title || obj.id };
+          }
+          return { id: String(entry), title: String(entry) };
+        }).filter(l => l.id);
+        const sourceLayers: Array<{ id: string; title: string; visible: boolean }> = Array.isArray(baseInfo?.operationalLayers) ? baseInfo!.operationalLayers!.map(l => ({ id: l.id, title: l.title || l.id, visible: !!l.visibility })) : [];
+        const hiddenLeftSet = new Set<string>();
+        const shownRightSet = new Set<string>();
+        const normalizeId = (s?: string) => (s || '').replace(/_\d+$/, '');
+        for (const cl of classicLayers) {
+          hiddenLeftSet.add(normalizeId(cl.id));
+          hiddenLeftSet.add(normalizeId(cl.title || cl.id));
+          shownRightSet.add(normalizeId(cl.id));
+          shownRightSet.add(normalizeId(cl.title || cl.id));
+        }
+        const leftLayers: Array<{ id: string; title: string; visible: boolean }> = sourceLayers.map(l => {
+          const keyId = normalizeId(l.id);
+          const keyTitle = normalizeId(l.title);
+          const shouldHide = hiddenLeftSet.has(keyId) || hiddenLeftSet.has(keyTitle);
+          return { id: l.id, title: l.title, visible: shouldHide ? false : l.visible };
+        });
+        const rightLayers: Array<{ id: string; title: string; visible: boolean }> = sourceLayers.map(l => {
+          const keyId = normalizeId(l.id);
+          const keyTitle = normalizeId(l.title);
+          const shouldShow = shownRightSet.has(keyId) || shownRightSet.has(keyTitle);
+          return { id: l.id, title: l.title, visible: shouldShow ? true : l.visible };
+        });
+        builder.updateNodeData(contentA, (data) => {
+          (data as Record<string, unknown>).mapLayers = leftLayers;
+          if ((initialBase as any).extent) (data as any).extent = (initialBase as any).extent;
+          if ((initialBase as any).viewpoint) (data as any).viewpoint = (initialBase as any).viewpoint;
+        });
+        builder.updateNodeData(contentB, (data) => {
+          (data as Record<string, unknown>).mapLayers = rightLayers;
+          if ((initialBase as any).extent) (data as any).extent = (initialBase as any).extent;
+          if ((initialBase as any).viewpoint) (data as any).viewpoint = (initialBase as any).viewpoint;
+        });
+      }
+    }
+    const viewPlacement = layout === 'spyglass' ? 'extent' : 'extent';
+    if (!contentA || !contentB) throw new Error('SwipeConverter.buildInlineSwipeBlockSync: missing content nodes');
+    return builder.createSwipeNode(contentA, contentB, viewPlacement);
+  }
+
+  // Browser-safe synchronous inline swipe builder that avoids any network or Node APIs.
+  // Relies solely on provided classic values to construct swipe content nodes.
+  static buildInlineSwipeBlockBrowserSync(
+    builder: StoryMapJSONBuilder,
+    values: ClassicValues,
+    layout: SwipeLayout = 'swipe'
+  ): string {
+    try { builder.addConverterMetadata('Swipe', { path: 'buildInlineSwipeBlockBrowserSync' } as any); } catch { /* ignore */ }
+    const dm = String(values.dataModel || '').toUpperCase() as SwipeModel;
+    let contentA: string | undefined;
+    let contentB: string | undefined;
+    if (dm === 'TWO_WEBMAPS') {
+      const ids: string[] = [];
+      if (Array.isArray(values.webmaps)) {
+        for (const entry of values.webmaps) {
+          if (typeof entry === 'string') ids.push(entry);
+          else if (entry && typeof entry === 'object' && 'id' in (entry as Record<string, unknown>)) ids.push(String((entry as Record<string, unknown>).id));
+        }
+      } else if (values.webmap) {
+        ids.push(String(values.webmap));
+      }
+      const [wmA, wmB] = ids;
+      const resA = wmA ? builder.addWebMapResource(wmA, 'Web Map', {}, 'default') : undefined;
+      const resB = wmB ? builder.addWebMapResource(wmB, 'Web Map', {}, 'default') : undefined;
+      if (resA) contentA = builder.createWebMapNode(resA, undefined);
+      if (resB) contentB = builder.createWebMapNode(resB, undefined);
+    } else {
+      const baseId = String(values.webmap || '');
+      const resA = baseId ? builder.addWebMapResource(baseId, 'Web Map', {}, 'default') : undefined;
+      const resB = baseId ? builder.addWebMapResource(baseId, 'Web Map', {}, 'default') : undefined;
+      if (resA && resB) {
+        contentA = builder.createWebMapNode(resA, undefined);
+        contentB = builder.createWebMapNode(resB, undefined);
+        const rawLayers = Array.isArray(values.layers) ? values.layers : [];
+        const classicLayers: Array<{ id: string; title?: string }> = rawLayers.map((entry: unknown) => {
+          if (entry && typeof entry === 'object' && 'id' in (entry as Record<string, unknown>)) {
+            const obj = entry as import('../types/classic').ClassicLayer;
+            return { id: obj.id, title: obj.title || obj.id };
+          }
+          return { id: String(entry), title: String(entry) };
+        }).filter(l => l.id);
+        // Without source layer visibilities, apply a simple mapping: left hidden, right shown.
+        const leftLayers = classicLayers.map(cl => ({ id: cl.id, title: cl.title || cl.id, visible: false }));
+        const rightLayers = classicLayers.map(cl => ({ id: cl.id, title: cl.title || cl.id, visible: true }));
+        builder.updateNodeData(contentA, (data) => { (data as Record<string, unknown>).mapLayers = leftLayers; });
+        builder.updateNodeData(contentB, (data) => { (data as Record<string, unknown>).mapLayers = rightLayers; });
+      }
+    }
+    const viewPlacement = layout === 'spyglass' ? 'extent' : 'extent';
+    if (!contentA || !contentB) throw new Error('SwipeConverter.buildInlineSwipeBlockBrowserSync: missing content nodes');
     return builder.createSwipeNode(contentA, contentB, viewPlacement);
   }
 

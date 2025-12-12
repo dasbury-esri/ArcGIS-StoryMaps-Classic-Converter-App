@@ -11,6 +11,11 @@ export function detectClassicTemplate(classic: ClassicStoryMapJSON | unknown): s
     return (val as T) ?? undefined;
   };
   const settings = get<Record<string, unknown>>(v, 'settings') ?? {};
+  // Strong priority: explicit Map Journal structure wins
+  const story = get<Record<string, unknown>>(v, 'story');
+  const storySections = story && Array.isArray(story['sections']) ? (story['sections'] as unknown[]) : undefined;
+  if (storySections && storySections.length) return 'Map Journal';
+
   let templateName: string | undefined;
   const templateNameStr = get<string>(v, 'templateName');
   if (typeof templateNameStr === 'string' && templateNameStr.trim()) templateName = templateNameStr;
@@ -19,6 +24,8 @@ export function detectClassicTemplate(classic: ClassicStoryMapJSON | unknown): s
   const templateObj = get<Record<string, unknown>>(v, 'template');
   const templateObjName = templateObj && typeof templateObj['name'] === 'string' ? (templateObj['name'] as string) : undefined;
   if (templateObjName) templateName = templateObjName;
+  // Only return Swipe when values.template explicitly says "Swipe"
+  if (templateName && /\bswipe\b/i.test(templateName)) return 'Swipe';
   if (templateName) return normalize(templateName);
   if (!templateName && settings && isObj(settings) && isObj(settings['components'])) return 'Crowdsource';
   const series = get<unknown[]>(v, 'series');
@@ -27,11 +34,11 @@ export function detectClassicTemplate(classic: ClassicStoryMapJSON | unknown): s
   if (Array.isArray(tabs) || !!tabs) return 'Shortlist';
   const order = get<unknown[]>(v, 'order');
   if (Array.isArray(order)) return 'Map Tour';
+  // Do not infer Swipe from inner signatures if story.sections exists (handled above)
   if (get<unknown>(v, 'dataModel') || get<unknown>(v, 'layers') || get<unknown>(v, 'webmaps')) return 'Swipe';
   const components = get<Record<string, unknown>>(v, 'components');
   if (components && isObj(components) && !!components['contribute']) return 'Crowdsource';
-  const story = get<Record<string, unknown>>(v, 'story');
-  const storySections = story && Array.isArray(story['sections']) ? (story['sections'] as unknown[]) : undefined;
+  // If a cascade sequence is present without earlier Map Journal match
   if (storySections) {
     if (storySections.some((s: unknown) => isObj(s) && (s['type'] as unknown) === 'sequence')) return 'Cascade';
     return 'Map Journal';

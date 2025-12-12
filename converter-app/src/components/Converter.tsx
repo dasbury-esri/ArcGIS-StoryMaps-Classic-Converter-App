@@ -37,7 +37,8 @@ type Status =
 
 export default function Converter() {
   const [publishing, setPublishing] = useState(false);
-  const [useLocalJson, setUseLocalJson] = useState<boolean>(Boolean(import.meta.env.DEV));
+  // Disable by default; user can enable explicitly
+  const [useLocalJson, setUseLocalJson] = useState<boolean>(false);
   const [localJsonPath, setLocalJsonPath] = useState<string>('');
   // retain state only for UI style and tooltip logic; reading ref for actual cancellation
   const cancelRequestedRef = useRef(false);
@@ -50,8 +51,74 @@ export default function Converter() {
   const [message, setMessage] = useState("");
   const [toast, setToast] = useState<string>("");
   const [convertedUrl, setConvertedUrl] = useState("");
+    // UI toggle: suppress converter-metadata resources
+    const [suppressMetadata, setSuppressMetadata] = useState<boolean>(() => {
+      try {
+        const saved = localStorage.getItem('suppressConverterMetadata');
+        // Default: metadata enabled (not suppressed) → suppress=false
+        return saved ? String(saved).toLowerCase() === 'true' : false;
+      } catch {
+        return false;
+      }
+    });
+    useEffect(() => {
+      try {
+        // Persist the suppress flag
+        localStorage.setItem('suppressConverterMetadata', String(suppressMetadata));
+      } catch { /* ignore */ }
+      // Global flag expects "suppress"; true means suppress metadata, false means emit
+      (globalThis as unknown as { __SUPPRESS_CONVERTER_METADATA?: boolean }).__SUPPRESS_CONVERTER_METADATA = suppressMetadata;
+    }, [suppressMetadata]);
   // buttonLabel retained for future extended messaging but currently unused
   const [buttonLabel, setButtonLabel] = useState("Convert");
+  // Dynamically update Convert button when a valid id is entered
+  useEffect(() => {
+    let cancelled = false;
+    const id = (classicItemId || '').trim();
+    // Simple validity heuristic: AGO IDs are usually 32 chars hex-ish; accept length >= 8
+    if (id.length < 8) { setButtonLabel('Convert'); return; }
+    (async () => {
+      try {
+        // Fetch item details for name
+        const details = await getItemDetails(id, token);
+        const title = String(details?.title || details?.name || '').trim();
+        // Try to detect template from classic data
+        let template: string | null = null;
+        try {
+          const data = await getItemData(id, token);
+          template = detectClassicTemplate(data);
+        } catch { /* ignore */ }
+        if (!template || template.toLowerCase() === 'unknown') {
+          // Fallback to type keywords
+          const kws: string[] = Array.isArray(details?.typeKeywords) ? details.typeKeywords : [];
+          const typeStr = String(details?.type || '').toLowerCase();
+          const text = [typeStr, ...(kws.map(k => String(k).toLowerCase()))].join(' ');
+          const mapName = () => {
+            if (/journal/.test(text)) return 'Map Journal';
+            if (/swipe/.test(text)) return 'Swipe';
+            if (/tour/.test(text)) return 'Map Tour';
+            if (/series/.test(text)) return 'Map Series';
+            if (/cascade/.test(text)) return 'Cascade';
+            if (/shortlist/.test(text)) return 'Shortlist';
+            if (/crowdsource/.test(text)) return 'Crowdsource';
+            if (/basic/.test(text)) return 'Basic';
+            return null;
+          };
+          const mapped = mapName();
+          if (mapped) template = mapped;
+        }
+        const tmplName = template || '';
+        const storyTitle = title || '';
+        const label = tmplName && storyTitle
+          ? `Convert classic ${tmplName}: "${storyTitle}"`
+          : 'Convert';
+        if (!cancelled) setButtonLabel(label);
+      } catch {
+        if (!cancelled) setButtonLabel('Convert');
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [classicItemId, token]);
   // Track cache presence reactively via fetchCache event emitter
   const [cacheSize, setCacheSize] = useState<number>(getFetchCacheSize());
   useEffect(() => {
@@ -198,6 +265,8 @@ export default function Converter() {
     // Re-run when auth changes or org info updates
   }, [token, userInfo, orgBase, getOrgHostname]);
 
+  // ... UI rendering continues below; insert checkbox into controls panel
+
   // Prefer portal-derived base (urlKey.customBaseUrl) when available; resolve once per auth session
   useEffect(() => {
     if (!token || portalResolvedRef.current) return;
@@ -269,6 +338,22 @@ export default function Converter() {
     if (candidate && candidate !== orgBase) setOrgBase(candidate);
     return candidate;
   }, [orgBase, token, getOrgHostname]);
+  // Reset UI state for a fresh run (used by Clear Cache)
+  const resetForNewRun = useCallback(() => {
+    setPublishing(false);
+    setStatus("idle");
+    setMessage("");
+    setConvertedUrl("");
+    setButtonLabel("Convert");
+    cancelRequestedRef.current = false;
+    setCancelRequested(false);
+    setWebmapWarnings([]);
+    setWebmapChecksFinalized(false);
+    setExpandedWarnings({});
+    setDetectedTemplate(null);
+    if (customCssInfo?.url) URL.revokeObjectURL(customCssInfo.url);
+    setCustomCssInfo(null);
+  }, [customCssInfo]);
     const handleConvert = async () => {
       // Reset state
       setStatus("idle");
@@ -704,7 +789,7 @@ export default function Converter() {
 
         // Persist webmap warnings into converter-metadata resource for later visibility
         try {
-          if (Array.isArray(webmapWarnings) && webmapWarnings.length) {
+          if (!suppressMetadata && Array.isArray(webmapWarnings) && webmapWarnings.length) {
             const storyJson = newStorymapJson as unknown as { resources?: Record<string, { type?: string; data?: Record<string, unknown> }> };
             const resources = storyJson.resources || {};
             const foundEntry = Object.entries(resources).find(([, r]) => r && r.type === 'converter-metadata');
@@ -918,10 +1003,10 @@ export default function Converter() {
       <div className="converter-instructions">
         <h3>Instructions:</h3>
         <ol>
-          <li>Sign in to ArcGIS Online using the sign-in button above.</li>
+          <li>Sign in to ArcGIS Online using the sign-in button above</li>
           <li>Enter the Item ID of your Classic Story</li>
           <li>Click Convert to transform your classic story into the new format</li>
-          <li>Review the converted story and publish when ready</li>
+          <li>Click Finishing Publishing to open the converted story. Review and publish when ready</li>
         </ol>
       </div>
       <div className="converter-input-group">
@@ -934,16 +1019,42 @@ export default function Converter() {
           className="converter-input"
         />
       </div>
-      <div className="converter-controls-row">
-        <button
-          className={`converter-btn ${cacheSize > 0 ? 'secondary' : 'disabled'}`}
-          onClick={() => { if (cacheSize > 0) { clearFetchCache(); setToast('Cache cleared'); setTimeout(() => setToast(''), 2000); } }}
-          title={cacheSize > 0 ? 'Clear in-memory fetch cache' : 'Cache is empty'}
-          disabled={cacheSize === 0}
-        >
-          Clear cached webmap/story data
-        </button>
+      <div className="converter-input-group">
+        <label className="converter-label">
+          <input
+            type="checkbox"
+            checked={!suppressMetadata}
+            onChange={(e) => setSuppressMetadata(!e.target.checked)}
+          />{' '}
+          Enable metadata output
+          {' '}
+          <span
+            role="button"
+            aria-label="Metadata output info"
+            title="When enabled, adds a resource node to the output json recording the original classic story's parameters and other diagnostics"
+            onClick={() => alert("When enabled, adds a resource node to the output json recording the original classic story's parameters and other diagnostics")}
+            className="metadata-info-icon"
+          >
+            <span className="metadata-info-fallback">ℹ️</span>
+          </span>
+        </label>
       </div>
+      {cacheSize > 0 && (
+        <div className="converter-controls-row">
+          <button
+            className={`converter-btn secondary`}
+            onClick={() => {
+              clearFetchCache();
+              resetForNewRun();
+              setToast('Cache cleared');
+              setTimeout(() => setToast(''), 2000);
+            }}
+            title={'Clear in-memory fetch cache'}
+          >
+            Clear cached webmap/story data
+          </button>
+        </div>
+      )}
       {status !== "success" ? (
         <button
           className={`converter-btn ${hoverCancel && ['fetching','converting','transferring','updating'].includes(status) ? 'cancel-hover' : ''}`}
@@ -954,15 +1065,26 @@ export default function Converter() {
           disabled={publishing}
         >
           {(() => {
-            if (status === 'idle' || status === 'error') return 'Convert';
+            // When idle or after an error, prefer dynamic buttonLabel if available
+            if (status === 'idle' || status === 'error') return buttonLabel || 'Convert';
             if (hoverCancel && ['fetching','converting','transferring','updating'].includes(status)) return 'Cancel';
-            // Restore buttonLabel behavior
-            return buttonLabel;
+            return buttonLabel || 'Convert';
           })()}
         </button>
       ) : (
         <div className="converter-message converter-message-success">
-          <strong>Converted </strong> {message || "Conversion complete!"}
+          <button
+            className="converter-btn secondary"
+            onClick={() => { if (convertedUrl) { window.open(convertedUrl, '_blank'); } }}
+            title="Open in ArcGIS StoryMaps to finish publishing"
+          >
+            Click to Finish Publishing →
+          </button>
+          {convertedUrl && (
+            <div className="converter-help-text publishing-url-block">
+              <strong>Publishing URL:</strong> <a href={convertedUrl} target="_blank" rel="noopener noreferrer">{convertedUrl}</a>
+            </div>
+          )}
         </div>
       )}
       {isMobile && status !== 'idle' && status !== 'error' && status !== 'success' && !cancelRequestedRef.current && !cancelRequested && (
@@ -991,69 +1113,8 @@ export default function Converter() {
           <strong>Custom CSS Detected!</strong> Your classic story used custom CSS settings. To recreate your custom styles you should create a new ArcGIS StoryMaps Theme <a href="https://storymaps.arcgis.com/themes/new" target="_blank" rel="noopener noreferrer">here</a> with your custom colors and styles, then apply the new Theme within the ArcGIS StoryMaps Builder (under the Design tab). <a href={customCssInfo.url} download={customCssInfo.fileName || 'custom-css.css'}>Click this link</a> to download a copy of your custom CSS.
         </div>
       )}
-      {import.meta.env.DEV && (
-        <div className="converter-input-group dev-extra-margin">
-          <label className="converter-label">
-            <input type="checkbox" checked={useLocalJson} onChange={e => setUseLocalJson(e.target.checked)} /> Use local JSON (dev)
-          </label>
-          {useLocalJson && (
-            <input
-              type="text"
-              value={localJsonPath}
-              onChange={e => setLocalJsonPath(e.target.value)}
-              placeholder="tmp-converted/converted-app-...-stdout.json"
-              className="converter-input"
-            />
-          )}
-          <div className="converter-controls-row">
-            <button
-              className="converter-btn"
-              onClick={async () => {
-                if (!localJsonPath) return;
-                try {
-                  const url = `/.netlify/functions/publish-draft-from-file?file=${encodeURIComponent(localJsonPath)}`;
-                  const res = await fetch(url, { headers: token ? { Authorization: `Bearer ${token}` } : undefined });
-                  const j = await res.json();
-                  if (!j.ok) throw new Error(j.error || 'Publish from file failed');
-                  const editUrl = j.editUrl as string | undefined;
-                  if (editUrl) {
-                    setConvertedUrl(editUrl);
-                    window.open(editUrl, '_blank');
-                    setToast(`Published draft. Edit: ${editUrl}`);
-                  } else {
-                    setToast('Published draft (no edit URL returned)');
-                  }
-                  setTimeout(() => setToast(''), 5000);
-                } catch (e) {
-                  setToast((e as Error)?.message || 'Publish from file failed');
-                  setTimeout(() => setToast(''), 3000);
-                }
-              }}
-            >Publish from local JSON</button>
-          </div>
-        </div>
-      )}
-      {convertedUrl && (
-        <div className="converter-publish">
-          <button
-            className="converter-publish-btn"
-            onClick={() => {
-              window.open(convertedUrl, '_blank');
-              setStatus("idle");
-              setMessage("");
-              setPublishing(false);
-              setConvertedUrl("");
-            }}
-            disabled={!publishing}
-          >
-            Click to Finish Publishing →
-          </button>
-          <div className="converter-url-row">
-            <span className="converter-url-label">Publishing URL:</span>{' '}
-            <a href={convertedUrl} target="_blank" rel="noopener noreferrer" className="converter-url-link">{convertedUrl}</a>
-          </div>
-        </div>
-      )}
+      {/* DEV local JSON controls moved below warnings */}
+      {/* converter-publish section removed */}
       {(webmapWarnings.length > 0 || webmapChecksFinalized) && (
         <div className="converter-warning">
           <strong>Webmap Checks:</strong>
@@ -1181,6 +1242,48 @@ export default function Converter() {
               
             </>
           )}
+        </div>
+      )}
+      {import.meta.env.DEV && (
+        <div className="converter-input-group dev-extra-margin">
+          <label className="converter-label">
+            <input type="checkbox" checked={useLocalJson} onChange={e => setUseLocalJson(e.target.checked)} /> Use a local JSON file
+          </label>
+          {useLocalJson && (
+            <input
+              type="text"
+              value={localJsonPath}
+              onChange={e => setLocalJsonPath(e.target.value)}
+              placeholder="tmp-converted/converted-app-...-stdout.json"
+              className="converter-input"
+            />
+          )}
+          <div className="converter-controls-row">
+            <button
+              className="converter-btn"
+              onClick={async () => {
+                if (!localJsonPath) return;
+                try {
+                  const url = `/.netlify/functions/publish-draft-from-file?file=${encodeURIComponent(localJsonPath)}`;
+                  const res = await fetch(url, { headers: token ? { Authorization: `Bearer ${token}` } : undefined });
+                  const j = await res.json();
+                  if (!j.ok) throw new Error(j.error || 'Publish from file failed');
+                  const editUrl = j.editUrl as string | undefined;
+                  if (editUrl) {
+                    setConvertedUrl(editUrl);
+                    window.open(editUrl, '_blank');
+                    setToast(`Published draft. Edit: ${editUrl}`);
+                  } else {
+                    setToast('Published draft (no edit URL returned)');
+                  }
+                  setTimeout(() => setToast(''), 5000);
+                } catch (e) {
+                  setToast((e as Error)?.message || 'Publish from file failed');
+                  setTimeout(() => setToast(''), 3000);
+                }
+              }}
+            >Publish from local JSON</button>
+          </div>
         </div>
       )}
     </div>

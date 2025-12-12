@@ -32,6 +32,8 @@ export function sanitizeBasicHtml(html: string): SanitizedHtmlResult {
     // Replace opening and closing tags with empty to keep inner text
     return '';
   });
+  // Replace non-breaking spaces with normal spaces
+  working = working.replace(/&nbsp;/gi, ' ').replace(/\u00A0/g, ' ');
   // Collapse multiple consecutive newlines to a single newline
   working = working.replace(/(?:\r?\n|\r){2,}/g, '\n');
   return { sanitizedHtml: working, inlineStyles: styles };

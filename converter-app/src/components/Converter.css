@@ -1,1 +1,16 @@
+.publishing-url-block {
+	margin-top: 8px;
+}
+.publishing-url-block a {
+	color: #e3ffe3ff; /* match .converter-message-success text color */
+}
+.metadata-info-icon {
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+	margin-left: 6px;
+}
+.metadata-info-fallback {
+	margin-left: 4px;
+}
 .dev-extra-margin { margin-top: 12px; }

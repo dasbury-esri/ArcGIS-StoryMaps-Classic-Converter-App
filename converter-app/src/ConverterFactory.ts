@@ -1,3 +1,25 @@
+// Import app version to thread into converter-metadata when created here
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import pkg from '../package.json' assert { type: 'json' };
+
+function getAppVersion(): string {
+  try {
+    const v = (pkg as { version?: string })?.version;
+    if (typeof v === 'string' && v.length) return v;
+  } catch { /* ignore */ }
+  try {
+    const m: any = (typeof import.meta !== 'undefined') ? import.meta : undefined;
+    const v = m?.env?.VITE_APP_VERSION || m?.env?.APP_VERSION || '';
+    if (typeof v === 'string' && v.length) return v;
+  } catch { /* ignore */ }
+  try {
+    const p: any = (typeof process !== 'undefined') ? process : undefined;
+    const v = p?.env?.npm_package_version || p?.env?.APP_VERSION || '';
+    if (typeof v === 'string' && v.length) return v;
+  } catch { /* ignore */ }
+  return '0.0.0';
+}
 /**
  * ConverterFactory
  *
@@ -333,33 +355,42 @@ export class ConverterFactory {
         }
       }
     } catch {}
-    // Persist version warnings into converter-metadata resource so UI can surface them.
+    // Persist version/protocol warnings into converter-metadata resource for downstream visibility.
     if (versionWarnings.length || protocolWarnings.length) {
-      const metaEntry = Object.entries(json.resources).find(([, r]) => (r as { type?: string })?.type === 'converter-metadata');
-      if (metaEntry) {
-        const [metaId, metaRes] = metaEntry as [string, { type: string; data: Record<string, unknown> }];
-        const metaData = (metaRes.data || {}) as Record<string, unknown>;
-        const classicMetadata = ((metaData.classicMetadata as Record<string, unknown>) || (metaData.classicMetadata = {} as Record<string, unknown>)) as Record<string, unknown>;
-        if (versionWarnings.length) {
-          classicMetadata.webmapVersionWarnings = versionWarnings.map(vw => ({
-            itemId: vw.itemId,
-            message: `Unsupported web map version: You must update the web map to the latest version. Open in <a href="https://www.arcgis.com/home/webmap/viewer.html?webmap=${vw.itemId}" target="_blank" rel="noopener">Map Viewer Classic</a> and save it.`,
-            version: vw.version,
-            type: 'version'
-          }));
-        }
-        if (protocolWarnings.length) {
-          classicMetadata.webmapProtocolWarnings = protocolWarnings.map(pw => ({
-            itemId: pw.itemId,
-            message: `Unsupported protocol: Update layer URLs to HTTPS. Open the web map <a href="https://www.arcgis.com/home/item.html?id=${pw.itemId}#settings" target="_blank" rel="noopener">settings page</a> and click "Update layers to HTTPS" in the Web map section.`,
-            httpLayerCount: pw.httpLayerCount,
-            type: 'protocol'
-          }));
-        }
-        json.resources[metaId] = metaRes as unknown as StoryMapResource;
-        if (versionWarnings.length) progress({ stage: 'convert', message: `Detected ${versionWarnings.length} web map(s) requiring version update (<2.0).` });
-        if (protocolWarnings.length) progress({ stage: 'convert', message: `Detected ${protocolWarnings.length} web map(s) with http layer(s) requiring HTTPS update.` });
+      let metaEntry = Object.entries(json.resources).find(([, r]) => (r as { type?: string })?.type === 'converter-metadata');
+      if (!metaEntry) {
+        // Create a minimal converter-metadata resource if missing
+        const rid = `r-${Math.random().toString(36).slice(2, 8)}`;
+        json.resources[rid] = {
+          type: 'converter-metadata',
+          data: { typeConvertedTo: 'storymap', converterVersion: getAppVersion(), classicType: 'unknown', classicMetadata: {} }
+        } as unknown as StoryMapResource;
+        metaEntry = [rid, json.resources[rid] as unknown as { type: string; data: Record<string, unknown> }];
       }
+      const [metaId, metaRes] = metaEntry as [string, { type: string; data: Record<string, unknown> }];
+      const metaData = (metaRes.data || {}) as Record<string, unknown>;
+      const classicMetadata = ((metaData.classicMetadata as Record<string, unknown>) || (metaData.classicMetadata = {} as Record<string, unknown>)) as Record<string, unknown>;
+      if (versionWarnings.length) {
+        classicMetadata.webmapVersionWarnings = versionWarnings.map(vw => ({
+          itemId: vw.itemId,
+          message: `Unsupported web map version: You must update the web map to the latest version. Open in <a href="https://www.arcgis.com/home/webmap/viewer.html?webmap=${vw.itemId}" target="_blank" rel="noopener">Map Viewer Classic</a> and save it.`,
+          version: vw.version,
+          type: 'version'
+        }));
+      }
+      if (protocolWarnings.length) {
+        classicMetadata.webmapProtocolWarnings = protocolWarnings.map(pw => ({
+          itemId: pw.itemId,
+          message: `Unsupported protocol: Update layer URLs to HTTPS. Open the web map <a href="https://www.arcgis.com/home/item.html?id=${pw.itemId}#settings" target="_blank" rel="noopener">settings page</a> and click "Update layers to HTTPS" in the Web map section.`,
+          httpLayerCount: pw.httpLayerCount,
+          type: 'protocol'
+        }));
+      }
+      // Force converter-metadata to the end
+      delete json.resources[metaId];
+      json.resources[metaId] = metaRes as unknown as StoryMapResource;
+      if (versionWarnings.length) progress({ stage: 'convert', message: `Detected ${versionWarnings.length} web map(s) requiring version update (<2.0).` });
+      if (protocolWarnings.length) progress({ stage: 'convert', message: `Detected ${protocolWarnings.length} web map(s) with http layer(s) requiring HTTPS update.` });
     }
   }
 }

@@ -1,3 +1,8 @@
+/* Adjust spacing for the Instructions heading inside the converter */
+.converter-instructions h3 {
+  margin-top: 0.1rem; /* tweak as desired */
+  margin-bottom: 0.1rem; /* tweak as desired */
+}
 .jumbotron {
   text-align: center;
 }
@@ -20,12 +25,14 @@
   background: #1D3955;
   border-radius: 8px;
 }
-
 .converter-instructions {
-  margin-top: 32px;
-  margin-bottom: 64px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 15px;
   font-size: 14px;
-  color: #666;
+  border-radius: 4px;
+  background-color: #2d5d7f;
+  color: #6080a4;
 }
 .converter-input-group {
   margin-bottom: 20px;
@@ -55,6 +62,13 @@
   cursor: pointer;
   margin-bottom: 8px;
   transition: background 0.2s;
+}
+.converter-btn.secondary {
+  background-color: #28a745; /* bright green success */
+}
+.converter-btn.secondary:hover,
+.converter-btn.secondary:focus {
+  background-color: #218838; /* slightly darker on hover/focus */
 }
 .converter-btn.cancel-hover {
   background-color: #c12f00;
@@ -96,25 +110,7 @@
   color: #cc0000;
   border: 1px solid #ff0000;
 }
-.converter-publish {
-  margin-top: 20px;
-}
-.converter-publish-btn {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  background-color: #28a745;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.converter-publish-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
+/* converter-publish styles removed */
 .converter-warning {
   border: 1px solid #e67e22;
   background: #fff8f0;

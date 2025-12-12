@@ -1,3 +1,4 @@
+import { detectClassicTemplate } from '../util/detectTemplate';
 // In Node, Vite resolves node:child_process to a shim in browser. We guard usage.
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
@@ -33,6 +34,61 @@ export class MapJournalConverter extends BaseConverter {
   private styleBlocks: string[] = [];
   // Count of external provider video embeds (YouTube/Vimeo) converted
   private videoEmbedCount = 0;
+  // Lightweight log collector for converter-metadata persistence
+  private debugLogs: string[] = [];
+
+  // Runtime flag to temporarily suppress converter-metadata resources
+  private shouldSuppressMetadata(): boolean {
+    // Safe cross-runtime check across browser/Node and UI toggle
+    let flag = '';
+    // Browser: Vite import.meta.env
+    const meta: unknown = (typeof import.meta !== 'undefined') ? import.meta : undefined;
+    const metaEnv = (meta as { env?: Record<string, unknown> } | undefined)?.env;
+    if (metaEnv && typeof metaEnv.SUPPRESS_CONVERTER_METADATA !== 'undefined') {
+      flag = String(metaEnv.SUPPRESS_CONVERTER_METADATA);
+    }
+    // Browser: UI toggle via globalThis
+    if (!flag && typeof globalThis !== 'undefined') {
+      const g = globalThis as unknown as { __SUPPRESS_CONVERTER_METADATA?: unknown };
+      if (typeof g.__SUPPRESS_CONVERTER_METADATA !== 'undefined') {
+        flag = String(g.__SUPPRESS_CONVERTER_METADATA);
+      }
+    }
+    // Node: process.env
+    if (!flag && typeof process !== 'undefined') {
+      const pEnv = (process as unknown as { env?: Record<string, unknown> }).env;
+      if (pEnv && typeof pEnv.SUPPRESS_CONVERTER_METADATA !== 'undefined') {
+        flag = String(pEnv.SUPPRESS_CONVERTER_METADATA);
+      }
+    }
+    return String(flag || '').toLowerCase() === 'true';
+  }
+
+  private logDebug(message: string, data?: unknown): void {
+    try {
+      const line = data ? `${message} ${JSON.stringify(data)}` : message;
+      this.debugLogs.push(line);
+      if (typeof console !== 'undefined' && console.debug) console.debug('[MapJournalConverter]', message, data ?? '');
+    } catch { /* ignore */ }
+  }
+
+  private logWarn(message: string, data?: unknown): void {
+    try {
+      const line = data ? `${message} ${JSON.stringify(data)}` : message;
+      this.debugLogs.push(line);
+      if (typeof console !== 'undefined' && console.warn) console.warn('[MapJournalConverter]', message, data ?? '');
+    } catch { /* ignore */ }
+  }
+
+  private flushDebugLogs(path: string): void {
+    if (!this.debugLogs.length) return;
+    try {
+      if (!this.shouldSuppressMetadata()) {
+        this.builder.addConverterMetadata('MapJournal', { path, classicMetadata: { logs: this.debugLogs.slice() } });
+      }
+      this.debugLogs.length = 0;
+    } catch { /* ignore */ }
+  }
 
   constructor(options: BaseConverterOptions) {
     super(options);
@@ -641,7 +697,11 @@ export class MapJournalConverter extends BaseConverter {
       };
       this.builder.applyTheme({ themeId: 'obsidian', variableOverrides: {} });
       decisions.videoEmbeds = this.videoEmbedCount;
-      this.builder.addConverterMetadata('MapJournal', { classicMetadata: { theme: classicTheme as unknown, mappingDecisions: decisions as unknown } });
+      const classicType = detectClassicTemplate(this.classicJson);
+      const vAny = (this.classicJson as unknown as { values?: { templateCreation?: string; templateLastEdit?: string } }).values || {} as { templateCreation?: string; templateLastEdit?: string };
+      this.builder.addConverterMetadata(classicType || 'MapJournal', { classicMetadata: { classicTheme: classicTheme as unknown, mappingDecisions: decisions as unknown, templateVersion: ((this.classicJson as unknown as { version?: string; values?: { version?: string; templateVersion?: string } }).version
+        || (this.classicJson as unknown as { values?: { version?: string } }).values?.version
+        || (this.classicJson as unknown as { values?: { templateVersion?: string } }).values?.templateVersion) }, classicTemplateCreation: vAny.templateCreation, classicTemplateLastEdit: vAny.templateLastEdit } as any);
       this.emit('Applied fallback obsidian theme (no classic theme present; float layout)');
       return;
     }
@@ -690,8 +750,14 @@ export class MapJournalConverter extends BaseConverter {
     // Apply base theme and overrides to existing theme resource
     this.builder.applyTheme({ themeId: decisions.baseThemeId, variableOverrides: overrides });
     (decisions as Record<string, unknown>).videoEmbeds = this.videoEmbedCount;
-    // Add converter metadata resource
-    this.builder.addConverterMetadata('MapJournal', { classicMetadata: { theme: classicTheme, mappingDecisions: decisions } });
+    // Add converter metadata resource (unless suppressed)
+    if (!this.shouldSuppressMetadata()) {
+      const classicType2 = detectClassicTemplate(this.classicJson);
+      const vAny2 = (this.classicJson as unknown as { values?: { templateCreation?: string; templateLastEdit?: string } }).values || {} as { templateCreation?: string; templateLastEdit?: string };
+      this.builder.addConverterMetadata(classicType2 || 'MapJournal', { classicMetadata: { classicTheme: classicTheme, mappingDecisions: decisions, templateVersion: ((this.classicJson as unknown as { version?: string; values?: { version?: string; templateVersion?: string } }).version
+        || (this.classicJson as unknown as { values?: { version?: string } }).values?.version
+        || (this.classicJson as unknown as { values?: { templateVersion?: string } }).values?.templateVersion) }, classicTemplateCreation: vAny2.templateCreation, classicTemplateLastEdit: vAny2.templateLastEdit } as any);
+    }
     const sidecarNode = this.builder.getJson().nodes[sidecarId];
     const childrenUnknown: unknown = sidecarNode && 'children' in sidecarNode ? (sidecarNode as unknown as { children?: unknown }).children : undefined;
     const slideCount = Array.isArray(childrenUnknown) ? (childrenUnknown as unknown[]).length : 0;
@@ -772,6 +838,13 @@ export class MapJournalConverter extends BaseConverter {
 
   private stripHtml(input: string): string {
     return input.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  // Normalize labels for buttons/action-buttons by removing leading arrow glyphs
+  // and converting non-breaking spaces to normal spaces.
+  private normalizeButtonLabel(label: string): string {
+    const asSpace = String(label ?? '').replace(/\u00A0|&nbsp;/g, ' ');
+    return asSpace.replace(/^[>›»\s]+/, '').trim();
   }
 
   private extractParagraphBlocks(html: string): string[] {
@@ -979,16 +1052,17 @@ export class MapJournalConverter extends BaseConverter {
         const actionId = a.getAttribute('data-storymaps')!;
         const actionType = a.getAttribute('data-storymaps-type') || '';
         const label = (a.textContent || 'View').trim();
+        const normalizedLabel = this.normalizeButtonLabel(label);
         const classAttr = a.getAttribute('class') || '';
         const classes = classAttr.split(/\s+/).filter(Boolean);
         const hasButtonClass = classes.some(c => this.BUTTON_CLASS_REGEX.test(c));
         if (actionType === 'media') {
-          const btnId = this.builder.createActionButtonNode(label, 'wide');
-          actionStubs.push({ actionId, text: label, buttonNodeId: btnId });
+          const btnId = this.builder.createActionButtonNode(normalizedLabel, 'wide');
+          actionStubs.push({ actionId, text: normalizedLabel, buttonNodeId: btnId });
           a.replaceWith(workingDoc.createTextNode(`%%ACTION_BTN:${btnId}%%`));
         } else if (actionType === 'navigate') {
           if (hasButtonClass) {
-            const btnId = this.builder.createButtonNode(label, 'wide');
+            const btnId = this.builder.createButtonNode(normalizedLabel, 'wide');
             navigateButtonStubs.push({ actionId, buttonNodeId: btnId });
             a.replaceWith(workingDoc.createTextNode(`%%NAV_BTN:${btnId}%%`));
           } else {
@@ -1012,14 +1086,16 @@ export class MapJournalConverter extends BaseConverter {
           narrativeIds.push(id);
         } else {
           if (!this.isNonEmptyHtmlSegment(seg)) continue; // skip blank/whitespace-only segments
-          const processedSeg = this.processHtmlColorsPreserveHtml(seg);
+          const processedSeg = this.processHtmlColorsPreserveHtml(seg)
+            .replace(/&nbsp;/gi, ' ')
+            .replace(/\u00A0/g, ' ');
           // If segment contains multiple top-level paragraph tags, split into separate rich text nodes.
           const paraMatches = processedSeg.match(/<p[^>]*>[\s\S]*?<\/p>/gi);
           const multipleParas = paraMatches && paraMatches.length > 1;
           if (multipleParas) {
             for (const pHtml of paraMatches) {
               // Skip empty or &nbsp; only paragraphs
-              const inner = pHtml.replace(/^<p[^>]*>|<\/p>$/gi,'').trim();
+              const inner = pHtml.replace(/^<p[^>]*>|<\/p>$/gi,'').trim().replace(/&nbsp;/gi, ' ').replace(/\u00A0/g, ' ');
               const innerStripped = inner.replace(/&nbsp;|\s+/g,'').trim();
               if (!innerStripped) continue;
               // Strip outer <p> wrapper; viewer will wrap as paragraph automatically
@@ -1038,6 +1114,7 @@ export class MapJournalConverter extends BaseConverter {
             if (singleMatch) {
               singleContent = processedSeg.trim().replace(/^<p[^>]*>|<\/p>$/gi,'').trim();
             }
+            singleContent = singleContent.replace(/&nbsp;/gi, ' ').replace(/\u00A0/g, ' ');
             const richId = this.builder.createRichTextNode(singleContent, 'paragraph');
             if (processedSeg.includes('data-storymaps')) {
               for (const stub of navigateInlineStubs) {
@@ -1059,20 +1136,31 @@ export class MapJournalConverter extends BaseConverter {
           if (classic && classic.values) {
             const layout = this.parseSwipeLayoutFromUrl(src) || (String(classic.values.layout || '').toLowerCase().includes('spyglass') ? 'spyglass' : 'swipe');
             try {
-              const swipeNodeId = SwipeConverter.buildInlineSwipeBlock(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
+              const isBrowser = typeof window !== 'undefined';
+              const hasValues = !!classic.values;
+              this.logDebug('iframe (DOM) -> attempting inline swipe build', { appId, layout, env: isBrowser ? 'browser' : 'node', hasValues });
+              const swipeNodeId = SwipeConverter.buildInlineSwipeBlockSync(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
               narrativeIds.push(swipeNodeId);
+              this.logDebug('iframe (DOM) -> inline swipe built', { swipeNodeId });
+              this.flushDebugLogs('embedded-swipe');
               return;
-            } catch {
+            } catch (e) {
               // fall through to embed on failure
+              this.logWarn('iframe (DOM) -> inline swipe build failed, using embed', { appId, error: (e as Error)?.message });
+              this.flushDebugLogs('embedded-swipe');
             }
           }
         }
         const providerInfo = this.detectVideoProvider(src);
-        if (providerInfo.provider !== 'unknown') {
+          if (providerInfo.provider !== 'unknown') {
           narrativeIds.push(this.builder.createVideoEmbedNode(src, providerInfo.provider, providerInfo.id));
           this.videoEmbedCount++;
+            this.logDebug('iframe (DOM) -> video embed', providerInfo);
+            this.flushDebugLogs('embedded-swipe');
         } else {
           narrativeIds.push(this.builder.createEmbedNode(src));
+            this.logDebug('iframe (DOM) -> link embed', { src });
+            this.flushDebugLogs('embedded-swipe');
         }
       }
       return;
@@ -1129,11 +1217,15 @@ export class MapJournalConverter extends BaseConverter {
             if (classic && classic.values) {
               const layout = this.parseSwipeLayoutFromUrl(src) || (String(classic.values.layout || '').toLowerCase().includes('spyglass') ? 'spyglass' : 'swipe');
               try {
-                const swipeNodeId = SwipeConverter.buildInlineSwipeBlock(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
+                const isBrowser = typeof window !== 'undefined';
+                const hasValues = !!classic.values;
+                this.logDebug('iframe (regex) -> attempting inline swipe build', { appId, layout, env: isBrowser ? 'browser' : 'node', hasValues });
+                const swipeNodeId = SwipeConverter.buildInlineSwipeBlockSync(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
                 narrativeIds.push(swipeNodeId);
                 continue;
-              } catch {
+              } catch (e) {
                 // fall through
+                this.logWarn('iframe (regex) -> inline swipe build failed', { appId, error: (e as Error)?.message });
               }
             }
           }
@@ -1172,15 +1264,16 @@ export class MapJournalConverter extends BaseConverter {
           const actionType = /data-storymaps-type=["']([^"'>]+)["']/i.exec(full)?.[1] || '';
           const labelRaw = full.replace(/<a[^>]*>|<\/a>/gi, '');
           const label = this.stripHtml(labelRaw).trim() || 'View';
+          const normalizedLabel = this.normalizeButtonLabel(label);
           const classAttr = /class=["']([^"'>]+)["']/i.exec(full)?.[1] || '';
           const hasButtonClass = classAttr.split(/\s+/).some(c => this.BUTTON_CLASS_REGEX.test(c));
           if (actionType === 'media') {
-            const btnId = this.builder.createActionButtonNode(label, 'wide');
-            actionStubs.push({ actionId, text: label, buttonNodeId: btnId });
+            const btnId = this.builder.createActionButtonNode(normalizedLabel, 'wide');
+            actionStubs.push({ actionId, text: normalizedLabel, buttonNodeId: btnId });
             working = working.replace(full, `%%ACTION_BTN:${btnId}%%`);
           } else if (actionType === 'navigate') {
             if (hasButtonClass) {
-              const btnId = this.builder.createButtonNode(label, 'wide');
+              const btnId = this.builder.createButtonNode(normalizedLabel, 'wide');
               navigateButtonStubs.push({ actionId, buttonNodeId: btnId });
               working = working.replace(full, `%%NAV_BTN:${btnId}%%`);
             } else {
@@ -1201,9 +1294,14 @@ export class MapJournalConverter extends BaseConverter {
             if (classic && classic.values) {
               const layout = this.parseSwipeLayoutFromUrl(src) || (String(classic.values.layout || '').toLowerCase().includes('spyglass') ? 'spyglass' : 'swipe');
               try {
-                replacementId = SwipeConverter.buildInlineSwipeBlock(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
+                this.logDebug('iframe (regex) -> attempting inline swipe build', { appId, layout });
+                replacementId = SwipeConverter.buildInlineSwipeBlockSync(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
+                this.logDebug('iframe (regex) -> inline swipe built', { replacementId });
+                this.flushDebugLogs('embedded-swipe');
               } catch {
                 // fall through
+                this.logWarn('iframe (regex) -> inline swipe build failed, will fallback', { appId });
+                this.flushDebugLogs('embedded-swipe');
               }
             }
           }
@@ -1212,8 +1310,12 @@ export class MapJournalConverter extends BaseConverter {
             if (providerInfo.provider !== 'unknown') {
               replacementId = this.builder.createVideoEmbedNode(src, providerInfo.provider, providerInfo.id);
               this.videoEmbedCount++;
+              this.logDebug('iframe (regex) -> video embed fallback', providerInfo);
+              this.flushDebugLogs('embedded-swipe');
             } else {
               replacementId = this.builder.createEmbedNode(src);
+              this.logDebug('iframe (regex) -> link embed fallback', { src });
+              this.flushDebugLogs('embedded-swipe');
             }
           }
           working = working.replace(full, `%%IFRAME_NODE:${replacementId}%%`);
@@ -1231,12 +1333,14 @@ export class MapJournalConverter extends BaseConverter {
             narrativeIds.push(seg.replace(/^%%IFRAME_NODE:/,'').replace(/%%$/,''));
           } else {
             if (!this.isNonEmptyHtmlSegment(seg)) continue; // skip blank/whitespace-only segments
-            const processedSeg = this.processHtmlColorsPreserveHtml(seg);
+            const processedSeg = this.processHtmlColorsPreserveHtml(seg)
+              .replace(/&nbsp;/gi, ' ')
+              .replace(/\u00A0/g, ' ');
             const paraMatches = processedSeg.match(/<p[^>]*>[\s\S]*?<\/p>/gi);
             const multipleParas = paraMatches && paraMatches.length > 1;
             if (multipleParas) {
               for (const pHtml of paraMatches) {
-                const inner = pHtml.replace(/^<p[^>]*>|<\/p>$/gi,'').trim();
+                const inner = pHtml.replace(/^<p[^>]*>|<\/p>$/gi,'').trim().replace(/&nbsp;/gi, ' ').replace(/\u00A0/g, ' ');
                 const innerStripped = inner.replace(/&nbsp;|\s+/g,'').trim();
                 if (!innerStripped) continue;
                 const richId = this.builder.createRichTextNode(inner, 'paragraph');
@@ -1251,6 +1355,7 @@ export class MapJournalConverter extends BaseConverter {
               let singleContent = processedSeg;
               const singleMatch = /^<p[^>]*>[\s\S]*?<\/p>$/.exec(processedSeg.trim());
               if (singleMatch) singleContent = processedSeg.trim().replace(/^<p[^>]*>|<\/p>$/gi,'').trim();
+              singleContent = singleContent.replace(/&nbsp;/gi, ' ').replace(/\u00A0/g, ' ');
               const richId = this.builder.createRichTextNode(singleContent, 'paragraph');
               if (processedSeg.includes('data-storymaps')) {
                 for (const stub of navigateInlineStubs) {
@@ -1353,13 +1458,16 @@ export class MapJournalConverter extends BaseConverter {
     const layoutHint = this.parseSwipeLayoutFromUrl(url);
     const layout = layoutHint || (String(classic.values.layout || '').toLowerCase().includes('spyglass') ? 'spyglass' : 'swipe');
     try {
-      const swipeNodeId = SwipeConverter.buildInlineSwipeBlock(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
+      this.logDebug('tryBuildSwipeNodeFromUrl: attempting inline swipe build from', { url });
+      const swipeNodeId = (typeof window !== 'undefined')
+        ? SwipeConverter.buildInlineSwipeBlockBrowserSync(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout)
+        : SwipeConverter.buildInlineSwipeBlockSync(this.builder, classic.values as import('../types/classic.ts').ClassicValues, layout, this.token);
       // Integrity check: ensure referenced content nodes exist; recreate if missing.
       try {
         const liveJson = this.builder.getJson();
         const swipeNode = liveJson.nodes[swipeNodeId];
         if (swipeNode && swipeNode.type === 'swipe') {
-          const contents = (swipeNode.data as { contents?: Record<string,string> } | undefined)?.contents || {};
+          let contents = (swipeNode.data as { contents?: Record<string,string> } | undefined)?.contents || {};
           const missingKeys: string[] = [];
           for (const key of ['0','1']) {
             const cid = contents[key];
@@ -1374,7 +1482,6 @@ export class MapJournalConverter extends BaseConverter {
               const baseId = String(vals.webmap || '');
               if (baseId) {
                 const resId = this.builder.addWebMapResource(baseId, 'Web Map', {}, 'default');
-                // Create two distinct node ids (same resource) with layer visibility adjustments
                 const layers: Array<{ id: string; title?: string }> = Array.isArray(vals.layers) ? (vals.layers as Array<{ id: string; title?: string }>) : [];
                 const nodeA = this.builder.createWebMapNode(resId, undefined);
                 const nodeB = this.builder.createWebMapNode(resId, undefined);
@@ -1421,11 +1528,27 @@ export class MapJournalConverter extends BaseConverter {
               dataObj.contents = rebuilt as unknown as Record<string, unknown>;
               (node as unknown as { data?: Record<string, unknown> }).data = dataObj;
             });
+            contents = rebuilt;
+            this.logDebug('swipe contents rebuilt due to missing keys', { missingKeys });
           }
+          // Final guard: ensure both content references exist; else drop swipe
+          const c0 = contents['0'];
+          const c1 = contents['1'];
+          if (!c0 || !c1 || !liveJson.nodes[c0] || !liveJson.nodes[c1]) {
+            // Remove the broken swipe node and return undefined to allow embed fallback
+            try { this.builder.removeNode(swipeNodeId); } catch { /* ignore */ }
+            this.logWarn('dropping inline swipe; invalid contents', { c0, c1 });
+            this.flushDebugLogs('embedded-swipe');
+            return undefined;
+          }
+          this.logDebug('inline swipe built successfully', { swipeNodeId, contents });
         }
       } catch { /* ignore integrity rebuild errors */ }
+      this.flushDebugLogs('embedded-swipe');
       return swipeNodeId;
-    } catch {
+    } catch (e) {
+      this.logWarn('inline swipe build failed; will use embed', { url, error: (e as Error)?.message });
+      this.flushDebugLogs('embedded-swipe');
       return undefined;
     }
   }

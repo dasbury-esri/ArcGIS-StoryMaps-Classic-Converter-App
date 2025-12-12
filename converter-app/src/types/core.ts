@@ -8,11 +8,12 @@ export interface StoryMapJSON {
 }
 
 export interface ConverterMetadataPayload {
-  type: 'storymap' | 'storymapTheme';
-  version: string;
+  typeConvertedTo: 'storymap' | 'storymapTheme';
+  converterVersion: string;
   classicType: string; // e.g. MapJournal, Cascade
+  classicTemplateVersion?: string; // version string from classic template JSON
   classicMetadata?: {
-    theme?: any;
+    classicTheme?: any;
     mappingDecisions?: {
       baseThemeId: string;
       colorMappings: {

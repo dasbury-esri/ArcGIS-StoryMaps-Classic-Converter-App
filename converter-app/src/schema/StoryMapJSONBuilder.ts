@@ -1,3 +1,26 @@
+// Prefer importing package.json version at build-time; fallback to envs
+// Vite supports JSON imports with assert
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import pkg from '../../package.json' assert { type: 'json' };
+
+function getConverterVersion(): string {
+  try {
+    const v = (pkg as { version?: string })?.version;
+    if (typeof v === 'string' && v.length) return v;
+  } catch { /* ignore */ }
+  try {
+    const m: any = (typeof import.meta !== 'undefined') ? import.meta : undefined;
+    const v = m?.env?.VITE_APP_VERSION || m?.env?.APP_VERSION || '';
+    if (typeof v === 'string' && v.length) return v;
+  } catch { /* ignore */ }
+  try {
+    const p: any = (typeof process !== 'undefined') ? process : undefined;
+    const v = p?.env?.npm_package_version || p?.env?.APP_VERSION || '';
+    if (typeof v === 'string' && v.length) return v;
+  } catch { /* ignore */ }
+  return '0.0.0';
+}
 import type { StoryMapJSON, StoryMapNode, StoryMapImageNode, StoryMapVideoNode, StoryMapWebMapNode, StoryMapResource, ConverterMetadataPayload, TourGeometry, TourPlace } from '../types/core.ts';
 
 // Extended story node to allow metaSettings without using any
@@ -381,11 +404,79 @@ export class StoryMapJSONBuilder {
 
   /** Add converter metadata resource */
   addConverterMetadata(classicType: string, payload: Omit<import('../types/core.ts').ConverterMetadataPayload,'type'|'version'|'classicType'>): void {
+    // Cross-runtime env check: prefer import.meta.env in browser, fallback to process.env in Node
+    let suppressFlag = '';
+    try {
+      const m: any = (typeof import.meta !== 'undefined') ? import.meta : undefined;
+      if (m && m.env && typeof m.env.SUPPRESS_CONVERTER_METADATA !== 'undefined') suppressFlag = String(m.env.SUPPRESS_CONVERTER_METADATA);
+    } catch { /* ignore */ }
+    if (!suppressFlag) {
+      try {
+        const p: any = (typeof process !== 'undefined') ? process : undefined;
+        if (p && p.env && typeof p.env.SUPPRESS_CONVERTER_METADATA !== 'undefined') suppressFlag = String(p.env.SUPPRESS_CONVERTER_METADATA);
+      } catch { /* ignore */ }
+    }
+    // UI global flag from Converter.tsx
+    try {
+      const g: any = (typeof globalThis !== 'undefined') ? globalThis : undefined;
+      if (!suppressFlag && g && typeof g.__SUPPRESS_CONVERTER_METADATA !== 'undefined') {
+        suppressFlag = String(g.__SUPPRESS_CONVERTER_METADATA);
+      }
+    } catch { /* ignore */ }
+    const suppress = String(suppressFlag || '').toLowerCase() === 'true';
+    if (suppress) return; // skip adding metadata when suppression flag is enabled
+    // If a converter-metadata resource already exists, merge into it instead of adding a new one
+    const existingEntry = Object.entries(this.json.resources).find(([, r]) => (r as unknown as { type?: string })?.type === 'converter-metadata');
+    if (existingEntry) {
+      const [rid, existing] = existingEntry as [string, import('../types/core.ts').ConverterMetadataResource & StoryMapResource];
+      const existingData = (existing as unknown as { data: import('../types/core.ts').ConverterMetadataPayload }).data;
+      // Ensure base fields
+      if (!existingData.typeConvertedTo) existingData.typeConvertedTo = 'storymap';
+      if (!existingData.converterVersion) existingData.converterVersion = getConverterVersion();
+      if (!existingData.classicType) existingData.classicType = classicType;
+      // Merge classicMetadata deeply: combine theme and mappingDecisions under a single classicMetadata node
+      const incomingClassic = (payload as unknown as { classicMetadata?: Record<string, unknown> }).classicMetadata || {};
+      const existingClassic = (existingData.classicMetadata = (existingData.classicMetadata || {}));
+      // Merge theme
+      if (incomingClassic && typeof (incomingClassic as Record<string, unknown>).classicTheme !== 'undefined') {
+        (existingClassic as Record<string, unknown>).classicTheme = (incomingClassic as Record<string, unknown>).classicTheme as unknown;
+      }
+      // Merge mappingDecisions
+      if (incomingClassic && typeof incomingClassic.mappingDecisions !== 'undefined') {
+        const inDecisions = incomingClassic.mappingDecisions as Record<string, unknown>;
+        const exDecisions = ((existingClassic as Record<string, unknown>).mappingDecisions = ((existingClassic as Record<string, unknown>).mappingDecisions || {})) as Record<string, unknown>;
+        for (const [k, v] of Object.entries(inDecisions)) {
+          exDecisions[k] = v;
+        }
+      }
+      // Merge any other top-level fields from payload into existing data (non-destructive)
+      for (const [k, v] of Object.entries(payload as Record<string, unknown>)) {
+        if (k === 'classicMetadata') continue; // handled above
+        (existingData as unknown as Record<string, unknown>)[k] = v;
+      }
+      // Surface classic template version at top-level if present in incoming classicMetadata
+      const incomingTemplateVersion = (incomingClassic as Record<string, unknown>)?.templateVersion as string | undefined;
+      if (incomingTemplateVersion && !existingData.classicTemplateVersion) {
+        existingData.classicTemplateVersion = incomingTemplateVersion;
+      }
+      // Move converter-metadata resource to end to ensure it's last
+      delete this.json.resources[rid];
+      this.json.resources[rid] = existing as unknown as StoryMapResource;
+      this.json.resources[rid] = existing as unknown as StoryMapResource;
+      return;
+    }
+    // No existing metadata resource: create a new, single resource
     const id = this.generateResourceId();
     const resource: { type: 'converter-metadata'; data: ConverterMetadataPayload } = {
       type: 'converter-metadata',
-      data: { type: 'storymap', version: '1.0.0', classicType, ...payload }
+      data: { typeConvertedTo: 'storymap', converterVersion: getConverterVersion(), classicType, ...payload }
     };
+    // Surface classic template version if provided via payload.classicMetadata
+    try {
+      const incomingClassic = (payload as unknown as { classicMetadata?: Record<string, unknown> }).classicMetadata || {};
+      const incomingTemplateVersion = (incomingClassic as Record<string, unknown>)?.templateVersion as string | undefined;
+      if (incomingTemplateVersion) resource.data.classicTemplateVersion = incomingTemplateVersion;
+    } catch { /* ignore */ }
     this.json.resources[id] = resource as unknown as StoryMapResource;
   }
 
