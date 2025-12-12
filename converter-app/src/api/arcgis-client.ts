@@ -11,14 +11,32 @@ const BASE_URL = 'https://www.arcgis.com/sharing/rest';
  * Get item data (classic story JSON)
  */
 export async function getItemData(itemId: string, token: string): Promise<unknown> {
-    const url = `${BASE_URL}/content/items/${itemId}/data?f=json&token=${token}`;
+        const url = `${BASE_URL}/content/items/${itemId}/data?f=json&token=${token}`;
+        console.debug('[arcgis-client.getItemData] GET', url);
 
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`Failed to fetch item data: ${response.statusText}`);
-    }
+        const response = await fetch(url);
+        if (!response.ok) {
+                throw new Error(`Failed to fetch item data: ${response.statusText}`);
+        }
 
-    return response.json() as Promise<unknown>;
+        const json = await response.json();
+        // Classic APIs sometimes return 200 with an error payload; surface that clearly
+        try {
+            const err = (json as { error?: { code?: number; message?: string } }).error;
+            if (err) {
+                throw new Error(`ArcGIS error ${err.code || ''}: ${err.message || 'Unknown error'}`);
+            }
+        } catch (e) {
+            if (e instanceof Error) throw e; // rethrow
+        }
+        try {
+            const keys = Object.keys(json || {});
+            const hasValues = typeof (json as any)?.values === 'object';
+            const hasEntries = Array.isArray((json as any)?.values?.story?.entries);
+            const hasSections = Array.isArray((json as any)?.values?.story?.sections);
+            console.debug('[arcgis-client.getItemData] Top-level keys:', keys, 'hasValues:', hasValues, 'hasEntries:', hasEntries, 'hasSections:', hasSections);
+        } catch { /* ignore logging errors */ }
+        return json as unknown;
 }
 
 /**

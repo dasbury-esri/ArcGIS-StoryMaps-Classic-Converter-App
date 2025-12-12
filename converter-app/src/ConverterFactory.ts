@@ -9,12 +9,12 @@ function getAppVersion(): string {
     if (typeof v === 'string' && v.length) return v;
   } catch { /* ignore */ }
   try {
-    const m: any = (typeof import.meta !== 'undefined') ? import.meta : undefined;
+    const m = (typeof import.meta !== 'undefined') ? (import.meta as unknown as { env?: Record<string, string> }) : undefined;
     const v = m?.env?.VITE_APP_VERSION || m?.env?.APP_VERSION || '';
     if (typeof v === 'string' && v.length) return v;
   } catch { /* ignore */ }
   try {
-    const p: any = (typeof process !== 'undefined') ? process : undefined;
+    const p = (typeof process !== 'undefined') ? (process as unknown as { env?: Record<string, string> }) : undefined;
     const v = p?.env?.npm_package_version || p?.env?.APP_VERSION || '';
     if (typeof v === 'string' && v.length) return v;
   } catch { /* ignore */ }
@@ -39,6 +39,7 @@ function getAppVersion(): string {
 import type { ClassicStoryMapJSON } from './types/classic';
 import { MapJournalConverter } from './converters/MapJournalConverter';
 import { MapTourConverter } from './converters/MapTourConverter';
+import { MapSeriesConverter } from './converters/MapSeriesConverter';
 import { SwipeConverter } from './converters/SwipeConverter';
 import type { ConverterResult, StoryMapJSON, ProgressCallback } from './types/core';
 import type { StoryMapResource } from './types/core';
@@ -69,42 +70,59 @@ export class ConverterFactory {
     opts.progress({ stage: 'convert', message: `ConverterFactory detected template: ${template}` });
     checkCancelled();
     switch (template.toLowerCase()) {
+      case 'map series':
+      case 'series': {
+        // Build one draft per entry; UI will present builder links and collection creation
+        const resultSeries = MapSeriesConverter.convertSeries({
+          classicJson: opts.classicJson,
+          themeId: opts.themeId,
+          progress: opts.progress as ProgressCallback
+        });
+        // Return first story as primary for compatibility, plus attach series payload
+        const first = resultSeries.storymapJsons[0] || ({ resources: {}, nodes: {} } as StoryMapJSON);
+        return {
+          ...resultSeries,
+          storymapJson: first
+        } as unknown as ConverterResult;
+      }
       case 'map tour':
       case 'tour': {
         // Prefetch webmap data and layer features for Map Tour to support feature-layer tours
         try {
-          const values: any = (opts.classicJson as any).values || {};
-          const webmapId: string | undefined = values.webmap || (opts.classicJson as any).webmap;
+          const values = (opts.classicJson as { values?: { webmap?: string; sourceLayer?: string } }).values || {};
+          const classicWithWebmap = opts.classicJson as { webmap?: string; webmapJson?: WebmapJson; _mapTourFeatures?: PrefetchedFeature[]; sourceLayer?: string };
+          const webmapId: string | undefined = values.webmap || classicWithWebmap.webmap;
           if (webmapId && typeof webmapId === 'string') {
             const f = await getFetch();
             const wmUrl = `https://www.arcgis.com/sharing/rest/content/items/${webmapId}/data?f=json`;
             const wmResp = await f(wmUrl);
             if (wmResp.ok) {
               const wmJson = await wmResp.json();
-              (opts.classicJson as any).webmapJson = wmJson;
+              classicWithWebmap.webmapJson = wmJson as WebmapJson;
               // If sourceLayer present, try to extract features; prefer embedded featureCollection
-              const sourceLayer: string | undefined = (opts.classicJson as any).sourceLayer || values.sourceLayer;
-              let features: any[] | undefined;
-              const layers: any[] = Array.isArray(wmJson?.operationalLayers) ? wmJson.operationalLayers : [];
-              const matchLayer = (ly: any) => {
-                const id: string = String(ly?.id || '');
+              const sourceLayer: string | undefined = classicWithWebmap.sourceLayer || values.sourceLayer;
+              let features: PrefetchedFeature[] | undefined;
+              const wm = wmJson as WebmapJson;
+              const layers: OperationalLayer[] = Array.isArray(wm.operationalLayers) ? wm.operationalLayers : [];
+              const matchLayer = (ly: OperationalLayer) => {
+                const id: string = String(ly.id || '');
                 return !!sourceLayer && (id === sourceLayer || id.includes(sourceLayer) || sourceLayer.includes(id));
               };
-              const targetLayers = layers.filter(ly => matchLayer(ly) || /^maptour-layer/i.test(String(ly?.id || '')) || /map\s*tour/i.test(String(ly?.title || '').toLowerCase()));
+              const targetLayers = layers.filter(ly => matchLayer(ly) || /^maptour-layer/i.test(String(ly.id || '')) || /map\s*tour/i.test(String(ly.title || '').toLowerCase()));
               for (const ly of targetLayers) {
-                if (ly?.featureCollection?.layers) {
-                  for (const fc of ly.featureCollection.layers) {
-                    if (fc?.featureSet?.features && Array.isArray(fc.featureSet.features)) {
-                      features = fc.featureSet.features;
-                      break;
-                    }
+                const fcLayers = ly.featureCollection?.layers || [];
+                for (const fc of fcLayers) {
+                  const feats = fc.featureSet?.features;
+                  if (Array.isArray(feats)) {
+                    features = feats as PrefetchedFeature[];
+                    break;
                   }
                 }
                 if (features && features.length) break;
               }
               // If no embedded features, try feature service query on the first target layer with URL (public only)
               if ((!features || !features.length) && targetLayers.length) {
-                const urlLayer = targetLayers.find(ly => typeof ly?.url === 'string' || typeof ly?.URL === 'string');
+                const urlLayer = targetLayers.find(ly => typeof (ly as unknown as { url?: string; URL?: string }).url === 'string' || typeof (ly as unknown as { url?: string; URL?: string }).URL === 'string') as unknown as { url?: string; URL?: string } | undefined;
                 const fsUrl: string | undefined = urlLayer?.url || urlLayer?.URL;
                 if (fsUrl) {
                   try {
@@ -112,13 +130,14 @@ export class ConverterFactory {
                     const qResp = await f(qUrl);
                     if (qResp.ok) {
                       const qJson = await qResp.json();
-                      if (Array.isArray(qJson?.features)) features = qJson.features;
+                      const qFeatures = (qJson as { features?: PrefetchedFeature[] }).features;
+                      if (Array.isArray(qFeatures)) features = qFeatures;
                     }
                   } catch {/* ignore per-layer */}
                 }
               }
               if (features && Array.isArray(features) && features.length) {
-                (opts.classicJson as any)._mapTourFeatures = features;
+                classicWithWebmap._mapTourFeatures = features;
               }
             }
           }
@@ -224,7 +243,7 @@ export class ConverterFactory {
           scale: data.view.scale,
           targetGeometry: data.view.targetGeometry
         } : undefined;
-        const baseMapLayers = (data as any).baseMap?.baseMapLayers?.map((l: any) => ({
+        const baseMapLayers = (data.baseMap?.baseMapLayers as Array<{ id?: string; title?: string; url?: string; opacity?: number; visibility?: boolean; layerType?: string; isReference?: boolean }> | undefined)?.map((l) => ({
           id: l.id,
           title: l.title,
           url: l.url,
@@ -233,22 +252,23 @@ export class ConverterFactory {
           layerType: l.layerType,
           isReference: !!l.isReference
         })) || [];
-        const operationalLayers = (data as any).operationalLayers?.map((l: any) => ({ id: l.id, title: l.title, visible: l.visibility })) || [];
+        const operationalLayers = (data.operationalLayers as Array<{ id?: string; title?: string; visibility?: boolean }> | undefined)?.map((l) => ({ id: l.id, title: l.title, visible: l.visibility })) || [];
         // Capture slides (Web Scene presentations) if available
-        const slidesSrc = (((data as any).presentation?.slides) || (data as any).slides || []) as any[];
-        const slides = slidesSrc.map(s => ({
+        type Slide = { id?: string; title?: string; name?: string; index?: number; visibleLayers?: Array<{ id?: string }>; viewpoint?: { camera?: unknown; rotation?: unknown; scale?: unknown }; camera?: unknown };
+        const slidesSrc = ((data.presentation?.slides as Array<Slide> | undefined) || (data.slides as Array<Slide> | undefined) || []) as Array<Slide>;
+        const slides = slidesSrc.map((s: Slide) => ({
           id: s.id,
           title: s.title || s.name || '',
           index: s.index,
-          visibleLayers: (s.visibleLayers || []).map((vl: any) => ({ id: vl.id })),
+          visibleLayers: (s.visibleLayers || []).map((vl: { id?: string }) => ({ id: vl.id })),
           camera: s.viewpoint?.camera || s.camera,
           viewpoint: s.viewpoint ? { camera: s.viewpoint.camera, rotation: s.viewpoint.rotation, scale: s.viewpoint.scale } : undefined
         }));
-        const extent = (data as any).initialState?.view?.extent || (data as any).view?.extent;
-        const center = (data as any).initialState?.view?.center || (data as any).view?.center;
-        const lightingDate = (data as any).environment?.lighting?.date || undefined;
-        const weather = (data as any).environment?.weather ? { type: (data as any).environment.weather.type, cloudCover: (data as any).environment.weather.cloudCover } : undefined;
-        const groundOpacity = (data as any).environment?.ground?.opacity;
+        const extent = (data.initialState?.view?.extent || data.view?.extent);
+        const center = (data.initialState?.view?.center || data.view?.center);
+        const lightingDate = (data.environment?.lighting?.date || undefined);
+        const weather = (data.environment?.weather ? { type: data.environment.weather.type, cloudCover: data.environment.weather.cloudCover } : undefined);
+        const groundOpacity = (data.environment?.ground?.opacity);
         const resource = json.resources[scene.id];
         if (resource) {
           resource.data = {
@@ -313,13 +333,13 @@ export class ConverterFactory {
         }
         // Detect http (non-https) layer URLs in operationalLayers & baseMapLayers
         try {
-          const layerDefs: any[] = [];
+          const layerDefs: Array<{ url?: string }> = [];
           if (Array.isArray(data.operationalLayers)) layerDefs.push(...data.operationalLayers);
           if (Array.isArray(data.baseMap?.baseMapLayers)) layerDefs.push(...data.baseMap.baseMapLayers);
           const httpCount = layerDefs.filter(l => typeof l?.url === 'string' && /^http:/i.test(l.url)).length;
           if (httpCount > 0) protocolWarnings.push({ itemId: map.itemId, httpLayerCount: httpCount });
         } catch { /* ignore protocol scan errors */ }
-        const baseMapLayers = data.baseMap?.baseMapLayers?.map((l: any) => ({
+        const baseMapLayers = (data.baseMap?.baseMapLayers as Array<{ id?: string; title?: string; url?: string; opacity?: number; visibility?: boolean; layerType?: string; isReference?: boolean }> | undefined)?.map((l) => ({
           id: l.id,
           title: l.title,
           url: l.url,
@@ -328,14 +348,14 @@ export class ConverterFactory {
           layerType: l.layerType,
           isReference: !!l.isReference
         })) || [];
-        const operationalLayers = data.operationalLayers?.map((l: any) => ({ id: l.id, title: l.title, visible: l.visibility })) || [];
+        const operationalLayers = (data.operationalLayers as Array<{ id?: string; title?: string; visibility?: boolean }> | undefined)?.map((l) => ({ id: l.id, title: l.title, visible: l.visibility })) || [];
         // Attempt to derive extent/center from common locations
-        const pickExtent = (d: any): any => d?.initialState?.view?.extent || d?.mapOptions?.extent || d?.extent || d?.mapOptions?.mapExtent || undefined;
-        const pickCenter = (d: any): any => d?.initialState?.view?.center || d?.mapOptions?.center || d?.center || undefined;
+        const pickExtent = (d: { initialState?: { view?: { extent?: unknown } }; mapOptions?: { extent?: unknown; mapExtent?: unknown }; extent?: unknown }): unknown => d.initialState?.view?.extent || d.mapOptions?.extent || d.extent || d.mapOptions?.mapExtent || undefined;
+        const pickCenter = (d: { initialState?: { view?: { center?: unknown } }; mapOptions?: { center?: unknown }; center?: unknown }): unknown => d.initialState?.view?.center || d.mapOptions?.center || d.center || undefined;
         let extent = pickExtent(data);
         let center = pickCenter(data);
         // Normalize center if array [lon,lat]
-        const normalizeCenter = (c: any): any => {
+        const normalizeCenter = (c: unknown): unknown => {
           if (!c) return c;
           if (Array.isArray(c) && c.length >= 2) {
             const [lon, lat] = c;
@@ -363,8 +383,8 @@ export class ConverterFactory {
         }
         const resource = json.resources[map.id];
         if (resource) {
-          const existing: any = resource.data || {};
-          const prevRaw: any = existing.raw || {};
+          const existing = (resource.data || {}) as Record<string, unknown>;
+          const prevRaw = (existing.raw || {}) as Record<string, unknown>;
           resource.data = {
             ...existing,
             itemId: map.itemId,
@@ -376,14 +396,13 @@ export class ConverterFactory {
             baseMap: { baseMapLayers },
             mapLayers: operationalLayers,
             raw: { ...prevRaw, summary: { baseMapLayerCount: baseMapLayers.length, operationalLayerCount: operationalLayers.length } }
-          } as any;
+          } as Record<string, unknown>;
           // Instrumentation: log resource placement
           try {
-            const rdata: any = json.resources[map.id].data || {};
-            const zoom = (rdata.zoom !== undefined) ? rdata.zoom : undefined;
-            // eslint-disable-next-line no-console
+            const rdata = (json.resources[map.id].data || {}) as { extent?: unknown; viewpoint?: unknown; center?: unknown; zoom?: unknown };
+            const zoom = rdata.zoom;
             console.info('[ConverterFactory.enrichWebMaps] resource', map.id, 'itemId', map.itemId, 'extent', rdata.extent, 'viewpoint', rdata.viewpoint, 'center', rdata.center, 'zoom', zoom);
-          } catch {}
+          } catch { /* ignore log errors */ }
         }
         checkCancelled();
         progress({ stage: 'convert', message: `Enriched Web Map ${map.itemId}` });
@@ -396,17 +415,16 @@ export class ConverterFactory {
     try {
       for (const [nid, node] of Object.entries(json.nodes)) {
         if (node.type !== 'webmap') continue;
-        const nd: any = node.data || {};
+        const nd = (node.data || {}) as { map?: string; extent?: unknown; viewpoint?: unknown };
         const resId: string | undefined = nd.map;
         if (resId && json.resources[resId]?.type === 'webmap') {
-          const rdata: any = json.resources[resId].data || {};
+          const rdata = (json.resources[resId].data || {}) as { extent?: unknown; viewpoint?: unknown };
           if (rdata.extent && !nd.extent) nd.extent = rdata.extent;
           if (rdata.viewpoint && !nd.viewpoint) nd.viewpoint = rdata.viewpoint;
-          // eslint-disable-next-line no-console
           console.info('[ConverterFactory.enrichWebMaps] node', nid, 'map', resId, 'extent', nd.extent, 'viewpoint', nd.viewpoint);
         }
       }
-    } catch {}
+    } catch { /* ignore propagation errors */ }
     // Persist version/protocol warnings into converter-metadata resource for downstream visibility.
     if (versionWarnings.length || protocolWarnings.length) {
       let metaEntry = Object.entries(json.resources).find(([, r]) => (r as { type?: string })?.type === 'converter-metadata');

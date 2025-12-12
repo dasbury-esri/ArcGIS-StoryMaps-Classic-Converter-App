@@ -11,6 +11,7 @@ import { useAuth } from "../auth/useAuth";
 import { MapJournalConverter } from "../converters/MapJournalConverter";
 import { SwipeConverter } from "../converters/SwipeConverter";
 import { MapTourConverter } from "../converters/MapTourConverter";
+import { MapSeriesConverter } from "../converters/MapSeriesConverter";
 import { MediaTransferService } from "../media/MediaTransferService";
 import { ResourceMapper } from "../media/ResourceMapper";
 import { collectImageUrls, transferImage } from "../api/image-transfer";
@@ -51,6 +52,9 @@ export default function Converter() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [toast, setToast] = useState<string>("");
+  // Map Series MVP state: per-entry builder links and collection readiness
+  const [mapSeriesLinks] = useState<Array<{ title: string; href: string }>>([]);
+  const [mapSeriesReadyToCollect, setMapSeriesReadyToCollect] = useState<boolean>(false);
   const [convertedUrl, setConvertedUrl] = useState("");
     // UI toggle: suppress converter-metadata resources
     const [suppressMetadata, setSuppressMetadata] = useState<boolean>(() => {
@@ -685,6 +689,24 @@ export default function Converter() {
           });
             const result = await conv.convert();
             newStorymapJson = result.storymapJson;
+        } else if (tmpl === 'map series' || tmpl === 'mapseries') {
+          // Map Series: build one draft per entry and surface builder links
+          const result = await MapSeriesConverter.convertSeries({
+            classicJson: classicData,
+            themeId: 'summit',
+            progress,
+            token
+          });
+          // Use the first entry's JSON for immediate draft upload to the created story
+          newStorymapJson = (result.storymapJsons && result.storymapJsons[0]) || ({} as StoryMapJSON);
+          try {
+            const links = Array.isArray(result.builderLinks) ? result.builderLinks : [];
+            const titles = Array.isArray(result.entryTitles) ? result.entryTitles : [];
+            setMapSeriesLinks(links.map((href, i) => ({ href, title: titles[i] || `Entry ${i + 1}`, published: false })));
+            setMapSeriesReady(true);
+          } catch {
+            // ignore state wiring errors
+          }
         } else {
           throw new Error(`Unsupported template for new converters: ${detectedTemplate ?? 'unknown'}`);
         }
@@ -1008,25 +1030,100 @@ export default function Converter() {
           // ignore promotion failures
         }
 
-        // Save a local copy of converted JSON to tmp-converted via Netlify function (during netlify dev)
+        // Save local copies to tmp-converted via Netlify function (during netlify dev)
         try {
-          const res = await fetch('/.netlify/functions/save-converted', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({
-              filename: `converted-app`,
-              storyId: targetStoryId,
-              classicItemId,
-              json: newStorymapJson
-            })
-          });
-          if (res.ok) {
-            const info = await res.json();
-            console.info('[LocalSave] Converted JSON saved:', info?.path || info?.fileName || 'ok');
-          } else {
-            console.warn('[LocalSave] Failed to save converted JSON locally:', res.status);
+          const cid = String(classicItemId || '').trim();
+          // Create a timestamped run folder: <classicId-MM-ddTHH-MM>
+          const now = new Date();
+          const pad = (n: number) => String(n).padStart(2, '0');
+          const runStamp = `${pad(now.getMonth()+1)}-${pad(now.getDate())}T${pad(now.getHours())}-${pad(now.getMinutes())}`;
+          const runFolder = cid ? `${cid}-${runStamp}` : `converted-app-${runStamp}`;
+          // Always save the immediate draft JSON
+          {
+            const res = await fetch('/.netlify/functions/save-converted', {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({
+                filename: `${runFolder}/draft.json`,
+                storyId: targetStoryId,
+                classicItemId,
+                json: newStorymapJson
+              })
+            });
+            if (res.ok) {
+              const info = await res.json();
+              console.info('[LocalSave] Converted JSON saved:', info?.path || info?.fileName || 'ok');
+            } else {
+              console.warn('[LocalSave] Failed to save converted JSON locally:', res.status);
+            }
           }
-        } catch {
+          // If Map Series, save each entry JSON and a collection placeholder into a classic-id subfolder
+          if ((detectedTemplate || runtimeTemplate || '').toLowerCase().includes('map series')) {
+            try {
+              // Access last Map Series links/titles if present (not strictly needed for saving)
+              // @ts-expect-error allow reading local state without usage
+              void (mapSeriesLinks || []);
+              // Save entry JSONs if the converter returned them
+              // Since only the first entry JSON was uploaded, attempt to regenerate via converter for saving
+              try {
+                const series = await MapSeriesConverter.convertSeries({
+                  classicJson: classicData,
+                  themeId: 'auto',
+                  progress,
+                  token
+                });
+                const entries = Array.isArray(series.storymapJsons) ? series.storymapJsons : [];
+                for (let i = 0; i < entries.length; i++) {
+                  const entryJson = entries[i];
+                  const filename = `${runFolder}/entry-${i + 1}.json`;
+                  const res = await fetch('/.netlify/functions/save-converted', {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({
+                      filename,
+                      storyId: targetStoryId,
+                      classicItemId,
+                      json: entryJson
+                    })
+                  });
+                  if (!res.ok) {
+                    console.warn('[LocalSave] Failed to save Map Series entry JSON locally:', i + 1, res.status);
+                  }
+                }
+                // Save collection placeholder draft JSON, including layoutId for collection type and panel defaults
+                const seriesSettings = (classicData as { values?: { settings?: Record<string, unknown> } }).values?.settings || {} as Record<string, unknown>;
+                const layoutId = (seriesSettings as { layout?: { id?: string } }).layout?.id;
+                const panel = (seriesSettings as { layoutOptions?: { panel?: { position?: string; size?: string } } }).layoutOptions?.panel || {};
+                const collectionDraft = {
+                  type: 'collection-draft',
+                  classicItemId: cid,
+                  collectionType: layoutId,
+                  panelDefaults: { position: panel.position, size: panel.size },
+                  entries: (series.entryTitles || []).map((t, i) => ({ index: i + 1, title: t }))
+                };
+                {
+                  const res = await fetch('/.netlify/functions/save-converted', {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({
+                      filename: `${runFolder}/collection-draft.json`,
+                      storyId: targetStoryId,
+                      classicItemId,
+                      json: collectionDraft
+                    })
+                  });
+                  if (!res.ok) {
+                    console.warn('[LocalSave] Failed to save Map Series collection draft locally:', res.status);
+                  }
+                }
+              } catch (err) {
+                console.warn('[LocalSave] Error saving Map Series entries locally:', err);
+              }
+            } catch {
+              // ignore
+            }
+          }
+        } catch (e) {
           console.warn('[LocalSave] Error saving converted JSON locally:', (e as Error)?.message);
         }
       } catch (error: unknown) {
@@ -1291,6 +1388,34 @@ export default function Converter() {
               <span>These issues won’t stop conversion, but may prevent maps from loading. Please fix with <a href="https://assistant.esri-ps.com/">ArcGIS Assistant</a> or in ArcGIS Online.</span>
               
             </>
+          )}
+        </div>
+      )}
+      {/* Map Series publishing panel (MVP link list) */}
+      {mapSeriesLinks.length > 0 && (
+        <div className="mapseries-publish">
+          <h3>Publish Map Series Entries</h3>
+          <ul>
+            {mapSeriesLinks.map((l, idx) => (
+              <li key={idx}>
+                <a href={l.href} target="_blank" rel="noopener">Open Builder: {l.title}</a>
+                <label className="mapseries-publish-label">
+                  <input type="checkbox" onChange={(e) => {
+                    const ul = e.currentTarget.closest('ul');
+                    const allChecked = ul ? Array.from(ul.querySelectorAll('input[type="checkbox"]')).every((el) => (el as HTMLInputElement).checked) : false;
+                    setMapSeriesReadyToCollect(allChecked);
+                  }} /> Published
+                </label>
+              </li>
+            ))}
+          </ul>
+          {isValidClassicId(classicItemId) && (
+            <button disabled={!mapSeriesReadyToCollect} onClick={() => {
+              setToast('Create Collection clicked (placeholder)');
+              setTimeout(() => setToast(''), 2000);
+            }}>
+              Create Collection
+            </button>
           )}
         </div>
       )}

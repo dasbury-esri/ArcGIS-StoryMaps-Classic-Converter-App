@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Converter-App Logic Diagrams</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="QUARTO_LOGIC_DIAGRAM_files/libs/clipboard/clipboard.min.js"></script>
+<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/popper.min.js"></script>
+<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/anchor.min.js"></script>
+<link href="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="QUARTO_LOGIC_DIAGRAM_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="QUARTO_LOGIC_DIAGRAM_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="QUARTO_LOGIC_DIAGRAM_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Converter-App Logic Diagrams</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="high-level-app-flow" class="level1">
+<h1>High-Level App Flow</h1>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Start([User opens converter-app UI]) --&gt; Init[Initialize React state and env]
+  Init --&gt; Token{ARCGIS_TOKEN available?}
+  Token --&gt;|Yes| Ready[Enable authenticated actions]
+  Token --&gt;|No| Limited[Enable local and offline flows]
+
+  Ready --&gt; Inputs{User action?}
+  Limited --&gt; Inputs
+
+  Inputs --&gt;|Convert by Item ID| FetchClassic[Fetch classic JSON via ArcGIS REST]
+  Inputs --&gt;|Convert by Local JSON| LoadLocal[Load JSON file from browser]
+  Inputs --&gt;|Run Swipe Tests| SwipeTests[Execute swipe test scripts]
+  Inputs --&gt;|Inspect Utilities| Utilities[Helper tools]
+
+  FetchClassic --&gt; Detect[Detect classic template]
+  LoadLocal --&gt; Detect
+
+  Detect --&gt;|Map Journal| ConvertJournal[MapJournalConverter.convert]
+  Detect --&gt;|Swipe| ConvertSwipe[SwipeConverter.convert]
+  Detect --&gt;|Map Tour| ConvertTour[MapTourConverter.convert]
+  Detect --&gt;|Map Series| ConvertSeries[MapSeriesConverter.convertSeries]
+  Detect --&gt;|Cascade| ConvertCascade[Legacy converter auto theme]
+
+  ConvertJournal --&gt; JournalOutput[Produce StoryMap JSON]
+  ConvertSwipe --&gt; SwipeOutput[Produce StoryMap JSON]
+  ConvertTour --&gt; TourOutput[Produce StoryMap JSON]
+  ConvertSeries --&gt; SeriesOutputs[Produce N entry StoryMap JSONs and collection-draft]
+  ConvertCascade --&gt; CascadeOutput[Produce StoryMap JSON]
+
+  JournalOutput --&gt; SaveArtifacts
+  SwipeOutput --&gt; SaveArtifacts
+  TourOutput --&gt; SaveArtifacts
+  SeriesOutputs --&gt; SaveArtifacts[Persist JSONs to tmp-converted/&lt;id-timestamp&gt;/]
+  CascadeOutput --&gt; SaveArtifacts
+
+  SaveArtifacts --&gt; Present[Render links and diagnostics]
+  SwipeTests --&gt; Present
+  Utilities --&gt; Present
+
+  Present --&gt; Done([User reviews, downloads, or publishes])
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="template-detection-and-enrichment" class="level1">
+<h1>Template Detection and Enrichment</h1>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Start([ConverterFactory.create]) --&gt; DetectTemplate[detectClassicTemplate]
+  DetectTemplate --&gt; Route{Template?}
+
+  Route --&gt;|Map Journal| DoJournal[MapJournalConverter.convert]
+  Route --&gt;|Swipe| DoSwipe[SwipeConverter.convert]
+  Route --&gt;|Map Tour| DoTour[MapTourConverter.convert]
+  Route --&gt;|Map Series| DoSeries[MapSeriesConverter.convertSeries]
+  Route --&gt;|Cascade| DoCascade[convert_cascade legacy]
+
+  DoSeries --&gt; FirstDraft[Return first entry as storymapJson]
+  DoSeries --&gt; SeriesPayload[Attach storymapJsons entryTitles builderLinks]
+
+  DoJournal --&gt; Enrich
+  DoSwipe --&gt; Enrich
+  DoTour --&gt; Enrich
+  FirstDraft --&gt; Enrich{enrichMaps or enrichScenes?}
+
+  Enrich --&gt;|Yes| EnrichMaps[enrichWebMaps]
+  Enrich --&gt;|Yes| EnrichScenes[enrichWebScenes]
+  Enrich --&gt;|Tour| EnrichTour[collect media, build tour geometries]
+  Enrich --&gt;|No| SkipEnrich[Continue]
+
+  EnrichMaps --&gt; Result[ConverterResult]
+  EnrichScenes --&gt; Result
+  EnrichTour --&gt; Result
+  SkipEnrich --&gt; Result
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="map-series-conversion-browser" class="level1">
+<h1>Map Series Conversion (Browser)</h1>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Start([MapSeriesConverter.convertSeries]) --&gt; ThemeAuto[Resolve themeId auto to obsidian or summit]
+  ThemeAuto --&gt; ExtractSettings[Extract values settings layout panel mapOptions]
+  ExtractSettings --&gt; GetEntries[Read values.story.entries]
+
+  GetEntries --&gt; Loop[For each entry]
+  Loop --&gt; Classify{Classify media}
+
+  Classify --&gt;|webmap| BuildSidecar[Create docked panel Sidecar]
+  Classify --&gt;|classic child| HandleChild[Fetch child JSON and route]
+  Classify --&gt;|image/video/embed| BuildSimple[Create text placeholder nodes]
+
+  BuildSidecar --&gt; Narrative[Add narrative panel text]
+  Narrative --&gt; CreateWebMapResource[Create webmap resource minimal]
+  CreateWebMapResource --&gt; CreateWebMapNode[Add webmap node referencing resource]
+  CreateWebMapNode --&gt; ApplyPanel[Map panel position left/right and size]
+  ApplyPanel --&gt; MapSeriesOptions[Apply series mapOptions basics]
+  MapSeriesOptions --&gt; EnrichPlacement[Fetch AGO item to embed extent viewpoint zoom]
+  EnrichPlacement --&gt; AddMetadata[Attach series-settings and converter-metadata]
+
+  HandleChild --&gt; RouteChild{Template?}
+  RouteChild --&gt;|Swipe| SwipeConverter
+  RouteChild --&gt;|Journal| MapJournalConverter
+  RouteChild --&gt;|Tour| MapTourConverter
+  RouteChild --&gt;|Series| NoteNesting[Add text placeholder]
+  RouteChild --&gt; AddMetadata
+
+  BuildSimple --&gt; AddMetadata
+  AddMetadata --&gt; Collect[Append to storymapJsons entryTitles builderLinks]
+
+  Collect --&gt; End([Return series results])
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="map-journal-conversion-browser" class="level1">
+<h1>Map Journal Conversion (Browser)</h1>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Start([MapJournalConverter.convert]) --&gt; ReadSections[Read classic sections]
+  ReadSections --&gt; LoopSections[Iterate sections]
+  LoopSections --&gt; Classify{Media type}
+
+  Classify --&gt;|webmap| AddMap[Create webmap resource minimal and node]
+  Classify --&gt;|image| AddImage[Create image node]
+  Classify --&gt;|video| AddVideo[Create embed node]
+  Classify --&gt;|webpage| AddEmbed[Create embed node]
+  Classify --&gt;|text| AddText[Create text node]
+
+  AddMap --&gt; ApplyPanel[Use panel mapping from settings]
+  ApplyPanel --&gt; MapOptions[Apply basic mapOptions if present]
+  MapOptions --&gt; EnrichMap[Fetch AGO item to embed extent viewpoint zoom]
+  EnrichMap --&gt; AddSlide[Add slide with narrative and media]
+
+  AddImage --&gt; AddSlide
+  AddVideo --&gt; AddSlide
+  AddEmbed --&gt; AddSlide
+  AddText --&gt; AddSlide
+
+  AddSlide --&gt; More{More sections?}
+  More --&gt;|Yes| LoopSections
+  More --&gt;|No| Metadata[Add converter metadata]
+  Metadata --&gt; End([Return Map Journal story JSON])
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="map-tour-conversion-browser" class="level1">
+<h1>Map Tour Conversion (Browser)</h1>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Start([MapTourConverter convert]) --&gt; ReadVals[Read values title subtitle layout order places webmap]
+  ReadVals --&gt; ThemeAuto[Resolve themeId auto to obsidian or summit]
+  ThemeAuto --&gt; Scaffold[Create story root cover nav hidden credits apply theme]
+
+  Scaffold --&gt; Places{Have places}
+  Places --&gt;|Yes| UsePlaces[Use provided places]
+  Places --&gt;|No| Prefetch{Have prefetched features}
+  Prefetch --&gt;|Yes| FromPrefetch[Features to places]
+  Prefetch --&gt;|No| FromWebmap[Extract feature collection from webmapJson]
+
+  UsePlaces --&gt; BuildMedia
+  FromPrefetch --&gt; BuildMedia
+  FromWebmap --&gt; BuildMedia
+
+  BuildMedia[For each place add image and thumb resources inline upload optional] --&gt; BuildNodes
+  BuildNodes[Create image carousel title content nodes extract and normalize geometry] --&gt; PlacesList[Accumulate tour places]
+  PlacesList --&gt; PromoteCover{First record as intro}
+  PromoteCover --&gt;|Yes| SetCover[Promote first image as cover]
+  PromoteCover --&gt;|No| SkipCover[Skip cover]
+
+  SetCover --&gt; TourMap
+  SkipCover --&gt; TourMap
+  TourMap[Create tour map node geometries optional webmap] --&gt; Layout[Map layout to tourType and subtype]
+  Layout --&gt; TourNode[Create tour node places map accent color placard position]
+  TourNode --&gt; Attach[Attach tour map and tour nodes to root]
+  Attach --&gt; Meta[Set story meta if cover]
+  Meta --&gt; Done([Return StoryMap JSON and mediaUrls])
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="swipe-converter-browser" class="level1">
+<h1>Swipe Converter (Browser)</h1>
+<p>Below are TWO_WEBMAPS and TWO_LAYERS flows side-by-side.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<section id="two_webmaps" class="level2">
+<h2 class="anchored" data-anchor-id="two_webmaps">TWO_WEBMAPS</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+  A1([Start]) --&gt; A2[Parse values]
+  A2 --&gt; A3[Fetch info A and B]
+  A3 --&gt; A4[Create resource A]
+  A3 --&gt; A5[Create resource B]
+  A4 --&gt; A6[Set extent and viewpoint A]
+  A5 --&gt; A7[Set extent and viewpoint B]
+  A6 --&gt; A8[Create node A]
+  A7 --&gt; A9[Create node B]
+  A8 --&gt; A10[Derive caption]
+  A9 --&gt; A10
+  A10 --&gt; A11[Create swipe node]
+  A11 --&gt; A12([Return result])
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<section id="two_layers" class="level2">
+<h2 class="anchored" data-anchor-id="two_layers">TWO_LAYERS</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+  B1([Start]) --&gt; B2[Parse values]
+  B2 --&gt; B3[Duplicate webmap to two resources]
+  B3 --&gt; B4[Persist full webmap data]
+  B4 --&gt; B5[Create node A]
+  B4 --&gt; B6[Create node B]
+  B5 --&gt; B7[Build left layer set]
+  B6 --&gt; B8[Build right layer set]
+  B7 --&gt; B9[Apply extent and viewpoint]
+  B8 --&gt; B9
+  B9 --&gt; B10[Mirror layers into resource]
+  B10 --&gt; B11[Derive caption]
+  B11 --&gt; B12[Create swipe node]
+  B12 --&gt; B13([Return result])
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="ui-persistence-local-save" class="level1">
+<h1>UI Persistence – Local Save</h1>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Start([Converter.tsx]) --&gt; DecideSave{Template is Map Series?}
+  DecideSave --&gt;|Yes| SaveSeries[Save each entry JSON and collection-draft]
+  DecideSave --&gt;|No| SaveSingle[Save single story JSON]
+
+  SaveSeries --&gt; Subfolder[Create tmp-converted/&lt;classicId-timestamp&gt;/]
+  SaveSingle --&gt; Subfolder
+
+  Subfolder --&gt; WriteFiles[Write JSON artifacts]
+  WriteFiles --&gt; ShowLinks[Update UI with builder links]
+  ShowLinks --&gt; Done([User can open or download])
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="swipe-test-tasks-runner" class="level1">
+<h1>Swipe Test Tasks (Runner)</h1>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Start([scripts/test-swipe-two-webmaps.ts]) --&gt; LoadFixture[Load JSON fixture]
+  LoadFixture --&gt; ValidateResources[Ensure webmap resources include extent viewpoint center zoom]
+  ValidateResources --&gt; CheckAlignment[Confirm centers and viewpoints align]
+  CheckAlignment --&gt; Pass{OK?}
+  Pass --&gt;|Yes| ReportOK[Log success]
+  Pass --&gt;|No| ReportFail[Log failure]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="key-browser-considerations" class="level1">
+<h1>Key Browser Considerations</h1>
+<ul>
+<li>Auth Token: Read from shell env via Netlify proxy or user input; used by REST calls only when needed.</li>
+<li>Fetch: Uses global fetch (browser / Node 18+); no node-fetch bundling.</li>
+<li>Theme: When themeId = auto, detect classic major theme (light/dark) → summit/obsidian.</li>
+<li>Panel Mapping: Classic layoutOptions.panel.position/size → Sidecar narrativePanelPosition/narrativePanelSize.</li>
+<li>Map Placement: Enrich non-Swipe Map Series webmaps by fetching AGO item data; embed extent/viewpoint/zoom on resource and node.</li>
+<li>Artifacts: Persist drafts to tmp-converted with timestamped folders for easy inspection.</li>
+</ul>
+<hr>
+</section>
+<section id="base-converter-orchestration" class="level1">
+<h1>Base Converter Orchestration</h1>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  Factory[ConverterFactory] --&gt; Conv[Concrete converter]
+  Conv --&gt; Base[BaseConverter]
+  Base --&gt; Steps[convert lifecycle]
+  Steps --&gt; Result[Converter result]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ul>
+<li>Common hooks: extractStructure, convertContent, applyTheme, collectMedia, getStoryMapJson.</li>
+<li>All concrete converters share the convert lifecycle via BaseConverter and return ConverterResult.</li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

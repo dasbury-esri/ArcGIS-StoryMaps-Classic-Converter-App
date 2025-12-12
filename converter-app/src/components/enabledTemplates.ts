@@ -2,8 +2,8 @@
 export const ENABLED: Record<string, boolean> = {
   mapTour: true,
   mapJournal: true,
-  mapSeries: false,
-  cascade: false,
+  mapSeries: true,
+  cascade: true,
   shortlist: false,
   crowdsource: false,
   swipe: true,

@@ -1,0 +1,295 @@
+---
+title: Converter-App Logic Diagrams
+format: html
+---
+
+# High-Level App Flow
+
+```{mermaid}
+flowchart TD
+  Start([User opens converter-app UI]) --> Init[Initialize React state and env]
+  Init --> Token{ARCGIS_TOKEN available?}
+  Token -->|Yes| Ready[Enable authenticated actions]
+  Token -->|No| Limited[Enable local and offline flows]
+
+  Ready --> Inputs{User action?}
+  Limited --> Inputs
+
+  Inputs -->|Convert by Item ID| FetchClassic[Fetch classic JSON via ArcGIS REST]
+  Inputs -->|Convert by Local JSON| LoadLocal[Load JSON file from browser]
+  Inputs -->|Run Swipe Tests| SwipeTests[Execute swipe test scripts]
+  Inputs -->|Inspect Utilities| Utilities[Helper tools]
+
+  FetchClassic --> Detect[Detect classic template]
+  LoadLocal --> Detect
+
+  Detect -->|Map Journal| ConvertJournal[MapJournalConverter.convert]
+  Detect -->|Swipe| ConvertSwipe[SwipeConverter.convert]
+  Detect -->|Map Tour| ConvertTour[MapTourConverter.convert]
+  Detect -->|Map Series| ConvertSeries[MapSeriesConverter.convertSeries]
+  Detect -->|Cascade| ConvertCascade[Legacy converter auto theme]
+
+  ConvertJournal --> JournalOutput[Produce StoryMap JSON]
+  ConvertSwipe --> SwipeOutput[Produce StoryMap JSON]
+  ConvertTour --> TourOutput[Produce StoryMap JSON]
+  ConvertSeries --> SeriesOutputs[Produce N entry StoryMap JSONs and collection-draft]
+  ConvertCascade --> CascadeOutput[Produce StoryMap JSON]
+
+  JournalOutput --> SaveArtifacts
+  SwipeOutput --> SaveArtifacts
+  TourOutput --> SaveArtifacts
+  SeriesOutputs --> SaveArtifacts[Persist JSONs to tmp-converted/<id-timestamp>/]
+  CascadeOutput --> SaveArtifacts
+
+  SaveArtifacts --> Present[Render links and diagnostics]
+  SwipeTests --> Present
+  Utilities --> Present
+
+  Present --> Done([User reviews, downloads, or publishes])
+```
+
+---
+
+# Template Detection and Enrichment
+
+```{mermaid}
+flowchart TD
+  Start([ConverterFactory.create]) --> DetectTemplate[detectClassicTemplate]
+  DetectTemplate --> Route{Template?}
+
+  Route -->|Map Journal| DoJournal[MapJournalConverter.convert]
+  Route -->|Swipe| DoSwipe[SwipeConverter.convert]
+  Route -->|Map Tour| DoTour[MapTourConverter.convert]
+  Route -->|Map Series| DoSeries[MapSeriesConverter.convertSeries]
+  Route -->|Cascade| DoCascade[convert_cascade legacy]
+
+  DoSeries --> FirstDraft[Return first entry as storymapJson]
+  DoSeries --> SeriesPayload[Attach storymapJsons entryTitles builderLinks]
+
+  DoJournal --> Enrich
+  DoSwipe --> Enrich
+  DoTour --> Enrich
+  FirstDraft --> Enrich{enrichMaps or enrichScenes?}
+
+  Enrich -->|Yes| EnrichMaps[enrichWebMaps]
+  Enrich -->|Yes| EnrichScenes[enrichWebScenes]
+  Enrich -->|Tour| EnrichTour[collect media, build tour geometries]
+  Enrich -->|No| SkipEnrich[Continue]
+
+  EnrichMaps --> Result[ConverterResult]
+  EnrichScenes --> Result
+  EnrichTour --> Result
+  SkipEnrich --> Result
+```
+
+---
+
+# Map Series Conversion (Browser)
+
+```{mermaid}
+flowchart TD
+  Start([MapSeriesConverter.convertSeries]) --> ThemeAuto[Resolve themeId auto to obsidian or summit]
+  ThemeAuto --> ExtractSettings[Extract values settings layout panel mapOptions]
+  ExtractSettings --> GetEntries[Read values.story.entries]
+
+  GetEntries --> Loop[For each entry]
+  Loop --> Classify{Classify media}
+
+  Classify -->|webmap| BuildSidecar[Create docked panel Sidecar]
+  Classify -->|classic child| HandleChild[Fetch child JSON and route]
+  Classify -->|image/video/embed| BuildSimple[Create text placeholder nodes]
+
+  BuildSidecar --> Narrative[Add narrative panel text]
+  Narrative --> CreateWebMapResource[Create webmap resource minimal]
+  CreateWebMapResource --> CreateWebMapNode[Add webmap node referencing resource]
+  CreateWebMapNode --> ApplyPanel[Map panel position left/right and size]
+  ApplyPanel --> MapSeriesOptions[Apply series mapOptions basics]
+  MapSeriesOptions --> EnrichPlacement[Fetch AGO item to embed extent viewpoint zoom]
+  EnrichPlacement --> AddMetadata[Attach series-settings and converter-metadata]
+
+  HandleChild --> RouteChild{Template?}
+  RouteChild -->|Swipe| SwipeConverter
+  RouteChild -->|Journal| MapJournalConverter
+  RouteChild -->|Tour| MapTourConverter
+  RouteChild -->|Series| NoteNesting[Add text placeholder]
+  RouteChild --> AddMetadata
+
+  BuildSimple --> AddMetadata
+  AddMetadata --> Collect[Append to storymapJsons entryTitles builderLinks]
+
+  Collect --> End([Return series results])
+```
+
+---
+
+# Map Journal Conversion (Browser)
+
+```{mermaid}
+flowchart TD
+  Start([MapJournalConverter.convert]) --> ReadSections[Read classic sections]
+  ReadSections --> LoopSections[Iterate sections]
+  LoopSections --> Classify{Media type}
+
+  Classify -->|webmap| AddMap[Create webmap resource minimal and node]
+  Classify -->|image| AddImage[Create image node]
+  Classify -->|video| AddVideo[Create embed node]
+  Classify -->|webpage| AddEmbed[Create embed node]
+  Classify -->|text| AddText[Create text node]
+
+  AddMap --> ApplyPanel[Use panel mapping from settings]
+  ApplyPanel --> MapOptions[Apply basic mapOptions if present]
+  MapOptions --> EnrichMap[Fetch AGO item to embed extent viewpoint zoom]
+  EnrichMap --> AddSlide[Add slide with narrative and media]
+
+  AddImage --> AddSlide
+  AddVideo --> AddSlide
+  AddEmbed --> AddSlide
+  AddText --> AddSlide
+
+  AddSlide --> More{More sections?}
+  More -->|Yes| LoopSections
+  More -->|No| Metadata[Add converter metadata]
+  Metadata --> End([Return Map Journal story JSON])
+```
+
+---
+
+# Map Tour Conversion (Browser)
+
+```{mermaid}
+flowchart TD
+  Start([MapTourConverter convert]) --> ReadVals[Read values title subtitle layout order places webmap]
+  ReadVals --> ThemeAuto[Resolve themeId auto to obsidian or summit]
+  ThemeAuto --> Scaffold[Create story root cover nav hidden credits apply theme]
+
+  Scaffold --> Places{Have places}
+  Places -->|Yes| UsePlaces[Use provided places]
+  Places -->|No| Prefetch{Have prefetched features}
+  Prefetch -->|Yes| FromPrefetch[Features to places]
+  Prefetch -->|No| FromWebmap[Extract feature collection from webmapJson]
+
+  UsePlaces --> BuildMedia
+  FromPrefetch --> BuildMedia
+  FromWebmap --> BuildMedia
+
+  BuildMedia[For each place add image and thumb resources inline upload optional] --> BuildNodes
+  BuildNodes[Create image carousel title content nodes extract and normalize geometry] --> PlacesList[Accumulate tour places]
+  PlacesList --> PromoteCover{First record as intro}
+  PromoteCover -->|Yes| SetCover[Promote first image as cover]
+  PromoteCover -->|No| SkipCover[Skip cover]
+
+  SetCover --> TourMap
+  SkipCover --> TourMap
+  TourMap[Create tour map node geometries optional webmap] --> Layout[Map layout to tourType and subtype]
+  Layout --> TourNode[Create tour node places map accent color placard position]
+  TourNode --> Attach[Attach tour map and tour nodes to root]
+  Attach --> Meta[Set story meta if cover]
+  Meta --> Done([Return StoryMap JSON and mediaUrls])
+```
+
+---
+
+# Swipe Converter (Browser)
+
+Below are TWO_WEBMAPS and TWO_LAYERS flows side-by-side.
+
+::: {layout-ncol=2}
+::: column
+## TWO_WEBMAPS
+
+```{mermaid}
+flowchart TB
+  A1([Start]) --> A2[Parse values]
+  A2 --> A3[Fetch info A and B]
+  A3 --> A4[Create resource A]
+  A3 --> A5[Create resource B]
+  A4 --> A6[Set extent and viewpoint A]
+  A5 --> A7[Set extent and viewpoint B]
+  A6 --> A8[Create node A]
+  A7 --> A9[Create node B]
+  A8 --> A10[Derive caption]
+  A9 --> A10
+  A10 --> A11[Create swipe node]
+  A11 --> A12([Return result])
+```
+:::
+
+::: column
+## TWO_LAYERS
+
+```{mermaid}
+flowchart TB
+  B1([Start]) --> B2[Parse values]
+  B2 --> B3[Duplicate webmap to two resources]
+  B3 --> B4[Persist full webmap data]
+  B4 --> B5[Create node A]
+  B4 --> B6[Create node B]
+  B5 --> B7[Build left layer set]
+  B6 --> B8[Build right layer set]
+  B7 --> B9[Apply extent and viewpoint]
+  B8 --> B9
+  B9 --> B10[Mirror layers into resource]
+  B10 --> B11[Derive caption]
+  B11 --> B12[Create swipe node]
+  B12 --> B13([Return result])
+```
+:::
+:::
+
+---
+
+# UI Persistence – Local Save
+
+```{mermaid}
+flowchart TD
+  Start([Converter.tsx]) --> DecideSave{Template is Map Series?}
+  DecideSave -->|Yes| SaveSeries[Save each entry JSON and collection-draft]
+  DecideSave -->|No| SaveSingle[Save single story JSON]
+
+  SaveSeries --> Subfolder[Create tmp-converted/<classicId-timestamp>/]
+  SaveSingle --> Subfolder
+
+  Subfolder --> WriteFiles[Write JSON artifacts]
+  WriteFiles --> ShowLinks[Update UI with builder links]
+  ShowLinks --> Done([User can open or download])
+```
+
+---
+
+# Swipe Test Tasks (Runner)
+
+```{mermaid}
+flowchart TD
+  Start([scripts/test-swipe-two-webmaps.ts]) --> LoadFixture[Load JSON fixture]
+  LoadFixture --> ValidateResources[Ensure webmap resources include extent viewpoint center zoom]
+  ValidateResources --> CheckAlignment[Confirm centers and viewpoints align]
+  CheckAlignment --> Pass{OK?}
+  Pass -->|Yes| ReportOK[Log success]
+  Pass -->|No| ReportFail[Log failure]
+```
+
+---
+
+# Key Browser Considerations
+
+- Auth Token: Read from shell env via Netlify proxy or user input; used by REST calls only when needed.
+- Fetch: Uses global fetch (browser / Node 18+); no node-fetch bundling.
+- Theme: When themeId = auto, detect classic major theme (light/dark) → summit/obsidian.
+- Panel Mapping: Classic layoutOptions.panel.position/size → Sidecar narrativePanelPosition/narrativePanelSize.
+- Map Placement: Enrich non-Swipe Map Series webmaps by fetching AGO item data; embed extent/viewpoint/zoom on resource and node.
+- Artifacts: Persist drafts to tmp-converted with timestamped folders for easy inspection.
+
+---
+
+# Base Converter Orchestration
+
+```{mermaid}
+flowchart LR
+  Factory[ConverterFactory] --> Conv[Concrete converter]
+  Conv --> Base[BaseConverter]
+  Base --> Steps[convert lifecycle]
+  Steps --> Result[Converter result]
+```
+
+- Common hooks: extractStructure, convertContent, applyTheme, collectMedia, getStoryMapJson.
+- All concrete converters share the convert lifecycle via BaseConverter and return ConverterResult.
