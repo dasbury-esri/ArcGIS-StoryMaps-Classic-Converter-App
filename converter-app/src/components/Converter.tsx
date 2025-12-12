@@ -725,8 +725,26 @@ export default function Converter() {
           const imageUrls = collectImageUrls(newStorymapJson);
           if (imageUrls.length) {
             const uploader = async (url: string, storyId: string, username: string, token: string) => {
-              const r = await transferImage(url, storyId, username, token);
-              return { originalUrl: r.originalUrl, resourceName: r.resourceName, transferred: r.isTransferred };
+              const original = url;
+              let resolved = url;
+              try {
+                const isAbsolute = /^https?:\/\//i.test(url) || url.startsWith('//');
+                if (!isAbsolute) {
+                  const trimmed = url.replace(/^\.\/?/, '');
+                  const needsResourcesPrefix = !/^resources\//i.test(trimmed);
+                  const path = needsResourcesPrefix ? `resources/${trimmed}` : trimmed;
+                  const id = (classicItemId || '').trim();
+                  if (id) {
+                    resolved = `https://www.arcgis.com/sharing/rest/content/items/${id}/${path}`;
+                  }
+                }
+              } catch {
+                // fall back to original url
+                resolved = url;
+              }
+              const r = await transferImage(resolved, storyId, username, token);
+              // Important: return the mapping key as the original src value so ResourceMapper can match
+              return { originalUrl: original, resourceName: r.resourceName, transferred: r.isTransferred };
             };
             const mediaMapping = await MediaTransferService.transferBatch({
               urls: imageUrls,

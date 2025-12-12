@@ -1,6 +1,6 @@
 // Single source of truth for enabled classic templates in the UI
 export const ENABLED: Record<string, boolean> = {
-  mapTour: false,
+  mapTour: true,
   mapJournal: true,
   mapSeries: false,
   cascade: false,

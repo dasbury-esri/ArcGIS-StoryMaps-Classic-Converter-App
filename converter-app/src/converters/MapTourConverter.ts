@@ -69,8 +69,22 @@ export class MapTourConverter extends BaseConverter {
     this.builder.addCreditsNode();
     this.builder.applyTheme({ themeId: themeToUse });
 
-    const rawPlaces = Array.isArray(values.places) ? values.places : [];
-    const order = Array.isArray(values.order) ? values.order : rawPlaces.map(p => ({ id: p.id, visible: p.visible !== false }));
+    // Prefer explicit places; otherwise, build from pre-fetched feature-layer features
+    const prefetchedFeatures: PrefetchedFeature[] = Array.isArray((this.classicJson as any)._mapTourFeatures)
+      ? (this.classicJson as any)._mapTourFeatures as PrefetchedFeature[]
+      : [];
+    let rawPlaces: Array<{ id: string | number; visible?: boolean; geometry?: { x?: number; y?: number } } & Record<string, unknown>> =
+      Array.isArray(values.places) && values.places.length
+        ? (values.places as Array<any>)
+        : featuresToPlaces(prefetchedFeatures);
+    // Fallback: extract from embedded featureCollection in webmapJson (browser path sets this)
+    if (!rawPlaces.length && (this.classicJson as any).webmapJson) {
+      const embedded = featuresFromWebmapJson((this.classicJson as any).webmapJson, (values as any).sourceLayer as string | undefined);
+      if (embedded.length) rawPlaces = featuresToPlaces(embedded);
+    }
+    const order = Array.isArray(values.order) && values.order.length
+      ? values.order
+      : rawPlaces.map(p => ({ id: (p as any).id, visible: (p as any).visible !== false }));
     interface RawPlace { id: string | number; name?: string; description?: string; pic_url?: string; thumb_url?: string; visible?: boolean; geometry?: { x?: number; y?: number }; [k: string]: unknown }
     const placeById: Record<string | number, RawPlace> = {};
     rawPlaces.forEach(p => { if (p.id !== undefined) placeById[p.id] = p; });
@@ -255,4 +269,54 @@ function mapClassicTheme(values: MapTourValues, fallback: string): string {
     if (major === 'light') return 'summit';
     return fallback;
   } catch { return fallback; }
+}
+
+// Types and helpers for feature-layer tours (prefetched in ConverterFactory)
+type PrefetchedFeature = { attributes?: Record<string, unknown>; geometry?: { x?: number; y?: number } };
+
+function featureIdFromAttributes(attrs: Record<string, unknown>): string | number | undefined {
+  const keys = ['__OBJECTID','objectid','id','ID','FID','fid','ObjectID','Object_Id','OBJECTID','OBJECTID_1'];
+  for (const k of keys) {
+    const v = attrs[k];
+    if (v !== undefined && v !== null && String(v).trim()) return typeof v === 'number' ? v : String(v).trim();
+  }
+  return undefined;
+}
+
+function featuresToPlaces(features: PrefetchedFeature[]): Array<{ id: string | number; visible?: boolean; geometry?: { x?: number; y?: number } } & Record<string, unknown>> {
+  if (!Array.isArray(features) || !features.length) return [];
+  const places: Array<{ id: string | number; visible?: boolean; geometry?: { x?: number; y?: number } } & Record<string, unknown>> = [];
+  for (const f of features) {
+    const attrs: Record<string, unknown> = (f.attributes || {}) as Record<string, unknown>;
+    const fid = featureIdFromAttributes(attrs);
+    if (fid === undefined) continue;
+    // Flatten attributes to top-level so key lookups work (title/desc/pic_url/thumb_url, etc.)
+    places.push({ id: fid, ...attrs, geometry: f.geometry });
+  }
+  return places;
+}
+
+function featuresFromWebmapJson(wmJson: Record<string, unknown>, sourceLayer?: string): PrefetchedFeature[] {
+  try {
+    const layers = Array.isArray((wmJson as any).operationalLayers) ? (wmJson as any).operationalLayers as any[] : [];
+    const match = (ly: any) => {
+      const id = String(ly?.id || '');
+      const title = String(ly?.title || '').toLowerCase();
+      const titleMatch = /map\s*tour|maptour/.test(title);
+      const idMatch = /^maptour-layer/i.test(id);
+      const srcMatch = sourceLayer ? (id === sourceLayer || id.includes(sourceLayer) || sourceLayer.includes(id)) : false;
+      return srcMatch || idMatch || titleMatch;
+    };
+    const targets = layers.filter(match);
+    for (const ly of targets) {
+      if (ly?.featureCollection?.layers) {
+        for (const fc of ly.featureCollection.layers) {
+          if (fc?.featureSet?.features && Array.isArray(fc.featureSet.features)) {
+            return fc.featureSet.features as PrefetchedFeature[];
+          }
+        }
+      }
+    }
+  } catch {/* ignore */}
+  return [];
 }

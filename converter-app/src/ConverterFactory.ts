@@ -71,6 +71,58 @@ export class ConverterFactory {
     switch (template.toLowerCase()) {
       case 'map tour':
       case 'tour': {
+        // Prefetch webmap data and layer features for Map Tour to support feature-layer tours
+        try {
+          const values: any = (opts.classicJson as any).values || {};
+          const webmapId: string | undefined = values.webmap || (opts.classicJson as any).webmap;
+          if (webmapId && typeof webmapId === 'string') {
+            const f = await getFetch();
+            const wmUrl = `https://www.arcgis.com/sharing/rest/content/items/${webmapId}/data?f=json`;
+            const wmResp = await f(wmUrl);
+            if (wmResp.ok) {
+              const wmJson = await wmResp.json();
+              (opts.classicJson as any).webmapJson = wmJson;
+              // If sourceLayer present, try to extract features; prefer embedded featureCollection
+              const sourceLayer: string | undefined = (opts.classicJson as any).sourceLayer || values.sourceLayer;
+              let features: any[] | undefined;
+              const layers: any[] = Array.isArray(wmJson?.operationalLayers) ? wmJson.operationalLayers : [];
+              const matchLayer = (ly: any) => {
+                const id: string = String(ly?.id || '');
+                return !!sourceLayer && (id === sourceLayer || id.includes(sourceLayer) || sourceLayer.includes(id));
+              };
+              const targetLayers = layers.filter(ly => matchLayer(ly) || /^maptour-layer/i.test(String(ly?.id || '')) || /map\s*tour/i.test(String(ly?.title || '').toLowerCase()));
+              for (const ly of targetLayers) {
+                if (ly?.featureCollection?.layers) {
+                  for (const fc of ly.featureCollection.layers) {
+                    if (fc?.featureSet?.features && Array.isArray(fc.featureSet.features)) {
+                      features = fc.featureSet.features;
+                      break;
+                    }
+                  }
+                }
+                if (features && features.length) break;
+              }
+              // If no embedded features, try feature service query on the first target layer with URL (public only)
+              if ((!features || !features.length) && targetLayers.length) {
+                const urlLayer = targetLayers.find(ly => typeof ly?.url === 'string' || typeof ly?.URL === 'string');
+                const fsUrl: string | undefined = urlLayer?.url || urlLayer?.URL;
+                if (fsUrl) {
+                  try {
+                    const qUrl = `${fsUrl.replace(/\/$/, '')}/query?where=1%3D1&outFields=*&f=json`;
+                    const qResp = await f(qUrl);
+                    if (qResp.ok) {
+                      const qJson = await qResp.json();
+                      if (Array.isArray(qJson?.features)) features = qJson.features;
+                    }
+                  } catch {/* ignore per-layer */}
+                }
+              }
+              if (features && Array.isArray(features) && features.length) {
+                (opts.classicJson as any)._mapTourFeatures = features;
+              }
+            }
+          }
+        } catch {/* non-fatal prefetch failure */}
         const result = MapTourConverter.convert({
           classicJson: opts.classicJson,
           themeId: opts.themeId,
