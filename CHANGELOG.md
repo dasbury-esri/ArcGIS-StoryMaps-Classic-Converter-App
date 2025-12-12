@@ -117,3 +117,13 @@ All notable changes to this project will be documented in this file.
 ### Chore
 - bump to 0.4.6 (1e9dbc7)
 
+
+## [0.4.6] - 2025-12-12
+
+### Docs
+- add 0.4.6 entry (b9169b2)
+- add 0.4.7 entry (cad99c7)
+
+### Chore
+- bump to 0.4.6 (1e9dbc7)
+
