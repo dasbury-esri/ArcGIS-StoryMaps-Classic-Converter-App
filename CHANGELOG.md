@@ -108,3 +108,12 @@ All notable changes to this project will be documented in this file.
 - added converter states to ui (be76e30)
 - updated ui with thumbnails and descriptions (550a3a0)
 
+
+## [0.4.6] - 2025-12-12
+
+### Docs
+- add 0.4.7 entry (cad99c7)
+
+### Chore
+- bump to 0.4.6 (1e9dbc7)
+
