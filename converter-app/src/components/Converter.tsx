@@ -10,6 +10,7 @@ import { detectClassicTemplate } from "../util/detectTemplate";
 import { useAuth } from "../auth/useAuth";
 import { MapJournalConverter } from "../converters/MapJournalConverter";
 import { SwipeConverter } from "../converters/SwipeConverter";
+import { MapTourConverter } from "../converters/MapTourConverter";
 import { MediaTransferService } from "../media/MediaTransferService";
 import { ResourceMapper } from "../media/ResourceMapper";
 import { collectImageUrls, transferImage } from "../api/image-transfer";
@@ -668,6 +669,13 @@ export default function Converter() {
           });
             const result = conv.convert();
             newStorymapJson = result.storymapJson;
+        } else if (tmpl === 'map tour' || tmpl === 'tour') {
+          const result = MapTourConverter.convert({
+            classicJson: classicData,
+            themeId: 'summit',
+            progress
+          });
+          newStorymapJson = result.storymapJson;
         } else if (tmpl === 'swipe') {
           const conv = new SwipeConverter({
             classicJson: classicData,
