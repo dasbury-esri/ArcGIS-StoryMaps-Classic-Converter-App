@@ -199,31 +199,31 @@ flowchart TB
 
 ```{mermaid}
 flowchart TD
-  Start([MapTourConverter convert]) --> ReadVals[Read values title subtitle layout order places webmap]
+  Start([MapTourConverter convert]) --> ReadVals[Read: values, title, subtitle, layout, order, places, webmap]
   ReadVals --> ThemeAuto[Resolve themeId auto to obsidian or summit]
-  ThemeAuto --> Scaffold[Create story root cover nav hidden credits apply theme]
+  ThemeAuto --> Scaffold[Create: story, root, cover, nav, hidden, credits, apply, theme]
 
-  Scaffold --> Places{Have places}
-  Places -->|Yes| UsePlaces[Use provided places]
-  Places -->|No| Prefetch{Have prefetched features}
-  Prefetch -->|Yes| FromPrefetch[Features to places]
-  Prefetch -->|No| FromWebmap[Extract feature collection from webmapJson]
+  Scaffold --> Places{Does Tour have 'places'?}
+  Places -->|Yes| UsePlaces[Use provided 'places']
+  Places -->|No| Prefetch{Does Tour reference a FeatureService?}
+  Prefetch -->|Yes| FromPrefetch[Fetch features and convert to 'place']
+  Prefetch -->|No| FromWebmap[Extract feature collection from webmapJson and convert to 'places']
 
   UsePlaces --> BuildMedia
   FromPrefetch --> BuildMedia
   FromWebmap --> BuildMedia
 
-  BuildMedia[For each place add image and thumb resources inline upload optional] --> BuildNodes
-  BuildNodes[Create image carousel title content nodes extract and normalize geometry] --> PlacesList[Accumulate tour places]
-  PlacesList --> PromoteCover{First record as intro}
-  PromoteCover -->|Yes| SetCover[Promote first image as cover]
+  BuildMedia[For each 'place' add image and thumbnail resources - inline upload optional] --> BuildNodes
+  BuildNodes[Create image carousel; title; content; nodes; extract and normalize geometry] --> PlacesList[Accumulate tour places]
+  PlacesList --> PromoteCover{Does classic have 'first record as intro' flag?}
+  PromoteCover -->|Yes| SetCover[Promote first image as cover image]
   PromoteCover -->|No| SkipCover[Skip cover]
 
   SetCover --> TourMap
   SkipCover --> TourMap
-  TourMap[Create tour map node geometries optional webmap] --> Layout[Map layout to tourType and subtype]
-  Layout --> TourNode[Create tour node places map accent color placard position]
-  TourNode --> Attach[Attach tour map and tour nodes to root]
+  TourMap[Create tourMap node; geometries; optional webmap] --> Layout[Map classic layout options to AGSM tourType and subtype]
+  Layout --> TourNode[Create tour node; places; map classic accent color and placard position]
+  TourNode --> Attach[Attach tourMap node and tour nodes to root]
   Attach --> Meta[Set story meta if cover]
   Meta --> Done([Return StoryMap JSON and mediaUrls])
 ```
@@ -232,38 +232,46 @@ flowchart TD
 
 # Map Series Conversion (Browser)
 
+## Map Series Converter — Updated Flow
+
 ```{mermaid}
-flowchart TD
-  Start([MapSeriesConverter.convertSeries]) --> ThemeStep[Apply theme via computeTheme]
-  ThemeStep --> ExtractSettings[Extract values settings layout panel mapOptions]
-  ExtractSettings --> GetEntries[Read values.story.entries]
+%%{init: {"theme": "default"}}%%
+flowchart TB
+  start([Start]) --> load[Load or fetch classic JSON]
+  load --> detect[Detect template]
+  detect --> convert[Convert Map Series]
+  convert --> filter[Filter invalid draft IDs]
+  filter --> theme[Compute theme + overrides]
+  theme --> entries[Loop entries]
+  entries --> classify[Classify media]
+  classify --> choice[Media type]
+  choice --> wm[Create webmap resource + node]
+  choice --> img[Create image node]
+  choice --> vid[Create embed node]
+  wm --> enrich[Enrich extent/viewpoint]
+  enrich --> narrative[Build narrative panel]
+  img --> narrative
+  vid --> narrative
+  narrative --> thumbs[Generate thumbnails]
+  thumbs --> collect[Collect story JSONs + titles]
+  collect --> persist[Persist to repo tmp-converted]
+  persist --> links[Show builder links]
+  links --> agsm[Create Collection (AGSM schema)]
+  agsm --> layout[Detect theme + layout]
+  layout --> thumbset[Attempt Collection thumbnail update]
+  thumbset --> finish[Surface Finish Publishing button + URL]
+  finish --> done([Done])
+```
 
-  GetEntries --> Loop[For each entry]
-  Loop --> Classify{Classify media}
-
-  Classify -->|webmap| BuildSidecar[Create docked panel Sidecar]
-  Classify -->|classic child| HandleChild[Fetch child JSON and route]
-  Classify -->|image/video/embed| BuildSimple[Create text placeholder nodes]
-
-  BuildSidecar --> Narrative[Add narrative panel text]
-  Narrative --> CreateWebMapResource[Create webmap resource minimal]
-  CreateWebMapResource --> CreateWebMapNode[Add webmap node referencing resource]
-  CreateWebMapNode --> ApplyPanel[Map panel position left/right and size]
-  ApplyPanel --> MapSeriesOptions[Apply series mapOptions basics]
-  MapSeriesOptions --> EnrichPlacement[Fetch AGO item to embed extent viewpoint zoom]
-  EnrichPlacement --> AddMetadata[Attach series-settings and converter-metadata]
-
-  HandleChild --> RouteChild{Template?}
-  RouteChild -->|Swipe| SwipeConverter
-  RouteChild -->|Journal| MapJournalConverter
-  RouteChild -->|Tour| MapTourConverter
-  RouteChild -->|Series| NoteNesting[Add text placeholder]
-  RouteChild --> AddMetadata
-
-  BuildSimple --> AddMetadata
-  AddMetadata --> Collect[Append to storymapJsons entryTitles builderLinks]
-
-  Collect --> End([Return series results])
+### Key Updates
+```
+- Defensive filtering: remove non-hex 32-char draft IDs; align arrays.
+- Local persistence: save `draft.json`, `entry-*.json`, `collection-draft.json` under repo `tmp-converted`.
+- Collection creation: adopt AGSM Collection schema (nodes/resources, story-theme).
+- Theme/layout: detect base theme and overrides; set layout (tabs/accordion) when possible.
+- Thumbnail: attempt to set collection thumbnail from classic.
+- Publish UX: show Finish Publishing button and explicit edit URL.
+ - Publish UX: show Finish Publishing button and explicit edit URL.
 ```
 
 ---
