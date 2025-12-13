@@ -7,4 +7,4 @@ export * from './media/MediaTransferService';
 export * from './media/ResourceMapper';
 export * from './adapter';
 export * from './ConverterFactory';
-export * from './util/detectTemplate';
+export * from './utils/detectTemplate';

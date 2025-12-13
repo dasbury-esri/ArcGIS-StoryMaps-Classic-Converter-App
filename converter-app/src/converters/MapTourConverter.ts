@@ -13,9 +13,9 @@ import { BaseConverter } from './BaseConverter';
 import type { BaseConverterOptions } from './BaseConverter';
 import type { ConverterResult, StoryMapJSON } from '../types/core';
 import { StoryMapJSONBuilder } from '../schema/StoryMapJSONBuilder';
-import { detectClassicTemplate } from '../util/detectTemplate';
+import { detectClassicTemplate } from '../utils/detectTemplate';
 import type { TourGeometry, TourPlace } from '../types/core.ts';
-import { computeTheme } from '../util/classicTheme';
+import { computeTheme } from '../utils/classicTheme';
 
 // Attribute keys (ported)
 const TITLE_KEYS = ['name','Name','NAME','title','Title','TITLE'] as const;

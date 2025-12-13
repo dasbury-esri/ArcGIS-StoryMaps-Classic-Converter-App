@@ -1,7 +1,7 @@
 import type { ClassicStoryMapJSON } from '../types/classic.ts';
 import type { ConversionContext, ConverterResult, StoryMapJSON } from '../types/core.ts';
 import { MapJournalConverter } from '../converters/MapJournalConverter';
-import { detectClassicTemplate } from '../util/detectTemplate';
+import { detectClassicTemplate } from '../utils/detectTemplate';
 import { MediaTransferService } from '../media/MediaTransferService';
 import { ResourceMapper } from '../media/ResourceMapper';
 

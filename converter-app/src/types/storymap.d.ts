@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export { ClassicStoryMapJSON } from '../../types/storymap';
+//export { ClassicStoryMapJSON } from '../../types/storymap';
 /**
  * TypeScript interfaces for ArcGIS StoryMap JSON structures
  * Based on official ArcGIS StoryMaps schema

@@ -17,6 +17,7 @@
   "exclude": [
     "dist",
     "scripts/**",
-    "src/legacy-converter/**"
+    "src/legacy-converter/**",
+    "src/deprecated-converter/**"
   ]
 }

@@ -12,8 +12,8 @@ import { StoryMapJSONBuilder } from '../schema/StoryMapJSONBuilder';
 import { MapJournalConverter } from './MapJournalConverter';
 import { MapTourConverter } from './MapTourConverter';
 import { SwipeConverter } from './SwipeConverter';
-import { detectClassicTemplate } from '../util/detectTemplate';
-import { deriveWebmapThumbnailUrl, deriveImageThumbnailUrl, deriveEmbedThumbnailUrl, getDefaultThumbnailUrl, buildProxiedThumbnailUrl } from '../util/thumbnails';
+import { detectClassicTemplate } from '../utils/detectTemplate';
+import { deriveWebmapThumbnailUrl, deriveImageThumbnailUrl, deriveEmbedThumbnailUrl, getDefaultThumbnailUrl, buildProxiedThumbnailUrl } from '../utils/thumbnails';
 import { createDraftStory, getUsername, addResource } from '../api/arcgis-client';
 import { getOrgBase } from '../lib/orgBase';
 
@@ -83,7 +83,7 @@ export class MapSeriesConverter extends BaseConverter {
   static async convertSeries(opts: { classicJson: Record<string, unknown>; themeId: 'auto' | 'summit' | 'obsidian'; progress?: (e: ProgressEvent) => void; token?: string }): Promise<{ storymapJsons: StoryMapJSON[]; entryTitles: string[]; builderLinks: string[]; thumbnailUrls: string[]; draftItemIds: string[]; thumbnailResourcePaths: string[] }> {
       const { classicJson, themeId, progress, token } = opts;
       // Derive theme from classic and honor user selection
-      const { computeTheme } = await import('../util/classicTheme');
+      const { computeTheme } = await import('../utils/classicTheme');
       const derived = computeTheme(themeId, classicJson as Record<string, unknown>);
       const themeToUse = derived.themeId;
       // Extract global Map Series settings used to inform Sidecar panel and map options

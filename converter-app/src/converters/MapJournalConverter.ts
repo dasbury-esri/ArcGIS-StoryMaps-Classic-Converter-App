@@ -1,4 +1,4 @@
-import { detectClassicTemplate } from '../util/detectTemplate';
+import { detectClassicTemplate } from '../utils/detectTemplate';
 // In Node, Vite resolves node:child_process to a shim in browser. We guard usage.
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
@@ -15,12 +15,12 @@ import path from 'node:path';
  * - Consumed by `ConverterFactory` for selection/orchestration.
  */
 import { BaseConverter } from './BaseConverter';
-import { determineScaleZoomLevel } from '../util/scale';
+import { determineScaleZoomLevel } from '../utils/scale';
 import { fetchJsonWithCache } from '../utils/fetchCache';
 import type { ClassicValues, ClassicSection } from '../types/classic';
 import type { ConverterResult, StoryMapJSON } from '../types/core';
 import { createThemeWithDecisions } from '../theme/themeMapper';
-import { computeTheme } from '../util/classicTheme';
+import { computeTheme } from '../utils/classicTheme';
 import { SwipeConverter } from './SwipeConverter';
 import { execSync } from 'node:child_process';
 import { StoryMapJSONBuilder } from '../schema/StoryMapJSONBuilder';

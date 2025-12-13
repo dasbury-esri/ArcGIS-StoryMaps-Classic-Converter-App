@@ -17,12 +17,12 @@ import { StoryMapJSONBuilder } from '../schema/StoryMapJSONBuilder';
 import type { ConverterResult, StoryMapJSON } from '../types/core';
 import type { ClassicValues, ClassicExtent, ClassicLayer } from '../types/classic';
 // duplicate imports removed
-import { determineScaleZoomLevel } from '../util/scale';
-import { fetchJsonWithCache } from '../utils/fetchCache.ts';
-import { sanitizeBasicHtml } from '../utils/htmlSanitizer.ts';
+import { determineScaleZoomLevel } from '../utils/scale';
+import { fetchJsonWithCache } from '../utils/fetchCache';
+import { sanitizeBasicHtml } from '../utils/htmlSanitizer';
 import { execSync } from 'node:child_process';
-import { detectClassicTemplate } from '../util/detectTemplate';
-import { computeTheme } from '../util/classicTheme';
+import { detectClassicTemplate } from '../utils/detectTemplate';
+import { computeTheme } from '../utils/classicTheme';
 
 type SwipeModel = 'TWO_WEBMAPS' | 'TWO_LAYERS';
 type SwipeLayout = 'swipe' | 'spyglass';
@@ -60,8 +60,8 @@ export class SwipeConverter extends BaseConverter {
     this.extractStructure();
     await this.convertContent();
     this.applyTheme();
-    const media = this.collectMedia();
-    return { storymapJson: this.getStoryMapJson(), media } as ConverterResult;
+    const mediaUrls = this.collectMedia();
+    return { storymapJson: this.getStoryMapJson(), mediaUrls } as ConverterResult;
   }
 
   protected async convertContent(): Promise<void> {

@@ -6,7 +6,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { clearFetchCache, getFetchCacheSize, onFetchCacheChange, offFetchCacheChange } from "../utils/fetchCache";
 import type { StoryMapJSON } from "../types/core";
 import { validateWebMaps, type EndpointCheck } from "../services/WebMapValidator";
-import { detectClassicTemplate } from "../util/detectTemplate";
+import { detectClassicTemplate } from "../utils/detectTemplate";
 import { useAuth } from "../auth/useAuth";
 import { MapJournalConverter } from "../converters/MapJournalConverter";
 import { SwipeConverter } from "../converters/SwipeConverter";

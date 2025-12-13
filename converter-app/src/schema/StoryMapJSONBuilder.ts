@@ -477,7 +477,12 @@ export class StoryMapJSONBuilder {
     const id = this.generateResourceId();
     const resource: { type: 'converter-metadata'; data: ConverterMetadataPayload } = {
       type: 'converter-metadata',
-      data: { typeConvertedTo: 'storymap', converterVersion: getConverterVersion(), classicType, ...payload }
+      data: {
+        classicType,
+        ...payload,
+        typeConvertedTo: (payload as any)?.typeConvertedTo ?? 'storymap',
+        converterVersion: (payload as any)?.converterVersion ?? getConverterVersion()
+      }
     };
     // Surface classic template version if provided via payload.classicMetadata
     try {

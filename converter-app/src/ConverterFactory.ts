@@ -51,7 +51,8 @@ async function getFetch(): Promise<FetchFn> {
   if (typeof fetch === 'undefined') throw new Error('Global fetch unavailable in this environment');
   return fetch as FetchFn;
 }
-import { detectClassicTemplate } from './util/detectTemplate';
+import { detectClassicTemplate } from './utils/detectTemplate';
+import type { WebmapJson, OperationalLayer, PrefetchedFeature } from './types/arcgis-webmap';
 
 export interface ConverterFactoryOptions {
   classicJson: ClassicStoryMapJSON;
@@ -80,7 +81,7 @@ export class ConverterFactory {
           progress: opts.progress as ProgressCallback
         });
         // Return first story as primary for compatibility, plus attach series payload
-        const first = resultSeries.storymapJsons[0] || ({ resources: {}, nodes: {} } as StoryMapJSON);
+        const first = (await resultSeries).storymapJsons[0] || ({ resources: {}, nodes: {} } as StoryMapJSON);
         return {
           ...resultSeries,
           storymapJson: first

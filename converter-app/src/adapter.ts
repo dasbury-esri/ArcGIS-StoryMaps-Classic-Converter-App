@@ -3,7 +3,7 @@ import type { ConversionContext, StoryMapJSON } from './types/core.ts';
 import { ConverterFactory } from './ConverterFactory';
 import { MediaTransferService } from './media/MediaTransferService';
 import { ResourceMapper } from './media/ResourceMapper';
-import { assertStoryMapJson, formatAssertionReport } from './util/assertions';
+import { assertStoryMapJson, formatAssertionReport } from './utils/assertions';
 
 export interface AdapterParams {
   classicJson: ClassicStoryMapJSON;
