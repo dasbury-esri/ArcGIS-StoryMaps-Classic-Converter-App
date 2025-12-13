@@ -2,6 +2,7 @@ export interface OperationalLayer {
   id: string;
   title?: string;
   visibility?: boolean;
+  featureCollection?: { layers?: Array<{ featureSet?: { features?: any[] } }> };
 }
 
 export interface WebmapJson {

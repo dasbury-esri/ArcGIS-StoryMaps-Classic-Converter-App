@@ -221,14 +221,15 @@ export class SwipeConverter extends BaseConverter {
             }
             return undefined;
           };
-          let leftLabel = pickLastVisibleTitle(leftLayers);
-          const rightLabel = pickLastVisibleTitle(rightLayers);
-          if (!leftLabel && Array.isArray((baseData as any)?.baseMap?.baseMapLayers)) {
-            const bml = ((baseData as any).baseMap.baseMapLayers as Array<{ title?: string; visibility?: boolean }>);
-            for (let i = bml.length - 1; i >= 0; i--) {
-              if (bml[i].visibility) { leftLabel = bml[i].title || leftLabel; break; }
-            }
-          }
+          // Derive labels only when operational layers are known
+          const leftOps: Array<{ title: string; visible: boolean }> = Array.isArray((initialA as any).mapLayers)
+            ? ((initialA as any).mapLayers as Array<{ id: string; title: string; visible: boolean }>).map(l => ({ title: l.title, visible: l.visible }))
+            : [];
+          const rightOps: Array<{ title: string; visible: boolean }> = Array.isArray((initialB as any).mapLayers)
+            ? ((initialB as any).mapLayers as Array<{ id: string; title: string; visible: boolean }>).map(l => ({ title: l.title, visible: l.visible }))
+            : [];
+          const leftLabel = pickLastVisibleTitle(leftOps);
+          const rightLabel = pickLastVisibleTitle(rightOps);
           const caption = (leftLabel && rightLabel) ? `Left: ${leftLabel} — Right: ${rightLabel}` : undefined;
         const base = `https://www.arcgis.com/sharing/rest/content/items/${wmB}/data?f=json`;
         const url = this.token ? `${base}&token=${encodeURIComponent(this.token)}` : base;
@@ -252,9 +253,6 @@ export class SwipeConverter extends BaseConverter {
           zoom: szA?.zoom,
           viewpoint: (initialA as any).viewpoint,
           mapLayers: (initialA as any).mapLayers ?? [],
-          itemId: wmA,
-          itemType: 'Web Map',
-          type: 'default',
         });
         try {
           const rdata: any = this.builder.getJson().resources[resA]?.data || {};
@@ -269,9 +267,6 @@ export class SwipeConverter extends BaseConverter {
           zoom: szB?.zoom,
           viewpoint: (initialB as any).viewpoint,
           mapLayers: (initialB as any).mapLayers ?? [],
-          itemId: wmB,
-          itemType: 'Web Map',
-          type: 'default',
         });
         try {
           const rdata: any = this.builder.getJson().resources[resB]?.data || {};
@@ -551,7 +546,7 @@ export class SwipeConverter extends BaseConverter {
     values: ClassicValues,
     layout: SwipeLayout = 'swipe',
     token?: string
-  ): string {
+  ): Promise<string> {
     // Path identification for diagnostics
     builder.addConverterMetadata('Swipe', { path: 'buildInlineSwipeBlock' } as any);
     // Also emit via a synthetic converter instance if possible

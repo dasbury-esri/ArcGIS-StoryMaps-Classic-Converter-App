@@ -1,0 +1,32 @@
+{
+  "title": "Geología de Puerto Rico (Theme)",
+  "baseThemeId": "obsidian",
+  "isFromOrgTheme": false,
+  "variables": {
+    "headerFooterBackgroundColor": "#5A5A5A",
+    "backgroundColor": "#000000",
+    "titleFontId": "charterBT",
+    "titleColor": "#f3f3f3",
+    "titleColorDark": "#0E1116",
+    "titleColorLight": "#f3f3f3",
+    "bodyFontId": "arial",
+    "bodyColor": "#FFFFFF",
+    "bodyColorDark": "#0E1116",
+    "bodyColorLight": "#E6F2F2",
+    "bodyMutedColor": "#FFF",
+    "themeColor1": "#DDD",
+    "themeColor2": "#4d6aff",
+    "themeColor3": "#0ec2db",
+    "borderRadius": 9999,
+    "colorRamps": [
+      "seq-blue-bright-5",
+      "seq-yellow-bright-3",
+      "seq-green-bright-3",
+      "seq-red-bright-4"
+    ],
+    "basemapPrimary": "darkGrayCanvas",
+    "basemapAlt": "humanGeographyDark",
+    "basemapImagery": "worldImagery"
+  },
+  "resources": {}
+}

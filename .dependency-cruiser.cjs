@@ -133,10 +133,10 @@ module.exports = {
         "or there's something in the test folder that isn't a test.",
       severity: 'error',
       from: {
-        pathNot: '^(test_data)'
+        pathNot: '^(tests)'
       },
       to: {
-        path: '^(test_data)'
+        path: '^(tests)'
       }
     },
     {

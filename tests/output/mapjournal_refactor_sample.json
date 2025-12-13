@@ -1,0 +1,3313 @@
+{
+  "root": "n-6rhjjh",
+  "nodes": {
+    "n-rrlnss": {
+      "type": "storycover",
+      "data": {
+        "type": "minimal",
+        "title": "Studying Up on Higher Education",
+        "summary": "",
+        "byline": "",
+        "titlePanelVerticalPosition": "top",
+        "titlePanelHorizontalPosition": "start",
+        "titlePanelStyle": "gradient"
+      }
+    },
+    "n-fpyvta": {
+      "type": "navigation",
+      "data": {
+        "links": []
+      },
+      "config": {
+        "isHidden": true
+      }
+    },
+    "n-isl177": {
+      "type": "attribution",
+      "data": {
+        "content": "",
+        "attribution": ""
+      }
+    },
+    "n-5lzwxu": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-nzy2nu": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-zj99sl": {
+      "type": "credits",
+      "children": [
+        "n-5lzwxu",
+        "n-nzy2nu",
+        "n-isl177"
+      ]
+    },
+    "n-mskrp4": {
+      "type": "immersive",
+      "data": {
+        "type": "sidecar",
+        "subtype": "docked-panel",
+        "narrativePanelPosition": "end",
+        "narrativePanelSize": "medium"
+      },
+      "children": [
+        "n-ilogd0",
+        "n-rm9j9i",
+        "n-y6rf5w",
+        "n-fd7vl6",
+        "n-qpkpwz",
+        "n-agvugj",
+        "n-bxs0fg",
+        "n-p57clh",
+        "n-nfjnov",
+        "n-8aodph",
+        "n-ssj93q"
+      ]
+    },
+    "n-2rpjav": {
+      "type": "text",
+      "data": {
+        "text": "<strong><span style=\"color:#4D887E;\"><span style=\"font-size:40px;\">Studying Up on Higher Education</span></span></strong>",
+        "type": "h3",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-kv1zdp": {
+      "type": "image",
+      "data": {
+        "image": "r-6y337i",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-j3rj5h": {
+      "type": "text",
+      "data": {
+        "text": "<span class=\"sm-text-color-4D887E\" ><strong><span style=\"font-size:24px;\">Exploring the cost and diversity of learning after high school in 9 maps.</span></strong></span>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-egalmc": {
+      "type": "text",
+      "data": {
+        "text": "<span style=\"font-size:16px;\">Navigating the landscape of post-secondary learning can be daunting. Professional certificates, trade schools, cosmetology programs, and traditional two- and four-year degrees abound.</span>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-d76oc8": {
+      "type": "text",
+      "data": {
+        "text": "<span style=\"font-size:16px;\">With the new school year in arrival, let's take stock of the price and diversity of the schools and the students populating the world of higher education.</span>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-ngr5xa": {
+      "type": "button",
+      "data": {
+        "text": "What's out there?",
+        "link": "#ref-n-jnvu5p"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-6y7gw6": {
+      "type": "button",
+      "data": {
+        "text": "How much does it cost?",
+        "link": "#ref-n-qpiyvx"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-i4vhcd": {
+      "type": "button",
+      "data": {
+        "text": "Who are the students?",
+        "link": "#ref-n-pv13tu"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-irzgch": {
+      "type": "button",
+      "data": {
+        "text": "How about academics?",
+        "link": "#ref-n-wod5r8"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-l43c5w": {
+      "type": "button",
+      "data": {
+        "text": "What's the debt burden?",
+        "link": "#ref-n-jczbaf"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-sjke6y": {
+      "type": "text",
+      "data": {
+        "text": "<span style=\"font-size:14px;\"><em><span class=\"sm-text-color-A9A9A9\" >This story is based upon the U.S. Department of Education's College Scorecard. The most recent data available at the time of writing was the 2015/16 academic year. Change over time data is referenced from the 2005/06 College Scorecard data. For links, see </span><a class=\"credit\" data-storymaps=\"MJ-ACTION-1535413422753\" data-storymaps-type=\"navigate\" href=\"#ref-n-95q8jr\" target=\"_self\">Resources</a><span class=\"sm-text-color-A9A9A9\" >.</span></em></span>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-sdd4f8": {
+      "type": "image",
+      "data": {
+        "image": "r-c9uqh9",
+        "alt": ""
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-2g2ig2": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": [
+        "n-2rpjav",
+        "n-kv1zdp",
+        "n-j3rj5h",
+        "n-egalmc",
+        "n-d76oc8",
+        "n-ngr5xa",
+        "n-6y7gw6",
+        "n-i4vhcd",
+        "n-irzgch",
+        "n-l43c5w",
+        "n-sjke6y"
+      ]
+    },
+    "n-ilogd0": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": [
+        "n-2g2ig2",
+        "n-sdd4f8"
+      ]
+    },
+    "n-jnvu5p": {
+      "type": "text",
+      "data": {
+        "text": "<span style=\"font-size:28px\"><span style=\"color:#4D887E\"><strong>What&#39;s out there?</strong></span></span>",
+        "type": "h3",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-iruuyg": {
+      "type": "image",
+      "data": {
+        "image": "r-8qdmrw",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-ibz3y6": {
+      "type": "text",
+      "data": {
+        "text": "<span class=\"sm-text-color-4D887E\" ><strong><span style=\"font-size:24px\">Four-year colleges and universities are just part of a rich ecosystem of post-secondary schools.</span></strong></span>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-wo92ci": {
+      "type": "text",
+      "data": {
+        "text": "This map shows the most common type of&nbsp;post-secondary institution by area. Bigger icons represent clusters of schools. As you pan and zoom, you will see more granular views of the area. Click an icon for more information.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-4284p4": {
+      "type": "image",
+      "data": {
+        "image": "r-78t83t",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-919vfn": {
+      "type": "image",
+      "data": {
+        "image": "r-j19m07",
+        "alt": "This chart shows the main types of post-secondary institutions in the United States and a count of their programs. Universities and professional schools account for over a third of all institutions, community colleges account for a quarter. The remaining school types including cosmetology and barber school, technical and trade schools, and other schools."
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-3z8njs": {
+      "type": "text",
+      "data": {
+        "text": "While four-year universities are the most common&nbsp;type of institution,&nbsp;community colleges make up fully a quarter of schools nationally.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-tpz84o": {
+      "type": "text",
+      "data": {
+        "text": "Patterns of schools vary geographically. Explore the educational landscape of your region below.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-8fr3ld": {
+      "type": "action-button",
+      "data": {
+        "text": "Northeast"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-evoz3e"
+      }
+    },
+    "n-uc66aw": {
+      "type": "action-button",
+      "data": {
+        "text": "South"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-uocgy4"
+      }
+    },
+    "n-l4rych": {
+      "type": "action-button",
+      "data": {
+        "text": "Midwest"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-bea0ox"
+      }
+    },
+    "n-0xzdj1": {
+      "type": "action-button",
+      "data": {
+        "text": "Intermountain West"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-i642xz"
+      }
+    },
+    "n-rleryn": {
+      "type": "action-button",
+      "data": {
+        "text": "West"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-rxmdd2"
+      }
+    },
+    "n-pqf09e": {
+      "type": "embed",
+      "data": {
+        "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=5fa8c224b8b648ea8e2d5633ddb837a5",
+        "embedType": "link",
+        "alt": "This map shows all types of post-secondary educational institutions across the contiguous United States. The most numerous type is universities and professional schools with nearly 3,000 institutions. Community colleges, with about 2,000 institutions, follow second; cosmetology and barber schools follow third with about 1,400 programs.",
+        "isEmbedSupported": true,
+        "display": "inline",
+        "embedSrc": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=5fa8c224b8b648ea8e2d5633ddb837a5"
+      }
+    },
+    "n-wxu9wa": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": [
+        "n-jnvu5p",
+        "n-iruuyg",
+        "n-ibz3y6",
+        "n-wo92ci",
+        "n-4284p4",
+        "n-919vfn",
+        "n-3z8njs",
+        "n-tpz84o",
+        "n-8fr3ld",
+        "n-uc66aw",
+        "n-l4rych",
+        "n-0xzdj1",
+        "n-rleryn"
+      ]
+    },
+    "n-rm9j9i": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": [
+        "n-wxu9wa",
+        "n-pqf09e",
+        "n-evoz3e",
+        "n-uocgy4",
+        "n-bea0ox",
+        "n-i642xz",
+        "n-rxmdd2"
+      ]
+    },
+    "n-evoz3e": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Colleges_1085_1338",
+            "title": "Colleges_1085_1338",
+            "visible": true
+          },
+          {
+            "id": "Colleges_1085",
+            "title": "Colleges_1085",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -9159658.91599805,
+          "ymin": 4262654.201607253,
+          "xmax": -7278696.523956931,
+          "ymax": 5791394.767310372,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -9159658.91599805,
+            "ymin": 4262654.201607253,
+            "xmax": -7278696.523956931,
+            "ymax": 5791394.767310372,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "zoom": 8
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-uocgy4": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Colleges_1085_1338",
+            "title": "Colleges_1085_1338",
+            "visible": true
+          },
+          {
+            "id": "Colleges_1085",
+            "title": "Colleges_1085",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -10704298.38358448,
+          "ymin": 3000525.9905627593,
+          "xmax": -8823335.991543362,
+          "ymax": 4529266.556265878,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -10704298.38358448,
+            "ymin": 3000525.9905627593,
+            "xmax": -8823335.991543362,
+            "ymax": 4529266.556265878,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "zoom": 8
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-bea0ox": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Colleges_1085_1338",
+            "title": "Colleges_1085_1338",
+            "visible": true
+          },
+          {
+            "id": "Colleges_1085",
+            "title": "Colleges_1085",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -10928106.002403418,
+          "ymin": 4475454.888353128,
+          "xmax": -9047143.610362299,
+          "ymax": 6004195.454056246,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -10928106.002403418,
+            "ymin": 4475454.888353128,
+            "xmax": -9047143.610362299,
+            "ymax": 6004195.454056246,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "zoom": 8
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-i642xz": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Colleges_1085_1338",
+            "title": "Colleges_1085_1338",
+            "visible": true
+          },
+          {
+            "id": "Colleges_1085",
+            "title": "Colleges_1085",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -12966834.420825096,
+          "ymin": 4130571.0167305036,
+          "xmax": -11085872.028783979,
+          "ymax": 5659311.582433622,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -12966834.420825096,
+            "ymin": 4130571.0167305036,
+            "xmax": -11085872.028783979,
+            "ymax": 5659311.582433622,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "zoom": 8
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-rxmdd2": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Colleges_1085_1338",
+            "title": "Colleges_1085_1338",
+            "visible": true
+          },
+          {
+            "id": "Colleges_1085",
+            "title": "Colleges_1085",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -14515142.865769217,
+          "ymin": 4140354.9563510045,
+          "xmax": -12634180.4737281,
+          "ymax": 5669095.522054123,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -14515142.865769217,
+            "ymin": 4140354.9563510045,
+            "xmax": -12634180.4737281,
+            "ymax": 5669095.522054123,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "zoom": 8
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-qpiyvx": {
+      "type": "text",
+      "data": {
+        "text": "<span style=\"color:#995541\"><span style=\"font-size:28px\"><strong>How much does it cost?</strong></span></span>",
+        "type": "h3",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-qg8b0a": {
+      "type": "image",
+      "data": {
+        "image": "r-j1s8ml",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-8utrn4": {
+      "type": "text",
+      "data": {
+        "text": "<strong><span class=\"sm-text-color-995541\" ><span style=\"font-size:24px\">Price can be steep. The average cost of attendance is&nbsp;more than $23,000 per year.</span></span></strong>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-opllzm": {
+      "type": "text",
+      "data": {
+        "text": "This map shows the total cost of attendance for every type of school.&nbsp;Cost of attendance includes&nbsp;tuition and fees, books and supplies, housing, and transportation.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-rz3th5": {
+      "type": "image",
+      "data": {
+        "image": "r-n5zjwl",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-irww6l": {
+      "type": "text",
+      "data": {
+        "text": "With the diversity of training programs, public and private institutions, and for-profit businesses, affordability ranges widely. Nowhere is the variety of schools&nbsp;more visible than in densely populated metro areas.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-rxbg08": {
+      "type": "action-button",
+      "data": {
+        "text": "New York City"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-1vqy0i"
+      }
+    },
+    "n-tj5wyy": {
+      "type": "action-button",
+      "data": {
+        "text": "Los Angeles"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-pw7hea"
+      }
+    },
+    "n-dcl5ch": {
+      "type": "embed",
+      "data": {
+        "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=7c2bfae1e3ac4a48b1602ac2331547d0",
+        "embedType": "link",
+        "alt": "This map shows all types of colleges and their reported cost of attendance as smaller or larger circles. Notable groups of many schools are clustered in the Bay Area and Los Angeles in California; in Florida; around Chicago and the Midwest; and most densely north and south across the Northeast.",
+        "isEmbedSupported": true,
+        "display": "inline",
+        "embedSrc": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=7c2bfae1e3ac4a48b1602ac2331547d0"
+      }
+    },
+    "n-72784d": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": [
+        "n-qpiyvx",
+        "n-qg8b0a",
+        "n-8utrn4",
+        "n-opllzm",
+        "n-rz3th5",
+        "n-irww6l",
+        "n-rxbg08",
+        "n-tj5wyy"
+      ]
+    },
+    "n-y6rf5w": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": [
+        "n-72784d",
+        "n-dcl5ch",
+        "n-1vqy0i",
+        "n-pw7hea"
+      ]
+    },
+    "n-1vqy0i": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Price_Tag_Cost_of_Attendance_2015_16_1483",
+            "title": "Price_Tag_Cost_of_Attendance_2015_16_1483",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -8292072.827566107,
+          "ymin": 4925203.533423752,
+          "xmax": -8174512.678063664,
+          "ymax": 5020749.8187800925,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -8292072.827566107,
+            "ymin": 4925203.533423752,
+            "xmax": -8174512.678063664,
+            "ymax": 5020749.8187800925,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 100000
+        },
+        "zoom": 13
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-pw7hea": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Price_Tag_Cost_of_Attendance_2015_16_1483",
+            "title": "Price_Tag_Cost_of_Attendance_2015_16_1483",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -13281882.034021221,
+          "ymin": 3932362.973027743,
+          "xmax": -13046761.735015929,
+          "ymax": 4123455.5437407563,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -13281882.034021221,
+            "ymin": 3932362.973027743,
+            "xmax": -13046761.735015929,
+            "ymax": 4123455.5437407563,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 500000
+        },
+        "zoom": 11
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-bui0ej": {
+      "type": "text",
+      "data": {
+        "text": "<span style=\"font-size:28px;\"><strong><span style=\"color:#995541;\">What about in-state versus out-of-state fees?</span></strong></span>",
+        "type": "h3",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-7xmsbc": {
+      "type": "image",
+      "data": {
+        "image": "r-k94hog",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-qbfrb7": {
+      "type": "text",
+      "data": {
+        "text": "<strong><span class=\"sm-text-color-995541\" ><span style=\"font-size:24px;\">For the nation, out-of-state fees outstrip in-state fees by nearly $3,000.</span></span></strong>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-ms1ahv": {
+      "type": "text",
+      "data": {
+        "text": "This map shows a comparison of <span class=\"sm-text-color-DAA520\" ><strong>in-state</strong></span>&nbsp;(left) versus <span class=\"sm-text-color-A52A2A\" ><strong>out-of-state</strong></span>&nbsp;(right) tuition and fees.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-a02pnc": {
+      "type": "image",
+      "data": {
+        "image": "r-g35h1m",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-3nrd18": {
+      "type": "text",
+      "data": {
+        "text": "Across the board&nbsp;tuition and fees have increased by&nbsp;about $5,000 since 2006. But&nbsp;the growth of out-of-state fees has outstripped the growth of in-state fees by $500 on average. <a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495010840\" data-storymaps-type=\"navigate\" href=\"#ref-n-95q8jr\" target=\"_self\">[1]</a>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-2cfc9o": {
+      "type": "text",
+      "data": {
+        "text": "The share of funding for higher education coming from states and the federal government has fallen. School officials are primarily accountable to their local residents, and they have&nbsp;increasingly turned to raising out-of-state fees—faster—to fill the funding gap. <a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495022083\" data-storymaps-type=\"navigate\" href=\"#ref-n-95q8jr\" target=\"_self\">[2]</a>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-fwq7o3": {
+      "type": "webmap",
+      "data": {
+        "map": "r-de60caf6218e469ca6bb8e011302bb15",
+        "extent": {
+          "xmin": -13065935.986907344,
+          "ymin": 2855025.5460194545,
+          "xmax": -8230217.307520678,
+          "ymax": 5777977.826195211,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -13065935.986907344,
+            "ymin": 2855025.5460194545,
+            "xmax": -8230217.307520678,
+            "ymax": 5777977.826195211,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "timeSlider": false
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-hgppmr": {
+      "type": "webmap",
+      "data": {
+        "map": "r-46c681f3aa1c4423a3e5f205b9138058",
+        "extent": {
+          "xmin": -13065935.986907344,
+          "ymin": 2855025.5460194545,
+          "xmax": -8230217.307520678,
+          "ymax": 5777977.826195211,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -13065935.986907344,
+            "ymin": 2855025.5460194545,
+            "xmax": -8230217.307520678,
+            "ymax": 5777977.826195211,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "timeSlider": false
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-k1wlqd": {
+      "type": "swipe",
+      "data": {
+        "contents": {
+          "0": "n-fwq7o3",
+          "1": "n-hgppmr"
+        },
+        "viewPlacement": "extent"
+      },
+      "config": {
+        "size": "full"
+      }
+    },
+    "n-aeadgc": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": [
+        "n-bui0ej",
+        "n-7xmsbc",
+        "n-qbfrb7",
+        "n-ms1ahv",
+        "n-a02pnc",
+        "n-3nrd18",
+        "n-2cfc9o"
+      ]
+    },
+    "n-fd7vl6": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": [
+        "n-aeadgc",
+        "n-k1wlqd"
+      ]
+    },
+    "n-pv13tu": {
+      "type": "text",
+      "data": {
+        "text": "<span style=\"font-size:28px\"><font color=\"#695691\"><strong>How many students are there?</strong></font></span>",
+        "type": "h3",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-dbkq0y": {
+      "type": "image",
+      "data": {
+        "image": "r-zvj4wb",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-o8puac": {
+      "type": "text",
+      "data": {
+        "text": "<strong><span class=\"sm-text-color-695691\" ><span style=\"font-size:24px\">Over 16 million students enroll in U.S. institutions—up from 14 million in 2006.</span></span></strong>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-q1upy1": {
+      "type": "text",
+      "data": {
+        "text": "This map shows the total number of students enrolled at schools of all types.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-m9l685": {
+      "type": "image",
+      "data": {
+        "image": "r-qegeue",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-yuefra": {
+      "type": "text",
+      "data": {
+        "text": "While some&nbsp;colleges can top tens of thousands of students, the small classroom environment remains the more common.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-6nys7y": {
+      "type": "embed",
+      "data": {
+        "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=d4db7632cb8e410d87c1e77d8a06c0cb",
+        "embedType": "link",
+        "alt": "This map shows schools by their number of students enrolled represented as smaller or larger circles. Overall, there are some very large circles representing enrollments in the tens of thousands. But notably the vast majority of schools are much smaller, averaging around 2,300 students, and pepper the countryside in between the large schools.",
+        "isEmbedSupported": true,
+        "display": "inline",
+        "embedSrc": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=d4db7632cb8e410d87c1e77d8a06c0cb"
+      }
+    },
+    "n-c4ugv1": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": [
+        "n-pv13tu",
+        "n-dbkq0y",
+        "n-o8puac",
+        "n-q1upy1",
+        "n-m9l685",
+        "n-yuefra"
+      ]
+    },
+    "n-qpkpwz": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": [
+        "n-c4ugv1",
+        "n-6nys7y"
+      ]
+    },
+    "n-bvjcoy": {
+      "type": "text",
+      "data": {
+        "text": "<p><span style=\"font-size:28px\"><strong><span style=\"color:#CA9D3E\">How diverse are student bodies?</span></strong></span></p>\n",
+        "type": "h3",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-7bkocc": {
+      "type": "image",
+      "data": {
+        "image": "r-7vllic",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-k4i44n": {
+      "type": "text",
+      "data": {
+        "text": "<strong><span class=\"sm-text-color-CA9D3E\" ><span style=\"font-size:24px\">Half of all&nbsp;students in America identify as&nbsp;people of color.</span></span></strong>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-b0hnr4": {
+      "type": "text",
+      "data": {
+        "text": "This map shows schools by the race or ethnicity of a majority of their students. Bigger icons represent more schools in&nbsp;an area.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-ja5qv1": {
+      "type": "image",
+      "data": {
+        "image": "r-7l3xeh",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-mc0a40": {
+      "type": "image",
+      "data": {
+        "image": "r-awud7w",
+        "alt": "This bar chart shows the number of students by the race or ethnicity with which they identify. White: 55%; Hispanic and Latino: 20%; African American: 15%, Asian: 6%; Two or more races: 4%; American Indian and Alaskan Native: 0.8%; Native Hawaiian and Pacific Islander: 0.4%."
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-hl73wc": {
+      "type": "text",
+      "data": {
+        "text": "The unique histories of race and identity play out in the geographic patterns of school diversity. Explore some of these patterns below.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-zg242q": {
+      "type": "action-button",
+      "data": {
+        "text": "African American South"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-qdtmy7"
+      }
+    },
+    "n-7fq735": {
+      "type": "action-button",
+      "data": {
+        "text": "Hispanics &amp; Latinos in the border region"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-89ofvu"
+      }
+    },
+    "n-773zy2": {
+      "type": "action-button",
+      "data": {
+        "text": "Native American lands"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-3ir4sq"
+      }
+    },
+    "n-eqibcg": {
+      "type": "action-button",
+      "data": {
+        "text": "Diversity in California &amp; the Southwest"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-409jq5"
+      }
+    },
+    "n-uttoyo": {
+      "type": "text",
+      "data": {
+        "text": "People of color make up about 39 percent&nbsp;of the American population <a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495169358\" data-storymaps-type=\"navigate\" href=\"#ref-n-95q8jr\" target=\"_self\">[3]</a>, but account for 49 percent of student enrollment <a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495177583\" data-storymaps-type=\"navigate\" href=\"#ref-n-95q8jr\" target=\"_self\">[4]</a>.&nbsp;This means that people of color participate disproportionately higher in post-secondary education than their white peers.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-ncpbao": {
+      "type": "embed",
+      "data": {
+        "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=b9029170b7c040aabdd74fb6393c5f9a",
+        "embedType": "link",
+        "alt": "This map shows schools grouped by the most common race or ethnicity of their students. Most of the schools in the country are predominantly white. But there are notable groups of other demographics, including African Americans through Missouri, Alabama, Georgia, and the Carolinas; Hispanics and Latinos in Florida, throughout southern Texas and New Mexico, and across southern California; and dots of predominantly American Indian schools in New Mexico, the Dakotas, and Montana.",
+        "isEmbedSupported": true,
+        "display": "inline",
+        "embedSrc": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=b9029170b7c040aabdd74fb6393c5f9a"
+      }
+    },
+    "n-56sf3s": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": [
+        "n-bvjcoy",
+        "n-7bkocc",
+        "n-k4i44n",
+        "n-b0hnr4",
+        "n-ja5qv1",
+        "n-mc0a40",
+        "n-hl73wc",
+        "n-zg242q",
+        "n-7fq735",
+        "n-773zy2",
+        "n-eqibcg",
+        "n-uttoyo"
+      ]
+    },
+    "n-agvugj": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": [
+        "n-56sf3s",
+        "n-ncpbao",
+        "n-qdtmy7",
+        "n-89ofvu",
+        "n-3ir4sq",
+        "n-409jq5"
+      ]
+    },
+    "n-qdtmy7": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+            "title": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+            "visible": true
+          },
+          {
+            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+            "title": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -9521664.68195668,
+          "ymin": 3755112.333793757,
+          "xmax": -8581183.485935917,
+          "ymax": 4519482.616645481,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -9521664.68195668,
+            "ymin": 3755112.333793757,
+            "xmax": -8581183.485935917,
+            "ymax": 4519482.616645481,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 1000000
+        },
+        "zoom": 10
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-89ofvu": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+            "title": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+            "visible": true
+          },
+          {
+            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+            "title": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -12416487.817172425,
+          "ymin": 2860493.35474424,
+          "xmax": -10535525.425131308,
+          "ymax": 4389233.920447359,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -12416487.817172425,
+            "ymin": 2860493.35474424,
+            "xmax": -10535525.425131308,
+            "ymax": 4389233.920447359,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "zoom": 8
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-3ir4sq": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+            "title": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+            "visible": true
+          },
+          {
+            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+            "title": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -12686769.149188736,
+          "ymin": 4883322.871282605,
+          "xmax": -10805806.75714762,
+          "ymax": 6412063.436985725,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -12686769.149188736,
+            "ymin": 4883322.871282605,
+            "xmax": -10805806.75714762,
+            "ymax": 6412063.436985725,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "zoom": 8
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-409jq5": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+            "title": "Student_Body_Race_and_Ethnicity_2015_16_3052_977",
+            "visible": true
+          },
+          {
+            "id": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+            "title": "Student_Body_Race_and_Ethnicity_2015_16_3052",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -13726312.7338669,
+          "ymin": 3451810.205558204,
+          "xmax": -11845350.341825783,
+          "ymax": 4980550.771261322,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -13726312.7338669,
+            "ymin": 3451810.205558204,
+            "xmax": -11845350.341825783,
+            "ymax": 4980550.771261322,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "zoom": 8
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-rbft2r": {
+      "type": "text",
+      "data": {
+        "text": "<span style=\"font-size:28px\"><strong><span style=\"color:#695691\">How many women are in school?</span></strong></span>",
+        "type": "h3",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-o49np7": {
+      "type": "image",
+      "data": {
+        "image": "r-sgkngp",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-31lv3u": {
+      "type": "text",
+      "data": {
+        "text": "<strong><span class=\"sm-text-color-695691\" ><span style=\"font-size:24px\">Women continue to make up the majority of students—about 56 percent.</span></span></strong>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-y9vg1q": {
+      "type": "text",
+      "data": {
+        "text": "This map shows schools that have above-average enrollments of either <span class=\"sm-text-color-4B0082\" ><strong>women </strong></span>or of <span class=\"sm-text-color-006400\" ><strong>men</strong></span>. Bigger circles reflect schools with larger enrollments.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-7h24cw": {
+      "type": "image",
+      "data": {
+        "image": "r-kqooxz",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-c32sk0": {
+      "type": "text",
+      "data": {
+        "text": "Large schools with tens of thousands of students tend to have greater parity between numbers of women and of men. But a number of small&nbsp;schools enroll numbers of women far in excess of the average.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-r2w6ye": {
+      "type": "embed",
+      "data": {
+        "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=a750452f3f1c44718502db4d93cbdc4a",
+        "embedType": "link",
+        "alt": "Women are a strong majority in college classrooms. This map reflects that majority, showing schools represented by their numbers of students as smaller or larger circles. Purple circles, representing above-average numbers of women students, are clearly the dominant pattern across the country. Nevertheless, a number of very large schools do tend to be more balanced in numbers of women and men, or may even appear as green, indicating an above-average number of men.",
+        "isEmbedSupported": true,
+        "display": "inline",
+        "embedSrc": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=a750452f3f1c44718502db4d93cbdc4a"
+      }
+    },
+    "n-lkn793": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": [
+        "n-rbft2r",
+        "n-o49np7",
+        "n-31lv3u",
+        "n-y9vg1q",
+        "n-7h24cw",
+        "n-c32sk0"
+      ]
+    },
+    "n-bxs0fg": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": [
+        "n-lkn793",
+        "n-r2w6ye"
+      ]
+    },
+    "n-wod5r8": {
+      "type": "text",
+      "data": {
+        "text": "<span style=\"font-size:28px\"><span style=\"color:#CA9D3E\"><strong>Do students stick with it?</strong></span></span>",
+        "type": "h3",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-8mzmft": {
+      "type": "image",
+      "data": {
+        "image": "r-lygy2u",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-n6ufir": {
+      "type": "text",
+      "data": {
+        "text": "<span class=\"sm-text-color-CA9D3E\" ><span style=\"font-size:24px\"><strong>Schools tend to retain about two-thirds of their students from one year to the next—one-third switch schools or drop out.</strong></span></span>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-np558u": {
+      "type": "text",
+      "data": {
+        "text": "This map shows school rates of&nbsp;<em>admission </em>(color) compared to <em>retention </em>(size)—the share of students that return&nbsp;to a school from one year to the next.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-1q1lk7": {
+      "type": "image",
+      "data": {
+        "image": "r-zi2ywl",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-em78hc": {
+      "type": "text",
+      "data": {
+        "text": "<strong>Large, green</strong> schools accept most students and tend to keep them happy. <strong>Small, green</strong> schools still accept most students, but students don't stick around. <strong>Large, yellow</strong> schools are more selective in admitting&nbsp;students, but those that get in stay. <strong>Small, yellow</strong> schools are both hard to get in to and are unlikely to keep students for very long.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-zw8wmp": {
+      "type": "embed",
+      "data": {
+        "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=10d4c05ba8e64b40b7f63e09250d9fde",
+        "embedType": "link",
+        "alt": "This map shows the relationship between the admission rates and retention rates of schools across the country. There is no strong geographic pattern that emerges. Most areas have a mixture of rates of admission and retention in various combinations.",
+        "isEmbedSupported": true,
+        "display": "inline",
+        "embedSrc": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=10d4c05ba8e64b40b7f63e09250d9fde"
+      }
+    },
+    "n-ecfoac": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": [
+        "n-wod5r8",
+        "n-8mzmft",
+        "n-n6ufir",
+        "n-np558u",
+        "n-1q1lk7",
+        "n-em78hc"
+      ]
+    },
+    "n-p57clh": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": [
+        "n-ecfoac",
+        "n-zw8wmp"
+      ]
+    },
+    "n-lmn20r": {
+      "type": "text",
+      "data": {
+        "text": "<strong><span style=\"font-size:28px\"><span style=\"color:#854346\">What are people studying?</span></span></strong>",
+        "type": "h3",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-qel8q7": {
+      "type": "image",
+      "data": {
+        "image": "r-8hmbya",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-d5n8ie": {
+      "type": "text",
+      "data": {
+        "text": "<strong><span class=\"sm-text-color-854346\" ><span style=\"font-size:24px\">Schools that predominantly award degrees in health and medicine are the most abundant.</span></span></strong>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-zz2x9z": {
+      "type": "text",
+      "data": {
+        "text": "This map shows schools by their most commonly awarded degree.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-nexlfu": {
+      "type": "image",
+      "data": {
+        "image": "r-ue8ysg",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-ggqxkp": {
+      "type": "image",
+      "data": {
+        "image": "r-dwotw7",
+        "alt": "This bar chart shows ten types of degree and the number of schools the predominantly award them. Health: 35%; Services: 22%; Humanities and social sciences: 18%. The remaining quarter of schools together commonly grant degrees in business and finance, professional fields such as architecture or law, science, research and technology, trades and vocations, education and public service, agriculture and natural resources, and last administration."
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-pg0fhk": {
+      "type": "text",
+      "data": {
+        "text": "Roughly a quarter of schools focus on awarding degrees in <span class=\"sm-text-color-4B0082\" ><strong>services</strong></span>, such as food preparation, personal care, leisure, and transportation. Meanwhile, a&nbsp;fifth of schools commonly award degrees in the <span class=\"sm-text-color-008080\" ><strong>humanities and social sciences</strong></span>.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-zjxprm": {
+      "type": "text",
+      "data": {
+        "text": "Degrees granted vary geographically. Explore your region below.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-e2z33d": {
+      "type": "action-button",
+      "data": {
+        "text": "Northeast"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-1d53sp"
+      }
+    },
+    "n-01at0p": {
+      "type": "action-button",
+      "data": {
+        "text": "South"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-npb9im"
+      }
+    },
+    "n-cxjxk9": {
+      "type": "action-button",
+      "data": {
+        "text": "Midwest"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-uhzy2j"
+      }
+    },
+    "n-h38vjs": {
+      "type": "action-button",
+      "data": {
+        "text": "Intermountain West"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-i0chp0"
+      }
+    },
+    "n-9vwcaz": {
+      "type": "action-button",
+      "data": {
+        "text": "West"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-hv0vcv"
+      }
+    },
+    "n-m7n7e1": {
+      "type": "embed",
+      "data": {
+        "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=59e59f2345634201ab07202e0682ca05",
+        "embedType": "link",
+        "alt": "This maps shows groups of schools by which degrees they are most commonly awarding. The emergent theme here is the dominance of health and medical related degrees across the country. But schools commonly award degrees in services industries are also a notable pattern. Particularly in a swathe extending from south Texas up through the Northeast, and in major urban areas such as Chicago and Los Angeles. The third most prevalent schools grant degrees in the humanities and social science, particularly in around the California Bay Area, Seattle, and around the Mid-Atlantic.",
+        "isEmbedSupported": true,
+        "display": "inline",
+        "embedSrc": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=59e59f2345634201ab07202e0682ca05"
+      }
+    },
+    "n-hhtcjs": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": [
+        "n-lmn20r",
+        "n-qel8q7",
+        "n-d5n8ie",
+        "n-zz2x9z",
+        "n-nexlfu",
+        "n-ggqxkp",
+        "n-pg0fhk",
+        "n-zjxprm",
+        "n-e2z33d",
+        "n-01at0p",
+        "n-cxjxk9",
+        "n-h38vjs",
+        "n-9vwcaz"
+      ]
+    },
+    "n-nfjnov": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": [
+        "n-hhtcjs",
+        "n-m7n7e1",
+        "n-1d53sp",
+        "n-npb9im",
+        "n-uhzy2j",
+        "n-i0chp0",
+        "n-hv0vcv"
+      ]
+    },
+    "n-1d53sp": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+            "title": "Academics_Predominant_Degree_2015_16_2144_8942",
+            "visible": true
+          },
+          {
+            "id": "Academics_Predominant_Degree_2015_16_2144",
+            "title": "Academics_Predominant_Degree_2015_16_2144",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -9118690.951756459,
+          "ymin": 4342760.794590954,
+          "xmax": -7237728.559715342,
+          "ymax": 5871501.360294072,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -9118690.951756459,
+            "ymin": 4342760.794590954,
+            "xmax": -7237728.559715342,
+            "ymax": 5871501.360294072,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "zoom": 8
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-npb9im": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+            "title": "Academics_Predominant_Degree_2015_16_2144_8942",
+            "visible": true
+          },
+          {
+            "id": "Academics_Predominant_Degree_2015_16_2144",
+            "title": "Academics_Predominant_Degree_2015_16_2144",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -10769730.762715826,
+          "ymin": 3067179.666568272,
+          "xmax": -8888768.370674709,
+          "ymax": 4595920.232271391,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -10769730.762715826,
+            "ymin": 3067179.666568272,
+            "xmax": -8888768.370674709,
+            "ymax": 4595920.232271391,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "zoom": 8
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-uhzy2j": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+            "title": "Academics_Predominant_Degree_2015_16_2144_8942",
+            "visible": true
+          },
+          {
+            "id": "Academics_Predominant_Degree_2015_16_2144",
+            "title": "Academics_Predominant_Degree_2015_16_2144",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -10713473.10989795,
+          "ymin": 4421032.311554953,
+          "xmax": -8832510.717856834,
+          "ymax": 5949772.877258073,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -10713473.10989795,
+            "ymin": 4421032.311554953,
+            "xmax": -8832510.717856834,
+            "ymax": 5949772.877258073,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "zoom": 8
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-i0chp0": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+            "title": "Academics_Predominant_Degree_2015_16_2144_8942",
+            "visible": true
+          },
+          {
+            "id": "Academics_Predominant_Degree_2015_16_2144",
+            "title": "Academics_Predominant_Degree_2015_16_2144",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -12803567.211327255,
+          "ymin": 4083486.394647705,
+          "xmax": -10922604.819286138,
+          "ymax": 5612226.9603508245,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -12803567.211327255,
+            "ymin": 4083486.394647705,
+            "xmax": -10922604.819286138,
+            "ymax": 5612226.9603508245,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "zoom": 8
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-hv0vcv": {
+      "type": "webmap",
+      "data": {
+        "map": "r-6fe55fcc360c42dd815e210823bff5cd",
+        "mapLayers": [
+          {
+            "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+            "title": "Academics_Predominant_Degree_2015_16_2144_8942",
+            "visible": true
+          },
+          {
+            "id": "Academics_Predominant_Degree_2015_16_2144",
+            "title": "Academics_Predominant_Degree_2015_16_2144",
+            "visible": true
+          }
+        ],
+        "extent": {
+          "xmin": -14470505.924169935,
+          "ymin": 4183771.77575783,
+          "xmax": -12589543.532128818,
+          "ymax": 5712512.341460949,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -14470505.924169935,
+            "ymin": 4183771.77575783,
+            "xmax": -12589543.532128818,
+            "ymax": 5712512.341460949,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "zoom": 8
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-jczbaf": {
+      "type": "text",
+      "data": {
+        "text": "<span style=\"font-size:28px\"><span style=\"color:#854346\"><strong>What&#39;s the debt burden after school?</strong></span></span>",
+        "type": "h3",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-x1npbd": {
+      "type": "image",
+      "data": {
+        "image": "r-nus76k",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-sny0j2": {
+      "type": "text",
+      "data": {
+        "text": "<strong><span class=\"sm-text-color-854346\" ><span style=\"font-size:24px\">People entering repayment owe over $11,000—nearly double what they&nbsp;would have&nbsp;owed in 2006.</span></span></strong>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-v92gxz": {
+      "type": "text",
+      "data": {
+        "text": "This map shows the median amount people owe on student loans after ending school.&nbsp;Circle size represents the dollars owed, while&nbsp;circle color shows whether the amount is&nbsp;<span class=\"sm-text-color-854346\" ><strong>above-average</strong></span> or&nbsp;<span class=\"sm-text-color-695691\" ><strong>below-average</strong></span>.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-befzoy": {
+      "type": "image",
+      "data": {
+        "image": "r-4saoal",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-82qbmm": {
+      "type": "text",
+      "data": {
+        "text": "In the aftermath of the Great Recession and stretched public budgets, schools have increasingly embraced strategies from the business world <a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495249164\" data-storymaps-type=\"navigate\" href=\"#ref-n-95q8jr\" target=\"_self\">[5]</a>. As a result, much of the cost of education has passed on to the consumer—students <a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495258796\" data-storymaps-type=\"navigate\" href=\"#ref-n-95q8jr\" target=\"_self\">[6]</a>.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-qg4npx": {
+      "type": "text",
+      "data": {
+        "text": "Click below to explore how the increase in cost has resulted in swelling debt burdens from <span class=\"sm-text-color-DAA520\" ><strong>2006 </strong></span>(left map) to <span class=\"sm-text-color-A52A2A\" ><strong>2016 </strong></span>(right map).",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-2tq3t3": {
+      "type": "action-button",
+      "data": {
+        "text": "Compare 2006 to 2016"
+      },
+      "config": {
+        "size": "wide"
+      },
+      "dependents": {
+        "actionMedia": "n-5qyw0o",
+        "actionMedia_content_0": "n-xswhm4",
+        "actionMedia_content_1": "n-pm63ux"
+      }
+    },
+    "n-ne7mhu": {
+      "type": "text",
+      "data": {
+        "text": "The costs of higher education are intimidating—and the levels of debt eye popping. Yet amidst the wash of numbers thrives a varied landscape of thousands of institutions.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-6t0r97": {
+      "type": "text",
+      "data": {
+        "text": "While the stakes of higher education may be greater than ever, students can exercise their power to choose the right school that fits their needs and budget.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-9wysy9": {
+      "type": "embed",
+      "data": {
+        "url": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=fcfae61962a9478f888a179d609a7b6c",
+        "embedType": "link",
+        "alt": "This map shows schools by the median loan debt of their students once students left the school and started to repay their loans. There is no strong geographic pattern here: student loan debt ranges above and below average, and from coast to coast. Although it is notable that there are a number schools with below-average amounts of debt densely in the South and in many rural areas.",
+        "isEmbedSupported": true,
+        "display": "inline",
+        "embedSrc": "https://storymaps.esri.com/archives/stories/inset-viewer/?id=fcfae61962a9478f888a179d609a7b6c"
+      }
+    },
+    "n-vr35sv": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": [
+        "n-jczbaf",
+        "n-x1npbd",
+        "n-sny0j2",
+        "n-v92gxz",
+        "n-befzoy",
+        "n-82qbmm",
+        "n-qg4npx",
+        "n-2tq3t3",
+        "n-ne7mhu",
+        "n-6t0r97"
+      ]
+    },
+    "n-8aodph": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": [
+        "n-vr35sv",
+        "n-9wysy9",
+        "n-5qyw0o"
+      ]
+    },
+    "n-xswhm4": {
+      "type": "webmap",
+      "data": {
+        "map": "r-74a3cabcec484b049cfbcbe9ccc0313a",
+        "extent": {
+          "xmin": -13065935.986907344,
+          "ymin": 2855025.5460194545,
+          "xmax": -8230217.307520678,
+          "ymax": 5777977.826195211,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -13065935.986907344,
+            "ymin": 2855025.5460194545,
+            "xmax": -8230217.307520678,
+            "ymax": 5777977.826195211,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 5000000
+        },
+        "timeSlider": false
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-pm63ux": {
+      "type": "webmap",
+      "data": {
+        "map": "r-3f502ea79890407fbc9bf68cf0bcbe98",
+        "extent": {
+          "xmin": -15483784.194651598,
+          "ymin": 1513400.0534663664,
+          "xmax": -5812369.099776423,
+          "ymax": 7119600.438987286,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -15483784.194651598,
+            "ymin": 1513400.0534663664,
+            "xmax": -5812369.099776423,
+            "ymax": 7119600.438987286,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 10000000
+        },
+        "timeSlider": false
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-5qyw0o": {
+      "type": "swipe",
+      "data": {
+        "contents": {
+          "0": "n-xswhm4",
+          "1": "n-pm63ux"
+        },
+        "viewPlacement": "extent"
+      },
+      "config": {
+        "size": "full"
+      }
+    },
+    "n-95q8jr": {
+      "type": "text",
+      "data": {
+        "text": "<span style=\"color:#808080\"><span style=\"font-size:28px\"><strong>Resources</strong></span></span>",
+        "type": "h3",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-iomo6l": {
+      "type": "image",
+      "data": {
+        "image": "r-4uqtw0",
+        "alt": ""
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-qznrq1": {
+      "type": "text",
+      "data": {
+        "text": "<strong><span style=\"font-size:24px\"><span class=\"sm-text-color-808080\" >This story was created by the </span><a class=\"credit\" href=\"https://bit.ly/2woyjId\" target=\"_blank\">Esri Story Maps</a><span class=\"sm-text-color-808080\" > team using the <a class=\"credit\" href=\"https://bit.ly/2MDTzny\" target=\"_blank\">Map Journal</a> template.</span></span></strong>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-wl1unk": {
+      "type": "text",
+      "data": {
+        "text": "Want to build your own Story Map? <a class=\"credit\" href=\"https://bit.ly/2oj5fgZ\" target=\"_blank\">Get started</a>. Don't forget to keep up to date with our latest stories by signing up for the&nbsp;<a class=\"credit\" href=\"https://bit.ly/2GK9UiD\" target=\"_blank\">Planet Story Maps</a>&nbsp;newsletter&nbsp;and by following us <a class=\"credit\" href=\"https://bit.ly/2IEJp4a\" target=\"_blank\">@EsriStoryMaps</a>.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-boftrz": {
+      "type": "text",
+      "data": {
+        "text": "<strong>Credits</strong>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-piee1v": {
+      "type": "text",
+      "data": {
+        "text": "Cover image: <a class=\"credit\" href=\"https://bit.ly/2NXh1J3\" target=\"_blank\">University of Central Arkansas</a> (CC BY-NC-ND 2.0)",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-spior9": {
+      "type": "text",
+      "data": {
+        "text": "Resources image: <a class=\"credit\" href=\"https://bit.ly/2MXrqrx\" target=\"_blank\">Massachusetts Office of Travel &amp; Tourism</a> (CC BY-ND 2.0)",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-ft65s3": {
+      "type": "text",
+      "data": {
+        "text": "Research and production | <a class=\"credit\" href=\"https://bit.ly/2wt2uND\" target=\"_blank\">Greyson Harris</a>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-1a8ibr": {
+      "type": "text",
+      "data": {
+        "text": "Graphic design | <a class=\"credit\" href=\"https://bit.ly/2MWzGHx\" target=\"_blank\">Allen Carroll</a>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-whddtt": {
+      "type": "text",
+      "data": {
+        "text": "Production support | <a class=\"credit\" href=\"https://bit.ly/2Nv6KU2\" target=\"_blank\">Hannah Wilber</a>, <a class=\"credit\" href=\"https://bit.ly/2wuxNaW\" target=\"_blank\">Cooper Thomas</a>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-f4mplt": {
+      "type": "text",
+      "data": {
+        "text": "Questions or comments about this story? <a class=\"credit\" href=\"https://bit.ly/2PbaKcI\" target=\"_blank\">We want to hear from you</a>.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-n4xcjm": {
+      "type": "text",
+      "data": {
+        "text": "<strong>Data</strong>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-imph1u": {
+      "type": "text",
+      "data": {
+        "text": "<a class=\"credit\" href=\"https://arcg.is/1zbjiP\" target=\"_blank\">Colleges and universities</a> | U.S. Department of Education",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-e8qyr5": {
+      "type": "text",
+      "data": {
+        "text": "<a class=\"credit\" href=\"https://bit.ly/2MrYc2V\" target=\"_blank\">2015/16 and 2005/06 College Scorecard</a> | U.S. Department of Education",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-ptr9k2": {
+      "type": "text",
+      "data": {
+        "text": "Already have an ArcGIS Online account? Start working with these datasets right now&nbsp;by visiting the&nbsp;<a class=\"credit\" href=\"https://bit.ly/2PMkhbr\" target=\"_blank\">Studying Up on Higher Education group</a>. Not yet an ArcGIS Online user?&nbsp;Sign up for a free <a class=\"credit\" href=\"https://bit.ly/2PQ0qbA\" target=\"_blank\">public account</a>.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-4v1zup": {
+      "type": "text",
+      "data": {
+        "text": "<strong>References</strong>",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-fxrb22": {
+      "type": "text",
+      "data": {
+        "text": "<a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495339807\" data-storymaps-type=\"navigate\" href=\"#ref-n-bui0ej\" target=\"_self\">[1]</a> U.S. Department of Education, College Scorecard&nbsp;(2006, 2016)",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-vukbi6": {
+      "type": "text",
+      "data": {
+        "text": "<a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495347901\" data-storymaps-type=\"navigate\" href=\"#ref-n-bui0ej\" target=\"_self\">[2]</a> American Council on Education, \"An overview of higher education in the United States: Diversity, access, and the role of the marketplace\" by Peter D. Eckel and Jacqueline E. King (2004)",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-o902qo": {
+      "type": "text",
+      "data": {
+        "text": "<a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495373663\" data-storymaps-type=\"navigate\" href=\"#ref-n-bvjcoy\" target=\"_self\">[3]</a> U.S. Census, American Fact Finder, <a class=\"credit\" href=\"https://bit.ly/2Lz0edn\" target=\"_blank\">Community Facts</a>&nbsp;(2018)",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-su6913": {
+      "type": "text",
+      "data": {
+        "text": "<a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495386019\" data-storymaps-type=\"navigate\" href=\"#ref-n-bvjcoy\" target=\"_self\">[4]</a> U.S. Department of Education",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-so0v2l": {
+      "type": "text",
+      "data": {
+        "text": "<a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495416206\" data-storymaps-type=\"navigate\" href=\"#ref-n-jczbaf\" target=\"_self\">[5]</a> University of California, Berkeley Center for Studies in Higher Education, \"Liberalizing the academy: The transformation of higher education in the United States and Germany\" by Tobias Schulze-Cleven (2015)",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-h6ag9q": {
+      "type": "text",
+      "data": {
+        "text": "<a class=\"credit\" data-storymaps=\"MJ-ACTION-1535495427425\" data-storymaps-type=\"navigate\" href=\"#ref-n-jczbaf\" target=\"_self\">[6]</a> American Council on Education",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-85ozdh": {
+      "type": "image",
+      "data": {
+        "image": "r-49icbr",
+        "alt": ""
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-6fndtd": {
+      "type": "immersive-narrative-panel",
+      "data": {
+        "panelStyle": "themed"
+      },
+      "children": [
+        "n-95q8jr",
+        "n-iomo6l",
+        "n-qznrq1",
+        "n-wl1unk",
+        "n-boftrz",
+        "n-piee1v",
+        "n-spior9",
+        "n-ft65s3",
+        "n-1a8ibr",
+        "n-whddtt",
+        "n-f4mplt",
+        "n-n4xcjm",
+        "n-imph1u",
+        "n-e8qyr5",
+        "n-ptr9k2",
+        "n-4v1zup",
+        "n-fxrb22",
+        "n-vukbi6",
+        "n-o902qo",
+        "n-su6913",
+        "n-so0v2l",
+        "n-h6ag9q"
+      ]
+    },
+    "n-ssj93q": {
+      "type": "immersive-slide",
+      "data": {
+        "transition": "fade"
+      },
+      "children": [
+        "n-6fndtd",
+        "n-85ozdh"
+      ]
+    },
+    "n-6rhjjh": {
+      "type": "story",
+      "data": {
+        "storyTheme": "r-ozobpn"
+      },
+      "config": {
+        "coverDate": ""
+      },
+      "children": [
+        "n-rrlnss",
+        "n-fpyvta",
+        "n-mskrp4",
+        "n-zj99sl"
+      ]
+    }
+  },
+  "resources": {
+    "r-ozobpn": {
+      "type": "story-theme",
+      "data": {
+        "themeId": "summit",
+        "themeBaseVariableOverrides": {
+          "backgroundColor": "#FFFFFF",
+          "headerFooterBackgroundColor": "#777777",
+          "bodyColor": "#000000",
+          "themeColor1": "#555",
+          "bodyMutedColor": "#c0c0c0",
+          "titleFontId": "openSans",
+          "bodyFontId": "openSans"
+        }
+      }
+    },
+    "r-6y337i": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_a9122ff4.json"
+      }
+    },
+    "r-c9uqh9": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_3af1ef5f.json"
+      }
+    },
+    "r-8qdmrw": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_7ef9137a.json"
+      }
+    },
+    "r-78t83t": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_0957336f.json"
+      }
+    },
+    "r-j19m07": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_c154f7cd.json"
+      }
+    },
+    "r-6fe55fcc360c42dd815e210823bff5cd": {
+      "type": "webmap",
+      "data": {
+        "type": "default",
+        "itemId": "6fe55fcc360c42dd815e210823bff5cd",
+        "itemType": "Web Map",
+        "initialState": {
+          "extent": {
+            "xmin": -14470505.924169935,
+            "ymin": 4183771.77575783,
+            "xmax": -12589543.532128818,
+            "ymax": 5712512.341460949,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "mapLayers": [
+            {
+              "id": "Academics_Predominant_Degree_2015_16_2144_8942",
+              "title": "Academics_Predominant_Degree_2015_16_2144_8942",
+              "visible": true
+            },
+            {
+              "id": "Academics_Predominant_Degree_2015_16_2144",
+              "title": "Academics_Predominant_Degree_2015_16_2144",
+              "visible": true
+            }
+          ],
+          "overview": {
+            "enable": false,
+            "openByDefault": true
+          },
+          "legend": {
+            "enable": false,
+            "openByDefault": false
+          },
+          "viewpoint": {
+            "targetGeometry": {
+              "xmin": -14470505.924169935,
+              "ymin": 4183771.77575783,
+              "xmax": -12589543.532128818,
+              "ymax": 5712512.341460949,
+              "spatialReference": {
+                "wkid": 102100
+              }
+            },
+            "scale": 5000000
+          },
+          "zoom": 8
+        }
+      }
+    },
+    "r-j1s8ml": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_b5235012.json"
+      }
+    },
+    "r-n5zjwl": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_83eb1022.json"
+      }
+    },
+    "r-k94hog": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_b5235012.json"
+      }
+    },
+    "r-g35h1m": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_64424c36.json"
+      }
+    },
+    "r-de60caf6218e469ca6bb8e011302bb15": {
+      "type": "webmap",
+      "data": {
+        "type": "default",
+        "itemId": "de60caf6218e469ca6bb8e011302bb15",
+        "itemType": "Web Map",
+        "initialState": {
+          "extent": {
+            "xmin": -13065935.986907344,
+            "ymin": 2855025.5460194545,
+            "xmax": -8230217.307520678,
+            "ymax": 5777977.826195211,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "viewpoint": {
+            "targetGeometry": {
+              "xmin": -13065935.986907344,
+              "ymin": 2855025.5460194545,
+              "xmax": -8230217.307520678,
+              "ymax": 5777977.826195211,
+              "spatialReference": {
+                "wkid": 102100
+              }
+            },
+            "scale": 5000000
+          },
+          "mapLayers": [
+            {
+              "id": "USA_States_Generalized_445",
+              "title": "USA States (Generalized)",
+              "visible": true
+            },
+            {
+              "id": "Price_Tag_In_State_Tuition_and_Fees_2015_16_5865",
+              "title": "Price Tag In State Tuition and Fees 2015 16",
+              "visible": true
+            }
+          ]
+        }
+      }
+    },
+    "r-46c681f3aa1c4423a3e5f205b9138058": {
+      "type": "webmap",
+      "data": {
+        "type": "default",
+        "itemId": "46c681f3aa1c4423a3e5f205b9138058",
+        "itemType": "Web Map",
+        "initialState": {
+          "extent": {
+            "xmin": -13065935.986907344,
+            "ymin": 2855025.5460194545,
+            "xmax": -8230217.307520678,
+            "ymax": 5777977.826195211,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "viewpoint": {
+            "targetGeometry": {
+              "xmin": -13065935.986907344,
+              "ymin": 2855025.5460194545,
+              "xmax": -8230217.307520678,
+              "ymax": 5777977.826195211,
+              "spatialReference": {
+                "wkid": 102100
+              }
+            },
+            "scale": 5000000
+          },
+          "mapLayers": [
+            {
+              "id": "USA_States_Generalized_445",
+              "title": "USA States (Generalized)",
+              "visible": true
+            },
+            {
+              "id": "Price_Tag_Out_of_State_Tuition_and_Fees_2015_16_3469",
+              "title": "Price Tag Out of State Tuition and Fees 2015 16",
+              "visible": true
+            }
+          ]
+        }
+      }
+    },
+    "r-zvj4wb": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_6b4086a1.json"
+      }
+    },
+    "r-qegeue": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_e047a38e.json"
+      }
+    },
+    "r-7vllic": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_89a4a8e9.json"
+      }
+    },
+    "r-7l3xeh": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_0957336f.json"
+      }
+    },
+    "r-awud7w": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_668e233d.json"
+      }
+    },
+    "r-sgkngp": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_6b4086a1.json"
+      }
+    },
+    "r-kqooxz": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_ea5d23c6.json"
+      }
+    },
+    "r-lygy2u": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_6dd74ee8.json"
+      }
+    },
+    "r-zi2ywl": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_5414f372.json"
+      }
+    },
+    "r-8hmbya": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_22737696.json"
+      }
+    },
+    "r-ue8ysg": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_0957336f.json"
+      }
+    },
+    "r-dwotw7": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_b1b64fd9.json"
+      }
+    },
+    "r-nus76k": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_69b8d32a.json"
+      }
+    },
+    "r-4saoal": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_1d8d3c89.json"
+      }
+    },
+    "r-74a3cabcec484b049cfbcbe9ccc0313a": {
+      "type": "webmap",
+      "data": {
+        "type": "default",
+        "itemId": "74a3cabcec484b049cfbcbe9ccc0313a",
+        "itemType": "Web Map",
+        "initialState": {
+          "extent": {
+            "xmin": -13065935.986907344,
+            "ymin": 2855025.5460194545,
+            "xmax": -8230217.307520678,
+            "ymax": 5777977.826195211,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "viewpoint": {
+            "targetGeometry": {
+              "xmin": -13065935.986907344,
+              "ymin": 2855025.5460194545,
+              "xmax": -8230217.307520678,
+              "ymax": 5777977.826195211,
+              "spatialReference": {
+                "wkid": 102100
+              }
+            },
+            "scale": 5000000
+          },
+          "mapLayers": [
+            {
+              "id": "USA_States_Generalized_445",
+              "title": "USA States (Generalized)",
+              "visible": true
+            },
+            {
+              "id": "After_School_Student_Loans_2005_06_9859",
+              "title": "After School: Student Loans (2005/06)",
+              "visible": true
+            }
+          ]
+        }
+      }
+    },
+    "r-3f502ea79890407fbc9bf68cf0bcbe98": {
+      "type": "webmap",
+      "data": {
+        "type": "default",
+        "itemId": "3f502ea79890407fbc9bf68cf0bcbe98",
+        "itemType": "Web Map",
+        "initialState": {
+          "extent": {
+            "xmin": -15483784.194651598,
+            "ymin": 1513400.0534663664,
+            "xmax": -5812369.099776423,
+            "ymax": 7119600.438987286,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "viewpoint": {
+            "targetGeometry": {
+              "xmin": -15483784.194651598,
+              "ymin": 1513400.0534663664,
+              "xmax": -5812369.099776423,
+              "ymax": 7119600.438987286,
+              "spatialReference": {
+                "wkid": 102100
+              }
+            },
+            "scale": 10000000
+          },
+          "mapLayers": [
+            {
+              "id": "USA_States_Generalized_445",
+              "title": "USA States (Generalized)",
+              "visible": true
+            },
+            {
+              "id": "After_School_Student_Loans_2015_16_B_3673",
+              "title": "After School Student Loans 2015 16 B",
+              "visible": true
+            }
+          ]
+        }
+      }
+    },
+    "r-4uqtw0": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_5b4292a5.json"
+      }
+    },
+    "r-49icbr": {
+      "type": "image",
+      "data": {
+        "provider": "item-resource",
+        "resourceId": "img_760a8413.json"
+      }
+    },
+    "r-tokjlk": {
+      "type": "converter-metadata",
+      "data": {
+        "type": "storymap",
+        "version": "1.0.0",
+        "classicType": "MapJournal",
+        "classicMetadata": {
+          "theme": {
+            "colors": {
+              "name": "side-default-1",
+              "themeMajor": "white",
+              "dotNav": "#777777",
+              "panel": "#FFFFFF",
+              "media": "#EEEEEE",
+              "text": "#000000",
+              "textLink": "#555",
+              "softText": "#c0c0c0",
+              "softBtn": "#444",
+              "esriLogo": "black"
+            },
+            "fonts": {
+              "sectionTitle": {
+                "id": "default",
+                "value": "font-family:'open_sansregular', sans-serif;"
+              },
+              "sectionContent": {
+                "id": "default",
+                "value": "font-family:'open_sansregular', sans-serif;"
+              }
+            }
+          },
+          "mappingDecisions": {
+            "baseThemeId": "summit",
+            "colorMappings": {
+              "panelToBackgroundColor": "#FFFFFF",
+              "dotNavToHeaderFooterBackgroundColor": "#777777",
+              "textToBodyColor": "#000000",
+              "textLinkToThemeColor1": "#555",
+              "softTextToBodyMutedColor": "#c0c0c0",
+              "chosenBodyColorSource": "text"
+            },
+            "fontMappings": {
+              "classicTitleFontValue": "font-family:'open_sansregular', sans-serif;",
+              "mappedTitleFontId": "openSans",
+              "classicBodyFontValue": "font-family:'open_sansregular', sans-serif;",
+              "mappedBodyFontId": "openSans"
+            },
+            "variableOverridesApplied": [
+              "backgroundColor",
+              "headerFooterBackgroundColor",
+              "bodyColor",
+              "themeColor1",
+              "bodyMutedColor",
+              "titleFontId",
+              "bodyFontId"
+            ],
+            "layoutMapping": {
+              "classicLayoutId": "side",
+              "classicSize": "medium",
+              "classicPosition": "right",
+              "mappedSubtype": "docked-panel",
+              "mappedNarrativePanelSize": "medium",
+              "mappedNarrativePanelPosition": "end"
+            },
+            "customCss": {
+              "blockCount": 1,
+              "approxBytes": 4135,
+              "combined": ".btn-green {      display: inline-block;      font-weight: normal !important;      background-color: #DBE7E5;      color: #3A665F !important;      border-bottom: 2px solid #B8CFCB !important;      width: 50%;      border-radius: 2px;      padding: 1px 2px;      margin: 2px; }  .btn-green:hover {      background-color: #4D887E;      border-bottom: 2px solid #4D887E !important;      color: #FFFFFF !important;    -webkit-transition: all .5s ease;    -moz-transition: all .5s ease;    -o-transition: all .5s ease;    transition: all .5s ease; }  .btn-orange {      display: inline-block;      font-weight: normal !important;      background-color: #FCE6E0;      color: #B3634D !important;      border-bottom: 2px solid #F5B5A3 !important;      width: 50%;      border-radius: 2px;      padding: 1px 2px;      margin: 2px; }  .btn-orange:hover {      background-color: #995541;      border-bottom: 2px solid #995541 !important;      color: #FFFFFF !important;    -webkit-transition: all .5s ease;    -moz-transition: all .5s ease;    -o-transition: all .5s ease;    transition: all .5s ease; }  .btn-purple{      display: inline-block;      font-weight: normal !important;      background-color: #E1DDE9;      color: #4F416D !important;      border-bottom: 2px solid #A59ABD !important;      width: 50%;      border-radius: 2px;      padding: 1px 2px;      margin: 2px; }  .btn-purple:hover {      background-color: #695691;      border-bottom: 2px solid #695691 !important;      color: #FFFFFF !important;    -webkit-transition: all .5s ease;    -moz-transition: all .5s ease;    -o-transition: all .5s ease;    transition: all .5s ease; }  .btn-yellow {      display: inline-block;      font-weight: normal !important;      background-color: #F4EBD8;      color: #98762F !important;      border-bottom: 2px solid #DFC48B !important;      width: 50%;      border-radius: 2px;      padding: 1px 2px;      margin: 2px; }  .btn-yellow:hover {      background-color: #CA9D3E;      border-bottom: 2px solid #CA9D3E !important;      color: #FFFFFF !important;    -webkit-transition: all .5s ease;    -moz-transition: all .5s ease;    -o-transition: all .5s ease;    transition: all .5s ease; }  .btn-red{      display: inline-block;      font-weight: normal !important;      background-color: #E7D9DA;      color: #643235 !important;      border-bottom: 2px solid #B68E90 !important;      width: 50%;      border-radius: 2px;      padding: 1px 2px;      margin: 2px; }  .btn-red:hover {      background-color: #854346;      border-bottom: 2px solid #854346 !important;      color: #FFFFFF !important;    -webkit-transition: all .5s ease;    -moz-transition: all .5s ease;    -o-transition: all .5s ease;    transition: all .5s ease; }  .btn-inline {      display: inline-block;      text-decoration: none !important;      font-weight: bold !important;      background-color: transparent;      border: 0px solid transparent;      border-bottom: 0px solid transparent !important;      color: #00ccff !important;      border-radius: 2px;      padding: 0px 0px;      margin: 0px; }  .btn-inline:hover {      background-color: transparent;      text-decoration: none !important;      font-weight: bold !important;      border: 0px solid transparent;      border-bottom: 0px solid transparent;      color: #ffffff !important;    -webkit-transition: all .5s ease;    -moz-transition: all .5s ease;    -o-transition: all .5s ease;    transition: all .5s ease; }  .credit {      border-bottom: 0px solid transparent !important;      color: #71A098 !important;      line-height: normal !important;      font-weight: bold !important;      text-decoration: none !important; }  .credit:hover {      background-color: transparent;      color: #3A665F !important;    -webkit-transition: all .5s ease;    -moz-transition: all .5s ease;    -o-transition: all .5s ease;    transition: all .5s ease; }  .content {      line-height: normal !important; }  .mainViewSideMap {      border-left: 1px solid #F2F2F2 !important; }  .navDots.vertical {      background-color: #94B8B2 !important;      border: none !important; }  .dot {      color: #3A665F !important; }"
+            },
+            "videoEmbeds": 0
+          }
+        }
+      }
+    }
+  },
+  "actions": [
+    {
+      "origin": "n-8fr3ld",
+      "trigger": "ActionButton_Apply",
+      "target": "n-rm9j9i",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-evoz3e"
+      }
+    },
+    {
+      "origin": "n-uc66aw",
+      "trigger": "ActionButton_Apply",
+      "target": "n-rm9j9i",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-uocgy4"
+      }
+    },
+    {
+      "origin": "n-l4rych",
+      "trigger": "ActionButton_Apply",
+      "target": "n-rm9j9i",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-bea0ox"
+      }
+    },
+    {
+      "origin": "n-0xzdj1",
+      "trigger": "ActionButton_Apply",
+      "target": "n-rm9j9i",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-i642xz"
+      }
+    },
+    {
+      "origin": "n-rleryn",
+      "trigger": "ActionButton_Apply",
+      "target": "n-rm9j9i",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-rxmdd2"
+      }
+    },
+    {
+      "origin": "n-rxbg08",
+      "trigger": "ActionButton_Apply",
+      "target": "n-y6rf5w",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-1vqy0i"
+      }
+    },
+    {
+      "origin": "n-tj5wyy",
+      "trigger": "ActionButton_Apply",
+      "target": "n-y6rf5w",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-pw7hea"
+      }
+    },
+    {
+      "origin": "n-zg242q",
+      "trigger": "ActionButton_Apply",
+      "target": "n-agvugj",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-qdtmy7"
+      }
+    },
+    {
+      "origin": "n-7fq735",
+      "trigger": "ActionButton_Apply",
+      "target": "n-agvugj",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-89ofvu"
+      }
+    },
+    {
+      "origin": "n-773zy2",
+      "trigger": "ActionButton_Apply",
+      "target": "n-agvugj",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-3ir4sq"
+      }
+    },
+    {
+      "origin": "n-eqibcg",
+      "trigger": "ActionButton_Apply",
+      "target": "n-agvugj",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-409jq5"
+      }
+    },
+    {
+      "origin": "n-e2z33d",
+      "trigger": "ActionButton_Apply",
+      "target": "n-nfjnov",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-1d53sp"
+      }
+    },
+    {
+      "origin": "n-01at0p",
+      "trigger": "ActionButton_Apply",
+      "target": "n-nfjnov",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-npb9im"
+      }
+    },
+    {
+      "origin": "n-cxjxk9",
+      "trigger": "ActionButton_Apply",
+      "target": "n-nfjnov",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-uhzy2j"
+      }
+    },
+    {
+      "origin": "n-h38vjs",
+      "trigger": "ActionButton_Apply",
+      "target": "n-nfjnov",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-i0chp0"
+      }
+    },
+    {
+      "origin": "n-9vwcaz",
+      "trigger": "ActionButton_Apply",
+      "target": "n-nfjnov",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-hv0vcv"
+      }
+    },
+    {
+      "origin": "n-2tq3t3",
+      "trigger": "ActionButton_Apply",
+      "target": "n-8aodph",
+      "event": "ImmersiveSlide_ReplaceMedia",
+      "data": {
+        "media": "n-5qyw0o"
+      }
+    }
+  ]
+}

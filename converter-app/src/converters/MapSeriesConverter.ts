@@ -59,6 +59,7 @@ export class MapSeriesConverter extends BaseConverter {
       const webmapId = typeof entry.webmap === 'string' ? entry.webmap : undefined;
       const desc = (entry.description || '') as string;
       const textNode = b.createTextNode(desc, 'paragraph', 'wide');
+      if (!webmapId) return;
       const mapNodeId = b.createWebMapNode(webmapId);
       b.addChild(b.getStoryRootId(), textNode);
       b.addChild(b.getStoryRootId(), mapNodeId);
@@ -225,6 +226,7 @@ export class MapSeriesConverter extends BaseConverter {
           const { slideId, narrativeId } = builder.addSidecar('docked-panel', pos, size);
           const tn = builder.createTextNode(desc || 'Map Series entry narrative', 'paragraph', 'wide');
           // Create a proper Web Map resource and node reference so we can enrich it
+          if (!webmapId) continue;
           const resId = builder.addWebMapResource(webmapId, 'Web Map', undefined, 'minimal');
           const mapNodeId = builder.createWebMapNode(resId);
           // Add narrative and media to Sidecar nodes

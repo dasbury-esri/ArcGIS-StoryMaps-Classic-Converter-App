@@ -75,10 +75,12 @@ export class ConverterFactory {
       case 'map series':
       case 'series': {
         // Build one draft per entry; UI will present builder links and collection creation
+        const themeIdNorm = (['summit','obsidian','auto'] as const).includes(opts.themeId as any) ? (opts.themeId as 'summit'|'obsidian'|'auto') : 'auto';
         const resultSeries = MapSeriesConverter.convertSeries({
-          classicJson: opts.classicJson,
-          themeId: opts.themeId,
-          progress: opts.progress as ProgressCallback
+          classicJson: opts.classicJson as unknown as Record<string, unknown>,
+          themeId: themeIdNorm,
+          progress: opts.progress as ProgressCallback,
+          token: (opts as unknown as { token?: string }).token
         });
         // Return first story as primary for compatibility, plus attach series payload
         const first = (await resultSeries).storymapJsons[0] || ({ resources: {}, nodes: {} } as StoryMapJSON);

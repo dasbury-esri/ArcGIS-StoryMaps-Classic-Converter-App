@@ -1,0 +1,33 @@
+{
+  "title": "Studying Up on Higher Education (Theme)",
+  "baseThemeId": "summit",
+  "isFromOrgTheme": false,
+  "variables": {
+    "headerFooterBackgroundColor": "#777777",
+    "backgroundColor": "#FFFFFF",
+    "titleFontId": "openSans",
+    "titleColor": "#002625",
+    "titleColorDark": "#002625",
+    "titleColorLight": "#ffffff",
+    "bodyFontId": "openSans",
+    "bodyColor": "#000000",
+    "bodyColorDark": "#002625",
+    "bodyColorLight": "#ffffff",
+    "bodyMutedColor": "#c0c0c0",
+    "themeColor1": "#555",
+    "themeColor2": "#fc3b36",
+    "themeColor3": "#126057",
+    "borderRadius": 0,
+    "shape": "hexagon",
+    "colorRamps": [
+      "seq-single-blues",
+      "seq-multi-ylgn",
+      "seq-orange-red-light",
+      "seq-yellow-darkblue-bright-reversed"
+    ],
+    "basemapPrimary": "humanGeographyLight",
+    "basemapAlt": "lightGrayCanvas",
+    "basemapImagery": "worldImagery"
+  },
+  "resources": {}
+}
