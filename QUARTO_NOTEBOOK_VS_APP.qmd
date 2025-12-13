@@ -49,40 +49,44 @@ flowchart TB
 :::
 
 ::: column
-## Converter App (TS/JS)
+## Converter App (TS/JS) – Updated Flow
 
 ```{mermaid}
+%%{init: {"theme": "default"}}%%
 flowchart TB
-  B1([Start]) --> B2[Load or fetch classic JSON]
-  B2 --> B3[Detect classic template]
-  B3 -->|Series| B4[MapSeriesConverter convertSeries]
-  B4 --> B5[Apply theme via computeTheme]
-  B5 --> B6[Loop entries]
-  B6 --> B6a[Classify media]
-  B6a --> B6a1{Media type}
-  B6a1 -->|webmap| B6w[Create webmap resource and node]
-  B6a1 -->|image| B6i[Create image node]
-  B6a1 -->|video| B6v[Create embed node]
-  B6a1 -->|embed| B6e1[Create embed node]
-  B6w --> B7[Enrich webmap extent viewpoint]
-  B7 --> B6b[Build narrative panel]
-  B6i --> B6b
-  B6v --> B6b
-  B6e1 --> B6b
-  B6b --> B6c[Generate thumbnails]
-  B6c --> B6c1{Thumb source}
-  B6c1 -->|map| B6c2[Render extent to image]
-  B6c1 -->|image| B6c3[Fetch image and downscale]
-  B6c1 -->|video| B6c4[Use default thumbnail]
-  B6c1 -->|embed| B6c5[Fallback default thumbnail]
-  B6c2 --> B8
-  B6c3 --> B8
-  B6c4 --> B8
-  B6c5 --> B8
-  B8[Collect story JSONs and titles]
-  B8 --> B9[Persist drafts to tmp-converted]
-  B9 --> B10[Show builder links]
-  B10 --> B11([Done])
+  start([Start]) --> load[Load classic JSON]
+  load --> detect[Detect template]
+  detect --> convert[Convert series]
+  convert --> theme[Apply theme]
+  theme --> loop[Loop entries]
+  loop --> classify[Classify media]
+  classify --> choice{Media type}
+  choice --> wm[Create webmap]
+  choice --> img[Create image]
+  choice --> vid[Create video embed]
+  choice --> emb[Create embed]
+  wm --> enrich[Enrich extent]
+  enrich --> narrative[Build narrative]
+  img --> narrative
+  vid --> narrative
+  emb --> narrative
+  narrative --> thumbs[Generate thumbnails]
+  thumbs --> src{Thumb source}
+  src --> mapthumb[Map render]
+  src --> imgthumb[Image downscale]
+  src --> defthumb[Default]
+  src --> fbthumb[Fallback]
+  mapthumb --> collect[Collect story JSONs]
+  imgthumb --> collect
+  defthumb --> collect
+  fbthumb --> collect
+  collect --> persist[Persist local outputs]
+  persist --> links[Show builder links]
+  links --> agsm[Create collection]
+  agsm --> detect2[Detect theme and layout]
+  detect2 --> thumbset[Set collection thumbnail]
+  thumbset --> finish[Finish publishing]
+  finish --> done([Done])
 ```
 :::
 :::
@@ -92,14 +96,17 @@ flowchart TB
 ## Key Differences
 
 - Orchestration: Python uses widgets and ArcGIS Python API; App uses TS modules, `ConverterFactory`, and `BaseConverter` lifecycle.
-- Theme: Python extracts and stores theme; App resolves with `computeTheme` (themeId + overrides) consistently across converters.
-- Output: Python publishes items and builds a live Collection; App writes draft JSONs locally (tmp-converted) and surfaces builder links.
+- Theme: Python extracts and stores theme; App resolves base (`summit`/`obsidian`) and overrides from `values.settings.theme.colors`, applied to `story-theme` resource.
+- Output: Python publishes items and builds a live Collection; App writes `draft.json`, all `entry-<n>.json`, and `collection-draft.json` locally under repo `tmp-converted` and surfaces builder links.
 - Enrichment: Both enrich maps, but App embeds extent/viewpoint on resources and nodes during build for quick inspection.
 - UX: Python flow is button-driven in Notebook UI; App runs in browser UI with test tasks for validation.
 
 ---
 
 ## Notes
+- Collection Creation: App posts a full AGSM Collection JSON (`collection-cover`, `collection-nav`, `collection-ui`, root `collection`, and `story-theme` resource). Items array includes `{ itemId, title, thumbnailUrl }`.
+- Local Save Path: Netlify function now resolves path from `import.meta.url` to ensure files save under repository `tmp-converted`.
+- Publish UX: After “Create Collection,” the UI shows a “Click to Finish Publishing →” button with the spelled-out edit URL.
 
 - Mermaid labels are simplified for Mermaid v11 compatibility.
 - This page focuses on Map Series; see QUARTO_LOGIC_DIAGRAM.qmd for full converter flows.

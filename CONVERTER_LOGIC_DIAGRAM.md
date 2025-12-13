@@ -30,7 +30,7 @@ flowchart TD
 
 ---
 
-## Journal/Series Conversion Flow
+## Journal/Series Conversion Flow (Updated)
 
 ```mermaid
 flowchart TD
@@ -83,7 +83,12 @@ flowchart TD
     FixEmbeds --> Cleanup[Final cleanup:<br/>- Delete local images<br/>- Remove empty slides<br/>- Set title and cover]
 
     Cleanup --> FinalSave[Final save with tracking keyword]
-    FinalSave --> Done([Return URL])
+    FinalSave --> PersistLocal[Persist local drafts:<br/>- tmp-converted/draft.json<br/>- entry-<n>.json<br/>- collection-draft.json]
+    PersistLocal --> CreateCollection[Create Collection (AGSM schema):<br/>- cover/nav/ui/root nodes<br/>- story-theme resource]
+    CreateCollection --> DetectThemeLayout[Detect theme + layout from classic settings]
+    DetectThemeLayout --> SetCollectionThumb[Set collection thumbnail from classic item]
+    SetCollectionThumb --> FinishPublishing[Surface Finish Publishing button + URL]
+    FinishPublishing --> Done([Return URL])
 
     style ProcessMap fill:#a8e6a8,color:#000000
     style ProcessImage fill:#ffb3b3,color:#000000

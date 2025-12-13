@@ -122,44 +122,48 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </div>
 <div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<section id="converter-app-tsjs" class="level2">
-<h2 class="anchored" data-anchor-id="converter-app-tsjs">Converter App (TS/JS)</h2>
+<section id="converter-app-tsjs-updated-flow" class="level2">
+<h2 class="anchored" data-anchor-id="converter-app-tsjs-updated-flow">Converter App (TS/JS) – Updated Flow</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
-<pre class="mermaid mermaid-js">flowchart TB
-  B1([Start]) --&gt; B2[Load or fetch classic JSON]
-  B2 --&gt; B3[Detect classic template]
-  B3 --&gt;|Series| B4[MapSeriesConverter convertSeries]
-  B4 --&gt; B5[Apply theme via computeTheme]
-  B5 --&gt; B6[Loop entries]
-  B6 --&gt; B6a[Classify media]
-  B6a --&gt; B6a1{Media type}
-  B6a1 --&gt;|webmap| B6w[Create webmap resource and node]
-  B6a1 --&gt;|image| B6i[Create image node]
-  B6a1 --&gt;|video| B6v[Create embed node]
-  B6a1 --&gt;|embed| B6e1[Create embed node]
-  B6w --&gt; B6b[Build narrative panel]
-  B6i --&gt; B6b
-  B6v --&gt; B6b
-  B6e1 --&gt; B6b
-  B6b --&gt; B6c[Generate thumbnails]
-  B6c --&gt; B6c1{Thumb source}
-  B6c1 --&gt;|map| B6c2[Render extent to image]
-  B6c1 --&gt;|image| B6c3[Fetch image and downscale]
-  B6c1 --&gt;|video| B6c4[Use default thumbnail]
-  B6c1 --&gt;|embed| B6c5[Fallback default thumbnail]
-  B6c2 --&gt; B7
-  B6c3 --&gt; B7
-  B6c4 --&gt; B7
-  B6c5 --&gt; B7
-  B7[Enrich webmap extent viewpoint]
-  B7 --&gt; B8[Collect story JSONs and titles]
-  B8 --&gt; B9[Persist drafts to tmp-converted]
-  B9 --&gt; B10[Show builder links]
-  B10 --&gt; B11([Done])
+<pre class="mermaid mermaid-js">%%{init: {"theme": "default"}}%%
+flowchart TB
+  start([Start]) --&gt; load[Load classic JSON]
+  load --&gt; detect[Detect template]
+  detect --&gt; convert[Convert series]
+  convert --&gt; theme[Apply theme]
+  theme --&gt; loop[Loop entries]
+  loop --&gt; classify[Classify media]
+  classify --&gt; choice{Media type}
+  choice --&gt; wm[Create webmap]
+  choice --&gt; img[Create image]
+  choice --&gt; vid[Create video embed]
+  choice --&gt; emb[Create embed]
+  wm --&gt; enrich[Enrich extent]
+  enrich --&gt; narrative[Build narrative]
+  img --&gt; narrative
+  vid --&gt; narrative
+  emb --&gt; narrative
+  narrative --&gt; thumbs[Generate thumbnails]
+  thumbs --&gt; src{Thumb source}
+  src --&gt; mapthumb[Map render]
+  src --&gt; imgthumb[Image downscale]
+  src --&gt; defthumb[Default]
+  src --&gt; fbthumb[Fallback]
+  mapthumb --&gt; collect[Collect story JSONs]
+  imgthumb --&gt; collect
+  defthumb --&gt; collect
+  fbthumb --&gt; collect
+  collect --&gt; persist[Persist local outputs]
+  persist --&gt; links[Show builder links]
+  links --&gt; agsm[Create collection]
+  agsm --&gt; detect2[Detect theme and layout]
+  detect2 --&gt; thumbset[Set collection thumbnail]
+  thumbset --&gt; finish[Finish publishing]
+  finish --&gt; done([Done])
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -175,8 +179,8 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="key-differences">Key Differences</h2>
 <ul>
 <li>Orchestration: Python uses widgets and ArcGIS Python API; App uses TS modules, <code>ConverterFactory</code>, and <code>BaseConverter</code> lifecycle.</li>
-<li>Theme: Python extracts and stores theme; App resolves with <code>computeTheme</code> (themeId + overrides) consistently across converters.</li>
-<li>Output: Python publishes items and builds a live Collection; App writes draft JSONs locally (tmp-converted) and surfaces builder links.</li>
+<li>Theme: Python extracts and stores theme; App resolves base (<code>summit</code>/<code>obsidian</code>) and overrides from <code>values.settings.theme.colors</code>, applied to <code>story-theme</code> resource.</li>
+<li>Output: Python publishes items and builds a live Collection; App writes <code>draft.json</code>, all <code>entry-&lt;n&gt;.json</code>, and <code>collection-draft.json</code> locally under repo <code>tmp-converted</code> and surfaces builder links.</li>
 <li>Enrichment: Both enrich maps, but App embeds extent/viewpoint on resources and nodes during build for quick inspection.</li>
 <li>UX: Python flow is button-driven in Notebook UI; App runs in browser UI with test tasks for validation.</li>
 </ul>
@@ -185,8 +189,11 @@ ul.task-list li input[type="checkbox"] {
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li>Mermaid labels are simplified for Mermaid v11 compatibility.</li>
-<li>This page focuses on Map Series; see QUARTO_LOGIC_DIAGRAM.qmd for full converter flows.</li>
+<li><p>Collection Creation: App posts a full AGSM Collection JSON (<code>collection-cover</code>, <code>collection-nav</code>, <code>collection-ui</code>, root <code>collection</code>, and <code>story-theme</code> resource). Items array includes <code>{ itemId, title, thumbnailUrl }</code>.</p></li>
+<li><p>Local Save Path: Netlify function now resolves path from <code>import.meta.url</code> to ensure files save under repository <code>tmp-converted</code>.</p></li>
+<li><p>Publish UX: After “Create Collection,” the UI shows a “Click to Finish Publishing →” button with the spelled-out edit URL.</p></li>
+<li><p>Mermaid labels are simplified for Mermaid v11 compatibility.</p></li>
+<li><p>This page focuses on Map Series; see QUARTO_LOGIC_DIAGRAM.qmd for full converter flows.</p></li>
 </ul>
 </section>
 
