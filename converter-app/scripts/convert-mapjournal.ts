@@ -1,8 +1,10 @@
 import { execSync } from 'node:child_process';
+import { getOrgBase } from '../../scripts/lib/orgBase';
 import { MapJournalConverter } from '../src/converters/MapJournalConverter.ts';
 
 function fetchClassic(itemId: string, token?: string): any {
-  const base = `https://www.arcgis.com/sharing/rest/content/items/${itemId}/data?f=json`;
+  const ORG_BASE = getOrgBase();
+  const base = `${ORG_BASE}/sharing/rest/content/items/${itemId}/data?f=json`;
   const url = token ? `${base}&token=${encodeURIComponent(token)}` : base;
   const out = execSync(`curl -sL '${url}'`, { encoding: 'utf-8' });
   return JSON.parse(out);

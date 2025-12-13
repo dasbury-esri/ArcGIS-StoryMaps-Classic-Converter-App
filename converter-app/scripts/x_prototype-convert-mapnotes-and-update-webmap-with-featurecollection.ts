@@ -8,6 +8,8 @@
 */
 
 import fetch from 'node-fetch';
+import { getOrgBase } from '../../scripts/lib/orgBase';
+const ORG_BASE = getOrgBase();
 
 type AnyObject = Record<string, any>;
 
@@ -26,7 +28,7 @@ function safeClone<T>(obj: T): T {
 }
 
 async function fetchWebmap(id: string, token: string): Promise<AnyObject> {
-  const url = `https://www.arcgis.com/sharing/rest/content/items/${id}/data?f=json&token=${encodeURIComponent(token)}`;
+  const url = `${ORG_BASE}/sharing/rest/content/items/${id}/data?f=json&token=${encodeURIComponent(token)}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch webmap data: ${res.status} ${res.statusText}`);
   const json = await res.json();
@@ -34,7 +36,7 @@ async function fetchWebmap(id: string, token: string): Promise<AnyObject> {
 }
 
 async function getUserInfo(token: string): Promise<AnyObject> {
-  const url = `https://www.arcgis.com/sharing/rest/portals/self?f=json&token=${encodeURIComponent(token)}`;
+  const url = `${ORG_BASE}/sharing/rest/portals/self?f=json&token=${encodeURIComponent(token)}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch portals/self: ${res.status} ${res.statusText}`);
   return res.json();
@@ -47,7 +49,7 @@ async function createFeatureCollectionItem(
   title: string,
   featureCollectionPayload: AnyObject
 ): Promise<{ id: string }> {
-  const base = `https://www.arcgis.com/sharing/rest/content/users/${encodeURIComponent(owner)}`;
+  const base = `${ORG_BASE}/sharing/rest/content/users/${encodeURIComponent(owner)}`;
   const url = `${base}/addItem` + (folderId ? `?folderId=${encodeURIComponent(folderId)}` : '');
   const form = new URLSearchParams();
   form.set('f', 'json');

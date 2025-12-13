@@ -540,7 +540,8 @@ export class MapTourConverter {
     const webmapIdFallback = (values as any).webmap || (this.classicJson as any).webmap;
     if (webmapIdFallback) {
       try {
-        const url = `https://www.arcgis.com/sharing/rest/content/items/${webmapIdFallback}/data?f=json`;
+        const ORG_BASE = (globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE || 'https://www.arcgis.com';
+        const url = `${ORG_BASE}/sharing/rest/content/items/${webmapIdFallback}/data?f=json`;
         const resp = await fetch(url);
         if (resp.ok) {
           const wm = await resp.json();

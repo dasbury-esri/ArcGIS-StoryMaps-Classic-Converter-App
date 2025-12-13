@@ -94,7 +94,7 @@ export async function createDraftStoryMap(username: string, token: string, title
   });
 
   const response = await fetch(
-    `https://www.arcgis.com/sharing/rest/content/users/${username}/addItem`,
+    `${((globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE || 'https://www.arcgis.com')}/sharing/rest/content/users/${username}/addItem`,
     { method: "POST", body: params }
   );
   const data: AddItemResponse = await response.json();
@@ -145,7 +145,7 @@ export async function createDraftThemeItem(
   });
 
   const response = await fetch(
-    `https://www.arcgis.com/sharing/rest/content/users/${username}/addItem`,
+    `${((globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE || 'https://www.arcgis.com')}/sharing/rest/content/users/${username}/addItem`,
     { method: "POST", body: params }
   );
   const data: AddItemResponse = await response.json();
@@ -164,7 +164,7 @@ export async function uploadThemeDraftResource(
   draftResourceName: string,
   themeJson: StoryMapThemeDraft
 ): Promise<void> {
-  const url = `https://www.arcgis.com/sharing/rest/content/users/${username}/items/${themeItemId}/addResources`;
+  const url = `${((globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE || 'https://www.arcgis.com')}/sharing/rest/content/users/${username}/items/${themeItemId}/addResources`;
   const form = new FormData();
   form.append("f", "json");
   form.append("token", token);
@@ -188,7 +188,7 @@ export async function publishThemeResource(
   themeItemId: string,
   themeJson: StoryMapThemeDraft
 ): Promise<void> {
-  const url = `https://www.arcgis.com/sharing/rest/content/users/${username}/items/${themeItemId}/addResources`;
+  const url = `${((globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE || 'https://www.arcgis.com')}/sharing/rest/content/users/${username}/items/${themeItemId}/addResources`;
   const form = new FormData();
   form.append("f", "json");
   form.append("token", token);
@@ -298,7 +298,7 @@ async function uploadAuxResource(
   fileName: string,
   json: unknown
 ): Promise<void> {
-  const url = `https://www.arcgis.com/sharing/rest/content/users/${username}/items/${itemId}/addResources`;
+  const url = `${((globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE || 'https://www.arcgis.com')}/sharing/rest/content/users/${username}/items/${itemId}/addResources`;
   const form = new FormData();
   form.append('f','json');
   form.append('token', token);

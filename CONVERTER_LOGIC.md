@@ -79,11 +79,11 @@ Handles image URLs from classic stories:
 
 **Logic:**
 
-1. If URL starts with `https://www.arcgis.com/sharing/rest/content`:
+1. If URL starts with `https://<org>.maps.arcgis.com/sharing/rest/content` (or your Enterprise portal base):
    - Appends authentication token
    - Downloads to local file with UUID filename
    - Returns local path
-2. If URL starts with `//www.arcgis.com/sharing/rest/content`:
+2. If URL starts with `//<org>.maps.arcgis.com/sharing/rest/content`:
    - Prepends `https:` protocol
    - Downloads with token
    - Returns local path
@@ -804,7 +804,7 @@ New StoryMap Item (AGO) with mixed content
 ```python
 classic_story_id = ""              # Input: classic story item ID
 theme_id = "summit"                # Output: theme for new story
-portal = "https://www.arcgis.com"  # ArcGIS portal URL
+portal = "https://<org>.maps.arcgis.com"  # Prefer org/enterprise portal URL
 username = ""                      # Authentication (optional)
 password = ""                      # Authentication (optional)
 ```

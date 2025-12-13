@@ -6,6 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert';
+import { getOrgBase } from './lib/orgBase';
 
 const token = process.env.ARC_GIS_TOKEN || process.env.ARCGIS_TOKEN || process.env.TOKEN;
 
@@ -56,13 +57,14 @@ async function main() {
   console.log(JSON.stringify(bootstrap, null, 2));
 }
 
+const ORG_BASE = getOrgBase();
 async function addItemResource(itemId: string, name: string, buf: Buffer, token: string) {
   const form = new FormData();
   form.append('f', 'json');
   form.append('name', name);
   form.append('resource', new Blob([buf]), name);
   form.append('token', token);
-  const resp = await fetch(`https://www.arcgis.com/sharing/rest/content/items/${itemId}/addResources`, {
+  const resp = await fetch(`${ORG_BASE}/sharing/rest/content/items/${itemId}/addResources`, {
     method: 'POST',
     body: form,
   });
@@ -74,7 +76,7 @@ async function updateItemKeywords(itemId: string, keywords: string[], token: str
   form.set('f', 'json');
   form.set('token', token);
   form.set('typeKeywords', keywords.join(','));
-  const resp = await fetch(`https://www.arcgis.com/sharing/rest/content/items/${itemId}/update`, {
+  const resp = await fetch(`${ORG_BASE}/sharing/rest/content/items/${itemId}/update`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: form.toString(),
@@ -83,7 +85,7 @@ async function updateItemKeywords(itemId: string, keywords: string[], token: str
 }
 
 async function getItemDetails(itemId: string, token: string) {
-  const url = `https://www.arcgis.com/sharing/rest/content/items/${itemId}?f=json&token=${encodeURIComponent(token)}`;
+  const url = `${ORG_BASE}/sharing/rest/content/items/${itemId}?f=json&token=${encodeURIComponent(token)}`;
   const resp = await fetch(url);
   if (!resp.ok) return undefined;
   return resp.json();
@@ -95,7 +97,7 @@ async function inspectBootstrap(itemId: string, token: string) {
   results.item = await getItemDetails(itemId, token);
   // draft.json resource
   try {
-    const resUrl = `https://www.arcgis.com/sharing/rest/content/items/${itemId}/resources/draft.json?token=${encodeURIComponent(token)}`;
+    const resUrl = `${ORG_BASE}/sharing/rest/content/items/${itemId}/resources/draft.json?token=${encodeURIComponent(token)}`;
     const r = await fetch(resUrl);
     results.draftStatus = { ok: r.ok, status: r.status, contentType: r.headers.get('content-type') };
     const text = await r.text();
@@ -111,7 +113,7 @@ async function inspectBootstrap(itemId: string, token: string) {
   }
   // Me
   try {
-    const meUrl = `https://www.arcgis.com/sharing/rest/community/self?f=json&token=${encodeURIComponent(token)}`;
+    const meUrl = `${ORG_BASE}/sharing/rest/community/self?f=json&token=${encodeURIComponent(token)}`;
     const r = await fetch(meUrl);
     results.me = { ok: r.ok, status: r.status, orgId: undefined as string | undefined };
     const j = await r.json();

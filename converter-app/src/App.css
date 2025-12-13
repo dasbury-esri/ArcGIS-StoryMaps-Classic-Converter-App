@@ -1,3 +1,9 @@
+.collection-publish-block {
+  margin-top: 12px;
+}
+.collection-publish-url {
+  margin-top: 6px;
+}
 /* Adjust spacing for the Instructions heading inside the converter */
 .converter-instructions h3 {
   margin-top: 0.1rem; /* tweak as desired */
@@ -64,6 +70,7 @@
   transition: background 0.2s;
 }
 .converter-btn.secondary {
+  width: auto;
   background-color: #28a745; /* bright green success */
 }
 .converter-btn.secondary:hover,
@@ -450,4 +457,35 @@
   font-size: 11px;
   color: #cde3ff;
   opacity: 0.85;
+}
+.mapseries-publish-label {
+  display: inline-flex; /* keep on same line as link */
+  align-items: center;
+  margin-left: auto; /* push this group to the right within the row */
+  gap: 8px; /* optional spacing between text and checkbox */
+}
+/* Map Series publish panel layout: keep link left, checkbox+label right on same line */
+.mapseries-publish ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.mapseries-publish ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mapseries-publish ul li a {
+  flex: 0 1 auto;
+}
+.mapseries-publish ul li .mapseries-publish-label {
+  margin-left: auto; /* push to the far right within li */
+}
+.mapseries-collection-publish-btn {
+  background-color: #28a745; /* bright green success */
+  margin-top: 12px;
+}
+.mapseries-collection-publish-btn:disabled {
+  background-color: #393939;
+  cursor: not-allowed;
 }

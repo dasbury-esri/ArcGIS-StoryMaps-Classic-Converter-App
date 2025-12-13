@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Converter-App Logic Diagrams</title>
+<title>Notebook vs App Flow – Map Series Conversion</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,21 +23,21 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="QUARTO_LOGIC_DIAGRAM_files/libs/clipboard/clipboard.min.js"></script>
-<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/popper.min.js"></script>
-<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/anchor.min.js"></script>
-<link href="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="QUARTO_LOGIC_DIAGRAM_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="QUARTO_LOGIC_DIAGRAM_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="QUARTO_LOGIC_DIAGRAM_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-diagram/mermaid.min.js"></script>
-<script src="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-diagram/mermaid-init.js"></script>
-<link href="QUARTO_LOGIC_DIAGRAM_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script src="QUARTO_NOTEBOOK_VS_APP_files/libs/clipboard/clipboard.min.js"></script>
+<script src="QUARTO_NOTEBOOK_VS_APP_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="QUARTO_NOTEBOOK_VS_APP_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="QUARTO_NOTEBOOK_VS_APP_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="QUARTO_NOTEBOOK_VS_APP_files/libs/quarto-html/popper.min.js"></script>
+<script src="QUARTO_NOTEBOOK_VS_APP_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="QUARTO_NOTEBOOK_VS_APP_files/libs/quarto-html/anchor.min.js"></script>
+<link href="QUARTO_NOTEBOOK_VS_APP_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="QUARTO_NOTEBOOK_VS_APP_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="QUARTO_NOTEBOOK_VS_APP_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="QUARTO_NOTEBOOK_VS_APP_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="QUARTO_NOTEBOOK_VS_APP_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="QUARTO_NOTEBOOK_VS_APP_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="QUARTO_NOTEBOOK_VS_APP_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="QUARTO_NOTEBOOK_VS_APP_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -50,7 +50,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Converter-App Logic Diagrams</h1>
+<h1 class="title">Notebook vs App Flow – Map Series Conversion</h1>
 </div>
 
 
@@ -67,208 +67,52 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="high-level-app-flow" class="level1">
-<h1>High-Level App Flow</h1>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-  Start([User opens converter-app UI]) --&gt; Init[Initialize React state and env]
-  Init --&gt; Token{ARCGIS_TOKEN available?}
-  Token --&gt;|Yes| Ready[Enable authenticated actions]
-  Token --&gt;|No| Limited[Enable local and offline flows]
-
-  Ready --&gt; Inputs{User action?}
-  Limited --&gt; Inputs
-
-  Inputs --&gt;|Convert by Item ID| FetchClassic[Fetch classic JSON via ArcGIS REST]
-  Inputs --&gt;|Convert by Local JSON| LoadLocal[Load JSON file from browser]
-  Inputs --&gt;|Run Swipe Tests| SwipeTests[Execute swipe test scripts]
-  Inputs --&gt;|Inspect Utilities| Utilities[Helper tools]
-
-  FetchClassic --&gt; Detect[Detect classic template]
-  LoadLocal --&gt; Detect
-
-  Detect --&gt;|Map Journal| ConvertJournal[MapJournalConverter.convert]
-  Detect --&gt;|Swipe| ConvertSwipe[SwipeConverter.convert]
-  Detect --&gt;|Map Tour| ConvertTour[MapTourConverter.convert]
-  Detect --&gt;|Map Series| ConvertSeries[MapSeriesConverter.convertSeries]
-  Detect --&gt;|Cascade| ConvertCascade[Legacy converter auto theme]
-
-  ConvertJournal --&gt; JournalOutput[Produce StoryMap JSON]
-  ConvertSwipe --&gt; SwipeOutput[Produce StoryMap JSON]
-  ConvertTour --&gt; TourOutput[Produce StoryMap JSON]
-  ConvertSeries --&gt; SeriesOutputs[Produce N entry StoryMap JSONs and collection-draft]
-  ConvertCascade --&gt; CascadeOutput[Produce StoryMap JSON]
-
-  JournalOutput --&gt; SaveArtifacts
-  SwipeOutput --&gt; SaveArtifacts
-  TourOutput --&gt; SaveArtifacts
-  SeriesOutputs --&gt; SaveArtifacts[Persist JSONs to tmp-converted/&lt;id-timestamp&gt;/]
-  CascadeOutput --&gt; SaveArtifacts
-
-  SaveArtifacts --&gt; Present[Render links and diagnostics]
-  SwipeTests --&gt; Present
-  Utilities --&gt; Present
-
-  Present --&gt; Done([User reviews, downloads, or publishes])
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="template-detection-and-enrichment" class="level1">
-<h1>Template Detection and Enrichment</h1>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-  Start([ConverterFactory.create]) --&gt; DetectTemplate[detectClassicTemplate]
-  DetectTemplate --&gt; Route{Template?}
-
-  Route --&gt;|Map Journal| DoJournal[MapJournalConverter.convert]
-  Route --&gt;|Swipe| DoSwipe[SwipeConverter.convert]
-  Route --&gt;|Map Tour| DoTour[MapTourConverter.convert]
-  Route --&gt;|Map Series| DoSeries[MapSeriesConverter.convertSeries]
-  Route --&gt;|Cascade| DoCascade[convert_cascade legacy]
-
-  DoSeries --&gt; FirstDraft[Return first entry as storymapJson]
-  DoSeries --&gt; SeriesPayload[Attach storymapJsons entryTitles builderLinks]
-
-  DoJournal --&gt; Enrich
-  DoSwipe --&gt; Enrich
-  DoTour --&gt; Enrich
-  FirstDraft --&gt; Enrich{enrichMaps or enrichScenes?}
-
-  Enrich --&gt;|Yes| EnrichMaps[enrichWebMaps]
-  Enrich --&gt;|Yes| EnrichScenes[enrichWebScenes]
-  Enrich --&gt;|Tour| EnrichTour[collect media, build tour geometries]
-  Enrich --&gt;|No| SkipEnrich[Continue]
-
-  EnrichMaps --&gt; Result[ConverterResult]
-  EnrichScenes --&gt; Result
-  EnrichTour --&gt; Result
-  SkipEnrich --&gt; Result
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="theme-derivation" class="level1">
-<h1>Theme Derivation</h1>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-  S([computeTheme]) --&gt; D[detectClassicTemplate]
-  D --&gt; JSC[Journal Series Cascade]
-  D --&gt; MT[Map Tour]
-  D --&gt; SW[Swipe]
-
-  JSC --&gt; TM[themeMapper map colors fonts]
-  TM --&gt; BID[base themeId]
-  TM --&gt; OV[variable overrides]
-
-  MT --&gt; MC[parse values colors]
-  SW --&gt; SC[parse values colors]
-
-  BID --&gt; OUT[themeId and overrides]
-  OV --&gt; OUT
-  MC --&gt; OUT
-  SC --&gt; OUT
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<ul>
-<li>All converters call computeTheme to get themeId and optional overrides.</li>
-<li>Journal and Series use themeMapper under the hood for fine-grained mapping.</li>
-<li>Map Tour and Swipe parse classic colors when provided.</li>
-<li>User selection auto vs explicit chooses final themeId.</li>
-</ul>
-<hr>
-</section>
-<section id="map-journal-conversion-browser" class="level1">
-<h1>Map Journal Conversion (Browser)</h1>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-  Start([MapJournalConverter.convert]) --&gt; ReadSections[Read classic sections]
-  ReadSections --&gt; LoopSections[Iterate sections]
-  LoopSections --&gt; Classify{Media type}
-
-  Classify --&gt;|webmap| AddMap[Create webmap resource minimal and node]
-  Classify --&gt;|image| AddImage[Create image node]
-  Classify --&gt;|video| AddVideo[Create embed node]
-  Classify --&gt;|webpage| AddEmbed[Create embed node]
-  Classify --&gt;|text| AddText[Create text node]
-
-  AddMap --&gt; ApplyPanel[Use panel mapping from settings]
-  ApplyPanel --&gt; MapOptions[Apply basic mapOptions if present]
-  MapOptions --&gt; EnrichMap[Fetch AGO item to embed extent viewpoint zoom]
-  EnrichMap --&gt; AddSlide[Add slide with narrative and media]
-
-  AddImage --&gt; AddSlide
-  AddVideo --&gt; AddSlide
-  AddEmbed --&gt; AddSlide
-  AddText --&gt; AddSlide
-
-  AddSlide --&gt; ApplyTheme[Apply theme via computeTheme]
-  ApplyTheme --&gt; More{More sections}
-  More --&gt;|Yes| LoopSections
-  More --&gt;|No| Metadata[Add converter metadata]
-  Metadata --&gt; End([Return Map Journal story JSON])
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="swipe-converter-browser" class="level1">
-<h1>Swipe Converter (Browser)</h1>
-<p>Note: Swipe applies computeTheme at the start to resolve themeId and any variable overrides before creating resources and nodes.</p>
+<p>This document compares the ArcGIS Notebook (Python) flow with the converter app (TypeScript/JavaScript) flow for Classic Map Series → ArcGIS StoryMaps conversion.</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<section id="two_webmaps" class="level2">
-<h2 class="anchored" data-anchor-id="two_webmaps">TWO_WEBMAPS</h2>
+<section id="arcgis-notebooks-python" class="level2">
+<h2 class="anchored" data-anchor-id="arcgis-notebooks-python">ArcGIS Notebooks (Python)</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart TB
-  A1([Start]) --&gt; A2[Parse values]
-  A2 --&gt; A3[Fetch info A and B]
-  A3 --&gt; A4[Create resource A]
-  A3 --&gt; A5[Create resource B]
-  A4 --&gt; A6[Set extent and viewpoint A]
-  A5 --&gt; A7[Set extent and viewpoint B]
-  A6 --&gt; A8[Create node A]
-  A7 --&gt; A9[Create node B]
-  A8 --&gt; A10[Derive caption]
-  A9 --&gt; A10
-  A10 --&gt; A11[Create swipe node]
-  A11 --&gt; A12([Return result])
+  A1([Start]) --&gt; A2[Setup and authenticate]
+  A2 --&gt; A3[Input classic item id]
+  A3 --&gt; A4[Fetch classic item data]
+  A4 --&gt; A5[Extract theme title entries]
+  A5 --&gt; A6[Loop entries]
+  A6 --&gt; A6a[Classify media]
+  A6a --&gt; A6a1{Media type}
+  A6a1 --&gt;|webmap| A6w[Parse webmap JSON and extent]
+  A6a1 --&gt;|image| A6i[Resolve image URL]
+  A6a1 --&gt;|video| A6v[Resolve video/embed URL]
+  A6a1 --&gt;|embed| A6e1[Resolve webpage URL]
+  A6w --&gt; A6b[Parse side panel HTML]
+  A6i --&gt; A6b
+  A6v --&gt; A6b
+  A6e1 --&gt; A6b
+  A6b --&gt; A6c[Generate thumbnails]
+  A6c --&gt; A6c1{Thumb source}
+  A6c1 --&gt;|map| A6c2[Render extent to image]
+  A6c1 --&gt;|image| A6c3[Fetch image and downscale]
+  A6c1 --&gt;|video| A6c4[Use default thumbnail]
+  A6c1 --&gt;|embed| A6c5[Fallback default thumbnail]
+  A6c2 --&gt; A6d
+  A6c3 --&gt; A6d
+  A6c4 --&gt; A6d
+  A6c5 --&gt; A6d
+  A6d[Build StoryMap nodes]
+  A6d --&gt; A6e[Suppress cover page]
+  A6e --&gt; A6f[Create StoryMap item]
+  A6f --&gt; A7[Publish story]
+  A7 --&gt; A8[Collect published items]
+  A8 --&gt; A9[Create Collection]
+  A9 --&gt; A10[Optional create folder]
+  A10 --&gt; A11[Move items to folder]
+  A11 --&gt; A12([Done])
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -278,27 +122,44 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </div>
 <div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<section id="two_layers" class="level2">
-<h2 class="anchored" data-anchor-id="two_layers">TWO_LAYERS</h2>
+<section id="converter-app-tsjs" class="level2">
+<h2 class="anchored" data-anchor-id="converter-app-tsjs">Converter App (TS/JS)</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart TB
-  B1([Start]) --&gt; B2[Parse values]
-  B2 --&gt; B3[Duplicate webmap to two resources]
-  B3 --&gt; B4[Persist full webmap data]
-  B4 --&gt; B5[Create node A]
-  B4 --&gt; B6[Create node B]
-  B5 --&gt; B7[Build left layer set]
-  B6 --&gt; B8[Build right layer set]
-  B7 --&gt; B9[Apply extent and viewpoint]
-  B8 --&gt; B9
-  B9 --&gt; B10[Mirror layers into resource]
-  B10 --&gt; B11[Derive caption]
-  B11 --&gt; B12[Create swipe node]
-  B12 --&gt; B13([Return result])
+  B1([Start]) --&gt; B2[Load or fetch classic JSON]
+  B2 --&gt; B3[Detect classic template]
+  B3 --&gt;|Series| B4[MapSeriesConverter convertSeries]
+  B4 --&gt; B5[Apply theme via computeTheme]
+  B5 --&gt; B6[Loop entries]
+  B6 --&gt; B6a[Classify media]
+  B6a --&gt; B6a1{Media type}
+  B6a1 --&gt;|webmap| B6w[Create webmap resource and node]
+  B6a1 --&gt;|image| B6i[Create image node]
+  B6a1 --&gt;|video| B6v[Create embed node]
+  B6a1 --&gt;|embed| B6e1[Create embed node]
+  B6w --&gt; B6b[Build narrative panel]
+  B6i --&gt; B6b
+  B6v --&gt; B6b
+  B6e1 --&gt; B6b
+  B6b --&gt; B6c[Generate thumbnails]
+  B6c --&gt; B6c1{Thumb source}
+  B6c1 --&gt;|map| B6c2[Render extent to image]
+  B6c1 --&gt;|image| B6c3[Fetch image and downscale]
+  B6c1 --&gt;|video| B6c4[Use default thumbnail]
+  B6c1 --&gt;|embed| B6c5[Fallback default thumbnail]
+  B6c2 --&gt; B7
+  B6c3 --&gt; B7
+  B6c4 --&gt; B7
+  B6c5 --&gt; B7
+  B7[Enrich webmap extent viewpoint]
+  B7 --&gt; B8[Collect story JSONs and titles]
+  B8 --&gt; B9[Persist drafts to tmp-converted]
+  B9 --&gt; B10[Show builder links]
+  B10 --&gt; B11([Done])
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -310,177 +171,22 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <hr>
-</section>
-<section id="map-tour-conversion-browser" class="level1">
-<h1>Map Tour Conversion (Browser)</h1>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-  Start([MapTourConverter convert]) --&gt; ReadVals[Read values title subtitle layout order places webmap]
-  ReadVals --&gt; ThemeAuto[Resolve themeId auto to obsidian or summit]
-  ThemeAuto --&gt; Scaffold[Create story root cover nav hidden credits apply theme]
-
-  Scaffold --&gt; Places{Have places}
-  Places --&gt;|Yes| UsePlaces[Use provided places]
-  Places --&gt;|No| Prefetch{Have prefetched features}
-  Prefetch --&gt;|Yes| FromPrefetch[Features to places]
-  Prefetch --&gt;|No| FromWebmap[Extract feature collection from webmapJson]
-
-  UsePlaces --&gt; BuildMedia
-  FromPrefetch --&gt; BuildMedia
-  FromWebmap --&gt; BuildMedia
-
-  BuildMedia[For each place add image and thumb resources inline upload optional] --&gt; BuildNodes
-  BuildNodes[Create image carousel title content nodes extract and normalize geometry] --&gt; PlacesList[Accumulate tour places]
-  PlacesList --&gt; PromoteCover{First record as intro}
-  PromoteCover --&gt;|Yes| SetCover[Promote first image as cover]
-  PromoteCover --&gt;|No| SkipCover[Skip cover]
-
-  SetCover --&gt; TourMap
-  SkipCover --&gt; TourMap
-  TourMap[Create tour map node geometries optional webmap] --&gt; Layout[Map layout to tourType and subtype]
-  Layout --&gt; TourNode[Create tour node places map accent color placard position]
-  TourNode --&gt; Attach[Attach tour map and tour nodes to root]
-  Attach --&gt; Meta[Set story meta if cover]
-  Meta --&gt; Done([Return StoryMap JSON and mediaUrls])
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="map-series-conversion-browser" class="level1">
-<h1>Map Series Conversion (Browser)</h1>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-  Start([MapSeriesConverter.convertSeries]) --&gt; ThemeStep[Apply theme via computeTheme]
-  ThemeStep --&gt; ExtractSettings[Extract values settings layout panel mapOptions]
-  ExtractSettings --&gt; GetEntries[Read values.story.entries]
-
-  GetEntries --&gt; Loop[For each entry]
-  Loop --&gt; Classify{Classify media}
-
-  Classify --&gt;|webmap| BuildSidecar[Create docked panel Sidecar]
-  Classify --&gt;|classic child| HandleChild[Fetch child JSON and route]
-  Classify --&gt;|image/video/embed| BuildSimple[Create text placeholder nodes]
-
-  BuildSidecar --&gt; Narrative[Add narrative panel text]
-  Narrative --&gt; CreateWebMapResource[Create webmap resource minimal]
-  CreateWebMapResource --&gt; CreateWebMapNode[Add webmap node referencing resource]
-  CreateWebMapNode --&gt; ApplyPanel[Map panel position left/right and size]
-  ApplyPanel --&gt; MapSeriesOptions[Apply series mapOptions basics]
-  MapSeriesOptions --&gt; EnrichPlacement[Fetch AGO item to embed extent viewpoint zoom]
-  EnrichPlacement --&gt; AddMetadata[Attach series-settings and converter-metadata]
-
-  HandleChild --&gt; RouteChild{Template?}
-  RouteChild --&gt;|Swipe| SwipeConverter
-  RouteChild --&gt;|Journal| MapJournalConverter
-  RouteChild --&gt;|Tour| MapTourConverter
-  RouteChild --&gt;|Series| NoteNesting[Add text placeholder]
-  RouteChild --&gt; AddMetadata
-
-  BuildSimple --&gt; AddMetadata
-  AddMetadata --&gt; Collect[Append to storymapJsons entryTitles builderLinks]
-
-  Collect --&gt; End([Return series results])
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="ui-persistence-local-save" class="level1">
-<h1>UI Persistence – Local Save</h1>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-  Start([Converter.tsx]) --&gt; DecideSave{Template is Map Series?}
-  DecideSave --&gt;|Yes| SaveSeries[Save each entry JSON and collection-draft]
-  DecideSave --&gt;|No| SaveSingle[Save single story JSON]
-
-  SaveSeries --&gt; Subfolder[Create tmp-converted/&lt;classicId-timestamp&gt;/]
-  SaveSingle --&gt; Subfolder
-
-  Subfolder --&gt; WriteFiles[Write JSON artifacts]
-  WriteFiles --&gt; ShowLinks[Update UI with builder links]
-  ShowLinks --&gt; Done([User can open or download])
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="swipe-test-tasks-runner" class="level1">
-<h1>Swipe Test Tasks (Runner)</h1>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-  Start([scripts/test-swipe-two-webmaps.ts]) --&gt; LoadFixture[Load JSON fixture]
-  LoadFixture --&gt; ValidateResources[Ensure webmap resources include extent viewpoint center zoom]
-  ValidateResources --&gt; CheckAlignment[Confirm centers and viewpoints align]
-  CheckAlignment --&gt; Pass{OK?}
-  Pass --&gt;|Yes| ReportOK[Log success]
-  Pass --&gt;|No| ReportFail[Log failure]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="key-browser-considerations" class="level1">
-<h1>Key Browser Considerations</h1>
+<section id="key-differences" class="level2">
+<h2 class="anchored" data-anchor-id="key-differences">Key Differences</h2>
 <ul>
-<li>Auth Token: Read from shell env via Netlify proxy or user input; used by REST calls only when needed.</li>
-<li>Fetch: Uses global fetch (browser / Node 18+); no node-fetch bundling.</li>
-<li>Theme: When themeId = auto, detect classic major theme (light/dark) → summit/obsidian.</li>
-<li>Panel Mapping: Classic layoutOptions.panel.position/size → Sidecar narrativePanelPosition/narrativePanelSize.</li>
-<li>Map Placement: Enrich non-Swipe Map Series webmaps by fetching AGO item data; embed extent/viewpoint/zoom on resource and node.</li>
-<li>Artifacts: Persist drafts to tmp-converted with timestamped folders for easy inspection.</li>
+<li>Orchestration: Python uses widgets and ArcGIS Python API; App uses TS modules, <code>ConverterFactory</code>, and <code>BaseConverter</code> lifecycle.</li>
+<li>Theme: Python extracts and stores theme; App resolves with <code>computeTheme</code> (themeId + overrides) consistently across converters.</li>
+<li>Output: Python publishes items and builds a live Collection; App writes draft JSONs locally (tmp-converted) and surfaces builder links.</li>
+<li>Enrichment: Both enrich maps, but App embeds extent/viewpoint on resources and nodes during build for quick inspection.</li>
+<li>UX: Python flow is button-driven in Notebook UI; App runs in browser UI with test tasks for validation.</li>
 </ul>
 <hr>
 </section>
-<section id="base-converter-orchestration" class="level1">
-<h1>Base Converter Orchestration</h1>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  Factory[ConverterFactory] --&gt; Conv[Concrete converter]
-  Conv --&gt; Base[BaseConverter]
-  Base --&gt; Steps[convert lifecycle]
-  Steps --&gt; Result[Converter result]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li>Common hooks: extractStructure, convertContent, applyTheme, collectMedia, getStoryMapJson.</li>
-<li>All concrete converters share the convert lifecycle via BaseConverter and return ConverterResult.</li>
+<li>Mermaid labels are simplified for Mermaid v11 compatibility.</li>
+<li>This page focuses on Map Series; see QUARTO_LOGIC_DIAGRAM.qmd for full converter flows.</li>
 </ul>
 </section>
 

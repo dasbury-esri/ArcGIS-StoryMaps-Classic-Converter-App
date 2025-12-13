@@ -1,6 +1,7 @@
 import type { Context } from "@netlify/functions";
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 export default async (req: Request, _context: Context) => {
   try {
@@ -13,8 +14,13 @@ export default async (req: Request, _context: Context) => {
       return new Response('Missing json in payload', { status: 400 });
     }
 
-    const workspaceRoot = process.cwd();
-    const outDir = path.join(workspaceRoot, 'tmp-converted');
+    // Netlify functions run with cwd at the functions directory; project root is two levels up
+    // Resolve paths relative to this function file to avoid variability in process.cwd()
+    const fnFile = fileURLToPath(import.meta.url);
+    const fnDir = path.dirname(fnFile); // .../converter-app/netlify/functions
+    const converterAppDir = path.resolve(fnDir, '..', '..'); // .../converter-app
+    const repoRoot = path.resolve(converterAppDir, '..'); // .../ArcGIS-StoryMaps-Classic-Converter-App
+    const outDir = path.join(repoRoot, 'tmp-converted');
     try { fs.mkdirSync(outDir, { recursive: true }); } catch {}
 
     const iso = new Date().toISOString();

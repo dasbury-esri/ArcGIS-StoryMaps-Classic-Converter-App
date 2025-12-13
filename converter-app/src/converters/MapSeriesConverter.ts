@@ -13,6 +13,9 @@ import { MapJournalConverter } from './MapJournalConverter';
 import { MapTourConverter } from './MapTourConverter';
 import { SwipeConverter } from './SwipeConverter';
 import { detectClassicTemplate } from '../util/detectTemplate';
+import { deriveWebmapThumbnailUrl, deriveImageThumbnailUrl, deriveEmbedThumbnailUrl, getDefaultThumbnailUrl, buildProxiedThumbnailUrl } from '../util/thumbnails';
+import { createDraftStory, getUsername, addResource } from '../api/arcgis-client';
+import { getOrgBase } from '../lib/orgBase';
 
 // Types moved to src/types/mapseries.ts
 
@@ -20,6 +23,9 @@ export interface MapSeriesResult extends Omit<ConverterResult,'storymapJson'> {
   storymapJsons: StoryMapJSON[];
   entryTitles: string[];
   builderLinks?: string[];
+  thumbnailUrls?: string[];
+  draftItemIds?: string[];
+  thumbnailResourcePaths?: string[];
 }
 
 export class MapSeriesConverter extends BaseConverter {
@@ -74,19 +80,12 @@ export class MapSeriesConverter extends BaseConverter {
     return this.builders[0]?.getJson() as StoryMapJSON;
   }
 
-  static async convertSeries(opts: { classicJson: Record<string, unknown>; themeId: 'auto' | 'summit' | 'obsidian'; progress?: (e: ProgressEvent) => void; token?: string }): Promise<{ storymapJsons: StoryMapJSON[]; entryTitles: string[]; builderLinks: string[] }> {
+  static async convertSeries(opts: { classicJson: Record<string, unknown>; themeId: 'auto' | 'summit' | 'obsidian'; progress?: (e: ProgressEvent) => void; token?: string }): Promise<{ storymapJsons: StoryMapJSON[]; entryTitles: string[]; builderLinks: string[]; thumbnailUrls: string[]; draftItemIds: string[]; thumbnailResourcePaths: string[] }> {
       const { classicJson, themeId, progress, token } = opts;
-      // Auto-map classic theme to StoryMaps theme when requested
-      const themeToUse = (() => {
-        if (themeId !== 'auto') return themeId;
-        try {
-          const settings = (classicJson as { values?: { settings?: Record<string, unknown> } }).values?.settings || {} as Record<string, unknown>;
-          const major = (settings as { theme?: { colors?: { themeMajor?: string } } }).theme?.colors?.themeMajor;
-          if (major === 'dark') return 'obsidian';
-          if (major === 'light') return 'summit';
-        } catch { /* ignore */ }
-        return 'summit';
-      })();
+      // Derive theme from classic and honor user selection
+      const { computeTheme } = await import('../util/classicTheme');
+      const derived = computeTheme(themeId, classicJson as Record<string, unknown>);
+      const themeToUse = derived.themeId;
       // Extract global Map Series settings used to inform Sidecar panel and map options
       const seriesSettings = (classicJson as { values?: { settings?: Record<string, unknown> } }).values?.settings || {} as Record<string, unknown>;
       const layout = (seriesSettings as { layout?: { id?: string } }).layout || {};
@@ -141,6 +140,9 @@ export class MapSeriesConverter extends BaseConverter {
       const storymapJsons: StoryMapJSON[] = [];
       const entryTitles: string[] = [];
       const builderLinks: string[] = [];
+      const thumbnailUrls: string[] = [];
+      const draftItemIds: string[] = [];
+      const thumbnailResourcePaths: string[] = [];
       // Debug: summarize entry types and itemIds/appids detected ahead of conversion
       const summaries = (entries || []).map((entry: ClassicEntry, idx: number) => {
         const media: ClassicEntryMedia = (entry?.media || entry?.content || {}) as ClassicEntryMedia;
@@ -163,6 +165,8 @@ export class MapSeriesConverter extends BaseConverter {
 
         const builder = new StoryMapJSONBuilder(themeToUse);
         builder.createStoryRoot();
+        // Apply any variable overrides derived at the series level
+        try { if (derived.variableOverrides) builder.applyTheme({ themeId: themeToUse, variableOverrides: derived.variableOverrides }); } catch { /* ignore */ }
         builder.addCoverNode(title, '');
 
         let json: StoryMapJSON;
@@ -171,18 +175,40 @@ export class MapSeriesConverter extends BaseConverter {
           const src = (typeof media?.image === 'string' ? media.image : media?.image?.url) || media?.imageUrl || media?.photo || '';
           const tn = builder.createTextNode(src ? `Image: ${src}` : 'Image entry', 'paragraph', 'wide');
           builder.addChild(builder.getStoryRootId(), tn);
+          try {
+            const direct = deriveImageThumbnailUrl(src);
+            const thumb = buildProxiedThumbnailUrl(direct, 400);
+            const jsonOnce = builder.getJson();
+            const rid = `r-series-settings-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+            (jsonOnce as unknown as { resources: Record<string, { type?: string; data?: Record<string, unknown> }> }).resources[rid] = { type: 'series-settings', data: { thumbnailUrl: thumb } };
+            thumbnailUrls.push(thumb);
+          } catch { /* ignore thumb attach */ }
           json = builder.getJson();
         } else if (kind.kind === 'video') {
           const media = (entry?.media || entry?.content || {}) as ClassicEntryMedia;
           const url = (typeof media?.video === 'string' ? media.video : media?.video?.source) || media?.videoUrl || '';
           const tn = builder.createTextNode(url ? `Video: ${url}` : 'Video entry', 'paragraph', 'wide');
           builder.addChild(builder.getStoryRootId(), tn);
+          try {
+            const thumb = deriveEmbedThumbnailUrl();
+            const jsonOnce = builder.getJson();
+            const rid = `r-series-settings-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+            (jsonOnce as unknown as { resources: Record<string, { type?: string; data?: Record<string, unknown> }> }).resources[rid] = { type: 'series-settings', data: { thumbnailUrl: thumb } };
+            thumbnailUrls.push(thumb);
+          } catch { /* ignore thumb attach */ }
           json = builder.getJson();
         } else if (kind.kind === 'embed') {
           const media = (entry?.media || entry?.content || {}) as ClassicEntryMedia;
           const url = media?.webpage?.url || media?.embed?.url || media?.url || '';
           const tn = builder.createTextNode(url ? `Embed: ${url}` : 'Embed entry', 'paragraph', 'wide');
           builder.addChild(builder.getStoryRootId(), tn);
+          try {
+            const thumb = deriveEmbedThumbnailUrl();
+            const jsonOnce = builder.getJson();
+            const rid = `r-series-settings-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+            (jsonOnce as unknown as { resources: Record<string, { type?: string; data?: Record<string, unknown> }> }).resources[rid] = { type: 'series-settings', data: { thumbnailUrl: thumb } };
+            thumbnailUrls.push(thumb);
+          } catch { /* ignore thumb attach */ }
           json = builder.getJson();
         } else if (kind.kind === 'webmap') {
           // Build a Sidecar (immersive) slide: narrative panel + webmap media
@@ -220,7 +246,8 @@ export class MapSeriesConverter extends BaseConverter {
           try {
             const f: typeof fetch | undefined = (typeof fetch !== 'undefined') ? fetch : undefined;
             if (f && typeof webmapId === 'string' && webmapId.length) {
-              const urlData = `https://www.arcgis.com/sharing/rest/content/items/${webmapId}/data?f=json`;
+              const ORG_BASE = getOrgBase();
+              const urlData = `${ORG_BASE}/sharing/rest/content/items/${webmapId}/data?f=json`;
               const respData = await f(urlData);
               type WebMapData = {
                 initialState?: { view?: { extent?: unknown; center?: unknown; scale?: number; zoom?: number } };
@@ -254,7 +281,8 @@ export class MapSeriesConverter extends BaseConverter {
               // If extent missing, fallback to item details extent
               let finalExtent = extent;
               if (!finalExtent || (typeof finalExtent !== 'object' && !Array.isArray(finalExtent))) {
-                const urlItem = `https://www.arcgis.com/sharing/rest/content/items/${webmapId}?f=json`;
+                const ORG_BASE = getOrgBase();
+                const urlItem = `${ORG_BASE}/sharing/rest/content/items/${webmapId}?f=json`;
                 const respItem = await f(urlItem);
                 if (respItem && respItem.ok) {
                   const item = await respItem.json();
@@ -271,6 +299,15 @@ export class MapSeriesConverter extends BaseConverter {
                 zoom: (typeof zoom === 'number') ? zoom : undefined,
                 viewpoint
               });
+              // Attach a thumbnail URL for this entry (prefer AGO item thumbnail)
+              try {
+                const direct = await deriveWebmapThumbnailUrl(String(webmapId));
+                const thumb = buildProxiedThumbnailUrl(direct, 400);
+                const jsonOnce = builder.getJson();
+                const ridThumb = `r-series-settings-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+                (jsonOnce as unknown as { resources: Record<string, { type?: string; data?: Record<string, unknown> }> }).resources[ridThumb] = { type: 'series-settings', data: { thumbnailUrl: thumb } };
+                thumbnailUrls.push(thumb);
+              } catch { /* ignore thumb attach */ }
               // Propagate to node-level if missing
               builder.updateNodeData(mapNodeId, (nd) => {
                 const resEntry = builder.getJson().resources[resId];
@@ -289,7 +326,8 @@ export class MapSeriesConverter extends BaseConverter {
             MapSeriesConverter.appendConverterMetadata(jsonOnce, classicJson, undefined, i + 1);
             const resources = (jsonOnce as unknown as { resources: Record<string, { type?: string; data?: Record<string, unknown> }> }).resources;
             const rid = `r-series-settings-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-            resources[rid] = { type: 'series-settings', data: { layoutId: layout?.id, panel: { position: pos, size }, mapOptions } };
+            const existing = resources[rid]?.data || {};
+            resources[rid] = { type: 'series-settings', data: { ...existing, layoutId: layout?.id, panel: { position: pos, size }, mapOptions, defaultThumbnailUrl: getDefaultThumbnailUrl() } };
           } catch { /* ignore metadata attach errors */ }
           json = builder.getJson();
         } else if (kind.kind === 'classic') {
@@ -335,9 +373,60 @@ export class MapSeriesConverter extends BaseConverter {
 
         storymapJsons.push(json);
         builderLinks.push(`https://storymaps.arcgis.com/stories/new?title=${encodeURIComponent(title)}`);
+        // If token provided, create a draft StoryMap item and upload thumbnail as a resource
+        if (token) {
+          try {
+            const username = await getUsername(token);
+            const itemId = await createDraftStory(username, token, title);
+            draftItemIds.push(itemId);
+            // Upload converted draft JSON to the item's resources as 'draft.json'
+            try {
+              const draftBlob = new Blob([JSON.stringify(json)], { type: 'application/json' });
+              await addResource(itemId, username, draftBlob, 'draft.json', token);
+            } catch { /* ignore draft upload failures */ }
+            // Upload thumbnail resource (prefer proxied/downscaled URL)
+            const thumbUrl = thumbnailUrls[thumbnailUrls.length - 1] || getDefaultThumbnailUrl();
+            const resp = await fetch(thumbUrl);
+            if (resp.ok) {
+              const blob = await resp.blob();
+              const resourcePath = `thumbnails/series-entry-${i + 1}.png`;
+              await addResource(itemId, username, blob, resourcePath, token);
+              thumbnailResourcePaths.push(resourcePath);
+            } else {
+              // Fallback: skip upload
+              thumbnailResourcePaths.push('');
+            }
+            // Replace builder link with direct editor URL for the created draft
+            builderLinks[builderLinks.length - 1] = `https://storymaps.arcgis.com/stories/${itemId}/edit`;
+          } catch {
+            // If draft creation fails, avoid emitting empty placeholders here;
+            // we'll filter invalid entries after the loop to keep arrays consistent.
+            // Intentionally skip pushing to draftItemIds/thumbnailResourcePaths.
+          }
+        }
         progress?.({ stage: 'convert', message: `Converted Map Series entry ${i + 1}`, current: i + 1, total: entries.length });
       }
-      return { storymapJsons, entryTitles, builderLinks };
+      // Defensive guard: remove any entries without valid draft item IDs when token provided
+      try {
+        if (token) {
+          const validIdx: number[] = [];
+          for (let i = 0; i < draftItemIds.length; i++) {
+            const id = draftItemIds[i];
+            if (typeof id === 'string' && /^[a-f0-9]{32}$/i.test(id)) validIdx.push(i);
+          }
+          if (validIdx.length && validIdx.length !== draftItemIds.length) {
+            const pick = (arr: unknown[], idxs: number[]) => idxs.map(i => arr[i]);
+            const storymapJsonsF = pick(storymapJsons as unknown as unknown[], validIdx) as StoryMapJSON[];
+            const entryTitlesF = pick(entryTitles as unknown as unknown[], validIdx) as string[];
+            const builderLinksF = pick(builderLinks as unknown as unknown[], validIdx) as string[];
+            const thumbnailUrlsF = pick(thumbnailUrls as unknown as unknown[], validIdx) as string[];
+            const draftItemIdsF = pick(draftItemIds as unknown as unknown[], validIdx) as string[];
+            const thumbnailResourcePathsF = pick(thumbnailResourcePaths as unknown as unknown[], validIdx) as string[];
+            return { storymapJsons: storymapJsonsF, entryTitles: entryTitlesF, builderLinks: builderLinksF, thumbnailUrls: thumbnailUrlsF, draftItemIds: draftItemIdsF, thumbnailResourcePaths: thumbnailResourcePathsF };
+          }
+        }
+      } catch { /* ignore filtering errors */ }
+      return { storymapJsons, entryTitles, builderLinks, thumbnailUrls, draftItemIds, thumbnailResourcePaths };
     }
 
     static async fetchChildClassicJson(entry: ClassicEntry, token?: string): Promise<Record<string, unknown>> {

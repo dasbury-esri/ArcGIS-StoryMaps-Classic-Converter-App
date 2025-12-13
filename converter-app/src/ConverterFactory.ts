@@ -43,6 +43,7 @@ import { MapSeriesConverter } from './converters/MapSeriesConverter';
 import { SwipeConverter } from './converters/SwipeConverter';
 import type { ConverterResult, StoryMapJSON, ProgressCallback } from './types/core';
 import type { StoryMapResource } from './types/core';
+import { getOrgBase } from './lib/orgBase';
 // Use global fetch in browser/Node 18+; lazy import node-fetch only if needed in older Node environments.
 type FetchFn = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 // Simplified fetch resolver: in browser and modern Node (>18) global fetch exists; avoid bundling node-fetch.
@@ -94,7 +95,8 @@ export class ConverterFactory {
           const webmapId: string | undefined = values.webmap || classicWithWebmap.webmap;
           if (webmapId && typeof webmapId === 'string') {
             const f = await getFetch();
-            const wmUrl = `https://www.arcgis.com/sharing/rest/content/items/${webmapId}/data?f=json`;
+            const ORG_BASE = getOrgBase();
+            const wmUrl = `${ORG_BASE}/sharing/rest/content/items/${webmapId}/data?f=json`;
             const wmResp = await f(wmUrl);
             if (wmResp.ok) {
               const wmJson = await wmResp.json();
@@ -229,7 +231,8 @@ export class ConverterFactory {
     await Promise.all(sceneResources.map(async (scene) => {
       try {
         checkCancelled();
-        const url = `https://www.arcgis.com/sharing/rest/content/items/${scene.itemId}/data?f=json`;
+        const ORG_BASE = getOrgBase();
+        const url = `${ORG_BASE}/sharing/rest/content/items/${scene.itemId}/data?f=json`;
         const f = await getFetch();
         checkCancelled();
         const resp = await f(url);
@@ -313,7 +316,8 @@ export class ConverterFactory {
     await Promise.all(mapResources.map(async (map) => {
       try {
         checkCancelled();
-        const url = `https://www.arcgis.com/sharing/rest/content/items/${map.itemId}/data?f=json`;
+        const ORG_BASE = getOrgBase();
+        const url = `${ORG_BASE}/sharing/rest/content/items/${map.itemId}/data?f=json`;
         const f = await getFetch();
         checkCancelled();
         const resp = await f(url);
@@ -366,7 +370,8 @@ export class ConverterFactory {
         center = normalizeCenter(center);
         // Fallback: fetch item details for item-level extent if not found in data
         if (!extent || (typeof extent !== 'object' && !Array.isArray(extent))) {
-          const itemUrl = `https://www.arcgis.com/sharing/rest/content/items/${map.itemId}?f=json`;
+          const ORG_BASE = getOrgBase();
+          const itemUrl = `${ORG_BASE}/sharing/rest/content/items/${map.itemId}?f=json`;
           const itemResp = await f(itemUrl);
           if (itemResp.ok) {
             const item = await itemResp.json();
@@ -443,7 +448,7 @@ export class ConverterFactory {
       if (versionWarnings.length) {
         classicMetadata.webmapVersionWarnings = versionWarnings.map(vw => ({
           itemId: vw.itemId,
-          message: `Unsupported web map version: You must update the web map to the latest version. Open in <a href="https://www.arcgis.com/home/webmap/viewer.html?webmap=${vw.itemId}" target="_blank" rel="noopener">Map Viewer Classic</a> and save it.`,
+          message: `Unsupported web map version: You must update the web map to the latest version. Open in <a href="${getOrgBase()}/home/webmap/viewer.html?webmap=${vw.itemId}" target="_blank" rel="noopener">Map Viewer Classic</a> and save it.`,
           version: vw.version,
           type: 'version'
         }));
@@ -451,7 +456,7 @@ export class ConverterFactory {
       if (protocolWarnings.length) {
         classicMetadata.webmapProtocolWarnings = protocolWarnings.map(pw => ({
           itemId: pw.itemId,
-          message: `Unsupported protocol: Update layer URLs to HTTPS. Open the web map <a href="https://www.arcgis.com/home/item.html?id=${pw.itemId}#settings" target="_blank" rel="noopener">settings page</a> and click "Update layers to HTTPS" in the Web map section.`,
+          message: `Unsupported protocol: Update layer URLs to HTTPS. Open the web map <a href="${getOrgBase()}/home/item.html?id=${pw.itemId}#settings" target="_blank" rel="noopener">settings page</a> and click "Update layers to HTTPS" in the Web map section.`,
           httpLayerCount: pw.httpLayerCount,
           type: 'protocol'
         }));

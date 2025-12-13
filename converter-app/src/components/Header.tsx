@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useAuth } from "../auth/useAuth";
 import { APP_VERSION } from "../version";
+import { getOrgBase } from '../lib/orgBase';
 
 function Header() {
   const { userInfo, token, signIn, signOut } = useAuth() as {
@@ -34,7 +35,7 @@ function Header() {
 
   const isAuthed = !!token && !!userInfo;
   const avatarText = userInfo?.username?.charAt(0).toUpperCase() || '?';
-  const profileUrl = userInfo?.username ? `https://www.arcgis.com/home/user.html?user=${userInfo.username}` : undefined;
+  const profileUrl = userInfo?.username ? `${getOrgBase()}/home/user.html?user=${userInfo.username}` : undefined;
   const thumbnailUrl = userInfo?.thumbnailUrl || null;
   const fullName = userInfo?.fullName || userInfo?.username || '';
 

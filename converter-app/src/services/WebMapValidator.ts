@@ -29,7 +29,8 @@ export async function validateWebMaps(webmapIds: string[], token?: string): Prom
   const uniqueIds = Array.from(new Set(webmapIds.filter(id => /^[a-f0-9]{32}$/i.test(id))));
   for (const id of uniqueIds) {
     try {
-      const base = `https://www.arcgis.com/sharing/rest/content/items/${id}`;
+      const ORG_BASE = (globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE || 'https://www.arcgis.com';
+      const base = `${ORG_BASE}/sharing/rest/content/items/${id}`;
       const dataUrl = `${base}/data?f=json${token ? `&token=${encodeURIComponent(token)}` : ''}`;
       const detailsUrl = `${base}?f=json${token ? `&token=${encodeURIComponent(token)}` : ''}`;
       const [webmapData, details] = await Promise.all([
@@ -47,7 +48,8 @@ export async function validateWebMaps(webmapIds: string[], token?: string): Prom
       if (version && typeof version === 'string') {
         const vNum = parseFloat(version);
         if (!Number.isNaN(vNum) && vNum < 2.0) {
-          const classicUrl = `https://www.arcgis.com/home/webmap/viewer.html?webmap=${id}`;
+          const ORG_BASE = (globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE || 'https://www.arcgis.com';
+          const classicUrl = `${ORG_BASE}/home/webmap/viewer.html?webmap=${id}`;
           warnings.push({ itemId: id, level: 'warning', message: `Webmap version ${version} < 2.0. Open in <a href="${classicUrl}" target="_blank" rel="noopener noreferrer">Classic Map Viewer</a> and save to upgrade.` });
         }
       }
@@ -181,7 +183,8 @@ export async function validateWebMaps(webmapIds: string[], token?: string): Prom
       // Optional: check referenced layer itemIds resolve and classify private vs deleted
       for (const l of layers) {
         if (l?.itemId && /^[a-f0-9]{32}$/i.test(l.itemId)) {
-          const itemUrl = `https://www.arcgis.com/sharing/rest/content/items/${l.itemId}?f=json${token ? `&token=${encodeURIComponent(token)}` : ''}`;
+          const ORG_BASE = (globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE || 'https://www.arcgis.com';
+          const itemUrl = `${ORG_BASE}/sharing/rest/content/items/${l.itemId}?f=json${token ? `&token=${encodeURIComponent(token)}` : ''}`;
           try {
             const itemResp = await fetch(itemUrl);
             if (!itemResp.ok) {

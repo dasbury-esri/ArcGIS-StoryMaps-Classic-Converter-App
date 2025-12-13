@@ -22,6 +22,7 @@ import { fetchJsonWithCache } from '../utils/fetchCache.ts';
 import { sanitizeBasicHtml } from '../utils/htmlSanitizer.ts';
 import { execSync } from 'node:child_process';
 import { detectClassicTemplate } from '../util/detectTemplate';
+import { computeTheme } from '../util/classicTheme';
 
 type SwipeModel = 'TWO_WEBMAPS' | 'TWO_LAYERS';
 type SwipeLayout = 'swipe' | 'spyglass';
@@ -522,7 +523,13 @@ export class SwipeConverter extends BaseConverter {
 
 
   protected applyTheme(): void {
-    // Theme applied via builder initialization; no overrides yet
+    try {
+      const { themeId, variableOverrides } = computeTheme(this.themeId as any, this.classicJson);
+      this.builder.applyTheme({ themeId, variableOverrides });
+      this.emit('Applied theme from classic settings');
+    } catch {
+      // no-op; keep existing theme
+    }
   }
 
   protected collectMedia(): string[] {

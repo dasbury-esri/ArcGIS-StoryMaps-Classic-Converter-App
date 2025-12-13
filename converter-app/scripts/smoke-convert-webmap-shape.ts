@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { MapJournalConverter } from '../src/converters/MapJournalConverter';
 import type { StoryMapJSON } from '../src/types/core';
+import { getOrgBase } from '../../scripts/lib/orgBase';
 
 const arg = process.argv[2];
 let classicJson: any;
@@ -14,7 +15,8 @@ if (!arg) {
   process.exit(1);
 }
 if (/^[a-f0-9]{32}$/i.test(arg)) {
-  const url = `https://www.arcgis.com/sharing/rest/content/items/${arg}/data?f=json`;
+  const ORG_BASE = getOrgBase();
+  const url = `${ORG_BASE}/sharing/rest/content/items/${arg}/data?f=json`;
   console.log('[Smoke] Fetching classic item data by id:', arg);
   const res = await fetch(url);
   if (!res.ok) {
@@ -65,7 +67,8 @@ for (const [rid, res] of webmapResources) {
   console.log('mapLayers count:', outCount);
   // Fetch original webmap and compare operationalLayers length
   if (typeof data.itemId === 'string' && /^[a-f0-9]{32}$/i.test(data.itemId)) {
-    const wmUrl = `https://www.arcgis.com/sharing/rest/content/items/${data.itemId}/data?f=json`;
+    const ORG_BASE = getOrgBase();
+    const wmUrl = `${ORG_BASE}/sharing/rest/content/items/${data.itemId}/data?f=json`;
     const wmRes = await fetch(wmUrl);
     if (wmRes.ok) {
       const wmJson = await wmRes.json();

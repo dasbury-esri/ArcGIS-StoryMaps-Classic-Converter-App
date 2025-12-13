@@ -2,9 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SwipeConverter } from '../src/converters/SwipeConverter.ts';
+import { getOrgBase } from '../../scripts/lib/orgBase';
 
 async function fetchClassicById(itemId: string): Promise<any> {
-  const url = `https://www.arcgis.com/sharing/rest/content/items/${itemId}/data?f=json`;
+  const ORG_BASE = getOrgBase();
+  const url = `${ORG_BASE}/sharing/rest/content/items/${itemId}/data?f=json`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch classic item ${itemId}: HTTP ${res.status}`);
   return res.json();

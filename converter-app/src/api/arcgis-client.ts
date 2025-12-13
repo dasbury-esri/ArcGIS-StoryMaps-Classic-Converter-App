@@ -1,18 +1,18 @@
 /**
  * ArcGIS REST API Client
  * Client-side functions that make direct fetch() calls to ArcGIS REST API
- * All calls go directly from browser to https://www.arcgis.com/sharing/rest/
+ * All calls go directly from browser to the portal's sharing/rest endpoint.
  */
 import type { StoryMapJSON } from '../types/core';
+import { getOrgBase } from '../lib/orgBase';
 
-const BASE_URL = 'https://www.arcgis.com/sharing/rest';
+const BASE_URL = `${getOrgBase()}/sharing/rest`;
 
 /**
  * Get item data (classic story JSON)
  */
 export async function getItemData(itemId: string, token: string): Promise<unknown> {
-        const url = `${BASE_URL}/content/items/${itemId}/data?f=json&token=${token}`;
-        console.debug('[arcgis-client.getItemData] GET', url);
+    const url = `${BASE_URL}/content/items/${itemId}/data?f=json&token=${token}`;
 
         const response = await fetch(url);
         if (!response.ok) {
@@ -302,5 +302,128 @@ export async function createDraftStory(
         throw new Error(`Failed to create draft story: ${msg}`);
     }
     return String(result.id);
+}
+
+/**
+ * Create a StoryMap Collection draft item and return its item id.
+ * Uses ArcGIS REST addItem on the user's content with type 'StoryMap Collection'.
+ */
+export async function createCollectionDraft(
+    username: string,
+    token: string,
+    title: string,
+    entries: Array<{ itemId: string; title: string; thumbnailUrl?: string }>,
+    options?: { byline?: string; themeBase?: 'summit' | 'obsidian'; themeOverrides?: Record<string, unknown>; layoutType?: string }
+): Promise<string> {
+    const url = `${BASE_URL}/content/users/${encodeURIComponent(username)}/addItem`;
+    const formData = new URLSearchParams();
+    formData.append('f', 'json');
+    formData.append('token', token);
+    formData.append('title', title);
+        // Collections are stored as StoryMap items with specific typeKeywords
+        // Using 'StoryMap Collection' as type causes 'Item type not valid'
+        formData.append('type', 'StoryMap');
+        // Include keywords so the platform recognizes this as a collection draft
+        formData.append('typeKeywords', JSON.stringify([
+            'StoryMaps',
+            'StoryMapCollection',
+            'smdraftresourceid:draft.json'
+        ]));
+        // Build AGSM Collection JSON schema (root/nodes/resources)
+        const coverId = `n-${Math.random().toString(36).slice(2, 8)}`;
+        const navId = `n-${Math.random().toString(36).slice(2, 8)}`;
+        const uiId = `n-${Math.random().toString(36).slice(2, 8)}`;
+        const rootId = `n-${Math.random().toString(36).slice(2, 8)}`;
+        const themeResId = `r-${Math.random().toString(36).slice(2, 8)}`;
+        const themeId = options?.themeBase ?? 'summit';
+        const themeOverrides = options?.themeOverrides ?? {};
+        const byline = options?.byline ?? '';
+        const uiType = options?.layoutType ?? 'tiles';
+        const navType = 'compact';
+        const items = entries.map(e => ({ itemId: e.itemId, title: e.title, thumbnailUrl: e.thumbnailUrl }));
+        const collectionDraft = {
+            root: rootId,
+            nodes: {
+                [coverId]: {
+                    type: 'collection-cover',
+                    data: {
+                        title,
+                        summary: '',
+                        byline,
+                        type: uiType
+                    }
+                },
+                [navId]: {
+                    type: 'collection-nav',
+                    data: {
+                        type: navType
+                    }
+                },
+                [uiId]: {
+                    type: 'collection-ui',
+                    data: {
+                        items
+                    },
+                    children: [coverId, navId]
+                },
+                [rootId]: {
+                    type: 'collection',
+                    data: {
+                        storyTheme: themeResId
+                    },
+                    children: [uiId]
+                }
+            },
+            resources: {
+                [themeResId]: {
+                    type: 'story-theme',
+                    data: {
+                        themeId,
+                        themeBaseVariableOverrides: themeOverrides
+                    }
+                }
+            }
+        };
+    formData.append('text', JSON.stringify(collectionDraft));
+
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+    });
+    const result = await response.json();
+    if (!response.ok || !result || !result.success || !result.id) {
+        const msg = (result && result.error && result.error.message) || response.statusText || 'addItem failed';
+        throw new Error(`Failed to create collection draft: ${msg}`);
+    }
+    return String(result.id);
+}
+
+/**
+ * Update an item's thumbnail via URL
+ */
+export async function updateItemThumbnailUrl(
+    itemId: string,
+    username: string,
+    token: string,
+    thumbnailUrl: string
+): Promise<unknown> {
+    const url = `${BASE_URL}/content/users/${encodeURIComponent(username)}/items/${encodeURIComponent(itemId)}/update`;
+    const formData = new URLSearchParams();
+    formData.append('f', 'json');
+    formData.append('token', token);
+    formData.append('thumbnailurl', thumbnailUrl);
+
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+    });
+    const result = await response.json();
+    if (!response.ok || (result as { success?: boolean }).success !== true) {
+        const msg = (result as { error?: { message?: string } })?.error?.message || response.statusText;
+        throw new Error(`Failed to update item thumbnail: ${msg}`);
+    }
+    return result;
 }
 

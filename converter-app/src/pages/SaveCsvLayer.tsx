@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { getOrgBase } from '../lib/orgBase';
 import { useAuth } from '../auth/useAuth';
 import WebMap from '@arcgis/core/WebMap';
 import CSVLayer from '@arcgis/core/layers/CSVLayer';
@@ -164,9 +165,9 @@ export default function SaveCsvLayer() {
       try {
         setState({ status: 'running', step: 'Registering token' });
         // Ensure the JS API knows our portal for item lookups
-        esriConfig.portalUrl = 'https://www.arcgis.com';
+        esriConfig.portalUrl = getOrgBase();
         esriId.registerToken({
-          server: 'https://www.arcgis.com/sharing/rest',
+          server: `${getOrgBase()}/sharing/rest`,
           token,
           expires: Date.now() + 60 * 60 * 1000,
           ssl: true,
@@ -185,14 +186,14 @@ export default function SaveCsvLayer() {
         (csvLayer as any).title = (csvLayer as any).title ?? 'Converted Map Notes';
         (csvLayer as any).outFields = ['*'];
         // Provide explicit URL to item data to satisfy save serialization requirements
-        (csvLayer as any).url = `https://www.arcgis.com/sharing/rest/content/items/${csvItemId}/data`;
+        (csvLayer as any).url = `${getOrgBase()}/sharing/rest/content/items/${csvItemId}/data`;
         await csvLayer.load();
         await (csvLayer as any).when();
 
         // Try to copy renderer and popup from existing Map Notes layer
         setState({ status: 'running', step: 'Copying renderer/popup from Map Notes' });
         try {
-          const wmDataUrl = `https://www.arcgis.com/sharing/rest/content/items/${webmapId}/data?f=json&token=${encodeURIComponent(token)}`;
+          const wmDataUrl = `${getOrgBase()}/sharing/rest/content/items/${webmapId}/data?f=json&token=${encodeURIComponent(token)}`;
           const wmRes = await fetch(wmDataUrl);
           if (wmRes.ok) {
             const wmJson = await wmRes.json();
@@ -262,7 +263,7 @@ export default function SaveCsvLayer() {
             });
           } catch {}
           // Post-save verification: fetch webmap data and list operationalLayers titles
-          const verifyUrl = `https://www.arcgis.com/sharing/rest/content/items/${webmapId}/data?f=json&token=${encodeURIComponent(token)}`;
+          const verifyUrl = `${((globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE || 'https://www.arcgis.com')}/sharing/rest/content/items/${webmapId}/data?f=json&token=${encodeURIComponent(token)}`;
           let titles: string[] = [];
           // Build a quick summary of the CSV layer's renderer and popupTemplate
           let layerSummary: { renderer?: any; popupTemplate?: any; layerTitle?: string } = {
@@ -330,7 +331,7 @@ export default function SaveCsvLayer() {
           try { json = await res.json(); } catch { try { text = await res.text(); } catch {} }
           if (res.ok && json?.success) {
             // Post-save verification via REST path
-            const verifyUrl = `https://www.arcgis.com/sharing/rest/content/items/${webmapId}/data?f=json&token=${encodeURIComponent(token)}`;
+            const verifyUrl = `${((globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE || 'https://www.arcgis.com')}/sharing/rest/content/items/${webmapId}/data?f=json&token=${encodeURIComponent(token)}`;
             let titles: string[] = [];
             try {
               const vres = await fetch(verifyUrl);

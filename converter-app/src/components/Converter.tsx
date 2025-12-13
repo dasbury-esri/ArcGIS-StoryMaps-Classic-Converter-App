@@ -27,7 +27,11 @@ import {
   addResource,
   updateItemKeywords,
   createDraftStory,
+  getUsername,
+  createCollectionDraft,
+  updateItemThumbnailUrl,
 } from "../api/arcgis-client";
+import { getOrgBase } from "../lib/orgBase";
 
 type Status =
   | "idle"
@@ -53,9 +57,17 @@ export default function Converter() {
   const [message, setMessage] = useState("");
   const [toast, setToast] = useState<string>("");
   // Map Series MVP state: per-entry builder links and collection readiness
-  const [mapSeriesLinks] = useState<Array<{ title: string; href: string }>>([]);
+  const [mapSeriesLinks, setMapSeriesLinks] = useState<Array<{ title: string; href: string }>>([]);
+  const mapSeriesDraftIds = useRef<string[]>([]);
+  const mapSeriesThumbUrls = useRef<string[]>([]);
+  const [mapSeriesPublished, setMapSeriesPublished] = useState<boolean[]>([]);
+  const mapSeriesPublishedRef = useRef<boolean[]>([]);
+  const mapSeriesPublishedByIdRef = useRef<Record<string, boolean>>({});
   const [mapSeriesReadyToCollect, setMapSeriesReadyToCollect] = useState<boolean>(false);
   const [convertedUrl, setConvertedUrl] = useState("");
+  const [collectionEditUrl, setCollectionEditUrl] = useState<string>("");
+  // Legacy interval ref removed; consolidated polling handles timers internally
+  // const mapSeriesPollIntervalRef = useRef<number | null>(null);
     // UI toggle: suppress converter-metadata resources
     const [suppressMetadata, setSuppressMetadata] = useState<boolean>(() => {
       try {
@@ -243,12 +255,14 @@ export default function Converter() {
   useEffect(() => {
     if (!token) {
       setOrgBase(DEFAULT_ORG_BASE);
+      try { (globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE = DEFAULT_ORG_BASE; } catch { /* ignore */ }
       prevTokenRef.current = null;
       portalResolvedRef.current = false;
       return;
     }
     if (prevTokenRef.current && prevTokenRef.current !== token) {
       setOrgBase(DEFAULT_ORG_BASE);
+      try { (globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE = DEFAULT_ORG_BASE; } catch { /* ignore */ }
       portalResolvedRef.current = false;
     }
     prevTokenRef.current = token;
@@ -263,6 +277,7 @@ export default function Converter() {
       // Respect explicit override first
       if (token && resolved && orgBase !== resolved) {
         setOrgBase(resolved);
+        try { (globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE = resolved; } catch { /* ignore */ }
       }
     } catch {
       // ignore resolution errors
@@ -292,6 +307,7 @@ export default function Converter() {
         }
         if (resolvedOrg && orgBase !== resolvedOrg) {
           setOrgBase(resolvedOrg);
+          try { (globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE = resolvedOrg; } catch { /* ignore */ }
         }
       } catch {
         // ignore portal self fetch errors
@@ -340,7 +356,10 @@ export default function Converter() {
         // ignore portal self fetch errors
       }
     }
-    if (candidate && candidate !== orgBase) setOrgBase(candidate);
+    if (candidate && candidate !== orgBase) {
+      setOrgBase(candidate);
+      try { (globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE = candidate; } catch { /* ignore */ }
+    }
     return candidate;
   }, [orgBase, token, getOrgHostname]);
   // Reset UI state for a fresh run (used by Clear Cache)
@@ -358,7 +377,17 @@ export default function Converter() {
     setDetectedTemplate(null);
     if (customCssInfo?.url) URL.revokeObjectURL(customCssInfo.url);
     setCustomCssInfo(null);
+    // Clear any Map Series publishing UI state so the panel disappears
+    setMapSeriesLinks([]);
+    mapSeriesDraftIds.current = [];
+    mapSeriesThumbUrls.current = [];
+    setMapSeriesPublished([]);
+    mapSeriesPublishedRef.current = [];
+    mapSeriesPublishedByIdRef.current = {};
+    setMapSeriesReadyToCollect(false);
   }, [customCssInfo]);
+
+  // (Removed legacy polling effect; using the consolidated MapSeriesPoll effect below)
     const handleConvert = async () => {
       // Reset state
       setStatus("idle");
@@ -437,6 +466,20 @@ export default function Converter() {
           setMessage(`Detected template: ${runtimeTemplate}. Preparing resources...`);
         }
 
+        // Strengthen detection: Map Series classic JSON exposes values.entries
+        if (!runtimeTemplate || runtimeTemplate.toLowerCase() === 'unknown') {
+          try {
+            const hasEntries = Array.isArray(classicData?.values?.entries) && classicData.values.entries.length > 0;
+            if (hasEntries) {
+              runtimeTemplate = 'Map Series';
+              setDetectedTemplate('Map Series');
+              setMessage('Detected template: Map Series. Preparing resources...');
+            }
+          } catch {
+            // ignore
+          }
+        }
+
         // Early error messaging for non-classic items or disabled classic types
         try {
           const details = await getItemDetails(classicItemId, token);
@@ -444,9 +487,18 @@ export default function Converter() {
           const classicType = (runtimeTemplate || '').toLowerCase();
           // If detector returned unknown, treat as non-classic
           if (!classicType || classicType === 'unknown') {
+            // Final guard: if entries exist, this is Map Series
+            try {
+              const hasEntries = Array.isArray(classicData?.values?.entries) && classicData.values.entries.length > 0;
+              if (hasEntries) {
+                runtimeTemplate = 'Map Series';
+              }
+            } catch { /* ignore */ }
+            if (!runtimeTemplate || runtimeTemplate.toLowerCase() === 'unknown') {
             setStatus('error');
             setMessage(`Error: The item id you entered is not for a Classic Esri Story Map. It is a ${itemType || 'non-classic ArcGIS item'}`);
             return;
+            }
           }
           // If classic type is recognized but currently disabled in UI feature gating
           if (!isClassicTemplateEnabled(runtimeTemplate)) {
@@ -663,8 +715,25 @@ export default function Converter() {
             default: setMessage(msg);
           }
         };
-        const tmpl = (detectedTemplate || runtimeTemplate || '').toLowerCase();
-        if (tmpl === 'map journal' || tmpl === 'mapjournal') {
+        // Defensive guard: if Map Series entries were derived, force template
+        if ((!runtimeTemplate || runtimeTemplate.toLowerCase() === 'unknown')) {
+          // If we already collected draft IDs, it's Map Series
+          if ((mapSeriesDraftIds.current?.length || 0) > 0) {
+            runtimeTemplate = 'Map Series';
+          } else {
+            // Additional guard: classic JSON has entries → Map Series
+            try {
+              const entries = Array.isArray(classicData?.values?.entries) ? classicData.values.entries : [];
+              if (entries.length > 0) {
+                runtimeTemplate = 'Map Series';
+              }
+            } catch {
+              // ignore
+            }
+          }
+        }
+        const resolvedTmpl = (detectedTemplate || runtimeTemplate || '').toLowerCase();
+        if (resolvedTmpl === 'map journal' || resolvedTmpl === 'mapjournal') {
           const conv = new MapJournalConverter({
             classicJson: classicData,
             themeId: 'summit',
@@ -673,14 +742,14 @@ export default function Converter() {
           });
             const result = conv.convert();
             newStorymapJson = result.storymapJson;
-        } else if (tmpl === 'map tour' || tmpl === 'tour') {
+        } else if (resolvedTmpl === 'map tour' || resolvedTmpl === 'tour') {
           const result = MapTourConverter.convert({
             classicJson: classicData,
             themeId: 'summit',
             progress
           });
           newStorymapJson = result.storymapJson;
-        } else if (tmpl === 'swipe') {
+        } else if (resolvedTmpl === 'swipe') {
           const conv = new SwipeConverter({
             classicJson: classicData,
             themeId: 'summit',
@@ -689,26 +758,39 @@ export default function Converter() {
           });
             const result = await conv.convert();
             newStorymapJson = result.storymapJson;
-        } else if (tmpl === 'map series' || tmpl === 'mapseries') {
+        } else if (resolvedTmpl === 'map series' || resolvedTmpl === 'mapseries') {
           // Map Series: build one draft per entry and surface builder links
-          const result = await MapSeriesConverter.convertSeries({
+                const series = await MapSeriesConverter.convertSeries({
             classicJson: classicData,
             themeId: 'summit',
             progress,
             token
           });
-          // Use the first entry's JSON for immediate draft upload to the created story
-          newStorymapJson = (result.storymapJsons && result.storymapJsons[0]) || ({} as StoryMapJSON);
-          try {
-            const links = Array.isArray(result.builderLinks) ? result.builderLinks : [];
-            const titles = Array.isArray(result.entryTitles) ? result.entryTitles : [];
-            setMapSeriesLinks(links.map((href, i) => ({ href, title: titles[i] || `Entry ${i + 1}`, published: false })));
-            setMapSeriesReady(true);
-          } catch {
-            // ignore state wiring errors
-          }
-        } else {
-          throw new Error(`Unsupported template for new converters: ${detectedTemplate ?? 'unknown'}`);
+                const entries = Array.isArray(series.entryTitles) ? series.entryTitles : [];
+                const hrefs = Array.isArray(series.builderLinks) ? series.builderLinks : [];
+                const thumbs = Array.isArray(series.thumbnailUrls) ? series.thumbnailUrls : [];
+                const draftsRaw = Array.isArray(series.draftItemIds) ? series.draftItemIds : [];
+                const validId = (s: unknown) => typeof s === 'string' && /^[a-f0-9]{32}$/i.test(s);
+                const drafts = draftsRaw.filter(validId);
+                mapSeriesDraftIds.current = drafts;
+                if (import.meta.env.DEV) {
+                  console.debug('[MapSeries] draft IDs', { total: draftsRaw.length, valid: drafts.length });
+                }
+                mapSeriesThumbUrls.current = thumbs;
+                const linkPairs = entries.map((t, i) => {
+                  const id = drafts[i];
+                  const hrefDefault = hrefs[i] || '#';
+                  const href = (id && id.length)
+                    ? `https://storymaps.arcgis.com/stories/${id}/edit`
+                    : hrefDefault;
+                  return { title: t, href };
+                }).filter(lp => lp.href && lp.href !== '#');
+                if (linkPairs.length > 0) {
+                  setConvertedUrl('Map Series conversion complete. See links below.');
+                  setMapSeriesLinks(linkPairs);
+                }
+          // Map Series flow does not produce a single story JSON; stop here
+          return;
         }
         checkCancelled();
 
@@ -1052,9 +1134,18 @@ export default function Converter() {
             });
             if (res.ok) {
               const info = await res.json();
-              console.info('[LocalSave] Converted JSON saved:', info?.path || info?.fileName || 'ok');
+              const savedPath = info?.path || info?.fileName || 'ok';
+              console.info('[LocalSave] Converted JSON saved:', savedPath);
+              if (import.meta.env.DEV) {
+                setToast(`Saved draft.json to: ${savedPath}`);
+                setTimeout(() => setToast(''), 3000);
+              }
             } else {
               console.warn('[LocalSave] Failed to save converted JSON locally:', res.status);
+              if (import.meta.env.DEV) {
+                setToast(`Save draft.json failed (status ${res.status})`);
+                setTimeout(() => setToast(''), 3000);
+              }
             }
           }
           // If Map Series, save each entry JSON and a collection placeholder into a classic-id subfolder
@@ -1086,8 +1177,19 @@ export default function Converter() {
                       json: entryJson
                     })
                   });
-                  if (!res.ok) {
+                  if (res.ok) {
+                    const info = await res.json();
+                    const savedPath = info?.path || info?.fileName || `entry-${i+1}.json`;
+                    if (import.meta.env.DEV) {
+                      setToast(`Saved entry ${i+1} to: ${savedPath}`);
+                      setTimeout(() => setToast(''), 2500);
+                    }
+                  } else {
                     console.warn('[LocalSave] Failed to save Map Series entry JSON locally:', i + 1, res.status);
+                    if (import.meta.env.DEV) {
+                      setToast(`Save entry ${i+1} failed (status ${res.status})`);
+                      setTimeout(() => setToast(''), 2500);
+                    }
                   }
                 }
                 // Save collection placeholder draft JSON, including layoutId for collection type and panel defaults
@@ -1112,8 +1214,19 @@ export default function Converter() {
                       json: collectionDraft
                     })
                   });
-                  if (!res.ok) {
+                  if (res.ok) {
+                    const info = await res.json();
+                    const savedPath = info?.path || info?.fileName || 'collection-draft.json';
+                    if (import.meta.env.DEV) {
+                      setToast(`Saved collection-draft to: ${savedPath}`);
+                      setTimeout(() => setToast(''), 2500);
+                    }
+                  } else {
                     console.warn('[LocalSave] Failed to save Map Series collection draft locally:', res.status);
+                    if (import.meta.env.DEV) {
+                      setToast(`Save collection-draft failed (status ${res.status})`);
+                      setTimeout(() => setToast(''), 2500);
+                    }
                   }
                 }
               } catch (err) {
@@ -1142,6 +1255,127 @@ export default function Converter() {
         setPublishing(false);
       }
     };
+  // Auto-poll for published_data.json whenever Map Series links change
+  useEffect(() => {
+    if (import.meta.env.DEV) {
+      console.debug('[MapSeriesPoll] effect run', {
+        linksCount: mapSeriesLinks.length,
+        orgBase,
+        host: getOrgHostname()
+      });
+    }
+    if (!mapSeriesLinks.length) {
+      if (import.meta.env.DEV) console.debug('[MapSeriesPoll] no links; skipping setup');
+      return;
+    }
+    let interval: number | undefined;
+    let initialTimeout: number | undefined;
+    let cancelled = false;
+    (async () => {
+      try {
+        // Initialize ID-keyed map preserving any previous true values
+        const prevMap = { ...mapSeriesPublishedByIdRef.current };
+        for (const id of (mapSeriesDraftIds.current || []).filter(id => typeof id === 'string' && /^[a-f0-9]{32}$/i.test(id))) {
+          if (typeof prevMap[id] !== 'boolean') prevMap[id] = false;
+        }
+        mapSeriesPublishedByIdRef.current = prevMap;
+        // Project to UI array order from draftIds
+        const uiArray = (mapSeriesDraftIds.current || []).filter(id => typeof id === 'string' && /^[a-f0-9]{32}$/i.test(id)).map(id => Boolean(prevMap[id]));
+        mapSeriesPublishedRef.current = uiArray;
+        setMapSeriesPublished(uiArray);
+        if (import.meta.env.DEV) {
+          console.debug('[MapSeriesPoll] setup', {
+            linksCount: mapSeriesLinks.length,
+            orgBase,
+          });
+        }
+        const tkn = token;
+        if (!tkn) {
+          if (import.meta.env.DEV) console.debug('[MapSeriesPoll] no token; skipping');
+          return;
+        }
+        const draftIdsAll = (mapSeriesDraftIds.current || []).slice();
+        const draftIds = draftIdsAll.filter(id => typeof id === 'string' && /^[a-f0-9]{32}$/i.test(id));
+        if (!draftIds.length) {
+          if (import.meta.env.DEV) console.debug('[MapSeriesPoll] no draftIds; skipping');
+          return;
+        }
+        const pollOnce = async () => {
+          if (cancelled) return;
+          const next = mapSeriesPublishedRef.current.slice();
+          for (let i = 0; i < draftIds.length; i++) {
+            const itemId = draftIds[i];
+            if (!itemId || next[i]) continue;
+            try {
+              const baseHost = (orgBase && orgBase.length) ? orgBase : `https://${getOrgHostname()}`;
+              // Prefer item-level resources endpoint which does not require owner in path
+              const url = `${baseHost}/sharing/rest/content/items/${encodeURIComponent(itemId)}/resources?f=json&token=${encodeURIComponent(tkn)}`;
+              if (import.meta.env.DEV) console.debug('[MapSeriesPoll] fetch resources', { itemId, url });
+              const res = await fetch(url);
+              if (!res.ok) continue;
+              const json = await res.json();
+              const resources = Array.isArray(json?.resources) ? json.resources : [];
+              const hasPublishedData = resources.some((r: { resource?: string }) => String(r?.resource || '').toLowerCase().endsWith('published_data.json'));
+              if (import.meta.env.DEV) {
+                console.debug('[MapSeriesPoll]', {
+                  itemId,
+                  url,
+                  resourceCount: resources.length,
+                  hasPublishedData
+                });
+              }
+              if (hasPublishedData) {
+                next[i] = true;
+                mapSeriesPublishedByIdRef.current[itemId] = true;
+              }
+            } catch {
+              // ignore per-entry polling errors
+            }
+          }
+          // Re-project from ID map to UI-order array
+          const nextUi = (mapSeriesDraftIds.current || []).filter(id => typeof id === 'string' && /^[a-f0-9]{32}$/i.test(id)).map(id => Boolean(mapSeriesPublishedByIdRef.current[id]));
+          if (import.meta.env.DEV) {
+            console.debug('[MapSeriesPoll] projection', {
+              draftIds,
+              publishedById: { ...mapSeriesPublishedByIdRef.current },
+              projectedArray: nextUi
+            });
+          }
+          mapSeriesPublishedRef.current = nextUi;
+          setMapSeriesPublished(nextUi);
+          const allChecked = nextUi.length > 0 && nextUi.every(Boolean);
+          setMapSeriesReadyToCollect(allChecked);
+          if (allChecked && interval) {
+            clearInterval(interval);
+            interval = undefined;
+          }
+        };
+        // Run one immediate poll, then start interval after a short debounce
+        if (!cancelled) {
+          if (import.meta.env.DEV) console.debug('[MapSeriesPoll] immediate poll');
+          await pollOnce();
+        }
+        initialTimeout = window.setTimeout(async () => {
+          if (!cancelled) {
+            if (import.meta.env.DEV) console.debug('[MapSeriesPoll] start interval (10s)');
+            interval = window.setInterval(async () => {
+              if (import.meta.env.DEV) console.debug('[MapSeriesPoll] interval tick');
+              await pollOnce();
+            }, 10000);
+          }
+        }, 1500);
+      } catch {
+        // ignore polling setup errors
+      }
+    })();
+    return () => {
+      cancelled = true;
+      if (initialTimeout) clearTimeout(initialTimeout);
+      if (import.meta.env.DEV) console.debug('[MapSeriesPoll] cleanup: clearing timers');
+      if (interval) clearInterval(interval);
+    };
+  }, [mapSeriesLinks, getOrgHostname, orgBase, token]);
+
   return (
     <div className="converter-container">
       
@@ -1198,7 +1432,7 @@ export default function Converter() {
             }}
             title={'Clear in-memory fetch cache'}
           >
-            Clear cached webmap/story data
+            Clear cached data
           </button>
         </div>
       )}
@@ -1391,31 +1625,123 @@ export default function Converter() {
           )}
         </div>
       )}
-      {/* Map Series publishing panel (MVP link list) */}
+      {/* Map Series publishing panel with auto-check when published_data.json exists */}
       {mapSeriesLinks.length > 0 && (
         <div className="mapseries-publish">
           <h3>Publish Map Series Entries</h3>
+          {/* Initialize and poll for published_data.json per entry */}
+          {(() => {
+            // Lazy inline setup: establish published-state length when links render
+            try {
+              if (!Array.isArray(mapSeriesPublished) || mapSeriesPublished.length !== mapSeriesLinks.length) {
+                const ids = mapSeriesDraftIds.current || [];
+                const init = ids.map(id => Boolean(mapSeriesPublishedByIdRef.current[id]));
+                // If ids length differs from links length, pad with false
+                const padded = init.length === mapSeriesLinks.length
+                  ? init
+                  : Array.from({ length: mapSeriesLinks.length }, (_, i) => Boolean(init[i]));
+                setMapSeriesPublished(padded);
+              }
+            } catch {
+              // ignore initialization errors
+            }
+            return null;
+          })()}
           <ul>
             {mapSeriesLinks.map((l, idx) => (
               <li key={idx}>
                 <a href={l.href} target="_blank" rel="noopener">Open Builder: {l.title}</a>
                 <label className="mapseries-publish-label">
-                  <input type="checkbox" onChange={(e) => {
-                    const ul = e.currentTarget.closest('ul');
-                    const allChecked = ul ? Array.from(ul.querySelectorAll('input[type="checkbox"]')).every((el) => (el as HTMLInputElement).checked) : false;
-                    setMapSeriesReadyToCollect(allChecked);
-                  }} /> Published
+                  <input
+                    type="checkbox"
+                    checked={mapSeriesPublished[idx] === true}
+                    onChange={(e) => {
+                      const next = [...mapSeriesPublished];
+                      next[idx] = e.currentTarget.checked;
+                      setMapSeriesPublished(next);
+                      const allChecked = next.length > 0 && next.every(Boolean);
+                      setMapSeriesReadyToCollect(allChecked);
+                    }}
+                  /> Published
                 </label>
               </li>
             ))}
           </ul>
           {isValidClassicId(classicItemId) && (
-            <button disabled={!mapSeriesReadyToCollect} onClick={() => {
-              setToast('Create Collection clicked (placeholder)');
-              setTimeout(() => setToast(''), 2000);
+            <>
+            <button className={`mapseries-collection-publish-btn`} disabled={!mapSeriesReadyToCollect} onClick={async () => {
+              try {
+                setToast('Creating Collection...');
+                const tkn = token;
+                if (!tkn) { setToast('No token available'); setTimeout(() => setToast(''), 2000); return; }
+                const username = await getUsername(tkn);
+                // Derive collection title from classic item details and prefix with (Converted)
+                const classicDetails = await getItemDetails(classicItemId, tkn);
+                const classicTitleResolved = String((classicDetails as { title?: string })?.title || '').trim();
+                const title = classicTitleResolved ? `(Converted) ${classicTitleResolved}` : '(Converted) Map Series';
+                // Detect accordion layout from typeKeywords when available
+                const tk = (classicDetails as { typeKeywords?: unknown })?.typeKeywords;
+                const typeKeywords = Array.isArray(tk) ? tk.filter((s): s is string => typeof s === 'string') : [];
+                const isAccordion = typeKeywords.some(k => /accordion/i.test(k));
+                // Prefer explicit layout id from classic JSON values if present
+                let layoutType = isAccordion ? 'tab' : undefined;
+                try {
+                  const explicitLayoutId = String(((classicData as unknown as { values?: { settings?: { layout?: { id?: string } } } })?.values?.settings?.layout?.id) || '').trim();
+                  if (explicitLayoutId) layoutType = explicitLayoutId;
+                } catch { /* ignore layout detection errors */ }
+                // Detect theme base + overrides from classic JSON
+                let themeBase: 'summit' | 'obsidian' = 'summit';
+                let themeOverrides: Record<string, unknown> = {};
+                try {
+                  const colors = ((classicData as unknown as { values?: { settings?: { theme?: { colors?: Record<string, unknown> } } } })?.values?.settings?.theme?.colors) || {};
+                  const group = String((colors as { group?: string })?.group || '').toLowerCase();
+                  themeBase = group === 'dark' ? 'obsidian' : 'summit';
+                  themeOverrides = colors || {};
+                } catch { /* ignore theme detection errors */ }
+                // Build entries from last conversion result stored in state
+                const entries = mapSeriesLinks.map((l, idx) => ({
+                  itemId: (mapSeriesDraftIds.current?.[idx] || ''),
+                  title: l.title,
+                  thumbnailUrl: (mapSeriesThumbUrls.current?.[idx] || '')
+                }));
+                const collectionId = await createCollectionDraft(username, tkn, title, entries, { byline: '', themeBase, themeOverrides, layoutType });
+                // Attempt to set the collection's thumbnail to the classic story's thumbnail
+                const classicThumbName = (classicDetails as { thumbnail?: string })?.thumbnail;
+                if (classicThumbName) {
+                  const classicThumbUrl = `${getOrgBase()}/sharing/rest/content/items/${classicItemId}/info/${classicThumbName}?token=${tkn}`;
+                  try {
+                    await updateItemThumbnailUrl(collectionId, username, tkn, classicThumbUrl);
+                  } catch (thumbErr) {
+                    console.warn('[CreateCollection] Thumbnail update failed:', thumbErr);
+                  }
+                }
+                const editUrl = `https://storymaps.arcgis.com/stories/${collectionId}/edit`;
+                setCollectionEditUrl(editUrl);
+                setToast(`Collection created: ${collectionId}`);
+                setTimeout(() => setToast(''), 3000);
+              } catch (e) {
+                console.error('[CreateCollection] Failed:', e);
+                setToast('Failed to create Collection');
+                setTimeout(() => setToast(''), 3000);
+              }
             }}>
               Create Collection
             </button>
+            {collectionEditUrl ? (
+              <div className="converter-message converter-message-success publishing-url-block collection-publish-block">
+                <button
+                  className="converter-btn secondary"
+                  onClick={() => { window.open(collectionEditUrl, '_blank'); }}
+                  title="Open Collection in ArcGIS StoryMaps to finish publishing"
+                >
+                  Click to Finish Publishing →
+                </button>
+                <div className="converter-help-text collection-publish-url">
+                  <strong>Publishing URL:</strong> <a href={collectionEditUrl} target="_blank" rel="noopener noreferrer">{collectionEditUrl}</a>
+                </div>
+              </div>
+            ) : null}
+            </>
           )}
         </div>
       )}

@@ -15,6 +15,7 @@ import type { ConverterResult, StoryMapJSON } from '../types/core';
 import { StoryMapJSONBuilder } from '../schema/StoryMapJSONBuilder';
 import { detectClassicTemplate } from '../util/detectTemplate';
 import type { TourGeometry, TourPlace } from '../types/core.ts';
+import { computeTheme } from '../util/classicTheme';
 
 // Attribute keys (ported)
 const TITLE_KEYS = ['name','Name','NAME','title','Title','TITLE'] as const;
@@ -59,15 +60,13 @@ export class MapTourConverter extends BaseConverter {
     const values = (this.classicJson.values || {}) as MapTourValues;
     const title = values.title || 'Untitled Story';
     const subtitle = values.subtitle || '';
-
-    // Theme auto-mapping (legacy dark/light -> obsidian/summit) if themeId passed as 'auto'
-    const themeToUse = this.themeId === 'auto' ? mapClassicTheme(values, 'summit') : this.themeId;
+    const { themeId, variableOverrides } = computeTheme(this.themeId as any, this.classicJson);
 
     this.builder.createStoryRoot();
     this.builder.addCoverNode(title, subtitle);
     this.builder.addNavigationHidden();
     this.builder.addCreditsNode();
-    this.builder.applyTheme({ themeId: themeToUse });
+    this.builder.applyTheme({ themeId, variableOverrides });
 
     // Prefer explicit places; otherwise, build from pre-fetched feature-layer features
     const prefetchedFeatures: PrefetchedFeature[] = Array.isArray((this.classicJson as { _mapTourFeatures?: PrefetchedFeature[] })._mapTourFeatures)
@@ -191,7 +190,7 @@ export class MapTourConverter extends BaseConverter {
   }
 
   protected applyTheme(): void {
-    this.emit('MapTour: applyTheme (no overrides)');
+    this.emit('MapTour: applyTheme (handled during convertContent)');
   }
 
   protected collectMedia(): string[] {
@@ -264,14 +263,7 @@ function normalizeCoords(x: number, y: number): { long: number; lat: number } | 
   return undefined;
 }
 
-function mapClassicTheme(values: MapTourValues, fallback: string): string {
-  try {
-    const major = values.settings?.theme?.colors?.themeMajor;
-    if (major === 'dark') return 'obsidian';
-    if (major === 'light') return 'summit';
-    return fallback;
-  } catch { return fallback; }
-}
+// mapClassicTheme replaced by computeTheme in util/classicTheme
 
 // Types and helpers for feature-layer tours (prefetched in ConverterFactory)
 type PrefetchedFeature = { attributes?: Record<string, unknown>; geometry?: { x?: number; y?: number } };

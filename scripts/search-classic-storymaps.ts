@@ -21,8 +21,10 @@ Outputs:
 import fs from 'node:fs';
 import path from 'node:path';
 import { URLSearchParams } from 'node:url';
+import { getOrgBase } from './orgBase';
 
 type Scope = 'user' | 'org' | 'livingAtlas' | 'public';
+const ORG_BASE = getOrgBase();
 
 interface Args {
   scope: Scope;
@@ -133,10 +135,10 @@ async function getToken(): Promise<string | undefined> {
   const params = new URLSearchParams({
     username,
     password,
-    referer: 'https://www.arcgis.com',
+    referer: ORG_BASE,
     f: 'json'
   });
-  const resp = await fetch('https://www.arcgis.com/sharing/rest/generateToken', {
+  const resp = await fetch(`${ORG_BASE}/sharing/rest/generateToken`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: params.toString()
@@ -192,7 +194,7 @@ function buildSearchQuery(args: Args, username?: string): string {
 
 async function getOrgId(token?: string): Promise<string | undefined> {
   if (!token) return undefined;
-  const url = `https://www.arcgis.com/sharing/rest/community/self?f=json&token=${encodeURIComponent(token)}`;
+  const url = `${ORG_BASE}/sharing/rest/community/self?f=json&token=${encodeURIComponent(token)}`;
   const resp = await fetch(url);
   if (!resp.ok) return undefined;
   const json = await resp.json();
@@ -208,7 +210,7 @@ async function searchAgo(query: string, limit: number, token?: string): Promise<
     f: 'json'
   });
   if (token) params.set('token', token);
-  const url = `https://www.arcgis.com/sharing/rest/search?${params.toString()}`;
+  const url = `${ORG_BASE}/sharing/rest/search?${params.toString()}`;
   const resp = await fetch(url);
   if (!resp.ok) {
     const text = await resp.text();
@@ -221,7 +223,7 @@ async function searchAgo(query: string, limit: number, token?: string): Promise<
 async function fetchItemInfo(id: string, token?: string): Promise<Partial<AgoItem>> {
   const params = new URLSearchParams({ f: 'json' });
   if (token) params.set('token', token);
-  const url = `https://www.arcgis.com/sharing/rest/content/items/${id}?${params.toString()}`;
+  const url = `${ORG_BASE}/sharing/rest/content/items/${id}?${params.toString()}`;
   const resp = await fetch(url);
   if (!resp.ok) return { id } as Partial<AgoItem>;
   try {
@@ -247,7 +249,7 @@ async function fetchItemInfo(id: string, token?: string): Promise<Partial<AgoIte
 async function fetchItemData(id: string, token?: string): Promise<ItemDataInfo> {
   const params = new URLSearchParams({ f: 'json' });
   if (token) params.set('token', token);
-  const url = `https://www.arcgis.com/sharing/rest/content/items/${id}/data?${params.toString()}`;
+  const url = `${ORG_BASE}/sharing/rest/content/items/${id}/data?${params.toString()}`;
   const resp = await fetch(url);
   const info: ItemDataInfo = { id };
   if (!resp.ok) return info;
@@ -378,7 +380,7 @@ async function main() {
       const dataModel = it.dataModel ?? '';
       const createdDate = it.created ? new Date(it.created).toISOString() : '';
       const modifiedDate = it.modified ? new Date(it.modified).toISOString() : '';
-      const url = `https://www.arcgis.com/home/item.html?id=${it.id}`;
+      const url = `${ORG_BASE}/home/item.html?id=${it.id}`;
       const safe = (v: any) => String(v ?? '').replace(/\r|\n/g,' ').replace(/,/g,' ');
       const row = [it.id, safe(it.title), safe(tmpl), safe(ver), safe(dataModel), url, createdDate, modifiedDate, safe(it.owner), safe(it.orgId), safe(it.access)].map(v => v ?? '');
       lines.push(row.join(','));

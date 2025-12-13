@@ -5,6 +5,7 @@
  *   npx tsx scripts/inspect-story-auth.ts <storyId>
  */
 import assert from 'node:assert';
+import { getOrgBase } from './lib/orgBase';
 
 const token = process.env.ARC_GIS_TOKEN || process.env.ARCGIS_TOKEN || process.env.TOKEN;
 const storyId = process.argv[2];
@@ -21,13 +22,14 @@ async function fetchJson(url: string) {
   return { ok: r.ok, status: r.status, contentType: ct, json, textPrefix: text.slice(0, 400) };
 }
 
+const ORG_BASE = getOrgBase();
 async function main() {
   const results: Record<string, unknown> = {};
-  results.self = await fetchJson('https://www.arcgis.com/sharing/rest/community/self?f=json');
+  results.self = await fetchJson(`${ORG_BASE}/sharing/rest/community/self?f=json`);
   results.items = await fetchJson(`https://storymaps.arcgis.com/api/items/${storyId}`);
   results.stories = await fetchJson(`https://storymaps.arcgis.com/api/stories/${storyId}`);
   // ArcGIS item details via sharing REST
-  results.arcgisItem = await fetchJson(`https://www.arcgis.com/sharing/rest/content/items/${storyId}?f=json`);
+  results.arcgisItem = await fetchJson(`${ORG_BASE}/sharing/rest/content/items/${storyId}?f=json`);
   console.log(JSON.stringify(results, null, 2));
 }
 

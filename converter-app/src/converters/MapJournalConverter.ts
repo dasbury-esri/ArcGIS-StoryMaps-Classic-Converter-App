@@ -20,6 +20,7 @@ import { fetchJsonWithCache } from '../utils/fetchCache';
 import type { ClassicValues, ClassicSection } from '../types/classic';
 import type { ConverterResult, StoryMapJSON } from '../types/core';
 import { createThemeWithDecisions } from '../theme/themeMapper';
+import { computeTheme } from '../util/classicTheme';
 import { SwipeConverter } from './SwipeConverter';
 import { execSync } from 'node:child_process';
 import { StoryMapJSONBuilder } from '../schema/StoryMapJSONBuilder';
@@ -731,7 +732,12 @@ export class MapJournalConverter extends BaseConverter {
           mappedNarrativePanelPosition: 'end'
         }
       };
-      this.builder.applyTheme({ themeId: 'obsidian', variableOverrides: {} });
+      try {
+        const derived = computeTheme(this.themeId as any, this.classicJson);
+        this.builder.applyTheme({ themeId: derived.themeId, variableOverrides: derived.variableOverrides });
+      } catch {
+        this.builder.applyTheme({ themeId: 'obsidian', variableOverrides: {} });
+      }
       decisions.videoEmbeds = this.videoEmbedCount;
       const classicType = detectClassicTemplate(this.classicJson);
       const vAny = (this.classicJson as unknown as { values?: { templateCreation?: string; templateLastEdit?: string } }).values || {} as { templateCreation?: string; templateLastEdit?: string };
@@ -784,7 +790,10 @@ export class MapJournalConverter extends BaseConverter {
       }
     }
     // Apply base theme and overrides to existing theme resource
-    this.builder.applyTheme({ themeId: decisions.baseThemeId, variableOverrides: overrides });
+    // Align with shared theme helper while preserving decisions overrides
+    const derived = computeTheme(this.themeId as any, this.classicJson);
+    const mergedOverrides = { ...(derived.variableOverrides || {}), ...overrides } as Record<string,string>;
+    this.builder.applyTheme({ themeId: derived.themeId, variableOverrides: mergedOverrides });
     (decisions as Record<string, unknown>).videoEmbeds = this.videoEmbedCount;
     // Add converter metadata resource (unless suppressed)
     if (!this.shouldSuppressMetadata()) {
