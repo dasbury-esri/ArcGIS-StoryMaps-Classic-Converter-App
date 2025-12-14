@@ -3,9 +3,18 @@ import { useEffect, useRef, useState } from 'react';
 import cytoscape, { Core } from 'cytoscape';
 import dagre from 'cytoscape-dagre';
 import fcose from 'cytoscape-fcose';
+import panzoom from 'cytoscape-panzoom';
+import cyNavigator from 'cytoscape-navigator';
+import contextMenus from 'cytoscape-context-menus';
+import undoRedo from 'cytoscape-undo-redo';
 cytoscape.use(dagre);
 cytoscape.use(fcose);
+cytoscape.use(panzoom);
+cytoscape.use(cyNavigator);
+cytoscape.use(contextMenus as unknown as (cy: typeof cytoscape) => void);
+cytoscape.use(undoRedo);
 import './GraphView.css';
+import 'cytoscape-context-menus/cytoscape-context-menus.css';
 
 // Minimal props: path to markdown with mermaid diagram and a trace json
 export default function GraphView(props: { diagramMarkdown?: string; trace?: { sessionId?: string; events?: Array<{ stepId: string; event: 'enter'|'exit'; ts: number }> } }) {
@@ -31,6 +40,11 @@ export default function GraphView(props: { diagramMarkdown?: string; trace?: { s
   const [playing, setPlaying] = useState(false);
   const playTimerRef = useRef<number | null>(null);
   const [layoutName, setLayoutName] = useState<string>('cose');
+  type CyContextMenusInstance = { destroy?: () => void };
+  type CyContextMenuEvent = { target: cytoscape.Collection };
+  const navigatorRef = useRef<ReturnType<Core['navigator']> | null>(null);
+  const contextMenusRef = useRef<CyContextMenusInstance | null>(null);
+  const undoRedoRef = useRef<ReturnType<Core['undoRedo']> | null>(null);
   const [showGroupBoundaries, setShowGroupBoundaries] = useState<boolean>(() => {
     if (typeof window === 'undefined') return true;
     const v = window.localStorage.getItem('graphview.showGroupBoundaries');
@@ -280,7 +294,8 @@ export default function GraphView(props: { diagramMarkdown?: string; trace?: { s
           'width': 'data(w)',
           'height': 'data(h)',
           'text-wrap': 'wrap',
-          'text-max-width': 'data(w)'
+          'text-max-width': 'data(w)',
+          'z-index': 1
         } },
         // Compound group (parent) styling (toggle visibility)
         { selector: ':parent', style: showGroupBoundaries ? {
@@ -292,7 +307,8 @@ export default function GraphView(props: { diagramMarkdown?: string; trace?: { s
           'label': 'data(label)',
           'color': '#e5e7eb',
           'text-outline-width': 0,
-          'font-size': '12px'
+          'font-size': '12px',
+          'z-index': 2
         } : {
           'background-opacity': 0,
           'border-width': 0,
@@ -309,6 +325,7 @@ export default function GraphView(props: { diagramMarkdown?: string; trace?: { s
           'color': '#f0f6ff',
           'text-background-color': '#2b2b2b', 
           'text-background-opacity': 0.5,
+          'z-index': 0
         } },
         // No special member edges now; membership is represented via compound parents
         { selector: '.active', style: { 'background-color': '#ff9f50', 'border-color': '#ffd8a8', 'border-width': 2 } },
@@ -317,6 +334,72 @@ export default function GraphView(props: { diagramMarkdown?: string; trace?: { s
       ],
       layout: { name: hasEdges ? 'cose' : 'concentric' }
     });
+    // Enable dragging for interactive adjustments
+    try { instance.autoungrabify(false); } catch { /* noop */ }
+    // Initialize panzoom controls
+    try { instance.panzoom({ zoomFactor: 0.05, minZoom: 0.1, maxZoom: 2.5, fitPadding: 20 }); } catch { /* noop */ }
+    // Initialize navigator (minimap)
+    try { navigatorRef.current = instance.navigator({ container: undefined }); } catch { /* noop */ }
+    // Initialize undo-redo
+    try { undoRedoRef.current = instance.undoRedo(); } catch { /* noop */ }
+    // Register simple undoable actions for collapsing/expanding group children via context menu
+    try {
+      if (undoRedoRef.current) {
+        undoRedoRef.current.action('collapseChildren', (eles: cytoscape.Collection) => {
+          eles.filter(':child').addClass('collapsed');
+          return eles;
+        }, (eles: cytoscape.Collection) => {
+          eles.filter(':child').removeClass('collapsed');
+          return eles;
+        });
+        undoRedoRef.current.action('expandChildren', (eles: cytoscape.Collection) => {
+          eles.filter(':child').removeClass('collapsed');
+          return eles;
+        }, (eles: cytoscape.Collection) => {
+          eles.filter(':child').addClass('collapsed');
+          return eles;
+        });
+      }
+    } catch { /* noop */ }
+    // Initialize context menus
+    try {
+      contextMenusRef.current = instance.contextMenus({
+        menuItems: [
+          {
+            id: 'fit', content: 'Fit to selection', selector: 'node, :parent', onClickFunction: (event: unknown) => {
+              const e = event as CyContextMenuEvent;
+              const target = e.target || instance.elements();
+              try { instance.fit(target, 30); } catch { /* noop */ }
+            }
+          },
+          {
+            id: 'collapse', content: 'Collapse children', selector: ':parent', onClickFunction: (event: unknown) => {
+              const parent = (event as CyContextMenuEvent).target;
+              try {
+                if (undoRedoRef.current) undoRedoRef.current.do('collapseChildren', parent);
+                else parent.children().addClass('collapsed');
+              } catch { /* noop */ }
+            }
+          },
+          {
+            id: 'expand', content: 'Expand children', selector: ':parent', onClickFunction: (event: unknown) => {
+              const parent = (event as CyContextMenuEvent).target;
+              try {
+                if (undoRedoRef.current) undoRedoRef.current.do('expandChildren', parent);
+                else parent.children().removeClass('collapsed');
+              } catch { /* noop */ }
+            }
+          },
+          {
+            id: 'copy-id', content: 'Copy ID', selector: 'node', onClickFunction: (event: unknown) => {
+              const id = (event as CyContextMenuEvent).target.id();
+              try { window?.navigator?.clipboard?.writeText?.(id); } catch { /* noop */ }
+            }
+          }
+        ],
+        // Basic styling config left default; CSS imports handle visuals
+      });
+    } catch { /* noop */ }
     // Apply collapse if requested
     try {
       if (collapseGroups) {
@@ -324,7 +407,12 @@ export default function GraphView(props: { diagramMarkdown?: string; trace?: { s
       }
     } catch { /* noop */ }
     setCy(instance);
-    return () => { instance.destroy(); };
+    return () => {
+      try { contextMenusRef.current?.destroy?.(); } catch { /* noop */ }
+      try { navigatorRef.current?.destroy?.(); } catch { /* noop */ }
+      try { undoRedoRef.current = null; } catch { /* noop */ }
+      instance.destroy();
+    };
   }, [elements, props.trace, showGroupBoundaries, collapseGroups, colorParents]);
 
   // Re-run layout when selection changes or elements update
@@ -425,6 +513,13 @@ export default function GraphView(props: { diagramMarkdown?: string; trace?: { s
             <button onClick={() => setLayoutName('cose')}>COSE</button>{' '}
             <button onClick={() => setLayoutName('fcose')}>fCOSE</button>{' '}
             <button onClick={() => setLayoutName('concentric')}>Concentric</button>
+          </div>
+          <div className="graphview-layout-controls">
+            <strong>Edit:</strong>{' '}
+            <button onClick={() => { try { cy?.fit(undefined, 40); } catch { /* noop */ } }}>Fit</button>{' '}
+            <button onClick={() => { try { cy?.zoom({ level: 1.0 }); } catch { /* noop */ } }}>Reset Zoom</button>{' '}
+            <button onClick={() => { try { undoRedoRef.current?.undo(); } catch { /* noop */ } }}>Undo</button>{' '}
+            <button onClick={() => { try { undoRedoRef.current?.redo(); } catch { /* noop */ } }}>Redo</button>
           </div>
           <div className="graphview-layout-controls">
             <strong>Parser:</strong>{' '}
