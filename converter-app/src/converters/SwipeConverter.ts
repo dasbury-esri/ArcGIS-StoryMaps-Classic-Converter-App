@@ -287,15 +287,17 @@ export class SwipeConverter extends BaseConverter {
       // Also mirror extent/viewpoint at node level for downstream consumers
       // To ensure initial sync, set first node extent/viewpoint from second webmap's extent/center when available
       if (contentA && (infoB?.extent || infoA?.extent)) this.builder.updateNodeData(contentA, (data) => {
-        (data as Record<string, unknown>).extent = (infoB?.extent || infoA?.extent);
-        const sz = determineScaleZoomLevel(infoA.extent as unknown as { ymax: number; ymin: number });
-        const vpGeom = (infoB?.center ?? infoB?.extent) || (infoA.center ?? infoA.extent);
-        if (sz) (data as Record<string, unknown>).viewpoint = { targetGeometry: vpGeom, scale: sz.scale };
-        const hasTime = Array.isArray(infoA.operationalLayers) && infoA.operationalLayers.some(l => (l as any).timeAnimation === true);
+        const useExtent = (infoB?.extent || infoA?.extent);
+        (data as Record<string, unknown>).extent = useExtent;
+        if (useExtent) {
+          const sz = determineScaleZoomLevel(useExtent as unknown as { ymax: number; ymin: number });
+          const vpGeom = (infoB?.center ?? infoB?.extent) || (infoA?.center ?? infoA?.extent);
+          if (sz) (data as Record<string, unknown>).viewpoint = { targetGeometry: vpGeom, scale: sz.scale };
+        }
+        const hasTime = Array.isArray(infoA?.operationalLayers) && infoA!.operationalLayers!.some(l => (l as any).timeAnimation === true);
         (data as Record<string, unknown>).timeSlider = !!hasTime;
-        // Respect resource-layer visibility from webmap operationalLayers
-        if (Array.isArray(infoA.operationalLayers) && infoA.operationalLayers.length) {
-          (data as Record<string, unknown>).mapLayers = infoA.operationalLayers.map(l => ({ id: l.id, title: l.title || l.id, visible: !!l.visibility }));
+        if (Array.isArray(infoA?.operationalLayers) && infoA!.operationalLayers!.length) {
+          (data as Record<string, unknown>).mapLayers = infoA!.operationalLayers!.map(l => ({ id: l.id, title: l.title || l.id, visible: !!l.visibility }));
           (data as Record<string, unknown>).viewPlacement = 'extent';
         }
         try {
@@ -513,7 +515,12 @@ export class SwipeConverter extends BaseConverter {
   // Minimal sanitizer for sidePanelDescription: allow <strong>/<b>, <em>/<i>, and <a href>.
   // Strip inline styles and other attributes/tags; collect inline styles strings for metadata.
   private sanitizeSidePanelHtml(html: string): { sanitizedHtml: string; inlineStyles: string[] } {
-  // Sanitizer moved to shared utility in utils/htmlSanitizer.ts
+    try {
+      const { sanitizedHtml, inlineStyles } = sanitizeBasicHtml(html);
+      return { sanitizedHtml, inlineStyles };
+    } catch {
+      return { sanitizedHtml: String(html || ''), inlineStyles: [] };
+    }
   }
 
 
@@ -671,11 +678,11 @@ export class SwipeConverter extends BaseConverter {
         const rightCenter = infoB?.center || (infoB?.extent ? { x: ((infoB.extent as any).xmin + (infoB.extent as any).xmax) / 2, y: ((infoB.extent as any).ymin + (infoB.extent as any).ymax) / 2, spatialReference: (infoB.extent as any).spatialReference || { wkid: 102100 } } : undefined);
         const vpGeom = rightCenter ?? useExtent;
         if (sz) (data as Record<string, unknown>).viewpoint = { targetGeometry: vpGeom, scale: sz.scale };
-        const hasTime = Array.isArray(infoA.operationalLayers) && infoA.operationalLayers.some(l => (l as any).timeAnimation === true);
+        const hasTime = !!infoA && Array.isArray(infoA.operationalLayers) && infoA.operationalLayers.some(l => (l as any).timeAnimation === true);
         (data as Record<string, unknown>).timeSlider = !!hasTime;
-        if (Array.isArray(infoA.operationalLayers) && infoA.operationalLayers.length) {
+        if (infoA && Array.isArray(infoA.operationalLayers) && infoA.operationalLayers.length) {
           // Prefer layer visibility from webmap (resource), unless classic overrides elsewhere
-          (data as Record<string, unknown>).mapLayers = infoA.operationalLayers.map(l => ({ id: l.id, title: l.title || l.id, visible: !!l.visibility }));
+          (data as Record<string, unknown>).mapLayers = (infoA?.operationalLayers || []).map(l => ({ id: l.id, title: l.title || l.id, visible: !!l.visibility }));
           (data as Record<string, unknown>).viewPlacement = 'extent';
         }
       });

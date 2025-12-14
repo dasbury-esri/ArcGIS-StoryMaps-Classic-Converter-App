@@ -1,0 +1,110 @@
+{
+  "sessionId": "sess-1765674786586-tv0g94",
+  "itemId": "b8ece5952db443858442f122984602ba",
+  "startedAt": 1765674786586,
+  "events": [
+    {
+      "ts": 1765674786586,
+      "event": "enter",
+      "stepId": "convert-flow",
+      "type": "convert",
+      "input": {
+        "classicItemId": "b8ece5952db443858442f122984602ba"
+      }
+    },
+    {
+      "ts": 1765674786586,
+      "event": "enter",
+      "stepId": "fetch-classic",
+      "type": "step",
+      "input": {
+        "classicItemId": "b8ece5952db443858442f122984602ba"
+      }
+    },
+    {
+      "ts": 1765674786707,
+      "event": "exit",
+      "stepId": "fetch-classic",
+      "type": "step",
+      "output": {
+        "ok": true
+      }
+    },
+    {
+      "ts": 1765674786707,
+      "event": "enter",
+      "stepId": "detect-template",
+      "type": "step"
+    },
+    {
+      "ts": 1765674786707,
+      "event": "exit",
+      "stepId": "detect-template",
+      "type": "step",
+      "output": {
+        "template": "Swipe"
+      }
+    },
+    {
+      "ts": 1765674787672,
+      "event": "enter",
+      "stepId": "validate-webmaps",
+      "type": "step",
+      "input": {
+        "total": 2
+      }
+    },
+    {
+      "ts": 1765674789201,
+      "event": "exit",
+      "stepId": "validate-webmaps",
+      "type": "step",
+      "output": {
+        "warnings": 1
+      }
+    },
+    {
+      "ts": 1765674789201,
+      "event": "enter",
+      "stepId": "convert-story",
+      "type": "step",
+      "input": {
+        "template": "Swipe"
+      }
+    },
+    {
+      "ts": 1765674789832,
+      "event": "exit",
+      "stepId": "convert-story",
+      "type": "step",
+      "output": {
+        "ok": true
+      }
+    },
+    {
+      "ts": 1765674789832,
+      "event": "enter",
+      "stepId": "transfer-media",
+      "type": "step"
+    },
+    {
+      "ts": 1765674789832,
+      "event": "exit",
+      "stepId": "transfer-media",
+      "type": "step",
+      "output": {
+        "ok": true
+      }
+    },
+    {
+      "ts": 1765674791046,
+      "event": "enter",
+      "stepId": "save-outputs",
+      "type": "step",
+      "input": {
+        "draftFile": "tests/output/converted-b8ece5952db443858442f122984602ba-12-13T1713.json"
+      }
+    }
+  ],
+  "endedAt": 1765674791178
+}

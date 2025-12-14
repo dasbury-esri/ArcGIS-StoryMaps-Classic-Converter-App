@@ -1,0 +1,203 @@
+{
+  "root": "n-8wjg0n",
+  "nodes": {
+    "n-ec5kfy": {
+      "type": "storycover",
+      "data": {
+        "type": "minimal",
+        "title": "Spyglass on the Past: New York City 1836 and Today",
+        "summary": "New York City in 1836, as depicted on a map from the David Rumsey collection, compared to a modern satellite image of the city.",
+        "byline": "",
+        "titlePanelVerticalPosition": "top",
+        "titlePanelHorizontalPosition": "start",
+        "titlePanelStyle": "gradient"
+      }
+    },
+    "n-0vxajd": {
+      "type": "navigation",
+      "data": {
+        "links": []
+      },
+      "config": {
+        "isHidden": true
+      }
+    },
+    "n-fi1xk7": {
+      "type": "attribution",
+      "data": {
+        "content": "",
+        "attribution": ""
+      }
+    },
+    "n-coft9w": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-e14vu8": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-chl9mj": {
+      "type": "credits",
+      "children": [
+        "n-coft9w",
+        "n-e14vu8",
+        "n-fi1xk7"
+      ]
+    },
+    "n-z0zdkc": {
+      "type": "webmap",
+      "data": {
+        "map": "r-60a6d8d2ab754250918e7fc21d7ac999",
+        "mapLayers": [
+          {
+            "id": "New_York_City_1836_6636",
+            "title": "New York City 1836",
+            "visible": false
+          }
+        ]
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-ywsuku": {
+      "type": "webmap",
+      "data": {
+        "map": "r-60a6d8d2ab754250918e7fc21d7ac999",
+        "mapLayers": [
+          {
+            "id": "New_York_City_1836_6636",
+            "title": "New York City 1836",
+            "visible": true
+          }
+        ]
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-r1wkc2": {
+      "type": "swipe",
+      "data": {
+        "contents": {
+          "0": "n-z0zdkc",
+          "1": "n-ywsuku"
+        },
+        "viewPlacement": "extent",
+        "caption": "Left: Imagery — Right: New York City 1836"
+      },
+      "config": {
+        "size": "full"
+      }
+    },
+    "n-8wjg0n": {
+      "type": "story",
+      "data": {
+        "storyTheme": "r-j9ky54"
+      },
+      "config": {
+        "coverDate": "",
+        "shouldPushMetaToAGOItemDetails": false
+      },
+      "children": [
+        "n-ec5kfy",
+        "n-0vxajd",
+        "n-chl9mj",
+        "n-r1wkc2"
+      ]
+    }
+  },
+  "resources": {
+    "r-j9ky54": {
+      "type": "story-theme",
+      "data": {
+        "themeId": "summit",
+        "themeBaseVariableOverrides": {
+          "headerFooterBackgroundColor": "#444",
+          "backgroundColor": "#FFF"
+        }
+      }
+    },
+    "r-60a6d8d2ab754250918e7fc21d7ac999": {
+      "type": "webmap",
+      "data": {
+        "type": "default",
+        "itemId": "60a6d8d2ab754250918e7fc21d7ac999",
+        "itemType": "Web Map",
+        "operationalLayers": [
+          {
+            "id": "New_York_City_1836_6636",
+            "layerType": "ArcGISTiledMapServiceLayer",
+            "url": "https://tiles.arcgis.com/tiles/IEuSomXfi6iB7a25/arcgis/rest/services/New_York_City_1836/MapServer",
+            "visibility": true,
+            "opacity": 1,
+            "title": "New York City 1836",
+            "itemId": "0fcf0bd879b84a01bd596aee72111e49"
+          }
+        ],
+        "baseMap": {
+          "baseMapLayers": [
+            {
+              "id": "World_Imagery_6537",
+              "layerType": "ArcGISTiledMapServiceLayer",
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+              "visibility": true,
+              "opacity": 1,
+              "title": "Imagery"
+            }
+          ],
+          "title": "Imagery"
+        },
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857
+        },
+        "authoringApp": "WebMapViewer",
+        "authoringAppVersion": "2025.3",
+        "version": "2.31",
+        "mapLayers": [
+          {
+            "id": "New_York_City_1836_6636",
+            "title": "New York City 1836",
+            "visible": true
+          }
+        ]
+      }
+    },
+    "r-yu0d6n": {
+      "type": "converter-metadata",
+      "data": {
+        "classicType": "Swipe",
+        "classicMetadata": {
+          "classicTheme": {
+            "layout": "spyglass",
+            "model": "TWO_LAYERS"
+          },
+          "templateVersion": "1.0.1"
+        },
+        "classicTemplateCreation": "1.1-beta7",
+        "classicTemplateLastEdit": "1.14.0",
+        "typeConvertedTo": "storymap",
+        "converterVersion": "0.4.6",
+        "classicTemplateVersion": "1.0.1",
+        "classicItemId": "97ae55e015774b7ea89fd0a52ca551c2"
+      }
+    }
+  },
+  "actions": []
+}

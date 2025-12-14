@@ -1,0 +1,10 @@
+.graphview-root{display:flex;gap:12px;align-items:flex-start}
+.graphview-canvas{flex:1;min-height:1080px;border:1px solid #ddd;border-radius:6px;background:#2b2b2b}
+.graphview-sidepanel{width:340px;height:1080px;overflow:hidden;border:1px solid #eee;border-radius:6px;padding:10px;background:#fafafa;display:flex;flex-direction:column}
+.graphview-fixed-controls{flex:0 0 auto}
+.graphview-scroll-area{flex:1 1 auto;overflow:auto}
+.graphview-layout-controls{margin-top:8px}
+.graphview-sidepanel h3{margin:0 0 8px 0;font-weight:600}
+.graphview-tracepre{font-size:11px;line-height:1.35;background:#fff;border:1px solid #eee;border-radius:4px;padding:8px}
+.graphview-dev-mount{margin-top:12px;width:100%}
+.graphview-page-padding{padding:16px}

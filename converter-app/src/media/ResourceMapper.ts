@@ -1,4 +1,4 @@
-import type { StoryMapJSON, StoryMapImageResource, StoryMapImageNode } from '../types/core.ts';
+import type { StoryMapJSON, StoryMapImageResource, StoryMapImageNode } from '../types/core';
 
 export interface MediaMapping {
   [originalUrl: string]: string; // original URL -> resourceName
@@ -11,7 +11,7 @@ export class ResourceMapper {
       if (res.type === 'image') {
         const imgRes = res as StoryMapImageResource;
         const src = (imgRes.data && typeof imgRes.data === 'object' ? (imgRes.data as { src?: unknown }).src : undefined);
-        if (src && mapping[src]) {
+        if (typeof src === 'string' && mapping[src]) {
           const d = (imgRes.data || {}) as Record<string, unknown>;
           d.resourceId = mapping[String(src)];
           delete (d as { src?: unknown }).src;

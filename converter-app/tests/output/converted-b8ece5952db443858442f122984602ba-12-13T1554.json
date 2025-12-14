@@ -1,0 +1,279 @@
+{
+  "root": "n-q9lq01",
+  "nodes": {
+    "n-qkjfv0": {
+      "type": "storycover",
+      "data": {
+        "type": "minimal",
+        "title": "The World in 1812 and 2013",
+        "summary": "Compare the modern world, as depicted on this National Geographic map, with the world as it was perceived two centuries earlier.",
+        "byline": "",
+        "titlePanelVerticalPosition": "top",
+        "titlePanelHorizontalPosition": "start",
+        "titlePanelStyle": "gradient"
+      }
+    },
+    "n-rc0eid": {
+      "type": "navigation",
+      "data": {
+        "links": []
+      },
+      "config": {
+        "isHidden": true
+      }
+    },
+    "n-c7oq1n": {
+      "type": "attribution",
+      "data": {
+        "content": "",
+        "attribution": ""
+      }
+    },
+    "n-w3wbx8": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-2rhjjr": {
+      "type": "text",
+      "data": {
+        "text": "",
+        "type": "paragraph",
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-4y5vhz": {
+      "type": "credits",
+      "children": [
+        "n-w3wbx8",
+        "n-2rhjjr",
+        "n-c7oq1n"
+      ]
+    },
+    "n-v2xlki": {
+      "type": "text",
+      "data": {
+        "text": "Within the spyglass is a world map drawn in the Mercator projection and published in 1812 by John Pinkerton. The map was engraved on two sheets and colored by hand. It was part of a \"modern atlas, from the latest and best authorities, exhibiting the various divisions of the world, with its chief empires, kingdoms and states\". Zoom in to view detail including explorers' routes. Lack of detail in Africa and Australia reflects the poor state of knowledge by Europeans of the time.The modern map was jointly produced by National Geographic and Esri; this version exists only in digital form.The 1812 map is from the collection of David Rumsey.",
+        "type": "paragraph",
+        "preserveHtml": true,
+        "textAlignment": "start"
+      },
+      "config": {
+        "size": "wide"
+      }
+    },
+    "n-lboy8y": {
+      "type": "webmap",
+      "data": {
+        "map": "r-8ea34ba9a4f843e08a468595d8d91188",
+        "extent": {
+          "xmin": -14450884.035571834,
+          "ymin": -5096798.463417605,
+          "xmax": 14450884.035571834,
+          "ymax": 11320637.787550887,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -14450884.035571834,
+            "ymin": -5096798.463417605,
+            "xmax": 14450884.035571834,
+            "ymax": 11320637.787550887,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 50000
+        },
+        "timeSlider": false
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-j4mbbs": {
+      "type": "webmap",
+      "data": {
+        "map": "r-ef5920f160bd4239bdeb1348de3a3156",
+        "extent": {
+          "xmin": -14450884.035571834,
+          "ymin": -5096798.463417605,
+          "xmax": 14450884.035571834,
+          "ymax": 11320637.787550887,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -14450884.035571834,
+            "ymin": -5096798.463417605,
+            "xmax": 14450884.035571834,
+            "ymax": 11320637.787550887,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 50000
+        },
+        "timeSlider": false
+      },
+      "config": {
+        "size": "standard"
+      }
+    },
+    "n-5qlitz": {
+      "type": "swipe",
+      "data": {
+        "contents": {
+          "0": "n-lboy8y",
+          "1": "n-j4mbbs"
+        },
+        "viewPlacement": "extent",
+        "caption": "Left: The World In 1812 and 2013 — Right: World Globe 1812"
+      },
+      "config": {
+        "size": "full"
+      }
+    },
+    "n-q9lq01": {
+      "type": "story",
+      "data": {
+        "storyTheme": "r-ahj1t8"
+      },
+      "config": {
+        "coverDate": "",
+        "shouldPushMetaToAGOItemDetails": false
+      },
+      "children": [
+        "n-qkjfv0",
+        "n-rc0eid",
+        "n-4y5vhz",
+        "n-v2xlki",
+        "n-5qlitz"
+      ]
+    }
+  },
+  "resources": {
+    "r-ahj1t8": {
+      "type": "story-theme",
+      "data": {
+        "themeId": "summit",
+        "themeBaseVariableOverrides": {
+          "headerFooterBackgroundColor": "#444",
+          "backgroundColor": "#FFF"
+        }
+      }
+    },
+    "r-8ea34ba9a4f843e08a468595d8d91188": {
+      "type": "webmap",
+      "data": {
+        "type": "default",
+        "itemId": "8ea34ba9a4f843e08a468595d8d91188",
+        "itemType": "Web Map",
+        "extent": {
+          "xmin": -5706482.0001486,
+          "ymin": 2710148.333866946,
+          "xmax": 1196083.4006109112,
+          "ymax": 7817358.9487566445,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -5706482.0001486,
+            "ymin": 2710148.333866946,
+            "xmax": 1196083.4006109112,
+            "ymax": 7817358.9487566445,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 50000
+        },
+        "mapLayers": [],
+        "center": {
+          "x": 0,
+          "y": 3111919.6620666413,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "zoom": 10
+      }
+    },
+    "r-ef5920f160bd4239bdeb1348de3a3156": {
+      "type": "webmap",
+      "data": {
+        "type": "default",
+        "itemId": "ef5920f160bd4239bdeb1348de3a3156",
+        "itemType": "Web Map",
+        "extent": {
+          "xmin": -14450884.035571834,
+          "ymin": -5096798.463417605,
+          "xmax": 14450884.035571834,
+          "ymax": 11320637.787550887,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "viewpoint": {
+          "targetGeometry": {
+            "xmin": -14450884.035571834,
+            "ymin": -5096798.463417605,
+            "xmax": 14450884.035571834,
+            "ymax": 11320637.787550887,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          },
+          "scale": 50000
+        },
+        "center": {
+          "x": 0,
+          "y": 3111919.6620666413,
+          "spatialReference": {
+            "wkid": 102100
+          }
+        },
+        "mapLayers": [],
+        "zoom": 10
+      }
+    },
+    "r-84ztn1": {
+      "type": "converter-metadata",
+      "data": {
+        "classicType": "Swipe",
+        "classicMetadata": {
+          "mappingDecisions": {
+            "customCss": {
+              "combined": "font-size: inherit; line-height: inherit;\nfont-size: inherit; line-height: inherit;\nfont-size: inherit; line-height: inherit;"
+            }
+          },
+          "classicTheme": {
+            "layout": "spyglass",
+            "model": "TWO_WEBMAPS"
+          }
+        },
+        "typeConvertedTo": "storymap",
+        "converterVersion": "0.4.6",
+        "classicTemplateCreation": "1.1-beta7",
+        "classicTemplateLastEdit": "1.16.0",
+        "classicItemId": "b8ece5952db443858442f122984602ba"
+      }
+    }
+  },
+  "actions": []
+}

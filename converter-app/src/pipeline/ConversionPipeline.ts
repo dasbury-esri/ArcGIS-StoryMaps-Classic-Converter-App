@@ -35,7 +35,7 @@ export class ConversionPipeline {
     this.emit(`Detected template: ${templateName}`);
 
     // Instantiate converter (only Map Journal stub for now)
-    const converterResult = this.instantiateConverter();
+    const converterResult = await this.instantiateConverter();
 
     // Transfer media
     const mediaMapping = await MediaTransferService.transferBatch({
@@ -54,9 +54,9 @@ export class ConversionPipeline {
     return { storymapJson: updated, mediaMapping };
   }
 
-  private instantiateConverter(): ConverterResult {
+  private async instantiateConverter(): Promise<ConverterResult> {
     // Extend switch for other templates later (ignore templateName for now)
-    return MapJournalConverter.convert({
+    return await MapJournalConverter.convert({
       classicJson: this.classicJson,
       themeId: this.ctx.themeId,
       progress: (e) => this.ctx.progress(e)

@@ -244,7 +244,7 @@ export default function SaveCsvLayer() {
         setState({ status: 'running', step: 'Saving webmap' });
         // Save using current credentials in IdentityManager
         const result = await webmap.save({ ignoreUnsupported: true });
-        if (result && result.success) {
+        if (result && (result as any).id) {
           // After a successful JS API save, run REST enrichment to ensure renderer/popup persist
           try {
             await fetch('/.netlify/functions/save-csv-layer', {
@@ -329,7 +329,7 @@ export default function SaveCsvLayer() {
           let json: any = null;
           let text: string | null = null;
           try { json = await res.json(); } catch { try { text = await res.text(); } catch {} }
-          if (res.ok && json?.success) {
+          if (res.ok && (json?.success || json?.id)) {
             // Post-save verification via REST path
             const verifyUrl = `${((globalThis as unknown as { __ORG_BASE?: string }).__ORG_BASE || 'https://www.arcgis.com')}/sharing/rest/content/items/${webmapId}/data?f=json&token=${encodeURIComponent(token)}`;
             let titles: string[] = [];
@@ -340,18 +340,8 @@ export default function SaveCsvLayer() {
                 titles = (vjson?.operationalLayers || []).map((l: any) => l?.title).filter(Boolean);
               }
             } catch {}
-            // Build a summary from REST path not available; try to locate the layer in the webmap object if present
-            let layerSummary: { renderer?: any; popupTemplate?: any; layerTitle?: string } = {} as any;
-            try {
-              const lyr = (webmap as any).layers?.find((l: any) => (l.portalItem?.id === csvItemId));
-              if (lyr) {
-                layerSummary = {
-                  renderer: (lyr as any).renderer,
-                  popupTemplate: (lyr as any).popupTemplate,
-                  layerTitle: (lyr as any).title,
-                };
-              }
-            } catch {}
+            // Build a summary from REST path not available; skip reading from JS API webmap in fallback
+            const layerSummary: { renderer?: any; popupTemplate?: any; layerTitle?: string } = {} as any;
             setState({ status: 'success', webmapId, verification: { titles }, layerSummary });
           } else {
             throw new Error(json?.message || text || 'Fallback update failed');

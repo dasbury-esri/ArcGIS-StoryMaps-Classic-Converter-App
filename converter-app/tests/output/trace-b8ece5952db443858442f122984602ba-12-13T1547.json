@@ -1,0 +1,17 @@
+{
+  "sessionId": "sess-1765669629977-dno4kq",
+  "itemId": "b8ece5952db443858442f122984602ba",
+  "startedAt": 1765669629977,
+  "events": [
+    {
+      "ts": 1765669629977,
+      "event": "enter",
+      "stepId": "convert-flow",
+      "type": "convert",
+      "input": {
+        "classicItemId": "b8ece5952db443858442f122984602ba"
+      }
+    }
+  ],
+  "endedAt": 1765669635909
+}

@@ -147,7 +147,7 @@ export class ConverterFactory {
             }
           }
         } catch {/* non-fatal prefetch failure */}
-        const result = MapTourConverter.convert({
+        const result = await MapTourConverter.convert({
           classicJson: opts.classicJson,
           themeId: opts.themeId,
           progress: opts.progress as ProgressCallback
@@ -175,8 +175,7 @@ export class ConverterFactory {
           classicJson: opts.classicJson,
           themeId: opts.themeId,
           progress: opts.progress as ProgressCallback,
-          // Pass through classicItemId so SwipeConverter can prefer item info title fallback
-          classicItemId: opts.classicItemId
+          // Do not pass non-Base options here; SwipeConverter reads from its own context
         });
         // Enrich web maps if present (swipe commonly references Web Maps)
         const hasWebMapResource = Object.values(result.storymapJson.resources).some(r => r.type === 'webmap');
@@ -198,7 +197,7 @@ export class ConverterFactory {
       case 'map journal':
       case 'journal':
       default: {
-        const result = MapJournalConverter.convert({
+        const result = await MapJournalConverter.convert({
           classicJson: opts.classicJson,
           themeId: opts.themeId,
           progress: opts.progress as ProgressCallback
@@ -278,6 +277,7 @@ export class ConverterFactory {
         const resource = json.resources[scene.id];
         if (resource) {
           resource.data = {
+            provider: 'uri',
             itemId: scene.itemId,
             itemType: 'Web Scene',
             type: 'default',
@@ -292,7 +292,7 @@ export class ConverterFactory {
             environment: data.environment || undefined,
             slides,
             raw: { summary: { hasCamera: !!vp, baseMapLayerCount: baseMapLayers.length, operationalLayerCount: operationalLayers.length } }
-          } as Record<string, unknown>;
+          } as unknown as StoryMapResource['data'];
         }
         checkCancelled();
         progress({ stage: 'convert', message: `Enriched Web Scene ${scene.itemId}` });
@@ -394,6 +394,7 @@ export class ConverterFactory {
           const existing = (resource.data || {}) as Record<string, unknown>;
           const prevRaw = (existing.raw || {}) as Record<string, unknown>;
           resource.data = {
+            provider: 'uri',
             ...existing,
             itemId: map.itemId,
             itemType: 'Web Map',
@@ -404,7 +405,7 @@ export class ConverterFactory {
             baseMap: { baseMapLayers },
             mapLayers: operationalLayers,
             raw: { ...prevRaw, summary: { baseMapLayerCount: baseMapLayers.length, operationalLayerCount: operationalLayers.length } }
-          } as Record<string, unknown>;
+          } as unknown as StoryMapResource['data'];
           // Instrumentation: log resource placement
           try {
             const rdata = (json.resources[map.id].data || {}) as { extent?: unknown; viewpoint?: unknown; center?: unknown; zoom?: unknown };
@@ -441,12 +442,12 @@ export class ConverterFactory {
         const rid = `r-${Math.random().toString(36).slice(2, 8)}`;
         json.resources[rid] = {
           type: 'converter-metadata',
-          data: { typeConvertedTo: 'storymap', converterVersion: getAppVersion(), classicType: 'unknown', classicMetadata: {} }
+          data: { provider: 'uri', typeConvertedTo: 'storymap', converterVersion: getAppVersion(), classicType: 'unknown', classicMetadata: {} }
         } as unknown as StoryMapResource;
-        metaEntry = [rid, json.resources[rid] as unknown as { type: string; data: Record<string, unknown> }];
+        metaEntry = [rid, json.resources[rid] as unknown as [string, unknown]][1] ? [rid, json.resources[rid] as unknown as any] : [rid, json.resources[rid] as unknown as any];
       }
-      const [metaId, metaRes] = metaEntry as [string, { type: string; data: Record<string, unknown> }];
-      const metaData = (metaRes.data || {}) as Record<string, unknown>;
+      const [metaId, metaRes] = metaEntry as [string, any];
+      const metaData = (metaRes.data || {}) as any;
       const classicMetadata = ((metaData.classicMetadata as Record<string, unknown>) || (metaData.classicMetadata = {} as Record<string, unknown>)) as Record<string, unknown>;
       if (versionWarnings.length) {
         classicMetadata.webmapVersionWarnings = versionWarnings.map(vw => ({

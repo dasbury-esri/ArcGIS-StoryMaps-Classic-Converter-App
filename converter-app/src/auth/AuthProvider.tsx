@@ -62,23 +62,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             const thumbUrl = ext?.thumbnail
               ? `${base}/community/users/${details.username}/info/${ext.thumbnail}?token=${token}`
               : undefined;
-            let orgUrl: string | undefined = undefined;
-            const urlKey = portalJson?.urlKey;
-            const customBaseUrl = portalJson?.customBaseUrl;
-            if (urlKey && customBaseUrl) {
-              orgUrl = `https://${urlKey}.${customBaseUrl}`;
-            } else if (portalJson?.portalHostname) {
-              const ph = String(portalJson.portalHostname);
-              orgUrl = /^https?:/i.test(ph) ? ph : `https://${ph}`;
-            }
             const info: UserInfo = {
               username: details.username,
               role: details.role,
               userType: details.userLicenseTypeId,
               fullName: ext?.fullName || details.username,
               thumbnailUrl: thumbUrl,
-              // Save org base if available to help downstream link generation
-              orgUrl,
             };
             setUserInfo(info);
             saveUserInfo(info);
@@ -114,22 +103,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
               const thumbUrl = ext?.thumbnail
                 ? `${base}/community/users/${details.username}/info/${ext.thumbnail}?token=${token}`
                 : undefined;
-              let orgUrl: string | undefined = undefined;
-              const urlKey = portalJson?.urlKey;
-              const customBaseUrl = portalJson?.customBaseUrl;
-              if (urlKey && customBaseUrl) {
-                orgUrl = `https://${urlKey}.${customBaseUrl}`;
-              } else if (portalJson?.portalHostname) {
-                const ph = String(portalJson.portalHostname);
-                orgUrl = /^https?:/i.test(ph) ? ph : `https://${ph}`;
-              }
               const info: UserInfo = {
                 username: details.username,
                 role: details.role,
                 userType: details.userLicenseTypeId,
                 fullName: ext?.fullName || details.username,
                 thumbnailUrl: thumbUrl,
-                orgUrl,
               };
               setUserInfo(info);
               saveUserInfo(info);

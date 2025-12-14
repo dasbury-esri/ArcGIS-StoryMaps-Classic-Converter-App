@@ -5,6 +5,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { clearFetchCache, getFetchCacheSize, onFetchCacheChange, offFetchCacheChange } from "../utils/fetchCache";
 import type { StoryMapJSON } from "../types/core";
+import type { ClassicStoryMapJSON } from "../types/classic";
 import { validateWebMaps, type EndpointCheck } from "../services/WebMapValidator";
 import { detectClassicTemplate } from "../utils/detectTemplate";
 import { useAuth } from "../auth/useAuth";
@@ -32,6 +33,7 @@ import {
   updateItemThumbnailUrl,
 } from "../api/arcgis-client";
 import { getOrgBase } from "../lib/orgBase";
+import { trace } from "../trace/TraceRecorder";
 
 type Status =
   | "idle"
@@ -39,7 +41,8 @@ type Status =
   | "converting"
   | "transferring"
   | "updating"
-  | "error";
+  | "error"
+  | "success";
 
 export default function Converter() {
   const [publishing, setPublishing] = useState(false);
@@ -97,18 +100,21 @@ export default function Converter() {
     (async () => {
       try {
         // Fetch item details for name
-        const details = await getItemDetails(id, token);
-        const title = String(details?.title || details?.name || '').trim();
+        const details = await getItemDetails(id, token || "");
+        const d1 = details as unknown as { title?: unknown; name?: unknown };
+        const title = String((d1?.title ?? d1?.name ?? '')).trim();
         // Try to detect template from classic data
         let template: string | null = null;
         try {
-          const data = await getItemData(id, token);
-          template = detectClassicTemplate(data);
+          const data = await getItemData(id, token || "");
+          const detected = detectClassicTemplate(data);
+          template = typeof detected === 'string' ? detected : 'unknown';
         } catch { /* ignore */ }
         if (!template || template.toLowerCase() === 'unknown') {
           // Fallback to type keywords
-          const kws: string[] = Array.isArray(details?.typeKeywords) ? details.typeKeywords : [];
-          const typeStr = String(details?.type || '').toLowerCase();
+          const d2 = details as unknown as { typeKeywords?: unknown; type?: unknown };
+          const kws: string[] = Array.isArray(d2?.typeKeywords) ? (d2.typeKeywords as string[]) : [];
+          const typeStr = String(d2?.type ?? '').toLowerCase();
           const text = [typeStr, ...(kws.map(k => String(k).toLowerCase()))].join(' ');
           const mapName = () => {
             if (/journal/.test(text)) return 'Map Journal';
@@ -124,7 +130,7 @@ export default function Converter() {
           const mapped = mapName();
           if (mapped) template = mapped;
         }
-        const tmplName = template || '';
+        const tmplName = typeof template === 'string' ? template : '';
         const storyTitle = title || '';
         const label = tmplName && storyTitle
           ? `Convert classic ${tmplName}: "${storyTitle}"`
@@ -164,7 +170,7 @@ export default function Converter() {
   }, []);
   // Use real draft creation from API
   const [detectedTemplate, setDetectedTemplate] = useState<string | null>(null);
-  const [customCssInfo, setCustomCssInfo] = useState<{ css: string; url: string } | null>(null);
+  const [customCssInfo, setCustomCssInfo] = useState<{ css: string; url: string; fileName?: string } | null>(null);
   const [webmapWarnings, setWebmapWarnings] = useState<Array<{ itemId: string; level: string; message: string; details?: { webmapTitle?: string; failures?: Array<{ url: string; status?: number; error?: string; title?: string; layerItemId?: string; layerTitle?: string }> } }>>([]);
   // Cached organization base URL for building dynamic help links (resolved once per conversion)
   const DEFAULT_ORG_BASE = 'https://www.arcgis.com';
@@ -403,6 +409,10 @@ export default function Converter() {
       if (customCssInfo?.url) URL.revokeObjectURL(customCssInfo.url);
       setCustomCssInfo(null);
 
+      // Start a trace session for this conversion run
+      try { trace.startSession(String(classicItemId || '').trim()); } catch { /* ignore */ }
+      try { trace.onEnter('convert-flow', { type: 'convert', input: { classicItemId } }); } catch { /* ignore */ }
+
       // Validate classic item id format first
       if (!isValidClassicId(classicItemId)) {
         setStatus("error");
@@ -425,24 +435,34 @@ export default function Converter() {
 
         // Fetch classic item data
         setMessage("Fetching classic story data...");
-        const classicData = await getItemData(classicItemId, token);
+        try { trace.onEnter('fetch-classic', { type: 'step', input: { classicItemId } }); } catch { /* noop */ }
+        const classicData = await getItemData(classicItemId, token || "") as unknown as ClassicStoryMapJSON;
+        try { trace.onExit('fetch-classic', { type: 'step', output: { ok: true } }); } catch { /* noop */ }
         checkCancelled();
 
         // Soft guard: proceed even if shape varies; downstream checks use optional chaining
 
         // Detect template type early for messaging (store in local runtime variable to avoid stale state)
         let runtimeTemplate: string | null = null;
+        try { trace.onEnter('detect-template', { type: 'step' }); } catch { /* noop */ }
         try {
           runtimeTemplate = detectClassicTemplate(classicData);
         } catch {
           runtimeTemplate = null;
         }
+        // Normalize unexpected shapes to a safe string
+        if (runtimeTemplate && typeof runtimeTemplate !== 'string') {
+          try { console.warn('[converter] detectClassicTemplate returned non-string:', { typeof: typeof runtimeTemplate, value: runtimeTemplate }); } catch { /* noop */ }
+          runtimeTemplate = 'unknown';
+        }
+        try { trace.onExit('detect-template', { type: 'step', output: { template: runtimeTemplate || 'unknown' } }); } catch { /* noop */ }
         // Fallback: if detector returns 'unknown', try item details keywords
         if (!runtimeTemplate || runtimeTemplate.toLowerCase() === 'unknown') {
           try {
-            const details = await getItemDetails(classicItemId, token);
-            const kws: string[] = Array.isArray(details?.typeKeywords) ? details.typeKeywords : [];
-            const typeStr = String(details?.type || '').toLowerCase();
+            const details = await getItemDetails(classicItemId, token || "");
+            const d3 = details as unknown as { typeKeywords?: unknown; type?: unknown };
+            const kws: string[] = Array.isArray(d3?.typeKeywords) ? (d3.typeKeywords as string[]) : [];
+            const typeStr = String(d3?.type ?? '').toLowerCase();
             const text = [typeStr, ...(kws.map(k => String(k).toLowerCase()))].join(' ');
             const mapName = () => {
               if (/journal/.test(text)) return 'Map Journal';
@@ -461,7 +481,7 @@ export default function Converter() {
             // ignore fallback errors
           }
         }
-        setDetectedTemplate(runtimeTemplate);
+        setDetectedTemplate(typeof runtimeTemplate === 'string' ? runtimeTemplate : null);
         if (runtimeTemplate) {
           setMessage(`Detected template: ${runtimeTemplate}. Preparing resources...`);
         }
@@ -482,8 +502,9 @@ export default function Converter() {
 
         // Early error messaging for non-classic items or disabled classic types
         try {
-          const details = await getItemDetails(classicItemId, token);
-          const itemType = String(details?.type || '').trim();
+          const details = await getItemDetails(classicItemId, token || "");
+          const d4 = details as unknown as { type?: unknown };
+          const itemType = String(d4?.type ?? '').trim();
           const classicType = (runtimeTemplate || '').toLowerCase();
           // If detector returned unknown, treat as non-classic
           if (!classicType || classicType === 'unknown') {
@@ -501,8 +522,9 @@ export default function Converter() {
             }
           }
           // If classic type is recognized but currently disabled in UI feature gating
-          if (!isClassicTemplateEnabled(runtimeTemplate)) {
-            const label = runtimeTemplate || 'unknown';
+          if (!isClassicTemplateEnabled(typeof runtimeTemplate === 'string' ? runtimeTemplate : 'unknown')) {
+            const label = String(runtimeTemplate || 'unknown');
+            try { console.warn('[converter] classic template gated:', { runtimeTemplate: label }); } catch { /* noop */ }
             setStatus('error');
             setMessage(`Error: The item id you entered is not yet available for conversion. It is a ${label}`);
             return;
@@ -515,7 +537,7 @@ export default function Converter() {
         if (classicData.values?.webmap) {
           setMessage("Fetching classic webmap data...");
           const webmapId = classicData.values?.webmap;
-          classicData.webmapJson = await getItemData(webmapId, token);
+          (classicData as unknown as { webmapJson?: unknown }).webmapJson = await getItemData(webmapId, token || "");
           checkCancelled();
         }
 
@@ -549,7 +571,7 @@ export default function Converter() {
         setStatus("fetching");
         setButtonLabel(`Fetching ${webmapLabel}...`);
         try {
-          const sections = (classicData.values?.story?.sections || classicData.sections || []) as Array<{ media?: { webmap?: { id?: string }, webpage?: { url?: string } }, contentActions?: Array<{ id: string; type: string; media?: { webpage?: { url?: string } } }> }>;
+          const sections = (classicData.values?.story?.sections || []) as Array<{ media?: { webmap?: { id?: string }, webpage?: { url?: string } }, contentActions?: Array<{ id: string; type: string; media?: { webpage?: { url?: string } } }> }>;
           for (const s of sections) {
             if (s?.media?.webmap?.id) webmapIdsUnfiltered.push(s.media!.webmap!.id as string);
             const url = s?.media?.webpage?.url || '';
@@ -635,6 +657,7 @@ export default function Converter() {
         }
 
         // Validate webmaps client-side with per-item progress updates
+        try { trace.onEnter('validate-webmaps', { type: 'step', input: { total: webmapIds.length } }); } catch { /* noop */ }
         let localWarnings: typeof webmapWarnings = [];
         try {
           const baseForRun = await ensureOrgBaseResolved();
@@ -658,6 +681,7 @@ export default function Converter() {
         } catch {
           // ignore local validation errors
         }
+        try { trace.onExit('validate-webmaps', { type: 'step', output: { warnings: (localWarnings || []).length } }); } catch { /* noop */ }
 
         // If no failures detected locally, attempt backend diagnostics (serverless avoids CORS and gathers full layer info)
         // Temporarily disabled when Netlify function responds 501 locally; continue conversion without backend diagnostics
@@ -696,11 +720,12 @@ export default function Converter() {
 
         // Convert to new JSON via new converters
         setStatus("converting");
+        try { trace.onEnter('convert-story', { type: 'step', input: { template: runtimeTemplate || detectedTemplate } }); } catch { /* noop */ }
         const templateLabel = runtimeTemplate || detectedTemplate || "story";
         setButtonLabel(`Converting ${templateLabel}: ${coverTitle}...`);
         setMessage(`Converting ${templateLabel} story to new format...`);
 
-        let newStorymapJson: StoryMapJSON;
+        let newStorymapJson: StoryMapJSON = {} as StoryMapJSON;
         const progress = (e: { stage: 'fetch' | 'detect' | 'draft' | 'convert' | 'media' | 'finalize' | 'done' | 'error'; message: string; current?: number; total?: number }) => {
           const alreadyHasCount = /\(\s*\d+\s*\/\s*\d+\s*\)\s*$/.test(e.message);
           const msg = (typeof e.total === 'number' && typeof e.current === 'number' && !alreadyHasCount)
@@ -740,10 +765,10 @@ export default function Converter() {
             progress,
             token
           });
-            const result = conv.convert();
+            const result = await conv.convert();
             newStorymapJson = result.storymapJson;
         } else if (resolvedTmpl === 'map tour' || resolvedTmpl === 'tour') {
-          const result = MapTourConverter.convert({
+          const result = await MapTourConverter.convert({
             classicJson: classicData,
             themeId: 'summit',
             progress
@@ -761,7 +786,7 @@ export default function Converter() {
         } else if (resolvedTmpl === 'map series' || resolvedTmpl === 'mapseries') {
           // Map Series: build one draft per entry and surface builder links
                 const series = await MapSeriesConverter.convertSeries({
-            classicJson: classicData,
+            classicJson: classicData as unknown as Record<string, unknown>,
             themeId: 'summit',
             progress,
             token
@@ -790,9 +815,11 @@ export default function Converter() {
                   setMapSeriesLinks(linkPairs);
                 }
           // Map Series flow does not produce a single story JSON; stop here
+          try { trace.onExit('convert-story', { type: 'step', output: { mapSeries: true, entries: (mapSeriesDraftIds.current || []).length } }); } catch { /* noop */ }
           return;
         }
         checkCancelled();
+        try { trace.onExit('convert-story', { type: 'step', output: { ok: true } }); } catch { /* noop */ }
 
         // UI-side safeguard: if cover title is generic ("Swipe"/"Spyglass"), replace with AGO item title
         try {
@@ -806,7 +833,8 @@ export default function Converter() {
             if (isGeneric && classicItemId) {
               try {
                 const detailsClassic = await getItemDetails(classicItemId, token);
-                const agoTitle = String(detailsClassic?.title || '').trim();
+                const dc = detailsClassic as unknown as { title?: unknown };
+                const agoTitle = String(dc?.title ?? '').trim();
                 if (agoTitle) {
                   coverNode.data = { ...(coverNode.data || {}), title: agoTitle };
                   nodes[coverId] = coverNode;
@@ -826,6 +854,7 @@ export default function Converter() {
         try {
           setStatus('transferring');
           setMessage('Transferring images to story resources...');
+          try { trace.onEnter('transfer-media', { type: 'step' }); } catch { /* noop */ }
           const imageUrls = collectImageUrls(newStorymapJson);
           if (imageUrls.length) {
             const uploader = async (url: string, storyId: string, username: string, token: string) => {
@@ -862,7 +891,9 @@ export default function Converter() {
           }
         } catch (err) {
           console.warn('[Converter] Image transfer step failed or skipped:', err);
+          try { trace.onExit('transfer-media', { type: 'step', output: { ok: false, error: String((err as Error)?.message || err) } }); } catch { /* noop */ }
         }
+        try { trace.onExit('transfer-media', { type: 'step', output: { ok: true } }); } catch { /* noop */ }
 
         // Extract custom CSS (if any) from converter-metadata decisions
         try {
@@ -977,7 +1008,7 @@ export default function Converter() {
         // Fetch target draft details
         setStatus("updating");
         setMessage("Fetching target storymap details...");
-        const targetDetails = await getItemDetails(targetStoryId, token);
+        const targetDetails = await getItemDetails(targetStoryId, token || "");
         checkCancelled();
 
         // Find draft resource name
@@ -1073,7 +1104,8 @@ export default function Converter() {
 
         // Update keywords to add smconverter:online-app
         setMessage("Updating keywords...");
-        const currentKeywords = targetDetails.typeKeywords || [];
+        const td = targetDetails as unknown as { typeKeywords?: unknown };
+        const currentKeywords: string[] = Array.isArray(td?.typeKeywords) ? (td.typeKeywords as string[]) : [];
         if (!currentKeywords.includes("smconverter:online-app")) {
           const newKeywords = [...currentKeywords, "smconverter:online-app"];
           await updateItemKeywords(targetStoryId, username, newKeywords, token);
@@ -1112,21 +1144,23 @@ export default function Converter() {
           // ignore promotion failures
         }
 
-        // Save local copies to tmp-converted via Netlify function (during netlify dev)
+        // Save local copies to tests/output via Netlify function (during netlify dev)
         try {
           const cid = String(classicItemId || '').trim();
           // Create a timestamped run folder: <classicId-MM-ddTHH-MM>
           const now = new Date();
           const pad = (n: number) => String(n).padStart(2, '0');
-          const runStamp = `${pad(now.getMonth()+1)}-${pad(now.getDate())}T${pad(now.getHours())}-${pad(now.getMinutes())}`;
-          const runFolder = cid ? `${cid}-${runStamp}` : `converted-app-${runStamp}`;
+          const runStamp = `${pad(now.getMonth()+1)}-${pad(now.getDate())}T${pad(now.getHours())}${pad(now.getMinutes())}`;
+          const draftFile = `tests/output/converted-${cid ? `${cid}-${runStamp}` : `converted-app-${runStamp}`}.json`;
+          const traceFile = `tests/output/trace-${cid ? `${cid}-${runStamp}` : `converted-app-${runStamp}`}.json`;
           // Always save the immediate draft JSON
           {
+            try { trace.onEnter('save-outputs', { type: 'step', input: { draftFile } }); } catch { /* noop */ }
             const res = await fetch('/.netlify/functions/save-converted', {
               method: 'POST',
               headers: { 'content-type': 'application/json' },
               body: JSON.stringify({
-                filename: `${runFolder}/draft.json`,
+                filename: draftFile,
                 storyId: targetStoryId,
                 classicItemId,
                 json: newStorymapJson
@@ -1147,18 +1181,35 @@ export default function Converter() {
                 setTimeout(() => setToast(''), 3000);
               }
             }
+            // Save trace JSON alongside draft for visualization
+            try {
+              trace.endSession();
+              const tr = trace.export();
+              if (tr) {
+                const res2 = await fetch('/.netlify/functions/save-converted', {
+                  method: 'POST',
+                  headers: { 'content-type': 'application/json' },
+                  body: JSON.stringify({ filename: traceFile, storyId: targetStoryId, classicItemId, json: tr })
+                });
+                if (res2.ok) {
+                  const info2 = await res2.json().catch(() => ({}));
+                  const savedTracePath = info2?.relPath || info2?.path || traceFile;
+                  try { localStorage.setItem('lastTracePath', savedTracePath); } catch { /* ignore */ }
+                }
+              }
+            } catch { /* ignore trace save errors */ }
+            try { trace.onExit('save-outputs', { type: 'step', output: { ok: true, draftFile, traceFile } }); } catch { /* noop */ }
           }
           // If Map Series, save each entry JSON and a collection placeholder into a classic-id subfolder
           if ((detectedTemplate || runtimeTemplate || '').toLowerCase().includes('map series')) {
             try {
               // Access last Map Series links/titles if present (not strictly needed for saving)
-              // @ts-expect-error allow reading local state without usage
               void (mapSeriesLinks || []);
               // Save entry JSONs if the converter returned them
               // Since only the first entry JSON was uploaded, attempt to regenerate via converter for saving
               try {
                 const series = await MapSeriesConverter.convertSeries({
-                  classicJson: classicData,
+                  classicJson: classicData as unknown as Record<string, unknown>,
                   themeId: 'auto',
                   progress,
                   token
@@ -1166,7 +1217,7 @@ export default function Converter() {
                 const entries = Array.isArray(series.storymapJsons) ? series.storymapJsons : [];
                 for (let i = 0; i < entries.length; i++) {
                   const entryJson = entries[i];
-                  const filename = `${runFolder}/entry-${i + 1}.json`;
+                  const filename = `tests/output/converted-${cid ? `${cid}-${runStamp}` : `converted-app-${runStamp}`}-entry-${i + 1}.json`;
                   const res = await fetch('/.netlify/functions/save-converted', {
                     method: 'POST',
                     headers: { 'content-type': 'application/json' },
@@ -1208,7 +1259,7 @@ export default function Converter() {
                     method: 'POST',
                     headers: { 'content-type': 'application/json' },
                     body: JSON.stringify({
-                      filename: `${runFolder}/collection-draft.json`,
+                      filename: `tests/output/converted-${cid ? `${cid}-${runStamp}` : `converted-app-${runStamp}`}-collection.json`,
                       storyId: targetStoryId,
                       classicItemId,
                       json: collectionDraft
@@ -1252,8 +1303,10 @@ export default function Converter() {
         if (error instanceof Error && error.stack) {
           console.debug('[ConverterCatch]', error.stack);
         }
+        try { trace.onExit('convert-flow', { type: 'convert', output: { error: String(error instanceof Error ? error.message : error) } }); } catch { /* ignore */ }
         setPublishing(false);
       }
+      try { trace.onExit('convert-flow', { type: 'convert', output: { ok: true } }); } catch { /* ignore */ }
     };
   // Auto-poll for published_data.json whenever Map Series links change
   useEffect(() => {
@@ -1466,6 +1519,26 @@ export default function Converter() {
               <strong>Publishing URL:</strong> <a href={convertedUrl} target="_blank" rel="noopener noreferrer">{convertedUrl}</a>
             </div>
           )}
+        </div>
+      )}
+      {(import.meta as unknown as { env?: { DEV?: boolean } }).env?.DEV === true && (
+        <div className="converter-controls-row">
+          {(() => {
+            let hasTrace = false;
+            try { hasTrace = Boolean(trace.export()); } catch { /* ignore */ }
+            if (!hasTrace) {
+              try { hasTrace = Boolean(localStorage.getItem('lastTracePath')); } catch { /* ignore */ }
+            }
+            if (!hasTrace) return null;
+            return (
+              <button
+                className="converter-btn secondary"
+                onClick={() => { try { window.open('/graphview.html', '_blank'); } catch { /* ignore */ } }}
+              >
+                Open Graph View
+              </button>
+            );
+          })()}
         </div>
       )}
       {isMobile && status !== 'idle' && status !== 'error' && status !== 'success' && !cancelRequestedRef.current && !cancelRequested && (
@@ -1684,19 +1757,17 @@ export default function Converter() {
                 const typeKeywords = Array.isArray(tk) ? tk.filter((s): s is string => typeof s === 'string') : [];
                 const isAccordion = typeKeywords.some(k => /accordion/i.test(k));
                 // Prefer explicit layout id from classic JSON values if present
-                let layoutType = isAccordion ? 'tab' : undefined;
+                const layoutType = isAccordion ? 'tab' : undefined;
                 try {
-                  const explicitLayoutId = String(((classicData as unknown as { values?: { settings?: { layout?: { id?: string } } } })?.values?.settings?.layout?.id) || '').trim();
-                  if (explicitLayoutId) layoutType = explicitLayoutId;
+                  // Classic JSON not available in this scope; keep inferred layoutType
                 } catch { /* ignore layout detection errors */ }
                 // Detect theme base + overrides from classic JSON
                 let themeBase: 'summit' | 'obsidian' = 'summit';
                 let themeOverrides: Record<string, unknown> = {};
                 try {
-                  const colors = ((classicData as unknown as { values?: { settings?: { theme?: { colors?: Record<string, unknown> } } } })?.values?.settings?.theme?.colors) || {};
-                  const group = String((colors as { group?: string })?.group || '').toLowerCase();
-                  themeBase = group === 'dark' ? 'obsidian' : 'summit';
-                  themeOverrides = colors || {};
+                  // Classic JSON not available in this scope; use defaults
+                  themeBase = isAccordion ? 'summit' : 'summit';
+                  themeOverrides = {};
                 } catch { /* ignore theme detection errors */ }
                 // Build entries from last conversion result stored in state
                 const entries = mapSeriesLinks.map((l, idx) => ({

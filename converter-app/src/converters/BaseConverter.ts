@@ -9,7 +9,7 @@
  * - Sits with concrete converters to provide shared foundations.
  * - Imported by strategy classes and `ConverterFactory` for typing/contracts.
  */
-import type { ConverterResult, ProgressCallback, StoryMapJSON } from '../types/core.ts';
+import type { ConverterResult, ProgressCallback, StoryMapJSON } from '../types/core';
 import type { ClassicStoryMapJSON } from '../types/classic';
 
 export interface BaseConverterOptions {
@@ -52,7 +52,7 @@ export abstract class BaseConverter {
   /** Extract structural elements (sections, entries, places) */
   protected abstract extractStructure(): void;
   /** Convert content nodes into StoryMap nodes */
-  protected abstract convertContent(): void;
+  protected abstract convertContent(): void | Promise<void>;
   /** Apply theme settings to resulting JSON */
   protected abstract applyTheme(): void;
   /** Collect media URLs for later transfer */
@@ -60,10 +60,10 @@ export abstract class BaseConverter {
   /** Return built StoryMap JSON */
   protected abstract getStoryMapJson(): StoryMapJSON;
 
-  convert(): ConverterResult {
+  async convert(): Promise<ConverterResult> {
     this.emit('Beginning conversion');
     this.extractStructure();
-    this.convertContent();
+    await this.convertContent();
     this.applyTheme();
     const mediaUrls = this.collectMedia();
     const storymapJson = this.getStoryMapJson();

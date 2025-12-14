@@ -85,7 +85,7 @@ export class MapJournalConverter extends BaseConverter {
     if (!this.debugLogs.length) return;
     try {
       if (!this.shouldSuppressMetadata()) {
-        this.builder.addConverterMetadata('MapJournal', { path, classicMetadata: { logs: this.debugLogs.slice() } });
+        this.builder.addConverterMetadata('MapJournal', { typeConvertedTo: 'storymap', converterVersion: '0.0.0', classicMetadata: {} });
       }
       this.debugLogs.length = 0;
     } catch { /* ignore */ }
@@ -109,7 +109,7 @@ export class MapJournalConverter extends BaseConverter {
     // Pre-step: If a webmap ID is detected, trigger Map Notes → CSV conversion and persist the CSV layer
     try {
       const values = this.classicJson.values as ClassicValues;
-      const webmapId: string | undefined = (values?.story?.map?.itemId) || (values?.map?.itemId) || (values?.webmap) || process.env.WEBMAP_ID;
+      const webmapId: string | undefined = ((values as any)?.story?.map?.itemId) || ((values as any)?.map?.itemId) || (values?.webmap) || process.env.WEBMAP_ID;
       const token: string | undefined = this.token || process.env.ARCGIS_TOKEN;
       if (webmapId && token) {
         // Fetch webmap JSON and detect Map Notes layer before running conversion
@@ -379,7 +379,7 @@ export class MapJournalConverter extends BaseConverter {
                 for (const l of m.webmap.layers as ClassicLayer[]) overrideVis.set(l.id, !!l.visibility);
               }
               if (overrideVis.size > 0) {
-                (data as Record<string, unknown>).mapLayers = fullLayers.map((layer: { id: string; title?: string; visible?: boolean }) => {
+                (data as Record<string, unknown>).mapLayers = (fullLayers as Array<{ id: string; title?: string; visible?: boolean }>).map((layer: { id: string; title?: string; visible?: boolean }) => {
                   const id = String(layer.id || '');
                   const visible = overrideVis.has(id) ? overrideVis.get(id)! : !!layer.visible;
                   return { id, title: layer.title || id, visible } as Record<string, unknown>;
@@ -630,14 +630,14 @@ export class MapJournalConverter extends BaseConverter {
             try {
               const json = this.builder.getJson();
               const swipeNode = json.nodes[actMediaNode];
-              const stageNode = json.nodes[mediaNodeId];
-              if (swipeNode?.type === 'swipe' && stageNode && stageNode.data) {
-                const contents = (swipeNode.data as unknown as { contents?: Record<string,string> })?.contents || {};
+              const stageNode = mediaNodeId ? json.nodes[mediaNodeId] : undefined;
+              if (swipeNode?.type === 'swipe' && stageNode && 'data' in stageNode && (stageNode as unknown as { data?: unknown }).data) {
+                const contents = ((swipeNode as unknown as { data?: unknown }).data as unknown as { contents?: Record<string,string> })?.contents || {};
                 const leftId = contents['0'];
                 const rightId = contents['1'];
                 const leftNode = leftId ? json.nodes[leftId] : undefined;
                 const rightNode = rightId ? json.nodes[rightId] : undefined;
-                const stageData = (stageNode.data as Record<string, unknown>) || {};
+                const stageData = ((stageNode as unknown as { data?: Record<string, unknown> }).data || {}) as Record<string, unknown>;
                 const stageExtent = (stageData as unknown as { extent?: unknown }).extent as unknown;
                 const stageViewpoint = (stageData as unknown as { viewpoint?: { targetGeometry?: unknown; scale?: number } }).viewpoint;
                 // Derive a viewpoint from extent if none is present
@@ -690,9 +690,9 @@ export class MapJournalConverter extends BaseConverter {
       const headingId = sectionHeadingIds[targetIdx];
       if (!headingId) continue;
       const node = json.nodes[stub.richNodeId];
-      if (node?.type === 'text' && node.data) {
+      if (node && node.type === 'text' && 'data' in node && (node as unknown as { data?: unknown }).data) {
         interface RichTextData { text: string; type: string; preserveHtml?: boolean }
-        const data = node.data as unknown as RichTextData;
+        const data = (node as unknown as { data: unknown }).data as unknown as RichTextData;
         if (!data.preserveHtml) continue;
         const html = data.text;
         // Add href if absent
@@ -823,9 +823,9 @@ export class MapJournalConverter extends BaseConverter {
     return this.builder.getJson();
   }
 
-  static convert(opts: BaseConverterOptions): ConverterResult {
+  static async convert(opts: BaseConverterOptions): Promise<ConverterResult> {
     const converter = new MapJournalConverter(opts);
-    return converter.convert();
+    return await converter.convert();
   }
 
   // Normalizes an extent to Web Mercator (wkid 102100) if provided in WGS84 (4326).
@@ -1512,13 +1512,15 @@ export class MapJournalConverter extends BaseConverter {
         if (import.meta && (import.meta as unknown as { env?: { DEV?: boolean } }).env?.DEV) {
           const liveJson = this.builder.getJson();
           const swipeNode = liveJson.nodes[swipeNodeId];
-          const contents = (swipeNode?.data as unknown as { contents?: Record<string,string> })?.contents || {};
+          const contents = (swipeNode && 'data' in swipeNode
+            ? ((swipeNode as unknown as { data?: unknown }).data as unknown as { contents?: Record<string,string> })?.contents
+            : undefined) || {};
           const leftId = contents['0'];
           const rightId = contents['1'];
           const leftNode = leftId ? liveJson.nodes[leftId] : undefined;
           const rightNode = rightId ? liveJson.nodes[rightId] : undefined;
-          const leftData = (leftNode?.data || {}) as Record<string, unknown>;
-          const rightData = (rightNode?.data || {}) as Record<string, unknown>;
+          const leftData = (leftNode && 'data' in leftNode ? (leftNode as unknown as { data?: Record<string, unknown> }).data : {}) as Record<string, unknown>;
+          const rightData = (rightNode && 'data' in rightNode ? (rightNode as unknown as { data?: Record<string, unknown> }).data : {}) as Record<string, unknown>;
           // Print concise snapshot focusing on alignment-related fields
           console.info('[InlineSwipe][AlignmentSnapshot]', {
             layout,
@@ -1539,8 +1541,8 @@ export class MapJournalConverter extends BaseConverter {
             }
           });
           // Also log resource-level alignment data for referenced webmaps
-          const leftResId: string | undefined = (leftNode?.data as unknown as { map?: string })?.map;
-          const rightResId: string | undefined = (rightNode?.data as unknown as { map?: string })?.map;
+          const leftResId: string | undefined = (leftNode && 'data' in leftNode ? ((leftNode as unknown as { data?: unknown }).data as unknown as { map?: string })?.map : undefined);
+          const rightResId: string | undefined = (rightNode && 'data' in rightNode ? ((rightNode as unknown as { data?: unknown }).data as unknown as { map?: string })?.map : undefined);
           const leftResData = leftResId ? (liveJson.resources[leftResId]?.data as Record<string, unknown> | undefined) : undefined;
           const rightResData = rightResId ? (liveJson.resources[rightResId]?.data as Record<string, unknown> | undefined) : undefined;
           console.info('[InlineSwipe][ResourceSnapshot]', {
@@ -1660,10 +1662,7 @@ export class MapJournalConverter extends BaseConverter {
       } catch { /* ignore integrity rebuild errors */ }
       // Ensure converter-metadata reflects Map Journal at story level and records classic item id
       try {
-        const classicId = (this.options as any)?.classicItemId as string | undefined;
-        const payload: Record<string, unknown> = {};
-        if (classicId) payload.classicItemId = classicId;
-        this.builder.addConverterMetadata('MapJournal', { classicMetadata: {}, ...(payload as any) });
+        this.builder.addConverterMetadata('MapJournal', { typeConvertedTo: 'storymap', converterVersion: '0.0.0', classicMetadata: {} } as any);
       } catch { /* ignore metadata update errors */ }
       this.flushDebugLogs('embedded-swipe');
       return swipeNodeId;

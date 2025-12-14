@@ -1,0 +1,110 @@
+{
+  "sessionId": "sess-1765676654363-nk0fdm",
+  "itemId": "ccd648e8845847d2947cbc7e0c4ec616",
+  "startedAt": 1765676654363,
+  "events": [
+    {
+      "ts": 1765676654363,
+      "event": "enter",
+      "stepId": "convert-flow",
+      "type": "convert",
+      "input": {
+        "classicItemId": "ccd648e8845847d2947cbc7e0c4ec616"
+      }
+    },
+    {
+      "ts": 1765676654363,
+      "event": "enter",
+      "stepId": "fetch-classic",
+      "type": "step",
+      "input": {
+        "classicItemId": "ccd648e8845847d2947cbc7e0c4ec616"
+      }
+    },
+    {
+      "ts": 1765676654485,
+      "event": "exit",
+      "stepId": "fetch-classic",
+      "type": "step",
+      "output": {
+        "ok": true
+      }
+    },
+    {
+      "ts": 1765676654485,
+      "event": "enter",
+      "stepId": "detect-template",
+      "type": "step"
+    },
+    {
+      "ts": 1765676654485,
+      "event": "exit",
+      "stepId": "detect-template",
+      "type": "step",
+      "output": {
+        "template": "Map Journal"
+      }
+    },
+    {
+      "ts": 1765676655970,
+      "event": "enter",
+      "stepId": "validate-webmaps",
+      "type": "step",
+      "input": {
+        "total": 6
+      }
+    },
+    {
+      "ts": 1765676671199,
+      "event": "exit",
+      "stepId": "validate-webmaps",
+      "type": "step",
+      "output": {
+        "warnings": 0
+      }
+    },
+    {
+      "ts": 1765676671199,
+      "event": "enter",
+      "stepId": "convert-story",
+      "type": "step",
+      "input": {
+        "template": "Map Journal"
+      }
+    },
+    {
+      "ts": 1765676671686,
+      "event": "exit",
+      "stepId": "convert-story",
+      "type": "step",
+      "output": {
+        "ok": true
+      }
+    },
+    {
+      "ts": 1765676671686,
+      "event": "enter",
+      "stepId": "transfer-media",
+      "type": "step"
+    },
+    {
+      "ts": 1765676682244,
+      "event": "exit",
+      "stepId": "transfer-media",
+      "type": "step",
+      "output": {
+        "ok": true
+      }
+    },
+    {
+      "ts": 1765676684523,
+      "event": "enter",
+      "stepId": "save-outputs",
+      "type": "step",
+      "input": {
+        "draftFile": "tests/output/converted-ccd648e8845847d2947cbc7e0c4ec616-12-13T1744.json"
+      }
+    }
+  ],
+  "endedAt": 1765676684723
+}

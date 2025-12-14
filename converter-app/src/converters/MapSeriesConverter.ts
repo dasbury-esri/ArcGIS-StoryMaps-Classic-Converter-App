@@ -93,10 +93,11 @@ export class MapSeriesConverter extends BaseConverter {
       const layoutOptions = (seriesSettings as { layoutOptions?: { panel?: { position?: string; size?: 'wide' | 'standard' } } }).layoutOptions || {} as { panel?: { position?: string; size?: 'wide' | 'standard' } };
       const panelOpts = layoutOptions.panel || {};
       const mapOptions = (seriesSettings as { mapOptions?: Record<string, unknown> }).mapOptions || {} as Record<string, unknown>;
-      const entries = Array.isArray(classicJson?.values?.story?.entries)
-        ? classicJson.values.story.entries
-        : Array.isArray(classicJson?.values?.story?.sections)
-          ? classicJson.values.story.sections
+      const v: any = (classicJson as any)?.values || {};
+      const entries = Array.isArray(v?.story?.entries)
+        ? v.story.entries
+        : Array.isArray(v?.story?.sections)
+          ? v.story.sections
           : [];
       // Helper: classify entry type and template
       const classify = (entry: ClassicEntry): { kind: 'image' | 'video' | 'embed' | 'classic' | 'webmap' | 'unknown'; template?: 'mapjournal' | 'maptour' | 'swipe' | 'mapseries' } => {
@@ -232,7 +233,7 @@ export class MapSeriesConverter extends BaseConverter {
           // Add narrative and media to Sidecar nodes
           builder.addChild(narrativeId, tn);
           // Append webmap as media child on the slide
-          builder.updateNode(slideId, (node) => { if (!node.children) node.children = []; (node.children as string[]).push(mapNodeId); });
+          builder.updateNode(slideId, (node) => { const children = (node as any).children ?? ((node as any).children = []); (children as string[]).push(mapNodeId); });
           // Apply mapOptions from series settings when present onto the webmap node (basic overlay-only fields)
           try {
             builder.updateNodeData(mapNodeId, (data) => {
@@ -296,8 +297,8 @@ export class MapSeriesConverter extends BaseConverter {
               }
               // Update resource-level data
               builder.updateWebMapData(resId, {
-                extent: finalExtent,
-                center,
+                extent: (finalExtent as any),
+                center: (center as any),
                 zoom: (typeof zoom === 'number') ? zoom : undefined,
                 viewpoint
               });
@@ -340,12 +341,12 @@ export class MapSeriesConverter extends BaseConverter {
             const template = (detected?.toLowerCase() || kind.template || 'mapjournal') as 'mapjournal' | 'maptour' | 'swipe' | 'mapseries';
             const childProgress = (e: ProgressEvent) => progress?.({ stage: 'convert', message: `Entry ${i + 1}: ${e.message}`, current: i + 1, total: entries.length });
             if (template === 'mapjournal') {
-              const res = MapJournalConverter.convert({ classicJson: childData, themeId: themeToUse, progress: childProgress });
+              const res = await MapJournalConverter.convert({ classicJson: childData as unknown as import('../types/classic').ClassicStoryMapJSON, themeId: themeToUse, progress: childProgress });
               json = res.storymapJson;
             } else if (template === 'maptour') {
-              json = MapTourConverter.convert({ classicJson: childData, themeId: themeToUse, progress: childProgress }).storymapJson;
+              json = (await MapTourConverter.convert({ classicJson: childData as unknown as import('../types/classic').ClassicStoryMapJSON, themeId: themeToUse, progress: childProgress })).storymapJson;
             } else if (template === 'swipe') {
-              const conv = new SwipeConverter({ classicJson: childData, themeId: themeToUse, progress: childProgress, token });
+              const conv = new SwipeConverter({ classicJson: childData as unknown as import('../types/classic').ClassicStoryMapJSON, themeId: themeToUse, progress: childProgress, token });
               json = await conv.convert().then(r => r.storymapJson);
             } else if (template === 'mapseries') {
               // Nested series: build simple placeholder noting nesting; full recursion can be added later
@@ -468,7 +469,7 @@ export class MapSeriesConverter extends BaseConverter {
             console.debug('[MapSeriesConverter] Using cached child JSON for appid:', chosen);
             return MapSeriesConverter.childCache[chosen];
           }
-          const json = await getItemData(chosen, token);
+          const json = await getItemData(chosen, token || '');
           const child = (json || {}) as Record<string, unknown>;
           try {
             const values = (child as { values?: Record<string, unknown> }).values || {};

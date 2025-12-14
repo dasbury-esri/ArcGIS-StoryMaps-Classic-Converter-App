@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import netlify from '@netlify/vite-plugin'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react(), netlify()],
   server: {
     port: 5173,
@@ -11,6 +11,14 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
+      input: mode === 'development'
+        ? {
+            main: 'index.html',
+            graphview: 'graphview.html'
+          }
+        : {
+            main: 'index.html'
+          },
       // Do not bundle ArcGIS JS API (@arcgis/core); keep it external.
       external: [
         '@arcgis/core',
@@ -38,4 +46,4 @@ export default defineConfig({
     // Provide global alias for libraries that still reference `global`
     global: 'globalThis'
   }
-})
+}))

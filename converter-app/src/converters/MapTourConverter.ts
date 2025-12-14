@@ -201,13 +201,13 @@ export class MapTourConverter extends BaseConverter {
     return this.builder.getJson();
   }
 
-  static convert(opts: BaseConverterOptions): ConverterResult {
+  static async convert(opts: BaseConverterOptions): Promise<ConverterResult> {
     const template = detectClassicTemplate(opts.classicJson);
     if (!/tour/i.test(template)) {
       throw new Error('MapTourConverter invoked for non Map Tour template');
     }
-    const conv = new MapTourConverter(opts);
-    return conv.convert();
+      const conv = new MapTourConverter(opts);
+      return await conv.convert();
   }
   private async tryInlineUpload(url: string, resourceId: string): Promise<void> {
     if (!this.uploader || !this.storyId || !this.username || !this.token) return;
